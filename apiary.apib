@@ -28,24 +28,22 @@ will be created.
 + Parameters
     + ehrId (optional, string) - Creates a new EHR with specified ID.
 
-+ Request 
++ Request
 
     + Headers
 
-            Prefer: return=representation
-            OR
-            Prefer: return=minimal
+            Prefer: return={representation/minimal}
             
-    + Body (application/json)
+    + Body
     
-        {
-            "commit_audit_description": "text",
-            "commit_audit_committer": {"@class": "PARTY_IDENTIFIED", ... },
-            "ehr_status": {},
-            "ehr_access": {}
-        }
+            {
+                "commit_audit_description": "text",
+                "commit_audit_committer": {"@class": "PARTY_IDENTIFIED", ... },
+                "ehr_status": {},
+                "ehr_access": {}
+            }
 
-+ Response 201
++ Response 201 (application/json)
 
     New EHR has been created. Body is only returned when `Prefer` haeder
     has a value of `return=representation`
@@ -54,7 +52,7 @@ will be created.
 
             Location: /ehr/{ehrId}
 
-    + Body (application/json)
+    + Body
 
             {
                 "system_id": {},
@@ -118,9 +116,7 @@ will be created.
 
     + Headers
 
-            Prefer: return=representation
-            OR
-            Prefer: return=minimal
+            Prefer: return=representation OR return=minimal
 
 + Response 200 (application/json)
 
@@ -131,7 +127,7 @@ will be created.
 
             Content-Location: /ehr/{ehrId}
             
-    + Body (application/json)
+    + Body
 
             {
                 "system_id": {},
@@ -203,14 +199,14 @@ Parameter `versionTime` can have the following values:
     + versionUid (string, optional) - versionUid
     + versionTime (string, optional) - parameter identifying a specific version
 
-+ Response 200
++ Response 200 (application/json)
 
     + Headers
 
             Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "subject": {},
@@ -237,13 +233,13 @@ Parameter `versionTime` can have the following values:
 + Parameters
     + ehrId (string) - ID of the EHR resource
 
-+ Request
++ Request (application/json)
 
     + Header
 
             Match-If: {precedingVersionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "subject": {},
@@ -300,14 +296,14 @@ Parameter `versionTime` can have the following values:
     + versionUid (string, optional) - versionUid
     + versionTime (string, optional) - parameter identifying a specific version
 
-+ Response 200
++ Response 200 (application/json)
 
     + Headers
 
             Content-Location: /ehr/{ehrId}/ehr_access/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "settings": {}
@@ -331,13 +327,13 @@ Parameter `versionTime` can have the following values:
 + Parameters
     + ehrId (string) - ID of the EHR resource
 
-+ Request
++ Request (application/json)
 
     + Header
 
             Match-If: {precedingVersionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "settings": {}
@@ -388,14 +384,14 @@ It can also hold a `versionUid` in which case the specific version is returned.
     + objectId (string) - VERSIONED\_OBJECT id or version UID of the EHR_STATUS
     + versionTime (string, optional) - parameter identifying a specific version
 
-+ Response 200
++ Response 200 (application/json)
 
     + Headers
 
             Content-Location: /ehr_status/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "subject": {},
@@ -422,13 +418,13 @@ It can also hold a `versionUid` in which case the specific version is returned.
 + Parameters
     + objectId (string)
 
-+ Request
++ Request (application/json)
 
     + Header
 
             Match-If: {precedingVersionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "subject": {},
@@ -481,14 +477,14 @@ It can also hold a `versionUid` in which case the specific version is returned.
     + objectId (string) - VERSIONED\_OBJECT id or version UID of the EHR_ACCESS
     + versionTime (string, optional) - parameter identifying a specific version
 
-+ Response 200
++ Response 200 (application/json)
 
     + Headers
 
             Content-Location: /ehr_access/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "settings": {}
@@ -512,13 +508,13 @@ It can also hold a `versionUid` in which case the specific version is returned.
 + Parameters
     + objectId (string)
 
-+ Request
++ Request (application/json)
 
     + Header
 
             Match-If: {precedingVersionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "settings": {}
@@ -577,11 +573,9 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
     + Headers
 
-            Prefer: return=representation
-            OR
-            Prefer: return=minimal
+            Prefer: return={representation,minimal}
 
-+ Response 201
++ Response 201 (application/json)
 
     New directory was created. Content body is only returned when
     `Prefer` header has `return=representation` otherwise only headers are
@@ -592,7 +586,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
             Location: /ehr/{ehrId}/directory/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "items": [...],
@@ -636,11 +630,9 @@ It can also hold a `versionUid` in which case the specific version is returned.
     + Headers
 
             Match-If: {precedingVersionUid}
-            Prefer: return=representation
-            OR
-            Prefer: return=minimal
+            Prefer: return={representation,minimal}
 
-+ Response 200
++ Response 200 (application/json)
 
     Directory was updated. This is the response when `Prefer` header has `return=representation`.
     
@@ -649,7 +641,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
             Location: /ehr/{ehrId}/directory/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "items": [...],
@@ -754,14 +746,14 @@ It can also hold a `versionUid` in which case the specific version is returned.
     + versionTime (string, optional) - parameter identifying a specific version
     + path (string, optional) - path to a sub-folder
 
-+ Response 200
++ Response 200 (application/json)
 
     + Headers
 
             Location: /ehr/{ehrId}/directory/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "items": [...],
@@ -818,9 +810,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
     + Headers
 
-            Prefer: return=representation
-            OR
-            Prefer: return=minimal
+            Prefer: return={representation,minimal}
 
 + Response 201
 
@@ -833,7 +823,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
             Location: /ehr/{ehrId}/compositions/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "@class": "COMPOSITION",
@@ -894,11 +884,9 @@ It can also hold a `versionUid` in which case the specific version is returned.
     + Headers
 
             Match-If: {precedingVersionUid}
-            Prefer: return=representation
-            OR
-            Prefer: return=minimal
+            Prefer: return={representation,minimal}
 
-+ Response 200
++ Response 200 (application/json)
     
     This is the response we get when `Prefer` header was `return=representation`.
 
@@ -907,7 +895,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
             Content-Location: /ehr/{ehrId}/compositions/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "@class": "COMPOSITION",
@@ -1043,11 +1031,9 @@ It can also hold a `versionUid` in which case the specific version is returned.
     + Headers
 
             Match-If: {precedingVersionUid}
-            Prefer: return=representation
-            OR
-            Prefer: return=minimal
+            Prefer: return={representation,minimal}
 
-+ Response 200
++ Response 200 (application/json)
     
     This is the response we get when `Prefer` header was `return=representation`.
 
@@ -1056,7 +1042,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
             Content-Location: /ehr/{ehrId}/compositions/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "@class": "COMPOSITION",
@@ -1077,11 +1063,11 @@ It can also hold a `versionUid` in which case the specific version is returned.
             Content-Location: /ehr/{ehrId}/compositions/{versionUid}
             ETag: {versionUid}
 
-+ Response 400
++ Response 400 (application/json)
 
     Bad request: composition validation errors.
 
-    + Body (application/json)
+    + Body
 
             {
                 "message": "Error message",
@@ -1119,7 +1105,6 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
 + Parameters
 
-    + ehrId (string) - EHR id
     + objectId (string) - object id of the composition to delete
 
 + Request
@@ -1177,14 +1162,14 @@ It can also hold a `versionUid` in which case the specific version is returned.
     + objectId (string) - object id of the composition. This can be
     a versioned object id or a versionUid.
 
-+ Response 200
++ Response 200 (application/json)
 
     + Headers
 
             Content-Location: /compositions/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "@class": "COMPOSITION",
@@ -1220,11 +1205,9 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
     + Headers
 
-            Prefer: return=representation
-            OR
-            Prefer: return=minimal
+            Prefer: return={representation,minimal}
 
-+ Response 201
++ Response 201 (application/json)
 
     New versioned composition was created. Content body is only returned when
     `Prefer` header has `return=representation` otherwise only headers are
@@ -1234,7 +1217,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
             Location: /ehr/{ehrId}/versioned_compositions/{uid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "uid": "xxx",
@@ -1274,17 +1257,15 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Prefer: return=representation
-            OR
-            Prefer: return=minimal
+            Prefer: return={representation,minimal}
 
-+ Response 200
++ Response 200 (application/json)
 
     + Headers
 
             Location: /ehr/{ehrId}/versioned_compositions/{uid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "uid": "xxx",
@@ -1300,7 +1281,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
 + Response 400
 
-    Bad request - when VERSIONED_COMPOSITION with the given objectId already exists.
+    Bad request - when VERSIONED_COMPOSITION with the given uid already exists.
 
     + Body
 
@@ -1345,11 +1326,9 @@ Gets a complete VERSIONED_COMPOSITION.
     + Headers
 
             Match-If: {precedingVersionUid}
-            Prefer: return=representation
-            OR
-            Prefer: return=minimal
+            Prefer: return={representation,minimal}
 
-+ Response 201
++ Response 201 (application/json)
 
     New composition version was created. Content body is only returned when
     `Prefer` header was set to `return=representation` otherwise only headers are
@@ -1360,7 +1339,7 @@ Gets a complete VERSIONED_COMPOSITION.
             Location: /ehr/{ehrId}/versioned_compositions/{uid}/version/{versionUid}
             ETag: {versionUid}
 
-    + Body (application/json)
+    + Body
 
             {
                 "contribution": {},
@@ -1414,6 +1393,8 @@ Gets a complete VERSIONED_COMPOSITION.
     + Body
 
 
+# Group QUERY
+
 ## Querying [/query]
 
 ### Get query results [POST /query/aql]
@@ -1424,19 +1405,19 @@ NOTE: we might add a header to indicate which EHR to execute against to
 allow systems that need to route based of EHR id to do so without having
 to analyze the request body.
 
-+ Request
++ Request (application/json)
 
-    + Body (application/json)
+    + Body
     
-        {
-            "aql": "SELECT ....",
-            "aqlParameters": {
-                "parameter-name": "parameter-value",...
-            },
-            "offset": 999,
-            "fetch": 888,
-            ... // TBD
-        }
+            {
+                "aql": "SELECT ....",
+                "aqlParameters": {
+                    "parameter-name": "parameter-value",...
+                },
+                "offset": 999,
+                "fetch": 888,
+                // possibly more, TBD
+            }
         
 + Response 200
 
