@@ -10,9 +10,7 @@ OpenEHR REST API enables interaction with an OpenEHR service via the REST API.
 
 
 
-# Group EHR, EHR_STATUS and EHR_ACCESS
-
-
+# Group EHR
 
 
 ## EHR [/ehr/{ehrId}]
@@ -37,8 +35,10 @@ will be created.
     + Body
     
             {
-                "commit_audit_description": "text",
-                "commit_audit_committer": {"@class": "PARTY_IDENTIFIED", ... },
+                "commit_audit": {
+                    "description": "Commit audit description",
+                    "committer": {"@class": "PARTY_IDENTIFIED", ... }
+                },
                 "ehr_status": {},
                 "ehr_access": {}
             }
@@ -116,7 +116,7 @@ will be created.
 
     + Headers
 
-            Prefer: return=representation OR return=minimal
+            Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
 
@@ -184,19 +184,49 @@ _This call is under discussion._
     + Body
 
 
-### Get EHR_STATUS [GET /ehr/{ehrId}/ehr_status/{versionUid}{?versionTime}]
+# Group EHR_STATUS
 
-When parameters `versionUid` and `versionTime` are not present then the latest version is returned.
-When `versionUid` parameter is present, parameter `versionTime` is ignored returning the version
-specified. 
-Parameter `versionTime` can have the following values:
-- a specific timestamp in the full ISO8601 format
-- `LATEST_TRUNK_VERSION`
-- contribution uid
+## EHR_STATUS [/ehr/{ehrId}/ehr_status]
+
+### Get EHR_STATUS by versionUid [GET /ehr/{ehrId}/ehr_status/{versionUid}]
 
 + Parameters
     + ehrId (string) - ID of the EHR resource
-    + versionUid (string, optional) - versionUid
+    + versionUid (string) - versionUid
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "subject": {},
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {}
+            }
+
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id or no VERSIION with given versionUid.
+
+    + Body
+
+### Get EHR_STATUS [GET /ehr/{ehrId}/ehr_status{?versionTime}]
+
+Parameter `versionTime` can have the following values:
+- a specific timestamp in the full ISO8601 format
+- `LATEST_TRUNK_VERSION` (it is also what is returned when this parameter is missing) 
+- version uid
+
++ Parameters
+    + ehrId (string) - ID of the EHR resource
     + versionTime (string, optional) - parameter identifying a specific version
 
 + Response 200 (application/json)
@@ -215,6 +245,12 @@ Parameter `versionTime` can have the following values:
                 "other_details": {}
             }
 
+
++ Response 204
+
+    No version at versionTime.
+
+    + Body
 
 + Response 401
 
@@ -238,6 +274,25 @@ Parameter `versionTime` can have the following values:
     + Header
 
             Match-If: {precedingVersionUid}
+            Prefer: return={representation/minimal}
+
+    + Body
+
+            {
+                "subject": {},
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {}
+            }
+
++ Response 200
+
+    Returned when `Prefer` header is set to `return=representation`.
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
+            ETag: {versionUid}
 
     + Body
 
@@ -249,6 +304,8 @@ Parameter `versionTime` can have the following values:
             }
 
 + Response 204
+
+    Returned when `Prefer` header is NOT set to `return=representation`.
 
     + Headers
 
@@ -280,20 +337,241 @@ Parameter `versionTime` can have the following values:
     + Body
 
 
+## VERSIONED_EHR_STATUS [/ehr/{ehrId}/versioned_ehr_status]
 
-### Get EHR_ACCESS [GET /ehr/{ehrId}/ehr_access/{versionUid}{?versionTime}]
+### Get a VERSIONED_EHR_STATUS [GET /ehr/{ehrId}/versioned_ehr_status]
 
-When parameters `versionUid` and `versionTime` are not present then the latest version is returned.
-When `versionUid` parameter is present, parameter `versionTime` is ignored returning the version
-specified. 
-Parameter `versionTime` can have the following values:
-- a specific timestamp in the full ISO8601 format
-- `LATEST_TRUNK_VERSION`
-- contribution uid
++ Parameters
+
+    + ehrId (string) - EHR id
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "uid": "xxx",
+                "owner_id": "ehrId",
+                "time_created": "ISO8601 timestamp",
+                "version_count: 12,
+                "all_version_ids": [
+                    "versionedUid1",
+                    "versionedUid2",
+                    ...
+                ]
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
+
+### Get an EHR_STATUS version by versionUid [GET /ehr/{ehrId}/versioned_ehr_status/versions/{versionUid}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + versionUid (string) - versionUid
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "data": {
+                    "subject": {},
+                    "is_modifiable": "...",
+                    "is_queryable": "...",
+                    "other_details": {}
+                }
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id or no version with versionUid.
+
+    + Body
+
+
+### Get an EHR_STATUS version [GET /ehr/{ehrId}/versioned_ehr_status/versions{?versionTime}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + versionTime (string, optional) - version time specifier (latest version if omitted)
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/versioned_ehr_status/versions/{versionUid}
+
+    + Body
+
+            {
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "data": {
+                    "subject": {},
+                    "is_modifiable": "...",
+                    "is_queryable": "...",
+                    "other_details": {}
+                }
+            }
+
++ Response 204
+
+    No VERSION at specified versionTime.
+    
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
+
+### Create a new EHR_STATUS version [POST /ehr/{ehrId}/versioned_ehr_status/version]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+
++ Request (application/json)
+
+    + Headers
+
+            Match-If: {precedingVersionUid}
+            Prefer: return={representation/minimal}
+
+    + Body
+
+            {
+                "commit_audit": {},
+                "data": {
+                    "subject": {},
+                    "is_modifiable": "...",
+                    "is_queryable": "...",
+                    "other_details": {}
+                }
+            }
+
++ Response 201 (application/json)
+
+    New EHR_STATUS version was created. Content body is only returned when
+    `Prefer` header was set to `return=representation` otherwise only headers are
+    returned.
+    
+    + Headers
+
+            Location: /versioned_ehr_access/{uid}/versions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "data": {
+                    "subject": {},
+                    "is_modifiable": "...",
+                    "is_queryable": "...",
+                    "other_details": {}
+                }
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with given id.
+
+    + Body
+
++ Response 412
+
+    Match-If header doesn't match the last version. Returns
+    last version in the content-location and ETag headers.
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/versioned_ehr_status/versions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+
+
+# Group EHR_ACCESS
+
+## EHR_ACCESS [/ehr/{ehrId}/ehr_access]
+
+### Get EHR_ACCESS by versionUid [GET /ehr/{ehrId}/ehr_access/{versionUid}]
 
 + Parameters
     + ehrId (string) - ID of the EHR resource
-    + versionUid (string, optional) - versionUid
+    + versionUid (string) - versionUid
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "settings": {}
+            }
+
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id or no version with versionUid.
+
+    + Body
+
+### Get EHR_ACCESS [GET /ehr/{ehrId}/ehr_access{?versionTime}]
+
+Parameter `versionTime` can have the following values:
+- a specific timestamp in the full ISO8601 format
+- `LATEST_TRUNK_VERSION` (it is also what is returned when this parameter is missing) 
+- version uid
+
++ Parameters
+    + ehrId (string) - ID of the EHR resource
     + versionTime (string, optional) - parameter identifying a specific version
 
 + Response 200 (application/json)
@@ -332,6 +610,22 @@ Parameter `versionTime` can have the following values:
     + Header
 
             Match-If: {precedingVersionUid}
+            Prefer: return={representation/minimal}
+
+    + Body
+
+            {
+                "settings": {}
+            }
+
++ Response 200
+
+    Returned when `Prefer` header is set to `return=representation`.
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
+            ETag: {versionUid}
 
     + Body
 
@@ -340,6 +634,8 @@ Parameter `versionTime` can have the following values:
             }
 
 + Response 204
+
+    Returned when `Prefer` header is NOT set to `return=representation`.
 
     + Headers
 
@@ -372,34 +668,29 @@ Parameter `versionTime` can have the following values:
 
 
 
-## EHR_STATUS [/ehr_status]
+## VERSIONED_EHR_ACCESS [/ehr/{ehrId}/versioned_ehr_access]
 
-### Get EHR_STATUS directly [GET /ehr_status/{objectId}{?versionTime}]
-
-Parameter `objectId` can hold a VERSIONED_OBJECT id in which case the
-latest version of the EHR_STATUS is returned.
-It can also hold a `versionUid` in which case the specific version is returned.
+### Get a VERSIONED_EHR_ACCESS [GET /ehr/{ehrId}/versioned_ehr_access]
 
 + Parameters
-    + objectId (string) - VERSIONED\_OBJECT id or version UID of the EHR_STATUS
-    + versionTime (string, optional) - parameter identifying a specific version
+
+    + ehrId (string) - EHR id
 
 + Response 200 (application/json)
-
-    + Headers
-
-            Content-Location: /ehr_status/{versionUid}
-            ETag: {versionUid}
 
     + Body
 
             {
-                "subject": {},
-                "is_queryable": true,
-                "is_modifiable": true,
-                "other_details": {}
+                "uid": "xxx",
+                "owner_id": "ehrId",
+                "time_created": "ISO8601 timestamp",
+                "version_count: 12,
+                "all_version_ids": [
+                    "versionedUid1",
+                    "versionedUid2",
+                    ...
+                ]
             }
-
 
 + Response 401
 
@@ -409,36 +700,69 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
 + Response 404
 
-    No EHR_STATUS with the given id.
+    No EHR with the given id.
 
     + Body
 
-### Update EHR_STATUS directly [PUT /ehr_status/{objectId}]
+
+### Get an EHR_ACCESS version by versionUid [GET /ehr/{ehrId}/versioned_ehr_access/versions/{versionUid}]
 
 + Parameters
-    + objectId (string)
 
-+ Request (application/json)
+    + ehrId (string) - EHR id
+    + versionUid (string) - versionUid
 
-    + Header
-
-            Match-If: {precedingVersionUid}
++ Response 200 (application/json)
 
     + Body
 
             {
-                "subject": {},
-                "is_queryable": true,
-                "is_modifiable": true,
-                "other_details": {}
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "data": {
+                    "settings": {},
+                }
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
+
+### Get an EHR_ACCESS version [GET /ehr/{ehrId}/versioned_ehr_access/version{?versionTime}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + versionTime (string) - version time specifier
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "data": {
+                    "settings": {},
+                }
             }
 
 + Response 204
 
-    + Headers
-
-            Content-Location: /ehr_status/{versionUid}
-            ETag: {versionUid}
+    No VERSION at versionTime.
+    
+    + Body
 
 + Response 401
 
@@ -448,7 +772,67 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
 + Response 404
 
-    No EHR_STATUS with the given id.
+    No EHR with the given id.
+
+    + Body
+
+
+### Create a new EHR_ACCESS version [POST /ehr/{ehrId}/versioned_ehr_access/version]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+
++ Request
+
+    + Body (application/json)
+
+            {
+                "commit_audit": {},
+                "data": {
+                    "settings": {},
+                }
+            }
+
+    + Headers
+
+            Match-If: {precedingVersionUid}
+            Prefer: return={representation/minimal}
+
++ Response 201 (application/json)
+
+    New EHR_ACCESS version was created. Content body is only returned when
+    `Prefer` header was set to `return=representation` otherwise only headers are
+    returned.
+    
+    + Headers
+
+            Location: /ehr/{ehrId}/versioned_ehr_access/versions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "data": {
+                    "subject": {},
+                    "is_modifiable": "...",
+                    "is_queryable": "...",
+                    "other_details": {}
+                }
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with given id.
 
     + Body
 
@@ -459,97 +843,11 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
+            Content-Location: /ehr/{ehrId}/versioned_ehr_access/versions/{versionUid}
             ETag: {versionUid}
 
     + Body
 
-
-## EHR_ACCESS [/ehr_access]
-
-### Get EHR_ACCESS directly [GET /ehr_access/{objectId}{?versionTime}]
-
-Parameter `objectId` can hold a VERSIONED_OBJECT id in which case the
-latest version of the EHR_ACCESS is returned.
-It can also hold a `versionUid` in which case the specific version is returned.
-
-+ Parameters
-    + objectId (string) - VERSIONED\_OBJECT id or version UID of the EHR_ACCESS
-    + versionTime (string, optional) - parameter identifying a specific version
-
-+ Response 200 (application/json)
-
-    + Headers
-
-            Content-Location: /ehr_access/{versionUid}
-            ETag: {versionUid}
-
-    + Body
-
-            {
-                "settings": {}
-            }
-
-
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
-+ Response 404
-
-    No EHR_ACCESS with the given id.
-
-    + Body
-
-### Update EHR_ACCESS directly [PUT /ehr_access/{objectId}]
-
-+ Parameters
-    + objectId (string)
-
-+ Request (application/json)
-
-    + Header
-
-            Match-If: {precedingVersionUid}
-
-    + Body
-
-            {
-                "settings": {}
-            }
-
-+ Response 204
-
-    + Headers
-
-            Content-Location: /ehr_access/{versionUid}
-            ETag: {versionUid}
-
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
-+ Response 404
-
-    No EHR_ACCESS with the given id.
-
-    + Body
-
-+ Response 412
-
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
-
-    + Headers
-
-            Content-Location: /ehr/{ehrId}/ehr_access/{versionUid}
-            ETag: {versionUid}
-
-    + Body
 
 
 # Group DIRECTORY
@@ -573,7 +871,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
     + Headers
 
-            Prefer: return={representation,minimal}
+            Prefer: return={representation/minimal}
 
 + Response 201 (application/json)
 
@@ -630,7 +928,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
     + Headers
 
             Match-If: {precedingVersionUid}
-            Prefer: return={representation,minimal}
+            Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
 
@@ -737,12 +1035,11 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
     + Body
 
-### Get a directory [GET /ehr/{ehrId}/directory/{versionUid}{?versionTime,path}]
+### Get a directory [GET /ehr/{ehrId}/directory{?versionTime,path}]
 
 + Parameters
     
     + ehrId (string) - EHR id
-    + versionUid (string, optional) - specific version
     + versionTime (string, optional) - parameter identifying a specific version
     + path (string, optional) - path to a sub-folder
 
@@ -810,7 +1107,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
     + Headers
 
-            Prefer: return={representation,minimal}
+            Prefer: return={representation/minimal}
 
 + Response 201
 
@@ -884,7 +1181,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
     + Headers
 
             Match-If: {precedingVersionUid}
-            Prefer: return={representation,minimal}
+            Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
     
@@ -1031,7 +1328,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
     + Headers
 
             Match-If: {precedingVersionUid}
-            Prefer: return={representation,minimal}
+            Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
     
@@ -1205,7 +1502,7 @@ It can also hold a `versionUid` in which case the specific version is returned.
 
     + Headers
 
-            Prefer: return={representation,minimal}
+            Prefer: return={representation/minimal}
 
 + Response 201 (application/json)
 
@@ -1257,7 +1554,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Prefer: return={representation,minimal}
+            Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
 
@@ -1326,7 +1623,7 @@ Gets a complete VERSIONED_COMPOSITION.
     + Headers
 
             Match-If: {precedingVersionUid}
-            Prefer: return={representation,minimal}
+            Prefer: return={representation/minimal}
 
 + Response 201 (application/json)
 
@@ -1336,7 +1633,7 @@ Gets a complete VERSIONED_COMPOSITION.
     
     + Headers
 
-            Location: /ehr/{ehrId}/versioned_compositions/{uid}/version/{versionUid}
+            Location: /ehr/{ehrId}/versioned_compositions/{uid}/versions/{versionUid}
             ETag: {versionUid}
 
     + Body
@@ -1387,7 +1684,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/versioned_compositions/{uid}/version/{versionUid}
+            Content-Location: /ehr/{ehrId}/versioned_compositions/{uid}/versions/{versionUid}
             ETag: {versionUid}
 
     + Body
