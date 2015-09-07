@@ -1,0 +1,586 @@
+FORMAT: 1A
+HOST: http://www.openehr.org/api
+
+# OpenEHR REST API
+
+OpenEHR REST API enables interaction with an OpenEHR service via the REST API.
+
+# Group EHR, EHR_STATUS and EHR_ACCESS
+
+## EHR [/ehr/{ehrId}]
+
+Management of EHRs.
+
+### Create a new EHR [POST]
+
+Request body may contain ehr_status and ehr_access attributes, if provided those
+resources will also be created when EHR is created.
+
++ Parameters
+    + ehrId (optional, string) - Creates a new EHR with specified ID.
+
++ Request (application/json)
+
+        {
+            "commit_audit_description": "text",
+            "commit_audit_committer": "committer name",
+            "ehr_status": {},
+            "ehr_access": {}
+        }
+
++ Response 201 (application/json)
+
+    New EHR has been created.
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}
+
++ Response 400
+
+    Unable to create a new EHR. Can happen when the supplied ehrId already exists.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
+
+### Get an EHR [GET]
+
++ Parameters
+    + ehrId (string) - ID of the EHR resource
+
++ Response 200 (application/json)
+
+            {
+                "ehr_status": "versioned ehr status uid",
+                "ehr_acess": "versioned ehr access uid",
+                ... // to be defined, possibly counts of compositions, contributions, etc.
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
+
+### Get an EHR by external subject ID [GET /ehr{?subjectId,subjectNamespace}]
+
++ Parameters
+    + subjectId (string) - external subject ID
+    + subjectNamespace (string) - external subject namespace
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}
+
+    + Body
+
+            {
+                "ehr_status": "versioned ehr status uid",
+                "ehr_acess": "versioned ehr access uid",
+                ... // to be defined, possibly counts of compositions, contributions, etc.
+            }
+
++ Response 204
+
+    No content - no EHR with given parameters found.
+
+    + Body
+
++ Response 400
+
+    Bad request: one of the parameters is missing.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
+
+### Delete an EHR [DELETE /ehr/{ehrId}]
+
+_This call is under discussion._
+
++ Parameters
+    + ehrId (string) - ID of the EHR resource
+
++ Response 204 (application/json)
+
+    EHR was deleted.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given EHR id.
+
+    + Body
+
+
+### Get EHR_STATUS [GET /ehr/{ehrId}/ehr_status/{versionUid}/{?timestamp,version}]
+
+When parameters `{versionUid}`, `{timestamp}` and `{version}` are not present then the latest version is returned.
+When `{versionUid}` parameter is present, parameters `{timestamp}` and `{version}` are ignored returning the version
+specified. In order to return `EHR_STATUS` active at a certain timestamp, parameter `{versionUid}` should
+not be present.
+
++ Parameters
+    + ehrId (string) - ID of the EHR resource
+    + versionUid (string, optional) - versionUid
+    + timestamp (string, optional) - ISO8601 timestamp - return version of EHR_STATUS active at this time
+    + version (number, optional) - version number to return
+
++ Response 200
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "subject": {},
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {}
+            }
+
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
+### Update an EHR_STATUS [PUT /ehr/{ehrId}/ehr_status]
+
++ Parameters
+    + ehrId (string) - ID of the EHR resource
+
++ Request
+
+    + Header
+
+            Match-If: {precedingVersionUid}
+
+    + Body
+
+            {
+                "subject": {},
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {}
+            }
+
++ Response 204
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
+            ETag: {versionUid}
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
++ Response 412
+
+    Match-If header doesn't match the last version.
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
+
+    + Body
+
+
+## EHR_STATUS [/ehr_status]
+
+### Get EHR_STATUS directly [GET /ehr_status/{objectId}{timestamp,version}]
+
+Parameter `objectId` can hold a VERSIONED_OBJECT id in which case the
+latest version of the EHR_STATUS is returned.
+It can also hold a `versionUid` in which case the specific version is returned.
+
++ Parameters
+    + objectId (string) - VERSIONED\_OBJECT id or version UID of the EHR_STATUS
+    + timestamp (string, optional) - ISO8601 timestamp - return version of EHR_STATUS active at this time
+    + version (number, optional) - version number to return
+
++ Response 200
+
+    + Headers
+
+            Content-Location: /ehr_status/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "subject": {},
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {}
+            }
+
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR_STATUS with the given id.
+
+    + Body
+
+### Update EHR_STATUS directly [PUT /ehr_status/{objectId}]
+
++ Parameters
+    + objectId (string)
+
++ Request
+
+    + Header
+
+            Match-If: {precedingVersionUid}
+
+    + Body
+
+            {
+                "subject": {},
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {}
+            }
+
++ Response 204
+
+    + Headers
+
+            Content-Location: /ehr_status/{versionUid}
+            ETag: {versionUid}
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR_STATUS with the given id.
+
+    + Body
+
++ Response 412
+
+    Match-If header doesn't match the last version.
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
+
+    + Body
+
+
+# Group DIRECTORY
+
+TBD
+
+# Group COMPOSITION
+
+## Composition [/ehr/{ehrId}/compositions]
+
+### Create a new composition [POST /ehr/{ehrId}/compositions/{objectId}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + objectId (string, optional) - to be able to create a new composition with the given object id
+
++ Request
+
+    + Body
+
+            {
+                "@class": "COMPOSITION",
+                "name": {
+                    "@class": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 204
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
+            ETag: {versionUid}
+
++ Response 400
+
+    Bad request: composition validation errors.
+
+    + Body
+
+            {
+                "message": "Error message",
+                "validationErrors": [
+                    "error1", "error2"
+                ]
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
+### Update a composition [PUT /ehr/{ehrId}/compositions/{objectId}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + objectId (string) - object id of the composition to update
+
++ Request
+
+    + Body
+
+            {
+                "@class": "COMPOSITION",
+                "name": {
+                    "@class": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
+    + Headers
+
+            Match-If: {precedingVersionUid}
+
++ Response 204
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
+            ETag: {versionUid}
+
++ Response 400
+
+    Bad request: composition validation errors or Match-If header
+    doesn't refer to the latest versionUid.
+
+    + Body
+
+            {
+                "message": "Error message",
+                "validationErrors": [
+                    "error1", "error2"
+                ]
+            }
+
+            OR
+
+            {
+                "message": "Match-If header doesn't match the last version"
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id or no composition with the given object id.
+
+    + Body
+
+### Update a composition directly [PUT /compositions/{objectId}]
+
++ Parameters
+
+    + objectId (string) - object id of the composition to update
+
++ Request
+
+    + Body
+
+            {
+                "@class": "COMPOSITION",
+                "name": {
+                    "@class": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
+    + Headers
+
+            Match-If: {precedingVersionUid}
+
++ Response 204
+
+    + Headers
+
+            Content-Location: /compositions/{versionUid}
+            ETag: {versionUid}
+
++ Response 400
+
+    Bad request: composition validation errors or Match-If header
+    doesn't refer to the latest versionUid.
+
+    + Body
+
+            {
+                "message": "Error message",
+                "validationErrors": [
+                    "error1", "error2"
+                ]
+            }
+
+            OR
+
+            {
+                "message": "Match-If header doesn't match the last version"
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id or no composition with the given object id.
+
+    + Body
+
+
+### Get a composition [GET /ehr/{ehrId}/compositions/{objectId}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + objectId (string) - object id of the composition. This can be
+    a versioned object id or a versionUid.
+
++ Response 200
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "@class": "COMPOSITION",
+                "name": {
+                    "@class": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id or no composition with the given object id.
+
+    + Body
+
+### Get a composition directly [GET /compositions/{objectId}]
+
++ Parameters
+
+    + objectId (string) - object id of the composition. This can be
+    a versioned object id or a versionUid.
+
++ Response 200
+
+    + Headers
+
+            Content-Location: /compositions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "@class": "COMPOSITION",
+                "name": {
+                    "@class": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No composition with the given object id.
+
+    + Body
