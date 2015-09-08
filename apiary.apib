@@ -199,6 +199,7 @@ _This call is under discussion._
     + Body
 
             {
+                "uid": "..",
                 "subject": {},
                 "is_queryable": true,
                 "is_modifiable": true,
@@ -214,7 +215,7 @@ _This call is under discussion._
 
 + Response 404
 
-    No EHR with the given id or no VERSIION with given versionUid.
+    No EHR with the given id or no VERSION with given versionUid.
 
     + Body
 
@@ -239,6 +240,7 @@ Parameter `versionTime` can have the following values:
     + Body
 
             {
+                "uid": "..",
                 "subject": {},
                 "is_queryable": true,
                 "is_modifiable": true,
@@ -297,6 +299,7 @@ Parameter `versionTime` can have the following values:
     + Body
 
             {
+                "uid": "...",
                 "subject": {},
                 "is_queryable": true,
                 "is_modifiable": true,
@@ -326,8 +329,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -376,6 +379,8 @@ Parameter `versionTime` can have the following values:
 
 ### Get an EHR_STATUS version by versionUid [GET /ehr/{ehrId}/versioned_ehr_status/versions/{versionUid}]
 
+Q: Should `/versions` be `/all_versions` to match RM?
+
 + Parameters
 
     + ehrId (string) - EHR id
@@ -389,6 +394,7 @@ Parameter `versionTime` can have the following values:
                 "contribution": {},
                 "signature": "...",
                 "commit_audit": {},
+                "uid": "...",
                 "data": {
                     "subject": {},
                     "is_modifiable": "...",
@@ -429,6 +435,7 @@ Parameter `versionTime` can have the following values:
                 "contribution": {},
                 "signature": "...",
                 "commit_audit": {},
+                "uid": "...",
                 "data": {
                     "subject": {},
                     "is_modifiable": "...",
@@ -498,6 +505,7 @@ Parameter `versionTime` can have the following values:
                 "contribution": {},
                 "signature": "...",
                 "commit_audit": {},
+                "uid": "...",
                 "data": {
                     "subject": {},
                     "is_modifiable": "...",
@@ -520,8 +528,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -547,6 +555,7 @@ Parameter `versionTime` can have the following values:
     + Body
 
             {
+                "uid": "...",
                 "settings": {}
             }
 
@@ -584,6 +593,7 @@ Parameter `versionTime` can have the following values:
     + Body
 
             {
+                "uid": "...",
                 "settings": {}
             }
 
@@ -630,6 +640,7 @@ Parameter `versionTime` can have the following values:
     + Body
 
             {
+                "uid": "...",
                 "settings": {}
             }
 
@@ -656,8 +667,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -720,6 +731,7 @@ Parameter `versionTime` can have the following values:
                 "contribution": {},
                 "signature": "...",
                 "commit_audit": {},
+                "uid": "...",
                 "data": {
                     "settings": {},
                 }
@@ -753,6 +765,7 @@ Parameter `versionTime` can have the following values:
                 "contribution": {},
                 "signature": "...",
                 "commit_audit": {},
+                "uid": "...",
                 "data": {
                     "settings": {},
                 }
@@ -813,6 +826,7 @@ Parameter `versionTime` can have the following values:
     + Body
 
             {
+                "uid": "...",
                 "contribution": {},
                 "signature": "...",
                 "commit_audit": {},
@@ -838,8 +852,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -887,6 +901,7 @@ Parameter `versionTime` can have the following values:
     + Body
 
             {
+                "uid": "...",
                 "items": [...],
                 "folders": [{}]
             }
@@ -932,7 +947,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 200 (application/json)
 
-    Directory was updated. This is the response when `Prefer` header has `return=representation`.
+    Directory was updated. 
+    Returned when `Prefer` header is set to `return=representation`.
     
     + Headers
 
@@ -942,14 +958,15 @@ Parameter `versionTime` can have the following values:
     + Body
 
             {
+                "uid": "...",
                 "items": [...],
                 "folders": [{}]
             }
 
 + Response 204
 
-    Directory was updated. This is the response when `Prefer` header is missing 
-    or its value is not `return=representation`.
+    Directory was updated. 
+    Returned when `Prefer` header is NOT set to `return=representation`.
     
     + Headers
 
@@ -958,7 +975,7 @@ Parameter `versionTime` can have the following values:
 
 + Response 400
 
-    Bad request - error creating a directory.
+    Bad request - error when updating a directory.
 
     + Body
 
@@ -976,8 +993,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -1025,8 +1042,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -1035,7 +1052,44 @@ Parameter `versionTime` can have the following values:
 
     + Body
 
-### Get a directory [GET /ehr/{ehrId}/directory{?versionTime,path}]
+### Get a directory or its sub-folder by versionUid [GET /ehr/{ehrId}/directory/{versionUid}{?path}]
+
++ Parameters
+    
+    + ehrId (string) - EHR id
+    + versionUid (string) - versionUid
+    + path (string, optional) - path to a sub-folder
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "uid": "...",
+                "items": [...],
+                "folders": [{}]
+            }
+
++ Response 204
+
+    No sub-folder at provided path.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id or no directory with specified versionUid.
+
+    + Body
+
+
+### Get a directory or its sub-folder [GET /ehr/{ehrId}/directory{?versionTime,path}]
 
 + Parameters
     
@@ -1053,18 +1107,16 @@ Parameter `versionTime` can have the following values:
     + Body
 
             {
+                "uid": "...",
                 "items": [...],
                 "folders": [{}]
             }
 
 + Response 204
 
-    EHR has no directory or no folder at provided path.
+    EHR has no directory at versionTime or no sub-folder at provided path.
 
-    + Headers
-
-            Location: /ehr/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+    + Body
 
 + Response 401
 
@@ -1083,12 +1135,93 @@ Parameter `versionTime` can have the following values:
 
 ## Composition [/ehr/{ehrId}/compositions]
 
+### Get a composition by version uid [GET /ehr/{ehrId}/compositions/{versionUid}]
+
++ Parameters
+
+    + ehrId (string) - EHR id.
+    + versionUid (string) - version uid
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "@class": "COMPOSITION",
+                "name": {
+                    "@class": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR or no composition with the version uid.
+
+    + Body
+
+### Get a composition [GET /ehr/{ehrId}/compositions/{objectId}{?versionTime}]
+
++ Parameters
+
+    + ehrId (string) - EHR id.
+    + objectId (string) - VERSIONED_COMPOSITION's uid
+    + versionTime (string, optional) - parameter identifying a specific version,
+    when ommitted last version will be returned.
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "@class": "COMPOSITION",
+                "name": {
+                    "@class": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 204 (application/json)
+    
+    No composition at specified versionTime.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR or no composition with the given object id.
+
+    + Body
+
+
 ### Create a new composition [POST /ehr/{ehrId}/compositions/{objectId}{?format}]
+
+When needed it is possible to create a new composition with the given `objectId`.
+Otherwise backend will generate one.
 
 + Parameters
 
     + ehrId (string) - EHR id
-    + objectId (string, optional) - to be able to create a new composition with the given object id
+    + objectId (string, optional) - object id to use for creation of the new composition
     + format (string, optional) - optional format of the composition supplied (when ommitted canonical openEHR
     is assumed)
 
@@ -1185,7 +1318,7 @@ Parameter `versionTime` can have the following values:
 
 + Response 200 (application/json)
     
-    This is the response we get when `Prefer` header was `return=representation`.
+    Returned when `Prefer` header is set to `return=representation`.
 
     + Headers
 
@@ -1205,8 +1338,7 @@ Parameter `versionTime` can have the following values:
 
 + Response 204
 
-    This is the response we get when no `Prefer` header was sent or `Prefer` header 
-    was `return=representation`.
+    Returned when `Prefer` header is NOT set to `return=representation`.
 
     + Headers
 
@@ -1240,8 +1372,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -1294,8 +1426,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -1332,7 +1464,7 @@ Parameter `versionTime` can have the following values:
 
 + Response 200 (application/json)
     
-    This is the response we get when `Prefer` header was `return=representation`.
+    Returned when `Prefer` header is set to `return=representation`.
 
     + Headers
 
@@ -1352,8 +1484,7 @@ Parameter `versionTime` can have the following values:
 
 + Response 204
 
-    This is the response we get when no `Prefer` header was sent or `Prefer` header 
-    was `return=representation`.
+    Returned when `Prefer` header is NOT set to `return=representation`.
 
     + Headers
 
@@ -1387,8 +1518,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -1441,8 +1572,8 @@ Parameter `versionTime` can have the following values:
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -1452,19 +1583,13 @@ Parameter `versionTime` can have the following values:
     + Body
 
 
-### Get a composition directly [GET /compositions/{objectId}]
+### Get a composition by version uid directly [GET /compositions/{versionUid}]
 
 + Parameters
 
-    + objectId (string) - object id of the composition. This can be
-    a versioned object id or a versionUid.
+    + versionUid (string) - version uid
 
 + Response 200 (application/json)
-
-    + Headers
-
-            Content-Location: /compositions/{versionUid}
-            ETag: {versionUid}
 
     + Body
 
@@ -1485,9 +1610,54 @@ Parameter `versionTime` can have the following values:
 
 + Response 404
 
+    No composition with the version uid.
+
+    + Body
+
+### Get a composition directly [GET /compositions/{objectId}{?versionTime}]
+
++ Parameters
+
+    + objectId (string) - VERSIONED_COMPOSITION's uid
+    + versionTime (string, optional) - parameter identifying a specific version,
+    when ommitted last version will be returned.
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Content-Location: /compositions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "@class": "COMPOSITION",
+                "name": {
+                    "@class": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 204 (application/json)
+    
+    No composition at specified versionTime.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
     No composition with the given object id.
 
     + Body
+
 
 ## Versioned Composition [/ehr/{ehrId}/versioned_compositions]
 
@@ -1549,12 +1719,6 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + ehrId (string) - EHR id
     + uid (string) - VERSIONED_COMPOSITION's uid
-
-+ Request
-
-    + Headers
-
-            Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
 
@@ -1679,8 +1843,8 @@ Gets a complete VERSIONED_COMPOSITION.
 
 + Response 412
 
-    Match-If header doesn't match the last version. Returns
-    last version in the content-location and ETag headers.
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
