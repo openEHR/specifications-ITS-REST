@@ -7,7 +7,14 @@ HOST: http://www.openehr.org/api
 
 OpenEHR REST API enables interaction with an OpenEHR service via the REST API.
 
+In many places parameter `versionTime` is used. It is used to select a specific version
+of a VERSIONED_OBJECT and can have the following values:
+- `LATEST_TRUNK_VERSION`
+- a specific timestamp in the full ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)
+- version uid
 
+When parameter `versionTime` is not provided last version is returned (which is the same
+as `versionTime=LATEST_TRUNK_VERSION`.
 
 
 # Group EHR
@@ -24,7 +31,7 @@ resources will also be created when EHR is created. If they are not provided def
 will be created.
 
 + Parameters
-    + ehrId (optional, string) - Creates a new EHR with specified ID.
+    + ehrId (optional, string) - Supplied to create a new EHR with specified ID.
 
 + Request
 
@@ -79,7 +86,7 @@ will be created.
 ### Get an EHR [GET]
 
 + Parameters
-    + ehrId (string) - ID of the EHR resource
+    + ehrId (string) - EHR id
 
 + Response 200 (application/json)
 
@@ -163,7 +170,7 @@ will be created.
 _This call is under discussion._
 
 + Parameters
-    + ehrId (string) - ID of the EHR to delete.
+    + ehrId (string) - EHR id
 
 + Response 204
 
@@ -191,7 +198,7 @@ _This call is under discussion._
 ### Get EHR_STATUS by versionUid [GET /ehr/{ehrId}/ehr_status/{versionUid}]
 
 + Parameters
-    + ehrId (string) - ID of the EHR resource
+    + ehrId (string) - EHR id
     + versionUid (string) - versionUid
 
 + Response 200 (application/json)
@@ -221,14 +228,9 @@ _This call is under discussion._
 
 ### Get EHR_STATUS [GET /ehr/{ehrId}/ehr_status{?versionTime}]
 
-Parameter `versionTime` can have the following values:
-- a specific timestamp in the full ISO8601 format
-- `LATEST_TRUNK_VERSION` (it is also what is returned when this parameter is missing) 
-- version uid
-
 + Parameters
-    + ehrId (string) - ID of the EHR resource
-    + versionTime (string, optional) - parameter identifying a specific version
+    + ehrId (string) - EHR id
+    + versionTime (string, optional) - version time specifier
 
 + Response 200 (application/json)
 
@@ -269,7 +271,7 @@ Parameter `versionTime` can have the following values:
 ### Update an EHR_STATUS [PUT /ehr/{ehrId}/ehr_status]
 
 + Parameters
-    + ehrId (string) - ID of the EHR resource
+    + ehrId (string) - EHR id
 
 + Request (application/json)
 
@@ -421,7 +423,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
 + Parameters
 
     + ehrId (string) - EHR id
-    + versionTime (string, optional) - version time specifier (latest version if omitted)
+    + versionTime (string, optional) - version time specifier
 
 + Response 200 (application/json)
 
@@ -547,7 +549,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
 ### Get EHR_ACCESS by versionUid [GET /ehr/{ehrId}/ehr_access/{versionUid}]
 
 + Parameters
-    + ehrId (string) - ID of the EHR resource
+    + ehrId (string) - EHR id
     + versionUid (string) - versionUid
 
 + Response 200 (application/json)
@@ -574,14 +576,9 @@ Q: Should `/versions` be `/all_versions` to match RM?
 
 ### Get EHR_ACCESS [GET /ehr/{ehrId}/ehr_access{?versionTime}]
 
-Parameter `versionTime` can have the following values:
-- a specific timestamp in the full ISO8601 format
-- `LATEST_TRUNK_VERSION` (it is also what is returned when this parameter is missing) 
-- version uid
-
 + Parameters
-    + ehrId (string) - ID of the EHR resource
-    + versionTime (string, optional) - parameter identifying a specific version
+    + ehrId (string) - EHR id
+    + versionTime (string, optional) - version time specifier
 
 + Response 200 (application/json)
 
@@ -613,7 +610,7 @@ Parameter `versionTime` can have the following values:
 ### Update an EHR_ACCESS [PUT /ehr/{ehrId}/ehr_access]
 
 + Parameters
-    + ehrId (string) - ID of the EHR resource
+    + ehrId (string) - EHR id
 
 + Request (application/json)
 
@@ -755,7 +752,7 @@ Parameter `versionTime` can have the following values:
 + Parameters
 
     + ehrId (string) - EHR id
-    + versionTime (string) - version time specifier
+    + versionTime (string, optional) - version time specifier
 
 + Response 200 (application/json)
 
@@ -1094,7 +1091,7 @@ Parameter `versionTime` can have the following values:
 + Parameters
     
     + ehrId (string) - EHR id
-    + versionTime (string, optional) - parameter identifying a specific version
+    + versionTime (string, optional) - version time specifier
     + path (string, optional) - path to a sub-folder
 
 + Response 200 (application/json)
@@ -1135,12 +1132,13 @@ Parameter `versionTime` can have the following values:
 
 ## Composition [/ehr/{ehrId}/compositions]
 
-### Get a composition by version uid [GET /ehr/{ehrId}/compositions/{versionUid}]
+### Get a composition by version uid [GET /ehr/{ehrId}/compositions/{versionUid}{?format}]
 
 + Parameters
 
     + ehrId (string) - EHR id.
     + versionUid (string) - version uid
+    + format (string, optional) - format of the composition (when ommitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
@@ -1167,14 +1165,14 @@ Parameter `versionTime` can have the following values:
 
     + Body
 
-### Get a composition [GET /ehr/{ehrId}/compositions/{objectId}{?versionTime}]
+### Get a composition [GET /ehr/{ehrId}/compositions/{objectId}{?versionTime,format}]
 
 + Parameters
 
     + ehrId (string) - EHR id.
     + objectId (string) - VERSIONED_COMPOSITION's uid
-    + versionTime (string, optional) - parameter identifying a specific version,
-    when ommitted last version will be returned.
+    + versionTime (string, optional) - version time specifier
+    + format (string, optional) - format of the composition (when ommitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
@@ -1222,8 +1220,7 @@ Otherwise backend will generate one.
 
     + ehrId (string) - EHR id
     + objectId (string, optional) - object id to use for creation of the new composition
-    + format (string, optional) - optional format of the composition supplied (when ommitted canonical openEHR
-    is assumed)
+    + format (string, optional) - format of the composition (when ommitted canonical openEHR is assumed)
 
 + Request
 
@@ -1295,8 +1292,7 @@ Otherwise backend will generate one.
 
     + ehrId (string) - EHR id
     + objectId (string) - object id of the composition to update
-    + format (string, optional) - optional format of the composition supplied (when ommitted canonical openEHR
-    is assumed)
+    + format (string, optional) - optional format of the composition (when ommitted canonical openEHR is assumed)
 
 + Request
 
@@ -1441,8 +1437,7 @@ Otherwise backend will generate one.
 + Parameters
 
     + objectId (string) - object id of the composition to update
-    + format (string, optional) - optional format of the composition supplied (when ommitted canonical openEHR
-    is assumed)
+    + format (string, optional) - optional format of the composition (when ommitted canonical openEHR is assumed)
 
 + Request
 
@@ -1583,11 +1578,12 @@ Otherwise backend will generate one.
     + Body
 
 
-### Get a composition by version uid directly [GET /compositions/{versionUid}]
+### Get a composition by version uid directly [GET /compositions/{versionUid}{?format}]
 
 + Parameters
 
     + versionUid (string) - version uid
+    + format (string, optional) - format of the composition (when ommitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
@@ -1614,13 +1610,13 @@ Otherwise backend will generate one.
 
     + Body
 
-### Get a composition directly [GET /compositions/{objectId}{?versionTime}]
+### Get a composition directly [GET /compositions/{objectId}{?versionTime,format}]
 
 + Parameters
 
     + objectId (string) - VERSIONED_COMPOSITION's uid
-    + versionTime (string, optional) - parameter identifying a specific version,
-    when ommitted last version will be returned.
+    + versionTime (string, optional) - version time specifier
+    + format (string, optional) - format of the composition (when ommitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
@@ -1806,6 +1802,7 @@ Gets a complete VERSIONED_COMPOSITION.
                 "contribution": {},
                 "signature": "...",
                 "commit_audit": {},
+                "uid": "...",
                 "data": {
                     "@class": "COMPOSITION",
                     "name": {
@@ -1853,6 +1850,91 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Body
 
+### Get a composition version by versionUid [GET /ehr/{ehrId}/versioned_compositions/{uid}/version/{versionUid}{?format}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + uid (string) - VERSIONED_COMPOSITION's uid
+    + versionUid (string) - version uid
+    + format (string, optional) - optional format of the composition (when ommitted canonical openEHR
+    is assumed)
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "uid": "...",
+                "data": {
+                    "@class": "COMPOSITION",
+                    "name": {
+                        "@class": "DV_TEXT",
+                        "value": "Vital Signs"
+                    }
+                    ...
+                }
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id, no VERSIONED_COMPOSITION with uid or no version with versionUid.
+
+    + Body
+
+### Get a composition version [GET /ehr/{ehrId}/versioned_compositions/{uid}/version{?versionTime,format}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + uid (string) - VERSIONED_COMPOSITION's uid
+    + versionTime (string, optional) - version time specifier
+    + format (string, optional) - optional format of the composition (when ommitted canonical openEHR is assumed)
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /ehr/{ehrId}/versioned_compositions/{uid}/versions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "uid": "...",
+                "data": {
+                    "@class": "COMPOSITION",
+                    "name": {
+                        "@class": "DV_TEXT",
+                        "value": "Vital Signs"
+                    }
+                    ...
+                }
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id, no VERSIONED_COMPOSITION with uid or no version with versionUid.
+
+    + Body
 
 # Group QUERY
 
