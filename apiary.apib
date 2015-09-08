@@ -20,7 +20,7 @@ as `versionTime=LATEST_TRUNK_VERSION`.
 # Group EHR
 
 
-## EHR [/ehr/{ehrId}]
+## EHR [/ehr]
 
 Management of EHRs.
 
@@ -30,17 +30,73 @@ Request body may contain `ehr_status` and `ehr_access` attributes, if provided t
 resources will also be created when EHR is created. If they are not provided defaults
 will be created.
 
++ Request
+
+    + Headers
+
+            Prefer: return={representation/minimal}
+
+    + Body
+
+            {
+                "commit_audit": {
+                    "description": "Commit audit description",
+                    "committer": {"@class": "PARTY_IDENTIFIED", ... }
+                },
+                "ehr_status": {},
+                "ehr_access": {}
+            }
+
++ Response 201 (application/json)
+
+    New EHR has been created. Body is only returned when `Prefer` haeder
+    has a value of `return=representation`
+
+    + Headers
+
+            Location: /ehr/{ehrId}
+
+    + Body
+
+            {
+                "system_id": {},
+                "ehr_id": {},
+                "ehr_status": "versioned ehr status uid",
+                "ehr_acess": "versioned ehr access uid",
+                "directory": {},
+                "time_created", "..."
+            }
+
++ Response 400
+
+    Unable to create a new EHR.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
+
+### Create a new EHR with supplied EHR id [PUT /ehr/{ehrId}]
+
+Request body may contain `ehr_status` and `ehr_access` attributes, if provided those
+resources will also be created when EHR is created. If they are not provided defaults
+will be created.
+
 + Parameters
-    + ehrId (optional, string) - Supplied to create a new EHR with specified ID.
+    + ehrId (string) - EHR id
 
 + Request
 
     + Headers
 
             Prefer: return={representation/minimal}
-            
+
     + Body
-    
+
             {
                 "commit_audit": {
                     "description": "Commit audit description",
@@ -83,7 +139,7 @@ will be created.
     + Body
 
 
-### Get an EHR [GET]
+### Get an EHR [GET /ehr/{ehrId}]
 
 + Parameters
     + ehrId (string) - EHR id
@@ -109,58 +165,6 @@ will be created.
 + Response 404
 
     No EHR with the given id.
-
-    + Body
-
-
-### Get an EHR by subject ID [GET /ehr{?subject.external_ref.id,subject.external_ref.namespace}]
-
-+ Parameters
-    + subject.external_ref.id (string) - subject ID
-    + subject.external_ref.namespace (string) - subject namespace
-
-+ Request
-
-    + Headers
-
-            Prefer: return={representation/minimal}
-
-+ Response 200 (application/json)
-
-    Body of the response is only returned when `Prefer` header has a value of
-    `return=representation` otherwise only headers are returned.
-
-    + Headers
-
-            Content-Location: /ehr/{ehrId}
-            
-    + Body
-
-            {
-                "system_id": {},
-                "ehr_id": {},
-                "ehr_status": "versioned ehr status uid",
-                "ehr_acess": "versioned ehr access uid",
-                "directory": {},
-                "time_created", "...",
-                ... // to be defined, possibly counts of compositions, contributions, etc.
-            }
-
-+ Response 204
-
-    No content - no EHR with given parameters found.
-
-    + Body
-
-+ Response 400
-
-    Bad request: one of the parameters is missing.
-
-    + Body
-
-+ Response 401
-
-    Unauthorized.
 
     + Body
 
@@ -449,7 +453,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
 + Response 204
 
     No VERSION at specified versionTime.
-    
+
     + Body
 
 + Response 401
@@ -495,7 +499,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
     New EHR_STATUS version was created. Content body is only returned when
     `Prefer` header was set to `return=representation` otherwise only headers are
     returned.
-    
+
     + Headers
 
             Location: /versioned_ehr_access/{uid}/versions/{versionUid}
@@ -771,7 +775,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
 + Response 204
 
     No VERSION at versionTime.
-    
+
     + Body
 
 + Response 401
@@ -814,7 +818,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
     New EHR_ACCESS version was created. Content body is only returned when
     `Prefer` header was set to `return=representation` otherwise only headers are
     returned.
-    
+
     + Headers
 
             Location: /ehr/{ehrId}/versioned_ehr_access/versions/{versionUid}
@@ -889,7 +893,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
     New directory was created. Content body is only returned when
     `Prefer` header has `return=representation` otherwise only headers are
     returned.
-    
+
     + Headers
 
             Location: /ehr/{ehrId}/directory/{versionUid}
@@ -944,9 +948,9 @@ Q: Should `/versions` be `/all_versions` to match RM?
 
 + Response 200 (application/json)
 
-    Directory was updated. 
+    Directory was updated.
     Returned when `Prefer` header is set to `return=representation`.
-    
+
     + Headers
 
             Location: /ehr/{ehrId}/directory/{versionUid}
@@ -962,9 +966,9 @@ Q: Should `/versions` be `/all_versions` to match RM?
 
 + Response 204
 
-    Directory was updated. 
+    Directory was updated.
     Returned when `Prefer` header is NOT set to `return=representation`.
-    
+
     + Headers
 
             Location: /ehr/{ehrId}/directory/{versionUid}
@@ -1016,7 +1020,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
 + Response 204
 
     Directory was deleted.
-    
+
     + Body
 
 + Response 400
@@ -1052,7 +1056,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
 ### Get a directory or its sub-folder by versionUid [GET /ehr/{ehrId}/directory/{versionUid}{?path}]
 
 + Parameters
-    
+
     + ehrId (string) - EHR id
     + versionUid (string) - versionUid
     + path (string, optional) - path to a sub-folder
@@ -1089,7 +1093,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
 ### Get a directory or its sub-folder [GET /ehr/{ehrId}/directory{?versionTime,path}]
 
 + Parameters
-    
+
     + ehrId (string) - EHR id
     + versionTime (string, optional) - version time specifier
     + path (string, optional) - path to a sub-folder
@@ -1138,7 +1142,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
 
     + ehrId (string) - EHR id.
     + versionUid (string) - version uid
-    + format (string, optional) - format of the composition (when ommitted canonical openEHR is assumed)
+    + format (string, optional)...format of the composition (when ommitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
@@ -1172,7 +1176,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
     + ehrId (string) - EHR id.
     + objectId (string) - VERSIONED_COMPOSITION's uid
     + versionTime (string, optional) - version time specifier
-    + format (string, optional) - format of the composition (when ommitted canonical openEHR is assumed)
+    + format (string, optional)...format of the composition (when ommitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
@@ -1193,7 +1197,7 @@ Q: Should `/versions` be `/all_versions` to match RM?
             }
 
 + Response 204 (application/json)
-    
+
     No composition at specified versionTime.
 
     + Body
@@ -1211,16 +1215,12 @@ Q: Should `/versions` be `/all_versions` to match RM?
     + Body
 
 
-### Create a new composition [POST /ehr/{ehrId}/compositions/{objectId}{?format}]
-
-When needed it is possible to create a new composition with the given `objectId`.
-Otherwise backend will generate one.
+### Create a new composition [POST /ehr/{ehrId}/compositions{?format}]
 
 + Parameters
 
     + ehrId (string) - EHR id
-    + objectId (string, optional) - object id to use for creation of the new composition
-    + format (string, optional) - format of the composition (when ommitted canonical openEHR is assumed)
+    + format (string, optional)...format of the composition (when ommitted canonical openEHR is assumed)
 
 + Request
 
@@ -1244,7 +1244,7 @@ Otherwise backend will generate one.
     New composition was created. Content body is only returned when
     `Prefer` header has `return=representation` otherwise only headers are
     returned.
-    
+
     + Headers
 
             Location: /ehr/{ehrId}/compositions/{versionUid}
@@ -1286,12 +1286,16 @@ Otherwise backend will generate one.
 
     + Body
 
-### Update a composition [PUT /ehr/{ehrId}/compositions/{objectId}{?format}]
+### Update or create a composition [PUT /ehr/{ehrId}/compositions/{objectId}{?format}]
+
+This call can be used to update an existing composition (identified by {objectId}) or
+to create a new one with the supplied {objectId} instead of a server assigned one.
+In case of an update `Match-If` header _might_ be required.
 
 + Parameters
 
     + ehrId (string) - EHR id
-    + objectId (string) - object id of the composition to update
+    + objectId (string) - object id of the composition to update or create with this id
     + format (string, optional) - optional format of the composition (when ommitted canonical openEHR is assumed)
 
 + Request
@@ -1313,7 +1317,7 @@ Otherwise backend will generate one.
             Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
-    
+
     Returned when `Prefer` header is set to `return=representation`.
 
     + Headers
@@ -1392,7 +1396,7 @@ Otherwise backend will generate one.
             Match-If: {precedingVersionUid}
 
 + Response 204
-    
+
     Composition was deleted.
 
     + Headers
@@ -1458,7 +1462,7 @@ Otherwise backend will generate one.
             Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
-    
+
     Returned when `Prefer` header is set to `return=representation`.
 
     + Headers
@@ -1537,7 +1541,7 @@ Otherwise backend will generate one.
             Match-If: {precedingVersionUid}
 
 + Response 204
-    
+
     Composition was deleted.
 
     + Headers
@@ -1583,7 +1587,7 @@ Otherwise backend will generate one.
 + Parameters
 
     + versionUid (string) - version uid
-    + format (string, optional) - format of the composition (when ommitted canonical openEHR is assumed)
+    + format (string, optional)...format of the composition (when ommitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
@@ -1616,7 +1620,7 @@ Otherwise backend will generate one.
 
     + objectId (string) - VERSIONED_COMPOSITION's uid
     + versionTime (string, optional) - version time specifier
-    + format (string, optional) - format of the composition (when ommitted canonical openEHR is assumed)
+    + format (string, optional)...format of the composition (when ommitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
@@ -1637,7 +1641,7 @@ Otherwise backend will generate one.
             }
 
 + Response 204 (application/json)
-    
+
     No composition at specified versionTime.
 
     + Body
@@ -1657,12 +1661,11 @@ Otherwise backend will generate one.
 
 ## Versioned Composition [/ehr/{ehrId}/versioned_compositions]
 
-### Create a new versioned composition [POST /ehr/{ehrId}/versioned_compositions/{uid}]
+### Create a new versioned composition [POST /ehr/{ehrId}/versioned_compositions]
 
 + Parameters
 
     + ehrId (string) - EHR id
-    + uid (string, optional) - supplied to create a new VERSIONED_COMPOSITION with the given uid
 
 + Request
 
@@ -1675,7 +1678,57 @@ Otherwise backend will generate one.
     New versioned composition was created. Content body is only returned when
     `Prefer` header has `return=representation` otherwise only headers are
     returned.
-    
+
+    + Headers
+
+            Location: /ehr/{ehrId}/versioned_compositions/{uid}
+
+    + Body
+
+            {
+                "uid": "xxx",
+                "owner_id": "ehrId",
+                "time_created": "ISO8601 timestamp"
+            }
+
++ Response 400
+
+    Bad request - when VERSIONED_COMPOSITION with the given uid already exists.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
+
+### Create a new versioned composition with supplied uid [PUT /ehr/{ehrId}/versioned_compositions/{uid}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + uid (string) - VERSIONED_COMPOSITION uid
+
++ Request
+
+    + Headers
+
+            Prefer: return={representation/minimal}
+
++ Response 201 (application/json)
+
+    New versioned composition was created. Content body is only returned when
+    `Prefer` header has `return=representation` otherwise only headers are
+    returned.
+
     + Headers
 
             Location: /ehr/{ehrId}/versioned_compositions/{uid}
@@ -1790,7 +1843,7 @@ Gets a complete VERSIONED_COMPOSITION.
     New composition version was created. Content body is only returned when
     `Prefer` header was set to `return=representation` otherwise only headers are
     returned.
-    
+
     + Headers
 
             Location: /ehr/{ehrId}/versioned_compositions/{uid}/versions/{versionUid}
@@ -1951,7 +2004,7 @@ to analyze the request body.
 + Request (application/json)
 
     + Body
-    
+
             {
                 "aql": "SELECT ....",
                 "aqlParameters": {
@@ -1961,7 +2014,7 @@ to analyze the request body.
                 "fetch": 888,
                 // possibly more, TBD
             }
-        
+
 + Response 200
 
         {
@@ -1985,4 +2038,3 @@ to analyze the request body.
             ],
             "executedAql": "aql with replaced parameters",
         }
-        
