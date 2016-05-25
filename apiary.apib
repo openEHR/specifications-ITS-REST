@@ -24,7 +24,7 @@ as `versionTime=LATEST_TRUNK_VERSION`.
 
 Management of EHRs.
 
-### Create a new EHR [POST]
+### Create a new EHR (with auto-generated ehr_id) [POST]
 
 Request body may contain `ehr_status` and `ehr_access` attributes, if provided those
 resources will also be created when EHR is created. If they are not provided defaults
@@ -49,7 +49,7 @@ will be created.
 
 + Response 201 (application/json)
 
-    New EHR has been created. Body is only returned when `Prefer` header
+    A new EHR has been created. Body is only returned when `Prefer` header
     has a value of `return=representation`
 
     + Headers
@@ -69,7 +69,7 @@ will be created.
 
 + Response 400
 
-    Unable to create a new EHR.
+    Unable to create a new EHR due to bad client Request, e.g. malformed syntax. 
 
     + Body
 
@@ -128,7 +128,13 @@ will be created.
 
 + Response 400
 
-    Unable to create a new EHR. Can happen when the supplied ehrId already exists.
+    Unable to create a new EHR due to bad client Request, e.g. malformed syntax. 
+
+    + Body
+
++ Response 409
+
+    Unable to create a new EHR due to a conflict with the current state of the resource. Can happen when the supplied ehrId already exists.
 
     + Body
 
