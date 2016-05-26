@@ -7,14 +7,14 @@ HOST: http://www.openehr.org/api
 
 The openEHR REST API enables interaction with an openEHR service in a RESTful manner.
 
-In many places parameter `versionTime` is used. It is used to select a specific version
+In many places parameter `version_time` is used. It is used to select a specific version
 of a VERSIONED_OBJECT and can have the following values:
 - `LATEST_TRUNK_VERSION`
 - a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)
 - version uid
 
-When parameter `versionTime` is not provided, the lastest version on the trunk lineage is returned, which is the same
-as `versionTime=LATEST_TRUNK_VERSION` was requested.
+When the `version_time` parameter is not provided, the lastest trunk version is returned, 
+which is the same as specify `version_time=LATEST_TRUNK_VERSION`.
 
 
 # Group EHR
@@ -286,12 +286,17 @@ otherwise the version with the specified uid is returned.
     + Body
 
 ### Get EHR_STATUS by version time [GET /ehr/{ehr_id}/ehr_status?version_time]
+The Get EHR_STATUS by version time operation returns the version of the EHR_STATUS resource associated 
+with the specified 'ehr_id' that existed at the specified version time.
+The version_time parameter may be an ISO8601 datetime string. 
+When the version_time parameter is not provided, the latest trunk version is returned.
 
 + Parameters
     + ehr_id (string) - EHR identifier
     + version_time (string, optional) - version time specifier
 
 + Response 200 (application/json)
+    '200 OK' is return with the EHR_STATUS resource in the body when it is successfully retreived. 
 
     + Headers
 
