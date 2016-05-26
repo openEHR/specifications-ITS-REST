@@ -242,54 +242,12 @@ retained using an alterate audit trail than the usual contribution aufit details
 
 ## EHR_STATUS [/ehr/{ehrId}/ehr_status]
 
-### Get EHR_STATUS [GET /ehr/{ehr_id}/ehr_status{/version_uid}]
-
-The Get EHR_STATUS operation returns the EHR_STATUS resource associated with the specified 'ehr_id'.
-When the version_uid parameter is not specified, the latest trunk version is returned, 
-otherwise the version with the specified uid is returned.
-
-+ Parameters
-    + ehr_id (string) - EHR identifier
-    + version_uid (string, optional) - version UID
-
-+ Response 200 (application/json)
-    '200 OK' is return with the EHR_STATUS resource in the body when it is successfully retreived. 
-
-    + Body
-
-            {
-                "uid": "..",
-                "subject": {},
-                "is_queryable": true,
-                "is_modifiable": true,
-                "other_details": {}
-            }
-
-
-+ Response 400
-
-    '400 Bad Request' is returned when the request has invalid content such as an invalid ehr_id format.
-    
-    + Body
-    
-+ Response 401
-
-    '401 Unauthorized' is returned when request is not authorised.
-
-    + Body
-
-+ Response 404
-
-    '404 Not Found' is returned when an EHR with ehr_id does not exist or 
-    an EHR_STATUS with version_uid does not exist.
-
-    + Body
-
-### Get EHR_STATUS by version time [GET /ehr/{ehr_id}/ehr_status?version_time]
-The Get EHR_STATUS by version time operation returns the version of the EHR_STATUS resource associated 
-with the specified 'ehr_id' that existed at the specified version time.
-The version_time parameter may be an ISO8601 datetime string. 
-When the version_time parameter is not provided, the latest trunk version is returned.
+### Get EHR_STATUS [GET /ehr/{ehr_id}/ehr_status?version_time]
+The Get EHR_STATUS operation returns the EHR_STATUS resource associated 
+with the specified 'ehr_id'. When the version_time parameter is provided, 
+the EHR_STATUS version that existed at the specified version time is returned in the body, 
+otherwise the latest trunk version is returned.
+The version_time parameter may be an ISO8601 datetime string or symbolic value such as LATEST_TRUNK_VERSION. 
 
 + Parameters
     + ehr_id (string) - EHR identifier
@@ -330,6 +288,48 @@ When the version_time parameter is not provided, the latest trunk version is ret
 
     '404 Not Found' returned when EHR with ehr_id does not exist or has been deleted or 
     a version of an EHR_STATUS resource does not exist at the specified 'version_time'.  
+
+    + Body
+
+### Get EHR_STATUS by version_uid [GET /ehr/{ehr_id}/ehr_status/{version_uid}]
+
+The Get EHR_STATUS operation returns the version of the EHR_STATUS resource 
+associated with the 'ehr_id' and specified version uid.
+
++ Parameters
+    + ehr_id (string) - EHR identifier
+    + version_uid (string) - version UID
+
++ Response 200 (application/json)
+    '200 OK' is return with the EHR_STATUS resource in the body when it is successfully retreived. 
+
+    + Body
+
+            {
+                "uid": "..",
+                "subject": {},
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {}
+            }
+
+
++ Response 400
+
+    '400 Bad Request' is returned when the request has invalid content such as an invalid ehr_id format.
+    
+    + Body
+    
++ Response 401
+
+    '401 Unauthorized' is returned when request is not authorised.
+
+    + Body
+
++ Response 404
+
+    '404 Not Found' is returned when an EHR with ehr_id does not exist or 
+    an EHR_STATUS with version_uid does not exist.
 
     + Body
 
