@@ -2012,32 +2012,62 @@ Gets a complete VERSIONED_COMPOSITION.
 ### Get AQL query results [GET /query/?aql={aql}]
 Execute an AQL query as given by the aql parameter. 
 
+```sql
+select
+a_a/data[at0002]/events[at0003]/time as When,
+a_a/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value as Temperature
+from EHR e contains COMPOSITION a CONTAINS OBSERVATION a_a[openEHR-EHR-OBSERVATION.body_temperature.v1]
+order by a_a/data[at0002]/events[at0003]/time desc
+offset 0 limit 2
+```
+
 + Parameters 
     + aql - The aql to be executed
 
-+ Response 200
-
++ Response 200 (application/json)
+    
         {
-            "metaData": {
-                "hits": 199,
-                ...
-            },
-            "resultSet": [
-                {
-                    "unit": "°C",
-                    "temperature": 38.8
-                },
-                {
-                    "unit": "°C",
-                    "temperature": 38.8
-                },
-                {
-                    "unit": "°C",
-                    "temperature": 38.8
-                }
-            ],
-            "executedAql": "aql with replaced parameters",
-        }
+  "@class": "RESULTSET",
+  "@schemaversion": "0.1.0",
+  "@type": "raw",
+  "@created": "2016-06-22T07:54:04.758+02:00",
+  "@generator": "<The resultset generator>",
+  "totalResults": 2,
+  "columns": [
+    {
+      "name": "When",
+      "path": "/data[at0002]/events[at0003]/time"
+    },
+    {
+      "name": "Temperature",
+      "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value"
+    }
+  ],
+  "rows": [
+    [
+      {
+        "@class": "DV_DATE_TIME",
+        "value": "2016-06-08T11:02:47+02:00"
+      },
+      {
+        "@class": "DV_QUANTITY",
+        "magnitude": 38.0,
+        "units": "°C"
+      }
+    ],
+    [
+      {
+        "@class": "DV_DATE_TIME",
+        "value": "2016-06-05T08:53:36+02:00"
+      },
+      {
+        "@class": "DV_QUANTITY",
+        "magnitude": 37.0,
+        "units": "Cel"
+      }
+    ]
+  ]
+}
 
 ### Get query results [POST /query/aql]
 
