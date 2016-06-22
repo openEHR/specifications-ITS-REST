@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://vt-selecta01:9000/api/v1
+HOST: http://arenaehr.dips.no:9000/api/v1
 
 
 
@@ -2008,6 +2008,36 @@ Gets a complete VERSIONED_COMPOSITION.
 # Group QUERY
 
 ## Querying [/query]
+
+### Get AQL query results [GET /query/?aql={aql}]
+Execute an AQL query as given by the aql parameter. 
+
++ Parameters 
+    + aql - The aql to be executed
+
++ Response 200
+
+        {
+            "metaData": {
+                "hits": 199,
+                ...
+            },
+            "resultSet": [
+                {
+                    "unit": "°C",
+                    "temperature": 38.8
+                },
+                {
+                    "unit": "°C",
+                    "temperature": 38.8
+                },
+                {
+                    "unit": "°C",
+                    "temperature": 38.8
+                }
+            ],
+            "executedAql": "aql with replaced parameters",
+        }
 
 ### Get query results [POST /query/aql]
 
