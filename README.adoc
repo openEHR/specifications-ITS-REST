@@ -1,6 +1,9 @@
 # specifications-ITS
 Implementation technology specifications
 
+## XML
+See XML schema in subdirectories
+
 ## REST
-The REST API development file is rendered at  http://docs.mytest49.apiary.io/#
-Se "issues" in this GitHub repository for discussion
+The REST API development file (   apiary.apib  ) is rendered at  http://docs.mytest49.apiary.io/#
+Se "issues" in this GitHub repository currently ongoing REST for discussion
