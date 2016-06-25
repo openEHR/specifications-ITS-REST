@@ -23,8 +23,9 @@ which is the same as specifing `version_time=LATEST_TRUNK_VERSION`.
 
 Management of EHR resources.
 
-### Create a new EHR (with auto-generated ehr_id) [POST]
+### Create a new EHR [POST]
 
+Create a new `EHR` with an auto-generated identifier. 
 Request body may contain `ehr_status` and `ehr_access` attributes. When provided these
 resources will also be created as part of the `create EHR` action, 
 otherwise default resources will be created automatical by the service.
@@ -2027,47 +2028,47 @@ offset 0 limit 2
 + Response 200 (application/json)
     
         {
-  "@class": "RESULTSET",
-  "@schemaversion": "0.1.0",
-  "@type": "raw",
-  "@created": "2016-06-22T07:54:04.758+02:00",
-  "@generator": "<The resultset generator>",
-  "totalResults": 2,
-  "columns": [
-    {
-      "name": "When",
-      "path": "/data[at0002]/events[at0003]/time"
-    },
-    {
-      "name": "Temperature",
-      "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value"
-    }
-  ],
-  "rows": [
-    [
-      {
-        "@class": "DV_DATE_TIME",
-        "value": "2016-06-08T11:02:47+02:00"
-      },
-      {
-        "@class": "DV_QUANTITY",
-        "magnitude": 38.0,
-        "units": "°C"
-      }
-    ],
-    [
-      {
-        "@class": "DV_DATE_TIME",
-        "value": "2016-06-05T08:53:36+02:00"
-      },
-      {
-        "@class": "DV_QUANTITY",
-        "magnitude": 37.0,
-        "units": "Cel"
-      }
-    ]
-  ]
-}
+            "@class": "RESULTSET",
+            "@schemaversion": "0.1.0",
+            "@type": "raw",
+            "@created": "2016-06-22T07:54:04.758+02:00",
+            "@generator": "<The resultset generator>",
+            "totalResults": 2,
+            "columns": [
+                {
+                    "name": "When",
+                    "path": "/data[at0002]/events[at0003]/time"
+                },
+                {
+                    "name": "Temperature",
+                    "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value"
+                }
+            ],
+            "rows": [
+                [
+                    {
+                        "@class": "DV_DATE_TIME",
+                        "value": "2016-06-08T11:02:47+02:00"
+                    },
+                    {
+                        "@class": "DV_QUANTITY",
+                        "magnitude": 38.0,
+                        "units": "°C"
+                    }
+                ],
+                [
+                    {
+                        "@class": "DV_DATE_TIME",
+                        "value": "2016-06-05T08:53:36+02:00"
+                    },
+                    {
+                        "@class": "DV_QUANTITY",
+                        "magnitude": 37.0,
+                        "units": "Cel"
+                    }
+                ]
+            ]
+        }
 
 ### Get query results [POST /query/aql]
 
