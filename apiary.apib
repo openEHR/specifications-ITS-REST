@@ -5,16 +5,65 @@ HOST: http://www.openehr.org/api
 
 # OpenEHR REST API
 
-The openEHR REST API enables interaction with an openEHR service in a RESTful manner.
+An openEHR REST API enables interaction with an openEHR service in a RESTful manner.
+The following specifications are not intended to describe an existing API but rather an abstract blueprint 
+on which each openEHR implementation should adhere to.
 
-In many places parameter `version_time` is used. It is used to select a specific version
+
+## Considerations
+
+### JSON format
+Any object serialized in the space of openEHR REST API will have their type described by a special attribute `@type`.
+The types indicated by this attribute are in always in "SCREAMING_SNAKE_CASE" and should always fully match a openEHR class name.
+The only exception is related to generic types like DV_INTERVAL<DV_DATETIME>, where `@type='DV_INTERVAL'` as there is no need to indicate the subtype.
+
+All attributes are in "snake_case" and should always match openEHR RM/AM attributes names of their corresponded class.
+
+Any other object attribute not supported by their corresponded openEHR class should always be prefixed with the `@` character.
+
+### Datetime format
+It is recommended to always use canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00, but any other valid ISO8601 datetime is accepted.
+
+Any datetime value provided by a create or update action will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
+
+### About `versionSelector`
+In many places the parameter `versionSelector` is used to select a specific VERSION (or associated data object)
 of a VERSIONED_OBJECT and can have the following values:
-- `LATEST_TRUNK_VERSION`
+- the string "LATEST_TRUNK_VERSION"
 - a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)
-- version uid
+- a `vuid` (VERSION unique identifier)
+- a `uid` (VERSIONED_OBJECT unique identifier)
 
-When the `version_time` parameter is not provided, the lastest trunk version is returned, 
-which is the same as specifing `version_time=LATEST_TRUNK_VERSION`.
+When the `versionSelector` parameter is not provided, the latest trunk version is returned, 
+which is the same as specifying `versionSelector=LATEST_TRUNK_VERSION`.
+
+When `versionSelector` is an `uid`, the latest trunk version from that versioned container is returned.
+
+
+## Glossary
+
+Throughout these specifications a set of short terms are used as described below:
+
+| Name | Description |
+|------|-------------|
+|`ehrId`| The string value of an EHR unique identifier, stored under EHR.ehr_id.value, e.g. 347a5490-55ee-4da9-b91a-9bba710f730e |
+|`uid`| The string value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
+|`vuid`| The string value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
+|`versionSelector`| The string value of a VERSION unique identifier, a specific timestamp or the string `LATEST_TRUNK_VERSION` |
+
+
+
+# Data Structures
+
+## UID (object)
++ value (string)
+
+## OBJREF (object)
++ namespace (string)
++ type (string)
++ id (UID)
+
+
 
 
 # Group EHR
@@ -23,11 +72,17 @@ which is the same as specifing `version_time=LATEST_TRUNK_VERSION`.
 
 Management of EHR resources.
 
-### Create a new EHR (with auto-generated ehr_id) [POST]
++ Attributes (object)
+    + ehr_id (UID)
+    + ehr_access (OBJREF)
+    + ehr_status (OBJREF)
 
+### Create a new EHR [POST]
+
+Create a new `EHR` with an auto-generated identifier. 
 Request body may contain `ehr_status` and `ehr_access` attributes. When provided these
 resources will also be created as part of the `create EHR` action, 
-otherwise default resources will be created automatical by the service.
+otherwise default resources will be created automatically by the service.
 
 + Request
 
@@ -40,7 +95,7 @@ otherwise default resources will be created automatical by the service.
             {
                 "commit_audit": {
                     "description": "Commit audit description",
-                    "committer": {"@class": "PARTY_IDENTIFIED", ... }
+                    "committer": {"@type": "PARTY_IDENTIFIED", ... }
                 },
                 "ehr_status": { ... },
                 "ehr_access": { ... }
@@ -48,7 +103,7 @@ otherwise default resources will be created automatical by the service.
 
 + Response 201 (application/json)
 
-    `201 Created` is returned when a new EHR has been succesfully created. 
+    `201 Created` is returned when a new EHR has been successfully created. 
     The EHR resource is returned in the body when the `Prefer` header has the value of `return=representation`.
 
     + Headers
@@ -79,16 +134,16 @@ otherwise default resources will be created automatical by the service.
     + Body
 
 
-### Create EHR with ehr_id [PUT /ehr/{ehr_id}]
+### Create EHR with ehrId [PUT /ehr/{ehrId}]
 
-Create new `EHR` with the specified EHR identifer. 
+Create new `EHR` with the specified EHR identifier. 
 The request body may contain `ehr_status` and `ehr_access` attributes, 
 which will be used to create these initial resources associated with the new EHR.
 When the `ehr_status` or `ehr_access` attributes are not provided, defaults resources 
 will be created by the service.
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
 
 + Request
 
@@ -101,7 +156,7 @@ will be created by the service.
             {
                 "commit_audit": {
                     "description": "Commit audit description",
-                    "committer": {"@class": "PARTY_IDENTIFIED", ... }
+                    "committer": {"@type": "PARTY_IDENTIFIED", ... }
                 },
                 "ehr_status": {...},
                 "ehr_access": {...}
@@ -109,7 +164,7 @@ will be created by the service.
 
 + Response 201 (application/json)
 
-    `201 Created` is returned when a new EHR has been succesfully created. 
+    `201 Created` is returned when a new EHR has been successfully created. 
     The new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`.
 
     + Headers
@@ -129,7 +184,7 @@ will be created by the service.
 
 + Response 400
 
-    '400 Bad Request' is returned whenunable to create a new EHR due to bad client Request, e.g. malformed syntax such as the 'ehr_id' not a valid HIER_OBJECT_ID value.
+    '400 Bad Request' is returned when unable to create a new EHR due to bad client Request, e.g. malformed syntax such as the 'ehrId' not a valid HIER_OBJECT_ID value.
 
     + Body
 
@@ -147,18 +202,18 @@ will be created by the service.
 
 + Response 405
 
-    `405 Method Not Allowed` is returned when an `EHR` with specified `ehr_id` already exists.
+    `405 Method Not Allowed` is returned when an `EHR` with specified `ehrId` already exists.
 
     + Body
 
-### Get EHR [GET /ehr/{ehr_id}]
-Retreive the EHR with the specified `ehr_id`.
+### Get EHR [GET /ehr/{ehrId}]
+Retrieve the EHR with the specified `ehrId`.
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
 
 + Response 200 (application/json)
-    `200 OK` is returned the EHR resource is successfully retreived. 
+    `200 OK` is returned when the EHR resource is successfully retrieved. 
     
     + Body
 
@@ -173,7 +228,7 @@ Retreive the EHR with the specified `ehr_id`.
             }
 
 + Response 400
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehr_id` value.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` value.
 
     + Body
     
@@ -184,12 +239,12 @@ Retreive the EHR with the specified `ehr_id`.
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist.
 
     + Body
 
 
-### Delete EHR [DELETE /ehr/{ehr_id}]
+### Delete EHR [DELETE /ehr/{ehrId}]
 
 _This call is under discussion._
 
@@ -199,19 +254,19 @@ for the deleted `EHR_STATUS` and `EHR_ACCESS` resources. Where an implementation
 additional attestation to authorise the deletion, this can be provided in the attestations 
 attribute in the request.
 
-Note: Some jursidictions may require the service to physically delete the `EHR` and all its content.
-This operation may be used to implement this capability but the commit_audit and attesations must be 
-retained using an alterate audit trail than the usual contribution aufit details.
+Note: Some jurisdictions may require the service to physically delete the `EHR` and all its content.
+This operation may be used to implement this capability but the commit_audit and attestations must be 
+retained using an alternate audit trail than the usual contribution audit details.
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
 
 + Request
 
         {
             "commit_audit": {
                 "description": "Commit audit description",
-                "committer": { "@class": "PARTY_IDENTIFIED", 
+                "committer": { "@type": "PARTY_IDENTIFIED", 
                     ... }
             },
             "attestations": { ... }
@@ -225,7 +280,7 @@ retained using an alterate audit trail than the usual contribution aufit details
 
 + Response 400
 
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehr_id` value.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` value.
     
     + Body
     
@@ -237,7 +292,7 @@ retained using an alterate audit trail than the usual contribution aufit details
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist.
 
     + Body
 
@@ -246,24 +301,21 @@ retained using an alterate audit trail than the usual contribution aufit details
 ## EHR_STATUS [/ehr/{ehrId}/ehr_status]
 Management of EHR_STATUS resources.
 
-### Get EHR_STATUS [GET /ehr/{ehr_id}/ehr_status?version_time]
+### Get EHR_STATUS [GET /ehr/{ehrId}/ehr_status?{versionSelector}]
 
-Retreive the `EHR_STATUS` associated with the specified `ehr_id`. 
-When the `version_time` parameter is provided, the `EHR_STATUS` version that existed at the specified version time is returned, 
-otherwise the latest trunk version is returned.
-The `version_time` parameter may be an ISO8601 datetime string or symbolic value such as `LATEST_TRUNK_VERSION`. 
+Retrieve the `EHR_STATUS` selected by `versionSelector` and associated with the EHR specified by `ehrId`. 
 
 + Parameters
-    + ehr_id (string) - EHR identifier
-    + version_time (string, optional) - version time specifier
+    + ehrId (string) - EHR identifier
+    + versionSelector (string, optional) - version selector specifier
 
 + Response 200 (application/json)
-    `200 OK` is return with the EHR_STATUS resource in the body when it is successfully retreived. 
+    `200 OK` is return with the EHR_STATUS resource in the body when it is successfully retrieved. 
 
     + Headers
 
-            Content-Location: /ehr/{ehr_id}/ehr_status/{version_uid}
-            ETag: {version_uid}
+            Content-Location: /ehr/{ehrId}/ehr_status/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -278,7 +330,7 @@ The `version_time` parameter may be an ISO8601 datetime string or symbolic value
 
 + Response 400
 
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehr_id` or `version_uid` format.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` or `vuid` format.
     
     + Body
     
@@ -290,60 +342,20 @@ The `version_time` parameter may be an ISO8601 datetime string or symbolic value
 
 + Response 404
 
-    `404 Not Found` returned when `EHR` with `ehr_id` does not exist or has been deleted or 
-    a version of an `EHR_STATUS` resource does not exist at the specified `version_time`.  
+    `404 Not Found` returned when `EHR` with `ehrId` does not exist or has been deleted or 
+    the version of an `EHR_STATUS` resource does not exist at the specified time given by `versionSelector` timestamp.  
 
     + Body
 
-### Get EHR_STATUS by version_uid [GET /ehr/{ehr_id}/ehr_status/{version_uid}]
 
-Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
+### Update EHR_STATUS [PUT /ehr/{ehrId}/ehr_status]
 
-+ Parameters
-    + ehr_id (string) - EHR identifier
-    + version_uid (string) - version UID
-
-+ Response 200 (application/json)
-    `200 OK` is return when the `EHR_STATUS` is successfully retreived. 
-
-    + Body
-
-            {
-                "uid": "..",
-                "subject": {},
-                "is_queryable": true,
-                "is_modifiable": true,
-                "other_details": {}
-            }
-
-
-+ Response 400
-
-    `400 Bad Request` is returned when the request has invalid parameters such as an invalid ehr_id value.
-    
-    + Body
-    
-+ Response 401
-
-    `401 Unauthorized` is returned when request is not authorised.
-
-    + Body
-
-+ Response 404
-
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist or 
-    an `EHR_STATUS` with `version_uid` does not exist.
-
-    + Body
-
-### Update EHR_STATUS [PUT /ehr/{ehr_id}/ehr_status]
-
-Update `EHR_STATUS` associated with the specified `ehr_id`. 
-The existing `version_uid` of `EHR_STATUS` resource must be specified in the `Match-If` header.
+Update `EHR_STATUS` associated with the EHR specified by `ehrId`. 
+The existing `vuid` of `EHR_STATUS` resource must be specified in the `Match-If` header.
 The response will contain the updated `EHR_STATUS` resource when the `Prefer` header has a value of `return=representation`
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
 
 + Request (application/json)
 
@@ -368,8 +380,8 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
     + Headers
 
-            Content-Location: /ehr/{ehr_id}/ehr_status/{version_uid}
-            ETag: {version_uid}
+            Content-Location: /ehr/{ehrId}/ehr_status/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -387,11 +399,11 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/ehr_status/{version_uid}
-            ETag: {version_uid}
+            Content-Location: /ehr/{ehrId}/ehr_status/{vuid}
+            ETag: {vuid}
 
 + Response 400
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehr_id` format.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` format.
     
     + Body
     
@@ -403,42 +415,42 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
 + Response 404
 
-    `404 Not Found` is returned when EHR with ehr_id does not exist or has been deleted or 
-    a version of an `EHR_STATUS` resource does not exist at the specified `version_time`.
+    `404 Not Found` is returned when EHR with ehrId does not exist or has been deleted or 
+    a version of an `EHR_STATUS` resource does not exist at the specified `versionSelector`.
 
     + Body
 
 + Response 412
 
-    `412 Conflict` is return when `Match-If` header doesn't match the lastest trunk version. 
-    Returns lastest trunk version in the `Content-Location` and `ETag` headers.
+    `412 Conflict` is return when `Match-If` header doesn't match the latest trunk version. 
+    Returns latest trunk version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/ehr_status/{version_uid}
-            ETag: {version_uid}
+            Content-Location: /ehr/{ehrId}/ehr_status/{vuid}
+            ETag: {vuid}
 
     + Body
 
 
-## VERSIONED_EHR_STATUS [/ehr/{ehr_id}/versioned_ehr_status]
+## VERSIONED_EHR_STATUS [/ehr/{ehrId}/versioned_ehr_status]
 Management of `VERSIONED_EHR_STATUS` resources.
 
-### Get VERSIONED_EHR_STATUS [GET /ehr/{ehr_id}/versioned_ehr_status]
-Retreive `VERSIONED_EHR_STATUS` associated with specified `ehr_id` including its `revision_history`.
+### Get VERSIONED_EHR_STATUS [GET /ehr/{ehrId}/versioned_ehr_status]
+Retrieve `VERSIONED_EHR_STATUS` associated with the EHR specified by `ehrId` including its `revision_history`.
 
 + Parameters
 
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
 
 + Response 200 (application/json)
-    `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` is succesfully retrieved, which is provided in the body.
+    `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` is successfully retrieved, which is provided in the body.
 
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "ehr_id",
+                "uid": "",
+                "owner_id": "{ehrId}",
                 "time_created": "ISO8601 timestamp",
                 "revision_history": 
                     { "items": [
@@ -449,7 +461,7 @@ Retreive `VERSIONED_EHR_STATUS` associated with specified `ehr_id` including its
             }
 
 + Response 400
-    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` value.
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` value.
     
     + Body
     
@@ -461,29 +473,29 @@ Retreive `VERSIONED_EHR_STATUS` associated with specified `ehr_id` including its
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist.
 
     + Body
 
 
-### Get EHR_STATUS version [GET /ehr/{ehr_id}/versioned_ehr_status/version?{version_time}]
+### Get EHR_STATUS version [GET /ehr/{ehrId}/versioned_ehr_status/version?{versionSelector}]
 
-Retreive the `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id`. 
-When the `version_time` parameter is provided, the `VERSION` that existed at the specified version time is returned, 
+Retrieve the `VERSION` selected by `versionSelector` of an `EHR_STATUS` associated with the `EHR` specified by `ehrId`. 
+When the `versionSelector` parameter is provided, the `VERSION` that existed at the specified version time is returned, 
 otherwise the latest trunk version is returned. 
-The `version_time` parameter may be an ISO8601 datetime string or symbolic value such as `LATEST_TRUNK_VERSION`.
+The `versionSelector` parameter may be an ISO8601 datetime string or symbolic value such as `LATEST_TRUNK_VERSION`.
 
 + Parameters
 
-    + ehr_id (string) - EHR identifier
-    + version_time (string, optional) - version time specifier
+    + ehrId (string) - EHR identifier
+    + versionSelector (string, optional) - version time specifier
 
 + Response 200 (application/json)
     `200 OK` is return when the requested `VERSION` is successfully retrieved, which is provided in the body.
 
     + Headers
 
-            Content-Location: /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid}
+            Content-Location: /ehr/{ehrId}/versioned_ehr_status/version/{vuid}
 
     + Body
 
@@ -502,7 +514,7 @@ The `version_time` parameter may be an ISO8601 datetime string or symbolic value
 
 + Response 400
 
-    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` or `version_time` value.
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` or `versionSelector` value.
 
     + Body
 
@@ -514,19 +526,19 @@ The `version_time` parameter may be an ISO8601 datetime string or symbolic value
 
 + Response 404
 
-    `404 Not Found` is returned when `EHR` with `ehr_id` does not exist, deleted 
-    or when `EHR_STATUS` does not exist at the specified `version_time`.
+    `404 Not Found` is returned when `EHR` with `ehrId` does not exist, deleted 
+    or when `EHR_STATUS` does not exist at the specified `versionSelector`.
 
     + Body
 
 
-### Get EHR_STATUS version by uid [GET /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid}]
-Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.  
+### Get EHR_STATUS version by uid [GET /ehr/{ehrId}/versioned_ehr_status/version/{vuid}]
+Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and `vuid`.  
 
 + Parameters
 
-    + ehr_id (string) - EHR identifier
-    + version_uid (string) - version uid
+    + ehrId (string) - EHR identifier
+    + vuid (string) - version uid
 
 + Response 200 (application/json)
     `200 OK` is return when the requested `VERSION` is successfully retrieved.
@@ -547,7 +559,7 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
             }
 
 + Response 400
-    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` or `version_uid` format.
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` or `vuid` format.
     
     + Body
     
@@ -559,7 +571,7 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist or `EHR_STATUS` with `version_uid` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist or `EHR_STATUS` with `vuid` does not exist.
 
     + Body
 
@@ -567,11 +579,11 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
 ## EHR_ACCESS [/ehr/{ehrId}/ehr_access]
 
-### Get EHR_ACCESS by version_uid [GET /ehr/{ehr_id}/ehr_access/{version_uid}]
+### Get EHR_ACCESS by vuid [GET /ehr/{ehrId}/ehr_access/{vuid}]
 
 + Parameters
-    + ehr_id (string) - EHR identifier
-    + version_uid (string) - version unique identifier
+    + ehrId (string) - EHR identifier
+    + vuid (string) - version unique identifier
 
 + Response 200 (application/json)
     `200 OK` is returned when the EHR_ACCESS is successfully retrieved.
@@ -589,8 +601,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
     + Body
     
 + Response 404
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist 
-    or an `EHR_STATUS` with `version_uid` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist 
+    or an `EHR_STATUS` with `vuid` does not exist.
     
     + Body
 
@@ -604,8 +616,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/ehr_access/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/ehr_access/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -636,7 +648,7 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Header
 
-            Match-If: {precedingVersionUid}
+            Match-If: {precedingvuid}
             Prefer: return={representation/minimal}
 
     + Body
@@ -651,8 +663,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/ehr_status/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -667,8 +679,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/ehr_access/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/ehr_access/{vuid}
+            ETag: {vuid}
 
 + Response 401
 
@@ -689,8 +701,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/ehr_access/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/ehr_access/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -709,8 +721,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "ehrId",
+                "uid": "",
+                "owner_id": "{ehrId}",
                 "time_created": "ISO8601 timestamp",
                 "version_count: 12,
                 "all_version_ids": [
@@ -733,12 +745,12 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
     + Body
 
 
-### Get an EHR_ACCESS version by versionUid [GET /ehr/{ehrId}/versioned_ehr_access/versions/{versionUid}]
+### Get an EHR_ACCESS version by vuid [GET /ehr/{ehrId}/versioned_ehr_access/versions/{vuid}]
 
 + Parameters
 
     + ehrId (string) - EHR id
-    + versionUid (string) - versionUid
+    + vuid (string) - vuid
 
 + Response 200 (application/json)
 
@@ -826,7 +838,7 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Match-If: {precedingVersionUid}
+            Match-If: {precedingvuid}
             Prefer: return={representation/minimal}
 
 + Response 201 (application/json)
@@ -837,8 +849,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Location: /ehr/{ehrId}/versioned_ehr_access/versions/{versionUid}
-            ETag: {versionUid}
+            Location: /ehr/{ehrId}/versioned_ehr_access/versions/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -874,8 +886,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/versioned_ehr_access/versions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/versioned_ehr_access/versions/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -912,8 +924,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Location: /ehr/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Location: /ehr/{ehrId}/directory/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -959,7 +971,7 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Match-If: {precedingVersionUid}
+            Match-If: {precedingvuid}
             Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
@@ -969,8 +981,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Location: /ehr/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Location: /ehr/{ehrId}/directory/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -987,8 +999,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Location: /ehr/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Location: /ehr/{ehrId}/directory/{vuid}
+            ETag: {vuid}
 
 + Response 400
 
@@ -1015,8 +1027,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/directory/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -1031,7 +1043,7 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Match-If: {precedingVersionUid}
+            Match-If: {precedingvuid}
 
 + Response 204
 
@@ -1064,17 +1076,17 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/directory/{vuid}
+            ETag: {vuid}
 
     + Body
 
-### Get a directory or its sub-folder by versionUid [GET /ehr/{ehrId}/directory/{versionUid}{?path}]
+### Get a directory or its sub-folder by vuid [GET /ehr/{ehrId}/directory/{vuid}{?path}]
 
 + Parameters
 
     + ehrId (string) - EHR id
-    + versionUid (string) - versionUid
+    + vuid (string) - vuid
     + path (string, optional) - path to a sub-folder
 
 + Response 200 (application/json)
@@ -1101,7 +1113,7 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
 + Response 404
 
-    No EHR with the given id or no directory with specified versionUid.
+    No EHR with the given id or no directory with specified vuid.
 
     + Body
 
@@ -1118,8 +1130,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Location: /ehr/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Location: /ehr/{ehrId}/directory/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -1152,12 +1164,12 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
 ## Composition [/ehr/{ehrId}/compositions]
 
-### Get a composition by version uid [GET /ehr/{ehrId}/compositions/{versionUid}{?format}]
+### Get a composition by version uid [GET /ehr/{ehrId}/compositions/{vuid}{?format}]
 
 + Parameters
 
     + ehrId (string) - EHR id.
-    + versionUid (string) - version uid
+    + vuid (string) - version uid
     + format (string, optional)...format of the composition (when ommitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
@@ -1165,9 +1177,9 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1198,15 +1210,15 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/compositions/{vuid}
+            ETag: {vuid}
 
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1243,9 +1255,9 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
     + Body (application/json)
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1263,15 +1275,15 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
     + Headers
 
-            Location: /ehr/{ehrId}/compositions/{versionUid}
-            ETag: {versionUid}
+            Location: /ehr/{ehrId}/compositions/{vuid}
+            ETag: {vuid}
 
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1319,9 +1331,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body (application/json)
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1329,7 +1341,7 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Match-If: {precedingVersionUid}
+            Match-If: {precedingvuid}
             Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
@@ -1338,15 +1350,15 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/compositions/{vuid}
+            ETag: {vuid}
 
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1358,8 +1370,8 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/compositions/{vuid}
+            ETag: {vuid}
 
 + Response 400
 
@@ -1393,8 +1405,8 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/ehr_status/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -1409,7 +1421,7 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Match-If: {precedingVersionUid}
+            Match-If: {precedingvuid}
 
 + Response 204
 
@@ -1417,8 +1429,8 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/compositions/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -1447,8 +1459,8 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/compositions/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -1464,9 +1476,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body (application/json)
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1474,7 +1486,7 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Match-If: {precedingVersionUid}
+            Match-If: {precedingvuid}
             Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
@@ -1483,15 +1495,15 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/compositions/{vuid}
+            ETag: {vuid}
 
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1503,8 +1515,8 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/compositions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/compositions/{vuid}
+            ETag: {vuid}
 
 + Response 400 (application/json)
 
@@ -1538,8 +1550,8 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/ehr_status/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/ehr_status/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -1554,7 +1566,7 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Match-If: {precedingVersionUid}
+            Match-If: {precedingvuid}
 
 + Response 204
 
@@ -1562,8 +1574,8 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /compositions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /compositions/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -1592,17 +1604,17 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /compositions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /compositions/{vuid}
+            ETag: {vuid}
 
     + Body
 
 
-### Get a composition by version uid directly [GET /compositions/{versionUid}{?format}]
+### Get a composition by version uid directly [GET /compositions/{vuid}{?format}]
 
 + Parameters
 
-    + versionUid (string) - version uid
+    + vuid (string) - version uid
     + format (string, optional)...format of the composition (when ommitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
@@ -1610,9 +1622,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1642,15 +1654,15 @@ In case of an update `Match-If` header _might_ be required.
 
     + Headers
 
-            Content-Location: /compositions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /compositions/{vuid}
+            ETag: {vuid}
 
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1702,8 +1714,8 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "ehrId",
+                "uid": "",
+                "owner_id": "{ehrId}",
                 "time_created": "ISO8601 timestamp"
             }
 
@@ -1752,8 +1764,8 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "ehrId",
+                "uid": "",
+                "owner_id": "{ehrId}",
                 "time_created": "ISO8601 timestamp"
             }
 
@@ -1794,8 +1806,8 @@ Gets a complete VERSIONED_COMPOSITION.
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "ehrId",
+                "uid": "",
+                "owner_id": "{ehrId}",
                 "time_created": "ISO8601 timestamp",
                 "version_count: 12,
                 "all_version_ids": [
@@ -1840,9 +1852,9 @@ Gets a complete VERSIONED_COMPOSITION.
             {
                 "commit_audit": {},
                 "data": {
-                    "@class": "COMPOSITION",
+                    "@type": "COMPOSITION",
                     "name": {
-                        "@class": "DV_TEXT",
+                        "@type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -1851,7 +1863,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Match-If: {precedingVersionUid}
+            Match-If: {precedingvuid}
             Prefer: return={representation/minimal}
 
 + Response 201 (application/json)
@@ -1862,8 +1874,8 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Location: /ehr/{ehrId}/versioned_compositions/{uid}/versions/{versionUid}
-            ETag: {versionUid}
+            Location: /ehr/{ehrId}/versioned_compositions/{uid}/versions/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -1873,9 +1885,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "@class": "COMPOSITION",
+                    "@type": "COMPOSITION",
                     "name": {
-                        "@class": "DV_TEXT",
+                        "@type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -1914,18 +1926,18 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/versioned_compositions/{uid}/versions/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehrId}/versioned_compositions/{uid}/versions/{vuid}
+            ETag: {vuid}
 
     + Body
 
-### Get a composition version by versionUid [GET /ehr/{ehrId}/versioned_compositions/{uid}/version/{versionUid}{?format}]
+### Get a composition version by vuid [GET /ehr/{ehrId}/versioned_compositions/{uid}/version/{vuid}{?format}]
 
 + Parameters
 
     + ehrId (string) - EHR id
     + uid (string) - VERSIONED_COMPOSITION's uid
-    + versionUid (string) - version uid
+    + vuid (string) - version uid
     + format (string, optional) - optional format of the composition (when ommitted canonical openEHR
     is assumed)
 
@@ -1939,9 +1951,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "@class": "COMPOSITION",
+                    "@type": "COMPOSITION",
                     "name": {
-                        "@class": "DV_TEXT",
+                        "@type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -1956,7 +1968,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
 + Response 404
 
-    No EHR with the given id, no VERSIONED_COMPOSITION with uid or no version with versionUid.
+    No EHR with the given id, no VERSIONED_COMPOSITION with uid or no version with vuid.
 
     + Body
 
@@ -1973,8 +1985,8 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Location: /ehr/{ehrId}/versioned_compositions/{uid}/versions/{versionUid}
-            ETag: {versionUid}
+            Location: /ehr/{ehrId}/versioned_compositions/{uid}/versions/{vuid}
+            ETag: {vuid}
 
     + Body
 
@@ -1984,9 +1996,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "@class": "COMPOSITION",
+                    "@type": "COMPOSITION",
                     "name": {
-                        "@class": "DV_TEXT",
+                        "@type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -2001,7 +2013,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
 + Response 404
 
-    No EHR with the given id, no VERSIONED_COMPOSITION with uid or no version with versionUid.
+    No EHR with the given id, no VERSIONED_COMPOSITION with uid or no version with vuid.
 
     + Body
 
@@ -2027,47 +2039,47 @@ offset 0 limit 2
 + Response 200 (application/json)
     
         {
-  "@class": "RESULTSET",
-  "@schemaversion": "0.1.0",
-  "@type": "raw",
-  "@created": "2016-06-22T07:54:04.758+02:00",
-  "@generator": "<The resultset generator>",
-  "totalResults": 2,
-  "columns": [
-    {
-      "name": "When",
-      "path": "/data[at0002]/events[at0003]/time"
-    },
-    {
-      "name": "Temperature",
-      "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value"
-    }
-  ],
-  "rows": [
-    [
-      {
-        "@class": "DV_DATE_TIME",
-        "value": "2016-06-08T11:02:47+02:00"
-      },
-      {
-        "@class": "DV_QUANTITY",
-        "magnitude": 38.0,
-        "units": "°C"
-      }
-    ],
-    [
-      {
-        "@class": "DV_DATE_TIME",
-        "value": "2016-06-05T08:53:36+02:00"
-      },
-      {
-        "@class": "DV_QUANTITY",
-        "magnitude": 37.0,
-        "units": "Cel"
-      }
-    ]
-  ]
-}
+            "@type": "RESULTSET",
+            "@schemaversion": "0.1.0",
+            "@type": "raw",
+            "@created": "2016-06-22T07:54:04.758+02:00",
+            "@generator": "<The resultset generator>",
+            "totalResults": 2,
+            "columns": [
+                {
+                    "name": "When",
+                    "path": "/data[at0002]/events[at0003]/time"
+                },
+                {
+                    "name": "Temperature",
+                    "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value"
+                }
+            ],
+            "rows": [
+                [
+                    {
+                        "@type": "DV_DATE_TIME",
+                        "value": "2016-06-08T11:02:47+02:00"
+                    },
+                    {
+                        "@type": "DV_QUANTITY",
+                        "magnitude": 38.0,
+                        "units": "°C"
+                    }
+                ],
+                [
+                    {
+                        "@type": "DV_DATE_TIME",
+                        "value": "2016-06-05T08:53:36+02:00"
+                    },
+                    {
+                        "@type": "DV_QUANTITY",
+                        "magnitude": 37.0,
+                        "units": "Cel"
+                    }
+                ]
+            ]
+        }
 
 ### Get query results [POST /query/aql]
 
