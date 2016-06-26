@@ -7,6 +7,8 @@ HOST: http://www.openehr.org/api
 
 The openEHR REST API enables interaction with an openEHR service in a RESTful manner.
 
+## Considerations
+
 In many places parameter `version_time` is used. It is used to select a specific version
 of a VERSIONED_OBJECT and can have the following values:
 - `LATEST_TRUNK_VERSION`
@@ -15,6 +17,12 @@ of a VERSIONED_OBJECT and can have the following values:
 
 When the `version_time` parameter is not provided, the lastest trunk version is returned, 
 which is the same as specifing `version_time=LATEST_TRUNK_VERSION`.
+
+## Glossary
+
+| Term | Description |
+|------|-------------|
+|`ehrId`| The string value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
 
 
 # Group EHR
@@ -80,7 +88,7 @@ otherwise default resources will be created automatical by the service.
     + Body
 
 
-### Create EHR with ehr_id [PUT /ehr/{ehr_id}]
+### Create EHR with ehrId [PUT /ehr/{ehrId}]
 
 Create new `EHR` with the specified EHR identifer. 
 The request body may contain `ehr_status` and `ehr_access` attributes, 
@@ -89,7 +97,7 @@ When the `ehr_status` or `ehr_access` attributes are not provided, defaults reso
 will be created by the service.
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
 
 + Request
 
@@ -130,7 +138,7 @@ will be created by the service.
 
 + Response 400
 
-    '400 Bad Request' is returned whenunable to create a new EHR due to bad client Request, e.g. malformed syntax such as the 'ehr_id' not a valid HIER_OBJECT_ID value.
+    '400 Bad Request' is returned whenunable to create a new EHR due to bad client Request, e.g. malformed syntax such as the 'ehrId' not a valid HIER_OBJECT_ID value.
 
     + Body
 
@@ -148,15 +156,15 @@ will be created by the service.
 
 + Response 405
 
-    `405 Method Not Allowed` is returned when an `EHR` with specified `ehr_id` already exists.
+    `405 Method Not Allowed` is returned when an `EHR` with specified `ehrId` already exists.
 
     + Body
 
-### Get EHR [GET /ehr/{ehr_id}]
-Retreive the EHR with the specified `ehr_id`.
+### Get EHR [GET /ehr/{ehrId}]
+Retreive the EHR with the specified `ehrId`.
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
 
 + Response 200 (application/json)
     `200 OK` is returned the EHR resource is successfully retreived. 
@@ -174,7 +182,7 @@ Retreive the EHR with the specified `ehr_id`.
             }
 
 + Response 400
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehr_id` value.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` value.
 
     + Body
     
@@ -185,12 +193,12 @@ Retreive the EHR with the specified `ehr_id`.
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist.
 
     + Body
 
 
-### Delete EHR [DELETE /ehr/{ehr_id}]
+### Delete EHR [DELETE /ehr/{ehrId}]
 
 _This call is under discussion._
 
@@ -205,7 +213,7 @@ This operation may be used to implement this capability but the commit_audit and
 retained using an alterate audit trail than the usual contribution aufit details.
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
 
 + Request
 
@@ -226,7 +234,7 @@ retained using an alterate audit trail than the usual contribution aufit details
 
 + Response 400
 
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehr_id` value.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` value.
     
     + Body
     
@@ -238,7 +246,7 @@ retained using an alterate audit trail than the usual contribution aufit details
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist.
 
     + Body
 
@@ -247,15 +255,15 @@ retained using an alterate audit trail than the usual contribution aufit details
 ## EHR_STATUS [/ehr/{ehrId}/ehr_status]
 Management of EHR_STATUS resources.
 
-### Get EHR_STATUS [GET /ehr/{ehr_id}/ehr_status?version_time]
+### Get EHR_STATUS [GET /ehr/{ehrId}/ehr_status?version_time]
 
-Retreive the `EHR_STATUS` associated with the specified `ehr_id`. 
+Retreive the `EHR_STATUS` associated with the specified `ehrId`. 
 When the `version_time` parameter is provided, the `EHR_STATUS` version that existed at the specified version time is returned, 
 otherwise the latest trunk version is returned.
 The `version_time` parameter may be an ISO8601 datetime string or symbolic value such as `LATEST_TRUNK_VERSION`. 
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
     + version_time (string, optional) - version time specifier
 
 + Response 200 (application/json)
@@ -263,7 +271,7 @@ The `version_time` parameter may be an ISO8601 datetime string or symbolic value
 
     + Headers
 
-            Content-Location: /ehr/{ehr_id}/ehr_status/{version_uid}
+            Content-Location: /ehr/{ehrId}/ehr_status/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -279,7 +287,7 @@ The `version_time` parameter may be an ISO8601 datetime string or symbolic value
 
 + Response 400
 
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehr_id` or `version_uid` format.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` or `version_uid` format.
     
     + Body
     
@@ -291,17 +299,17 @@ The `version_time` parameter may be an ISO8601 datetime string or symbolic value
 
 + Response 404
 
-    `404 Not Found` returned when `EHR` with `ehr_id` does not exist or has been deleted or 
+    `404 Not Found` returned when `EHR` with `ehrId` does not exist or has been deleted or 
     a version of an `EHR_STATUS` resource does not exist at the specified `version_time`.  
 
     + Body
 
-### Get EHR_STATUS by version_uid [GET /ehr/{ehr_id}/ehr_status/{version_uid}]
+### Get EHR_STATUS by version_uid [GET /ehr/{ehrId}/ehr_status/{version_uid}]
 
-Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
+Retrieve the version of the `EHR_STATUS` associated with the specified `ehrId` and `version_uid`.
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
     + version_uid (string) - version UID
 
 + Response 200 (application/json)
@@ -320,7 +328,7 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` 
 
 + Response 400
 
-    `400 Bad Request` is returned when the request has invalid parameters such as an invalid ehr_id value.
+    `400 Bad Request` is returned when the request has invalid parameters such as an invalid ehrId value.
     
     + Body
     
@@ -332,19 +340,19 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` 
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist or 
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist or 
     an `EHR_STATUS` with `version_uid` does not exist.
 
     + Body
 
-### Update EHR_STATUS [PUT /ehr/{ehr_id}/ehr_status]
+### Update EHR_STATUS [PUT /ehr/{ehrId}/ehr_status]
 
-Update `EHR_STATUS` associated with the specified `ehr_id`. 
+Update `EHR_STATUS` associated with the specified `ehrId`. 
 The existing `version_uid` of `EHR_STATUS` resource must be specified in the `Match-If` header.
 The response will contain the updated `EHR_STATUS` resource when the `Prefer` header has a value of `return=representation`
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
 
 + Request (application/json)
 
@@ -369,7 +377,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
     + Headers
 
-            Content-Location: /ehr/{ehr_id}/ehr_status/{version_uid}
+            Content-Location: /ehr/{ehrId}/ehr_status/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -392,7 +400,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
             ETag: {version_uid}
 
 + Response 400
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehr_id` format.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` format.
     
     + Body
     
@@ -404,7 +412,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
 + Response 404
 
-    `404 Not Found` is returned when EHR with ehr_id does not exist or has been deleted or 
+    `404 Not Found` is returned when EHR with ehrId does not exist or has been deleted or 
     a version of an `EHR_STATUS` resource does not exist at the specified `version_time`.
 
     + Body
@@ -422,15 +430,15 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
     + Body
 
 
-## VERSIONED_EHR_STATUS [/ehr/{ehr_id}/versioned_ehr_status]
+## VERSIONED_EHR_STATUS [/ehr/{ehrId}/versioned_ehr_status]
 Management of `VERSIONED_EHR_STATUS` resources.
 
-### Get VERSIONED_EHR_STATUS [GET /ehr/{ehr_id}/versioned_ehr_status]
-Retreive `VERSIONED_EHR_STATUS` associated with specified `ehr_id` including its `revision_history`.
+### Get VERSIONED_EHR_STATUS [GET /ehr/{ehrId}/versioned_ehr_status]
+Retreive `VERSIONED_EHR_STATUS` associated with specified `ehrId` including its `revision_history`.
 
 + Parameters
 
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
 
 + Response 200 (application/json)
     `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` is succesfully retrieved, which is provided in the body.
@@ -438,8 +446,8 @@ Retreive `VERSIONED_EHR_STATUS` associated with specified `ehr_id` including its
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "ehr_id",
+                "uid": "",
+                "owner_id": "{ehrId}",
                 "time_created": "ISO8601 timestamp",
                 "revision_history": 
                     { "items": [
@@ -450,7 +458,7 @@ Retreive `VERSIONED_EHR_STATUS` associated with specified `ehr_id` including its
             }
 
 + Response 400
-    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` value.
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` value.
     
     + Body
     
@@ -462,21 +470,21 @@ Retreive `VERSIONED_EHR_STATUS` associated with specified `ehr_id` including its
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist.
 
     + Body
 
 
-### Get EHR_STATUS version [GET /ehr/{ehr_id}/versioned_ehr_status/version?{version_time}]
+### Get EHR_STATUS version [GET /ehr/{ehrId}/versioned_ehr_status/version?{version_time}]
 
-Retreive the `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id`. 
+Retreive the `VERSION` of an `EHR_STATUS` associated with the specified `ehrId`. 
 When the `version_time` parameter is provided, the `VERSION` that existed at the specified version time is returned, 
 otherwise the latest trunk version is returned. 
 The `version_time` parameter may be an ISO8601 datetime string or symbolic value such as `LATEST_TRUNK_VERSION`.
 
 + Parameters
 
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
     + version_time (string, optional) - version time specifier
 
 + Response 200 (application/json)
@@ -484,7 +492,7 @@ The `version_time` parameter may be an ISO8601 datetime string or symbolic value
 
     + Headers
 
-            Content-Location: /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid}
+            Content-Location: /ehr/{ehrId}/versioned_ehr_status/version/{version_uid}
 
     + Body
 
@@ -503,7 +511,7 @@ The `version_time` parameter may be an ISO8601 datetime string or symbolic value
 
 + Response 400
 
-    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` or `version_time` value.
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` or `version_time` value.
 
     + Body
 
@@ -515,18 +523,18 @@ The `version_time` parameter may be an ISO8601 datetime string or symbolic value
 
 + Response 404
 
-    `404 Not Found` is returned when `EHR` with `ehr_id` does not exist, deleted 
+    `404 Not Found` is returned when `EHR` with `ehrId` does not exist, deleted 
     or when `EHR_STATUS` does not exist at the specified `version_time`.
 
     + Body
 
 
-### Get EHR_STATUS version by uid [GET /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid}]
-Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.  
+### Get EHR_STATUS version by uid [GET /ehr/{ehrId}/versioned_ehr_status/version/{version_uid}]
+Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and `version_uid`.  
 
 + Parameters
 
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
     + version_uid (string) - version uid
 
 + Response 200 (application/json)
@@ -548,7 +556,7 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
             }
 
 + Response 400
-    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` or `version_uid` format.
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` or `version_uid` format.
     
     + Body
     
@@ -560,7 +568,7 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist or `EHR_STATUS` with `version_uid` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist or `EHR_STATUS` with `version_uid` does not exist.
 
     + Body
 
@@ -568,10 +576,10 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
 ## EHR_ACCESS [/ehr/{ehrId}/ehr_access]
 
-### Get EHR_ACCESS by version_uid [GET /ehr/{ehr_id}/ehr_access/{version_uid}]
+### Get EHR_ACCESS by version_uid [GET /ehr/{ehrId}/ehr_access/{version_uid}]
 
 + Parameters
-    + ehr_id (string) - EHR identifier
+    + ehrId (string) - EHR identifier
     + version_uid (string) - version unique identifier
 
 + Response 200 (application/json)
@@ -590,7 +598,7 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
     + Body
     
 + Response 404
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist 
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist 
     or an `EHR_STATUS` with `version_uid` does not exist.
     
     + Body
@@ -710,8 +718,8 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "ehrId",
+                "uid": "",
+                "owner_id": "{ehrId}",
                 "time_created": "ISO8601 timestamp",
                 "version_count: 12,
                 "all_version_ids": [
@@ -1703,8 +1711,8 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "ehrId",
+                "uid": "",
+                "owner_id": "{ehrId}",
                 "time_created": "ISO8601 timestamp"
             }
 
@@ -1753,8 +1761,8 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "ehrId",
+                "uid": "",
+                "owner_id": "{ehrId}",
                 "time_created": "ISO8601 timestamp"
             }
 
@@ -1795,8 +1803,8 @@ Gets a complete VERSIONED_COMPOSITION.
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "ehrId",
+                "uid": "",
+                "owner_id": "{ehrId}",
                 "time_created": "ISO8601 timestamp",
                 "version_count: 12,
                 "all_version_ids": [
