@@ -53,11 +53,29 @@ Throughout these specifications a set of short terms are used as described below
 
 
 
+# Data Structures
+
+## UID (object)
++ value (string)
+
+## OBJREF (object)
++ namespace (string)
++ type (string)
++ id (UID)
+
+
+
+
 # Group EHR
 
 ## EHR [/ehr]
 
 Management of EHR resources.
+
++ Attributes (object)
+    + ehr_id (UID)
+    + ehr_access (OBJREF)
+    + ehr_status (OBJREF)
 
 ### Create a new EHR [POST]
 
