@@ -5,9 +5,26 @@ HOST: http://www.openehr.org/api
 
 # OpenEHR REST API
 
-The openEHR REST API enables interaction with an openEHR service in a RESTful manner.
+An openEHR REST API enables interaction with an openEHR service in a RESTful manner.
+The following specifications are not intended to describe an existing API but rather an abstract blueprint 
+on which each openEHR implementation should adhere to.
+
 
 ## Considerations
+
+### JSON format
+Any object serialized in the space of openEHR REST API will have their type described by a special attribute `@type`.
+The types indicated by this attribute are in always in "SCREAMING_SNAKE_CASE" and should always fully match a openEHR class name.
+The only exception is related to generic types like DV_INTERVAL<DV_DATETIME>, where `@type='DV_INTERVAL'` as there is no need to indicate the subtype.
+
+All attributes are in "snake_case" and should always match openEHR RM/AM attributes names of their corresponded class.
+
+Any other object attribute not supported by their corresponded openEHR class should always be prefixed with the `@` character.
+
+### Datetime format
+It is recommended to always use canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00, but any other valid ISO8601 datetime is accepted.
+
+Any datetime value provided by a create or update action will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
 
 ### About `versionSelector`
 In many places the parameter `versionSelector` is used to select a specific VERSION (or associated data object)
@@ -22,9 +39,10 @@ which is the same as specifing `versionSelector=LATEST_TRUNK_VERSION`.
 
 When `versionSelector` is an `uid`, the latest trunk version from that versioned container is returned.
 
+
 ## Glossary
 
-Throughout these specifications a set of short terms as described below:
+Throughout these specifications a set of short terms are used as described below:
 
 | Name | Description |
 |------|-------------|
@@ -59,7 +77,7 @@ otherwise default resources will be created automatical by the service.
             {
                 "commit_audit": {
                     "description": "Commit audit description",
-                    "committer": {"@class": "PARTY_IDENTIFIED", ... }
+                    "committer": {"@type": "PARTY_IDENTIFIED", ... }
                 },
                 "ehr_status": { ... },
                 "ehr_access": { ... }
@@ -120,7 +138,7 @@ will be created by the service.
             {
                 "commit_audit": {
                     "description": "Commit audit description",
-                    "committer": {"@class": "PARTY_IDENTIFIED", ... }
+                    "committer": {"@type": "PARTY_IDENTIFIED", ... }
                 },
                 "ehr_status": {...},
                 "ehr_access": {...}
@@ -230,7 +248,7 @@ retained using an alterate audit trail than the usual contribution aufit details
         {
             "commit_audit": {
                 "description": "Commit audit description",
-                "committer": { "@class": "PARTY_IDENTIFIED", 
+                "committer": { "@type": "PARTY_IDENTIFIED", 
                     ... }
             },
             "attestations": { ... }
@@ -1141,9 +1159,9 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1180,9 +1198,9 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1219,9 +1237,9 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body (application/json)
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1245,9 +1263,9 @@ Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1295,9 +1313,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body (application/json)
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1320,9 +1338,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1440,9 +1458,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body (application/json)
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1465,9 +1483,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1586,9 +1604,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1624,9 +1642,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "@class": "COMPOSITION",
+                "@type": "COMPOSITION",
                 "name": {
-                    "@class": "DV_TEXT",
+                    "@type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1816,9 +1834,9 @@ Gets a complete VERSIONED_COMPOSITION.
             {
                 "commit_audit": {},
                 "data": {
-                    "@class": "COMPOSITION",
+                    "@type": "COMPOSITION",
                     "name": {
-                        "@class": "DV_TEXT",
+                        "@type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -1849,9 +1867,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "@class": "COMPOSITION",
+                    "@type": "COMPOSITION",
                     "name": {
-                        "@class": "DV_TEXT",
+                        "@type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -1915,9 +1933,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "@class": "COMPOSITION",
+                    "@type": "COMPOSITION",
                     "name": {
-                        "@class": "DV_TEXT",
+                        "@type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -1960,9 +1978,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "@class": "COMPOSITION",
+                    "@type": "COMPOSITION",
                     "name": {
-                        "@class": "DV_TEXT",
+                        "@type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -2003,7 +2021,7 @@ offset 0 limit 2
 + Response 200 (application/json)
     
         {
-            "@class": "RESULTSET",
+            "@type": "RESULTSET",
             "@schemaversion": "0.1.0",
             "@type": "raw",
             "@created": "2016-06-22T07:54:04.758+02:00",
@@ -2022,22 +2040,22 @@ offset 0 limit 2
             "rows": [
                 [
                     {
-                        "@class": "DV_DATE_TIME",
+                        "@type": "DV_DATE_TIME",
                         "value": "2016-06-08T11:02:47+02:00"
                     },
                     {
-                        "@class": "DV_QUANTITY",
+                        "@type": "DV_QUANTITY",
                         "magnitude": 38.0,
                         "units": "°C"
                     }
                 ],
                 [
                     {
-                        "@class": "DV_DATE_TIME",
+                        "@type": "DV_DATE_TIME",
                         "value": "2016-06-05T08:53:36+02:00"
                     },
                     {
-                        "@class": "DV_QUANTITY",
+                        "@type": "DV_QUANTITY",
                         "magnitude": 37.0,
                         "units": "Cel"
                     }
