@@ -34,8 +34,8 @@ of a VERSIONED_OBJECT and can have the following values:
 - a `vuid` (VERSION unique identifier)
 - a `uid` (VERSIONED_OBJECT unique identifier)
 
-When the `versionSelector` parameter is not provided, the lastest trunk version is returned, 
-which is the same as specifing `versionSelector=LATEST_TRUNK_VERSION`.
+When the `versionSelector` parameter is not provided, the latest trunk version is returned, 
+which is the same as specifying `versionSelector=LATEST_TRUNK_VERSION`.
 
 When `versionSelector` is an `uid`, the latest trunk version from that versioned container is returned.
 
@@ -64,7 +64,7 @@ Management of EHR resources.
 Create a new `EHR` with an auto-generated identifier. 
 Request body may contain `ehr_status` and `ehr_access` attributes. When provided these
 resources will also be created as part of the `create EHR` action, 
-otherwise default resources will be created automatical by the service.
+otherwise default resources will be created automatically by the service.
 
 + Request
 
@@ -85,7 +85,7 @@ otherwise default resources will be created automatical by the service.
 
 + Response 201 (application/json)
 
-    `201 Created` is returned when a new EHR has been succesfully created. 
+    `201 Created` is returned when a new EHR has been successfully created. 
     The EHR resource is returned in the body when the `Prefer` header has the value of `return=representation`.
 
     + Headers
@@ -118,7 +118,7 @@ otherwise default resources will be created automatical by the service.
 
 ### Create EHR with ehrId [PUT /ehr/{ehrId}]
 
-Create new `EHR` with the specified EHR identifer. 
+Create new `EHR` with the specified EHR identifier. 
 The request body may contain `ehr_status` and `ehr_access` attributes, 
 which will be used to create these initial resources associated with the new EHR.
 When the `ehr_status` or `ehr_access` attributes are not provided, defaults resources 
@@ -146,7 +146,7 @@ will be created by the service.
 
 + Response 201 (application/json)
 
-    `201 Created` is returned when a new EHR has been succesfully created. 
+    `201 Created` is returned when a new EHR has been successfully created. 
     The new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`.
 
     + Headers
@@ -166,7 +166,7 @@ will be created by the service.
 
 + Response 400
 
-    '400 Bad Request' is returned whenunable to create a new EHR due to bad client Request, e.g. malformed syntax such as the 'ehrId' not a valid HIER_OBJECT_ID value.
+    '400 Bad Request' is returned when unable to create a new EHR due to bad client Request, e.g. malformed syntax such as the 'ehrId' not a valid HIER_OBJECT_ID value.
 
     + Body
 
@@ -189,13 +189,13 @@ will be created by the service.
     + Body
 
 ### Get EHR [GET /ehr/{ehrId}]
-Retreive the EHR with the specified `ehrId`.
+Retrieve the EHR with the specified `ehrId`.
 
 + Parameters
     + ehrId (string) - EHR identifier
 
 + Response 200 (application/json)
-    `200 OK` is returned when the EHR resource is successfully retreived. 
+    `200 OK` is returned when the EHR resource is successfully retrieved. 
     
     + Body
 
@@ -236,9 +236,9 @@ for the deleted `EHR_STATUS` and `EHR_ACCESS` resources. Where an implementation
 additional attestation to authorise the deletion, this can be provided in the attestations 
 attribute in the request.
 
-Note: Some jursidictions may require the service to physically delete the `EHR` and all its content.
-This operation may be used to implement this capability but the commit_audit and attesations must be 
-retained using an alterate audit trail than the usual contribution aufit details.
+Note: Some jurisdictions may require the service to physically delete the `EHR` and all its content.
+This operation may be used to implement this capability but the commit_audit and attestations must be 
+retained using an alternate audit trail than the usual contribution audit details.
 
 + Parameters
     + ehrId (string) - EHR identifier
@@ -285,14 +285,14 @@ Management of EHR_STATUS resources.
 
 ### Get EHR_STATUS [GET /ehr/{ehrId}/ehr_status?{versionSelector}]
 
-Retreive the `EHR_STATUS` selected by `versionSelector` and associated with the EHR specified by `ehrId`. 
+Retrieve the `EHR_STATUS` selected by `versionSelector` and associated with the EHR specified by `ehrId`. 
 
 + Parameters
     + ehrId (string) - EHR identifier
     + versionSelector (string, optional) - version selector specifier
 
 + Response 200 (application/json)
-    `200 OK` is return with the EHR_STATUS resource in the body when it is successfully retreived. 
+    `200 OK` is return with the EHR_STATUS resource in the body when it is successfully retrieved. 
 
     + Headers
 
@@ -404,8 +404,8 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
 + Response 412
 
-    `412 Conflict` is return when `Match-If` header doesn't match the lastest trunk version. 
-    Returns lastest trunk version in the `Content-Location` and `ETag` headers.
+    `412 Conflict` is return when `Match-If` header doesn't match the latest trunk version. 
+    Returns latest trunk version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -419,14 +419,14 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 Management of `VERSIONED_EHR_STATUS` resources.
 
 ### Get VERSIONED_EHR_STATUS [GET /ehr/{ehrId}/versioned_ehr_status]
-Retreive `VERSIONED_EHR_STATUS` associated with the EHR specified by `ehrId` including its `revision_history`.
+Retrieve `VERSIONED_EHR_STATUS` associated with the EHR specified by `ehrId` including its `revision_history`.
 
 + Parameters
 
     + ehrId (string) - EHR identifier
 
 + Response 200 (application/json)
-    `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` is succesfully retrieved, which is provided in the body.
+    `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` is successfully retrieved, which is provided in the body.
 
     + Body
 
@@ -462,7 +462,7 @@ Retreive `VERSIONED_EHR_STATUS` associated with the EHR specified by `ehrId` inc
 
 ### Get EHR_STATUS version [GET /ehr/{ehrId}/versioned_ehr_status/version?{versionSelector}]
 
-Retreive the `VERSION` selected by `versionSelector` of an `EHR_STATUS` associated with the `EHR` specified by `ehrId`. 
+Retrieve the `VERSION` selected by `versionSelector` of an `EHR_STATUS` associated with the `EHR` specified by `ehrId`. 
 When the `versionSelector` parameter is provided, the `VERSION` that existed at the specified version time is returned, 
 otherwise the latest trunk version is returned. 
 The `versionSelector` parameter may be an ISO8601 datetime string or symbolic value such as `LATEST_TRUNK_VERSION`.
@@ -515,7 +515,7 @@ The `versionSelector` parameter may be an ISO8601 datetime string or symbolic va
 
 
 ### Get EHR_STATUS version by uid [GET /ehr/{ehrId}/versioned_ehr_status/version/{vuid}]
-Retreive `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and `vuid`.  
+Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and `vuid`.  
 
 + Parameters
 
