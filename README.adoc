@@ -6,4 +6,4 @@ See XML schema in subdirectories
 
 ## REST
 The REST API development file (   apiary.apib  ) is rendered at  http://docs.openehr.apiary.io/#
-Se "issues" in this GitHub repository currently ongoing REST for discussion
+See "issues" in this GitHub repository currently ongoing REST for discussion
