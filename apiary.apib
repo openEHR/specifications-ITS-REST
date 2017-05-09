@@ -49,10 +49,10 @@ Throughout these specifications a set of short terms is being used as described 
 
 - attribute names will be lowercase snake-case names as specified in the RM spec. For example:
     - context : {"start_time": "2016-01-01T00:00Z"}
-- metadata attributes (those that are not also RM attributes) will always be prefixed by a '@'
-- we will use a `@type` attribute to specify RM type which will be upper-case class name from the RM spec:
+- metadata attributes (those that are not also RM attributes) will always be prefixed by a '_'
+- we will use a `_type` attribute to specify RM type which will be upper-case class name from the RM spec:
     {
-        "@type": "DV_TEXT",
+        "_type": "DV_TEXT",
         "value": "Hello world!"
     }
 - null RM attributes will be absent when serialized as JSON
@@ -87,7 +87,7 @@ otherwise default resources will be created automatically by the service.
             {
                 "commit_audit": {
                     "description": "Commit audit description",
-                    "committer": {"@type": "PARTY_IDENTIFIED", ... }
+                    "committer": {"_type": "PARTY_IDENTIFIED", ... }
                 },
                 "ehr_status": { ... },
                 "ehr_access": { ... }
@@ -148,7 +148,7 @@ will be created by the service.
             {
                 "commit_audit": {
                     "description": "Commit audit description",
-                    "committer": {"@type": "PARTY_IDENTIFIED", ... }
+                    "committer": {"_type": "PARTY_IDENTIFIED", ... }
                 },
                 "ehr_status": {...},
                 "ehr_access": {...}
@@ -259,7 +259,7 @@ retained using an alternative audit trail than the usual contribution audit deta
         {
             "commit_audit": {
                 "description": "Commit audit description",
-                "committer": { "@type": "PARTY_IDENTIFIED", 
+                "committer": { "_type": "PARTY_IDENTIFIED", 
                     ... }
             },
             "attestations": { ... }
@@ -1224,9 +1224,9 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body
 
             {
-                "@type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "@type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1265,9 +1265,9 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body
 
             {
-                "@type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "@type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1306,9 +1306,9 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body (application/json)
 
             {
-                "@type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "@type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1332,9 +1332,9 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body
 
             {
-                "@type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "@type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1382,9 +1382,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body (application/json)
 
             {
-                "@type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "@type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1407,9 +1407,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "@type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "@type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1527,9 +1527,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body (application/json)
 
             {
-                "@type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "@type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1552,9 +1552,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "@type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "@type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1673,9 +1673,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "@type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "@type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1711,9 +1711,9 @@ In case of an update `Match-If` header _might_ be required.
     + Body
 
             {
-                "@type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "@type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -1903,9 +1903,9 @@ Gets a complete VERSIONED_COMPOSITION.
             {
                 "commit_audit": {},
                 "data": {
-                    "@type": "COMPOSITION",
+                    "_type": "COMPOSITION",
                     "name": {
-                        "@type": "DV_TEXT",
+                        "_type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -1936,9 +1936,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "@type": "COMPOSITION",
+                    "_type": "COMPOSITION",
                     "name": {
-                        "@type": "DV_TEXT",
+                        "_type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -2002,9 +2002,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "@type": "COMPOSITION",
+                    "_type": "COMPOSITION",
                     "name": {
-                        "@type": "DV_TEXT",
+                        "_type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -2047,9 +2047,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "@type": "COMPOSITION",
+                    "_type": "COMPOSITION",
                     "name": {
-                        "@type": "DV_TEXT",
+                        "_type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -2090,9 +2090,9 @@ offset 0 limit 2
 + Response 200 (application/json)
     
         {
-            "@type": "RESULTSET",
+            "_type": "RESULTSET",
             "@schemaversion": "0.1.0",
-            "@type": "raw",
+            "_type": "raw",
             "@created": "2016-06-22T07:54:04.758+02:00",
             "@generator": "<The resultset generator>",
             "totalResults": 2,
@@ -2109,22 +2109,22 @@ offset 0 limit 2
             "rows": [
                 [
                     {
-                        "@type": "DV_DATE_TIME",
+                        "_type": "DV_DATE_TIME",
                         "value": "2016-06-08T11:02:47+02:00"
                     },
                     {
-                        "@type": "DV_QUANTITY",
+                        "_type": "DV_QUANTITY",
                         "magnitude": 38.0,
                         "units": "°C"
                     }
                 ],
                 [
                     {
-                        "@type": "DV_DATE_TIME",
+                        "_type": "DV_DATE_TIME",
                         "value": "2016-06-05T08:53:36+02:00"
                     },
                     {
-                        "@type": "DV_QUANTITY",
+                        "_type": "DV_QUANTITY",
                         "magnitude": 37.0,
                         "units": "Cel"
                     }
