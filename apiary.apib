@@ -2,7 +2,6 @@ FORMAT: 1A
 HOST: http://www.openehr.org/api
 
 
-
 # OpenEHR EHR REST API (v0.1 proposal)
 
 **The following is a proposal for an OpenEHR EHR REST API. It is not complete and might still change completely
@@ -23,6 +22,12 @@ of a VERSIONED_OBJECT and can have the following values:
 - a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)
 - a `versionUid` (VERSION unique identifier)
 - a `uid` (VERSIONED_OBJECT unique identifier)
+
+// PP: concerns about possible values and use cases:
+// My interpretation is that the desired result when versionSelector is available, is to get one VERSION item of a VERSIONED_OBJECT (version container) (def: |`versionSelector`| The string value of a VERSION unique identifier, a specific timestamp or the string `LATEST_TRUNK_VERSION` |)
+// 1. timestamp is not an identifier, in practice more than one item can be retrieved, is this OK?
+// 2. with the VERSIONED_OBJECT uid, all it’s VERSIONs are returned?
+
 
 When the `versionSelector` parameter is not provided, the latest trunk version is returned, 
 which is the same as specifying `versionSelector=LATEST_TRUNK_VERSION`.
@@ -103,7 +108,7 @@ otherwise default resources will be created automatically by the service.
                 "system_id": {...},
                 "ehr_id": {...},
                 "ehr_status": "versioned ehr status uid",
-                "ehr_acess": "versioned ehr access uid",
+                "ehr_access": "versioned ehr access uid",
                 "directory": {},
                 "time_created", "..."
             }
@@ -164,20 +169,20 @@ will be created by the service.
                 "system_id": {},
                 "ehr_id": {},
                 "ehr_status": "versioned ehr status uid",
-                "ehr_acess": "versioned ehr access uid",
+                "ehr_access": "versioned ehr access uid",
                 "directory": {},
                 "time_created", "..."
             }
 
 + Response 400
 
-    '400 Bad Request' is returned whenu nable to create a new EHR due to bad client Request, e.g. malformed syntax such as the 'ehrId' not a valid HIER_OBJECT_ID value.
+    '400 Bad Request' is returned when unable to create a new EHR due to bad client Request, e.g. malformed syntax such as the 'ehrId' not a valid HIER_OBJECT_ID value.
 
     + Body
 
 + Response 409
 
-    Unable to create a new EHR due to a conflict with the current state of the resource. Can happen when the supplied ehrId already exists.
+    Unable to create a new EHR due to a conflict with the current state of the resource. Can happen when the supplied ehrId already exists. // PP: ambiguous with 405 description.
 
     + Body
 
@@ -208,14 +213,14 @@ Retrieve the EHR with the specified `ehrId`.
                 "system_id": {},
                 "ehr_id": {},
                 "ehr_status": "versioned ehr status uid",
-                "ehr_acess": "versioned ehr access uid",
+                "ehr_access": "versioned ehr access uid",
                 "directory": {},
                 "time_created", "...",
                 ... // to be defined, possibly counts of compositions, contributions, etc.
             }
 
 + Response 400
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` value.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` value. // PP: what is an invalid ehdId? are we validating format? not empty? it is better to make it opaque, if it comes and there is no EHR with that id, return 404.
 
     + Body
     
@@ -233,7 +238,7 @@ Retrieve the EHR with the specified `ehrId`.
 
 ### Delete EHR [DELETE /ehr/{ehrId}]
 
-_This call is under discussion._
+_This call is under discussion._ // PP: do not allow DELETE, use PUT to update EHR_ACCESS to not queryable and/or not modifiable.
 
 Mark the `EHR` as deleted by updating the associated `EHR_STATUS` and `EHR_ACCESS` as deleted. 
 The request body contains commit_audit attribute to be used as the commit audit details 
@@ -241,7 +246,8 @@ for the deleted `EHR_STATUS` and `EHR_ACCESS` resources. Where an implementation
 additional attestation to authorise the deletion, this can be provided in the attestations 
 attribute in the request.
 
-Note: Some jurisdictions may require the service to physically delete the `EHR` and all its content.
+Note: Some jurisdictions may require the service to physically delete the `EHR` and all its content. // PP: since this is a delicate operation, it might be performed by an EHR management system, IMO it is not needed at the API level (for now).
+
 This operation may be used to implement this capability but the commit_audit and attestations must be 
 retained using an alternative audit trail than the usual contribution audit details.
 
@@ -311,10 +317,19 @@ The `versionSelector` parameter may be an ISO8601 datetime string or symbolic va
 
             {
                 "uid": "..",
-                "subject": {},
+                "subject": {
+                    “external_ref”: {
+                        “namespace”: “DEMOGRAPHIC”,
+                        “type”: “PERSON”,
+                        “id”: {
+                            “@type”: “HIER_OBJECT_ID”,
+                            “value”: “12341234-1234-1234-123412”
+                        }
+                    }
+                },
                 "is_queryable": true,
                 "is_modifiable": true,
-                "other_details": {}
+                "other_details": {} // PP: make it optional, do not include if there is no data, in the specs can be null, also value null can be used in json.
             }
 
 
@@ -339,7 +354,7 @@ The `versionSelector` parameter may be an ISO8601 datetime string or symbolic va
 
 ### Get EHR_STATUS by versionUid [GET /ehr/{ehrId}/ehr_status/{versionUid}]
 
-Retrieve the version of the `EHR_STATUS` associated with the specified `ehrId` and `versionUid`.
+Retrieve the version of the `EHR_STATUS` associated with the specified `ehrId` and `versionUid`. // PP: this operation is included in the previous one, just use versionSelector=versionUid. IMO this should be removed.
 
 + Parameters
     + ehrId (string) - EHR identifier
@@ -1196,6 +1211,8 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
 
 ### Get a composition by version uid [GET /ehr/{ehrId}/compositions/{versionUid}{?format}]
 
+// PP: IMO this should redirect to GET /compositions/versionUid, or just use that one and remove this one.
+
 + Parameters
 
     + ehrId (string) - EHR id.
@@ -1228,6 +1245,8 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body
 
 ### Get a composition [GET /ehr/{ehrId}/compositions/{object_id}{?versionSelector,format}]
+
+// PP: IMO this should redirect to GET /compositions/objectId, or just use that one and remove this one.
 
 + Parameters
 
@@ -1275,10 +1294,12 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
 
 ### Create a new composition [POST /ehr/{ehrId}/compositions{?format}]
 
+// PP: why not POST /compositions with ehrId as param? we can keep all the COMPOSITION endpoints under /compositions instead of using both /ehr/ehrId/compositions and /compositions, IMO is simpler to implement with one set of URLs for a resource. Maybe someone have a good argument for keeping both endpoints.
+
 + Parameters
 
     + ehrId (string) - EHR id
-    + format (string, optional)...format of the composition (when ommitted canonical openEHR is assumed)
+    + format (string, optional)...format of the composition (when omitted canonical openEHR is assumed)
 
 + Request
 
@@ -1499,7 +1520,7 @@ In case of an update `Match-If` header _might_ be required.
 + Parameters
 
     + objectId (string) - object id of the composition to update
-    + format (string, optional) - optional format of the composition (when ommitted canonical openEHR is assumed)
+    + format (string, optional) - optional format of the composition (when omitted canonical openEHR is assumed)
 
 + Request
 
@@ -1645,7 +1666,7 @@ In case of an update `Match-If` header _might_ be required.
 + Parameters
 
     + versionUid (string) - version uid
-    + format (string, optional)...format of the composition (when ommitted canonical openEHR is assumed)
+    + format (string, optional)...format of the composition (when omitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
@@ -1678,7 +1699,7 @@ In case of an update `Match-If` header _might_ be required.
 
     + objectId (string) - VERSIONED_COMPOSITION's uid
     + versionSelector (string, optional) - version time specifier
-    + format (string, optional)...format of the composition (when ommitted canonical openEHR is assumed)
+    + format (string, optional)...format of the composition (when omitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
@@ -1872,7 +1893,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + ehrId (string) - EHR id
     + uid (string) - VERSIONED_COMPOSITION's uid
-    + format (string, optional) - optional format of the composition (when ommitted canonical openEHR
+    + format (string, optional) - optional format of the composition (when omitted canonical openEHR
     is assumed)
 
 + Request
@@ -2009,7 +2030,7 @@ Gets a complete VERSIONED_COMPOSITION.
     + ehrId (string) - EHR id
     + uid (string) - VERSIONED_COMPOSITION's uid
     + versionSelector (string, optional) - version time specifier
-    + format (string, optional) - optional format of the composition (when ommitted canonical openEHR is assumed)
+    + format (string, optional) - optional format of the composition (when omitted canonical openEHR is assumed)
 
 + Response 200 (application/json)
 
