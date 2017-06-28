@@ -89,7 +89,46 @@ otherwise default resources will be created automatically by the service.
                     "description": "Commit audit description",
                     "committer": {"_type": "PARTY_IDENTIFIED", ... }
                 },
-                "ehr_status": { ... },
+                "ehr_status": {                                /* not included attributes that are mandatory in the IM are set by the server, e.g. ehr_status.owner_id will be set when an uid is set for the EHR being created */
+                  "_type": "VERSIONED_EHR_STATUS",
+                  "uid": "_a_valid_uid_",                      /* UUID or OID, UUID preferred */
+                  "version": {
+                    "_type": "ORIGINAL_VERSION",               /* Use IMPORTED_VERSION if this is a copy from another server */
+                    "uid": "_ehr_status_uid_::_system_id_::1", /* _system_id_ is the ID of the system from which the EHR was created */
+                    "data": {
+                      "_type": "EHR_STATUS",
+                      "subject": {
+                        "external_ref": {
+                          "namespace": "DEMOGRAPHIC",
+                          "type": "PERSON",
+                          "id": {
+                            "_type": "HIER_OBJECT_ID",
+                            "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                          }
+                        }
+                      }
+                      "is_queryable": true,
+                      "is_modifiable": true,
+                      "other_details": {                       /* optional, ITEM_STRUCTURE */
+                        "_type": "ITEM_TREE",
+                        "items": {
+                          ...
+                        }
+                      }
+                    },
+                    "commit_audit": {                          /* the time committed attribute is set by the server */
+                      "system_id": "_a_string_id_",            /* same as the container version.uid.system_id */
+                      "change_type": {
+                        "value": "creation",
+                        "terminology_id": {
+                          "value": "openehr"
+                        },
+                        "code_string": "249"
+                      },
+                      "description": "optional description"
+                    }
+                  }
+                },
                 "ehr_access": { ... }
             }
 
