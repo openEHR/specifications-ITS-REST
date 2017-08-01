@@ -81,6 +81,12 @@ otherwise default resources will be created automatically by the service.
     + Headers
 
             Prefer: return={representation|minimal}
+            
+            
+    + Parameters
+        + subject_id: (HIER_OBJECT_ID, required) - id of the patient associated with the EHR (for EHR_STATUS.subject.external_ref.id)
+        + subject_namespace: (String, optional) - namespece of the type of the subject, if not specified, value is "DEMOGRAPHIC"
+        + subject_type: (String, optional) - type of subject, if not specified, value is "PERSON"
 
     + Body
 
@@ -92,44 +98,8 @@ otherwise default resources will be created automatically by the service.
                 "ehr_status": {                                /* not included attributes that are mandatory in the IM are set by the server, e.g. ehr_status.owner_id will be set when an uid is set for the EHR being created */
                   "_type": "VERSIONED_EHR_STATUS",
                   "uid": "_a_valid_uid_",                      /* UUID or OID, UUID preferred */
-                  "version": {
-                    "_type": "ORIGINAL_VERSION",               /* Use IMPORTED_VERSION if this is a copy from another server */
-                    "uid": "_ehr_status_uid_::_system_id_::1", /* _system_id_ is the ID of the system from which the EHR was created */
-                    "data": {
-                      "_type": "EHR_STATUS",
-                      "subject": {
-                        "external_ref": {
-                          "namespace": "DEMOGRAPHIC",
-                          "type": "PERSON",
-                          "id": {
-                            "_type": "HIER_OBJECT_ID",
-                            "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
-                          }
-                        }
-                      }
-                      "is_queryable": true,
-                      "is_modifiable": true,
-                      "other_details": {                       /* optional, ITEM_STRUCTURE */
-                        "_type": "ITEM_TREE",
-                        "items": {
-                          ...
-                        }
-                      }
-                    },
-                    "commit_audit": {                          /* the time committed attribute is set by the server */
-                      "system_id": "_a_string_id_",            /* same as the container version.uid.system_id */
-                      "change_type": {
-                        "value": "creation",
-                        "terminology_id": {
-                          "value": "openehr"
-                        },
-                        "code_string": "249"
-                      },
-                      "description": "optional description"
-                    }
-                  }
-                },
-                "ehr_access": { ... }
+                  "time_created": "YYYYMMDDThhmmss,SSS(Z|[+-]hhmm)", /* ISO8601 e.g. 20170801T010646,000+0000 or 20170801T010646,000Z */
+                }
             }
 
 + Response 201 (application/json)
@@ -355,20 +325,32 @@ The `versionSelector` parameter may be an ISO8601 datetime string or symbolic va
     + Body
 
             {
-                "uid": "..",
-                "subject": {
-                    “external_ref”: {
-                        “namespace”: “DEMOGRAPHIC”,
-                        “type”: “PERSON”,
-                        “id”: {
-                            “@type”: “HIER_OBJECT_ID”,
-                            “value”: “12341234-1234-1234-123412”
-                        }
-                    }
-                },
-                "is_queryable": true,
-                "is_modifiable": true,
-                "other_details": {} // PP: make it optional, do not include if there is no data, in the specs can be null, also value null can be used in json.
+              "_type": "EHR_STATUS",
+              "uid": "...",                                /* LOCATABLE */
+              "archetype_node_id": "",                     /* LOCATABLE */
+              "name": "",                                  /* LOCATABLE */
+              "archetype_details": {                       /* LOCATABLE */
+                "archetype_id": "...",
+                "rm_version": "1.0.3",
+              },
+              "subject": {
+                "external_ref": {
+                  "namespace": "DEMOGRAPHIC",
+                  "type": "PERSON",
+                  "id": {
+                    "_type": "HIER_OBJECT_ID",
+                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                  }
+                }
+              }
+              "is_queryable": true,
+              "is_modifiable": true,
+              "other_details": {                           /* optional, ITEM_STRUCTURE, archetypable */
+                "_type": "ITEM_TREE",
+                "items": {
+                  ...
+                }
+              }
             }
 
 
@@ -405,11 +387,32 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehrId` a
     + Body
 
             {
-                "uid": "..",
-                "subject": {},
-                "is_queryable": true,
-                "is_modifiable": true,
-                "other_details": {}
+              "_type": "EHR_STATUS",
+              "uid": "...",                                /* LOCATABLE */
+              "archetype_node_id": "",                     /* LOCATABLE */
+              "name": "",                                  /* LOCATABLE */
+              "archetype_details": {                       /* LOCATABLE */
+                "archetype_id": "...",
+                "rm_version": "1.0.3",
+              },
+              "subject": {
+                "external_ref": {
+                  "namespace": "DEMOGRAPHIC",
+                  "type": "PERSON",
+                  "id": {
+                    "_type": "HIER_OBJECT_ID",
+                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                  }
+                }
+              }
+              "is_queryable": true,
+              "is_modifiable": true,
+              "other_details": {                           /* optional, ITEM_STRUCTURE, archetypable */
+                "_type": "ITEM_TREE",
+                "items": {
+                  ...
+                }
+              }
             }
 
 
@@ -451,10 +454,32 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
     + Body
 
             {
-                "subject": {},
-                "is_queryable": true,
-                "is_modifiable": true,
-                "other_details": {}
+              "_type": "EHR_STATUS",
+              "uid": "...",                                  /* LOCATABLE */
+              "archetype_node_id": "",                       /* LOCATABLE */
+              "name": "",                                    /* LOCATABLE */
+              "archetype_details": {                         /* LOCATABLE */
+                "archetype_id": "...",
+                "rm_version": "1.0.3",
+              },
+              "subject": {
+                "external_ref": {
+                  "namespace": "DEMOGRAPHIC",
+                  "type": "PERSON",
+                  "id": {
+                    "_type": "HIER_OBJECT_ID",
+                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                  }
+                }
+              }
+              "is_queryable": true,
+              "is_modifiable": true,
+              "other_details": {                             /* optional, ITEM_STRUCTURE, archetypable */
+                "_type": "ITEM_TREE",
+                "items": {
+                  ...
+                }
+              }
             }
 
 + Response 200
@@ -470,11 +495,32 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
     + Body
 
             {
-                "uid": "...",
-                "subject": {},
-                "is_queryable": true,
-                "is_modifiable": true,
-                "other_details": {}
+              "_type": "EHR_STATUS",
+              "uid": "...",                                  /* LOCATABLE */
+              "archetype_node_id": "",                       /* LOCATABLE */
+              "name": "",                                    /* LOCATABLE */
+              "archetype_details": {                         /* LOCATABLE */
+                "archetype_id": "...",
+                "rm_version": "1.0.3",
+              },
+              "subject": {
+                "external_ref": {
+                  "namespace": "DEMOGRAPHIC",
+                  "type": "PERSON",
+                  "id": {
+                    "_type": "HIER_OBJECT_ID",
+                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                  }
+                }
+              }
+              "is_queryable": true,
+              "is_modifiable": true,
+              "other_details": {                             /* optional, ITEM_STRUCTURE, archetypable */
+                "_type": "ITEM_TREE",
+                "items": {
+                  ...
+                }
+              }
             }
 
 + Response 204
@@ -533,16 +579,41 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehrId` incl
     + Body
 
             {
-                "uid": "xxx",
-                "owner_id": "{ehrId}",
-                "time_created": "ISO8601 timestamp",
-                "revision_history": 
-                    { "items": [
-                        { "version_id": "",
-                            "audits" : [ {...} ]
-                        }]
+               "_type": "VERSIONED_EHR_STATUS",
+               "uid": "_a_valid_uid_",                     /* UUID or OID, UUID preferred */
+               "owner_id": "{ehrId}",
+               "time_created": "DV_DATE_TIME",             /* ISO8601 YYYYMMDDThhmmss,SSS(Z|[+-]hhmm) e.g. 20170801T010646,000+0000 or 20170801T010646,000Z */
+               "revision_history": {
+                 "items": [
+                   {
+                     "version_id": "OBJECT_VERSION_ID",    /* object_id::creating_system_id::version_tree_id */
+                     "audits": [
+                       {
+                         "system_id": "String",
+                         "time_committed": "DV_DATE_TIME",
+                         "change_type": {
+                           "value": "String",              /* value from openehr terminoogy, change_type http://openehr.org/releases/1.0.2/architecture/terminology.pdf */
+                           "defining_code": {
+                             "terminology_id": {
+                               "value": "openehr"
+                             },
+                             "code_stirng": "String"
+                           }
+                         },
+                         "desription": {
+                           "value": "String"
+                         }
+                       },
+                       {...},
+                       {...}
+                     ]
+                   },
+                   {...},
+                   {...}
+                 ]
+               }
             }
-            }
+                  
 
 + Response 400
     `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` value.
@@ -584,16 +655,61 @@ The `versionSelector` parameter may be an ISO8601 datetime string or symbolic va
     + Body
 
             {
-                "contribution": {...},
-                "signature": "...",
-                "commit_audit": {...},
-                "uid": "...",
-                "data": {
-                    "subject": {...},
-                    "is_modifiable": "...",
-                    "is_queryable": "...",
-                    "other_details": {...}
+              "_type": "ORIGINAL_VERSION",                 /* Use IMPORTED_VERSION if this is a copy from another server */
+              "uid": "OBJECT_VERSION_ID",                  /* _ehr_status_uid_::_system_id_::1 _system_id_ is the ID of the system from which the EHR was created */
+              "contribution": {                            /* does not include reference to other versions, even that is mandatory in the IM */
+                "uid": "HIER_OBJECT_ID",
+                "audit": {
+                  "system_id": "String",
+                  "time_committed": "DV_DATE_TIME",
+                  "description": "String"                  /* optional */
                 }
+              },
+              "signature": "String",                       /* optional */
+              "data": {
+                "_type": "EHR_STATUS",
+                "subject": {
+                  "external_ref": {
+                    "namespace": "DEMOGRAPHIC",
+                    "type": "PERSON",
+                    "id": {
+                      "_type": "HIER_OBJECT_ID",
+                      "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                    }
+                  }
+                }
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {                         /* optional, ITEM_STRUCTURE, archetypable */
+                  "_type": "ITEM_TREE",
+                  "items": {
+                    ...
+                  }
+                }
+              },
+              "commit_audit": {                            /* the time committed attribute is set by the server */
+                "system_id": "_a_string_id_",              /* same as the container version.uid.system_id */
+                "change_type": {
+                  "value": "creation",
+                  "terminology_id": {
+                    "value": "openehr"
+                  },
+                  "code_string": "249"
+                },
+                "description": "optional description"
+              },
+              "attestations": [
+                {
+                  "system_id": "String",
+                  "time_committed": "DV_DATE_TIME",
+                  "description": "String"                  /* optional */
+                  "reason": "DV_TEXT",
+                  "proof": "String",                       /* optional */
+                  "is_pending": "Boolean"
+                },
+                {...},
+                {...}
+              ]
             }
 
 + Response 400
@@ -630,16 +746,61 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body
 
             {
-                "contribution": {...},
-                "signature": "...",
-                "commit_audit": {...},
-                "uid": "...",
-                "data": {
-                    "subject": {...},
-                    "is_modifiable": "...",
-                    "is_queryable": "...",
-                    "other_details": {...}
+              "_type": "ORIGINAL_VERSION",                 /* Use IMPORTED_VERSION if this is a copy from another server */
+              "uid": "OBJECT_VERSION_ID",                  /* _ehr_status_uid_::_system_id_::1 _system_id_ is the ID of the system from which the EHR was created */
+              "contribution": {                            /* does not include reference to other versions, even that is mandatory in the IM */
+                "uid": "HIER_OBJECT_ID",
+                "audit": {
+                  "system_id": "String",
+                  "time_committed": "DV_DATE_TIME",
+                  "description": "String"                  /* optional */
                 }
+              },
+              "signature": "String",                       /* optional */
+              "data": {
+                "_type": "EHR_STATUS",
+                "subject": {
+                  "external_ref": {
+                    "namespace": "DEMOGRAPHIC",
+                    "type": "PERSON",
+                    "id": {
+                      "_type": "HIER_OBJECT_ID",
+                      "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                    }
+                  }
+                }
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {                         /* optional, ITEM_STRUCTURE, archetypable */
+                  "_type": "ITEM_TREE",
+                  "items": {
+                    ...
+                  }
+                }
+              },
+              "commit_audit": {                            /* the time committed attribute is set by the server */
+                "system_id": "_a_string_id_",              /* same as the container version.uid.system_id */
+                "change_type": {
+                  "value": "creation",
+                  "terminology_id": {
+                    "value": "openehr"
+                  },
+                  "code_string": "249"
+                },
+                "description": "optional description"
+              },
+              "attestations": [
+                {
+                  "system_id": "String",
+                  "time_committed": "DV_DATE_TIME",
+                  "description": "String"                  /* optional */
+                  "reason": "DV_TEXT",
+                  "proof": "String",                       /* optional */
+                  "is_pending": "Boolean"
+                },
+                {...},
+                {...}
+              ]
             }
 
 + Response 400
