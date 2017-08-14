@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://www.openehr.org/api
 
-<!-- include(header.apib) -->
+<!-- include(overview.apib) -->
 
 # Group EHR_STATUS
 
@@ -29,7 +29,7 @@ otherwise the latest trunk version is returned.
     + Body
 
             {
-              "$type": "EHR_STATUS",
+              "_type": "EHR_STATUS",
               "uid": "...",                                /* LOCATABLE */
               "archetype_node_id": "",                     /* LOCATABLE */
               "name": "",                                  /* LOCATABLE */
@@ -42,7 +42,7 @@ otherwise the latest trunk version is returned.
                   "namespace": "DEMOGRAPHIC",
                   "type": "PERSON",
                   "id": {
-                    "$type": "HIER_OBJECT_ID",
+                    "_type": "HIER_OBJECT_ID",
                     "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
                   }
                 }
@@ -50,7 +50,7 @@ otherwise the latest trunk version is returned.
               "is_queryable": true,
               "is_modifiable": true,
               "other_details": {                           /* optional, ITEM_STRUCTURE, archetypable */
-                "$type": "ITEM_TREE",
+                "_type": "ITEM_TREE",
                 "items": {
                   ...
                 }
@@ -91,7 +91,7 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehrId` a
     + Body
 
             {
-              "$type": "EHR_STATUS",
+              "_type": "EHR_STATUS",
               "uid": "...",                                /* LOCATABLE */
               "archetype_node_id": "",                     /* LOCATABLE */
               "name": "",                                  /* LOCATABLE */
@@ -104,7 +104,7 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehrId` a
                   "namespace": "DEMOGRAPHIC",
                   "type": "PERSON",
                   "id": {
-                    "$type": "HIER_OBJECT_ID",
+                    "_type": "HIER_OBJECT_ID",
                     "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
                   }
                 }
@@ -112,7 +112,7 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehrId` a
               "is_queryable": true,
               "is_modifiable": true,
               "other_details": {                           /* optional, ITEM_STRUCTURE, archetypable */
-                "$type": "ITEM_TREE",
+                "_type": "ITEM_TREE",
                 "items": {
                   ...
                 }
@@ -158,7 +158,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
     + Body
 
             {
-              "$type": "EHR_STATUS",
+              "_type": "EHR_STATUS",
               "uid": "...",                                  /* LOCATABLE */
               "archetype_node_id": "",                       /* LOCATABLE */
               "name": "",                                    /* LOCATABLE */
@@ -171,7 +171,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
                   "namespace": "DEMOGRAPHIC",
                   "type": "PERSON",
                   "id": {
-                    "$type": "HIER_OBJECT_ID",
+                    "_type": "HIER_OBJECT_ID",
                     "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
                   }
                 }
@@ -179,7 +179,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
               "is_queryable": true,
               "is_modifiable": true,
               "other_details": {                             /* optional, ITEM_STRUCTURE, archetypable */
-                "$type": "ITEM_TREE",
+                "_type": "ITEM_TREE",
                 "items": {
                   ...
                 }
@@ -199,7 +199,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
     + Body
 
             {
-              "$type": "EHR_STATUS",
+              "_type": "EHR_STATUS",
               "uid": "...",                                  /* LOCATABLE */
               "archetype_node_id": "",                       /* LOCATABLE */
               "name": "",                                    /* LOCATABLE */
@@ -212,7 +212,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
                   "namespace": "DEMOGRAPHIC",
                   "type": "PERSON",
                   "id": {
-                    "$type": "HIER_OBJECT_ID",
+                    "_type": "HIER_OBJECT_ID",
                     "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
                   }
                 }
@@ -220,7 +220,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
               "is_queryable": true,
               "is_modifiable": true,
               "other_details": {                             /* optional, ITEM_STRUCTURE, archetypable */
-                "$type": "ITEM_TREE",
+                "_type": "ITEM_TREE",
                 "items": {
                   ...
                 }
@@ -283,7 +283,7 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehrId` incl
     + Body
 
             {
-               "$type": "VERSIONED_EHR_STATUS",
+               "_type": "VERSIONED_EHR_STATUS",
                "uid": "_a_valid_uid_",                     /* UUID or OID, UUID preferred */
                "owner_id": "{ehrId}",
                "time_created": "DV_DATE_TIME",             /* ISO8601 YYYYMMDDThhmmss,SSS(Z|[+-]hhmm) e.g. 20170801T010646,000+0000 or 20170801T010646,000Z */
@@ -295,8 +295,8 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehrId` incl
                        {
                          "system_id": "String",
                          "time_committed": "DV_DATE_TIME",
-                         "change$type": {
-                           "value": "String",              /* value from openehr terminoogy, change$type http://openehr.org/releases/1.0.2/architecture/terminology.pdf */
+                         "change_type": {
+                           "value": "String",              /* value from openehr terminoogy, change_type http://openehr.org/releases/1.0.2/architecture/terminology.pdf */
                            "defining_code": {
                              "terminology_id": {
                                "value": "openehr"
@@ -358,7 +358,7 @@ otherwise the latest trunk version is returned.
     + Body
 
             {
-              "$type": "ORIGINAL_VERSION",                 /* Use IMPORTED_VERSION if this is a copy from another server */
+              "_type": "ORIGINAL_VERSION",                 /* Use IMPORTED_VERSION if this is a copy from another server */
               "uid": "OBJECT_VERSION_ID",                  /* _ehr_status_uid_::_system_id_::1 _system_id_ is the ID of the system from which the EHR was created */
               "contribution": {                            /* does not include reference to other versions, even that is mandatory in the IM */
                 "uid": "HIER_OBJECT_ID",
@@ -370,13 +370,13 @@ otherwise the latest trunk version is returned.
               },
               "signature": "String",                       /* optional */
               "data": {
-                "$type": "EHR_STATUS",
+                "_type": "EHR_STATUS",
                 "subject": {
                   "external_ref": {
                     "namespace": "DEMOGRAPHIC",
                     "type": "PERSON",
                     "id": {
-                      "$type": "HIER_OBJECT_ID",
+                      "_type": "HIER_OBJECT_ID",
                       "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
                     }
                   }
@@ -384,7 +384,7 @@ otherwise the latest trunk version is returned.
                 "is_queryable": true,
                 "is_modifiable": true,
                 "other_details": {                         /* optional, ITEM_STRUCTURE, archetypable */
-                  "$type": "ITEM_TREE",
+                  "_type": "ITEM_TREE",
                   "items": {
                     ...
                   }
@@ -392,7 +392,7 @@ otherwise the latest trunk version is returned.
               },
               "commit_audit": {                            /* the time committed attribute is set by the server */
                 "system_id": "_a_string_id_",              /* same as the container version.uid.system_id */
-                "change$type": {
+                "change_type": {
                   "value": "creation",
                   "terminology_id": {
                     "value": "openehr"
@@ -449,7 +449,7 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
     + Body
 
             {
-              "$type": "ORIGINAL_VERSION",                 /* Use IMPORTED_VERSION if this is a copy from another server */
+              "_type": "ORIGINAL_VERSION",                 /* Use IMPORTED_VERSION if this is a copy from another server */
               "uid": "OBJECT_VERSION_ID",                  /* _ehr_status_uid_::_system_id_::1 _system_id_ is the ID of the system from which the EHR was created */
               "contribution": {                            /* does not include reference to other versions, even that is mandatory in the IM */
                 "uid": "HIER_OBJECT_ID",
@@ -461,13 +461,13 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
               },
               "signature": "String",                       /* optional */
               "data": {
-                "$type": "EHR_STATUS",
+                "_type": "EHR_STATUS",
                 "subject": {
                   "external_ref": {
                     "namespace": "DEMOGRAPHIC",
                     "type": "PERSON",
                     "id": {
-                      "$type": "HIER_OBJECT_ID",
+                      "_type": "HIER_OBJECT_ID",
                       "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
                     }
                   }
@@ -475,7 +475,7 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
                 "is_queryable": true,
                 "is_modifiable": true,
                 "other_details": {                         /* optional, ITEM_STRUCTURE, archetypable */
-                  "$type": "ITEM_TREE",
+                  "_type": "ITEM_TREE",
                   "items": {
                     ...
                   }
@@ -483,7 +483,7 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
               },
               "commit_audit": {                            /* the time committed attribute is set by the server */
                 "system_id": "_a_string_id_",              /* same as the container version.uid.system_id */
-                "change$type": {
+                "change_type": {
                   "value": "creation",
                   "terminology_id": {
                     "value": "openehr"

@@ -2,7 +2,7 @@ FORMAT: 1A
 HOST: http://www.openehr.org/api
 
 
-<!-- include(header.apib) -->
+<!-- include(overview.apib) -->
 
 # Group COMPOSITION
 
@@ -19,9 +19,9 @@ HOST: http://www.openehr.org/api
     + Body (application/json)
 
             {
-                "$type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "$type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -44,9 +44,9 @@ HOST: http://www.openehr.org/api
     + Body
 
             {
-                "$type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "$type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -159,9 +159,9 @@ HOST: http://www.openehr.org/api
     + Body
 
             {
-                "$type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "$type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -196,9 +196,9 @@ HOST: http://www.openehr.org/api
     + Body
 
             {
-                "$type": "COMPOSITION",
+                "_type": "COMPOSITION",
                 "name": {
-                    "$type": "DV_TEXT",
+                    "_type": "DV_TEXT",
                     "value": "Vital Signs"
                 },
                 ...
@@ -288,9 +288,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "$type": "COMPOSITION",
+                    "_type": "COMPOSITION",
                     "name": {
-                        "$type": "DV_TEXT",
+                        "_type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...
@@ -331,9 +331,9 @@ Gets a complete VERSIONED_COMPOSITION.
                 "commit_audit": {},
                 "uid": "...",
                 "data": {
-                    "$type": "COMPOSITION",
+                    "_type": "COMPOSITION",
                     "name": {
-                        "$type": "DV_TEXT",
+                        "_type": "DV_TEXT",
                         "value": "Vital Signs"
                     }
                     ...

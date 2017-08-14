@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://www.openehr.org/api
 
-<!-- include(header.apib) -->
+<!-- include(overview.apib) -->
 
 # Group EHR
 
@@ -25,7 +25,7 @@ otherwise default resources will be created automatically by the service.
             
     + Parameters
         + subject_id (string, optional) - id of the patient associated with the EHR (for EHR_STATUS.subject.external_ref.id.value)
-        + subject_namespace (string, optional) - namespece of the type of the subject, if not specified, value is "DEMOGRAPHIC"
+        + subject_namespace (string, optional) - namespace of the type of the subject, if not specified, value is "DEMOGRAPHIC"
         + subject_type (string, optional) - type of subject, if not specified, value is "PERSON"
 
 
@@ -34,7 +34,7 @@ otherwise default resources will be created automatically by the service.
             {
                 "commit_audit": {
                     "description": "Commit audit description",
-                    "committer": {"$type": "PARTY_IDENTIFIED", ... }
+                    "committer": {"_type": "PARTY_IDENTIFIED", ... }
                 },
                 "ehr_status": {
                   "is_modifiable": "true"
@@ -86,7 +86,7 @@ will be created by the service.
     + Parameters
         + ehrId (string) - EHR identifier
         + subject_id (string, optional) - id of the patient associated with the EHR (for EHR_STATUS.subject.external_ref.id.value)
-        + subject_namespace (string, optional) - namespece of the type of the subject, if not specified, value is "DEMOGRAPHIC"
+        + subject_namespace (string, optional) - namespace of the type of the subject, if not specified, value is "DEMOGRAPHIC"
         + subject_type (string, optional) - type of subject, if not specified, value is "PERSON"
 
     + Headers
@@ -98,7 +98,7 @@ will be created by the service.
             {
                 "commit_audit": {
                     "description": "Commit audit description",
-                    "committer": {"$type": "PARTY_IDENTIFIED", ... }
+                    "committer": {"_type": "PARTY_IDENTIFIED", ... }
                 },
                 "ehr_status": {...}
             }
