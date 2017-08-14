@@ -1,0 +1,524 @@
+FORMAT: 1A
+HOST: http://www.openehr.org/api
+
+<!-- include(header.apib) -->
+
+# Group EHR_STATUS
+
+## EHR_STATUS [/ehrs/{ehrId}/ehr_status]
+Management of EHR_STATUS resources.
+
+### Get EHR_STATUS [GET /ehrs/{ehrId}/ehr_status{?versionSelector}]
+
+Retrieve the `EHR_STATUS` associated with the EHR specified by `ehrId`. 
+When the `versionSelector` parameter is provided, the `EHR_STATUS` version that existed at the specified version time is returned, 
+otherwise the latest trunk version is returned.
+
++ Parameters
+    + ehrId (string) - EHR identifier
+    + versionSelector (string, optional) - version time specifier
+
++ Response 200 (application/json)
+    `200 OK` is return with the EHR_STATUS resource in the body when it is successfully retrieved. 
+
+    + Headers
+
+            Content-Location: /ehrs/{ehrId}/ehr_status/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+              "$type": "EHR_STATUS",
+              "uid": "...",                                /* LOCATABLE */
+              "archetype_node_id": "",                     /* LOCATABLE */
+              "name": "",                                  /* LOCATABLE */
+              "archetype_details": {                       /* LOCATABLE */
+                "archetype_id": "...",
+                "rm_version": "1.0.3",
+              },
+              "subject": {
+                "external_ref": {
+                  "namespace": "DEMOGRAPHIC",
+                  "type": "PERSON",
+                  "id": {
+                    "$type": "HIER_OBJECT_ID",
+                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                  }
+                }
+              }
+              "is_queryable": true,
+              "is_modifiable": true,
+              "other_details": {                           /* optional, ITEM_STRUCTURE, archetypable */
+                "$type": "ITEM_TREE",
+                "items": {
+                  ...
+                }
+              }
+            }
+
+
++ Response 400
+
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` or `versionUid` format.
+    
+    + Body
+    
++ Response 401
+
+    `401 Unauthorized` is returned when request is not authorised.
+
+    + Body
+
++ Response 404
+
+    `404 Not Found` returned when `EHR` with `ehrId` does not exist or has been deleted or 
+    a version of an `EHR_STATUS` resource does not exist at the specified `versionSelector`.  
+
+    + Body
+
+### Get EHR_STATUS by versionUid [GET /ehrs/{ehrId}/ehr_status/{versionUid}]
+
+Retrieve the version of the `EHR_STATUS` associated with the specified `ehrId` and `versionUid`.
+
++ Parameters
+    + ehrId (string) - EHR identifier
+    + versionUid (string) - version UID
+
++ Response 200 (application/json)
+    `200 OK` is return when the `EHR_STATUS` is successfully retrieved.
+
+    + Body
+
+            {
+              "$type": "EHR_STATUS",
+              "uid": "...",                                /* LOCATABLE */
+              "archetype_node_id": "",                     /* LOCATABLE */
+              "name": "",                                  /* LOCATABLE */
+              "archetype_details": {                       /* LOCATABLE */
+                "archetype_id": "...",
+                "rm_version": "1.0.3",
+              },
+              "subject": {
+                "external_ref": {
+                  "namespace": "DEMOGRAPHIC",
+                  "type": "PERSON",
+                  "id": {
+                    "$type": "HIER_OBJECT_ID",
+                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                  }
+                }
+              }
+              "is_queryable": true,
+              "is_modifiable": true,
+              "other_details": {                           /* optional, ITEM_STRUCTURE, archetypable */
+                "$type": "ITEM_TREE",
+                "items": {
+                  ...
+                }
+              }
+            }
+
+
++ Response 400
+
+    `400 Bad Request` is returned when the request has invalid parameters such as an invalid ehrId value.
+
+    + Body
+
++ Response 401
+
+    `401 Unauthorized` is returned when request is not authorised.
+
+    + Body
+
++ Response 404
+
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist or
+    an `EHR_STATUS` with `versionUid` does not exist.
+
+    + Body
+
+### Update EHR_STATUS [PUT /ehrs/{ehrId}/ehr_status]
+
+Update `EHR_STATUS` associated with the specified `ehrId`. 
+The existing `versionUid` of `EHR_STATUS` resource must be specified in the `Match-If` header.
+The response will contain the updated `EHR_STATUS` resource when the `Prefer` header has a value of `return=representation`
+
++ Parameters
+    + ehrId (string) - EHR identifier
+
++ Request (application/json)
+
+    + Header
+
+            Match-If: {precedingVersionUid}
+            Prefer: return={representation|minimal}
+
+    + Body
+
+            {
+              "$type": "EHR_STATUS",
+              "uid": "...",                                  /* LOCATABLE */
+              "archetype_node_id": "",                       /* LOCATABLE */
+              "name": "",                                    /* LOCATABLE */
+              "archetype_details": {                         /* LOCATABLE */
+                "archetype_id": "...",
+                "rm_version": "1.0.3",
+              },
+              "subject": {
+                "external_ref": {
+                  "namespace": "DEMOGRAPHIC",
+                  "type": "PERSON",
+                  "id": {
+                    "$type": "HIER_OBJECT_ID",
+                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                  }
+                }
+              }
+              "is_queryable": true,
+              "is_modifiable": true,
+              "other_details": {                             /* optional, ITEM_STRUCTURE, archetypable */
+                "$type": "ITEM_TREE",
+                "items": {
+                  ...
+                }
+              }
+            }
+
++ Response 200
+
+    `200 OK` return when `EHR_STATUS` resource is successfully updated. 
+    The updated `EHR_STATUS` resource is returned in the body when `prefer` header value is `return=representation`.
+
+    + Headers
+
+            Content-Location: /ehrs/{ehrId}/ehr_status/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+              "$type": "EHR_STATUS",
+              "uid": "...",                                  /* LOCATABLE */
+              "archetype_node_id": "",                       /* LOCATABLE */
+              "name": "",                                    /* LOCATABLE */
+              "archetype_details": {                         /* LOCATABLE */
+                "archetype_id": "...",
+                "rm_version": "1.0.3",
+              },
+              "subject": {
+                "external_ref": {
+                  "namespace": "DEMOGRAPHIC",
+                  "type": "PERSON",
+                  "id": {
+                    "$type": "HIER_OBJECT_ID",
+                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                  }
+                }
+              }
+              "is_queryable": true,
+              "is_modifiable": true,
+              "other_details": {                             /* optional, ITEM_STRUCTURE, archetypable */
+                "$type": "ITEM_TREE",
+                "items": {
+                  ...
+                }
+              }
+            }
+
++ Response 204
+
+    `204 No Content` is returned when `Prefer` header is NOT set to `return=representation`.
+
+    + Headers
+
+            Content-Location: /ehrs/{ehrId}/ehr_status/{versionUid}
+            ETag: {versionUid}
+
++ Response 400
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` format.
+    
+    + Body
+    
++ Response 401
+
+    `401 Unauthorized` is returned when request is not authorised.
+
+    + Body
+
++ Response 404
+
+    `404 Not Found` is returned when EHR with ehrId does not exist or has been deleted or 
+    a version of an `EHR_STATUS` resource does not exist at the specified `versionSelector`.
+
+    + Body
+
++ Response 412
+
+    `412 Conflict` is return when `Match-If` header doesn't match the latest trunk version. 
+    Returns latest trunk version in the `Content-Location` and `ETag` headers.
+
+    + Headers
+
+            Content-Location: /ehrs/{ehrId}/ehr_status/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+
+## VERSIONED_EHR_STATUS [/ehrs/{ehrId}/versioned_ehr_status]
+Management of `VERSIONED_EHR_STATUS` resources.
+
+### Get VERSIONED_EHR_STATUS [GET /ehrs/{ehrId}/versioned_ehr_status]
+Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehrId` including its `revision_history`.
+
++ Parameters
+
+    + ehrId (string) - EHR identifier
+
++ Response 200 (application/json)
+    `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` is successfully retrieved, which is provided in the body.
+
+    + Body
+
+            {
+               "$type": "VERSIONED_EHR_STATUS",
+               "uid": "_a_valid_uid_",                     /* UUID or OID, UUID preferred */
+               "owner_id": "{ehrId}",
+               "time_created": "DV_DATE_TIME",             /* ISO8601 YYYYMMDDThhmmss,SSS(Z|[+-]hhmm) e.g. 20170801T010646,000+0000 or 20170801T010646,000Z */
+               "revision_history": {
+                 "items": [
+                   {
+                     "version_id": "OBJECT_VERSION_ID",    /* object_id::creating_system_id::version_tree_id */
+                     "audits": [
+                       {
+                         "system_id": "String",
+                         "time_committed": "DV_DATE_TIME",
+                         "change$type": {
+                           "value": "String",              /* value from openehr terminoogy, change$type http://openehr.org/releases/1.0.2/architecture/terminology.pdf */
+                           "defining_code": {
+                             "terminology_id": {
+                               "value": "openehr"
+                             },
+                             "code_stirng": "String"
+                           }
+                         },
+                         "desription": {
+                           "value": "String"
+                         }
+                       },
+                       {...},
+                       {...}
+                     ]
+                   },
+                   {...},
+                   {...}
+                 ]
+               }
+            }
+                  
+
++ Response 400
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` value.
+    
+    + Body
+    
++ Response 401
+
+    `401 Unauthorized` is returned when request is not authorised.
+
+    + Body
+
++ Response 404
+
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist.
+
+    + Body
+
+
+### Get EHR_STATUS version [GET /ehrs/{ehrId}/versioned_ehr_status/version{?versionSelector}]
+
+Retrieve the `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and selected by `versionSelector`. 
+When the `versionSelector` parameter is provided, the `VERSION` that existed at the specified version time is returned, 
+otherwise the latest trunk version is returned. 
+
++ Parameters
+
+    + ehrId (string) - EHR identifier
+    + versionSelector (string, optional) - version time specifier
+
++ Response 200 (application/json)
+    `200 OK` is return when the requested `VERSION` is successfully retrieved, which is provided in the body.
+
+    + Headers
+
+            Content-Location: /ehrs/{ehrId}/versioned_ehr_status/version/{versionUid}
+
+    + Body
+
+            {
+              "$type": "ORIGINAL_VERSION",                 /* Use IMPORTED_VERSION if this is a copy from another server */
+              "uid": "OBJECT_VERSION_ID",                  /* _ehr_status_uid_::_system_id_::1 _system_id_ is the ID of the system from which the EHR was created */
+              "contribution": {                            /* does not include reference to other versions, even that is mandatory in the IM */
+                "uid": "HIER_OBJECT_ID",
+                "audit": {
+                  "system_id": "String",
+                  "time_committed": "DV_DATE_TIME",
+                  "description": "String"                  /* optional */
+                }
+              },
+              "signature": "String",                       /* optional */
+              "data": {
+                "$type": "EHR_STATUS",
+                "subject": {
+                  "external_ref": {
+                    "namespace": "DEMOGRAPHIC",
+                    "type": "PERSON",
+                    "id": {
+                      "$type": "HIER_OBJECT_ID",
+                      "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                    }
+                  }
+                }
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {                         /* optional, ITEM_STRUCTURE, archetypable */
+                  "$type": "ITEM_TREE",
+                  "items": {
+                    ...
+                  }
+                }
+              },
+              "commit_audit": {                            /* the time committed attribute is set by the server */
+                "system_id": "_a_string_id_",              /* same as the container version.uid.system_id */
+                "change$type": {
+                  "value": "creation",
+                  "terminology_id": {
+                    "value": "openehr"
+                  },
+                  "code_string": "249"
+                },
+                "description": "optional description"
+              },
+              "attestations": [
+                {
+                  "system_id": "String",
+                  "time_committed": "DV_DATE_TIME",
+                  "description": "String"                  /* optional */
+                  "reason": "DV_TEXT",
+                  "proof": "String",                       /* optional */
+                  "is_pending": "Boolean"
+                },
+                {...},
+                {...}
+              ]
+            }
+
++ Response 400
+
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` or `versionSelector` value.
+
+    + Body
+
++ Response 401
+
+    `401 Unauthorized` is returned when request is not authorised.
+
+    + Body
+
++ Response 404
+
+    `404 Not Found` is returned when `EHR` with `ehrId` does not exist, deleted 
+    or when `EHR_STATUS` does not exist at the specified `versionSelector`.
+
+    + Body
+
+
+### Get EHR_STATUS version by uid [GET /ehrs/{ehrId}/versioned_ehr_status/version/{versionUid}]
+Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and `versionUid`.  
+
++ Parameters
+
+    + ehrId (string) - EHR identifier
+    + versionUid (string) - version uid
+
++ Response 200 (application/json)
+    `200 OK` is return when the requested `VERSION` is successfully retrieved.
+    
+    + Body
+
+            {
+              "$type": "ORIGINAL_VERSION",                 /* Use IMPORTED_VERSION if this is a copy from another server */
+              "uid": "OBJECT_VERSION_ID",                  /* _ehr_status_uid_::_system_id_::1 _system_id_ is the ID of the system from which the EHR was created */
+              "contribution": {                            /* does not include reference to other versions, even that is mandatory in the IM */
+                "uid": "HIER_OBJECT_ID",
+                "audit": {
+                  "system_id": "String",
+                  "time_committed": "DV_DATE_TIME",
+                  "description": "String"                  /* optional */
+                }
+              },
+              "signature": "String",                       /* optional */
+              "data": {
+                "$type": "EHR_STATUS",
+                "subject": {
+                  "external_ref": {
+                    "namespace": "DEMOGRAPHIC",
+                    "type": "PERSON",
+                    "id": {
+                      "$type": "HIER_OBJECT_ID",
+                      "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
+                    }
+                  }
+                }
+                "is_queryable": true,
+                "is_modifiable": true,
+                "other_details": {                         /* optional, ITEM_STRUCTURE, archetypable */
+                  "$type": "ITEM_TREE",
+                  "items": {
+                    ...
+                  }
+                }
+              },
+              "commit_audit": {                            /* the time committed attribute is set by the server */
+                "system_id": "_a_string_id_",              /* same as the container version.uid.system_id */
+                "change$type": {
+                  "value": "creation",
+                  "terminology_id": {
+                    "value": "openehr"
+                  },
+                  "code_string": "249"
+                },
+                "description": "optional description"
+              },
+              "attestations": [
+                {
+                  "system_id": "String",
+                  "time_committed": "DV_DATE_TIME",
+                  "description": "String"                  /* optional */
+                  "reason": "DV_TEXT",
+                  "proof": "String",                       /* optional */
+                  "is_pending": "Boolean"
+                },
+                {...},
+                {...}
+              ]
+            }
+
++ Response 400
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` or `versionUid` format.
+    
+    + Body
+    
++ Response 401
+
+    `401 Unauthorized` is returned when request is not authorised.
+
+    + Body
+
++ Response 404
+
+    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist or `EHR_STATUS` with `versionUid` does not exist.
+
+    + Body

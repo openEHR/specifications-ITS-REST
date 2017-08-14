@@ -1,0 +1,353 @@
+FORMAT: 1A
+HOST: http://www.openehr.org/api
+
+
+<!-- include(header.apib) -->
+
+# Group COMPOSITION
+
+## COMPOSITION [/compositions]
+
+### Update a composition [PUT /compositions/{objectId}]
+
++ Parameters
+
+    + objectId (string) - object id of the composition to update
+
++ Request
+
+    + Body (application/json)
+
+            {
+                "$type": "COMPOSITION",
+                "name": {
+                    "$type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
+    + Headers
+
+            Match-If: {precedingVersionUid}
+            Prefer: return={representation/minimal}
+
++ Response 200 (application/json)
+
+    Returned when `Prefer` header is set to `return=representation`.
+
+    + Headers
+
+            Content-Location: /compositions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "$type": "COMPOSITION",
+                "name": {
+                    "$type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 204
+
+    Returned when `Prefer` header is NOT set to `return=representation`.
+
+    + Headers
+
+            Content-Location: /compositions/{versionUid}
+            ETag: {versionUid}
+
++ Response 400 (application/json)
+
+    Bad request: composition validation errors.
+
+    + Body
+
+            {
+                "message": "Error message",
+                "validationErrors": [
+                    "error1", "error2"
+                ]
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No composition with the given object id.
+
+    + Body
+
++ Response 412
+
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
+
+    + Body
+
+
+### Delete a composition [DELETE /compositions/{deleteObjectId}]
+
++ Parameters
+
+    + deleteObjectId (string) - object id of the composition to delete
+
++ Request
+
+    + Headers
+
+            Match-If: {precedingVersionUid}
+
++ Response 204
+
+    Composition was deleted.
+
+    + Headers
+
+            Content-Location: /compositions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
++ Response 400
+
+    Bad request.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No composition with the given object id.
+
+    + Body
+
++ Response 412
+
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
+
+    + Headers
+
+            Content-Location: /compositions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+
+### Get a composition by version uid [GET /compositions/{versionUid}]
+
++ Parameters
+
+    + versionUid (string) - version uid
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$type": "COMPOSITION",
+                "name": {
+                    "$type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No composition with the version uid.
+
+    + Body
+
+### Get a composition [GET /compositions/{objectId}{?versionSelector}]
+
++ Parameters
+
+    + objectId (string) - VERSIONED_COMPOSITION's uid
+    + versionSelector (string, optional) - version time specifier
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Content-Location: /compositions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "$type": "COMPOSITION",
+                "name": {
+                    "$type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 204 (application/json)
+
+    No composition at specified versionSelector.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No composition with the given object id.
+
+    + Body
+
+## VERSIONED_COMPOSITION [/versioned_compositions]
+
+### Get a versioned composition [GET /versioned_compositions/{uid}]
+
+Gets a complete VERSIONED_COMPOSITION.
+
++ Parameters
+
+    + uid (string) - VERSIONED_COMPOSITION's uid
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /versioned_compositions/{uid}
+
+    + Body
+
+            {
+                "uid": "xxx",
+                "owner_id": "{ehrId}",
+                "time_created": "ISO8601 timestamp",
+                "version_count: 12,
+                "all_version_ids": [
+                    "versioned_uid1",
+                    "versioned_uid2",
+                    ...
+                ]
+            }
+
++ Response 400
+
+    Bad request - when VERSIONED_COMPOSITION with the given uid already exists.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No versioned composition with the given id.
+
+    + Body
+
+
+### Get a composition version by versionUid [GET /versioned_compositions/{uid}/version/{versionUid}]
+
++ Parameters
+
+    + uid (string) - VERSIONED_COMPOSITION's uid
+    + versionUid (string) - version uid
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "uid": "...",
+                "data": {
+                    "$type": "COMPOSITION",
+                    "name": {
+                        "$type": "DV_TEXT",
+                        "value": "Vital Signs"
+                    }
+                    ...
+                }
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No VERSIONED_COMPOSITION with uid or no version with versionUid.
+
+    + Body
+
+### Get a composition version [GET /versioned_compositions/{uid}/version{?versionSelector}]
+
++ Parameters
+
+    + uid (string) - VERSIONED_COMPOSITION's uid
+    + versionSelector (string, optional) - version time specifier
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /versioned_compositions/{uid}/versions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "uid": "...",
+                "data": {
+                    "$type": "COMPOSITION",
+                    "name": {
+                        "$type": "DV_TEXT",
+                        "value": "Vital Signs"
+                    }
+                    ...
+                }
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No no VERSIONED_COMPOSITION with uid or no version with versionUid.
+
+    + Body

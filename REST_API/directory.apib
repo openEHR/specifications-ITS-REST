@@ -1,0 +1,272 @@
+FORMAT: 1A
+HOST: http://www.openehr.org/api
+
+
+<!-- include(header.apib) -->
+
+# Group FOLDER
+
+## Directory [/ehrs/{ehrId}/directory]
+
+### Create a directory [POST /ehrs/{ehrId}/directory]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+
++ Request
+
+    + Body (application/json)
+
+            {
+                "items": [...],
+                "folders": [{}]
+            }
+
+    + Headers
+
+            Prefer: return={representation/minimal}
+
++ Response 201 (application/json)
+
+    New directory was created. Content body is only returned when
+    `Prefer` header has `return=representation` otherwise only headers are
+    returned.
+
+    + Headers
+
+            Location: /ehrs/{ehrId}/directory/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "uid": "...",
+                "items": [...],
+                "folders": [{}]
+            }
+
++ Response 400
+
+    Bad request - error creating a directory.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
+
+### Update a directory [PUT /ehrs/{ehrId}/directory]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+
++ Request
+
+    + Body (application/json)
+
+            {
+                "items": [...],
+                "folders": [{}]
+            }
+
+    + Headers
+
+            Match-If: {precedingVersionUid}
+            Prefer: return={representation/minimal}
+
++ Response 200 (application/json)
+
+    Directory was updated.
+    Returned when `Prefer` header is set to `return=representation`.
+
+    + Headers
+
+            Location: /ehrs/{ehrId}/directory/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "uid": "...",
+                "items": [...],
+                "folders": [{}]
+            }
+
++ Response 204
+
+    Directory was updated.
+    Returned when `Prefer` header is NOT set to `return=representation`.
+
+    + Headers
+
+            Location: /ehr/{ehrId}/directory/{versionUid}
+            ETag: {versionUid}
+
++ Response 400
+
+    Bad request - error when updating a directory.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
++ Response 412
+
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
+
+    + Headers
+
+            Content-Location: /ehr/{ehrId}/directory/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+
+### Delete a directory [DELETE /ehrs/{ehrId}/directory]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+
++ Request
+
+    + Headers
+
+            Match-If: {precedingVersionUid}
+
++ Response 204
+
+    Directory was deleted.
+
+    + Body
+
++ Response 400
+
+    Bad request - error deleting directory.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
++ Response 412
+
+    `Match-If` header doesn't match the last version. Returns
+    last version in the `Content-Location` and `ETag` headers.
+
+    + Headers
+
+            Content-Location: /ehrs/{ehrId}/directory/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+### Get a directory or its sub-folder by versionUid [GET /ehrs/{ehrId}/directory/{versionUid}{?path}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + versionUid (string) - version UID
+    + path (string, optional) - path to a sub-folder
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "uid": "...",
+                "items": [...],
+                "folders": [{}]
+            }
+
++ Response 204
+
+    No sub-folder at provided path.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id or no directory with specified versionUid.
+
+    + Body
+
+
+### Get a directory or its sub-folder [GET /ehrs/{ehrId}/directory{?versionSelector,path}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+    + versionSelector (string, optional) - version time specifier
+    + path (string, optional) - path to a sub-folder
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /ehr/{ehrId}/directory/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "uid": "...",
+                "items": [...],
+                "folders": [{}]
+            }
+
++ Response 204
+
+    EHR has no directory at versionSelector or no sub-folder at provided path.
+
+    + Body
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+

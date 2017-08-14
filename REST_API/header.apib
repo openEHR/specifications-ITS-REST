@@ -1,0 +1,55 @@
+# OpenEHR EHR REST API (v0.1 proposal)
+
+**The following is a proposal for an OpenEHR EHR REST API. It is not complete and might still change completely
+before the final release.**
+
+The following specifications are not intended to describe an existing API but rather an abstract blueprint 
+to which each openEHR implementation should adhere to.
+
+The openEHR EHR REST API enables interaction with an openEHR service in a RESTful manner.
+ 
+## Considerations
+
+### About `versionSelector`
+
+In many places parameter `versionSelector` is used to select a specific version (or associated data object)
+of a VERSIONED_OBJECT and can have the following values:
+- fixed string: `LATEST_TRUNK_VERSION`
+- a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)
+- a `versionUid` (VERSION unique identifier)
+- a `uid` (VERSIONED_OBJECT unique identifier)
+
+When the `versionSelector` parameter is not provided, the latest trunk version is returned,
+which is the same as specifying `versionSelector=LATEST_TRUNK_VERSION`.
+
+## Glossary
+ 
+Throughout these specifications a set of short terms is being used as described below:
+
+| Term | Description |
+|------|-------------|
+|`ehrId`| The string value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
+|`uid`| The string value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
+|`versionUid`| The string value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
+|`versionSelector`| The string value of a VERSION unique identifier, a specific timestamp or the string `LATEST_TRUNK_VERSION` |
+
+## Data representation
+
+### JSON Format
+
+- attribute names will be lowercase snake-case names as specified in the RM spec. For example:
+    - context : {"start_time": "2016-01-01T00:00Z"}
+- metadata attributes (those that are not also RM attributes) will always be prefixed by a '_'
+- we will use a `$type` attribute to specify RM type which will be upper-case class name from the RM spec:
+    {
+        "$type": "DV_TEXT",
+        "value": "Hello world!"
+    }
+- null RM attributes will be absent when serialized as JSON
+
+### Datetime format
+
+It is recommended to always use canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00, but any other valid ISO8601 datetime is accepted.
+
+Any datetime value provided by a create or update action will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
+
