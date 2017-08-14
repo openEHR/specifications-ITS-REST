@@ -63,7 +63,7 @@ Any datetime value provided by a create or update action will be preserved as it
 
 Management of EHR resources.
 
-### Create a new EHR [POST /ehr{?subject_id,subject_namespace,subject$type}]
+### Create a new EHR [POST /ehr{?subject_id,subject_namespace,subject_type}]
 
 Create a new `EHR` with an auto-generated identifier.
 Request body may contain `ehr_status` and `ehr_access` attributes. When provided these
@@ -80,7 +80,7 @@ otherwise default resources will be created automatically by the service.
     + Parameters
         + subject_id: (HIER_OBJECT_ID, required) - id of the patient associated with the EHR (for EHR_STATUS.subject.external_ref.id)
         + subject_namespace: (String, optional) - namespece of the type of the subject, if not specified, value is "DEMOGRAPHIC"
-        + subject$type: (String, optional) - type of subject, if not specified, value is "PERSON"
+        + subject_type: (String, optional) - type of subject, if not specified, value is "PERSON"
 
 
     + Body
