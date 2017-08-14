@@ -8,6 +8,76 @@ HOST: http://www.openehr.org/api
 
 ## COMPOSITION [/compositions]
 
+### Create a new composition [POST /compositions{?ehrId}]
+
++ Parameters
+
+    + ehrId (string) - EHR id
+
++ Request
+
+    + Body (application/json)
+
+            {
+                "_type": "COMPOSITION",
+                "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
+    + Headers
+
+            Prefer: return={representation/minimal}
+
++ Response 201
+
+    New composition was created. Content body is only returned when
+    `Prefer` header has `return=representation` otherwise only headers are
+    returned.
+
+    + Headers
+
+            Location: /compositions/{versionUid}
+            ETag: {versionUid}
+
+    + Body
+
+            {
+                "$type": "COMPOSITION",
+                "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 400
+
+    Bad request: composition validation errors.
+
+    + Body
+
+            {
+                "message": "Error message",
+                "validationErrors": [
+                    "error1", "error2"
+                ]
+            }
+
++ Response 401
+
+    Unauthorized.
+
+    + Body
+
++ Response 404
+
+    No EHR with the given id.
+
+    + Body
+
 ### Update a composition [PUT /compositions/{objectId}]
 
 + Parameters
