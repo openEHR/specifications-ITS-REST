@@ -1,0 +1,107 @@
+FORMAT: 1A
+HOST: http://www.openehr.org/api
+
+<!-- include(overview.apib) -->
+
+# Group TEMPLATE
+
+## TEMPLATE [/templates]
+
+Management of OpenEHR operational templates. OpenEHR templates can be uploaded and downloaded as OPTs created
+by modelling tools such as the Template Designer.
+
+### Upload a new template [POST /templates]
+
+Upload a new template.
+
++ Request
+
+    + Body
+
+            <?xml version="1.0" encoding="UTF-8"?><template xmlns="http://schemas.openehr.org/v1">
+                <language>
+                    <terminology_id>
+                        <value>ISO_639-1</value>
+                    </terminology_id>
+                    <code_string>en</code_string>
+                </language>
+                <description>
+                    <original_author id="Original Author">Not Specified</original_author>
+                    <lifecycle_state>Initial</lifecycle_state>
+                    <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
+            ...
+
+
+
++ Response 201 (application/json)
+
+    `201 Created` is returned when the template has been successfully uploaded.
+
+    + Headers
+
+            Location: /templates/{templateId}
+
++ Response 400
+
+    '400 Bad Request' is returned when unable to upload a template, because of invalid content.
+
+    + Body
+
++ Response 401
+
+    `401 Unauthorized` is returned when request is not authorised to be performed.
+
+    + Body
+
+
+### List all available templates on the system [GET /templates]
+
++ Response 200 (application/json)
+    `200 OK` is returned when the EHR resource is successfully retrieved. 
+    
+    + Body
+
+            [
+                "Allergies",
+                "Vital Signs",
+                ...
+            }
+
++ Response 401
+    `401 Unauthorized` is returned when request is not authorised.
+
+    + Body
+
+### Get a template by template id [GET /templates/{templateId}]
+
++ Parameters
+    + templateId (string) - template id
+
++ Response 200 (application/json)
+    `200 OK` is returned when the EHR resource is successfully retrieved.
+
+    + Body
+
+                    <?xml version="1.0" encoding="UTF-8"?><template xmlns="http://schemas.openehr.org/v1">
+                        <language>
+                            <terminology_id>
+                                <value>ISO_639-1</value>
+                            </terminology_id>
+                            <code_string>en</code_string>
+                        </language>
+                        <description>
+                            <original_author id="Original Author">Not Specified</original_author>
+                            <lifecycle_state>Initial</lifecycle_state>
+                            <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
+                    ...
+
++ Response 401
+    `401 Unauthorized` is returned when request is not authorised.
+
+    + Body
+
++ Response 404
+
+    `404 Not Found` is returned when a template with the specified id does not exist.
+
+    + Body
