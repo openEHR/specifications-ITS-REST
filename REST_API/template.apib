@@ -1,16 +1,9 @@
-FORMAT: 1A
-HOST: http://www.openehr.org/api
-
-<!-- include(overview.apib) -->
-
-# Group TEMPLATE
-
-## TEMPLATE [/templates]
+## TEMPLATE [/knowledge/templates]
 
 Management of OpenEHR operational templates. OpenEHR templates can be uploaded and downloaded as OPTs created
 by modelling tools such as the Template Designer.
 
-### Upload a new template [POST /templates]
+### Upload a new template [POST /knowledge/templates]
 
 Upload a new template.
 
@@ -54,7 +47,7 @@ Upload a new template.
     + Body
 
 
-### List all available templates on the system [GET /templates]
+### List all available templates on the system [GET /knowledge/templates]
 
 + Response 200 (application/json)
     `200 OK` is returned when the EHR resource is successfully retrieved. 
@@ -76,9 +69,10 @@ Upload a new template.
 
     + Body
 
-### Get a template by template id [GET /templates/{templateId}]
+### Get a template by template id [GET /knowledge/templates/{templateId}]
 
 + Parameters
+
     + templateId (string) - template id
 
 + Response 200 (application/json)
