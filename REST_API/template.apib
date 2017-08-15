@@ -62,10 +62,15 @@ Upload a new template.
     + Body
 
             [
-                "Allergies",
-                "Vital Signs",
-                ...
-            }
+                {
+                    "filename": "string",
+                    "templateId": "string",
+                    "concept": "string",
+                    "archetypeId": "string",
+                    "validTo": "2017-08-14T19:24:56.639Z",
+                    "createdTimeStamp": "2017-08-14T19:24:56.639Z"
+                }
+            ]
 
 + Response 401
     `401 Unauthorized` is returned when request is not authorised.
