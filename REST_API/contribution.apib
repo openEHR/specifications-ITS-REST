@@ -1,0 +1,143 @@
+FORMAT: 1A
+HOST: http://www.openehr.org/api 
+
+
+<!-- include(overview.apib) -->
+
+# Group CONTRIBUTION 
+
+## CONTRIBUTION [/{ehrId}/contributions]
+
+### Create a new contribution [POST /{ehrId}/contributions{?committerName}]
+
++ Parameters 
+
+    + ehrId (string) - EHR id 
+    + committerName (string) - Name of the committer
+
++ Request 
+
+    + Body (application/json) 
+
+            [
+                {
+                    "content": {/** openEHR locatable; composition or folder */},
+                    "precedingVersionUid": "string",
+                    "tags": [     {"key": "string", "value": "string"   } ], // vendor (DIPS) specific extension 
+                    "versionLifecycleState": 523
+                }
+            ]
+
+    + Headers
+
+            Prefer: return={representation/minimal}
+
++ Response 201 
+
+    New contribution was created. Content body is only returned when `Prefer` header has `return=representation` otherwise only headers are returned. 
+
+    + Headers
+
+            Location: /{ehrId}/contributions/{versionUid}
+            ETag: {versionUid}
+
+    + Body 
+
+            [
+                {
+                    "content": {/** openEHR locatable; composition or folder */},
+                    "precedingVersionUid": "string",
+                    "tags": [     {"key": "string", "value": "string"   } ], // vendor (DIPS) specific extension 
+                    "versionLifecycleState": 523
+                }
+            ]
+
++ Response 400 
+
+    Bad request: validation errors in one of the attached locatables 
+
+    + Body 
+
+            {
+                "message": "Error message", 
+                "validationErrors":[
+                        "error1", "...", "errorN"
+                ]
+            }
+
+
++ Response 401 
+
+    Unauthorized.
+
+    + Body 
+
++ Response 404 
+
+    No EHR with the given id 
+
+    + Body 
+
+### Get a contribution by uid [GET /{ehrId}/contributions/{objectId}]
+
++ Parameters
+
+    + ehrId (string) - EHR id 
+    + objectId (string) - CONTRIBUTION's uid
+
++ Response 200 (application/json) 
+
+    + Body
+
+            {
+                "audit": {
+                    "systemId": "", // Identity of the system where the change was committed.
+                    "committer": {/** PARTY_PROXY */}, //Identity and optional reference into identity management system
+                    "timeCommitted": {/** DV_DATE_TIME */},//Time of committal of the item
+                    "changeType": { /** DV_CODED_TEXT */ },
+                    "description": { /** DV_TEXT */ },
+                    "constraint": { /** HVOR KOMMER DENNE FRA */}
+                },
+                "uid": { /** UID of the item*/},
+                "versions": [
+                    {/** LOCATABLE */ }
+                ],
+                "constraint": {
+                    "referenceModelTypeName": "string",
+                    "occurrences": { },
+                    "nodeId": "string",
+                    "parent": {
+                    "referenceModelAttributeName": "string",
+                    "existence": { },
+                    "isMatchNegated": true,
+                    "children": [
+                        {}
+                    ],
+                    "parent": {}
+                    }
+                }
+            }
++ Response 401
+
+    Unauthorized
+
+    + Body 
+
++ Response 403
+
+    Forbidden 
+
+    + Body 
+
++ Response 404 
+
+    No contribution with the given id was found 
+
+    + Body 
+
++ Response 500 
+
+    Internal Server Error 
+
+    + Body 
+            
