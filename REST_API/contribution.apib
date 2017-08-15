@@ -24,7 +24,7 @@ HOST: http://www.openehr.org/api
                     "content": {/** openEHR locatable; composition or folder */},
                     "precedingVersionUid": "string",
                     "tags": [     {"key": "string", "value": "string"   } ], // vendor (DIPS) specific extension 
-                    "versionLifecycleState": 523
+                    "versionLifecycleState": NUMBER // The version Lifecycle State (532=complete, 553=incomplete, 523=deleted)
                 }
             ]
 
@@ -90,30 +90,50 @@ HOST: http://www.openehr.org/api
     + Body
 
             {
-                "audit": {
-                    "systemId": "", // Identity of the system where the change was committed.
-                    "committer": {/** PARTY_PROXY */}, //Identity and optional reference into identity management system
-                    "timeCommitted": {/** DV_DATE_TIME */},//Time of committal of the item
-                    "changeType": { /** DV_CODED_TEXT */ },
-                    "description": { /** DV_TEXT */ },
-                    "constraint": { /** HVOR KOMMER DENNE FRA */}
+                "_type": "CONTRIBUTION",
+                "uid": {
+                    "value": "0826851c-c4c2-4d61-92b9-410fb8275ff0"
                 },
-                "uid": { /** UID of the item*/},
                 "versions": [
-                    {/** LOCATABLE */ }
+                    {
+                        "_type": "OBJECT_REF",
+                        "id": {
+                            "_type": "OBJECT_VERSION_ID",
+                            "value": "fb458d9c-1323-42bc-b7f8-787f3660a0b5::91215053-854b-45b8-bb2a-3b0d255858d1::1"
+                        },
+                        "namespace": "local",
+                        "type": "COMPOSITION"
+                    },
+                     {
+                        "_type": "OBJECT_REF",
+                        "id": {
+                            "_type": "OBJECT_VERSION_ID",
+                            "value": "abcdefgh-1323-42bc-b7f8-787f3660a0ba::91215053-854b-45b8-bb2a-3b0d255858d1::1"
+                        },
+                        "namespace": "local",
+                        "type": "FOLDER"
+                    }
                 ],
-                "constraint": {
-                    "referenceModelTypeName": "string",
-                    "occurrences": { },
-                    "nodeId": "string",
-                    "parent": {
-                    "referenceModelAttributeName": "string",
-                    "existence": { },
-                    "isMatchNegated": true,
-                    "children": [
-                        {}
-                    ],
-                    "parent": {}
+                "audit": {
+                    "system_id": "9624982A-9F42-41A5-9318-AE13D5F5031F",
+                    "committer": {
+                        "_type": "PARTY_IDENTIFIED",
+                        "name": "bna"
+                    },
+                    "time_committed": {
+                        "value": "2017-08-15T10:37:15+02:00"
+                    },
+                    "change_type": {
+                        "value": "creation",
+                        "defining_code": {
+                            "terminology_id": {
+                                "value": "openehr"
+                            },
+                            "code_string": "249"
+                        }
+                    },
+                    "description": {
+                        "value": null
                     }
                 }
             }
