@@ -1,0 +1,103 @@
+FORMAT: 1A
+HOST: http://www.openher.org/api/v1 
+
+<!-- include(overview.apib) -->
+
+# Group Clinical Decision Support 
+
+## CDS [/cds]
+
+Execution of clinical decision support on data in the openEHR CDR. 
+
+### Execute GDL [GET /gdl/query/{ehrId}/{guideId}]
+
+Execute the given GDL guide on data in the specified EHR. 
+
+
++ Parameters 
+    + ehrId (string) - The identifier of the EHR 
+    + guideId (string) - The identifier of the guide to be executed 
+
++ Response 200 (application/json) 
+
+                {
+                    "executionDetails": {
+                        "guideId": "<executed guide>",
+                        "executionTime": 0, // time in ms
+                        "numberOfInArguments": 0,
+                        "numberOfOutArguments": 0,
+                        "numberOfConstants": 0,
+                        "rulesExecuted": ["<ruleA>"],
+                        "queryExecutionDetails": {
+                            "numberOfQueries": 0,
+                            "queryTime": 0,
+                            "queries": [{
+                                "aql": "string",
+                                "queryTime": 0,
+                                "value": {},
+                                "id": "string"
+                            }]
+                        }
+                    },
+                    "results": [{
+                        "archetypeId": "<archetypeId of the result>",
+                        "templateId": "<templateId to bind the result data>",
+                        "rmValues": [{
+                            "path": "<path within the archetype/template>",
+                            "value": { /** Some openEHR RM type */ }
+                        }]
+                    }]
+                }
+
+### Execute query with complex request [POST /gdl/query]
+
+Execute a GDL query defined by the BODY payload 
+
++ Request (application/json)
+
+    + Body 
+
+            {
+                "guideId": "<the guide to be executed>",
+                "ehrIds": ["<ehrId>"],
+                "tagScope": {
+                    "tags": [{
+                        "tag": "<tag name>",
+                        "values": ["<tag value A>"]
+                    }]
+                },
+                "partitionBy": {
+                    "tag": "<tag name>",
+                    "limit": 0 // number of items per partition
+                }
+            }
++ Response 200 (application/json)
+
+                {
+                    "executionDetails": {
+                        "guideId": "<executed guide>",
+                        "executionTime": 0, // time in ms
+                        "numberOfInArguments": 0,
+                        "numberOfOutArguments": 0,
+                        "numberOfConstants": 0,
+                        "rulesExecuted": ["<ruleA>"],
+                        "queryExecutionDetails": {
+                            "numberOfQueries": 0,
+                            "queryTime": 0,
+                            "queries": [{
+                                "aql": "string",
+                                "queryTime": 0,
+                                "value": {},
+                                "id": "string"
+                            }]
+                        }
+                    },
+                    "results": [{
+                        "archetypeId": "<archetypeId of the result>",
+                        "templateId": "<templateId to bind the result data>",
+                        "rmValues": [{
+                            "path": "<path within the archetype/template>",
+                            "value": { /** Some openEHR RM type */ }
+                        }]
+                    }]
+                }
