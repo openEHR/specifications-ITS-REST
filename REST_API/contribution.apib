@@ -6,14 +6,14 @@ HOST: http://www.openehr.org/api
 
 # Group CONTRIBUTION 
 
-## CONTRIBUTION [/{ehrId}/contributions]
+## CONTRIBUTION [/contributions]
 
-### Create a new contribution [POST /{ehrId}/contributions{?committerName}]
+### Create a new contribution [POST /contributions{?ehrId,committerName}]
 
 + Parameters 
 
     + ehrId (string) - EHR id 
-    + committerName (string) - Name of the committer
+    + committerName (string, optional) - Name of the committer
 
 + Request 
 
@@ -38,7 +38,7 @@ HOST: http://www.openehr.org/api
 
     + Headers
 
-            Location: /{ehrId}/contributions/{versionUid}
+            Location: /contributions/{versionUid}
             ETag: {versionUid}
 
     + Body 
@@ -78,11 +78,10 @@ HOST: http://www.openehr.org/api
 
     + Body 
 
-### Get a contribution by uid [GET /{ehrId}/contributions/{objectId}]
+### Get a contribution by uid [GET /contributions/{objectId}]
 
 + Parameters
 
-    + ehrId (string) - EHR id 
     + objectId (string) - CONTRIBUTION's uid
 
 + Response 200 (application/json) 
