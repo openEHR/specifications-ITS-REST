@@ -8,11 +8,13 @@ HOST: http://www.openehr.org/api
 
 ## Directory [/ehrs/{ehrId}/directory]
 
-### Create a directory [POST /ehrs/{ehrId}/directory]
+### Create a directory [POST /ehrs/{ehrId}/directory{?versionLifecycleState,precedingVersionUid}]
 
 + Parameters
 
     + ehrId (string) - EHR id
+    + versionLifecycleState (string) - The version Lifecycle State (532=complete, 553=incomplete, 523=deleted)
+    + precedingVersionUid (string, optional) - This will result in a new folder based on the preceding folder version.
 
 + Request
 
