@@ -9,33 +9,28 @@ HOST: http://www.openehr.org/api
 
 Management of EHR resources.
 
-### Create a new EHR [POST /ehrs{?subject_id,subject_namespace,subject_type}]
+### Create a new EHR [POST /ehrs]
 
 Create a new `EHR` with an auto-generated identifier.
-Request body may contain `ehr_status` and `ehr_access` attributes. When provided these
-resources will also be created as part of the `create EHR` action, 
+Request body may contain `ehr_status` attribute. When provided it
+will also be created as part of the same request,
 otherwise default resources will be created automatically by the service.
+Default EHR_STATUS will have the following defaults:
+- `is_queryable`: true
+- `is_modifiable`: true
+
+All other attributes will be left empty (null).
+
 
 + Request
 
     + Headers
 
             Prefer: return={representation|minimal}
-            
-            
-    + Parameters
-        + subject_id (string, optional) - id of the patient associated with the EHR (for EHR_STATUS.subject.external_ref.id.value)
-        + subject_namespace (string, optional) - namespace of the type of the subject, if not specified, value is "DEMOGRAPHIC"
-        + subject_type (string, optional) - type of subject, if not specified, value is "PERSON"
-
 
     + Body
 
             {
-                "commit_audit": {
-                    "description": "Commit audit description",
-                    "committer": {"_type": "PARTY_IDENTIFIED", ... }
-                },
                 "ehr_status": {
                   "is_modifiable": "true"
                   ...
@@ -62,32 +57,28 @@ otherwise default resources will be created automatically by the service.
 
 + Response 400
 
-    '400 Bad Request' is returned when unable to create a new EHR due to bad client Request, e.g. malformed syntax.
-
-    + Body
-
-+ Response 401
-
-    `401 Unauthorized` is returned when request is not authorised to be performed.
+    `400 Bad Request` is returned when unable to parse the request body if provided.
 
     + Body
 
 
-### Create a new EHR with custom (user supplied) ehrId [PUT /ehrs/{ehrId}{?subject_id,subject_namespace,subject_type}]
+### Create a new EHR with custom (user supplied) ehrId [PUT /ehrs/{ehrId}]
 
 Create new `EHR` with the specified EHR identifier. 
-The request body may contain `ehr_status` and `ehr_access` attributes, 
-which will be used to create these initial resources associated with the new EHR.
-When the `ehr_status` or `ehr_access` attributes are not provided, defaults resources 
-will be created by the service.
+Request body may contain `ehr_status` attribute. When provided it
+will also be created as part of the same request,
+otherwise default resources will be created automatically by the service.
+Default EHR_STATUS will have the following defaults:
+- `is_queryable`: true
+- `is_modifiable`: true
+
+All other attributes will be left empty (null).
+
++ Parameters
+
+    + ehrId (string) - User supplied EHR id
 
 + Request
-
-    + Parameters
-        + ehrId (string) - EHR identifier
-        + subject_id (string, optional) - id of the patient associated with the EHR (for EHR_STATUS.subject.external_ref.id.value)
-        + subject_namespace (string, optional) - namespace of the type of the subject, if not specified, value is "DEMOGRAPHIC"
-        + subject_type (string, optional) - type of subject, if not specified, value is "PERSON"
 
     + Headers
 
@@ -96,11 +87,10 @@ will be created by the service.
     + Body
 
             {
-                "commit_audit": {
-                    "description": "Commit audit description",
-                    "committer": {"_type": "PARTY_IDENTIFIED", ... }
-                },
-                "ehr_status": {...}
+                "ehr_status": {
+                  "is_modifiable": "true"
+                  ...
+                }
             }
 
 + Response 201 (application/json)
@@ -123,19 +113,14 @@ will be created by the service.
 
 + Response 400
 
-    '400 Bad Request' is returned when unable to create a new EHR due to bad client Request, e.g. malformed syntax such as the 'ehrId' not a valid HIER_OBJECT_ID value.
-
-    + Body
-
-+ Response 401
-
-    `401 Unauthorized` is returned when request is not authorised to be performed.
+    `400 Bad Request` is returned when unable to parse the request body if provided.
 
     + Body
 
 + Response 409
 
-    Unable to create a new EHR due to a conflict with the current state of the resource. Can happen when the supplied ehrId already exists.
+    Unable to create a new EHR due to a conflict with an already existing EHR.
+    Can happen when the supplied ehrId is already already used by an existing EHR.
 
     + Body
 
@@ -144,9 +129,11 @@ will be created by the service.
 Retrieve the EHR with the specified `ehrId`.
 
 + Parameters
+
     + ehrId (string) - EHR identifier
 
 + Response 200 (application/json)
+
     `200 OK` is returned when the EHR resource is successfully retrieved. 
     
     + Body
@@ -160,15 +147,11 @@ Retrieve the EHR with the specified `ehrId`.
             }
 
 + Response 400
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` value. // PP: what is an invalid ehdId? are we validating format? not empty? it is better to make it opaque, if it comes and there is no EHR with that id, return 404.
+
+    `400 Bad Request` might be returned if the server validates the syntax of the supplied ehrId, but this is not mandatory.
 
     + Body
     
-+ Response 401
-    `401 Unauthorized` is returned when request is not authorised.
-
-    + Body
-
 + Response 404
 
     `404 Not Found` is returned when an `EHR` with `ehrId` does not exist.

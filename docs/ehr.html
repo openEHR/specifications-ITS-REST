@@ -79,48 +79,62 @@ which is the same as specifying <code>versionSelector=LATEST_TRUNK_VERSION</code
 <p>Any datetime value provided by a create or update action will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).</p>
 <section id="ehr" class="resource-group"><h2 class="group-heading">EHR <a href="#ehr" class="permalink">&para;</a></h2><div id="ehr-ehr" class="resource"><h3 class="resource-heading">EHR <a href="#ehr-ehr" class="permalink">&nbsp;&para;</a></h3><p>Management of EHR resources.</p>
 <div id="ehr-ehr-post" class="action post"><h4 class="action-heading"><div class="name">Create a new EHR</div><a href="#ehr-ehr-post" class="method post">POST</a><code class="uri">/ehrs</code></h4><p>Create a new <code>EHR</code> with an auto-generated identifier.
-Request body may contain <code>ehr_status</code> and <code>ehr_access</code> attributes. When provided these
-resources will also be created as part of the <code>create EHR</code> action,
-otherwise default resources will be created automatically by the service.</p>
+Request body may contain <code>ehr_status</code> attribute. When provided it
+will also be created as part of the same request,
+otherwise default resources will be created automatically by the service.
+Default EHR_STATUS will have the following defaults:</p>
+<ul>
+<li>
+<p><code>is_queryable</code>: true</p>
+</li>
+<li>
+<p><code>is_modifiable</code>: true</p>
+</li>
+</ul>
+<p>All other attributes will be left empty (null).</p>
 <h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api</span>/ehrs</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Prefer</span>: <span class="hljs-string">return={representation|minimal}</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-    <span class="hljs-string">"commit_audit"</span>: {
-        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Commit audit description"</span>,
-        <span class="hljs-string">"committer"</span>: {<span class="hljs-string">"_type"</span>: <span class="hljs-string">"PARTY_IDENTIFIED"</span>, ... }
-    },
-    <span class="hljs-string">"ehr_status"</span>: {
-      <span class="hljs-string">"is_modifiable"</span>: <span class="hljs-string">"true"</span>
+    "<span class="hljs-attribute">ehr_status</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">is_modifiable</span>": <span class="hljs-value"><span class="hljs-string">"true"</span>
       ...
-    }
-}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>201</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>201 Created</code> is returned when a new EHR has been successfully created.
+    </span>}
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>201</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>201 Created</code> is returned when a new EHR has been successfully created.
 The EHR resource is returned in the body when the <code>Prefer</code> header has the value of <code>return=representation</code>.</p>
 </div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Location</span>: <span class="hljs-string">/ehrs/{ehrId}</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
     <span class="hljs-string">"system_id"</span>: {...},
     <span class="hljs-string">"ehr_id"</span>: {...},
     <span class="hljs-string">"ehr_status"</span>: <span class="hljs-string">"versioned ehr status uid"</span>,
     <span class="hljs-string">"time_created"</span>, <span class="hljs-string">"..."</span>
-}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p>‘400 Bad Request’ is returned when unable to create a new EHR due to bad client Request, e.g. malformed syntax.</p>
-</div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>401 Unauthorized</code> is returned when request is not authorised to be performed.</p>
-</div></div></div></div><div id="ehr-ehr-put" class="action put"><h4 class="action-heading"><div class="name">Create a new EHR with custom (user supplied) ehrId</div><a href="#ehr-ehr-put" class="method put">PUT</a><code class="uri">/ehrs/</code></h4><p>Create new <code>EHR</code> with the specified EHR identifier.
-The request body may contain <code>ehr_status</code> and <code>ehr_access</code> attributes,
-which will be used to create these initial resources associated with the new EHR.
-When the <code>ehr_status</code> or <code>ehr_access</code> attributes are not provided, defaults resources
-will be created by the service.</p>
-<h4>Example URI</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api</span>/ehrs/</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Prefer</span>: <span class="hljs-string">return={representation|minimal}</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-    <span class="hljs-string">"commit_audit"</span>: {
-        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Commit audit description"</span>,
-        <span class="hljs-string">"committer"</span>: {<span class="hljs-string">"_type"</span>: <span class="hljs-string">"PARTY_IDENTIFIED"</span>, ... }
-    },
-    <span class="hljs-string">"ehr_status"</span>: {...}
-}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>201</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>201 Created</code> is returned when a new EHR has been successfully created.
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>400 Bad Request</code> is returned when unable to parse the request body if provided.</p>
+</div></div></div></div><div id="ehr-ehr-put" class="action put"><h4 class="action-heading"><div class="name">Create a new EHR with custom (user supplied) ehrId</div><a href="#ehr-ehr-put" class="method put">PUT</a><code class="uri">/ehrs/{ehrId}</code></h4><p>Create new <code>EHR</code> with the specified EHR identifier.
+Request body may contain <code>ehr_status</code> attribute. When provided it
+will also be created as part of the same request,
+otherwise default resources will be created automatically by the service.
+Default EHR_STATUS will have the following defaults:</p>
+<ul>
+<li>
+<p><code>is_queryable</code>: true</p>
+</li>
+<li>
+<p><code>is_modifiable</code>: true</p>
+</li>
+</ul>
+<p>All other attributes will be left empty (null).</p>
+<h4>Example URI</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api</span>/ehrs/<span class="hljs-attribute" title="ehrId">ehrId</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>ehrId</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>EHR identifier</p>
+</dd></dl></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Prefer</span>: <span class="hljs-string">return={representation|minimal}</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">ehr_status</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">is_modifiable</span>": <span class="hljs-value"><span class="hljs-string">"true"</span>
+      ...
+    </span>}
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>201</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>201 Created</code> is returned when a new EHR has been successfully created.
 The new EHR resource is returned in the body when the request’s <code>Prefer</code> header value is <code>return=representation</code>.</p>
 </div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Location</span>: <span class="hljs-string">/ehrs/{ehrId}</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
     <span class="hljs-string">"system_id"</span>: {},
     <span class="hljs-string">"ehr_id"</span>: {},
     <span class="hljs-string">"ehr_status"</span>: <span class="hljs-string">"versioned ehr status uid"</span>,
     <span class="hljs-string">"time_created"</span>, <span class="hljs-string">"..."</span>
-}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p>‘400 Bad Request’ is returned when unable to create a new EHR due to bad client Request, e.g. malformed syntax such as the ‘ehrId’ not a valid HIER_OBJECT_ID value.</p>
-</div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>401 Unauthorized</code> is returned when request is not authorised to be performed.</p>
-</div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>409</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p>Unable to create a new EHR due to a conflict with the current state of the resource. Can happen when the supplied ehrId already exists.</p>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>400 Bad Request</code> is returned when unable to parse the request body if provided.</p>
+</div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>409</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p>Unable to create a new EHR due to a conflict with an already existing EHR.
+Can happen when the supplied ehrId is already already used by an existing EHR.</p>
 </div></div></div></div><div id="ehr-ehr-get" class="action get"><h4 class="action-heading"><div class="name">Get EHR</div><a href="#ehr-ehr-get" class="method get">GET</a><code class="uri">/ehrs/{ehrId}</code></h4><p>Retrieve the EHR with the specified <code>ehrId</code>.</p>
 <h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api</span>/ehrs/<span class="hljs-attribute" title="ehrId">ehrId</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>ehrId</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>EHR identifier</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the EHR resource is successfully retrieved.</p>
@@ -130,8 +144,7 @@ The new EHR resource is returned in the body when the request’s <code>Prefer</
     <span class="hljs-string">"ehr_status"</span>: <span class="hljs-string">"versioned ehr status uid"</span>,
     <span class="hljs-string">"time_created"</span>, <span class="hljs-string">"..."</span>,
     ... <span class="hljs-comment">// to be defined, possibly counts of compositions, contributions, etc.</span>
-}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>400 Bad Request</code> is returned when the request has invalid content such as an invalid <code>ehrId</code> value. // PP: what is an invalid ehdId? are we validating format? not empty? it is better to make it opaque, if it comes and there is no EHR with that id, return 404.</p>
-</div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>401 Unauthorized</code> is returned when request is not authorised.</p>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>400 Bad Request</code> might be returned if the server validates the syntax of the supplied ehrId, but this is not mandatory.</p>
 </div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>404</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p><code>404 Not Found</code> is returned when an <code>EHR</code> with <code>ehrId</code> does not exist.</p>
 </div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 16 Aug 2017</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
