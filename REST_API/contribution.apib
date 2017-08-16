@@ -1,19 +1,17 @@
 FORMAT: 1A
 HOST: http://www.openehr.org/api 
 
-
 <!-- include(overview.apib) -->
 
 # Group CONTRIBUTION 
 
-## CONTRIBUTION [/contributions]
+## CONTRIBUTION [/ehrs/{ehrId}/contributions]
 
-### Create a new contribution [POST /contributions{?ehrId,committerName}]
+### Create a new contribution [POST /ehrs/{ehrId}/contributions]
 
 + Parameters 
 
     + ehrId (string) - EHR id 
-    + committerName (string, optional) - Name of the committer
 
 + Request 
 
@@ -38,7 +36,7 @@ HOST: http://www.openehr.org/api
 
     + Headers
 
-            Location: /contributions/{versionUid}
+            Location: /ehrs/{ehrId}/contributions/{versionUid}
             ETag: {versionUid}
 
     + Body 
@@ -66,22 +64,17 @@ HOST: http://www.openehr.org/api
             }
 
 
-+ Response 401 
-
-    Unauthorized.
-
-    + Body 
-
-+ Response 404 
++ Response 404
 
     No EHR with the given id 
 
     + Body 
 
-### Get a contribution by uid [GET /contributions/{objectId}]
+### Get a contribution by uid [GET /ehrs/{ehrId}/contributions/{objectId}]
 
 + Parameters
 
+    + ehrId (string) - EHR id
     + objectId (string) - CONTRIBUTION's uid
 
 + Response 200 (application/json) 
@@ -136,21 +129,10 @@ HOST: http://www.openehr.org/api
                     }
                 }
             }
-+ Response 401
-
-    Unauthorized
-
-    + Body 
-
-+ Response 403
-
-    Forbidden 
-
-    + Body 
 
 + Response 404 
 
-    No contribution with the given id was found 
+    No EHR with the supplied id or no contribution with the supplied id was found
 
     + Body 
 
