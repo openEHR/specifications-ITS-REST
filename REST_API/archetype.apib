@@ -1,0 +1,65 @@
+## Archetype [/knowledge/archetypes]
+
+Management of archetype resources. 
+
+### List all available archetypes on the system [GET /knowledge/archetypes]
+
++ Response 200 (application/json) 
+
+    `200 OK` is returned when the resources are succesfully retrieved
+
+    + Body
+
+            [
+                {
+                    "archetypeId": "openEHR-EHR-EVALUATION.tobacco_smoking_summary.v0",
+                    "description": "Summary or persisting information about tobacco use or consumption.",
+                    "name": "Tobacco Use Summary",
+                    "createdTime": "2016-05-26T08:08:43"
+                },
+                {
+                    "archetypeId": "openEHR-EHR-OBSERVATION.heart_rate.v1",
+                    "description": "The characteristics of the heart rate and rhythm.",
+                    "name": "Heart rate and rhythm",
+                    "createdTime": "2016-05-27T21:53:02"
+                }
+            ]
+   
+
+### Upload an Archetype [POST /knowledge/archetypes]
+
+Upload an archetype to the server 
+
++ Request 
+
+    + Body 
+
+            {
+                "adl": "string"
+            }
+
++ Response 201 (application/json)
+
+    `201 Created` is returned when the archetype has been succesfully uploaded to the server. 
+
+    + Headers
+
+            Location: /knowledge/archetypes/{archetypeId}
+
+### Get an archetype [GET /knowledge/archetypes/{archetypeId}]
+
+Get the archetype defined by the {archetypeId}
+
++ Parameters 
+    + archetypeId (string) - archetypeId 
+
++ Response 200 (application/json) 
+   
+    `200 OK` is returned when the resourecs is succesfully retrieved. 
+
+    + Body
+
+            {
+              /** JSON representation of an Archetype */
+            }
+
