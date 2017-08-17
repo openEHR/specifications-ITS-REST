@@ -33,7 +33,30 @@ Feedback should be provided the [Specification PR tracker](https://openehr.atlas
 - 'openEHR' is a trademark of the openEHR Foundation
 
 
+## Glossary
+ 
+Throughout this specification a set of short terms is being used as described below:
+
+| Term | Description |
+|------|-------------|
+|`ehr_id`| The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
+|`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
+|`version_uid`| The  value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
+|`version_selector`| A placeholder for various identifiers or search/filtering condition to select a VERSION or its data [see Considerations chapter](#header-considerations) |
+|`timestamp`| A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
+
+
 ## Considerations
+
+### Authentication and authorization
+::: note 
+tbd  
+:::
+
+### The `OPTIONS` method 
+::: note 
+tbd  
+:::
 
 ### About the `version_selector` placeholder
 
@@ -66,18 +89,30 @@ GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/vers
 GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions?version_at_time=2015-01-20T19:30:22.765+01:00
 ``` 
 
+### The `commit-audit` headers
+::: note 
+tbd  
+:::
 
-## Glossary
- 
-Throughout these specifications a set of short terms is being used as described below:
+### The `Match-if` header
+::: note 
+tbd  
+:::
 
-| Term | Description |
-|------|-------------|
-|`ehr_id`| The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
-|`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
-|`version_uid`| The  value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
-|`version_selector`| A placeholder for various identifiers or search/filtering condition to select a VERSION or its data [see consideration](#header-considerations) |
-|`timestamp`| A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
+### The `Location` header
+::: note 
+tbd  
+:::
+
+### The `ETag` header and cache handling and HEAD header
+::: note 
+tbd  
+:::
+
+### HTTP status codes
+::: note 
+tbd  
+:::
 
 
 ## Data representation
@@ -128,3 +163,11 @@ Query parameters or timestamp path segments should always use the canonical ISO8
 Any date or datetime value provided by a create or update action inside the composition content 
 will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
 
+### The `Prefer: return=` header
+::: note 
+tbd POST/PUT return=representation
+:::
+
+::: note 
+tbd resolving OBJ_REF
+:::
