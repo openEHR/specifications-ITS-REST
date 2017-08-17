@@ -7,7 +7,7 @@
 
 ### Purpose
 
-This specification describes service enpoints, resources, functions and operations 
+This specification describes service endpoints, resources, functions and operations 
 as well as details of requests and responses that interacts with an openEHR API in a RESTful manner.
 
 This is not a specification a REST API for openEHR Foundation services. 
@@ -76,23 +76,50 @@ Throughout these specifications a set of short terms is being used as described 
 |`ehr_id`| The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
 |`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
 |`version_uid`| The  value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
-|`version_selector`| A placeholder for various identifiers or search/filtering condition to select a VERSION or its data (see consideration)[#header-considerations] |
+|`version_selector`| A placeholder for various identifiers or search/filtering condition to select a VERSION or its data [see consideration](#header-considerations) |
 |`timestamp`| A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
 
 
 ## Data representation
 
+### XML Format
+
+XML content should be valid against [published RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/).
+
+A client should use the header `Content-Type: application/xml` in the requests to specify the XML payload format. 
+If the service cannot process the request payload as XML format is not supported, it should respond with http status `415 Unsupported Media Type`.
+
+The `Accept: application/xml` can be used in the request by the client in order to specify the expected XML response format. 
+If the service cannot fulfill this aspect of the request, it should respond with http status `406 Not Acceptable`.
+Proper header `Content-Type: application/xml` should be present in the response of the service. 
+
 ### JSON Format
 
-- attribute names will be lowercase snake-case names as specified in the RM spec. For example:
-    - context : {"start_time": "2016-01-01T00:00Z"}
-- metadata attributes (those that are not also RM attributes) will always be prefixed by a '_'
-- we will use a `_type` attribute to specify RM type which will be upper-case class name from the RM spec:
-    {
-        "_type": "DV_TEXT",
-        "value": "Hello world!"
-    }
-- null RM attributes will be absent when serialized as JSON
+Attribute names must be lowercase snake_case names as specified in the RM specification. For example:
+```
+{"context": {"start_time": "2016-01-01T00:00Z"}}
+```
+Metadata attributes (those that are not also RM attributes) will always be prefixed by a `'_'`.
+One example is the `_type` attribute, which should be used to specify the RM type whenever polymorphism is involved or the underlying definition in RM type is abstract.
+The value of this attribute should be the uppercase class name from the RM specification. For example:
+```
+{
+    "_type": "DV_TEXT",
+    "value": "Hello world!"
+}
+```
+The `Null` RM attributes will be absent when serialized as JSON.
+
+::: note 
+tbd json-schema 
+:::
+
+A client should use the header `Content-Type: application/json` in the requests to specify the JSON payload format. 
+If the service cannot process the request payload as JSON format is not supported, it should respond with http status `415 Unsupported Media Type`.
+
+The `Accept: application/json` can be used in the request by the client in order to specify the expected JSON response format. 
+If the service cannot fulfill this aspect of the request, it should respond with http status `406 Not Acceptable`.
+Proper header `Content-Type: application/json` should be present in the response of the service. 
 
 ### Datetime format
 
