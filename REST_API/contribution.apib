@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://www.openehr.org/api 
+HOST: http://www.openehr.org/api/v1 
 
 <!-- include(overview.apib) -->
 
@@ -21,9 +21,9 @@ HOST: http://www.openehr.org/api
                 "versions": [
                     {
                         "data": {/* JSON serialized COMPOSITION, FOLDER or EHR_STATUS object */},
-                        "precedingVersionUid": "<optional string>", 
+                        "preceding_version_uid": "<optional string>", 
                         "signature": "<optional string>", 
-                        "versionLifecycleState": 0,
+                        "lifecycle_state": 0,
                         "commit_audit":{
                             "change_type": {},
                             "description": {},
@@ -33,7 +33,15 @@ HOST: http://www.openehr.org/api
                 ],
                 "audit":{
                     "committer":{
-                        "name": "<optional identifier of the committer>"  
+                        "name": "<optional identifier of the committer>"  ,
+                        "external_ref":{
+                                "namespace": "demographic",
+                                "type": "PERSON", 
+                                "id":{
+                                    "value": "<OBJECT_ID>"
+
+                                }
+                        }
                     }
                 }
 
