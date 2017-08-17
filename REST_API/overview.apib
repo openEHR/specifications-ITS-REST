@@ -35,17 +35,37 @@ Feedback should be provided the [Specification PR tracker](https://openehr.atlas
 
 ## Considerations
 
-### About `versionSelector`
+### About the `version_selector` placeholder
 
-In some requests described by this specification a placeholder `versionSelector` is used to indicate that the action should be performed against a specific VERSION (or associated data object)
-of a VERSIONED_OBJECT. This can take the following values:
-- fixed string: `LATEST_TRUNK_VERSION`
-- a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)
-- a `versionedObjectUid` - VERSIONED_OBJECT unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515)
-- a `versionUid` - VERSION unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1)
+In some requests described by this specification a placeholder `version_selector` is used to indicate that 
+the action should be performed against (or for) a specific VERSION (or associated data object) of a VERSIONED_OBJECT. 
+The purpose of this placeholder is to keep the specification readable while providing search and/or filtering functionality covered by 
+attributes and functions described in [VERSION_OBJECT class](http://www.openehr.org/releases/RM/latest/docs/common/common.html#_versioned_object_class).
 
-For such requests, whenever the `versionSelector` placeholder is left empty, the latest trunk version will be assumed,
-which is the same as using `LATEST_TRUNK_VERSION` value for the placeholder.
+This placeholder can take one the following values:
+- a `versioned_object_uid` value - VERSIONED_OBJECT unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515), in which case the latest version is selected
+- a `version_uid` value - VERSION unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1)
+- fixed string `latest_trunk_version` or `latest_version`, assuming that a `versioned_object_uid` value is already present in the path
+- a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00), assuming that `versioned_object_uid` value is already present in the path
+- a query parameter `version_at_time={timestamp}`, assuming that a `versioned_object_uid` value is already present in the path
+- a `versioned_object_uid` value followed by `/latest_trunk_version` or `/latest_version` strings
+- a `versioned_object_uid` value followed by `/` or by `/version_at_time/` strings, followed by a specific timestamp in the ISO8601 format
+- a `versioned_object_uid` value and a query parameter `version_at_time={timestamp}`
+
+Examples:
+```http
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/latest_version
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/2015-01-20T19:30:22.765+01:00
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/version_at_time/2015-01-20T19:30:22.765+01:00
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515?version_at_time=2015-01-20T19:30:22.765+01:00
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/latest_version
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/version_at_time/2015-01-20T19:30:22.765+01:00
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions?version_at_time=2015-01-20T19:30:22.765+01:00
+``` 
+
 
 ## Glossary
  
@@ -53,10 +73,12 @@ Throughout these specifications a set of short terms is being used as described 
 
 | Term | Description |
 |------|-------------|
-|`ehrId`| The string value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
-|`versionedObjectUid`| The string value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
-|`versionUid`| The string value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
-|`versionSelector`| The string value of a VERSION unique identifier, a specific timestamp or the string `LATEST_TRUNK_VERSION` |
+|`ehr_id`| The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
+|`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
+|`version_uid`| The  value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
+|`version_selector`| A placeholder for various identifiers or search/filtering condition to select a VERSION or its data (see consideration)[#header-considerations] |
+|`timestamp`| A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
+
 
 ## Data representation
 
