@@ -6,9 +6,9 @@ HOST: http://www.openehr.org/api
 
 # Group COMPOSITION
 
-## COMPOSITION [/compositions]
+## COMPOSITION [/ehrs/{ehrId}/compositions]
 
-### Create a new composition [POST /compositions{?ehrId}]
+### Create a new composition [POST /ehrs/{ehrId}/compositions]
 
 + Parameters
 
@@ -39,7 +39,7 @@ HOST: http://www.openehr.org/api
 
     + Headers
 
-            Location: /compositions/{versionUid}
+            Location: /ehrs/{ehrId}/compositions/{versionUid}
             ETag: {versionUid}
 
     + Body
@@ -55,7 +55,7 @@ HOST: http://www.openehr.org/api
 
 + Response 400
 
-    Bad request: composition validation errors.
+    Bad request: either body of the request could not be read (or converted to a COMPOSITION object) or there were composition validation errors.
 
     + Body
 
@@ -66,23 +66,20 @@ HOST: http://www.openehr.org/api
                 ]
             }
 
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
 + Response 404
 
     No EHR with the given id.
 
     + Body
 
-### Update a composition [PUT /compositions/{objectId}]
+### Update a composition [PUT /ehrs/{ehrId}/compositions/{objectId}]
 
 + Parameters
 
-    + objectId (string) - object id of the composition to update
+    + ehrId (string) - EHR id
+    + objectId (string) - object id of the composition to update. This can be an exact versionUid or versionedObjectUid.
+    In case of versionUid it has to be the last version.
+    In case of versionedObjectUid, a `Match-If` may be supplied with the last versionUid which must match before update can succeed.
 
 + Request
 
@@ -108,7 +105,7 @@ HOST: http://www.openehr.org/api
 
     + Headers
 
-            Content-Location: /compositions/{versionUid}
+            Content-Location: /ehrs/{ehrId}/compositions/{versionUid}
             ETag: {versionUid}
 
     + Body
@@ -124,16 +121,16 @@ HOST: http://www.openehr.org/api
 
 + Response 204
 
-    Returned when `Prefer` header is NOT set to `return=representation`.
+    Returned when `Prefer` header is missing or NOT set to `return=representation`.
 
     + Headers
 
-            Content-Location: /compositions/{versionUid}
+            Content-Location: /ehrs/{ehrId}/compositions/{versionUid}
             ETag: {versionUid}
 
 + Response 400 (application/json)
 
-    Bad request: composition validation errors.
+    Bad request: either body of the request could not be read (or converted to a COMPOSITION object) or there were composition validation errors.
 
     + Body
 
@@ -144,31 +141,35 @@ HOST: http://www.openehr.org/api
                 ]
             }
 
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
 + Response 404
 
-    No composition with the given object id.
+    No EHR with the supplied EHR id or no composition with the supplied object id.
 
     + Body
 
 + Response 412
 
-    `Match-If` header doesn't match the last version. Returns
-    last version in the `Content-Location` and `ETag` headers.
+    Returned when:
+    - supplied objectId is versionedObjectUid and `Match-If` header doesn't match the last version
+    - supplied objectId is versionUid and it's not the last version
+
+    Returns last version in the `Content-Location` and `ETag` headers.
+
+    + Headers
+
+            Content-Location: /ehrs/{ehrId}/compositions/{versionUid}
+            ETag: {versionUid}
 
     + Body
 
-
-### Delete a composition [DELETE /compositions/{deleteObjectId}]
+### Delete a composition [DELETE /ehrs/{ehrId}/compositions/{objectId}]
 
 + Parameters
 
-    + deleteObjectId (string) - object id of the composition to delete
+    + ehrId (string) - EHR id
+    + objectId (string) - object id of the composition to delete. This can be an exact versionUid or versionedObjectUid.
+    In case of versionUid it has to be the last version.
+    In case of versionedObjectUid, a `Match-If` may be supplied with the last versionUid which must match before update can succeed.
 
 + Request
 
@@ -182,46 +183,38 @@ HOST: http://www.openehr.org/api
 
     + Headers
 
-            Content-Location: /compositions/{versionUid}
+            Content-Location: /ehrs/{ehrId}/compositions/{versionUid}
             ETag: {versionUid}
-
-    + Body
-
-+ Response 400
-
-    Bad request.
-
-    + Body
-
-+ Response 401
-
-    Unauthorized.
 
     + Body
 
 + Response 404
 
-    No composition with the given object id.
+    No EHR with supplied EHR id or no composition with the given object id.
 
     + Body
 
 + Response 412
 
-    `Match-If` header doesn't match the last version. Returns
-    last version in the `Content-Location` and `ETag` headers.
+    Returned when:
+    - supplied objectId is versionedObjectUid and `Match-If` header doesn't match the last version
+    - supplied objectId is versionUid and it's not the last version
+
+    Returns last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
-            Content-Location: /compositions/{versionUid}
+            Content-Location: /ehrs/{ehrId}/compositions/{versionUid}
             ETag: {versionUid}
 
     + Body
 
 
-### Get a composition by version uid [GET /compositions/{versionUid}]
+### Get a composition by version uid [GET /ehrs/{ehrId}/compositions/{versionUid}]
 
 + Parameters
 
+    + ehrId (string) - EHR id
     + versionUid (string) - version uid
 
 + Response 200 (application/json)
@@ -237,30 +230,25 @@ HOST: http://www.openehr.org/api
                 ...
             }
 
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
 + Response 404
 
-    No composition with the version uid.
+    No EHR with supplied EHR id or no composition with the supplied version uid.
 
     + Body
 
-### Get a composition [GET /compositions/{objectId}{?versionSelector}]
+### Get a composition [GET /ehrs/{ehrId}/compositions/{versionedObjectUid}{?versionSelector}]
 
 + Parameters
 
-    + objectId (string) - VERSIONED_COMPOSITION's uid
+    + ehrId (string) - EHR id
+    + versionedObjectUid (string) - VERSIONED_COMPOSITION's uid
     + versionSelector (string, optional) - version time specifier
 
 + Response 200 (application/json)
 
     + Headers
 
-            Content-Location: /compositions/{versionUid}
+            Content-Location: /ehrs/{ehrId}/compositions/{versionUid}
             ETag: {versionUid}
 
     + Body
@@ -280,33 +268,28 @@ HOST: http://www.openehr.org/api
 
     + Body
 
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
 + Response 404
 
-    No composition with the given object id.
+    No EHR with the supplied EHR id or no composition with the supplied versionedObjectUid.
 
     + Body
 
-## VERSIONED_COMPOSITION [/versioned_compositions]
+## VERSIONED_COMPOSITION [/ehrs/{ehrId}/versioned_compositions]
 
-### Get a versioned composition [GET /versioned_compositions/{uid}]
+### Get a versioned composition [GET /ehrs/{ehrId}/versioned_compositions/{versionedObjectUid}]
 
 Gets a complete VERSIONED_COMPOSITION.
 
 + Parameters
 
-    + uid (string) - VERSIONED_COMPOSITION's uid
+    + ehrId (string) - EHR id
+    + versionedObjectUid (string) - VERSIONED_COMPOSITION's uid
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: /versioned_compositions/{uid}
+            Location: /ehrs/{ehrId}/versioned_compositions/{versionedObjectUid}
 
     + Body
 
@@ -322,30 +305,19 @@ Gets a complete VERSIONED_COMPOSITION.
                 ]
             }
 
-+ Response 400
-
-    Bad request - when VERSIONED_COMPOSITION with the given uid already exists.
-
-    + Body
-
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
 + Response 404
 
-    No versioned composition with the given id.
+    No EHR with the supplied EHR id or no versioned composition with supplied versionedObjectUid.
 
     + Body
 
 
-### Get a composition version by versionUid [GET /versioned_compositions/{uid}/version/{versionUid}]
+### Get a composition version by versionUid [GET /ehrs/{ehrId}/versioned_compositions/{versionedObjectUid}/versions/{versionUid}]
 
 + Parameters
 
-    + uid (string) - VERSIONED_COMPOSITION's uid
+    + ehrId (string) - EHR id
+    + versionedObjectUid (string) - VERSIONED_COMPOSITION's uid
     + versionUid (string) - version uid
 
 + Response 200 (application/json)
@@ -367,30 +339,25 @@ Gets a complete VERSIONED_COMPOSITION.
                 }
             }
 
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
 + Response 404
 
     No VERSIONED_COMPOSITION with uid or no version with versionUid.
 
     + Body
 
-### Get a composition version [GET /versioned_compositions/{uid}/version{?versionSelector}]
+### Get a composition version [GET /ehrs/{ehrId}/versioned_compositions/{versionedObjectUid}/versions{?versionSelector}]
 
 + Parameters
 
-    + uid (string) - VERSIONED_COMPOSITION's uid
+    + ehrId (string) - EHR id
+    + versionedObjectUid (string) - VERSIONED_COMPOSITION's uid
     + versionSelector (string, optional) - version time specifier
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: /versioned_compositions/{uid}/versions/{versionUid}
+            Location: /ehrs/{ehrId}/versioned_compositions/{versionedObjectUid}/versions/{versionUid}
             ETag: {versionUid}
 
     + Body
@@ -409,12 +376,6 @@ Gets a complete VERSIONED_COMPOSITION.
                     ...
                 }
             }
-
-+ Response 401
-
-    Unauthorized.
-
-    + Body
 
 + Response 404
 
