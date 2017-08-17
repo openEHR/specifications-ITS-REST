@@ -17,14 +17,27 @@ HOST: http://www.openehr.org/api
 
     + Body (application/json) 
 
-            [
-                {
-                    "content": {/** openEHR locatable; composition or folder */},
-                    "precedingVersionUid": "string",
-                    "tags": [     {"key": "string", "value": "string"   } ], // vendor (DIPS) specific extension 
-                    "versionLifecycleState": NUMBER // The version Lifecycle State (532=complete, 553=incomplete, 523=deleted)
+            {
+                "versions": [
+                    {
+                        "data": {/* JSON serialized COMPOSITION, FOLDER or EHR_STATUS object */},
+                        "precedingVersionUid": "<optional string>", 
+                        "signature": "<optional string>", 
+                        "versionLifecycleState": 0,
+                        "commit_audit":{
+                            "change_type": {},
+                            "description": {},
+                            "committer":{/* optional structure - will use the outer committer if absent */}
+                        }
+                    }
+                ],
+                "audit":{
+                    "committer":{
+                        "name": "<optional identifier of the committer>"  
+                    }
                 }
-            ]
+
+            }
 
     + Headers
 
