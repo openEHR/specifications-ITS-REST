@@ -1,9 +1,9 @@
-## TEMPLATE [/knowledge/templates]
+## TEMPLATE [/models/templates]
 
 Management of OpenEHR operational templates. OpenEHR templates can be uploaded and downloaded as OPTs created
 by modelling tools such as the Template Designer.
 
-### Upload a new template [POST /knowledge/templates]
+### Upload a new template [POST /models/templates]
 
 Upload a new template.
 
@@ -32,7 +32,7 @@ Upload a new template.
 
     + Headers
 
-            Location: /templates/{templateId}
+            Location: /models/templates/{templateId}
 
 + Response 400
 
@@ -47,7 +47,7 @@ Upload a new template.
     + Body
 
 
-### List all available templates on the system [GET /knowledge/templates]
+### List all available templates on the system [GET /models/templates]
 
 + Response 200 (application/json)
     `200 OK` is returned when the EHR resource is successfully retrieved. 
@@ -69,7 +69,7 @@ Upload a new template.
 
     + Body
 
-### Get a template by template id [GET /knowledge/templates/{templateId}]
+### Get a template by template id [GET /models/templates/{templateId}]
 
 + Parameters
 

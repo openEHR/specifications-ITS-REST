@@ -1,8 +1,8 @@
-## GDL [/knowledge/gdl]
+## GDL [/models/gdl]
 
 Management of GDL resources in the system. 
 
-### List all available guides in the system [GET /knowledge/gdl]
+### List all available guides in the system [GET /models/gdl]
 
 + Response 200 (application/json) 
 
@@ -23,7 +23,7 @@ Management of GDL resources in the system.
                 }
             ]
 
-### Upload a new guide [POST /knowledge/gdl]
+### Upload a new guide [POST /models/gdl]
 
 + Request 
     
@@ -35,11 +35,11 @@ Management of GDL resources in the system.
 
 + Response 201 (application/json) 
 
-    `201 Created` is returned when the guide has been succesfully uploaded to the server. 
+    `201 Created` is returned when the guide has been successfully uploaded to the server.
 
     + Headers
 
-            Location: /knowledge/gdl/{guideId}
+            Location: /models/gdl/{guideId}
 
 
 + Response 400 
@@ -48,7 +48,7 @@ Management of GDL resources in the system.
 
     + Body 
 
-### Get a guide [GET /knowledge/gdls/{guideId}]  
+### Get a guide [GET /models/gdls/{guideId}]
 
 + Parameters
     
