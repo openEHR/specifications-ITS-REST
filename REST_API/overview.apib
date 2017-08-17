@@ -123,7 +123,8 @@ Proper header `Content-Type: application/json` should be present in the response
 
 ### Datetime format
 
-It is recommended to always use canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00, but any other valid ISO8601 datetime is accepted.
+Query parameters or timestamp path segments should always use the canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00.
 
-Any datetime value provided by a create or update action will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
+Any date or datetime value provided by a create or update action inside the composition content 
+will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
 
