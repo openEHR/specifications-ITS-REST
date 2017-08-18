@@ -30,7 +30,7 @@ offset 0 limit 2
             "_type": "raw",
             "@created": "2016-06-22T07:54:04.758+02:00",
             "@generator": "<The resultset generator>",
-            "totalResults": 2,
+            "total_results": 2,
             "columns": [
                 {
                     "name": "When",
@@ -87,22 +87,8 @@ to analyze the request body.
                 }],
                 "offset": NUMBER_TO_START_FROM,
                 "fetch": NUMBER_TO_FETCH,
-                "compositionUids": ["<objectId>"], // filter on the given compositions uids
-                "ehrIds": ["<ehrId>"], // filter on the given ehrIds
-                "tagScope": {
-                    "tags": [{
-                        "tag": "<tag name>",
-                        "values": [
-                            "<tag value 1>", "<tag value 2>"
-                        ]
-
-                    }]
-                },
-                "partitionBy": {
-                    "tag": "<tag name>",
-                    "limit": 0
-                },
-                "correlationId": "<the correlation id to distinquest request/response>"
+                "composition_uids": ["<object_id>"], // filter on the given compositions uids
+                "ehr_ids": ["<ehr_id>"] // filter on the given ehr_ids
             }
 
 + Response 200
@@ -113,7 +99,7 @@ to analyze the request body.
                     "_type": "raw",
                     "@created": "2016-06-22T07:54:04.758+02:00",
                     "@generator": "<The resultset generator>",
-                    "totalResults": 2,
+                    "total_results": 2,
                     "columns": [{
                             "name": "When",
                             "path": "/data[at0002]/events[at0003]/time"

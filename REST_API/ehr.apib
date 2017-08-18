@@ -44,7 +44,7 @@ All other attributes will be left empty (null).
 
     + Headers
 
-            Location: /ehrs/{ehrId}
+            Location: /ehrs/{ehr_id}
 
     + Body
 
@@ -62,7 +62,7 @@ All other attributes will be left empty (null).
     + Body
 
 
-### Create a new EHR with custom (user supplied) ehrId [PUT /ehrs/{ehrId}]
+### Create a new EHR with custom (user supplied) ehr_id [PUT /ehrs/{ehr_id}]
 
 Create new `EHR` with the specified EHR identifier. 
 Request body may contain `ehr_status` attribute. When provided it
@@ -76,7 +76,7 @@ All other attributes will be left empty (null).
 
 + Parameters
 
-    + ehrId (string) - User supplied EHR id
+    + ehr_id (string) - User supplied EHR id
 
 + Request
 
@@ -100,7 +100,7 @@ All other attributes will be left empty (null).
 
     + Headers
 
-            Location: /ehrs/{ehrId}
+            Location: /ehrs/{ehr_id}
 
     + Body
 
@@ -120,17 +120,17 @@ All other attributes will be left empty (null).
 + Response 409
 
     Unable to create a new EHR due to a conflict with an already existing EHR.
-    Can happen when the supplied ehrId is already already used by an existing EHR.
+    Can happen when the supplied ehr_id is already already used by an existing EHR.
 
     + Body
 
 
-### Get EHR [GET /ehrs/{ehrId}]
-Retrieve the EHR with the specified `ehrId`.
+### Get EHR [GET /ehrs/{ehr_id}]
+Retrieve the EHR with the specified `ehr_id`.
 
 + Parameters
 
-    + ehrId (string) - EHR identifier
+    + ehr_id (string) - EHR identifier
 
 + Response 200 (application/json)
 
@@ -148,12 +148,12 @@ Retrieve the EHR with the specified `ehrId`.
 
 + Response 400
 
-    `400 Bad Request` might be returned if the server validates the syntax of the supplied ehrId, but this is not mandatory.
+    `400 Bad Request` might be returned if the server validates the syntax of the supplied ehr_id, but this is not mandatory.
 
     + Body
     
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
 
     + Body

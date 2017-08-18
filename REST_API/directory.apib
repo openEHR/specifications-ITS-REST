@@ -6,15 +6,15 @@ HOST: http://www.openehr.org/api/v1
 
 # Group FOLDER
 
-## Directory [/ehrs/{ehrId}/directory]
+## Directory [/ehrs/{ehr_id}/directory]
 
-### Create a directory [POST /ehrs/{ehrId}/directory{?versionLifecycleState,precedingVersionUid}]
+### Create a directory [POST /ehrs/{ehr_id}/directory{?version_lifecycle_state,preceding_version_uid}]
 
 + Parameters
 
-    + ehrId (string) - EHR id
-    + versionLifecycleState (string) - The version Lifecycle State (532=complete, 553=incomplete, 523=deleted)
-    + precedingVersionUid (string, optional) - This will result in a new folder based on the preceding folder version.
+    + ehr_id (string) - EHR id
+    + version_lifecycle_state (string) - The version Lifecycle State (532=complete, 553=incomplete, 523=deleted)
+    + preceding_version_uid (string, optional) - This will result in a new folder based on the preceding folder version.
 
 + Request
 
@@ -37,8 +37,8 @@ HOST: http://www.openehr.org/api/v1
 
     + Headers
 
-            Location: /ehrs/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Location: /ehrs/{ehr_id}/directory/{version_uid}
+            ETag: {version_uid}
 
     + Body
 
@@ -54,12 +54,6 @@ HOST: http://www.openehr.org/api/v1
 
     + Body
 
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
 + Response 404
 
     No EHR with the given id.
@@ -67,11 +61,11 @@ HOST: http://www.openehr.org/api/v1
     + Body
 
 
-### Update a directory [PUT /ehrs/{ehrId}/directory]
+### Update a directory [PUT /ehrs/{ehr_id}/directory]
 
 + Parameters
 
-    + ehrId (string) - EHR id
+    + ehr_id (string) - EHR id
 
 + Request
 
@@ -84,7 +78,7 @@ HOST: http://www.openehr.org/api/v1
 
     + Headers
 
-            Match-If: {precedingVersionUid}
+            Match-If: {preceding_version_uid}
             Prefer: return={representation/minimal}
 
 + Response 200 (application/json)
@@ -94,8 +88,8 @@ HOST: http://www.openehr.org/api/v1
 
     + Headers
 
-            Location: /ehrs/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Location: /ehrs/{ehr_id}/directory/{version_uid}
+            ETag: {version_uid}
 
     + Body
 
@@ -112,18 +106,12 @@ HOST: http://www.openehr.org/api/v1
 
     + Headers
 
-            Location: /ehr/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Location: /ehr/{ehr_id}/directory/{version_uid}
+            ETag: {version_uid}
 
 + Response 400
 
     Bad request - error when updating a directory.
-
-    + Body
-
-+ Response 401
-
-    Unauthorized.
 
     + Body
 
@@ -140,23 +128,23 @@ HOST: http://www.openehr.org/api/v1
 
     + Headers
 
-            Content-Location: /ehr/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehr/{ehr_id}/directory/{version_uid}
+            ETag: {version_uid}
 
     + Body
 
 
-### Delete a directory [DELETE /ehrs/{ehrId}/directory]
+### Delete a directory [DELETE /ehrs/{ehr_id}/directory]
 
 + Parameters
 
-    + ehrId (string) - EHR id
+    + ehr_id (string) - EHR id
 
 + Request
 
     + Headers
 
-            Match-If: {precedingVersionUid}
+            Match-If: {preceding_version_uid}
 
 + Response 204
 
@@ -170,12 +158,6 @@ HOST: http://www.openehr.org/api/v1
 
     + Body
 
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
 + Response 404
 
     No EHR with the given id.
@@ -189,17 +171,17 @@ HOST: http://www.openehr.org/api/v1
 
     + Headers
 
-            Content-Location: /ehrs/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehrs/{ehr_id}/directory/{version_uid}
+            ETag: {version_uid}
 
     + Body
 
-### Get a directory or its sub-folder by versionUid [GET /ehrs/{ehrId}/directory/{versionUid}{?path}]
+### Get a directory or its sub-folder by version_uid [GET /ehrs/{ehr_id}/directory/{version_uid}{?path}]
 
 + Parameters
 
-    + ehrId (string) - EHR id
-    + versionUid (string) - version UID
+    + ehr_id (string) - EHR id
+    + version_uid (string) - version UID
     + path (string, optional) - path to a sub-folder
 
 + Response 200 (application/json)
@@ -218,24 +200,18 @@ HOST: http://www.openehr.org/api/v1
 
     + Body
 
-+ Response 401
-
-    Unauthorized.
-
-    + Body
-
 + Response 404
 
-    No EHR with the given id or no directory with specified versionUid.
+    No EHR with the given id or no directory with specified version_uid.
 
     + Body
 
 
-### Get a directory or its sub-folder [GET /ehrs/{ehrId}/directory{?versionSelector,path}]
+### Get a directory or its sub-folder [GET /ehrs/{ehr_id}/directory{?versionSelector,path}]
 
 + Parameters
 
-    + ehrId (string) - EHR id
+    + ehr_id (string) - EHR id
     + versionSelector (string, optional) - version time specifier
     + path (string, optional) - path to a sub-folder
 
@@ -243,8 +219,8 @@ HOST: http://www.openehr.org/api/v1
 
     + Headers
 
-            Location: /ehr/{ehrId}/directory/{versionUid}
-            ETag: {versionUid}
+            Location: /ehr/{ehr_id}/directory/{version_uid}
+            ETag: {version_uid}
 
     + Body
 
@@ -257,12 +233,6 @@ HOST: http://www.openehr.org/api/v1
 + Response 204
 
     EHR has no directory at versionSelector or no sub-folder at provided path.
-
-    + Body
-
-+ Response 401
-
-    Unauthorized.
 
     + Body
 

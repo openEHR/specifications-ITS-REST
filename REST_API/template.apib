@@ -32,17 +32,11 @@ Upload a new template.
 
     + Headers
 
-            Location: /models/templates/{templateId}
+            Location: /models/templates/{template_id}
 
 + Response 400
 
     '400 Bad Request' is returned when unable to upload a template, because of invalid content.
-
-    + Body
-
-+ Response 401
-
-    `401 Unauthorized` is returned when request is not authorised to be performed.
 
     + Body
 
@@ -56,20 +50,16 @@ Upload a new template.
 
             [
                 {
-                    "templateId": "string",
+                    "template_id": "string",
                     "concept": "string",
-                    "archetypeId": "string",
-                    "validTo": "2017-08-14T19:24:56.639Z",
-                    "createdTimeStamp": "2017-08-14T19:24:56.639Z"
+                    "archetype_id": "string",
+                    "valid_to": "2017-08-14T19:24:56.639Z",
+                    "created_timeStamp": "2017-08-14T19:24:56.639Z"
                 }
             ]
 
-+ Response 401
-    `401 Unauthorized` is returned when request is not authorised.
 
-    + Body
-
-### Get a template by template id [GET /models/templates/{templateId}]
+### Get a template by template id [GET /models/templates/{template_id}]
 
 + Parameters
 
@@ -92,11 +82,6 @@ Upload a new template.
                             <lifecycle_state>Initial</lifecycle_state>
                             <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
                     ...
-
-+ Response 401
-    `401 Unauthorized` is returned when request is not authorised.
-
-    + Body
 
 + Response 404
 

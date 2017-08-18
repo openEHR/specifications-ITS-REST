@@ -5,17 +5,17 @@ HOST: http://www.openehr.org/api/v1
 
 # Group EHR_STATUS
 
-## EHR_STATUS [/ehrs/{ehrId}/ehr_status]
+## EHR_STATUS [/ehrs/{ehr_id}/ehr_status]
 Management of EHR_STATUS resources.
 
-### Get EHR_STATUS [GET /ehrs/{ehrId}/ehr_status{?versionSelector}]
+### Get EHR_STATUS [GET /ehrs/{ehr_id}/ehr_status{?versionSelector}]
 
-Retrieve the `EHR_STATUS` associated with the EHR specified by `ehrId`. 
+Retrieve the `EHR_STATUS` associated with the EHR specified by `ehr_id`.
 When the `versionSelector` parameter is provided, the `EHR_STATUS` version that existed at the specified version time is returned, 
 otherwise the latest trunk version is returned.
 
 + Parameters
-    + ehrId (string) - EHR identifier
+    + ehr_id (string) - EHR identifier
     + versionSelector (string, optional) - version time specifier
 
 + Response 200 (application/json)
@@ -23,8 +23,8 @@ otherwise the latest trunk version is returned.
 
     + Headers
 
-            Content-Location: /ehrs/{ehrId}/ehr_status/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehrs/{ehr_id}/ehr_status/{version_uid}
+            ETag: {version_uid}
 
     + Body
 
@@ -60,30 +60,24 @@ otherwise the latest trunk version is returned.
 
 + Response 400
 
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` or `versionUid` format.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehr_id` or `version_uid` format.
     
     + Body
     
-+ Response 401
-
-    `401 Unauthorized` is returned when request is not authorised.
-
-    + Body
-
 + Response 404
 
-    `404 Not Found` returned when `EHR` with `ehrId` does not exist or has been deleted or 
+    `404 Not Found` returned when `EHR` with `ehr_id` does not exist or has been deleted or
     a version of an `EHR_STATUS` resource does not exist at the specified `versionSelector`.  
 
     + Body
 
-### Get EHR_STATUS by versionUid [GET /ehrs/{ehrId}/ehr_status/{versionUid}]
+### Get EHR_STATUS by version_uid [GET /ehrs/{ehr_id}/ehr_status/{version_uid}]
 
-Retrieve the version of the `EHR_STATUS` associated with the specified `ehrId` and `versionUid`.
+Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
 
 + Parameters
-    + ehrId (string) - EHR identifier
-    + versionUid (string) - version UID
+    + ehr_id (string) - EHR identifier
+    + version_uid (string) - version UID
 
 + Response 200 (application/json)
     `200 OK` is return when the `EHR_STATUS` is successfully retrieved.
@@ -122,37 +116,31 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehrId` a
 
 + Response 400
 
-    `400 Bad Request` is returned when the request has invalid parameters such as an invalid ehrId value.
-
-    + Body
-
-+ Response 401
-
-    `401 Unauthorized` is returned when request is not authorised.
+    `400 Bad Request` is returned when the request has invalid parameters such as an invalid ehr_id value.
 
     + Body
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist or
-    an `EHR_STATUS` with `versionUid` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist or
+    an `EHR_STATUS` with `version_uid` does not exist.
 
     + Body
 
-### Update EHR_STATUS [PUT /ehrs/{ehrId}/ehr_status]
+### Update EHR_STATUS [PUT /ehrs/{ehr_id}/ehr_status]
 
-Update `EHR_STATUS` associated with the specified `ehrId`. 
-The existing `versionUid` of `EHR_STATUS` resource must be specified in the `Match-If` header.
+Update `EHR_STATUS` associated with the specified `ehr_id`.
+The existing `version_uid` of `EHR_STATUS` resource must be specified in the `Match-If` header.
 The response will contain the updated `EHR_STATUS` resource when the `Prefer` header has a value of `return=representation`
 
 + Parameters
-    + ehrId (string) - EHR identifier
+    + ehr_id (string) - EHR identifier
 
 + Request (application/json)
 
     + Header
 
-            Match-If: {precedingVersionUid}
+            Match-If: {preceding_version_uid}
             Prefer: return={representation|minimal}
 
     + Body
@@ -193,8 +181,8 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
     + Headers
 
-            Content-Location: /ehrs/{ehrId}/ehr_status/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehrs/{ehr_id}/ehr_status/{version_uid}
+            ETag: {version_uid}
 
     + Body
 
@@ -233,23 +221,17 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
     + Headers
 
-            Content-Location: /ehrs/{ehrId}/ehr_status/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehrs/{ehr_id}/ehr_status/{version_uid}
+            ETag: {version_uid}
 
 + Response 400
-    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehrId` format.
+    `400 Bad Request` is returned when the request has invalid content such as an invalid `ehr_id` format.
     
     + Body
     
-+ Response 401
-
-    `401 Unauthorized` is returned when request is not authorised.
-
-    + Body
-
 + Response 404
 
-    `404 Not Found` is returned when EHR with ehrId does not exist or has been deleted or 
+    `404 Not Found` is returned when EHR with ehr_id does not exist or has been deleted or
     a version of an `EHR_STATUS` resource does not exist at the specified `versionSelector`.
 
     + Body
@@ -261,21 +243,21 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
     + Headers
 
-            Content-Location: /ehrs/{ehrId}/ehr_status/{versionUid}
-            ETag: {versionUid}
+            Content-Location: /ehrs/{ehr_id}/ehr_status/{version_uid}
+            ETag: {version_uid}
 
     + Body
 
 
-## VERSIONED_EHR_STATUS [/ehrs/{ehrId}/versioned_ehr_status]
+## VERSIONED_EHR_STATUS [/ehrs/{ehr_id}/versioned_ehr_status]
 Management of `VERSIONED_EHR_STATUS` resources.
 
-### Get VERSIONED_EHR_STATUS [GET /ehrs/{ehrId}/versioned_ehr_status]
-Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehrId` including its `revision_history`.
+### Get VERSIONED_EHR_STATUS [GET /ehrs/{ehr_id}/versioned_ehr_status]
+Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehr_id` including its `revision_history`.
 
 + Parameters
 
-    + ehrId (string) - EHR identifier
+    + ehr_id (string) - EHR identifier
 
 + Response 200 (application/json)
     `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` is successfully retrieved, which is provided in the body.
@@ -285,7 +267,7 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehrId` incl
             {
                "_type": "VERSIONED_EHR_STATUS",
                "uid": "_a_valid_uid_",                     /* UUID or OID, UUID preferred */
-               "owner_id": "{ehrId}",
+               "owner_id": "{ehr_id}",
                "time_created": "DV_DATE_TIME",             /* ISO8601 YYYYMMDDThhmmss,SSS(Z|[+-]hhmm) e.g. 20170801T010646,000+0000 or 20170801T010646,000Z */
                "revision_history": {
                  "items": [
@@ -320,32 +302,26 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehrId` incl
                   
 
 + Response 400
-    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` value.
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` value.
     
     + Body
     
-+ Response 401
-
-    `401 Unauthorized` is returned when request is not authorised.
-
-    + Body
-
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
 
     + Body
 
 
-### Get EHR_STATUS version [GET /ehrs/{ehrId}/versioned_ehr_status/version{?versionSelector}]
+### Get EHR_STATUS version [GET /ehrs/{ehr_id}/versioned_ehr_status/version{?versionSelector}]
 
-Retrieve the `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and selected by `versionSelector`. 
+Retrieve the `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and selected by `versionSelector`.
 When the `versionSelector` parameter is provided, the `VERSION` that existed at the specified version time is returned, 
 otherwise the latest trunk version is returned. 
 
 + Parameters
 
-    + ehrId (string) - EHR identifier
+    + ehr_id (string) - EHR identifier
     + versionSelector (string, optional) - version time specifier
 
 + Response 200 (application/json)
@@ -353,7 +329,7 @@ otherwise the latest trunk version is returned.
 
     + Headers
 
-            Content-Location: /ehrs/{ehrId}/versioned_ehr_status/version/{versionUid}
+            Content-Location: /ehrs/{ehr_id}/versioned_ehr_status/version/{version_uid}
 
     + Body
 
@@ -417,31 +393,25 @@ otherwise the latest trunk version is returned.
 
 + Response 400
 
-    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` or `versionSelector` value.
-
-    + Body
-
-+ Response 401
-
-    `401 Unauthorized` is returned when request is not authorised.
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` or `versionSelector` value.
 
     + Body
 
 + Response 404
 
-    `404 Not Found` is returned when `EHR` with `ehrId` does not exist, deleted 
+    `404 Not Found` is returned when `EHR` with `ehr_id` does not exist, deleted
     or when `EHR_STATUS` does not exist at the specified `versionSelector`.
 
     + Body
 
 
-### Get EHR_STATUS version by uid [GET /ehrs/{ehrId}/versioned_ehr_status/version/{versionUid}]
-Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and `versionUid`.  
+### Get EHR_STATUS version by uid [GET /ehrs/{ehr_id}/versioned_ehr_status/version/{version_uid}]
+Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
 
 + Parameters
 
-    + ehrId (string) - EHR identifier
-    + versionUid (string) - version uid
+    + ehr_id (string) - EHR identifier
+    + version_uid (string) - version uid
 
 + Response 200 (application/json)
     `200 OK` is return when the requested `VERSION` is successfully retrieved.
@@ -507,18 +477,12 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehrId` and 
             }
 
 + Response 400
-    `400 Bad Request` is returned when the request is invalid such as an invalid `ehrId` or `versionUid` format.
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` or `version_uid` format.
     
     + Body
     
-+ Response 401
-
-    `401 Unauthorized` is returned when request is not authorised.
-
-    + Body
-
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehrId` does not exist or `EHR_STATUS` with `versionUid` does not exist.
+    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist or `EHR_STATUS` with `version_uid` does not exist.
 
     + Body
