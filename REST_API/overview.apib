@@ -1,55 +1,173 @@
-# OpenEHR EHR REST API (v0.1 proposal)
+# OpenEHR REST API
 
-**The following is a proposal for an OpenEHR EHR REST API. It is not complete and might still change completely
-before the final release.**
+`Release: `**`v0.1`**
+`Status: `**`DEVELOPMENT`**
 
-The following specifications are not intended to describe an existing API but rather an abstract blueprint 
-to which each openEHR implementation should adhere to.
+## Preface
 
-The openEHR EHR REST API enables interaction with an openEHR service in a RESTful manner.
- 
-## Considerations
+### Purpose
 
-### About `versionSelector`
+This specification describes service endpoints, resources, functions and operations 
+as well as details of requests and responses that interacts with an openEHR API in a RESTful manner.
 
-In many places parameter `versionSelector` is used to select a specific version (or associated data object)
-of a VERSIONED_OBJECT and can have the following values:
-- fixed string: `LATEST_TRUNK_VERSION`
-- a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)
-- a `versionUid` (VERSION unique identifier)
-- a `versionedObjectUid` (VERSIONED_OBJECT unique identifier)
+This is not a specification a REST API for openEHR Foundation services. 
+It is rather an abstract blueprint to which each REST API of an openEHR implementation should adhere to.
 
-When the `versionSelector` parameter is not provided, the latest trunk version is returned,
-which is the same as specifying `versionSelector=LATEST_TRUNK_VERSION`.
+### Related Documents
+Prerequisite documents for reading this document include:
+- The [openEHR Architecture Overview](http://www.openehr.org/releases/BASE/latest/docs/architecture_overview/architecture_overview.html)
+
+Related documents include:
+- The [openEHR RM Class Index](http://www.openehr.org/releases/RM/latest/docs/index#_class_index)
+- The [RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/)
+
+### Status
+
+This specification is in the DEVELOPMENT state. It might not be complete and can still be subject to changes before the final release.
+Users are encouraged to comment on and/or advise on these paragraphs as well as the main content. 
+
+Feedback should be provided the [Specification PR tracker](https://openehr.atlassian.net/browse/SPECPR) or on [specifications-ITS](https://github.com/openEHR/specifications-ITS/issues) issue tracker.
+
+### Trademarks
+
+- 'openEHR' is a trademark of the openEHR Foundation
+
 
 ## Glossary
  
-Throughout these specifications a set of short terms is being used as described below:
+Throughout this specification a set of short terms is being used as described below:
 
 | Term | Description |
 |------|-------------|
-|`ehrId`| The string value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
-|`uid`| The string value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
-|`versionUid`| The string value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
-|`versionSelector`| The string value of a VERSION unique identifier, a specific timestamp or the string `LATEST_TRUNK_VERSION` |
+|`ehr_id`| The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
+|`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
+|`version_uid`| The  value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
+|`version_selector`| A placeholder for various identifiers or search/filtering condition to select a VERSION or its data [see Considerations chapter](#header-considerations) |
+|`timestamp`| A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
+
+
+## Considerations
+
+### Authentication and authorization
+::: note 
+tbd  
+:::
+
+### The `OPTIONS` method 
+::: note 
+tbd  
+:::
+
+### About the `version_selector` placeholder
+
+In some requests described by this specification a placeholder `version_selector` is used to indicate that 
+the action should be performed against (or for) a specific VERSION (or associated data object) of a VERSIONED_OBJECT. 
+The purpose of this placeholder is to keep the specification readable while providing search and/or filtering functionality covered by 
+attributes and functions described in [VERSION_OBJECT class](http://www.openehr.org/releases/RM/latest/docs/common/common.html#_versioned_object_class).
+
+This placeholder can take one the following values:
+- a `versioned_object_uid` value - VERSIONED_OBJECT unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515), in which case the latest version is selected
+- a `version_uid` value - VERSION unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1)
+- fixed string `latest_trunk_version` or `latest_version`, assuming that a `versioned_object_uid` value is already present in the path
+- a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00), assuming that `versioned_object_uid` value is already present in the path
+- a query parameter `version_at_time={timestamp}`, assuming that a `versioned_object_uid` value is already present in the path
+- a `versioned_object_uid` value followed by `/latest_trunk_version` or `/latest_version` strings
+- a `versioned_object_uid` value followed by `/` or by `/version_at_time/` strings, followed by a specific timestamp in the ISO8601 format
+- a `versioned_object_uid` value and a query parameter `version_at_time={timestamp}`
+
+Examples:
+```http
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/latest_version
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/2015-01-20T19:30:22.765+01:00
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/version_at_time/2015-01-20T19:30:22.765+01:00
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515?version_at_time=2015-01-20T19:30:22.765+01:00
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/latest_version
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/version_at_time/2015-01-20T19:30:22.765+01:00
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions?version_at_time=2015-01-20T19:30:22.765+01:00
+``` 
+
+### The `commit-audit` headers
+::: note 
+tbd  
+:::
+
+### The `Match-if` header
+::: note 
+tbd  
+:::
+
+### The `Location` header
+::: note 
+tbd  
+:::
+
+### The `ETag` header and cache handling and HEAD header
+::: note 
+tbd  
+:::
+
+### HTTP status codes
+::: note 
+tbd  
+:::
+
 
 ## Data representation
 
+### XML Format
+
+XML content should be valid against [published RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/).
+
+A client should use the header `Content-Type: application/xml` in the requests to specify the XML payload format. 
+If the service cannot process the request payload as XML format is not supported, it should respond with http status `415 Unsupported Media Type`.
+
+The `Accept: application/xml` can be used in the request by the client in order to specify the expected XML response format. 
+If the service cannot fulfill this aspect of the request, it should respond with http status `406 Not Acceptable`.
+Proper header `Content-Type: application/xml` should be present in the response of the service. 
+
 ### JSON Format
 
-- attribute names will be lowercase snake-case names as specified in the RM spec. For example:
-    - context : {"start_time": "2016-01-01T00:00Z"}
-- metadata attributes (those that are not also RM attributes) will always be prefixed by a '_'
-- we will use a `_type` attribute to specify RM type which will be upper-case class name from the RM spec:
-    {
-        "_type": "DV_TEXT",
-        "value": "Hello world!"
-    }
-- null RM attributes will be absent when serialized as JSON
+Attribute names must be lowercase snake_case names as specified in the RM specification. For example:
+```
+{"context": {"start_time": "2016-01-01T00:00Z"}}
+```
+Metadata attributes (those that are not also RM attributes) will always be prefixed by a `'_'`.
+One example is the `_type` attribute, which should be used to specify the RM type whenever polymorphism is involved or the underlying definition in RM type is abstract.
+The value of this attribute should be the uppercase class name from the RM specification. For example:
+```
+{
+    "_type": "DV_TEXT",
+    "value": "Hello world!"
+}
+```
+The `Null` RM attributes will be absent when serialized as JSON.
+
+::: note 
+tbd json-schema 
+:::
+
+A client should use the header `Content-Type: application/json` in the requests to specify the JSON payload format. 
+If the service cannot process the request payload as JSON format is not supported, it should respond with http status `415 Unsupported Media Type`.
+
+The `Accept: application/json` can be used in the request by the client in order to specify the expected JSON response format. 
+If the service cannot fulfill this aspect of the request, it should respond with http status `406 Not Acceptable`.
+Proper header `Content-Type: application/json` should be present in the response of the service. 
 
 ### Datetime format
 
-It is recommended to always use canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00, but any other valid ISO8601 datetime is accepted.
+Query parameters or timestamp path segments should always use the canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00.
 
-Any datetime value provided by a create or update action will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
+Any date or datetime value provided by a create or update action inside the composition content 
+will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
 
+### The `Prefer: return=` header
+::: note 
+tbd POST/PUT return=representation
+:::
+
+::: note 
+tbd resolving OBJ_REF
+:::
