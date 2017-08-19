@@ -7,7 +7,7 @@ HOST: http://www.openehr.org/api/v1
 
 ## CONTRIBUTION [/ehrs/{ehr_id}/contributions]
 
-### Create a new contribution [POST /ehrs/{ehr_id}/contributions]
+### Create contribution [POST /ehrs/{ehr_id}/contributions]
 
 + Parameters 
 
@@ -53,7 +53,7 @@ HOST: http://www.openehr.org/api/v1
 
 + Response 201 
 
-    New contribution was created. Content body is only returned when `Prefer` header has `return=representation` otherwise only headers are returned. 
+    New Contribution was created. Content body is only returned when `Prefer` header has `return=representation` otherwise only headers are returned. 
 
     + Headers
 
@@ -90,12 +90,12 @@ HOST: http://www.openehr.org/api/v1
 
     + Body 
 
-### Get a contribution by uid [GET /ehrs/{ehr_id}/contributions/{object_id}]
+### Get contribution by id [GET /ehrs/{ehr_id}/contributions/{object_id}]
 
 + Parameters
 
     + ehr_id (string) - EHR id
-    + object_id (string) - CONTRIBUTION's uid
+    + object_id (string) - CONTRIBUTION uid
 
 + Response 200 (application/json) 
 
@@ -152,7 +152,7 @@ HOST: http://www.openehr.org/api/v1
 
 + Response 404 
 
-    No EHR with the supplied id or no contribution with the supplied id was found
+    No EHR with the supplied id or no Contribution with the supplied id was found
 
     + Body 
 

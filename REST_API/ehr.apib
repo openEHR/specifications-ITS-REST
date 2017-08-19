@@ -9,7 +9,7 @@ HOST: http://www.openehr.org/api/v1
 
 Management of EHR resources.
 
-### Create a new EHR [POST /ehrs]
+### Create EHR [POST /ehrs]
 
 Create a new `EHR` with an auto-generated identifier.
 Request body may contain `ehr_status` attribute. When provided it
@@ -62,7 +62,7 @@ All other attributes will be left empty (null).
     + Body
 
 
-### Create a new EHR with custom (user supplied) ehr_id [PUT /ehrs/{ehr_id}]
+### Create EHR with id [PUT /ehrs/{ehr_id}]
 
 Create new `EHR` with the specified EHR identifier. 
 Request body may contain `ehr_status` attribute. When provided it
@@ -125,7 +125,7 @@ All other attributes will be left empty (null).
     + Body
 
 
-### Get EHR [GET /ehrs/{ehr_id}]
+### Get EHR by id [GET /ehrs/{ehr_id}]
 Retrieve the EHR with the specified `ehr_id`.
 
 + Parameters

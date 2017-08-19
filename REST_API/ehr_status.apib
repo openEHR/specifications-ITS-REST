@@ -8,15 +8,15 @@ HOST: http://www.openehr.org/api/v1
 ## EHR_STATUS [/ehrs/{ehr_id}/ehr_status]
 Management of EHR_STATUS resources.
 
-### Get EHR_STATUS [GET /ehrs/{ehr_id}/ehr_status{?versionSelector}]
+### Get EHR_STATUS version by time [GET /ehrs/{ehr_id}/ehr_status{?version_selector}]
 
 Retrieve the `EHR_STATUS` associated with the EHR specified by `ehr_id`.
-When the `versionSelector` parameter is provided, the `EHR_STATUS` version that existed at the specified version time is returned, 
+When the `version_selector` parameter is provided, the `EHR_STATUS` version that existed at the specified version time is returned, 
 otherwise the latest trunk version is returned.
 
 + Parameters
     + ehr_id (string) - EHR identifier
-    + versionSelector (string, optional) - version time specifier
+    + version_selector (string, optional) - version time specifier
 
 + Response 200 (application/json)
     `200 OK` is return with the EHR_STATUS resource in the body when it is successfully retrieved. 
@@ -67,11 +67,11 @@ otherwise the latest trunk version is returned.
 + Response 404
 
     `404 Not Found` returned when `EHR` with `ehr_id` does not exist or has been deleted or
-    a version of an `EHR_STATUS` resource does not exist at the specified `versionSelector`.  
+    a version of an `EHR_STATUS` resource does not exist at the specified `version_selector`.  
 
     + Body
 
-### Get EHR_STATUS by version_uid [GET /ehrs/{ehr_id}/ehr_status/{version_uid}]
+### Get EHR_STATUS version by id [GET /ehrs/{ehr_id}/ehr_status/{version_uid}]
 
 Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
 
@@ -232,7 +232,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 + Response 404
 
     `404 Not Found` is returned when EHR with ehr_id does not exist or has been deleted or
-    a version of an `EHR_STATUS` resource does not exist at the specified `versionSelector`.
+    a version of an `EHR_STATUS` resource does not exist at the specified `version_selector`.
 
     + Body
 
@@ -252,7 +252,8 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 ## VERSIONED_EHR_STATUS [/ehrs/{ehr_id}/versioned_ehr_status]
 Management of `VERSIONED_EHR_STATUS` resources.
 
-### Get VERSIONED_EHR_STATUS [GET /ehrs/{ehr_id}/versioned_ehr_status]
+### Get versioned EHR_STATUS [GET /ehrs/{ehr_id}/versioned_ehr_status]
+
 Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehr_id` including its `revision_history`.
 
 + Parameters
@@ -313,16 +314,16 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehr_id` inc
     + Body
 
 
-### Get EHR_STATUS version [GET /ehrs/{ehr_id}/versioned_ehr_status/version{?versionSelector}]
+### Get versioned EHR_STATUS version by time [GET /ehrs/{ehr_id}/versioned_ehr_status/version{?version_selector}]
 
-Retrieve the `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and selected by `versionSelector`.
-When the `versionSelector` parameter is provided, the `VERSION` that existed at the specified version time is returned, 
+Retrieve the `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and selected by `version_selector`.
+When the `version_selector` parameter is provided, the `VERSION` that existed at the specified version time is returned, 
 otherwise the latest trunk version is returned. 
 
 + Parameters
 
     + ehr_id (string) - EHR identifier
-    + versionSelector (string, optional) - version time specifier
+    + version_selector (string, optional) - version time specifier
 
 + Response 200 (application/json)
     `200 OK` is return when the requested `VERSION` is successfully retrieved, which is provided in the body.
@@ -393,19 +394,19 @@ otherwise the latest trunk version is returned.
 
 + Response 400
 
-    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` or `versionSelector` value.
+    `400 Bad Request` is returned when the request is invalid such as an invalid `ehr_id` or `version_selector` value.
 
     + Body
 
 + Response 404
 
     `404 Not Found` is returned when `EHR` with `ehr_id` does not exist, deleted
-    or when `EHR_STATUS` does not exist at the specified `versionSelector`.
+    or when `EHR_STATUS` does not exist at the specified `version_selector`.
 
     + Body
 
 
-### Get EHR_STATUS version by uid [GET /ehrs/{ehr_id}/versioned_ehr_status/version/{version_uid}]
+### Get versioned EHR_STATUS version by id [GET /ehrs/{ehr_id}/versioned_ehr_status/version/{version_uid}]
 Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
 
 + Parameters
