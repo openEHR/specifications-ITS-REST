@@ -1,4 +1,3 @@
-<br><br><br>
 ## Preface
 
 
@@ -30,11 +29,17 @@ Feedback should be provided the [Specification PR tracker](https://openehr.atlas
 
 
 <h3>Trademarks</h3>
-- 'openEHR' is a trademark of the openEHR Foundation
+- 'openEHR' is a trademark of the [openEHR Foundation](https://www.openEHR.org)
 
 
-## Glossary
- 
+## Glossary and conventions
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" 
+in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+
+Types defined by openEHR specification are always capitalized (e.g. EHR, COMPOSITION, VERSIONED_OBJECT, etc.) when used in this specification. 
+For a list of all available types or a particular type definition please refer to the [RM index](http://www.openehr.org/releases/RM/Release-1.0.3/docs/index#_class_index). 
+
 Throughout this specification a set of short terms is being used as described below:
 
 | Term | Description |
@@ -42,11 +47,17 @@ Throughout this specification a set of short terms is being used as described be
 |`ehr_id`| The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
 |`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
 |`version_uid`| The  value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
-|`version_selector`| A placeholder for various identifiers or search/filtering condition to select a VERSION or its data [see Considerations chapter](#header-considerations) |
+|`version_selector`| A placeholder for various identifiers or search/filtering condition to select a VERSION or its VERSION.data (see [Design considerations](#header-design-considerations) section) |
 |`timestamp`| A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
 
+HTTP Methods used in this specification are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4).
+HTTP Status codes are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) 
+and in the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
+See [Design considerations](#header-design-considerations) section for more details on how (in general) 
+HTTP methods and status codes MUST be used by an openEHR REST API.  
 
-## Considerations
+
+## Design considerations
 
 
 <h3>Authentication and authorization</h3>
@@ -56,9 +67,10 @@ tbd
 
 
 <h3>The `OPTIONS` method</h3> 
-::: note 
-tbd  
-:::
+This method allows a client to determine the options and/or requirements associated with a
+resource, or the capabilities of the service, without implying a resource action.
+Services SHOULD respond to this method with at least appropriate HTTP codes and headers and potentially with a payload.
+A usecase for this method is related to exposing service capabilities for an conformance manifest.  
 
 
 <h3>About the `version_selector` placeholder</h3>
@@ -99,10 +111,13 @@ tbd
 :::
 
 
-<h3>The `Match-if` header</h3>
-::: note 
-tbd  
-:::
+<h3>The `If-Match` header</h3>
+The use case of this is described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
+This HTTP header MUST be used by the clients to prevent accidental overwrites when multiple user
+agents might be acting in parallel on the same resource. It should be used together with all 
+request methods that are changing states or performing updates on a VERSIONED_OBJECT.
+In case a service receives this header and the condition evaluates to `false` it should respond with
+HTTP status code`412 Precondition Failed`.
 
 
 <h3>The `Location` header</h3>
@@ -112,15 +127,43 @@ tbd
 
 
 <h3>The `ETag` header and cache handling and HEAD header</h3>
-::: note 
-tbd  
-:::
+According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
+
+> The "ETag" header field in a response provides the current entity-tag
+    for the selected representation, as determined at the conclusion of
+    handling the request.  An entity-tag is an opaque validator for
+    differentiating between multiple representations of the same
+    resource, regardless of whether those multiple representations are
+    due to resource state changes over time, content negotiation
+    resulting in multiple representations being valid at the same time,
+    or both.
+
+This header SHOULD be present in all responses that contains full VERSION, VERSIONED_OBJECT or Models
+that have unique identifier for each state changed in time. The value of this header MAY refer to the
+unique identifier of the representation of that resource.
 
 
 <h3>HTTP status codes</h3>
-::: note 
-tbd  
-:::
+To indicate the status of the request or the executed operation, one of the following 
+subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) MUST be used: 
+
+| Code | Reason-Phrase          | Meaning, usecase and details                                                                                    |
+|------|------------------------|--------------------------------------------------------------------------------------------------------|       
+|  200 | OK                     | The request succeeded, payload sent in a 200 response depends on the request method
+|  201 | Created                | The request has been fulfilled and has resulted in one or more new resources being created
+|  400 | Bad request            | The service cannot or will not process the request due to something that is perceived to be a client error
+|  401 | Unauthorized           | If the service requires authorization, this indicates that the request has not been applied because it lacks valid authentication credentials for the target resource 
+|  403 | Forbidden              | The service understood the request but refuses to authorize it
+|  404 | Not found              | The origin service did not find the target resource or is not willing to disclose that one exists 
+|  405 | Method Not Allowed     | The method received in the request-line is known by the origin service but not supported by the target resource 
+|  406 | Not Acceptable         | The target resource does not have a current representation that would be acceptable to the user 
+|  412 | Precondition Failed    | One or more conditions given in the request header fields evaluated to false when tested on the server
+|  415 | Unsupported Media Type | The service is refusing the request because the payload is in a format not supported by this method on the target resource
+|  500 | Internal Server Error  | The service encountered an unexpected condition that prevented it from fulfilling the request
+|  501 | Not Implemented        | The service does not support the functionality required to fulfill the request
+
+Meaning of these codes MAY be further detailed (nuanced) in this specification by particular responses
+If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.   
 
 
 ## Data representation
@@ -131,10 +174,10 @@ tbd
 XML content should be valid against [published RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/).
 
 A client should use the header `Content-Type: application/xml` in the requests to specify the XML payload format. 
-If the service cannot process the request payload as XML format is not supported, it should respond with http status `415 Unsupported Media Type`.
+If the service cannot process the request payload as XML format is not supported, it should respond with HTTP status code`415 Unsupported Media Type`.
 
 The `Accept: application/xml` can be used in the request by the client in order to specify the expected XML response format. 
-If the service cannot fulfill this aspect of the request, it should respond with http status `406 Not Acceptable`.
+If the service cannot fulfill this aspect of the request, it should respond with HTTP status code `406 Not Acceptable`.
 Proper header `Content-Type: application/xml` should be present in the response of the service. 
 
 
@@ -160,10 +203,10 @@ tbd json-schema
 :::
 
 A client should use the header `Content-Type: application/json` in the requests to specify the JSON payload format. 
-If the service cannot process the request payload as JSON format is not supported, it should respond with http status `415 Unsupported Media Type`.
+If the service cannot process the request payload as JSON format is not supported, it should respond with HTTP status code `415 Unsupported Media Type`.
 
 The `Accept: application/json` can be used in the request by the client in order to specify the expected JSON response format. 
-If the service cannot fulfill this aspect of the request, it should respond with http status `406 Not Acceptable`.
+If the service cannot fulfill this aspect of the request, it should respond with HTTP status code `406 Not Acceptable`.
 Proper header `Content-Type: application/json` should be present in the response of the service. 
 
 
