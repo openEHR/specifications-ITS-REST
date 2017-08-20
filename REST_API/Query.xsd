@@ -9,6 +9,7 @@
 	<xs:element name="result_set" type="RESULT_SET_DIPS"/>
 	<xs:element name="rows" type="ROWS"/>
 	<xs:element name="correlation_id" type="xs:string"/>
+	<xs:element name="query_request" type="QUERY_REQUEST"/>
 	<xs:complexType name="TAG">
 		<xs:sequence>
 			<xs:element name="row" type="xs:int"/>
@@ -55,6 +56,35 @@
 			<xs:element name="path" type="xs:string" form="qualified" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="QUERY_REQUEST">
+		<xs:sequence>
+			<xs:element name="aql" type="xs:string"/>
+			<xs:element name="compositionUids" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ehrIds" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="tagScope" type="TAG_SCOPE" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="partionedBy" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tag" type="xs:string"/>
+						<xs:element name="limit" type="xs:int" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="correlationId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TAG_SCOPE">
+		<xs:sequence>
+			<xs:element name="tags" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="values" type="xs:string" maxOccurs="unbounded"/>
+						<xs:element name="tag" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="QUERY_RESPONSE">
 		<xs:sequence>
 			<xs:element name="meta" type="RESPONSE_METADATA" minOccurs="0" maxOccurs="1"/>
@@ -67,6 +97,7 @@
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
+		<xs:attribute name="tag"/>
 	</xs:complexType>
 	<xs:complexType name="RESPONSE_METADATA">
 		<xs:annotation>
