@@ -1,6 +1,8 @@
+<br><br><br>
 ## Preface
 
-### Purpose
+
+<h3>Purpose</h3>
 
 This specification describes service endpoints, resources, functions and operations 
 as well as details of requests and responses that interacts with an openEHR API in a RESTful manner.
@@ -8,7 +10,8 @@ as well as details of requests and responses that interacts with an openEHR API 
 This is not a specification of a REST API for openEHR Foundation services. 
 It is rather an abstract blueprint to which each REST API of an openEHR implementation should adhere.
 
-### Related Documents
+
+<h3>Related Documents</h3>
 
 Prerequisite documents for reading this document include:
 - The [openEHR Architecture Overview](http://www.openehr.org/releases/BASE/latest/docs/architecture_overview/architecture_overview.html)
@@ -17,15 +20,16 @@ Related documents include:
 - The [openEHR RM Class Index](http://www.openehr.org/releases/RM/latest/docs/index#_class_index)
 - The [RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/)
 
-### Status
+
+<h3>Status</h3>
 
 This specification is in the DEVELOPMENT state. It might not be complete and can still be subject to changes before the final release.
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content. 
 
 Feedback should be provided the [Specification PR tracker](https://openehr.atlassian.net/browse/SPECPR) or on [specifications-ITS](https://github.com/openEHR/specifications-ITS/issues) issue tracker.
 
-### Trademarks
 
+<h3>Trademarks</h3>
 - 'openEHR' is a trademark of the openEHR Foundation
 
 
@@ -44,17 +48,20 @@ Throughout this specification a set of short terms is being used as described be
 
 ## Considerations
 
-### Authentication and authorization
+
+<h3>Authentication and authorization</h3>
 ::: note 
 tbd  
 :::
 
-### The `OPTIONS` method 
+
+<h3>The `OPTIONS` method</h3> 
 ::: note 
 tbd  
 :::
 
-### About the `version_selector` placeholder
+
+<h3>About the `version_selector` placeholder</h3>
 
 In some requests described by this specification a placeholder `version_selector` is used to indicate that 
 the action should be performed against (or for) a specific VERSION (or associated data object) of a VERSIONED_OBJECT. 
@@ -85,27 +92,32 @@ GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/vers
 GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions?version_at_time=2015-01-20T19:30:22.765+01:00
 ``` 
 
-### The `commit-audit` headers
+
+<h3>The `commit-audit` headers</h3>
 ::: note 
 tbd  
 :::
 
-### The `Match-if` header
+
+<h3>The `Match-if` header</h3>
 ::: note 
 tbd  
 :::
 
-### The `Location` header
+
+<h3>The `Location` header</h3>
 ::: note 
 tbd  
 :::
 
-### The `ETag` header and cache handling and HEAD header
+
+<h3>The `ETag` header and cache handling and HEAD header</h3>
 ::: note 
 tbd  
 :::
 
-### HTTP status codes
+
+<h3>HTTP status codes</h3>
 ::: note 
 tbd  
 :::
@@ -113,7 +125,8 @@ tbd
 
 ## Data representation
 
-### XML Format
+
+<h3>XML Format</h3>
 
 XML content should be valid against [published RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/).
 
@@ -124,7 +137,8 @@ The `Accept: application/xml` can be used in the request by the client in order 
 If the service cannot fulfill this aspect of the request, it should respond with http status `406 Not Acceptable`.
 Proper header `Content-Type: application/xml` should be present in the response of the service. 
 
-### JSON Format
+
+<h3>JSON Format</h3>
 
 Attribute names must be lowercase snake_case names as specified in the RM specification. For example:
 ```
@@ -152,14 +166,16 @@ The `Accept: application/json` can be used in the request by the client in order
 If the service cannot fulfill this aspect of the request, it should respond with http status `406 Not Acceptable`.
 Proper header `Content-Type: application/json` should be present in the response of the service. 
 
-### Datetime format
+
+<h3>Datetime format</h3>
 
 Query parameters or timestamp path segments should always use the canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00.
 
 Any date or datetime value provided by a create or update action inside the composition content 
 will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
 
-### The `Prefer: return=` header
+
+<h3>The `Prefer: return=` header</h3>
 ::: note 
 tbd POST/PUT return=representation
 :::
@@ -167,3 +183,6 @@ tbd POST/PUT return=representation
 ::: note 
 tbd resolving OBJ_REF
 :::
+
+
+<br><br><br><br><br>
