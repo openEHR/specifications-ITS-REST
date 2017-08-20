@@ -1,0 +1,85 @@
+# Group Query Requirements
+
+## Purpose 
+This specification describes the service endpoints and datamodels used when quering an openEHR system. 
+
+AQL (Archetype Query Language) is the primary query language. For some endpoints there might be specified filter/query parameter which is used to invoke query/filter operations in the openEHR system. Then the `response` define below should be used. 
+
+## Functional requirements
+
+The following is an outline of the functional requirements which this specification is made to solve: 
+
+- Query functions
+- Single EHR queries
+- Population queries 
+- Batch queries 
+- Stored queries
+
+### Query functions 
+Query functions are operators/functions which tunes and modifies the execeution of a specific query. 
+
+The following types of query functions are identified:
+
+- Parameters 
+- Scope 
+
+*Parameters*
+
+An AQL might have parameters defined like `:parameter_name` . These parameters will be substituded by the server into the actual query that will be executed. 
+
+*Scope*
+
+Scope is a way to define the set of compositions to be considered when running queries. Examples of this might be: 
+
+- Episode(s) of care 
+- Periode(s) of care 
+- Workflow 
+
+The scope is attributes to be changed outside the AQL. 
+
+:::note 
+Parameters and Scope might be used in combination. One example might be: 
+
+I want to query all Temperature entries created after last saturday, and which where registered to a specific Episode of care 
+:::
+
+
+### Single EHR queries
+
+The baseline of a query API is to be able to execute queries within a specific EHR. Put another way: Given an `ehr_id` clients MUST be able to query content from Compositions within the specified EHR. 
+
+
+### Population queries
+
+A common use-case is to be able to query data from several EHRs. The query endpoint must have functions to be able to execute queries on several EHRs in one request. 
+
+Use-case where this is used: 
+
+- Ward lists 
+- Explore correlations between patients in an pandemic situation
+
+
+### Batch queries
+
+Most application will present different data points in the same screen. The datapoints will be collected from different archetypes committed in multiple compositions. To supplement this kind of use-cases the endpoint must provide batch query operations. 
+
+To support batch queries some kind of correlation of the queries is needed.
+
+### Stored queries 
+
+Stored queries are queries which are present on the server pre-request time. The queries will expose mandatory and optional parameters for the clients. 
+
+## Non- functional requirements
+
+Some of the non-functional requirements will be: 
+
+- Low payload 
+- Ease of use 
+- Security 
+
+### Security 
+
+- Audit logging 
+-- Be able to tell who executed which queries
+- Authorization 
+-- AQL is open ended - how to deal with authorization on data structures when exposing an open AQL endpoint? 
