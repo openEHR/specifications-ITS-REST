@@ -1,0 +1,118 @@
+/* Basic page-wide colors */
+@background-color: #060606;
+@text-color: #888;
+
+@link-color: #2a9fd6;
+@right-link-color: @link-color;
+
+@heading-text-color: white;
+
+/* Nav and right panel */
+@nav-hover-border-color: @text-color;
+@nav-background-color: #060606;
+@nav-border-color: #060606;
+@right-background-color: #1a1a1a;
+@right-text-color: @text-color;
+
+/* Tabs */
+@tabs-background-color: #eee;
+@tabs-active-background-color: darken(@tabs-background-color, 15%);
+@tabs-border-color: #ddd;
+@right-tabs-background-color: lighten(@background-color, 4%);
+@right-tabs-active-background-color: lighten(@right-tabs-background-color, 10%);
+@right-tabs-border-color: @background-color;
+
+/* Notes and warnings */
+@note-text-color: @text-color;
+@note-title-text-color: #77b300;
+@note-background-color: mix(@note-title-text-color, #111, 8%);
+@note-border-color: @note-title-text-color;
+
+@warning-text-color: @text-color;
+@warning-title-text-color: darken(#c00, 10%);
+@warning-background-color: mix(@warning-title-text-color, #111, 7%);
+@warning-border-color: @warning-title-text-color;
+
+/* HTTP method-specific colors */
+@group-background-color: #222;
+@group-title-background-color: #3c3c3c;
+@group-border-color: lighten(@group-background-color, 3%);
+@group-text-color: contrast(@group-background-color);
+
+/* HTTP GET */
+@get-background-color: #9933cc;
+@get-color: darken(@get-background-color, 20%);
+@get-text-color: contrast(@get-background-color);
+@get-badge-text-color: white;
+@get-border-color: darken(@get-background-color, 10%);
+
+/* HTTP HEAD */
+@head-color: @get-color;
+@head-background-color: @get-background-color;
+@head-text-color: @get-text-color;
+@head-badge-text-color: @get-badge-text-color;
+@head-border-color: @get-border-color;
+
+/* HTTP OPTIONS */
+@options-color: @get-color;
+@options-background-color: @get-background-color;
+@options-text-color: @get-text-color;
+@options-badge-text-color: @get-badge-text-color;
+@options-border-color: @get-border-color;
+
+/* HTTP PUT */
+@put-background-color: #ff8800;
+@put-color: darken(@put-background-color, 20%);
+@put-text-color: contrast(@put-background-color);
+@put-badge-text-color: white;
+@put-border-color: darken(@put-background-color, 10%);
+
+/* HTTP PATCH */
+@patch-color: @put-color;
+@patch-background-color: @put-background-color;
+@patch-text-color: @put-text-color;
+@patch-badge-text-color: @put-badge-text-color;
+@patch-border-color: @put-border-color;
+
+/* HTTP POST */
+@post-background-color: #77b300;
+@post-color: darken(@post-background-color, 20%);
+@post-text-color: contrast(@post-background-color);
+@post-badge-text-color: white;
+@post-border-color: darken(@post-background-color, 10%);
+
+/* HTTP DELETE */
+@delete-background-color: #cc0000;
+@delete-color: darken(@delete-background-color, 20%);
+@delete-text-color: contrast(@delete-background-color);
+@delete-badge-text-color: white;
+@delete-border-color: darken(@delete-background-color, 10%);
+
+/* Code colors */
+@inline-code-background-color: #444;
+@inline-code-text-color: #ddd;
+
+@code-block-background-color: #1b1b1b;
+@code-block-border-color: contrast(@code-block-background-color,
+                                   darken(@code-block-background-color, 5%),
+                                   lighten(@code-block-background-color, 5%));
+
+@right-code-block-text-color: #888;
+@right-code-block-background-color: #222;
+@right-code-block-border-color: @right-code-block-background-color;
+
+@title-code-background-color: darken(@inline-code-background-color, 10%);
+@title-code-text-color: @inline-code-text-color;
+@title-code-border-color: transparent;
+
+@quote-border-color: contrast(@code-block-background-color,
+                              darken(@code-block-background-color, 5%),
+                              lighten(@code-block-background-color, 5%));
+
+/* Highlight.js Theme Ateleir Plateau Dark */
+.hljs-comment,.hljs-quote{color:#7e7777}.hljs-attribute,.hljs-link,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#ca4949}.hljs-built_in,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#b45a3c}.hljs-bullet,.hljs-string,.hljs-symbol{color:#4b8b8b}.hljs-section,.hljs-title{color:#7272ca}.hljs-keyword,.hljs-selector-tag{color:#8464c4}.hljs-addition,.hljs-deletion{color:#1b1818;display:inline-block;width:100%}.hljs-deletion{background-color:#ca4949}.hljs-addition{background-color:#4b8b8b}.hljs{display:block;overflow-x:auto;background:#1b1818;color:#8a8585;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+
+/* Highlight.js Theme Ateleir Plateau Dark */
+.right {
+  .hljs-comment,.hljs-quote{color:#7e7777}.hljs-attribute,.hljs-link,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#ca4949}.hljs-built_in,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#b45a3c}.hljs-bullet,.hljs-string,.hljs-symbol{color:#4b8b8b}.hljs-section,.hljs-title{color:#7272ca}.hljs-keyword,.hljs-selector-tag{color:#8464c4}.hljs-addition,.hljs-deletion{color:#1b1818;display:inline-block;width:100%}.hljs-deletion{background-color:#ca4949}.hljs-addition{background-color:#4b8b8b}.hljs{display:block;overflow-x:auto;background:#1b1818;color:#8a8585;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+}

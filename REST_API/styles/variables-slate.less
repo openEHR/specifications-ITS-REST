@@ -1,0 +1,117 @@
+/* Basic page-wide colors */
+@background-color: #272b30;
+@text-color: #c8c8c8;
+
+@link-color: white;
+@right-link-color: #666;
+
+@heading-text-color: @text-color;
+
+/* Nav and right panel */
+@nav-hover-border-color: @text-color;
+@nav-background-color: #272b30;
+@nav-border-color: #272b30;
+@right-background-color: #d8d4cf;
+@right-text-color: @background-color;
+
+/* Tabs */
+@right-tabs-background-color: #adaaa6;
+@right-tabs-active-background-color: darken(@right-tabs-background-color, 10%);
+@right-tabs-border-color: @right-background-color;
+
+/* Notes and warnings */
+@note-text-color: @text-color;
+@note-title-text-color: #5bc0de;
+@note-background-color: mix(@note-title-text-color, @background-color, 8%);
+@note-border-color: @note-title-text-color;
+
+@warning-text-color: @text-color;
+@warning-title-text-color: darken(#ee5f5b, 10%);
+@warning-background-color: mix(@warning-title-text-color, @background-color, 7%);
+@warning-border-color: @warning-title-text-color;
+
+/* HTTP method-specific colors */
+@group-background-color: @background-color;
+@group-title-background-color: contrast(@background-color,
+                                        darken(@background-color, 7%),
+                                        lighten(@background-color, 7%));
+@group-border-color: #202020;
+@group-text-color: contrast(@group-background-color);
+
+/* HTTP GET */
+@get-background-color: #5bc0de;
+@get-color: darken(@get-background-color, 20%);
+@get-text-color: contrast(@get-background-color);
+@get-badge-text-color: white;
+@get-border-color: #202020;
+
+/* HTTP HEAD */
+@head-color: @get-color;
+@head-background-color: @get-background-color;
+@head-text-color: @get-text-color;
+@head-badge-text-color: @get-badge-text-color;
+@head-border-color: #202020;
+
+/* HTTP OPTIONS */
+@options-color: @get-color;
+@options-background-color: @get-background-color;
+@options-text-color: @get-text-color;
+@options-badge-text-color: @get-badge-text-color;
+@options-border-color: #202020;
+
+/* HTTP PUT */
+@put-background-color: #f89406;
+@put-color: darken(@put-background-color, 20%);
+@put-text-color: contrast(@put-background-color);
+@put-badge-text-color: white;
+@put-border-color: #202020;
+
+/* HTTP PATCH */
+@patch-color: @put-color;
+@patch-background-color: @put-background-color;
+@patch-text-color: @put-text-color;
+@patch-badge-text-color: @put-badge-text-color;
+@patch-border-color: #202020;
+
+/* HTTP POST */
+@post-background-color: #62c462;
+@post-color: darken(@post-background-color, 20%);
+@post-text-color: contrast(@post-background-color);
+@post-badge-text-color: white;
+@post-border-color: #202020;
+
+/* HTTP DELETE */
+@delete-background-color: #ee5f5b;
+@delete-color: darken(@delete-background-color, 20%);
+@delete-text-color: contrast(@delete-background-color);
+@delete-badge-text-color: white;
+@delete-border-color: #202020;
+
+/* Code colors */
+@inline-code-background-color: #373b40;
+@inline-code-text-color: #ddd;
+
+@code-block-background-color: #202529;
+@code-block-border-color: contrast(@code-block-background-color,
+                                   darken(@code-block-background-color, 15%),
+                                   lighten(@code-block-background-color, 15%));
+
+@right-code-block-text-color: #333;
+@right-code-block-background-color: #f7f6f5;
+@right-code-block-border-color: @right-code-block-background-color;
+
+@title-code-background-color: rgba(255, 255, 255, 0.7);
+@title-code-text-color: black;
+@title-code-border-color: transparent;
+
+@quote-border-color: contrast(@code-block-background-color,
+                              darken(@code-block-background-color, 5%),
+                              lighten(@code-block-background-color, 5%));
+
+/* Highlight.js Theme Atelier Heath Dark */
+.hljs-comment,.hljs-quote{color:#9e8f9e}.hljs-attribute,.hljs-link,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#ca402b}.hljs-built_in,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#a65926}.hljs-bullet,.hljs-string,.hljs-symbol{color:#918b3b}.hljs-section,.hljs-title{color:#516aec}.hljs-keyword,.hljs-selector-tag{color:#7b59c0}.hljs{display:block;overflow-x:auto;background:#1b181b;color:#ab9bab;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+
+/* Highlight.js Theme Atelier Heath Light */
+.right {
+  .hljs-comment,.hljs-quote{color:#776977}.hljs-attribute,.hljs-link,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#ca402b}.hljs-built_in,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#a65926}.hljs-bullet,.hljs-string,.hljs-symbol{color:#918b3b}.hljs-section,.hljs-title{color:#516aec}.hljs-keyword,.hljs-selector-tag{color:#7b59c0}.hljs{display:block;overflow-x:auto;background:#f7f3f7;color:#695d69;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+}
