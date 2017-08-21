@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- OpenEHR REST API -->
+<!-- Definition of the openEHR RESULT_SET class returned from a Query -->
+<!-- NB! Current version is a hybrid which combines Marand EhrScape and DIPS Arena EHR Server. It is committed as a starting point to work out the final class definition -->
+<!-- Authored by bna@dips.no 2017.08.18  -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.openehr.org/v1" targetNamespace="http://schemas.openehr.org/v1" elementFormDefault="qualified" version="v1.0.2" id="Query.xsd">
+	<xs:element name="columns" type="COLUMNS"/>
+	<xs:element name="name" type="xs:string"/>
+	<xs:element name="result_set" type="RESULT_SET_DIPS"/>
+	<xs:element name="rows" type="ROWS"/>
+	<xs:element name="correlation_id" type="xs:string"/>
+	<xs:element name="query_request" type="QUERY_REQUEST"/>
+	<xs:complexType name="TAG">
+		<xs:sequence>
+			<xs:element name="row" type="xs:int"/>
+			<xs:element name="col" type="xs:int"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RESULT_SET_DIPS">
+		<xs:annotation>
+			<xs:documentation>This is the complete response in DIPS EHR Server</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="name"/>
+			<xs:element ref="correlation_id"/>
+			<xs:element ref="total_results"/>
+			<xs:element ref="columns"/>
+			<xs:element ref="rows"/>
+			<xs:element name="tags" type="TAGS" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="total_results" type="xs:int"/>
+	<xs:complexType name="TAGS">
+		<xs:sequence>
+			<xs:element name="tag" type="TAG"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ROWS">
+		<xs:sequence>
+			<xs:element name="row" type="ROW" form="qualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ROW">
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="subject_id" type="xs:string" use="optional"/>
+		<xs:attribute name="subject_namespace" type="xs:string" use="optional"/>
+		<xs:attribute name="ehr_id" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="COLUMNS">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" form="qualified" minOccurs="0"/>
+			<xs:element name="path" type="xs:string" form="qualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QUERY_REQUEST">
+		<xs:sequence>
+			<xs:element name="aql" type="xs:string"/>
+			<xs:element name="compositionUids" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ehrIds" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="tagScope" type="TAG_SCOPE" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="partionedBy" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tag" type="xs:string"/>
+						<xs:element name="limit" type="xs:int" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="correlationId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TAG_SCOPE">
+		<xs:sequence>
+			<xs:element name="tags" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="values" type="xs:string" maxOccurs="unbounded"/>
+						<xs:element name="tag" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QUERY_RESPONSE">
+		<xs:sequence>
+			<xs:element name="meta" type="RESPONSE_METADATA" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="aql" type="xs:string"/>
+			<xs:element name="executed_aql" type="xs:string"/>
+			<xs:element name="result_set" type="RESULT_SET_MARAND"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RESULT_SET_MARAND">
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="tag"/>
+	</xs:complexType>
+	<xs:complexType name="RESPONSE_METADATA">
+		<xs:annotation>
+			<xs:documentation>This is the complete response in Marand EhrScape</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="href" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
