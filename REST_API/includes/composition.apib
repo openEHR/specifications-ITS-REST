@@ -1,5 +1,7 @@
 ## COMPOSITION [/ehrs/{ehr_id}/compositions]
 
+This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_composition_class) described in the openEHR specification  
+
 ### Create composition [POST /ehrs/{ehr_id}/compositions]
 
 + Parameters
@@ -267,7 +269,11 @@
 
     + Body
 
+
+
 ## VERSIONED_COMPOSITION [/ehrs/{ehr_id}/versioned_compositions]
+
+This resource is related to [VERSIONED_COMPOSITION](http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_versioned_composition_class) described in the openEHR specification  
 
 ### Get versioned composition [GET /ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}]
 
@@ -338,7 +344,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Body
 
-### Get versioned composition version by time [GET /ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions{?version_at_time}]
+### Get versioned composition version at time [GET /ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions{?version_at_time}]
 
 + Parameters
 
