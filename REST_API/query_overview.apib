@@ -96,6 +96,42 @@ Write something about this topic
 
 # Group Data structures 
 
+## Request structure 
+Below is a mostly self-documented (?) AQL request. It is the maximal structure from Marand and DIPS. 
+
+```JSON 
+{
+  "aql": "select o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude as temperature, o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/units as unit from EHR[ehr_id/value='554f896d-faca-4513-bddf-664541146308d'] CONTAINS Observation o[openEHR-EHR-OBSERVATION.body_temperature-zn.v1] WHERE o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude > :temperature and o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0.63 and name/value='Symptoms']/value/defining_code/code_string=:chills order by temperature desc fetch 3",
+  "aqlParameters": {
+    "temperature": 38.5,
+    "chills": "at0.64"
+  },
+  "compositionUids": [ //optional list of composition uids to filter the query on 
+    "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"
+  ],
+  "ehrIds": [ //optional list of ehrIds to filter the query on 
+    "string81433066-c417-4813-9b29-79783e7bed23"
+  ],
+  "tagScope": { //optional (one) scope to filter the query on - this example will only query compositions which belongs to the two defined episodeOfCares 
+    "tags": [{
+      "values": [
+        "12345", "54321"
+      ],
+      "tag": "episodeOfCareId"
+    }]
+  },
+  "partitionBy": { // for i.e. wardlist queries you will only have one (limit=1) result for each tag (episodeOfCareId)
+    "tag": "episodeOfCareId",
+    "limit": 1
+  },
+  /* 
+  the server support batch queries - correlation id gives the client a possibility to correlate the requests with the result
+  this is used in the POST /api/v1/queries endpoint where the request is a list of this kind of objects 
+  */
+  "correlationId": "abcd-efgh-ijkl" 
+}
+```
+
 ## Response structure 
 
 ### Metadata 
