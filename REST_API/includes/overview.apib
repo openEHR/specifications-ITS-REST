@@ -73,38 +73,6 @@ Services SHOULD respond to this method with at least appropriate HTTP codes and 
 A usecase for this method is related to exposing service capabilities for an conformance manifest.  
 
 
-<h3>About the `version_selector` placeholder</h3>
-
-In some requests described by this specification a placeholder `version_selector` is used to indicate that 
-the action should be performed against (or for) a specific VERSION (or associated data object) of a VERSIONED_OBJECT. 
-The purpose of this placeholder is to keep the specification readable while providing search and/or filtering functionality covered by 
-attributes and functions described in [VERSION_OBJECT class](http://www.openehr.org/releases/RM/latest/docs/common/common.html#_versioned_object_class).
-
-This placeholder can take one the following values:
-- a `versioned_object_uid` value - VERSIONED_OBJECT unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515), in which case the latest version is selected
-- a `version_uid` value - VERSION unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1)
-- fixed string `latest_trunk_version` or `latest_version`, assuming that a `versioned_object_uid` value is already present in the path
-- a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00), assuming that `versioned_object_uid` value is already present in the path
-- a query parameter `version_at_time={timestamp}`, assuming that a `versioned_object_uid` value is already present in the path
-- a `versioned_object_uid` value followed by `/latest_trunk_version` or `/latest_version` strings
-- a `versioned_object_uid` value followed by `/` or by `/version_at_time/` strings, followed by a specific timestamp in the ISO8601 format
-- a `versioned_object_uid` value and a query parameter `version_at_time={timestamp}`
-
-Examples:
-```http
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/latest_version
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/2015-01-20T19:30:22.765+01:00
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/version_at_time/2015-01-20T19:30:22.765+01:00
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515?version_at_time=2015-01-20T19:30:22.765+01:00
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/latest_version
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/version_at_time/2015-01-20T19:30:22.765+01:00
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions?version_at_time=2015-01-20T19:30:22.765+01:00
-``` 
-
-
 <h3>The `commit-audit` headers</h3>
 ::: note 
 tbd  
@@ -114,9 +82,9 @@ tbd
 <h3>The `If-Match` header</h3>
 The use case of this is described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
 This HTTP header MUST be used by the clients to prevent accidental overwrites when multiple user
-agents might be acting in parallel on the same resource. It should be used together with all 
+agents might be acting in parallel on the same resource. It MUST be used together with all 
 request methods that are changing states or performing updates on a VERSIONED_OBJECT.
-In case a service receives this header and the condition evaluates to `false` it should respond with
+In case a service receives this header and the condition evaluates to `false` it MUST respond with
 HTTP status code`412 Precondition Failed`.
 
 
@@ -138,9 +106,9 @@ According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
     resulting in multiple representations being valid at the same time,
     or both.
 
-This header SHOULD be present in all responses that contains full VERSION, VERSIONED_OBJECT or Models
-that have unique identifier for each state changed in time. The value of this header MAY refer to the
-unique identifier of the representation of that resource.
+This header SHOULD be present in all responses that contains full representation of VERSION, VERSIONED_OBJECT or Models
+that have unique identifier for each of the state changed in time. The value of this header MAY be to the
+unique identifier of that resource (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).
 
 
 <h3>HTTP status codes</h3>
@@ -168,46 +136,48 @@ If required, other status codes MAY be used by implementations as long as their 
 
 ## Data representation
 
+Services SHOULD support at least one of the **XML** or **JSON** format for resource representation. 
+See details below on how should this be negotiated.
 
 <h3>XML Format</h3>
 
-XML content should be valid against [published RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/).
+When resources representation is serialized as XML, the result MUST be valid against [published XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/).
 
-A client should use the header `Content-Type: application/xml` in the requests to specify the XML payload format. 
-If the service cannot process the request payload as XML format is not supported, it should respond with HTTP status code`415 Unsupported Media Type`.
+A client MAY use the header `Content-Type: application/xml` in the requests to specify the XML payload format. 
+If the service cannot process the request payload as XML format is not supported, it MUST respond with HTTP status code`415 Unsupported Media Type`.
 
-The `Accept: application/xml` can be used in the request by the client in order to specify the expected XML response format. 
-If the service cannot fulfill this aspect of the request, it should respond with HTTP status code `406 Not Acceptable`.
-Proper header `Content-Type: application/xml` should be present in the response of the service. 
+The `Accept: application/xml` SHOULD be used in the request by the client in order to specify the expected XML response format. 
+If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
+Proper header `Content-Type: application/xml` MUST be present in the response of the service. 
 
 
 <h3>JSON Format</h3>
 
-Attribute names must be lowercase snake_case names as specified in the RM specification. For example:
+Attribute names must be lowercase _snake_case_ names as specified in the RM specification for attributes. For example:
 ```
 {"context": {"start_time": "2016-01-01T00:00Z"}}
 ```
 Metadata attributes (those that are not also RM attributes) will always be prefixed by a `'_'`.
 One example is the `_type` attribute, which should be used to specify the RM type whenever polymorphism is involved or the underlying definition in RM type is abstract.
-The value of this attribute should be the uppercase class name from the RM specification. For example:
+The value of this attribute MUST be the uppercase class name from the RM specification. For example:
 ```
 {
     "_type": "DV_TEXT",
     "value": "Hello world!"
 }
 ```
-The `Null` RM attributes will be absent when serialized as JSON.
+The `Null` RM attributes SHOULD be absent when serialized as JSON.
 
 ::: note 
 tbd json-schema 
 :::
 
-A client should use the header `Content-Type: application/json` in the requests to specify the JSON payload format. 
-If the service cannot process the request payload as JSON format is not supported, it should respond with HTTP status code `415 Unsupported Media Type`.
+A client MAY use the header `Content-Type: application/json` in the requests to specify the JSON payload format. 
+If the service cannot process the request payload as JSON format is not supported, it MUST respond with HTTP status code `415 Unsupported Media Type`.
 
-The `Accept: application/json` can be used in the request by the client in order to specify the expected JSON response format. 
-If the service cannot fulfill this aspect of the request, it should respond with HTTP status code `406 Not Acceptable`.
-Proper header `Content-Type: application/json` should be present in the response of the service. 
+The `Accept: application/json` SHOULD be used in the request by the client in order to specify the expected JSON response format. 
+If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
+Proper header `Content-Type: application/json` MUST be present in the response of the service. 
 
 
 <h3>Datetime format</h3>
