@@ -1,0 +1,87 @@
+## CDS [/cds]
+
+Execution of clinical decision support on data in the openEHR CDR. 
+
+### Execute GDL [GET /gdl/query/{ehr_id}/{guide_id}]
+
+Execute a GDL guide on data in the specified EHR. 
+
+
++ Parameters 
+    + ehr_id (string) - The identifier of the EHR
+    + guide_id (string) - The identifier of the guide to be executed
+
++ Response 200 (application/json) 
+
+                {
+                    "execution_details": {
+                        "guide_id": "<executed guide>",
+                        "execution_time": 0, // time in ms
+                        "number_of_in_arguments": 0,
+                        "number_of_out_arguments": 0,
+                        "number_of_constants": 0,
+                        "rules_executed": ["<rule_a>"],
+                        "query_execution_details": {
+                            "number_of_queries": 0,
+                            "query_time": 0,
+                            "queries": [{
+                                "aql": "string",
+                                "query_time": 0,
+                                "value": {},
+                                "id": "string"
+                            }]
+                        }
+                    },
+                    "results": [{
+                        "archetype_id": "<archetypeId of the result>",
+                        "template_id": "<templateId to bind the result data>",
+                        "rm_values": [{
+                            "path": "<path within the archetype/template>",
+                            "value": { /** Some openEHR RM type */ }
+                        }]
+                    }]
+                }
+
+### Execute query with complex request [POST /gdl/query]
+
+Execute a GDL query defined by the BODY payload 
+
++ Request (application/json)
+
+    + Body 
+
+            {
+                "guide_id": "<the guide to be executed>",
+                "ehr_ids": ["<ehr_id>"]
+            }
+
++ Response 200 (application/json)
+
+                {
+                    "execution_details": {
+                        "guide_id": "<executed guide>",
+                        "execution_time": 0, // time in ms
+                        "number_of_in_arguments": 0,
+                        "number_of_out_arguments": 0,
+                        "number_of_constants": 0,
+                        "rules_executed": ["<rule_a>"],
+                        "query_execution_details": {
+                            "number_of_queries": 0,
+                            "query_time": 0,
+                            "queries": [{
+                                "aql": "string",
+                                "query_time": 0,
+                                "value": {},
+                                "id": "string"
+                            }]
+                        }
+                    },
+                    "results": [{
+                        "archetype_id": "<archetypeId of the result>",
+                        "template_id": "<templateId to bind the result data>",
+                        "rm_values": [{
+                            "path": "<path within the archetype/template>",
+                            "value": { /** Some openEHR RM type */ }
+                        }]
+                    }]
+                }

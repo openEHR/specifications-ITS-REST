@@ -1,159 +1,33 @@
 FORMAT: 1A
 HOST: http://www.openehr.org/api/v1
 
-<!-- include(overview.apib) -->
+# OpenEHR REST EHR API
+
+Release: **`v1.0`** <br>
+Status: **`DEVELOPMENT`**
+
+<!-- include(includes/overview.apib) -->
 
 # Group EHR
 
-## EHR [/ehrs]
+<!-- include(includes/ehr.apib) -->
 
-Management of EHR resources.
+# Group EHR_STATUS
 
-### Create EHR [POST /ehrs]
+<!-- include(includes/composition.apib) -->
 
-Create a new `EHR` with an auto-generated identifier.
-Request body may contain `ehr_status` attribute. When provided it
-will also be created as part of the same request,
-otherwise default resources will be created automatically by the service.
-Default EHR_STATUS will have the following defaults:
-- `is_queryable`: true
-- `is_modifiable`: true
+# Group COMPOSITION
 
-All other attributes will be left empty (null).
+<!-- include(includes/composition.apib) -->
 
+# Group DIRECTORY
 
-+ Request
+<!-- include(includes/directory.apib) -->
 
-    + Headers
+# Group CONTRIBUTION
 
-            Prefer: return={representation|minimal}
+<!-- include(includes/contribution.apib) -->
 
-    + Body
+# Group Query
 
-            {
-                "ehr_status": {
-                  "is_modifiable": "true"
-                  ...
-                }
-            }
-
-+ Response 201 (application/json)
-
-    `201 Created` is returned when a new EHR has been successfully created. 
-    The EHR resource is returned in the body when the `Prefer` header has the value of `return=representation`.
-
-    + Headers
-
-            Location: /ehrs/{ehr_id}
-
-    + Body
-
-            {
-                "system_id": {...},
-                "ehr_id": {...},
-                "ehr_status": "versioned ehr status uid",
-                "time_created", "..."
-            }
-
-+ Response 400
-
-    `400 Bad Request` is returned when unable to parse the request body if provided.
-
-    + Body
-
-
-### Create EHR with id [PUT /ehrs/{ehr_id}]
-
-Create new `EHR` with the specified EHR identifier. 
-Request body may contain `ehr_status` attribute. When provided it
-will also be created as part of the same request,
-otherwise default resources will be created automatically by the service.
-Default EHR_STATUS will have the following defaults:
-- `is_queryable`: true
-- `is_modifiable`: true
-
-All other attributes will be left empty (null).
-
-+ Parameters
-
-    + ehr_id (string) - User supplied EHR id
-
-+ Request
-
-    + Headers
-
-            Prefer: return={representation|minimal}
-
-    + Body
-
-            {
-                "ehr_status": {
-                  "is_modifiable": "true"
-                  ...
-                }
-            }
-
-+ Response 201 (application/json)
-
-    `201 Created` is returned when a new EHR has been successfully created. 
-    The new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`.
-
-    + Headers
-
-            Location: /ehrs/{ehr_id}
-
-    + Body
-
-            {
-                "system_id": {},
-                "ehr_id": {},
-                "ehr_status": "versioned ehr status uid",
-                "time_created", "..."
-            }
-
-+ Response 400
-
-    `400 Bad Request` is returned when unable to parse the request body if provided.
-
-    + Body
-
-+ Response 409
-
-    Unable to create a new EHR due to a conflict with an already existing EHR.
-    Can happen when the supplied ehr_id is already already used by an existing EHR.
-
-    + Body
-
-
-### Get EHR by id [GET /ehrs/{ehr_id}]
-Retrieve the EHR with the specified `ehr_id`.
-
-+ Parameters
-
-    + ehr_id (string) - EHR identifier
-
-+ Response 200 (application/json)
-
-    `200 OK` is returned when the EHR resource is successfully retrieved. 
-    
-    + Body
-
-            {
-                "system_id": {},
-                "ehr_id": {},
-                "ehr_status": "versioned ehr status uid",
-                "time_created", "...",
-                ... // to be defined, possibly counts of compositions, contributions, etc.
-            }
-
-+ Response 400
-
-    `400 Bad Request` might be returned if the server validates the syntax of the supplied ehr_id, but this is not mandatory.
-
-    + Body
-    
-+ Response 404
-
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
-
-    + Body
+<!-- include(includes/query.apib) -->
