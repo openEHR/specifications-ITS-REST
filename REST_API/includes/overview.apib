@@ -199,9 +199,9 @@ The client MAY choose one option by using following HTTP header:
  A `Location` header MAY be part of the response and the response SHOULD include a full representation. 
 
 Another preference is related to following and resolving OBJ_REF identifiers. Under some circumstances a client 
-MAY prefer response containing full or partial resource representation instead of references to resources using OBJ_REF.
+MAY indicate that prefers response containing full or partial resource representation instead of references to resources using OBJ_REF.
 A typical case is a list of COMPOSITIONs part of an EHR, which, strictly following RM specification, should always return 
-list of OBJ_REF. Sometimes clients prefers to get COMPOSITIONs instead of OBJ_REFs.
+list of OBJ_REF, but sometimes clients prefers to get COMPOSITIONs.
 Services that have this capability implemented SHOULD accept and honor `Prefer: resolve_refs` request header.
 
 
