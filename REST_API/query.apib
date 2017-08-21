@@ -7,8 +7,9 @@ HOST: http://www.openehr.org/api/v1
 
 ## Query [/query]
 
-### Get AQL query results [GET /query/?aql={aql}]
-Execute an AQL query as given by the aql parameter. 
+### Execute AQL query [GET /query/?aql={aql}]
+
+Execute the AQL query supplied in the aql parameter and return result.
 
 ```sql
 select
@@ -67,7 +68,7 @@ offset 0 limit 2
             ]
         }
 
-### Get query results [POST /query/aql]
+### Execute AQL query [POST /query/aql]
 
 Execute an AQL query.
 

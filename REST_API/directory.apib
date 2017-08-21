@@ -8,13 +8,13 @@ HOST: http://www.openehr.org/api/v1
 
 ## Directory [/ehrs/{ehr_id}/directory]
 
-### Create a directory [POST /ehrs/{ehr_id}/directory{?version_lifecycle_state,preceding_version_uid}]
+### Create directory [POST /ehrs/{ehr_id}/directory{?version_lifecycle_state,preceding_version_uid}]
 
 + Parameters
 
     + ehr_id (string) - EHR id
     + version_lifecycle_state (string) - The version Lifecycle State (532=complete, 553=incomplete, 523=deleted)
-    + preceding_version_uid (string, optional) - This will result in a new folder based on the preceding folder version.
+    + preceding_version_uid (string, optional) - This will result in a new Folder based on the preceding Folder version.
 
 + Request
 
@@ -61,7 +61,7 @@ HOST: http://www.openehr.org/api/v1
     + Body
 
 
-### Update a directory [PUT /ehrs/{ehr_id}/directory]
+### Update directory [PUT /ehrs/{ehr_id}/directory]
 
 + Parameters
 
@@ -123,8 +123,7 @@ HOST: http://www.openehr.org/api/v1
 
 + Response 412
 
-    `Match-If` header doesn't match the last version. Returns
-    last version in the `Content-Location` and `ETag` headers.
+    `Match-If` header doesn't match the last version. Returns last version in the `Content-Location` and `ETag` headers.
 
     + Headers
 
@@ -134,7 +133,7 @@ HOST: http://www.openehr.org/api/v1
     + Body
 
 
-### Delete a directory [DELETE /ehrs/{ehr_id}/directory]
+### Delete directory [DELETE /ehrs/{ehr_id}/directory]
 
 + Parameters
 
@@ -176,13 +175,13 @@ HOST: http://www.openehr.org/api/v1
 
     + Body
 
-### Get a directory or its sub-folder by version_uid [GET /ehrs/{ehr_id}/directory/{version_uid}{?path}]
+### Get folder in directory version [GET /ehrs/{ehr_id}/directory/{version_uid}{?path}]
 
 + Parameters
 
     + ehr_id (string) - EHR id
     + version_uid (string) - version UID
-    + path (string, optional) - path to a sub-folder
+    + path (string, optional) - path to a Folder
 
 + Response 200 (application/json)
 
@@ -196,7 +195,7 @@ HOST: http://www.openehr.org/api/v1
 
 + Response 204
 
-    No sub-folder at provided path.
+    No Folder at provided path.
 
     + Body
 
@@ -207,12 +206,12 @@ HOST: http://www.openehr.org/api/v1
     + Body
 
 
-### Get a directory or its sub-folder [GET /ehrs/{ehr_id}/directory{?versionSelector,path}]
+### Get folder in directory vcersion by time [GET /ehrs/{ehr_id}/directory{?version_selector,path}]
 
 + Parameters
 
     + ehr_id (string) - EHR id
-    + versionSelector (string, optional) - version time specifier
+    + version_selector (string, optional) - version time specifier
     + path (string, optional) - path to a sub-folder
 
 + Response 200 (application/json)
@@ -232,7 +231,7 @@ HOST: http://www.openehr.org/api/v1
 
 + Response 204
 
-    EHR has no directory at versionSelector or no sub-folder at provided path.
+    EHR has no directory at version_selector time or no Folder at provided path.
 
     + Body
 

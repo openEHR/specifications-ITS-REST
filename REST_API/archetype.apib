@@ -2,7 +2,9 @@
 
 Management of archetype resources. 
 
-### List all available archetypes on the system [GET /models/archetypes]
+### List all archetypes [GET /models/archetypes]
+
+List all available archetypes on the system
 
 + Response 200 (application/json) 
 
@@ -26,7 +28,7 @@ Management of archetype resources.
             ]
    
 
-### Upload an Archetype [POST /models/archetypes]
+### Upload archetype [POST /models/archetypes]
 
 Upload an archetype to the server 
 
@@ -46,7 +48,7 @@ Upload an archetype to the server
 
             Location: /models/archetypes/{archetype_id}
 
-### Get an archetype [GET /models/archetypes/{archetype_id}]
+### Get archetype [GET /models/archetypes/{archetype_id}]
 
 Get the archetype defined by the {archetype_id}
 
