@@ -50,18 +50,7 @@ I want to query all Temperature entries created after last saturday, and which w
 
 The baseline of a query API is to be able to execute queries within a specific EHR. Put another way: Given an `ehr_id` clients MUST be able to query content from Compositions within the specified EHR. 
 
-For single EHR queries the endpoint and resouces will be as much aligned to the RM classes as possible. The important classes is: 
-
-- EHR http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_ehr_class 
-- EHR_STATUS http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_ehr_status_class 
-- COMPOSITION http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_composition_class 
-- FOLDER http://www.openehr.org/releases/RM/latest/docs/common/common.html#_folder_class 
-- VERSIONED_OBJECT http://www.openehr.org/releases/RM/latest/docs/common/common.html#_versioned_object_class
-- VERSIONED_COMPOSITION http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_versioned_composition_class
-- VERSIONED_EHR_STATUS http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_versioned_ehr_status_class 
-- VERSIONED_FOLDER http://www.openehr.org/releases/RM/latest/docs/common/common.html#_versioned_folder_class
-
-
+For single EHR queries the endpoint and resouces will be as much aligned to the RM classes as possible. 
 
 ### Population queries
 
@@ -104,3 +93,34 @@ Some of the non-functional requirements will be:
 :::note
 Write something about this topic 
 :::
+
+# Group Data structures 
+
+## Response structure 
+
+### Metadata 
+
+| Field | Description |
+|------|-------------|
+|`href`| Marand | 
+|`_type`| Defines type of the serialized object | 
+|`_schemaVersion` | The version of the specification definining the serialized object | 
+|`_format` | `raw` or `flat` (not yet supported) | 
+|`_created`| Timestamp when the resultset was created | 
+|`_generator` | Some identifier of the application that generated the result. Useful i.e. for debugging | 
+
+### Data 
+
+- `name` - ?? 
+- `aql` - The AQL which was given in the request 
+- `executedAql` - The resulting executed AQL after parameters where exploded 
+- `totalResults`- The total number of results (rows) the server will return.
+- `columns`- definition of the columns of the resultset. Columns are defined by the client provided with the given AQL. I.e. `select c/uid/value as CidValue, c/context/start_time as StartTime from .... ` will give two columns. One columns for CidValue and another for StartTime. 
+- `columns.name`- defines the name of the column. I.e. CidValue or StartTime from the example above 
+- `columns.path`- defines the path from the given AQL of the specified column. I.e. columns CidValue will have path `/uid/value` 
+- `rows` - is a list/array of the results from the server. 
+- `rows.row` - each row contains an array of columns. 
+
+:::note 
+Marand and DIPS serialize the column/row definition differently. We should choose the best way to serialize data. 
+::: 
