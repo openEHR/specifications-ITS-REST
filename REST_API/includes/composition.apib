@@ -25,7 +25,7 @@
 
 + Response 201
 
-    New composition was created. Content body is only returned when `Prefer` header has `return=representation` otherwise only headers are returned.
+    New COMPOSITION was created. Content body is only returned when `Prefer` header has `return=representation` otherwise only headers are returned.
 
     + Headers
 
@@ -158,9 +158,10 @@
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `object_id` (string) - object id of the composition to delete. This can be an exact `version_uid` or `versioned_object_uid`.
+    + `object_id` (string) - identifier of the COMPOSITION to delete, taken from COMPOSITION.uid.value. 
+    This can be an exact `version_uid` or `versioned_object_uid`.
     In case of `version_uid` it has to be the latest version.
-    In case of `versioned_object_uid`, a `Match-If` must be supplied with the latest `version_uid` which must match before update can succeed.
+    In case of `versioned_object_uid`, a `Match-If` must be supplied with the latest `version_uid` which must match before operation can succeed.
 
 + Request
 
@@ -181,7 +182,7 @@
 
 + Response 404
 
-    No EHR with supplied EHR id or no composition with the given object id.
+    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `object_id`.
 
     + Body
 
@@ -206,7 +207,7 @@
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `version_uid` (string) - version uid
+    + `version_uid` (string) - VERSION identifier taken from COMPOSITION.uid.value
 
 + Response 200 (application/json)
 
@@ -223,7 +224,7 @@
 
 + Response 404
 
-    No EHR with supplied `ehr_id` or no composition with the supplied `version_uid`.
+    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `version_uid`.
 
     + Body
 
@@ -232,7 +233,7 @@
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION uid
+    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from COMPOSITION.uid.value
     + version_selector (string, optional) - version time specifier
 
 + Response 200 (application/json)
@@ -274,7 +275,7 @@ Gets a complete VERSIONED_COMPOSITION.
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION's uid
+    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
 
 + Response 200 (application/json)
 
@@ -298,7 +299,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with supplied `versioned_object_uid`.
+    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid`.
 
     + Body
 
@@ -308,8 +309,8 @@ Gets a complete VERSIONED_COMPOSITION.
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION's uid
-    + `version_uid` (string) - version uid
+    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+    + `version_uid` (string) - VERSIONED identifier taken from VERSIONED.uid.value
 
 + Response 200 (application/json)
 
@@ -332,7 +333,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
 + Response 404
 
-    No VERSIONED_COMPOSITION with uid or no version with version_uid.
+    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or no VERSION with the supplied `versione_uid`.
 
     + Body
 
@@ -341,7 +342,7 @@ Gets a complete VERSIONED_COMPOSITION.
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION uid
+    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
     + version_selector (string, optional) - version time specifier
 
 + Response 200 (application/json)
@@ -370,6 +371,6 @@ Gets a complete VERSIONED_COMPOSITION.
 
 + Response 404
 
-    No no VERSIONED_COMPOSITION with uid or no version with version_uid.
+    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or no VERSION with the supplied `versione_uid`.
 
     + Body
