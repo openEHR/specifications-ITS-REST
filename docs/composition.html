@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>OpenEHR REST API</title>
+    <title>OpenEHR REST COMPOSITIONs API</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -70,7 +70,7 @@
   <a href="#introduction">Introduction</a>
 </div>
 <div class="ui fluid secondary vertical menu">
-  <a class="item" href="#introduction">OpenEHR REST API</a>
+  <a class="item" href="#introduction">OpenEHR REST COMPOSITIONs API</a>
 </div>
 
 
@@ -90,38 +90,38 @@
     <div class="content active">
       <div class="ui fluid secondary vertical menu">
       
-        <a class="item blue" href="#composition-composition-create-a-new-composition">
+        <a class="item blue" href="#composition-composition-create-composition">
           <i class="ui blue empty circular label"></i>
           
-            <span>Create a new composition</span>
+            <span>Create composition</span>
           
         </a>
       
-        <a class="item teal" href="#composition-composition-update-a-composition">
+        <a class="item teal" href="#composition-composition-update-composition">
           <i class="ui teal empty circular label"></i>
           
-            <span>Update a composition</span>
+            <span>Update composition</span>
           
         </a>
       
-        <a class="item red" href="#composition-composition-delete-a-composition">
+        <a class="item red" href="#composition-composition-delete-composition">
           <i class="ui red empty circular label"></i>
           
-            <span>Delete a composition</span>
+            <span>Delete composition</span>
           
         </a>
       
-        <a class="item green" href="#composition-composition-get-a-composition-by-version-uid">
+        <a class="item green" href="#composition-composition-get-composition-by-version-id">
           <i class="ui green empty circular label"></i>
           
-            <span>Get a composition by version uid</span>
+            <span>Get composition by version id</span>
           
         </a>
       
-        <a class="item green" href="#composition-composition-get-a-composition">
+        <a class="item green" href="#composition-composition-get-composition-by-time">
           <i class="ui green empty circular label"></i>
           
-            <span>Get a composition</span>
+            <span>Get composition by time</span>
           
         </a>
       
@@ -139,24 +139,24 @@
     <div class="content ">
       <div class="ui fluid secondary vertical menu">
       
-        <a class="item green" href="#composition-versioned_composition-get-a-versioned-composition">
+        <a class="item green" href="#composition-versioned_composition-get-versioned-composition">
           <i class="ui green empty circular label"></i>
           
-            <span>Get a versioned composition</span>
+            <span>Get versioned composition</span>
           
         </a>
       
-        <a class="item green" href="#composition-versioned_composition-get-a-composition-version-by-version_uid">
+        <a class="item green" href="#composition-versioned_composition-get-versioned-composition-version-by-id">
           <i class="ui green empty circular label"></i>
           
-            <span>Get a composition version by version_uid</span>
+            <span>Get versioned composition version by id</span>
           
         </a>
       
-        <a class="item green" href="#composition-versioned_composition-get-a-composition-version">
+        <a class="item green" href="#composition-versioned_composition-get-versioned-composition-version-by-time">
           <i class="ui green empty circular label"></i>
           
-            <span>Get a composition version</span>
+            <span>Get versioned composition version by time</span>
           
         </a>
       
@@ -172,23 +172,23 @@
       <div class="eleven wide computer ten wide tablet sixteen wide mobile column">
         
 <div class="ui hidden divider header"></div>
-<h1 class="ui huge header" id="introduction">OpenEHR REST API</h1>
+<h1 class="ui huge header" id="introduction">OpenEHR REST COMPOSITIONs API</h1>
 <hr class="ui divider">
 <div class="description">
-  <p><code>Release:</code><strong><code>v0.1</code></strong>
-<code>Status:</code><strong><code>DEVELOPMENT</code></strong></p>
+  <p>Release: <strong><code>v1.0</code></strong> <br>
+Status: <strong><code>DEVELOPMENT</code></strong></p>
 
 <h2 id="preface">Preface</h2>
 
-<h3 id="purpose">Purpose</h3>
+<h3>Purpose</h3>
 
 <p>This specification describes service endpoints, resources, functions and operations
 as well as details of requests and responses that interacts with an openEHR API in a RESTful manner.</p>
 
-<p>This is not a specification a REST API for openEHR Foundation services.
-It is rather an abstract blueprint to which each REST API of an openEHR implementation should adhere to.</p>
+<p>This is not a specification of a REST API for openEHR Foundation services.
+It is rather an abstract blueprint to which each REST API of an openEHR implementation should adhere.</p>
 
-<h3 id="related-documents">Related Documents</h3>
+<h3>Related Documents</h3>
 
 <p>Prerequisite documents for reading this document include:</p>
 
@@ -204,20 +204,26 @@ It is rather an abstract blueprint to which each REST API of an openEHR implemen
 <li><p>The <a href="http://www.openehr.org/releases/trunk/its/XML-schema/">RM XSDs</a></p></li>
 </ul>
 
-<h3 id="status">Status</h3>
+<h3>Status</h3>
 
 <p>This specification is in the DEVELOPMENT state. It might not be complete and can still be subject to changes before the final release.
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.</p>
 
 <p>Feedback should be provided the <a href="https://openehr.atlassian.net/browse/SPECPR">Specification PR tracker</a> or on <a href="https://github.com/openEHR/specifications-ITS/issues">specifications-ITS</a> issue tracker.</p>
 
-<h3 id="trademarks">Trademarks</h3>
+<h3>Trademarks</h3>
 
 <ul>
-<li>&lsquo;openEHR&rsquo; is a trademark of the openEHR Foundation</li>
+<li>&lsquo;openEHR&rsquo; is a trademark of the <a href="https://www.openEHR.org">openEHR Foundation</a></li>
 </ul>
 
-<h2 id="glossary">Glossary</h2>
+<h2 id="glossary-and-conventions">Glossary and conventions</h2>
+
+<p>The key words &ldquo;MUST&rdquo;, &ldquo;MUST NOT&rdquo;, &ldquo;REQUIRED&rdquo;, &ldquo;SHALL&rdquo;, &ldquo;SHALL NOT&rdquo;, &ldquo;SHOULD&rdquo;, &ldquo;SHOULD NOT&rdquo;, &ldquo;RECOMMENDED&rdquo;, &ldquo;MAY&rdquo;, and &ldquo;OPTIONAL&rdquo;
+in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/rfc2119">RFC 2119</a>.</p>
+
+<p>Types defined by openEHR specification are always capitalized (e.g. EHR, COMPOSITION, VERSIONED_OBJECT, etc.) when used in this specification.
+For a list of all available types or a particular type definition please refer to the <a href="http://www.openehr.org/releases/RM/Release-1.0.3/docs/index#_class_index">RM index</a>.</p>
 
 <p>Throughout this specification a set of short terms is being used as described below:</p>
 
@@ -247,7 +253,7 @@ Users are encouraged to comment on and/or advise on these paragraphs as well as 
 
 <tr>
 <td><code>version_selector</code></td>
-<td>A placeholder for various identifiers or search/filtering condition to select a VERSION or its data <a href="#header-considerations">see Considerations chapter</a></td>
+<td>A placeholder for various identifiers or search/filtering condition to select a VERSION or its VERSION.data (see <a href="#header-design-considerations">Design considerations</a> section)</td>
 </tr>
 
 <tr>
@@ -257,21 +263,28 @@ Users are encouraged to comment on and/or advise on these paragraphs as well as 
 </tbody>
 </table>
 
-<h2 id="considerations">Considerations</h2>
+<p>HTTP Methods used in this specification are described by <a href="https://tools.ietf.org/html/rfc7231#section-4">RFC 7231</a>.
+HTTP Status codes are described by <a href="https://tools.ietf.org/html/rfc7231#section-6">RFC 7231</a>
+and in the <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.
+See <a href="#header-design-considerations">Design considerations</a> section for more details on how (in general)
+HTTP methods and status codes MUST be used by an openEHR REST API.</p>
 
-<h3 id="authentication-and-authorization">Authentication and authorization</h3>
+<h2 id="design-considerations">Design considerations</h2>
+
+<h3>Authentication and authorization</h3>
 
 <p>::: note
 tbd<br>
 :::</p>
 
-<h3 id="the-options-method">The <code>OPTIONS</code> method</h3>
+<h3>The `OPTIONS` method</h3>
 
-<p>::: note
-tbd<br>
-:::</p>
+<p>This method allows a client to determine the options and/or requirements associated with a
+resource, or the capabilities of the service, without implying a resource action.
+Services SHOULD respond to this method with at least appropriate HTTP codes and headers and potentially with a payload.
+A usecase for this method is related to exposing service capabilities for an conformance manifest.</p>
 
-<h3 id="about-the-versionselector-placeholder">About the <code>version_selector</code> placeholder</h3>
+<h3>About the `version_selector` placeholder</h3>
 
 <p>In some requests described by this specification a placeholder <code>version_selector</code> is used to indicate that
 the action should be performed against (or for) a specific VERSION (or associated data object) of a VERSIONED_OBJECT.
@@ -312,50 +325,152 @@ GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/vers
 GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions?version_at_time=2015-01-20T19:30:22.765+01:00
 </code></pre>
 
-<h3 id="the-commitaudit-headers">The <code>commit-audit</code> headers</h3>
+<h3>The `commit-audit` headers</h3>
 
 <p>::: note
 tbd<br>
 :::</p>
 
-<h3 id="the-matchif-header">The <code>Match-if</code> header</h3>
+<h3>The `If-Match` header</h3>
+
+<p>The use case of this is described by <a href="https://tools.ietf.org/html/rfc7232#section-3.1">RFC 7232</a>.
+This HTTP header MUST be used by the clients to prevent accidental overwrites when multiple user
+agents might be acting in parallel on the same resource. It should be used together with all
+request methods that are changing states or performing updates on a VERSIONED_OBJECT.
+In case a service receives this header and the condition evaluates to <code>false</code> it should respond with
+HTTP status code<code>412 Precondition Failed</code>.</p>
+
+<h3>The `Location` header</h3>
 
 <p>::: note
 tbd<br>
 :::</p>
 
-<h3 id="the-location-header">The <code>Location</code> header</h3>
+<h3>The `ETag` header and cache handling and HEAD header</h3>
 
-<p>::: note
-tbd<br>
-:::</p>
+<p>According to <a href="https://tools.ietf.org/html/rfc7232#section-2.3">RFC 7232</a>,</p>
 
-<h3 id="the-etag-header-and-cache-handling-and-head-header">The <code>ETag</code> header and cache handling and HEAD header</h3>
+<blockquote>
+<p>The &ldquo;ETag&rdquo; header field in a response provides the current entity-tag
+    for the selected representation, as determined at the conclusion of
+    handling the request.  An entity-tag is an opaque validator for
+    differentiating between multiple representations of the same
+    resource, regardless of whether those multiple representations are
+    due to resource state changes over time, content negotiation
+    resulting in multiple representations being valid at the same time,
+    or both.</p>
+</blockquote>
 
-<p>::: note
-tbd<br>
-:::</p>
+<p>This header SHOULD be present in all responses that contains full VERSION, VERSIONED_OBJECT or Models
+that have unique identifier for each state changed in time. The value of this header MAY refer to the
+unique identifier of the representation of that resource.</p>
 
-<h3 id="http-status-codes">HTTP status codes</h3>
+<h3>HTTP status codes</h3>
 
-<p>::: note
-tbd<br>
-:::</p>
+<p>To indicate the status of the request or the executed operation, one of the following
+subset of the HTTP status codes <a href="https://tools.ietf.org/html/rfc7231#section-6">RFC 7231</a> MUST be used:</p>
+
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Reason-Phrase</th>
+<th>Meaning, usecase and details</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>The request succeeded, payload sent in a 200 response depends on the request method</td>
+</tr>
+
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>The request has been fulfilled and has resulted in one or more new resources being created</td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad request</td>
+<td>The service cannot or will not process the request due to something that is perceived to be a client error</td>
+</tr>
+
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>If the service requires authorization, this indicates that the request has not been applied because it lacks valid authentication credentials for the target resource</td>
+</tr>
+
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>The service understood the request but refuses to authorize it</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>Not found</td>
+<td>The origin service did not find the target resource or is not willing to disclose that one exists</td>
+</tr>
+
+<tr>
+<td>405</td>
+<td>Method Not Allowed</td>
+<td>The method received in the request-line is known by the origin service but not supported by the target resource</td>
+</tr>
+
+<tr>
+<td>406</td>
+<td>Not Acceptable</td>
+<td>The target resource does not have a current representation that would be acceptable to the user</td>
+</tr>
+
+<tr>
+<td>412</td>
+<td>Precondition Failed</td>
+<td>One or more conditions given in the request header fields evaluated to false when tested on the server</td>
+</tr>
+
+<tr>
+<td>415</td>
+<td>Unsupported Media Type</td>
+<td>The service is refusing the request because the payload is in a format not supported by this method on the target resource</td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>The service encountered an unexpected condition that prevented it from fulfilling the request</td>
+</tr>
+
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+<td>The service does not support the functionality required to fulfill the request</td>
+</tr>
+</tbody>
+</table>
+
+<p>Meaning of these codes MAY be further detailed (nuanced) in this specification by particular responses
+If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.</p>
 
 <h2 id="data-representation">Data representation</h2>
 
-<h3 id="xml-format">XML Format</h3>
+<h3>XML Format</h3>
 
 <p>XML content should be valid against <a href="http://www.openehr.org/releases/trunk/its/XML-schema/">published RM XSDs</a>.</p>
 
 <p>A client should use the header <code>Content-Type: application/xml</code> in the requests to specify the XML payload format.
-If the service cannot process the request payload as XML format is not supported, it should respond with http status <code>415 Unsupported Media Type</code>.</p>
+If the service cannot process the request payload as XML format is not supported, it should respond with HTTP status code<code>415 Unsupported Media Type</code>.</p>
 
 <p>The <code>Accept: application/xml</code> can be used in the request by the client in order to specify the expected XML response format.
-If the service cannot fulfill this aspect of the request, it should respond with http status <code>406 Not Acceptable</code>.
+If the service cannot fulfill this aspect of the request, it should respond with HTTP status code <code>406 Not Acceptable</code>.
 Proper header <code>Content-Type: application/xml</code> should be present in the response of the service.</p>
 
-<h3 id="json-format">JSON Format</h3>
+<h3>JSON Format</h3>
 
 <p>Attribute names must be lowercase snake_case names as specified in the RM specification. For example:</p>
 
@@ -378,20 +493,20 @@ tbd json-schema
 :::</dt></dl>
 
 <p>A client should use the header <code>Content-Type: application/json</code> in the requests to specify the JSON payload format.
-If the service cannot process the request payload as JSON format is not supported, it should respond with http status <code>415 Unsupported Media Type</code>.</p>
+If the service cannot process the request payload as JSON format is not supported, it should respond with HTTP status code <code>415 Unsupported Media Type</code>.</p>
 
 <p>The <code>Accept: application/json</code> can be used in the request by the client in order to specify the expected JSON response format.
-If the service cannot fulfill this aspect of the request, it should respond with http status <code>406 Not Acceptable</code>.
+If the service cannot fulfill this aspect of the request, it should respond with HTTP status code <code>406 Not Acceptable</code>.
 Proper header <code>Content-Type: application/json</code> should be present in the response of the service.</p>
 
-<h3 id="datetime-format">Datetime format</h3>
+<h3>Datetime format</h3>
 
 <p>Query parameters or timestamp path segments should always use the canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00.</p>
 
 <p>Any date or datetime value provided by a create or update action inside the composition content
 will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).</p>
 
-<h3 id="the-prefer-return-header">The <code>Prefer: return=</code> header</h3>
+<h3>The `Prefer: return=` header</h3>
 
 <dl>
 <dt>:::</dt><dt>::: note
@@ -403,7 +518,9 @@ tbd resolving OBJ_REF
 tbd resolving OBJ_REF
 :::</dt></dl>
 
-<p>:::</p>
+<p>:</p>
+
+<p><br><br><br><br><br></p>
 
 </div>
 
@@ -441,8 +558,8 @@ tbd resolving OBJ_REF
 </div>
 
           <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="composition-composition-create-a-new-composition">
-              Create a new composition
+            <h3 class="ui block center aligned header" id="composition-composition-create-composition">
+              Create composition
             </h3>
             <div class="description"></div>
 
@@ -521,9 +638,7 @@ tbd resolving OBJ_REF
               
 
               <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p>New composition was created. Content body is only returned when
-<code>Prefer</code> header has <code>return=representation</code> otherwise only headers are
-returned.</p>
+              <div class="description"><p>New composition was created. Content body is only returned when <code>Prefer</code> header has <code>return=representation</code> otherwise only headers are returned.</p>
 </div>
               
 <table class="ui celled definition table">
@@ -656,7 +771,7 @@ returned.</p>
               
 
               <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p>Bad request: either body of the request could not be read (or converted to a COMPOSITION object) or there were composition validation errors.</p>
+              <div class="description"><p>Bad request: either the body of the request could not be read (or converted to a COMPOSITION object) or there were Composition validation errors.</p>
 </div>
               
 <table class="ui celled definition table">
@@ -828,8 +943,8 @@ returned.</p>
 </div>
 
           <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="composition-composition-update-a-composition">
-              Update a composition
+            <h3 class="ui block center aligned header" id="composition-composition-update-composition">
+              Update composition
             </h3>
             <div class="description"></div>
 
@@ -891,8 +1006,8 @@ returned.</p>
         <code></code>
         
       </td>
-      <td class="eight wide"><p>In case of version_uid it has to be the last version.
-In case of versioned_object_uid, a <code>Match-If</code> header must be supplied with the last version_uid which must match before update can succeed.</p>
+      <td class="eight wide"><p>If version_uid is supplied, it must be the last (most recent) version.
+If versioned_object_uid is supplied, a <code>Match-If</code> header must also be supplied contaiing the latest version_uid which must match for update to succeed.</p>
 </td>
     </tr>
   
@@ -1048,8 +1163,8 @@ In case of versioned_object_uid, a <code>Match-If</code> header must be supplied
         <code></code>
         
       </td>
-      <td class="eight wide"><p>In case of version_uid it has to be the last version.
-In case of versioned_object_uid, a <code>Match-If</code> header must be supplied with the last version_uid which must match before update can succeed.</p>
+      <td class="eight wide"><p>If version_uid is supplied, it must be the last (most recent) version.
+If versioned_object_uid is supplied, a <code>Match-If</code> header must also be supplied contaiing the latest version_uid which must match for update to succeed.</p>
 </td>
     </tr>
   
@@ -1192,8 +1307,8 @@ In case of versioned_object_uid, a <code>Match-If</code> header must be supplied
         <code></code>
         
       </td>
-      <td class="eight wide"><p>In case of version_uid it has to be the last version.
-In case of versioned_object_uid, a <code>Match-If</code> header must be supplied with the last version_uid which must match before update can succeed.</p>
+      <td class="eight wide"><p>If version_uid is supplied, it must be the last (most recent) version.
+If versioned_object_uid is supplied, a <code>Match-If</code> header must also be supplied contaiing the latest version_uid which must match for update to succeed.</p>
 </td>
     </tr>
   
@@ -1228,7 +1343,7 @@ In case of versioned_object_uid, a <code>Match-If</code> header must be supplied
               
 
               <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p>Bad request: either body of the request could not be read (or converted to a COMPOSITION object) or there were composition validation errors.</p>
+              <div class="description"><p>Bad request: either the body of the request could not be read (or converted to a COMPOSITION object) or there were Composition validation errors.</p>
 </div>
               
 <table class="ui celled definition table">
@@ -1337,8 +1452,8 @@ In case of versioned_object_uid, a <code>Match-If</code> header must be supplied
         <code></code>
         
       </td>
-      <td class="eight wide"><p>In case of version_uid it has to be the last version.
-In case of versioned_object_uid, a <code>Match-If</code> header must be supplied with the last version_uid which must match before update can succeed.</p>
+      <td class="eight wide"><p>If version_uid is supplied, it must be the last (most recent) version.
+If versioned_object_uid is supplied, a <code>Match-If</code> header must also be supplied contaiing the latest version_uid which must match for update to succeed.</p>
 </td>
     </tr>
   
@@ -1373,7 +1488,7 @@ In case of versioned_object_uid, a <code>Match-If</code> header must be supplied
               
 
               <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p>No EHR with the supplied EHR id or no composition with the supplied object id.</p>
+              <div class="description"><p>No EHR with the supplied EHR id or no Composition with the supplied object id.</p>
 </div>
               
 <table class="ui celled definition table">
@@ -1471,8 +1586,8 @@ In case of versioned_object_uid, a <code>Match-If</code> header must be supplied
         <code></code>
         
       </td>
-      <td class="eight wide"><p>In case of version_uid it has to be the last version.
-In case of versioned_object_uid, a <code>Match-If</code> header must be supplied with the last version_uid which must match before update can succeed.</p>
+      <td class="eight wide"><p>If version_uid is supplied, it must be the last (most recent) version.
+If versioned_object_uid is supplied, a <code>Match-If</code> header must also be supplied contaiing the latest version_uid which must match for update to succeed.</p>
 </td>
     </tr>
   
@@ -1510,12 +1625,12 @@ In case of versioned_object_uid, a <code>Match-If</code> header must be supplied
               <div class="description"><p>Returned when:</p>
 
 <ul>
-<li><p>supplied object_id is versioned_object_uid and <code>Match-If</code> header doesn&rsquo;t match the last version</p></li>
+<li><p>supplied object_id is versioned_object_uid and <code>Match-If</code> header doesn&rsquo;t match the latest version</p></li>
 
-<li><p>supplied object_id is version_uid and it&rsquo;s not the last version</p></li>
+<li><p>supplied object_id is version_uid and it&rsquo;s not the latest version</p></li>
 </ul>
 
-<p>Returns last version in the <code>Content-Location</code> and <code>ETag</code> headers.</p>
+<p>Returns latest version in the <code>Content-Location</code> and <code>ETag</code> headers.</p>
 </div>
               
 <table class="ui celled definition table">
@@ -1576,8 +1691,8 @@ In case of versioned_object_uid, a <code>Match-If</code> header must be supplied
 </div>
 
           <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="composition-composition-delete-a-composition">
-              Delete a composition
+            <h3 class="ui block center aligned header" id="composition-composition-delete-composition">
+              Delete composition
             </h3>
             <div class="description"></div>
 
@@ -1626,8 +1741,8 @@ In case of versioned_object_uid, a <code>Match-If</code> header must be supplied
         <code></code>
         
       </td>
-      <td class="eight wide"><p>In case of version_uid it has to be the last version.
-In case of versioned_object_uid, a <code>Match-If</code> must be supplied with the last version_uid which must match before update can succeed.</p>
+      <td class="eight wide"><p>In case of version_uid it has to be the latest version.
+In case of versioned_object_uid, a <code>Match-If</code> must be supplied with the latest version_uid which must match before update can succeed.</p>
 </td>
     </tr>
   
@@ -1752,8 +1867,8 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
         <code></code>
         
       </td>
-      <td class="eight wide"><p>In case of version_uid it has to be the last version.
-In case of versioned_object_uid, a <code>Match-If</code> must be supplied with the last version_uid which must match before update can succeed.</p>
+      <td class="eight wide"><p>In case of version_uid it has to be the latest version.
+In case of versioned_object_uid, a <code>Match-If</code> must be supplied with the latest version_uid which must match before update can succeed.</p>
 </td>
     </tr>
   
@@ -1868,8 +1983,8 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
         <code></code>
         
       </td>
-      <td class="eight wide"><p>In case of version_uid it has to be the last version.
-In case of versioned_object_uid, a <code>Match-If</code> must be supplied with the last version_uid which must match before update can succeed.</p>
+      <td class="eight wide"><p>In case of version_uid it has to be the latest version.
+In case of versioned_object_uid, a <code>Match-If</code> must be supplied with the latest version_uid which must match before update can succeed.</p>
 </td>
     </tr>
   
@@ -1902,12 +2017,12 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
               <div class="description"><p>Returned when:</p>
 
 <ul>
-<li><p>supplied object_id is versioned_object_uid and <code>Match-If</code> header doesn&rsquo;t match the last version</p></li>
+<li><p>supplied object_id is versioned_object_uid and <code>Match-If</code> header doesn&rsquo;t match the latest version</p></li>
 
-<li><p>supplied object_id is version_uid and it&rsquo;s not the last version</p></li>
+<li><p>supplied object_id is version_uid and it&rsquo;s not the latest version</p></li>
 </ul>
 
-<p>Returns last version in the <code>Content-Location</code> and <code>ETag</code> headers.</p>
+<p>Returns latest version in the <code>Content-Location</code> and <code>ETag</code> headers.</p>
 </div>
               
 <table class="ui celled definition table">
@@ -1968,8 +2083,8 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
 </div>
 
           <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="composition-composition-get-a-composition-by-version-uid">
-              Get a composition by version uid
+            <h3 class="ui block center aligned header" id="composition-composition-get-composition-by-version-id">
+              Get composition by version id
             </h3>
             <div class="description"></div>
 
@@ -2190,8 +2305,8 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
 </div>
 
           <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="composition-composition-get-a-composition">
-              Get a composition
+            <h3 class="ui block center aligned header" id="composition-composition-get-composition-by-time">
+              Get composition by time
             </h3>
             <div class="description"></div>
 
@@ -2205,7 +2320,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
                   <h3>GET</h3>
                 </div>
                 <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/ehrs/{ehr_id}/compositions/{versioned_object_uid}{?versionSelector}</code>
+                  <code>http://www.openehr.org/api/v1/ehrs/{ehr_id}/compositions/{versioned_object_uid}{?version_selector}</code>
                 </a>
               </div>
               
@@ -2240,7 +2355,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
         <code>string</code>
         
       </td>
-      <td class="eight wide"><p>VERSIONED_COMPOSITION&rsquo;s uid</p>
+      <td class="eight wide"><p>VERSIONED_COMPOSITION uid</p>
 </td>
     </tr>
   
@@ -2248,7 +2363,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
       <td class="center aligned one wide">
         <i class="ui empty circular label grey" data-content="optional" data-position="top center"></i>
       </td>
-      <td><code>versionSelector</code></td>
+      <td><code>version_selector</code></td>
       <td class="center aligned">
         <code>string</code>
         
@@ -2337,7 +2452,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
                   <h3>GET</h3>
                 </div>
                 <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/ehrs/{ehr_id}/compositions/{versioned_object_uid}{?versionSelector}</code>
+                  <code>http://www.openehr.org/api/v1/ehrs/{ehr_id}/compositions/{versioned_object_uid}{?version_selector}</code>
                 </a>
               </div>
               
@@ -2372,7 +2487,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
         <code>string</code>
         
       </td>
-      <td class="eight wide"><p>VERSIONED_COMPOSITION&rsquo;s uid</p>
+      <td class="eight wide"><p>VERSIONED_COMPOSITION uid</p>
 </td>
     </tr>
   
@@ -2380,7 +2495,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
       <td class="center aligned one wide">
         <i class="ui empty circular label grey" data-content="optional" data-position="top center"></i>
       </td>
-      <td><code>versionSelector</code></td>
+      <td><code>version_selector</code></td>
       <td class="center aligned">
         <code>string</code>
         
@@ -2397,7 +2512,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
               
 
               <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p>No composition at specified versionSelector.</p>
+              <div class="description"><p>No composition at specified version_selector.</p>
 </div>
               
 <table class="ui celled definition table">
@@ -2452,7 +2567,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
                   <h3>GET</h3>
                 </div>
                 <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/ehrs/{ehr_id}/compositions/{versioned_object_uid}{?versionSelector}</code>
+                  <code>http://www.openehr.org/api/v1/ehrs/{ehr_id}/compositions/{versioned_object_uid}{?version_selector}</code>
                 </a>
               </div>
               
@@ -2487,7 +2602,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
         <code>string</code>
         
       </td>
-      <td class="eight wide"><p>VERSIONED_COMPOSITION&rsquo;s uid</p>
+      <td class="eight wide"><p>VERSIONED_COMPOSITION uid</p>
 </td>
     </tr>
   
@@ -2495,7 +2610,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
       <td class="center aligned one wide">
         <i class="ui empty circular label grey" data-content="optional" data-position="top center"></i>
       </td>
-      <td><code>versionSelector</code></td>
+      <td><code>version_selector</code></td>
       <td class="center aligned">
         <code>string</code>
         
@@ -2581,8 +2696,8 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
 </div>
 
           <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="composition-versioned_composition-get-a-versioned-composition">
-              Get a versioned composition
+            <h3 class="ui block center aligned header" id="composition-versioned_composition-get-versioned-composition">
+              Get versioned composition
             </h3>
             <div class="description"><p>Gets a complete VERSIONED_COMPOSITION.</p>
 </div>
@@ -2812,8 +2927,8 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
 </div>
 
           <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="composition-versioned_composition-get-a-composition-version-by-version_uid">
-              Get a composition version by version_uid
+            <h3 class="ui block center aligned header" id="composition-versioned_composition-get-versioned-composition-version-by-id">
+              Get versioned composition version by id
             </h3>
             <div class="description"></div>
 
@@ -3066,8 +3181,8 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
 </div>
 
           <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="composition-versioned_composition-get-a-composition-version">
-              Get a composition version
+            <h3 class="ui block center aligned header" id="composition-versioned_composition-get-versioned-composition-version-by-time">
+              Get versioned composition version by time
             </h3>
             <div class="description"></div>
 
@@ -3081,7 +3196,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
                   <h3>GET</h3>
                 </div>
                 <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions{?versionSelector}</code>
+                  <code>http://www.openehr.org/api/v1/ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions{?version_selector}</code>
                 </a>
               </div>
               
@@ -3116,7 +3231,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
         <code>string</code>
         
       </td>
-      <td class="eight wide"><p>VERSIONED_COMPOSITION&rsquo;s uid</p>
+      <td class="eight wide"><p>VERSIONED_COMPOSITION uid</p>
 </td>
     </tr>
   
@@ -3124,7 +3239,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
       <td class="center aligned one wide">
         <i class="ui empty circular label grey" data-content="optional" data-position="top center"></i>
       </td>
-      <td><code>versionSelector</code></td>
+      <td><code>version_selector</code></td>
       <td class="center aligned">
         <code>string</code>
         
@@ -3219,7 +3334,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
                   <h3>GET</h3>
                 </div>
                 <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions{?versionSelector}</code>
+                  <code>http://www.openehr.org/api/v1/ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions{?version_selector}</code>
                 </a>
               </div>
               
@@ -3254,7 +3369,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
         <code>string</code>
         
       </td>
-      <td class="eight wide"><p>VERSIONED_COMPOSITION&rsquo;s uid</p>
+      <td class="eight wide"><p>VERSIONED_COMPOSITION uid</p>
 </td>
     </tr>
   
@@ -3262,7 +3377,7 @@ In case of versioned_object_uid, a <code>Match-If</code> must be supplied with t
       <td class="center aligned one wide">
         <i class="ui empty circular label grey" data-content="optional" data-position="top center"></i>
       </td>
-      <td><code>versionSelector</code></td>
+      <td><code>version_selector</code></td>
       <td class="center aligned">
         <code>string</code>
         

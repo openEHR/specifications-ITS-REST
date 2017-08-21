@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>OpenEHR REST API</title>
+    <title>OpenEHR REST Query API</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -70,7 +70,16 @@
   <a href="#introduction">Introduction</a>
 </div>
 <div class="ui fluid secondary vertical menu">
-  <a class="item" href="#introduction">OpenEHR REST API</a>
+  <a class="item" href="#introduction">OpenEHR REST Query API</a>
+</div>
+
+
+<div class="ui horizontal divider">
+  <a href="#query-requirements">Query Requirements</a>
+</div>
+
+<div class="ui accordion fluid">
+  
 </div>
 
 
@@ -90,17 +99,17 @@
     <div class="content active">
       <div class="ui fluid secondary vertical menu">
       
-        <a class="item green" href="#query-query-get-aql-query-results">
+        <a class="item green" href="#query-query-execute-aql-query">
           <i class="ui green empty circular label"></i>
           
-            <span>Get AQL query results</span>
+            <span>Execute AQL query</span>
           
         </a>
       
-        <a class="item blue" href="#query-query-get-query-results">
+        <a class="item blue" href="#query-query-execute-aql-query">
           <i class="ui blue empty circular label"></i>
           
-            <span>Get query results</span>
+            <span>Execute AQL query</span>
           
         </a>
       
@@ -116,243 +125,132 @@
       <div class="eleven wide computer ten wide tablet sixteen wide mobile column">
         
 <div class="ui hidden divider header"></div>
-<h1 class="ui huge header" id="introduction">OpenEHR REST API</h1>
+<h1 class="ui huge header" id="introduction">OpenEHR REST Query API</h1>
 <hr class="ui divider">
 <div class="description">
-  <p><code>Release:</code><strong><code>v0.1</code></strong>
-<code>Status:</code><strong><code>DEVELOPMENT</code></strong></p>
-
-<h2 id="preface">Preface</h2>
-
-<h3 id="purpose">Purpose</h3>
-
-<p>This specification describes service endpoints, resources, functions and operations
-as well as details of requests and responses that interacts with an openEHR API in a RESTful manner.</p>
-
-<p>This is not a specification a REST API for openEHR Foundation services.
-It is rather an abstract blueprint to which each REST API of an openEHR implementation should adhere to.</p>
-
-<h3 id="related-documents">Related Documents</h3>
-
-<p>Prerequisite documents for reading this document include:</p>
-
-<ul>
-<li>The <a href="http://www.openehr.org/releases/BASE/latest/docs/architecture_overview/architecture_overview.html">openEHR Architecture Overview</a></li>
-</ul>
-
-<p>Related documents include:</p>
-
-<ul>
-<li><p>The <a href="http://www.openehr.org/releases/RM/latest/docs/index#_class_index">openEHR RM Class Index</a></p></li>
-
-<li><p>The <a href="http://www.openehr.org/releases/trunk/its/XML-schema/">RM XSDs</a></p></li>
-</ul>
-
-<h3 id="status">Status</h3>
-
-<p>This specification is in the DEVELOPMENT state. It might not be complete and can still be subject to changes before the final release.
-Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.</p>
-
-<p>Feedback should be provided the <a href="https://openehr.atlassian.net/browse/SPECPR">Specification PR tracker</a> or on <a href="https://github.com/openEHR/specifications-ITS/issues">specifications-ITS</a> issue tracker.</p>
-
-<h3 id="trademarks">Trademarks</h3>
-
-<ul>
-<li>&lsquo;openEHR&rsquo; is a trademark of the openEHR Foundation</li>
-</ul>
-
-<h2 id="glossary">Glossary</h2>
-
-<p>Throughout this specification a set of short terms is being used as described below:</p>
-
-<table>
-<thead>
-<tr>
-<th>Term</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>ehr_id</code></td>
-<td>The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID</td>
-</tr>
-
-<tr>
-<td><code>versioned_object_uid</code></td>
-<td>The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515</td>
-</tr>
-
-<tr>
-<td><code>version_uid</code></td>
-<td>The  value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1</td>
-</tr>
-
-<tr>
-<td><code>version_selector</code></td>
-<td>A placeholder for various identifiers or search/filtering condition to select a VERSION or its data <a href="#header-considerations">see Considerations chapter</a></td>
-</tr>
-
-<tr>
-<td><code>timestamp</code></td>
-<td>A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="considerations">Considerations</h2>
-
-<h3 id="authentication-and-authorization">Authentication and authorization</h3>
-
-<p>::: note
-tbd<br>
-:::</p>
-
-<h3 id="the-options-method">The <code>OPTIONS</code> method</h3>
-
-<p>::: note
-tbd<br>
-:::</p>
-
-<h3 id="about-the-versionselector-placeholder">About the <code>version_selector</code> placeholder</h3>
-
-<p>In some requests described by this specification a placeholder <code>version_selector</code> is used to indicate that
-the action should be performed against (or for) a specific VERSION (or associated data object) of a VERSIONED_OBJECT.
-The purpose of this placeholder is to keep the specification readable while providing search and/or filtering functionality covered by
-attributes and functions described in <a href="http://www.openehr.org/releases/RM/latest/docs/common/common.html#_versioned_object_class">VERSION_OBJECT class</a>.</p>
-
-<p>This placeholder can take one the following values:</p>
-
-<ul>
-<li><p>a <code>versioned_object_uid</code> value - VERSIONED_OBJECT unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515), in which case the latest version is selected</p></li>
-
-<li><p>a <code>version_uid</code> value - VERSION unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1)</p></li>
-
-<li><p>fixed string <code>latest_trunk_version</code> or <code>latest_version</code>, assuming that a <code>versioned_object_uid</code> value is already present in the path</p></li>
-
-<li><p>a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00), assuming that <code>versioned_object_uid</code> value is already present in the path</p></li>
-
-<li><p>a query parameter <code>version_at_time={timestamp}</code>, assuming that a <code>versioned_object_uid</code> value is already present in the path</p></li>
-
-<li><p>a <code>versioned_object_uid</code> value followed by <code>/latest_trunk_version</code> or <code>/latest_version</code> strings</p></li>
-
-<li><p>a <code>versioned_object_uid</code> value followed by <code>/</code> or by <code>/version_at_time/</code> strings, followed by a specific timestamp in the ISO8601 format</p></li>
-
-<li><p>a <code>versioned_object_uid</code> value and a query parameter <code>version_at_time={timestamp}</code></p></li>
-</ul>
-
-<p>Examples:</p>
-
-<pre><code class="language-http">GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/latest_version
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/2015-01-20T19:30:22.765+01:00
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/version_at_time/2015-01-20T19:30:22.765+01:00
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515?version_at_time=2015-01-20T19:30:22.765+01:00
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/latest_version
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/version_at_time/2015-01-20T19:30:22.765+01:00
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions?version_at_time=2015-01-20T19:30:22.765+01:00
-</code></pre>
-
-<h3 id="the-commitaudit-headers">The <code>commit-audit</code> headers</h3>
-
-<p>::: note
-tbd<br>
-:::</p>
-
-<h3 id="the-matchif-header">The <code>Match-if</code> header</h3>
-
-<p>::: note
-tbd<br>
-:::</p>
-
-<h3 id="the-location-header">The <code>Location</code> header</h3>
-
-<p>::: note
-tbd<br>
-:::</p>
-
-<h3 id="the-etag-header-and-cache-handling-and-head-header">The <code>ETag</code> header and cache handling and HEAD header</h3>
-
-<p>::: note
-tbd<br>
-:::</p>
-
-<h3 id="http-status-codes">HTTP status codes</h3>
-
-<p>::: note
-tbd<br>
-:::</p>
-
-<h2 id="data-representation">Data representation</h2>
-
-<h3 id="xml-format">XML Format</h3>
-
-<p>XML content should be valid against <a href="http://www.openehr.org/releases/trunk/its/XML-schema/">published RM XSDs</a>.</p>
-
-<p>A client should use the header <code>Content-Type: application/xml</code> in the requests to specify the XML payload format.
-If the service cannot process the request payload as XML format is not supported, it should respond with http status <code>415 Unsupported Media Type</code>.</p>
-
-<p>The <code>Accept: application/xml</code> can be used in the request by the client in order to specify the expected XML response format.
-If the service cannot fulfill this aspect of the request, it should respond with http status <code>406 Not Acceptable</code>.
-Proper header <code>Content-Type: application/xml</code> should be present in the response of the service.</p>
-
-<h3 id="json-format">JSON Format</h3>
-
-<p>Attribute names must be lowercase snake_case names as specified in the RM specification. For example:</p>
-
-<pre><code>{&quot;context&quot;: {&quot;start_time&quot;: &quot;2016-01-01T00:00Z&quot;}}
-</code></pre>
-
-<p>Metadata attributes (those that are not also RM attributes) will always be prefixed by a <code>'_'</code>.
-One example is the <code>_type</code> attribute, which should be used to specify the RM type whenever polymorphism is involved or the underlying definition in RM type is abstract.
-The value of this attribute should be the uppercase class name from the RM specification. For example:</p>
-
-<pre><code>{
-    &quot;_type&quot;: &quot;DV_TEXT&quot;,
-    &quot;value&quot;: &quot;Hello world!&quot;
-}
-</code></pre>
-
-<dl>
-<dt>The <code>Null</code> RM attributes will be absent when serialized as JSON.</dt><dt>::: note
-tbd json-schema
-:::</dt></dl>
-
-<p>A client should use the header <code>Content-Type: application/json</code> in the requests to specify the JSON payload format.
-If the service cannot process the request payload as JSON format is not supported, it should respond with http status <code>415 Unsupported Media Type</code>.</p>
-
-<p>The <code>Accept: application/json</code> can be used in the request by the client in order to specify the expected JSON response format.
-If the service cannot fulfill this aspect of the request, it should respond with http status <code>406 Not Acceptable</code>.
-Proper header <code>Content-Type: application/json</code> should be present in the response of the service.</p>
-
-<h3 id="datetime-format">Datetime format</h3>
-
-<p>Query parameters or timestamp path segments should always use the canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00.</p>
-
-<p>Any date or datetime value provided by a create or update action inside the composition content
-will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).</p>
-
-<h3 id="the-prefer-return-header">The <code>Prefer: return=</code> header</h3>
-
-<dl>
-<dt>:::</dt><dt>::: note
-tbd resolving OBJ_REF
-:::</dt></dl>
-
-<dl>
-<dt>:::</dt><dt>::: note
-tbd resolving OBJ_REF
-:::</dt></dl>
-
-<p>:::</p>
+  <p>Release: <strong><code>v1.0</code></strong> <br>
+Status: <strong><code>DEVELOPMENT</code></strong></p>
 
 </div>
 
         <div class="ui hidden divider"></div>
         
+
+  <div class="ui horizontal divider" id="query-requirements">
+    Query Requirements
+  </div>
+  <div class="ui header center aligned">
+    <div class="ui sub header">
+      <h2 id="purpose">Purpose</h2>
+
+<p>This specification describes the service endpoints and datamodels used when quering an openEHR system.</p>
+
+<p>AQL (Archetype Query Language) is the primary query language. For some endpoints there might be specified filter/query parameter which is used to invoke query/filter operations in the openEHR system. Then the <code>response</code> define below should be used.</p>
+
+<h2 id="functional-requirements">Functional requirements</h2>
+
+<p>The following is an outline of the functional requirements which this specification is made to solve:</p>
+
+<ul>
+<li><p>Query functions</p></li>
+
+<li><p>Single EHR queries</p></li>
+
+<li><p>Population queries</p></li>
+
+<li><p>Batch queries</p></li>
+
+<li><p>Stored queries</p></li>
+</ul>
+
+<h3 id="query-functions">Query functions</h3>
+
+<p>Query functions are operators/functions which tunes and modifies the execeution of a specific query.</p>
+
+<p>The following types of query functions are identified:</p>
+
+<ul>
+<li><p>Parameters</p></li>
+
+<li><p>Scope</p></li>
+</ul>
+
+<p><em>Parameters</em></p>
+
+<p>An AQL might have parameters defined like <code>:parameter_name</code> . These parameters will be substituded by the server into the actual query that will be executed.</p>
+
+<p><em>Scope</em></p>
+
+<p>Scope is a way to define the set of compositions to be considered when running queries. Examples of this might be:</p>
+
+<ul>
+<li><p>Episode(s) of care</p></li>
+
+<li><p>Periode(s) of care</p></li>
+
+<li><p>Workflow</p></li>
+</ul>
+
+<dl>
+<dt>The scope is attributes to be changed outside the AQL.</dt></dl>
+
+<p>:::note
+Parameters and Scope might be used in combination. One example might be:</p>
+
+<p>I want to query all Temperature entries created after last saturday, and which where registered to a specific Episode of care
+:::</p>
+
+<h3 id="single-ehr-queries">Single EHR queries</h3>
+
+<p>The baseline of a query API is to be able to execute queries within a specific EHR. Put another way: Given an <code>ehr_id</code> clients MUST be able to query content from Compositions within the specified EHR.</p>
+
+<h3 id="population-queries">Population queries</h3>
+
+<p>A common use-case is to be able to query data from several EHRs. The query endpoint must have functions to be able to execute queries on several EHRs in one request.</p>
+
+<p>Use-case where this is used:</p>
+
+<ul>
+<li><p>Ward lists</p></li>
+
+<li><p>Explore correlations between patients in an pandemic situation</p></li>
+</ul>
+
+<h3 id="batch-queries">Batch queries</h3>
+
+<p>Most application will present different data points in the same screen. The datapoints will be collected from different archetypes committed in multiple compositions. To supplement this kind of use-cases the endpoint must provide batch query operations.</p>
+
+<p>To support batch queries some kind of correlation of the queries is needed.</p>
+
+<h3 id="stored-queries">Stored queries</h3>
+
+<p>Stored queries are queries which are present on the server pre-request time. The queries will expose mandatory and optional parameters for the clients.</p>
+
+<h2 id="non-functional-requirements">Non- functional requirements</h2>
+
+<p>Some of the non-functional requirements will be:</p>
+
+<ul>
+<li><p>Low payload</p></li>
+
+<li><p>Ease of use</p></li>
+
+<li><p>Security</p></li>
+</ul>
+
+<h3 id="security">Security</h3>
+
+<ul>
+<li><p>Audit logging
+&ndash; Be able to tell who executed which queries</p></li>
+
+<li><p>Authorization
+&ndash; AQL is open ended - how to deal with authorization on data structures when exposing an open AQL endpoint?</p></li>
+</ul>
+
+    </div>
+  </div>
+  
 
   <div class="ui horizontal divider" id="query">
     Query
@@ -385,10 +283,10 @@ tbd resolving OBJ_REF
 </div>
 
           <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="query-query-get-aql-query-results">
-              Get AQL query results
+            <h3 class="ui block center aligned header" id="query-query-execute-aql-query">
+              Execute AQL query
             </h3>
-            <div class="description"><p>Execute an AQL query as given by the aql parameter.</p>
+            <div class="description"><p>Execute the AQL query supplied in the aql parameter and return result.</p>
 
 <pre><code class="language-sql">select
 a_a/data[at0002]/events[at0003]/time as When,
@@ -540,8 +438,8 @@ offset 0 limit 2
 </div>
 
           <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="query-query-get-query-results">
-              Get query results
+            <h3 class="ui block center aligned header" id="query-query-execute-aql-query">
+              Execute AQL query
             </h3>
             <div class="description"><p>Execute an AQL query.</p>
 
