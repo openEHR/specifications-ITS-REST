@@ -4,7 +4,10 @@ Implementation technology specifications
 ## XML
 See XML schema in subdirectories
 
-## REST
+## Current REST API draft (work in progress)
+The REST API development files are rendered at https://openehr.github.io/specifications-ITS/
+See (and contribute to) "issues" in this GitHub repository for the currently ongoing REST API discussion. Some work is also done using the SEC internal channels
+
+### Older REST API links
 The REST API development file (apiary.apib) is rendered at http://www.openehr.org/releases/ITS/latest/ehr_restapi.html
 or at http://docs.openehr.apiary.io/#.
-See "issues" in this GitHub repository for the currently ongoing REST API discussion
