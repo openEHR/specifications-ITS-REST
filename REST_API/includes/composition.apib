@@ -21,7 +21,7 @@
 
     + Headers
 
-            Prefer: return={representation/minimal}
+            Prefer: return=representation
 
 + Response 201
 
@@ -45,7 +45,7 @@
 
 + Response 400
 
-    Bad request: either the body of the request could not be read (or converted to a COMPOSITION object) or there were Composition validation errors.
+    Bad request: either the body of the request could not be read (or converted to a COMPOSITION object) or there were COMPOSITION validation errors.
 
     + Body
 
@@ -68,9 +68,10 @@
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `object_id` (string) - object id of the composition to update. This can be an exact `version_uid` or `versioned_object_uid`.
+    + `object_id` (string) - identifier of the COMPOSITION to update, taken from COMPOSITION.uid.value. 
+    This can be an exact `version_uid` or `versioned_object_uid`.
     If `version_uid` is supplied, it must be the last (most recent) version.
-    If `versioned_object_uid` is supplied, a `Match-If` header must also be supplied containing the latest `version_uid` which must match for update to succeed.
+    If `versioned_object_uid` is supplied, a `Match-If` header must also be supplied containing the latest `version_uid` which must match for operation to succeed.
 
 + Request
 
@@ -88,7 +89,7 @@
     + Headers
 
             Match-If: {preceding_version_uid}
-            Prefer: return={representation/minimal}
+            Prefer: return=representation
 
 + Response 200 (application/json)
 
@@ -121,7 +122,7 @@
 
 + Response 400 (application/json)
 
-    Bad request: either the body of the request could not be read (or converted to a COMPOSITION object) or there were Composition validation errors.
+    Bad request: either the body of the request could not be read (or converted to a COMPOSITION object) or there were composition validation errors.
 
     + Body
 
@@ -171,7 +172,7 @@
 
 + Response 204
 
-    Composition was deleted.
+    COMPOSITION was deleted.
 
     + Headers
 
@@ -228,13 +229,13 @@
 
     + Body
 
-### Get composition by time [GET /ehrs/{ehr_id}/compositions/{versioned_object_uid}{?version_selector}]
+### Get composition at time [GET /ehrs/{ehr_id}/compositions/{versioned_object_uid}{?version_at_time}]
 
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
     + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from COMPOSITION.uid.value
-    + version_selector (string, optional) - version time specifier
+    + `version_at_time` (string, optional) - A timestamp in the ISO8601 format
 
 + Response 200 (application/json)
 
@@ -256,7 +257,7 @@
 
 + Response 204 (application/json)
 
-    No composition at specified version_selector.
+    No COMPOSITION at specified `version_at_time`.
 
     + Body
 
@@ -337,13 +338,13 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Body
 
-### Get versioned composition version by time [GET /ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions{?version_selector}]
+### Get versioned composition version by time [GET /ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions{?version_at_time}]
 
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
     + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + version_selector (string, optional) - version time specifier
+    + `version_at_time` (string, optional) - A timestamp in the ISO8601 format
 
 + Response 200 (application/json)
 
