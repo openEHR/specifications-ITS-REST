@@ -124,3 +124,65 @@ Write something about this topic
 :::note 
 Marand and DIPS serialize the column/row definition differently. We should choose the best way to serialize data. 
 ::: 
+
+### Examples 
+
+Below is a synthesized response with all attributes and variants from Marand and DIPS. 
+
+```JSON
+{
+  /*
+  The following is an edited resultset which combindes structures from both Marand and DIPS 
+  */
+  "meta": {
+    "href": "http://thinkehr2.marand.si:8082/rest/v1/query/?aql=select%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/magnitude%20as%20temperature,%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/units%20as%20unit%20from%20EHR%20CONTAINS%20Observation%20o%5BopenEHR-EHR-OBSERVATION.body_temperature-zn.v1%5D%20WHERE%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/magnitude%20%3E%2038.5%20order%20by%20temperature%20desc%20fetch%203",
+    "_type": "RESULTSET",
+    "_schemaVersion": "1.0.0",
+    "_format": "raw",
+    "_created": "2017-08-19T00:25:47.568+02:00",
+    "_generator": "DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)"
+
+  },
+  "name": null,
+  "aql": "select e/ehr_id/value as ehrId, c/context/start_time/value as startTime,  c/uid/value as cid from EHR e contains  Composition c limit 2",
+  "executedAql": "select e/ehr_id/value as ehrId, c/context/start_time/value as startTime,  c/uid/value as cid from EHR e contains  Composition c limit 2",
+  "totalResults": 2,
+  "columns": [
+    /*
+    DIPS puts naming and paths for the parameters in the columns attributes. 
+    Marand puts the paramaters in each row. 
+    */
+    {
+      "name": "ehrId",
+      "path": "/ehr_id/value"
+    },
+    {
+      "name": "startTime",
+      "path": "/context/start_time/value"
+    },
+    {
+      "name": "cid",
+      "path": "/uid/value"
+    }
+  ],
+  "rows": [
+    [ // the DIPS way
+      "81433066-c417-4813-9b29-79783e7bed23",
+      "2017-02-16T13:50:11.308+01:00",
+      "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"
+    ],
+    [ // the Marand way 
+      {
+        "ehrId": "83a1af08-7aca-4d50-ac0e-f4aa355b0181"
+      },
+      {
+        "startTime": "2017-02-16T13:50:11.374+01:00"
+      },
+      {
+        "cid": "afc2d4a0-4f7d-4b71-bcc6-50fbe9e6f585::default::1"
+      }
+    ]
+  ]
+
+}
+```
