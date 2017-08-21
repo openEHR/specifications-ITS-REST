@@ -1,253 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>OpenEHR REST Models API</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism-okaidia.min.css" />
-    <style>
-      blockquote {
-        border-left: solid 4px #eee;
-        padding-left: 8px;
-        font-style: italic;
-        margin-left: 0;
-        padding: 8px;
-      }
-
-      .ui.micro.label {
-        font-size: .25rem;
-      }
-
-      .ui.transaction.accordion .title {
-        text-align: center;
-      }
-
-      .ui.transaction.accordion .content {
-        border-top: solid 1px #ddd !important;
-        border-bottom: solid 1px #ddd !important;
-        background-color: rgba(0,0,0,.03);
-        padding: 0.5em 1em !important;
-      }
-
-      .ui.transaction.accordion .content.active {
-        margin-top: 0.5em;
-      }
-
-      .ui.basic.label {
-        text-align: left;
-        overflow: auto;
-      }
-
-      .resource .ui.sub.header {
-        text-transform: none;
-      }
-
-      @media only screen and (min-width: 768px) {
-        .sidewrap {
-          margin-right: 2rem;
-        }
-
-        .sidenav {
-          left: 0;
-          top: 0;
-          width: inherit;
-          position: fixed !important;
-          height: 100% !important;
-          overflow-y: auto !important;
-          padding-left: 0.5rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="ui padded grid">
-      <div class="sidewrap four wide computer five wide tablet sixteen wide mobile column">
-        <div class="sidenav">
-          
-<div class="ui horizontal divider">
-  <a href="#introduction">Introduction</a>
-</div>
-<div class="ui fluid secondary vertical menu">
-  <a class="item" href="#introduction">OpenEHR REST Models API</a>
-</div>
-
-
-<div class="ui horizontal divider">
-  <a href="#models">Models</a>
-</div>
-
-<div class="ui accordion fluid">
-  
-    
-    <div class="title active">
-      <i class="dropdown icon"></i>
-      
-        <strong>Archetype</strong>
-      
-    </div>
-    <div class="content active">
-      <div class="ui fluid secondary vertical menu">
-      
-        <a class="item green" href="#models-archetype-list-all-archetypes">
-          <i class="ui green empty circular label"></i>
-          
-            <span>List all archetypes</span>
-          
-        </a>
-      
-        <a class="item blue" href="#models-archetype-upload-archetype">
-          <i class="ui blue empty circular label"></i>
-          
-            <span>Upload archetype</span>
-          
-        </a>
-      
-        <a class="item green" href="#models-archetype-get-archetype">
-          <i class="ui green empty circular label"></i>
-          
-            <span>Get archetype</span>
-          
-        </a>
-      
-      </div>
-    </div>
-    
-  
-    
-    <div class="title ">
-      <i class="dropdown icon"></i>
-      
-        <strong>TEMPLATE</strong>
-      
-    </div>
-    <div class="content ">
-      <div class="ui fluid secondary vertical menu">
-      
-        <a class="item blue" href="#models-template-upload-template">
-          <i class="ui blue empty circular label"></i>
-          
-            <span>Upload template</span>
-          
-        </a>
-      
-        <a class="item green" href="#models-template-list-all-templates">
-          <i class="ui green empty circular label"></i>
-          
-            <span>List all templates</span>
-          
-        </a>
-      
-        <a class="item green" href="#models-template-get-template">
-          <i class="ui green empty circular label"></i>
-          
-            <span>Get template</span>
-          
-        </a>
-      
-      </div>
-    </div>
-    
-  
-    
-    <div class="title ">
-      <i class="dropdown icon"></i>
-      
-        <strong>GDL</strong>
-      
-    </div>
-    <div class="content ">
-      <div class="ui fluid secondary vertical menu">
-      
-        <a class="item green" href="#models-gdl-list-all-guides">
-          <i class="ui green empty circular label"></i>
-          
-            <span>List all guides</span>
-          
-        </a>
-      
-        <a class="item blue" href="#models-gdl-upload-guide">
-          <i class="ui blue empty circular label"></i>
-          
-            <span>Upload guide</span>
-          
-        </a>
-      
-        <a class="item green" href="#models-gdl-get-guide">
-          <i class="ui green empty circular label"></i>
-          
-            <span>Get guide</span>
-          
-        </a>
-      
-      </div>
-    </div>
-    
-  
-</div>
-
-
-        </div>
-      </div>
-      <div class="eleven wide computer ten wide tablet sixteen wide mobile column">
-        
-<div class="ui hidden divider header"></div>
-<h1 class="ui huge header" id="introduction">OpenEHR REST Models API</h1>
-<hr class="ui divider">
-<div class="description">
-  <p>Release: <strong><code>v1.0</code></strong> <br>
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>OpenEHR REST Models API</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 'Roboto',Helvetica,sans-serif}header{border-bottom:1px solid #ededed;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:36px}h2{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#18bc9c;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px 'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#eff7fc;border-left:4px solid #3498db}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#3498db}.warning{color:black;background-color:#fcf0ef;border-left:4px solid #d62c1a}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#d62c1a}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #ededed;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#ededed;border-radius:10px;margin:-2px 0}.badge.get{color:white;background-color:#3498db}.badge.head{color:white;background-color:#3498db}.badge.options{color:white;background-color:#3498db}.badge.put{color:white;background-color:#f39c12}.badge.patch{color:white;background-color:#f39c12}.badge.post{color:white;background-color:#18bc9c}.badge.delete{color:white;background-color:#e74c3c}.collapse-button{float:right}.collapse-button .close{display:none;color:#18bc9c;cursor:pointer}.collapse-button .open{color:#18bc9c;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#18bc9c}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e80b8}.definition .method.head{color:#2e80b8}.definition .method.options{color:#2e80b8}.definition .method.post{color:#2eb89d}.definition .method.put{color:#b8822e}.definition .method.patch{color:#b8822e}.definition .method.delete{color:#b83b2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#ededed;text-decoration:none !important;border-top:1px solid #ededed;border-left:1px solid #ededed;border-right:1px solid #ededed;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #ededed;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#ededed;border-bottom:1px solid #ededed;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #ededed}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#000;background-color:white}.action h4.action-heading .method.head{color:#000;background-color:white}.action h4.action-heading .method.options{color:#000;background-color:white}.action h4.action-heading .method.put{color:#000;background-color:white}.action h4.action-heading .method.patch{color:#000;background-color:white}.action h4.action-heading .method.post{color:#000;background-color:white}.action h4.action-heading .method.delete{color:#000;background-color:white}.action h4.action-heading code{color:#444;background-color:rgba(255,255,255,0.7);border-color:transparent;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#3498db}.action.get h4.action-heading{color:white;background:#3498db;border-bottom-color:#3498db}.action.head{border-color:#3498db}.action.head h4.action-heading{color:white;background:#3498db;border-bottom-color:#3498db}.action.options{border-color:#3498db}.action.options h4.action-heading{color:white;background:#3498db;border-bottom-color:#3498db}.action.post{border-color:#18bc9c}.action.post h4.action-heading{color:white;background:#18bc9c;border-bottom-color:#18bc9c}.action.put{border-color:#f39c12}.action.put h4.action-heading{color:white;background:#f39c12;border-bottom-color:#f39c12}.action.patch{border-color:#f39c12}.action.patch h4.action-heading{color:white;background:#f39c12;border-bottom-color:#f39c12}.action.delete{border-color:#e74c3c}.action.delete h4.action-heading{color:white;background:#e74c3c;border-bottom-color:#e74c3c}h1,h2,h3,h4,h5{color:black;margin:1.25em 0 14px 0}h3{font-size:125%}</style></head><body class="preload"><div id="nav-background"></div><div class="container-fluid triple"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#top">Overview</a></div><div class="collapse-content"><ul><li><a href="#header-preface">Preface</a></li><li><a href="#header-glossary-and-conventions">Glossary and conventions</a></li><li><a href="#header-design-considerations">Design considerations</a></li><li><a href="#header-data-representation">Data representation</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#models">Models</a></div><div class="collapse-content"><ul><li><a href="#models-archetype">Archetype</a><ul><li><a href="#models-archetype-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>List all archetypes</a></li><li><a href="#models-archetype-post"><span class="badge post"><i class="fa fa-plus"></i></span>Upload archetype</a></li><li><a href="#models-archetype-get-1"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get archetype</a></li></ul></li><li><a href="#models-template">TEMPLATE</a><ul><li><a href="#models-template-post"><span class="badge post"><i class="fa fa-plus"></i></span>Upload template</a></li><li><a href="#models-template-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>List all templates</a></li><li><a href="#models-template-get-1"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get template</a></li></ul></li><li><a href="#models-gdl">GDL</a><ul><li><a href="#models-gdl-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>List all guides</a></li><li><a href="#models-gdl-post"><span class="badge post"><i class="fa fa-plus"></i></span>Upload guide</a></li><li><a href="#models-gdl-get-1"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get guide</a></li></ul></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="http://www.openehr.org/api/v1">http://www.openehr.org/api/v1</a></p></nav><div class="content"><div id="right-panel-background"></div><div class="middle"><header><h1 id="top">OpenEHR REST Models API</h1></header></div><div class="right"><h5>API Endpoint</h5><a href="http://www.openehr.org/api/v1">http://www.openehr.org/api/v1</a></div><div class="middle"><p>Release: <strong><code>v1.0</code></strong> <br>
 Status: <strong><code>DEVELOPMENT</code></strong></p>
-
-<h2 id="preface">Preface</h2>
-
-<h3>Purpose</h3>
-
+<h2 id="header-preface">Preface <a class="permalink" href="#header-preface" aria-hidden="true">¶</a></h2>
+<p><h3>Purpose</h3></p>
 <p>This specification describes service endpoints, resources, functions and operations
 as well as details of requests and responses that interacts with an openEHR API in a RESTful manner.</p>
-
 <p>This is not a specification of a REST API for openEHR Foundation services.
 It is rather an abstract blueprint to which each REST API of an openEHR implementation should adhere.</p>
-
-<h3>Related Documents</h3>
-
+<p><h3>Related Documents</h3></p>
 <p>Prerequisite documents for reading this document include:</p>
-
 <ul>
 <li>The <a href="http://www.openehr.org/releases/BASE/latest/docs/architecture_overview/architecture_overview.html">openEHR Architecture Overview</a></li>
 </ul>
-
 <p>Related documents include:</p>
-
 <ul>
-<li><p>The <a href="http://www.openehr.org/releases/RM/latest/docs/index#_class_index">openEHR RM Class Index</a></p></li>
-
-<li><p>The <a href="http://www.openehr.org/releases/trunk/its/XML-schema/">RM XSDs</a></p></li>
+<li>
+<p>The <a href="http://www.openehr.org/releases/RM/latest/docs/index#_class_index">openEHR RM Class Index</a></p>
+</li>
+<li>
+<p>The <a href="http://www.openehr.org/releases/trunk/its/XML-schema/">RM XSDs</a></p>
+</li>
 </ul>
-
-<h3>Status</h3>
-
+<p><h3>Status</h3></p>
 <p>This specification is in the DEVELOPMENT state. It might not be complete and can still be subject to changes before the final release.
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.</p>
-
 <p>Feedback should be provided the <a href="https://openehr.atlassian.net/browse/SPECPR">Specification PR tracker</a> or on <a href="https://github.com/openEHR/specifications-ITS/issues">specifications-ITS</a> issue tracker.</p>
-
-<h3>Trademarks</h3>
-
+<p><h3>Trademarks</h3></p>
 <ul>
-<li>&lsquo;openEHR&rsquo; is a trademark of the <a href="https://www.openEHR.org">openEHR Foundation</a></li>
+<li>‘openEHR’ is a trademark of the <a href="https://www.openEHR.org">openEHR Foundation</a></li>
 </ul>
-
-<h2 id="glossary-and-conventions">Glossary and conventions</h2>
-
-<p>The key words &ldquo;MUST&rdquo;, &ldquo;MUST NOT&rdquo;, &ldquo;REQUIRED&rdquo;, &ldquo;SHALL&rdquo;, &ldquo;SHALL NOT&rdquo;, &ldquo;SHOULD&rdquo;, &ldquo;SHOULD NOT&rdquo;, &ldquo;RECOMMENDED&rdquo;, &ldquo;MAY&rdquo;, and &ldquo;OPTIONAL&rdquo;
+<h2 id="header-glossary-and-conventions">Glossary and conventions <a class="permalink" href="#header-glossary-and-conventions" aria-hidden="true">¶</a></h2>
+<p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL”
 in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/rfc2119">RFC 2119</a>.</p>
-
 <p>Types defined by openEHR specification are always capitalized (e.g. EHR, COMPOSITION, VERSIONED_OBJECT, etc.) when used in this specification.
 For a list of all available types or a particular type definition please refer to the <a href="http://www.openehr.org/releases/RM/Release-1.0.3/docs/index#_class_index">RM index</a>.</p>
-
 <p>Throughout this specification a set of short terms is being used as described below:</p>
-
 <table>
 <thead>
 <tr>
@@ -255,85 +41,77 @@ For a list of all available types or a particular type definition please refer t
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>ehr_id</code></td>
 <td>The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID</td>
 </tr>
-
 <tr>
 <td><code>versioned_object_uid</code></td>
 <td>The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515</td>
 </tr>
-
 <tr>
 <td><code>version_uid</code></td>
 <td>The  value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1</td>
 </tr>
-
 <tr>
 <td><code>version_selector</code></td>
 <td>A placeholder for various identifiers or search/filtering condition to select a VERSION or its VERSION.data (see <a href="#header-design-considerations">Design considerations</a> section)</td>
 </tr>
-
 <tr>
 <td><code>timestamp</code></td>
 <td>A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)</td>
 </tr>
 </tbody>
 </table>
-
 <p>HTTP Methods used in this specification are described by <a href="https://tools.ietf.org/html/rfc7231#section-4">RFC 7231</a>.
 HTTP Status codes are described by <a href="https://tools.ietf.org/html/rfc7231#section-6">RFC 7231</a>
 and in the <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.
 See <a href="#header-design-considerations">Design considerations</a> section for more details on how (in general)
 HTTP methods and status codes MUST be used by an openEHR REST API.</p>
-
-<h2 id="design-considerations">Design considerations</h2>
-
-<h3>Authentication and authorization</h3>
-
-<p>::: note
-tbd<br>
-:::</p>
-
-<h3>The `OPTIONS` method</h3>
-
+<h2 id="header-design-considerations">Design considerations <a class="permalink" href="#header-design-considerations" aria-hidden="true">¶</a></h2>
+<p><h3>Authentication and authorization</h3></p>
+<div class="note">
+<p>tbd</p>
+</div>
+<p><h3>The <code>OPTIONS</code> method</h3></p>
 <p>This method allows a client to determine the options and/or requirements associated with a
 resource, or the capabilities of the service, without implying a resource action.
 Services SHOULD respond to this method with at least appropriate HTTP codes and headers and potentially with a payload.
 A usecase for this method is related to exposing service capabilities for an conformance manifest.</p>
-
-<h3>About the `version_selector` placeholder</h3>
-
+<p><h3>About the <code>version_selector</code> placeholder</h3></p>
 <p>In some requests described by this specification a placeholder <code>version_selector</code> is used to indicate that
 the action should be performed against (or for) a specific VERSION (or associated data object) of a VERSIONED_OBJECT.
 The purpose of this placeholder is to keep the specification readable while providing search and/or filtering functionality covered by
 attributes and functions described in <a href="http://www.openehr.org/releases/RM/latest/docs/common/common.html#_versioned_object_class">VERSION_OBJECT class</a>.</p>
-
 <p>This placeholder can take one the following values:</p>
-
 <ul>
-<li><p>a <code>versioned_object_uid</code> value - VERSIONED_OBJECT unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515), in which case the latest version is selected</p></li>
-
-<li><p>a <code>version_uid</code> value - VERSION unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1)</p></li>
-
-<li><p>fixed string <code>latest_trunk_version</code> or <code>latest_version</code>, assuming that a <code>versioned_object_uid</code> value is already present in the path</p></li>
-
-<li><p>a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00), assuming that <code>versioned_object_uid</code> value is already present in the path</p></li>
-
-<li><p>a query parameter <code>version_at_time={timestamp}</code>, assuming that a <code>versioned_object_uid</code> value is already present in the path</p></li>
-
-<li><p>a <code>versioned_object_uid</code> value followed by <code>/latest_trunk_version</code> or <code>/latest_version</code> strings</p></li>
-
-<li><p>a <code>versioned_object_uid</code> value followed by <code>/</code> or by <code>/version_at_time/</code> strings, followed by a specific timestamp in the ISO8601 format</p></li>
-
-<li><p>a <code>versioned_object_uid</code> value and a query parameter <code>version_at_time={timestamp}</code></p></li>
+<li>
+<p>a <code>versioned_object_uid</code> value - VERSIONED_OBJECT unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515), in which case the latest version is selected</p>
+</li>
+<li>
+<p>a <code>version_uid</code> value - VERSION unique identifier (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1)</p>
+</li>
+<li>
+<p>fixed string <code>latest_trunk_version</code> or <code>latest_version</code>, assuming that a <code>versioned_object_uid</code> value is already present in the path</p>
+</li>
+<li>
+<p>a specific timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00), assuming that <code>versioned_object_uid</code> value is already present in the path</p>
+</li>
+<li>
+<p>a query parameter <code>version_at_time={timestamp}</code>, assuming that a <code>versioned_object_uid</code> value is already present in the path</p>
+</li>
+<li>
+<p>a <code>versioned_object_uid</code> value followed by <code>/latest_trunk_version</code> or <code>/latest_version</code> strings</p>
+</li>
+<li>
+<p>a <code>versioned_object_uid</code> value followed by <code>/</code> or by <code>/version_at_time/</code> strings, followed by a specific timestamp in the ISO8601 format</p>
+</li>
+<li>
+<p>a <code>versioned_object_uid</code> value and a query parameter <code>version_at_time={timestamp}</code></p>
+</li>
 </ul>
-
 <p>Examples:</p>
-
 <pre><code class="language-http">GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515
 GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/compositions/8849182c-82ad-4088-a07f-48ead4180515/latest_version
@@ -343,54 +121,40 @@ GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/comp
 GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/latest_version
 GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions/version_at_time/2015-01-20T19:30:22.765+01:00
-GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions?version_at_time=2015-01-20T19:30:22.765+01:00
-</code></pre>
-
-<h3>The `commit-audit` headers</h3>
-
-<p>::: note
-tbd<br>
-:::</p>
-
-<h3>The `If-Match` header</h3>
-
+GET http://www.openehr.org/api/v1/ehrs/123e4567-e89b-12d3-a456-426655440000/versioned_compositions/8849182c-82ad-4088-a07f-48ead4180515/versions?version_at_time=2015-01-20T19:30:22.765+01:00</code></pre>
+<p><h3>The <code>commit-audit</code> headers</h3></p>
+<div class="note">
+<p>tbd</p>
+</div>
+<p><h3>The <code>If-Match</code> header</h3></p>
 <p>The use case of this is described by <a href="https://tools.ietf.org/html/rfc7232#section-3.1">RFC 7232</a>.
 This HTTP header MUST be used by the clients to prevent accidental overwrites when multiple user
 agents might be acting in parallel on the same resource. It should be used together with all
 request methods that are changing states or performing updates on a VERSIONED_OBJECT.
 In case a service receives this header and the condition evaluates to <code>false</code> it should respond with
 HTTP status code<code>412 Precondition Failed</code>.</p>
-
-<h3>The `Location` header</h3>
-
-<p>::: note
-tbd<br>
-:::</p>
-
-<h3>The `ETag` header and cache handling and HEAD header</h3>
-
+<p><h3>The <code>Location</code> header</h3></p>
+<div class="note">
+<p>tbd</p>
+</div>
+<p><h3>The <code>ETag</code> header and cache handling and HEAD header</h3></p>
 <p>According to <a href="https://tools.ietf.org/html/rfc7232#section-2.3">RFC 7232</a>,</p>
-
 <blockquote>
-<p>The &ldquo;ETag&rdquo; header field in a response provides the current entity-tag
-    for the selected representation, as determined at the conclusion of
-    handling the request.  An entity-tag is an opaque validator for
-    differentiating between multiple representations of the same
-    resource, regardless of whether those multiple representations are
-    due to resource state changes over time, content negotiation
-    resulting in multiple representations being valid at the same time,
-    or both.</p>
+<p>The “ETag” header field in a response provides the current entity-tag
+for the selected representation, as determined at the conclusion of
+handling the request.  An entity-tag is an opaque validator for
+differentiating between multiple representations of the same
+resource, regardless of whether those multiple representations are
+due to resource state changes over time, content negotiation
+resulting in multiple representations being valid at the same time,
+or both.</p>
 </blockquote>
-
 <p>This header SHOULD be present in all responses that contains full VERSION, VERSIONED_OBJECT or Models
 that have unique identifier for each state changed in time. The value of this header MAY refer to the
 unique identifier of the representation of that resource.</p>
-
-<h3>HTTP status codes</h3>
-
+<p><h3>HTTP status codes</h3></p>
 <p>To indicate the status of the request or the executed operation, one of the following
 subset of the HTTP status codes <a href="https://tools.ietf.org/html/rfc7231#section-6">RFC 7231</a> MUST be used:</p>
-
 <table>
 <thead>
 <tr>
@@ -399,74 +163,62 @@ subset of the HTTP status codes <a href="https://tools.ietf.org/html/rfc7231#sec
 <th>Meaning, usecase and details</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>200</td>
 <td>OK</td>
 <td>The request succeeded, payload sent in a 200 response depends on the request method</td>
 </tr>
-
 <tr>
 <td>201</td>
 <td>Created</td>
 <td>The request has been fulfilled and has resulted in one or more new resources being created</td>
 </tr>
-
 <tr>
 <td>400</td>
 <td>Bad request</td>
 <td>The service cannot or will not process the request due to something that is perceived to be a client error</td>
 </tr>
-
 <tr>
 <td>401</td>
 <td>Unauthorized</td>
 <td>If the service requires authorization, this indicates that the request has not been applied because it lacks valid authentication credentials for the target resource</td>
 </tr>
-
 <tr>
 <td>403</td>
 <td>Forbidden</td>
 <td>The service understood the request but refuses to authorize it</td>
 </tr>
-
 <tr>
 <td>404</td>
 <td>Not found</td>
 <td>The origin service did not find the target resource or is not willing to disclose that one exists</td>
 </tr>
-
 <tr>
 <td>405</td>
 <td>Method Not Allowed</td>
 <td>The method received in the request-line is known by the origin service but not supported by the target resource</td>
 </tr>
-
 <tr>
 <td>406</td>
 <td>Not Acceptable</td>
 <td>The target resource does not have a current representation that would be acceptable to the user</td>
 </tr>
-
 <tr>
 <td>412</td>
 <td>Precondition Failed</td>
 <td>One or more conditions given in the request header fields evaluated to false when tested on the server</td>
 </tr>
-
 <tr>
 <td>415</td>
 <td>Unsupported Media Type</td>
 <td>The service is refusing the request because the payload is in a format not supported by this method on the target resource</td>
 </tr>
-
 <tr>
 <td>500</td>
 <td>Internal Server Error</td>
 <td>The service encountered an unexpected condition that prevented it from fulfilling the request</td>
 </tr>
-
 <tr>
 <td>501</td>
 <td>Not Implemented</td>
@@ -474,1398 +226,356 @@ subset of the HTTP status codes <a href="https://tools.ietf.org/html/rfc7231#sec
 </tr>
 </tbody>
 </table>
-
 <p>Meaning of these codes MAY be further detailed (nuanced) in this specification by particular responses
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.</p>
-
-<h2 id="data-representation">Data representation</h2>
-
-<h3>XML Format</h3>
-
+<h2 id="header-data-representation">Data representation <a class="permalink" href="#header-data-representation" aria-hidden="true">¶</a></h2>
+<p><h3>XML Format</h3></p>
 <p>XML content should be valid against <a href="http://www.openehr.org/releases/trunk/its/XML-schema/">published RM XSDs</a>.</p>
-
 <p>A client should use the header <code>Content-Type: application/xml</code> in the requests to specify the XML payload format.
 If the service cannot process the request payload as XML format is not supported, it should respond with HTTP status code<code>415 Unsupported Media Type</code>.</p>
-
 <p>The <code>Accept: application/xml</code> can be used in the request by the client in order to specify the expected XML response format.
 If the service cannot fulfill this aspect of the request, it should respond with HTTP status code <code>406 Not Acceptable</code>.
 Proper header <code>Content-Type: application/xml</code> should be present in the response of the service.</p>
-
-<h3>JSON Format</h3>
-
+<p><h3>JSON Format</h3></p>
 <p>Attribute names must be lowercase snake_case names as specified in the RM specification. For example:</p>
-
-<pre><code>{&quot;context&quot;: {&quot;start_time&quot;: &quot;2016-01-01T00:00Z&quot;}}
-</code></pre>
-
+<pre><code>{"<span class="hljs-attribute">context</span>": <span class="hljs-value">{"<span class="hljs-attribute">start_time</span>": <span class="hljs-value"><span class="hljs-string">"2016-01-01T00:00Z"</span></span>}</span>}</code></pre>
 <p>Metadata attributes (those that are not also RM attributes) will always be prefixed by a <code>'_'</code>.
 One example is the <code>_type</code> attribute, which should be used to specify the RM type whenever polymorphism is involved or the underlying definition in RM type is abstract.
 The value of this attribute should be the uppercase class name from the RM specification. For example:</p>
-
 <pre><code>{
-    &quot;_type&quot;: &quot;DV_TEXT&quot;,
-    &quot;value&quot;: &quot;Hello world!&quot;
-}
-</code></pre>
-
-<dl>
-<dt>The <code>Null</code> RM attributes will be absent when serialized as JSON.</dt><dt>::: note
-tbd json-schema
-:::</dt></dl>
-
+    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DV_TEXT"</span></span>,
+    "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Hello world!"</span>
+</span>}</code></pre>
+<p>The <code>Null</code> RM attributes will be absent when serialized as JSON.</p>
+<div class="note">
+<p>tbd json-schema</p>
+</div>
 <p>A client should use the header <code>Content-Type: application/json</code> in the requests to specify the JSON payload format.
 If the service cannot process the request payload as JSON format is not supported, it should respond with HTTP status code <code>415 Unsupported Media Type</code>.</p>
-
 <p>The <code>Accept: application/json</code> can be used in the request by the client in order to specify the expected JSON response format.
 If the service cannot fulfill this aspect of the request, it should respond with HTTP status code <code>406 Not Acceptable</code>.
 Proper header <code>Content-Type: application/json</code> should be present in the response of the service.</p>
-
-<h3>Datetime format</h3>
-
+<p><h3>Datetime format</h3></p>
 <p>Query parameters or timestamp path segments should always use the canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00.</p>
-
 <p>Any date or datetime value provided by a create or update action inside the composition content
 will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).</p>
-
-<h3>The `Prefer: return=` header</h3>
-
-<dl>
-<dt>:::</dt><dt>::: note
-tbd resolving OBJ_REF
-:::</dt></dl>
-
-<dl>
-<dt>:::</dt><dt>::: note
-tbd resolving OBJ_REF
-:::</dt></dl>
-
-<p>:</p>
-
+<p><h3>The <code>Prefer: return=</code> header</h3></p>
+<div class="note">
+<p>tbd POST/PUT return=representation</p>
+</div>
+<div class="note">
+<p>tbd resolving OBJ_REF</p>
+</div>
 <p><br><br><br><br><br></p>
-
-</div>
-
-        <div class="ui hidden divider"></div>
-        
-
-  <div class="ui horizontal divider" id="models">
-    Models
-  </div>
-  <div class="ui header center aligned">
-    <div class="ui sub header">
-      <p>This is a collection of resources to manage the clinical models of the openEHR Server.
+</div><div class="middle"><section id="models" class="resource-group"><h2 class="group-heading">Models <a href="#models" class="permalink">&para;</a></h2><p>This is a collection of resources to manage the clinical models of the openEHR Server.
 In basis we have a set of standard CRUD operations on archetype, templates and guides.</p>
-
-    </div>
-  </div>
-  
-    
-      <div class="ui stacked segments">
-        <div class="ui basic segment resource">
-          <div class="ui purple huge ribbon label">
-            Archetype
-          </div>
-          <div class="ui header">
-            <div class="ui sub header">
-              <p>Management of archetype resources.</p>
-
-            </div>
-          </div>
-        </div>
-
-        
-          
-<div class="ui grey horizontal small divider header">
-  <i class="ui grey micro circular label"></i>
-  <i class="ui pink micro circular label"></i>
-  <i class="ui grey micro circular label"></i>
-</div>
-
-          <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="models-archetype-list-all-archetypes">
-              List all archetypes
-            </h3>
-            <div class="description"><p>List all available archetypes on the system</p>
-</div>
-
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui green large button">
-                  <h3>GET</h3>
-                </div>
-                <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/models/archetypes</code>
-                </a>
-              </div>
-              
-              
-              
-
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>200 OK</code> is returned when the resources are successfully retrieved</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <tr>
-      <td class="four wide">Content-Type</td>
-      <td><code>application/json</code></td>
-    </tr>
-  
-  </tbody>
-</table>
-
-              <div class="ui stacked blue segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui blue circular label">
-                      200
-                    </a>
-                    <code>application/json</code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-json">[
-    {
-        &#34;archetype_id&#34;: &#34;openEHR-EHR-EVALUATION.tobacco_smoking_summary.v0&#34;,
-        &#34;description&#34;: &#34;Summary or persisting information about tobacco use or consumption.&#34;,
-        &#34;name&#34;: &#34;Tobacco Use Summary&#34;,
-        &#34;created_time&#34;: &#34;2016-05-26T08:08:43&#34;
-    },
-    {
-        &#34;archetype_id&#34;: &#34;openEHR-EHR-OBSERVATION.heart_rate.v1&#34;,
-        &#34;description&#34;: &#34;The characteristics of the heart rate and rhythm.&#34;,
-        &#34;name&#34;: &#34;Heart rate and rhythm&#34;,
-        &#34;created_time&#34;: &#34;2016-05-27T21:53:02&#34;
-    }
-]
-</code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-        
-          
-<div class="ui grey horizontal small divider header">
-  <i class="ui grey micro circular label"></i>
-  <i class="ui pink micro circular label"></i>
-  <i class="ui grey micro circular label"></i>
-</div>
-
-          <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="models-archetype-upload-archetype">
-              Upload archetype
-            </h3>
-            <div class="description"><p>Upload an archetype to the server</p>
-</div>
-
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui blue large button">
-                  <h3>POST</h3>
-                </div>
-                <a class="ui basic fluid blue label">
-                  <code>http://www.openehr.org/api/v1/models/archetypes</code>
-                </a>
-              </div>
-              
-              
-              
-                <div class="ui stacked segment">
-                  <div class="ui fluid transaction accordion">
-                    <div class="title">
-                      <code></code>
-                    </div>
-                    <div class="content tabbed">
-                      <div class="ui top attached tabular menu">
-                        <a data-tab="body" class="active item">BODY</a>
-                        <a data-tab="schema" class="item">SCHEMA</a>
-                      </div>
-                      <div class="ui bottom attached active tab segment" data-tab="body">
-                        <pre style="white-space: inherit">
-                          <code class="language-">{
-    &#34;adl&#34;: &#34;string&#34;
-}
-</code>
-                        </pre>
-                      </div>
-                      <div class="ui bottom attached tab segment" data-tab="schema">
-                        <pre style="white-space: inherit">
-                          <code class="language-json"></code>
-                        </pre>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
-
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>201 Created</code> is returned when the archetype has been successfully uploaded to the server.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <tr>
-      <td class="four wide">Content-Type</td>
-      <td><code>application/json</code></td>
-    </tr>
-  
-    <tr>
-      <td class="four wide">Location</td>
-      <td><code>/models/archetypes/{archetype_id}</code></td>
-    </tr>
-  
-  </tbody>
-</table>
-
-              <div class="ui stacked blue segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui blue circular label">
-                      201
-                    </a>
-                    <code></code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-"></code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-        
-          
-<div class="ui grey horizontal small divider header">
-  <i class="ui grey micro circular label"></i>
-  <i class="ui pink micro circular label"></i>
-  <i class="ui grey micro circular label"></i>
-</div>
-
-          <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="models-archetype-get-archetype">
-              Get archetype
-            </h3>
-            <div class="description"><p>Get the archetype defined by the {archetype_id}</p>
-</div>
-
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui green large button">
-                  <h3>GET</h3>
-                </div>
-                <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/models/archetypes/{archetype_id}</code>
-                </a>
-              </div>
-              
-                
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="4">Parameters</th>
-    </tr>
-  <thead>
-  <tbody>
-  
-    <tr>
-      <td class="center aligned one wide">
-        <i class="ui empty circular label black" data-content="required" data-position="top center"></i>
-      </td>
-      <td><code>archetype_id</code></td>
-      <td class="center aligned">
-        <code>string</code>
-        
-      </td>
-      <td class="eight wide"><p>archetype id</p>
-</td>
-    </tr>
-  
-  </tbody>
-</table>
-
-              
-              
-              
-
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>200 OK</code> is returned when the resources is successfully retrieved.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <tr>
-      <td class="four wide">Content-Type</td>
-      <td><code>application/json</code></td>
-    </tr>
-  
-  </tbody>
-</table>
-
-              <div class="ui stacked blue segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui blue circular label">
-                      200
-                    </a>
-                    <code>application/json</code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-json">{
-  /** JSON representation of an Archetype */
-}
-</code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-        
-        </div>
-      <div class="ui hidden divider"></div>
-    
-  
-    
-      <div class="ui stacked segments">
-        <div class="ui basic segment resource">
-          <div class="ui purple huge ribbon label">
-            TEMPLATE
-          </div>
-          <div class="ui header">
-            <div class="ui sub header">
-              <p>Management of OpenEHR operational templates. OpenEHR templates can be uploaded and downloaded as OPTs created
+</section></div><div class="middle"><div id="models-archetype" class="resource"><h3 class="resource-heading">Archetype <a href="#models-archetype" class="permalink">&para;</a></h3><p>Management of archetype resources.</p>
+</div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/models/archetypes</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the resources are successfully retrieved</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">archetype_id</span>": <span class="hljs-value"><span class="hljs-string">"openEHR-EHR-EVALUATION.tobacco_smoking_summary.v0"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Summary or persisting information about tobacco use or consumption."</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Tobacco Use Summary"</span></span>,
+    "<span class="hljs-attribute">created_time</span>": <span class="hljs-value"><span class="hljs-string">"2016-05-26T08:08:43"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">archetype_id</span>": <span class="hljs-value"><span class="hljs-string">"openEHR-EHR-OBSERVATION.heart_rate.v1"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"The characteristics of the heart rate and rhythm."</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Heart rate and rhythm"</span></span>,
+    "<span class="hljs-attribute">created_time</span>": <span class="hljs-value"><span class="hljs-string">"2016-05-27T21:53:02"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="models-archetype-get" class="action get"><h4 class="action-heading"><div class="name">List all archetypes</div><a href="#models-archetype-get" class="method get">GET</a><code class="uri">/models/archetypes</code></h4><p>List all available archetypes on the system</p>
+</div></div><hr class="split"><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/models/archetypes</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">adl</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">201</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>201 Created</code> is returned when the archetype has been successfully uploaded to the server.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Location</span>: <span class="hljs-string">/models/archetypes/{archetype_id}</span></code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="models-archetype-post" class="action post"><h4 class="action-heading"><div class="name">Upload archetype</div><a href="#models-archetype-post" class="method post">POST</a><code class="uri">/models/archetypes</code></h4><p>Upload an archetype to the server</p>
+</div></div><hr class="split"><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/models/archetypes/<span class="hljs-attribute" title="archetype_id">archetype_id</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the resources is successfully retrieved.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  <span class="hljs-comment">/** JSON representation of an Archetype */</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="models-archetype-get-1" class="action get"><h4 class="action-heading"><div class="name">Get archetype</div><a href="#models-archetype-get-1" class="method get">GET</a><code class="uri">/models/archetypes/{archetype_id}</code></h4><p>Get the archetype defined by the {archetype_id}</p>
+<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>archetype_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>archetype id</p>
+</dd></dl></div></div></div><hr class="split"><div class="middle"><div id="models-template" class="resource"><h3 class="resource-heading">TEMPLATE <a href="#models-template" class="permalink">&para;</a></h3><p>Management of OpenEHR operational templates. OpenEHR templates can be uploaded and downloaded as OPTs created
 by modelling tools such as the Template Designer.</p>
+</div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/models/templates</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code><span class="hljs-tag">&lt;<span class="hljs-title">template</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://schemas.openehr.org/v1"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">language</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">terminology_id</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">value</span>&gt;</span>ISO_639-1<span class="hljs-tag">&lt;/<span class="hljs-title">value</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">terminology_id</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">code_string</span>&gt;</span>en<span class="hljs-tag">&lt;/<span class="hljs-title">code_string</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">language</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">description</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">original_author</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"Original Author"</span>&gt;</span>Not Specified<span class="hljs-tag">&lt;/<span class="hljs-title">original_author</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">lifecycle_state</span>&gt;</span>Initial<span class="hljs-tag">&lt;/<span class="hljs-title">lifecycle_state</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">other_details</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"MetaDataSet:Sample Set "</span>&gt;</span>Template metadata sample set <span class="hljs-tag">&lt;/<span class="hljs-title">other_details</span>&gt;</span>
+...</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">201</span><span class="tab-button">400</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>201 Created</code> is returned when the template has been successfully uploaded.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Location</span>: <span class="hljs-string">/models/templates/{template_id}</span></code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p>‘400 Bad Request’ is returned when unable to upload a template, because of invalid content.</p>
+</div></div></div></div></div></div></div></div><div class="middle"><div id="models-template-post" class="action post"><h4 class="action-heading"><div class="name">Upload template</div><a href="#models-template-post" class="method post">POST</a><code class="uri">/models/templates</code></h4><p>Upload a new template.</p>
+</div></div><hr class="split"><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/models/templates</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the EHR resource is successfully retrieved.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">template_id</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+    "<span class="hljs-attribute">concept</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+    "<span class="hljs-attribute">archetype_id</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+    "<span class="hljs-attribute">valid_to</span>": <span class="hljs-value"><span class="hljs-string">"2017-08-14T19:24:56.639Z"</span></span>,
+    "<span class="hljs-attribute">created_timeStamp</span>": <span class="hljs-value"><span class="hljs-string">"2017-08-14T19:24:56.639Z"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="models-template-get" class="action get"><h4 class="action-heading"><div class="name">List all templates</div><a href="#models-template-get" class="method get">GET</a><code class="uri">/models/templates</code></h4><p>List all available templates on the system</p>
+</div></div><hr class="split"><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/models/templates/<span class="hljs-attribute" title="template_id">template_id</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span><span class="tab-button">404</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the EHR resource is successfully retrieved.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code><span class="hljs-tag">&lt;<span class="hljs-title">template</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://schemas.openehr.org/v1"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">language</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">terminology_id</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">value</span>&gt;</span>ISO_639-1<span class="hljs-tag">&lt;/<span class="hljs-title">value</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-title">terminology_id</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">code_string</span>&gt;</span>en<span class="hljs-tag">&lt;/<span class="hljs-title">code_string</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">language</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">description</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">original_author</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"Original Author"</span>&gt;</span>Not Specified<span class="hljs-tag">&lt;/<span class="hljs-title">original_author</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">lifecycle_state</span>&gt;</span>Initial<span class="hljs-tag">&lt;/<span class="hljs-title">lifecycle_state</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">other_details</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"MetaDataSet:Sample Set "</span>&gt;</span>Template metadata sample set <span class="hljs-tag">&lt;/<span class="hljs-title">other_details</span>&gt;</span>
+        ...</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>404 Not Found</code> is returned when a template with the specified id does not exist.</p>
+</div></div></div></div></div></div></div><div class="middle"><div id="models-template-get-1" class="action get"><h4 class="action-heading"><div class="name">Get template</div><a href="#models-template-get-1" class="method get">GET</a><code class="uri">/models/templates/{template_id}</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>template_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>template id</p>
+</dd></dl></div></div></div><hr class="split"><div class="middle"><div id="models-gdl" class="resource"><h3 class="resource-heading">GDL <a href="#models-gdl" class="permalink">&para;</a></h3><p>Management of GDL resources in the system.</p>
+</div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/models/gdl</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the resources are succesfully retrieved.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">guideId</span>": <span class="hljs-value"><span class="hljs-string">"GuideOne.v1"</span></span>,
+    "<span class="hljs-attribute">validTo</span>": <span class="hljs-value"><span class="hljs-string">"2016-05-26T12:04:43"</span></span>,
+    "<span class="hljs-attribute">createdTimeStamp</span>": <span class="hljs-value"><span class="hljs-string">"2016-05-26T12:02:01"</span></span>,
+    "<span class="hljs-attribute">concept</span>": <span class="hljs-value"><span class="hljs-string">"Guide one"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">guideId</span>": <span class="hljs-value"><span class="hljs-string">"GuideTwo.v1"</span></span>,
+    "<span class="hljs-attribute">createdTimeStamp</span>": <span class="hljs-value"><span class="hljs-string">"2016-05-26T12:04:43"</span></span>,
+    "<span class="hljs-attribute">concept</span>": <span class="hljs-value"><span class="hljs-string">"Guide two"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="models-gdl-get" class="action get"><h4 class="action-heading"><div class="name">List all guides</div><a href="#models-gdl-get" class="method get">GET</a><code class="uri">/models/gdl</code></h4><p>List all available guides in the system</p>
+</div></div><hr class="split"><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/models/gdl</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">gdl</span>": <span class="hljs-value"><span class="hljs-string">"&lt;the gdl as a UTF-8 string&gt;"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">201</span><span class="tab-button">400</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>201 Created</code> is returned when the guide has been successfully uploaded to the server.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Location</span>: <span class="hljs-string">/models/gdl/{guideId}</span></code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>400 Bad Request</code> is returned when the server was unable to upload the guide.</p>
+</div></div></div></div></div></div></div></div><div class="middle"><div id="models-gdl-post" class="action post"><h4 class="action-heading"><div class="name">Upload guide</div><a href="#models-gdl-post" class="method post">POST</a><code class="uri">/models/gdl</code></h4></div></div><hr class="split"><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/models/gdls/<span class="hljs-attribute" title="guideId">guideId</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the guide is succesfully retrieved.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code><span class="hljs-string">"(GUIDE) &lt;\n\tgdl_version = &lt;..... "</span></code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="models-gdl-get-1" class="action get"><h4 class="action-heading"><div class="name">Get guide</div><a href="#models-gdl-get-1" class="method get">GET</a><code class="uri">/models/gdls/{guideId}</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>guideId</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the guideId</p>
+</dd></dl></div></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 21 Aug 2017</p></div></div></div></div><script>/* eslint-env browser */
+/* eslint quotes: [2, "single"] */
+'use strict';
 
-            </div>
-          </div>
-        </div>
-
-        
-          
-<div class="ui grey horizontal small divider header">
-  <i class="ui grey micro circular label"></i>
-  <i class="ui pink micro circular label"></i>
-  <i class="ui grey micro circular label"></i>
-</div>
-
-          <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="models-template-upload-template">
-              Upload template
-            </h3>
-            <div class="description"><p>Upload a new template.</p>
-</div>
-
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui blue large button">
-                  <h3>POST</h3>
-                </div>
-                <a class="ui basic fluid blue label">
-                  <code>http://www.openehr.org/api/v1/models/templates</code>
-                </a>
-              </div>
-              
-              
-              
-                <div class="ui stacked segment">
-                  <div class="ui fluid transaction accordion">
-                    <div class="title">
-                      <code></code>
-                    </div>
-                    <div class="content tabbed">
-                      <div class="ui top attached tabular menu">
-                        <a data-tab="body" class="active item">BODY</a>
-                        <a data-tab="schema" class="item">SCHEMA</a>
-                      </div>
-                      <div class="ui bottom attached active tab segment" data-tab="body">
-                        <pre style="white-space: inherit">
-                          <code class="language-">&lt;template xmlns=&#34;http://schemas.openehr.org/v1&#34;&gt;
-    &lt;language&gt;
-        &lt;terminology_id&gt;
-            &lt;value&gt;ISO_639-1&lt;/value&gt;
-        &lt;/terminology_id&gt;
-        &lt;code_string&gt;en&lt;/code_string&gt;
-    &lt;/language&gt;
-    &lt;description&gt;
-        &lt;original_author id=&#34;Original Author&#34;&gt;Not Specified&lt;/original_author&gt;
-        &lt;lifecycle_state&gt;Initial&lt;/lifecycle_state&gt;
-        &lt;other_details id=&#34;MetaDataSet:Sample Set &#34;&gt;Template metadata sample set &lt;/other_details&gt;
-...
-</code>
-                        </pre>
-                      </div>
-                      <div class="ui bottom attached tab segment" data-tab="schema">
-                        <pre style="white-space: inherit">
-                          <code class="language-json"></code>
-                        </pre>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
-
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>201 Created</code> is returned when the template has been successfully uploaded.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <tr>
-      <td class="four wide">Content-Type</td>
-      <td><code>application/json</code></td>
-    </tr>
-  
-    <tr>
-      <td class="four wide">Location</td>
-      <td><code>/models/templates/{template_id}</code></td>
-    </tr>
-  
-  </tbody>
-</table>
-
-              <div class="ui stacked blue segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui blue circular label">
-                      201
-                    </a>
-                    <code></code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-"></code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui blue large button">
-                  <h3>POST</h3>
-                </div>
-                <a class="ui basic fluid blue label">
-                  <code>http://www.openehr.org/api/v1/models/templates</code>
-                </a>
-              </div>
-              
-              
-              
-                <div class="ui stacked segment">
-                  <div class="ui fluid transaction accordion">
-                    <div class="title">
-                      <code></code>
-                    </div>
-                    <div class="content tabbed">
-                      <div class="ui top attached tabular menu">
-                        <a data-tab="body" class="active item">BODY</a>
-                        <a data-tab="schema" class="item">SCHEMA</a>
-                      </div>
-                      <div class="ui bottom attached active tab segment" data-tab="body">
-                        <pre style="white-space: inherit">
-                          <code class="language-">&lt;template xmlns=&#34;http://schemas.openehr.org/v1&#34;&gt;
-    &lt;language&gt;
-        &lt;terminology_id&gt;
-            &lt;value&gt;ISO_639-1&lt;/value&gt;
-        &lt;/terminology_id&gt;
-        &lt;code_string&gt;en&lt;/code_string&gt;
-    &lt;/language&gt;
-    &lt;description&gt;
-        &lt;original_author id=&#34;Original Author&#34;&gt;Not Specified&lt;/original_author&gt;
-        &lt;lifecycle_state&gt;Initial&lt;/lifecycle_state&gt;
-        &lt;other_details id=&#34;MetaDataSet:Sample Set &#34;&gt;Template metadata sample set &lt;/other_details&gt;
-...
-</code>
-                        </pre>
-                      </div>
-                      <div class="ui bottom attached tab segment" data-tab="schema">
-                        <pre style="white-space: inherit">
-                          <code class="language-json"></code>
-                        </pre>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
-
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p>&lsquo;400 Bad Request&rsquo; is returned when unable to upload a template, because of invalid content.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-  </tbody>
-</table>
-
-              <div class="ui stacked  segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui  circular label">
-                      400
-                    </a>
-                    <code></code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-"></code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-        
-          
-<div class="ui grey horizontal small divider header">
-  <i class="ui grey micro circular label"></i>
-  <i class="ui pink micro circular label"></i>
-  <i class="ui grey micro circular label"></i>
-</div>
-
-          <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="models-template-list-all-templates">
-              List all templates
-            </h3>
-            <div class="description"><p>List all available templates on the system</p>
-</div>
-
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui green large button">
-                  <h3>GET</h3>
-                </div>
-                <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/models/templates</code>
-                </a>
-              </div>
-              
-              
-              
-
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>200 OK</code> is returned when the EHR resource is successfully retrieved.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <tr>
-      <td class="four wide">Content-Type</td>
-      <td><code>application/json</code></td>
-    </tr>
-  
-  </tbody>
-</table>
-
-              <div class="ui stacked blue segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui blue circular label">
-                      200
-                    </a>
-                    <code>application/json</code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-json">[
-    {
-        &#34;template_id&#34;: &#34;string&#34;,
-        &#34;concept&#34;: &#34;string&#34;,
-        &#34;archetype_id&#34;: &#34;string&#34;,
-        &#34;valid_to&#34;: &#34;2017-08-14T19:24:56.639Z&#34;,
-        &#34;created_timeStamp&#34;: &#34;2017-08-14T19:24:56.639Z&#34;
-    }
-]
-</code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-        
-          
-<div class="ui grey horizontal small divider header">
-  <i class="ui grey micro circular label"></i>
-  <i class="ui pink micro circular label"></i>
-  <i class="ui grey micro circular label"></i>
-</div>
-
-          <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="models-template-get-template">
-              Get template
-            </h3>
-            <div class="description"></div>
-
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui green large button">
-                  <h3>GET</h3>
-                </div>
-                <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/models/templates/{template_id}</code>
-                </a>
-              </div>
-              
-                
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="4">Parameters</th>
-    </tr>
-  <thead>
-  <tbody>
-  
-    <tr>
-      <td class="center aligned one wide">
-        <i class="ui empty circular label black" data-content="required" data-position="top center"></i>
-      </td>
-      <td><code>template_id</code></td>
-      <td class="center aligned">
-        <code>string</code>
-        
-      </td>
-      <td class="eight wide"><p>template id</p>
-</td>
-    </tr>
-  
-  </tbody>
-</table>
-
-              
-              
-              
-
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>200 OK</code> is returned when the EHR resource is successfully retrieved.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <tr>
-      <td class="four wide">Content-Type</td>
-      <td><code>application/json</code></td>
-    </tr>
-  
-  </tbody>
-</table>
-
-              <div class="ui stacked blue segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui blue circular label">
-                      200
-                    </a>
-                    <code>application/json</code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-json">        &lt;template xmlns=&#34;http://schemas.openehr.org/v1&#34;&gt;
-            &lt;language&gt;
-                &lt;terminology_id&gt;
-                    &lt;value&gt;ISO_639-1&lt;/value&gt;
-                &lt;/terminology_id&gt;
-                &lt;code_string&gt;en&lt;/code_string&gt;
-            &lt;/language&gt;
-            &lt;description&gt;
-                &lt;original_author id=&#34;Original Author&#34;&gt;Not Specified&lt;/original_author&gt;
-                &lt;lifecycle_state&gt;Initial&lt;/lifecycle_state&gt;
-                &lt;other_details id=&#34;MetaDataSet:Sample Set &#34;&gt;Template metadata sample set &lt;/other_details&gt;
-        ...
-</code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui green large button">
-                  <h3>GET</h3>
-                </div>
-                <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/models/templates/{template_id}</code>
-                </a>
-              </div>
-              
-                
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="4">Parameters</th>
-    </tr>
-  <thead>
-  <tbody>
-  
-    <tr>
-      <td class="center aligned one wide">
-        <i class="ui empty circular label black" data-content="required" data-position="top center"></i>
-      </td>
-      <td><code>template_id</code></td>
-      <td class="center aligned">
-        <code>string</code>
-        
-      </td>
-      <td class="eight wide"><p>template id</p>
-</td>
-    </tr>
-  
-  </tbody>
-</table>
-
-              
-              
-              
-
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>404 Not Found</code> is returned when a template with the specified id does not exist.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-  </tbody>
-</table>
-
-              <div class="ui stacked orange segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui orange circular label">
-                      404
-                    </a>
-                    <code></code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-"></code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-        
-        </div>
-      <div class="ui hidden divider"></div>
-    
-  
-    
-      <div class="ui stacked segments">
-        <div class="ui basic segment resource">
-          <div class="ui purple huge ribbon label">
-            GDL
-          </div>
-          <div class="ui header">
-            <div class="ui sub header">
-              <p>Management of GDL resources in the system.</p>
-
-            </div>
-          </div>
-        </div>
-
-        
-          
-<div class="ui grey horizontal small divider header">
-  <i class="ui grey micro circular label"></i>
-  <i class="ui pink micro circular label"></i>
-  <i class="ui grey micro circular label"></i>
-</div>
-
-          <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="models-gdl-list-all-guides">
-              List all guides
-            </h3>
-            <div class="description"><p>List all available guides in the system</p>
-</div>
-
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui green large button">
-                  <h3>GET</h3>
-                </div>
-                <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/models/gdl</code>
-                </a>
-              </div>
-              
-              
-              
-
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>200 OK</code> is returned when the resources are succesfully retrieved.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <tr>
-      <td class="four wide">Content-Type</td>
-      <td><code>application/json</code></td>
-    </tr>
-  
-  </tbody>
-</table>
-
-              <div class="ui stacked blue segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui blue circular label">
-                      200
-                    </a>
-                    <code>application/json</code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-json">[{
-        &#34;guideId&#34;: &#34;GuideOne.v1&#34;,
-        &#34;validTo&#34;: &#34;2016-05-26T12:04:43&#34;,
-        &#34;createdTimeStamp&#34;: &#34;2016-05-26T12:02:01&#34;,
-        &#34;concept&#34;: &#34;Guide one&#34;
-    },
-    {
-        &#34;guideId&#34;: &#34;GuideTwo.v1&#34;,
-        &#34;createdTimeStamp&#34;: &#34;2016-05-26T12:04:43&#34;,
-        &#34;concept&#34;: &#34;Guide two&#34;
-    }
-]
-</code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-        
-          
-<div class="ui grey horizontal small divider header">
-  <i class="ui grey micro circular label"></i>
-  <i class="ui pink micro circular label"></i>
-  <i class="ui grey micro circular label"></i>
-</div>
-
-          <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="models-gdl-upload-guide">
-              Upload guide
-            </h3>
-            <div class="description"></div>
-
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui blue large button">
-                  <h3>POST</h3>
-                </div>
-                <a class="ui basic fluid blue label">
-                  <code>http://www.openehr.org/api/v1/models/gdl</code>
-                </a>
-              </div>
-              
-              
-              
-                <div class="ui stacked segment">
-                  <div class="ui fluid transaction accordion">
-                    <div class="title">
-                      <code></code>
-                    </div>
-                    <div class="content tabbed">
-                      <div class="ui top attached tabular menu">
-                        <a data-tab="body" class="active item">BODY</a>
-                        <a data-tab="schema" class="item">SCHEMA</a>
-                      </div>
-                      <div class="ui bottom attached active tab segment" data-tab="body">
-                        <pre style="white-space: inherit">
-                          <code class="language-">{
-  &#34;gdl&#34;: &#34;&lt;the gdl as a UTF-8 string&gt;&#34;
+/*
+  Determine if a string ends with another string.
+*/
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
-</code>
-                        </pre>
-                      </div>
-                      <div class="ui bottom attached tab segment" data-tab="schema">
-                        <pre style="white-space: inherit">
-                          <code class="language-json"></code>
-                        </pre>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
 
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>201 Created</code> is returned when the guide has been successfully uploaded to the server.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <tr>
-      <td class="four wide">Content-Type</td>
-      <td><code>application/json</code></td>
-    </tr>
-  
-    <tr>
-      <td class="four wide">Location</td>
-      <td><code>/models/gdl/{guideId}</code></td>
-    </tr>
-  
-  </tbody>
-</table>
+/*
+  Get a list of direct child elements by class name.
+*/
+function childrenByClass(element, name) {
+  var filtered = [];
 
-              <div class="ui stacked blue segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui blue circular label">
-                      201
-                    </a>
-                    <code></code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-"></code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui blue large button">
-                  <h3>POST</h3>
-                </div>
-                <a class="ui basic fluid blue label">
-                  <code>http://www.openehr.org/api/v1/models/gdl</code>
-                </a>
-              </div>
-              
-              
-              
-                <div class="ui stacked segment">
-                  <div class="ui fluid transaction accordion">
-                    <div class="title">
-                      <code></code>
-                    </div>
-                    <div class="content tabbed">
-                      <div class="ui top attached tabular menu">
-                        <a data-tab="body" class="active item">BODY</a>
-                        <a data-tab="schema" class="item">SCHEMA</a>
-                      </div>
-                      <div class="ui bottom attached active tab segment" data-tab="body">
-                        <pre style="white-space: inherit">
-                          <code class="language-">{
-  &#34;gdl&#34;: &#34;&lt;the gdl as a UTF-8 string&gt;&#34;
+  for (var i = 0; i < element.children.length; i++) {
+    var child = element.children[i];
+    var classNames = child.className.split(' ');
+    if (classNames.indexOf(name) !== -1) {
+      filtered.push(child);
+    }
+  }
+
+  return filtered;
 }
-</code>
-                        </pre>
-                      </div>
-                      <div class="ui bottom attached tab segment" data-tab="schema">
-                        <pre style="white-space: inherit">
-                          <code class="language-json"></code>
-                        </pre>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
 
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>400 Bad Request</code> is returned when the server was unable to upload the guide.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-  </tbody>
-</table>
+/*
+  Get an array [width, height] of the window.
+*/
+function getWindowDimensions() {
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.body,
+      x = w.innerWidth || e.clientWidth || g.clientWidth,
+      y = w.innerHeight || e.clientHeight || g.clientHeight;
 
-              <div class="ui stacked  segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui  circular label">
-                      400
-                    </a>
-                    <code></code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-"></code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-        
-          
-<div class="ui grey horizontal small divider header">
-  <i class="ui grey micro circular label"></i>
-  <i class="ui pink micro circular label"></i>
-  <i class="ui grey micro circular label"></i>
-</div>
+  return [x, y];
+}
 
-          <div class="ui basic segment">
-            <h3 class="ui block center aligned header" id="models-gdl-get-guide">
-              Get guide
-            </h3>
-            <div class="description"></div>
+/*
+  Collapse or show a request/response example.
+*/
+function toggleCollapseButton(event) {
+    var button = event.target.parentNode;
+    var content = button.parentNode.nextSibling;
+    var inner = content.children[0];
 
-            
-              <h4 class="ui horizontal divider">
-                REQUEST
-              </h4>
-              <div class="description"></div>
-              <div class="fluid ui large labeled button">
-                <div class="ui green large button">
-                  <h3>GET</h3>
-                </div>
-                <a class="ui basic fluid green label">
-                  <code>http://www.openehr.org/api/v1/models/gdls/{guideId}</code>
-                </a>
-              </div>
-              
-                
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="4">Parameters</th>
-    </tr>
-  <thead>
-  <tbody>
-  
-    <tr>
-      <td class="center aligned one wide">
-        <i class="ui empty circular label black" data-content="required" data-position="top center"></i>
-      </td>
-      <td><code>guideId</code></td>
-      <td class="center aligned">
-        <code>string</code>
-        
-      </td>
-      <td class="eight wide"><p>the guideId</p>
-</td>
-    </tr>
-  
-  </tbody>
-</table>
+    if (button.className.indexOf('collapse-button') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
 
-              
-              
-              
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        // Currently showing, so let's hide it
+        button.className = 'collapse-button';
+        content.style.maxHeight = '0px';
+    } else {
+        // Currently hidden, so let's show it
+        button.className = 'collapse-button show';
+        content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
 
-              <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"><p><code>200 OK</code> is returned when the guide is succesfully retrieved.</p>
-</div>
-              
-<table class="ui celled definition table">
-  <thead>
-    <tr>
-      <th colspan="2">Headers</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <tr>
-      <td class="four wide">Content-Type</td>
-      <td><code>application/json</code></td>
-    </tr>
-  
-  </tbody>
-</table>
+function toggleTabButton(event) {
+    var i, index;
+    var button = event.target;
 
-              <div class="ui stacked blue segment">
-                <div class="ui fluid transaction accordion">
-                  <div class="title center aligned">
-                    <a class="ui blue circular label">
-                      200
-                    </a>
-                    <code>application/json</code>
-                  </div>
-                  <div class="content tabbed">
-                    <div class="ui top attached tabular menu">
-                      <a data-tab="body" class="active item">BODY</a>
-                      <a data-tab="schema" class="item">SCHEMA</a>
-                    </div>
-                    <div class="ui bottom attached active tab segment" data-tab="body">
-                      <pre style="white-space: inherit">
-                        <code class="language-json">    &#34;(GUIDE) &lt;\n\tgdl_version = &lt;..... &#34;
-</code>
-                      </pre>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="schema">
-                      <pre style="white-space: inherit">
-                        <code class="language-json"></code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-        
-        </div>
-      <div class="ui hidden divider"></div>
-    
-  
+    // Get index of the current button.
+    var buttons = childrenByClass(button.parentNode, 'tab-button');
+    for (i = 0; i < buttons.length; i++) {
+        if (buttons[i] === button) {
+            index = i;
+            button.className = 'tab-button active';
+        } else {
+            buttons[i].className = 'tab-button';
+        }
+    }
 
+    // Hide other tabs and show this one.
+    var tabs = childrenByClass(button.parentNode.parentNode, 'tab');
+    for (i = 0; i < tabs.length; i++) {
+        if (i === index) {
+            tabs[i].style.display = 'block';
+        } else {
+            tabs[i].style.display = 'none';
+        }
+    }
+}
 
-      </div>
-    </div>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/components/accordion.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/components/tab.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/components/transition.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/components/popup.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-json.min.js"></script>
-    <script type="text/javascript">
-      $(function() {
-        $('.ui.accordion').accordion({ animateChildren: false, duration: 0 });
-        $('.content.tabbed').each(function(index) {
-          $('.ui.tabular .item', $(this)).tab({ context: $(this) });
-        });
-        $('.ui.vertical.menu').on('click', '.item', function() {
-          $('.ui.vertical.menu .item').removeClass('active');
-          $(this).addClass('active');
-        });
-        $('.ui.empty.circular.label').popup();
-      });
-    </script>
-  </body>
-</html>
+/*
+  Collapse or show a navigation menu. It will not be hidden unless it
+  is currently selected or `force` has been passed.
+*/
+function toggleCollapseNav(event, force) {
+    var heading = event.target.parentNode;
+    var content = heading.nextSibling;
+    var inner = content.children[0];
 
+    if (heading.className.indexOf('heading') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
 
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+      // Currently showing, so let's hide it, but only if this nav item
+      // is already selected. This prevents newly selected items from
+      // collapsing in an annoying fashion.
+      if (force || window.location.hash && endsWith(event.target.href, window.location.hash)) {
+        content.style.maxHeight = '0px';
+      }
+    } else {
+      // Currently hidden, so let's show it
+      content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
 
+/*
+  Refresh the page after a live update from the server. This only
+  works in live preview mode (using the `--server` parameter).
+*/
+function refresh(body) {
+    document.querySelector('body').className = 'preload';
+    document.body.innerHTML = body;
 
+    // Re-initialize the page
+    init();
+    autoCollapse();
 
+    document.querySelector('body').className = '';
+}
 
+/*
+  Determine which navigation items should be auto-collapsed to show as many
+  as possible on the screen, based on the current window height. This also
+  collapses them.
+*/
+function autoCollapse() {
+  var windowHeight = getWindowDimensions()[1];
+  var itemsHeight = 64; /* Account for some padding */
+  var itemsArray = Array.prototype.slice.call(
+    document.querySelectorAll('nav .resource-group .heading'));
 
+  // Get the total height of the navigation items
+  itemsArray.forEach(function (item) {
+    itemsHeight += item.parentNode.offsetHeight;
+  });
 
+  // Should we auto-collapse any nav items? Try to find the smallest item
+  // that can be collapsed to show all items on the screen. If not possible,
+  // then collapse the largest item and do it again. First, sort the items
+  // by height from smallest to largest.
+  var sortedItems = itemsArray.sort(function (a, b) {
+    return a.parentNode.offsetHeight - b.parentNode.offsetHeight;
+  });
 
+  while (sortedItems.length && itemsHeight > windowHeight) {
+    for (var i = 0; i < sortedItems.length; i++) {
+      // Will collapsing this item help?
+      var itemHeight = sortedItems[i].nextSibling.offsetHeight;
+      if ((itemsHeight - itemHeight <= windowHeight) || i === sortedItems.length - 1) {
+        // It will, so let's collapse it, remove its content height from
+        // our total and then remove it from our list of candidates
+        // that can be collapsed.
+        itemsHeight -= itemHeight;
+        toggleCollapseNav({target: sortedItems[i].children[0]}, true);
+        sortedItems.splice(i, 1);
+        break;
+      }
+    }
+  }
+}
 
+/*
+  Initialize the interactive functionality of the page.
+*/
+function init() {
+    var i, j;
 
+    // Make collapse buttons clickable
+    var buttons = document.querySelectorAll('.collapse-button');
+    for (i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = toggleCollapseButton;
 
+        // Show by default? Then toggle now.
+        if (buttons[i].className.indexOf('show') !== -1) {
+            toggleCollapseButton({target: buttons[i].children[0]});
+        }
+    }
+
+    var responseCodes = document.querySelectorAll('.example-names');
+    for (i = 0; i < responseCodes.length; i++) {
+        var tabButtons = childrenByClass(responseCodes[i], 'tab-button');
+        for (j = 0; j < tabButtons.length; j++) {
+            tabButtons[j].onclick = toggleTabButton;
+
+            // Show by default?
+            if (j === 0) {
+                toggleTabButton({target: tabButtons[j]});
+            }
+        }
+    }
+
+    // Make nav items clickable to collapse/expand their content.
+    var navItems = document.querySelectorAll('nav .resource-group .heading');
+    for (i = 0; i < navItems.length; i++) {
+        navItems[i].onclick = toggleCollapseNav;
+
+        // Show all by default
+        toggleCollapseNav({target: navItems[i].children[0]});
+    }
+}
+
+// Initial call to set up buttons
+init();
+
+window.onload = function () {
+    autoCollapse();
+    // Remove the `preload` class to enable animations
+    document.querySelector('body').className = '';
+};
+</script></body></html>
