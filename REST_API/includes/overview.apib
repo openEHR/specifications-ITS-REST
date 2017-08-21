@@ -82,9 +82,9 @@ tbd
 <h3>The `If-Match` header</h3>
 The use case of this is described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
 This HTTP header MUST be used by the clients to prevent accidental overwrites when multiple user
-agents might be acting in parallel on the same resource. It should be used together with all 
+agents might be acting in parallel on the same resource. It MUST be used together with all 
 request methods that are changing states or performing updates on a VERSIONED_OBJECT.
-In case a service receives this header and the condition evaluates to `false` it should respond with
+In case a service receives this header and the condition evaluates to `false` it MUST respond with
 HTTP status code`412 Precondition Failed`.
 
 
@@ -136,46 +136,48 @@ If required, other status codes MAY be used by implementations as long as their 
 
 ## Data representation
 
+Services SHOULD support at least one of the **XML** or **JSON** format for resource representation. 
+See details below on how should this be negotiated.
 
 <h3>XML Format</h3>
 
-XML content should be valid against [published RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/).
+When resources representation is serialized as XML, the result MUST be valid against [published XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/).
 
-A client should use the header `Content-Type: application/xml` in the requests to specify the XML payload format. 
-If the service cannot process the request payload as XML format is not supported, it should respond with HTTP status code`415 Unsupported Media Type`.
+A client MAY use the header `Content-Type: application/xml` in the requests to specify the XML payload format. 
+If the service cannot process the request payload as XML format is not supported, it MUST respond with HTTP status code`415 Unsupported Media Type`.
 
-The `Accept: application/xml` can be used in the request by the client in order to specify the expected XML response format. 
-If the service cannot fulfill this aspect of the request, it should respond with HTTP status code `406 Not Acceptable`.
-Proper header `Content-Type: application/xml` should be present in the response of the service. 
+The `Accept: application/xml` SHOULD be used in the request by the client in order to specify the expected XML response format. 
+If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
+Proper header `Content-Type: application/xml` MUST be present in the response of the service. 
 
 
 <h3>JSON Format</h3>
 
-Attribute names must be lowercase snake_case names as specified in the RM specification. For example:
+Attribute names must be lowercase _snake_case_ names as specified in the RM specification for attributes. For example:
 ```
 {"context": {"start_time": "2016-01-01T00:00Z"}}
 ```
 Metadata attributes (those that are not also RM attributes) will always be prefixed by a `'_'`.
 One example is the `_type` attribute, which should be used to specify the RM type whenever polymorphism is involved or the underlying definition in RM type is abstract.
-The value of this attribute should be the uppercase class name from the RM specification. For example:
+The value of this attribute MUST be the uppercase class name from the RM specification. For example:
 ```
 {
     "_type": "DV_TEXT",
     "value": "Hello world!"
 }
 ```
-The `Null` RM attributes will be absent when serialized as JSON.
+The `Null` RM attributes SHOULD be absent when serialized as JSON.
 
 ::: note 
 tbd json-schema 
 :::
 
-A client should use the header `Content-Type: application/json` in the requests to specify the JSON payload format. 
-If the service cannot process the request payload as JSON format is not supported, it should respond with HTTP status code `415 Unsupported Media Type`.
+A client MAY use the header `Content-Type: application/json` in the requests to specify the JSON payload format. 
+If the service cannot process the request payload as JSON format is not supported, it MUST respond with HTTP status code `415 Unsupported Media Type`.
 
-The `Accept: application/json` can be used in the request by the client in order to specify the expected JSON response format. 
-If the service cannot fulfill this aspect of the request, it should respond with HTTP status code `406 Not Acceptable`.
-Proper header `Content-Type: application/json` should be present in the response of the service. 
+The `Accept: application/json` SHOULD be used in the request by the client in order to specify the expected JSON response format. 
+If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
+Proper header `Content-Type: application/json` MUST be present in the response of the service. 
 
 
 <h3>Datetime format</h3>
