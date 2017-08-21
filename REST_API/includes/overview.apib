@@ -138,9 +138,9 @@ According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
     resulting in multiple representations being valid at the same time,
     or both.
 
-This header SHOULD be present in all responses that contains full VERSION, VERSIONED_OBJECT or Models
-that have unique identifier for each state changed in time. The value of this header MAY refer to the
-unique identifier of the representation of that resource.
+This header SHOULD be present in all responses that contains full representation of VERSION, VERSIONED_OBJECT or Models
+that have unique identifier for each of the state changed in time. The value of this header MAY be to the
+unique identifier of that resource (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).
 
 
 <h3>HTTP status codes</h3>
