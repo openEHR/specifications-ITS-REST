@@ -5,6 +5,8 @@ This specification describes the service endpoints and datamodels used when quer
 
 AQL (Archetype Query Language) is the primary query language. For some endpoints there might be specified filter/query parameter which is used to invoke query/filter operations in the openEHR system. Then the `response` define below should be used. 
 
+The AQL specification is found here: http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html 
+
 ## Functional requirements
 
 The following is an outline of the functional requirements which this specification is made to solve: 
@@ -48,6 +50,18 @@ I want to query all Temperature entries created after last saturday, and which w
 
 The baseline of a query API is to be able to execute queries within a specific EHR. Put another way: Given an `ehr_id` clients MUST be able to query content from Compositions within the specified EHR. 
 
+For single EHR queries the endpoint and resouces will be as much aligned to the RM classes as possible. The important classes is: 
+
+- EHR http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_ehr_class 
+- EHR_STATUS http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_ehr_status_class 
+- COMPOSITION http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_composition_class 
+- FOLDER http://www.openehr.org/releases/RM/latest/docs/common/common.html#_folder_class 
+- VERSIONED_OBJECT http://www.openehr.org/releases/RM/latest/docs/common/common.html#_versioned_object_class
+- VERSIONED_COMPOSITION http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_versioned_composition_class
+- VERSIONED_EHR_STATUS http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_versioned_ehr_status_class 
+- VERSIONED_FOLDER http://www.openehr.org/releases/RM/latest/docs/common/common.html#_versioned_folder_class
+
+
 
 ### Population queries
 
@@ -76,6 +90,7 @@ Some of the non-functional requirements will be:
 - Low payload 
 - Ease of use 
 - Security 
+- Synchronous/Asynchronous
 
 ### Security 
 
@@ -83,3 +98,9 @@ Some of the non-functional requirements will be:
 -- Be able to tell who executed which queries
 - Authorization 
 -- AQL is open ended - how to deal with authorization on data structures when exposing an open AQL endpoint? 
+
+
+### Synchronous/Asynchronous
+:::note
+Write something about this topic 
+:::
