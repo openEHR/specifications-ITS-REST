@@ -18,45 +18,29 @@ The following is an outline of the functional requirements which this specificat
 - Stored queries
 
 ### Query functions 
-Query functions are operators/functions which tunes and modifies the execeution of a specific query. 
-
-The following types of query functions are identified:
+Query functions are operators/functions which tunes and modifies the execeution of a specific query. The following types of query functions are identified:
 
 - Parameters 
 - Scope 
 
-*Parameters*
+**Parameters** within an AQL is define as `:parameter_name`. These parameters will be substituded by the server into the actual query that will be executed. 
 
-An AQL might have parameters defined like `:parameter_name` . These parameters will be substituded by the server into the actual query that will be executed. 
-
-*Scope*
-
-Scope is a way to define the set of compositions to be considered when running queries. Examples of this might be: 
+**Scope** is a way to define the set of compositions to be considered when running queries. _Examples_ of this might be: 
 
 - Episode(s) of care 
 - Periode(s) of care 
 - Workflow 
 
-The scope is attributes to be changed outside the AQL. 
-
 :::note 
 Parameters and Scope might be used in combination. One example might be: 
-
-I want to query all Temperature entries created after last saturday, and which where registered to a specific Episode of care 
+_I want to query all Temperature entries created after last saturday, and which where registered to a specific Episode of care._ 
 :::
 
-
 ### Single EHR queries
-
-The baseline of a query API is to be able to execute queries within a specific EHR. Put another way: Given an `ehr_id` clients MUST be able to query content from Compositions within the specified EHR. 
-
-For single EHR queries the endpoint and resouces will be as much aligned to the RM classes as possible. 
+A common use-case is to execute queries within a specific EHR. For single EHR queries the endpoint and resouces will be as much aligned to the RM classes as possible. That's why the `ehr_id` is added to the path for this queries.
 
 ### Population queries
-
-A common use-case is to be able to query data from several EHRs. The query endpoint must have functions to be able to execute queries on several EHRs in one request. 
-
-Use-case where this is used: 
+Population queries are queries which are executed on several EHRs in the same request. Examples of use-cases will be: 
 
 - Ward lists 
 - Explore correlations between patients in an pandemic situation
@@ -64,13 +48,11 @@ Use-case where this is used:
 
 
 ### Batch queries
-
 Most application will present different data points in the same screen. The datapoints will be collected from different archetypes committed in multiple compositions. To supplement this kind of use-cases the endpoint must provide batch query operations. 
 
-To support batch queries some kind of correlation of the queries is needed.
+Batch query is an operation (e.g. request) where the client submits several queries to be executed within the same operation. The `correlation_id` is used to correlate the queries provided by the client with specific results in the `RESULT_SET`. 
 
 ### Stored queries 
-
 Stored queries are queries which are present on the server pre-request time. The queries will expose mandatory and optional parameters for the clients. 
 
 ## Non- functional requirements
