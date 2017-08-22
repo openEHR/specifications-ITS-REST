@@ -147,7 +147,7 @@ Below is a mostly self-documented (?) AQL request. It is the maximal structure f
 
 ### Data 
 
-- `name` - ?? 
+- `name` - Name of a query when registered as a stored query
 - `aql` - The AQL which was given in the request 
 - `executedAql` - The resulting executed AQL after parameters where exploded 
 - `totalResults`- The total number of results (rows) the server will return.
@@ -218,7 +218,15 @@ Below is a synthesized response with all attributes and variants from Marand and
         "cid": "afc2d4a0-4f7d-4b71-bcc6-50fbe9e6f585::default::1"
       }
     ]
-  ]
+  ],
+  "tags": [
+            { // each tag defines an attribute of the cell, the tag is one from the tagScope of the query 
+                "row": 0,
+                "col": 0,
+                "name": "episodeOfCareId",
+                "value": "1234556"
+            }
+        ]
 
 }
 ```
