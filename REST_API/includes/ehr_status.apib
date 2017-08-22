@@ -123,7 +123,7 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` 
 ### Update EHR_STATUS [PUT /ehrs/{ehr_id}/ehr_status]
 
 Update `EHR_STATUS` associated with the specified `ehr_id`.
-The existing `version_uid` of `EHR_STATUS` resource must be specified in the `Match-If` header.
+The existing latest `version_uid` of `EHR_STATUS` resource must be specified in the `Match-If` header.
 The response will contain the updated `EHR_STATUS` resource when the `Prefer` header has a value of `return=representation`
 
 + Parameters
@@ -262,7 +262,7 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehr_id` inc
                "_type": "VERSIONED_EHR_STATUS",
                "uid": "_a_valid_uid_",                     /* UUID or OID, UUID preferred */
                "owner_id": "{ehr_id}",
-               "time_created": "DV_DATE_TIME",             /* ISO8601 YYYYMMDDThhmmss,SSS(Z|[+-]hhmm) e.g. 20170801T010646,000+0000 or 20170801T010646,000Z */
+               "time_created": "DV_DATE_TIME",             /* ISO8601 YYYY-MM-DDThh:mm:ss.SSS(Z|[+-]hh:mm) e.g. 2017-08-01T01:06:46.000+00:00 */
                "revision_history": {
                  "items": [
                    {
@@ -307,7 +307,7 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehr_id` inc
     + Body
 
 
-### Get versioned EHR_STATUS version by time [GET /ehrs/{ehr_id}/versioned_ehr_status/version{?version_selector}]
+### Get versioned EHR_STATUS version by time [GET /ehrs/{ehr_id}/versioned_ehr_status/versions{?version_selector}]
 
 Retrieve the `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and selected by `version_selector`.
 When the `version_selector` parameter is provided, the `VERSION` that existed at the specified version time is returned, 
@@ -323,7 +323,7 @@ otherwise the latest trunk version is returned.
 
     + Headers
 
-            Content-Location: /ehrs/{ehr_id}/versioned_ehr_status/version/{version_uid}
+            Content-Location: /ehrs/{ehr_id}/versioned_ehr_status/versions/{version_uid}
 
     + Body
 
@@ -399,7 +399,7 @@ otherwise the latest trunk version is returned.
     + Body
 
 
-### Get versioned EHR_STATUS version by id [GET /ehrs/{ehr_id}/versioned_ehr_status/version/{version_uid}]
+### Get versioned EHR_STATUS version by id [GET /ehrs/{ehr_id}/versioned_ehr_status/versions/{version_uid}]
 Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
 
 + Parameters
