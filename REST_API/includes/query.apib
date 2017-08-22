@@ -1,9 +1,10 @@
 ## Query [/query]
 
-### Execute AQL query [GET /query/?aql={aql}]
+### Execute AQL query [GET /query/aql/?q={aql}]
 
 Execute the AQL query supplied in the aql parameter and return result.
 
+.Example AQL
 ```sql
 select
 a_a/data[at0002]/events[at0003]/time as When,
@@ -19,46 +20,7 @@ offset 0 limit 2
 + Response 200 (application/json)
     
         {
-            "_type": "RESULTSET",
-            "@schemaversion": "0.1.0",
-            "_type": "raw",
-            "@created": "2016-06-22T07:54:04.758+02:00",
-            "@generator": "<The resultset generator>",
-            "total_results": 2,
-            "columns": [
-                {
-                    "name": "When",
-                    "path": "/data[at0002]/events[at0003]/time"
-                },
-                {
-                    "name": "Temperature",
-                    "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value"
-                }
-            ],
-            "rows": [
-                [
-                    {
-                        "_type": "DV_DATE_TIME",
-                        "value": "2016-06-08T11:02:47+02:00"
-                    },
-                    {
-                        "_type": "DV_QUANTITY",
-                        "magnitude": 38.0,
-                        "units": "?C"
-                    }
-                ],
-                [
-                    {
-                        "_type": "DV_DATE_TIME",
-                        "value": "2016-06-05T08:53:36+02:00"
-                    },
-                    {
-                        "_type": "DV_QUANTITY",
-                        "magnitude": 37.0,
-                        "units": "Cel"
-                    }
-                ]
-            ]
+           /* Se discussion on resultset in overview */
         }
 
 ### Execute AQL query [POST /query/aql]
@@ -85,44 +47,8 @@ to analyze the request body.
                 "ehr_ids": ["<ehr_id>"] // filter on the given ehr_ids
             }
 
-+ Response 200
++ Response 200 (application/json)
 
-                {
-                    "_type": "RESULTSET",
-                    "@schemaversion": "0.1.0",
-                    "_type": "raw",
-                    "@created": "2016-06-22T07:54:04.758+02:00",
-                    "@generator": "<The resultset generator>",
-                    "total_results": 2,
-                    "columns": [{
-                            "name": "When",
-                            "path": "/data[at0002]/events[at0003]/time"
-                        },
-                        {
-                            "name": "Temperature",
-                            "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value"
-                        }
-                    ],
-                    "rows": [
-                        [{
-                                "_type": "DV_DATE_TIME",
-                                "value": "2016-06-08T11:02:47+02:00"
-                            },
-                            {
-                                "_type": "DV_QUANTITY",
-                                "magnitude": 38.0,
-                                "units": "?C"
-                            }
-                        ],
-                        [{
-                                "_type": "DV_DATE_TIME",
-                                "value": "2016-06-05T08:53:36+02:00"
-                            },
-                            {
-                                "_type": "DV_QUANTITY",
-                                "magnitude": 37.0,
-                                "units": "Cel"
-                            }
-                        ]
-                    ]
-                }
+         {
+           /* Se discussion on resultset in overview */
+         }
