@@ -1,0 +1,215 @@
+# Group Query Requirements
+
+## Purpose 
+This specification describes the service endpoints and datamodels used when quering an openEHR system. 
+
+AQL (Archetype Query Language) is the primary query language. For some endpoints there might be specified filter/query parameter which is used to invoke query/filter operations in the openEHR system. Then the `response` define below should be used. 
+
+The AQL specification is found here: http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html 
+
+## Functional requirements
+
+The following is an outline of the functional requirements which this specification is made to solve: 
+
+- Query functions
+- Single EHR queries
+- Population queries 
+- Batch queries 
+- Stored queries
+
+### Query functions 
+Query functions are operators/functions which tunes and modifies the execeution of a specific query. The following types of query functions are identified:
+
+- Parameters 
+- Scope 
+
+**Parameters** within an AQL is define as `:parameter_name`. These parameters will be substituded by the server into the actual query that will be executed. 
+
+**Scope** is a way to define the set of compositions to be considered when running queries. _Examples_ of this might be: 
+
+- Episode(s) of care 
+- Periode(s) of care 
+- Workflow 
+
+:::note 
+Parameters and Scope might be used in combination. One example might be: 
+_I want to query all Temperature entries created after last saturday, and which where registered to a specific Episode of care._ 
+:::
+
+### Single EHR queries
+A common use-case is to execute queries within a specific EHR. For single EHR queries the endpoint and resouces will be as much aligned to the RM classes as possible. That's why the `ehr_id` is added to the path for this queries.
+
+### Population queries
+Population queries are queries which are executed on several EHRs in the same request. Examples of use-cases will be: 
+
+- Ward lists 
+- Explore correlations between patients in an pandemic situation
+- research, e.g. epidemiology
+
+
+### Batch queries
+Most application will present different data points in the same screen. The datapoints will be collected from different archetypes committed in multiple compositions. To supplement this kind of use-cases the endpoint must provide batch query operations. 
+
+Batch query is an operation (e.g. request) where the client submits several queries to be executed within the same operation. The `correlation_id` is used to correlate the queries provided by the client with specific results in the `RESULT_SET`. 
+
+### Stored queries 
+Stored queries are queries which are present on the server pre-request time. The queries will expose mandatory and optional parameters for the clients. 
+
+## Non- functional requirements
+
+Some of the non-functional requirements will be: 
+
+- Low payload 
+- Ease of use 
+- Security 
+- Synchronous/Asynchronous
+
+### Security 
+
+- Audit logging 
+-- Be able to tell who executed which queries
+- Authorization 
+-- AQL is open ended - how to deal with authorization on data structures when exposing an open AQL endpoint? 
+
+
+### Synchronous/Asynchronous
+:::note
+Write something about this topic 
+:::
+
+# Group Data structures 
+
+## Request structure 
+Below is a mostly self-documented (?) AQL request. It is the maximal structure from Marand and DIPS. 
+
+```JSON 
+{
+  "aql": "select o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude as temperature, o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/units as unit from EHR[ehr_id/value='554f896d-faca-4513-bddf-664541146308d'] CONTAINS Observation o[openEHR-EHR-OBSERVATION.body_temperature-zn.v1] WHERE o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude > :temperature and o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0.63 and name/value='Symptoms']/value/defining_code/code_string=:chills order by temperature desc fetch 3",
+  "aqlParameters": {
+    "temperature": 38.5,
+    "chills": "at0.64"
+  },
+  "compositionUids": [ //optional list of composition uids to filter the query on 
+    "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"
+  ],
+  "ehrIds": [ //optional list of ehrIds to filter the query on 
+    "string81433066-c417-4813-9b29-79783e7bed23"
+  ],
+  "tagScope": { //optional (one) scope to filter the query on - this example will only query compositions which belongs to the two defined episodeOfCares 
+    "tags": [{
+      "values": [
+        "12345", "54321"
+      ],
+      "tag": "episodeOfCareId"
+    }]
+  },
+  "partitionBy": { // for i.e. wardlist queries you will only have one (limit=1) result for each tag (episodeOfCareId)
+    "tag": "episodeOfCareId",
+    "limit": 1
+  },
+  /* 
+  the server support batch queries - correlation id gives the client a possibility to correlate the requests with the result
+  this is used in the POST /api/v1/queries endpoint where the request is a list of this kind of objects 
+  */
+  "correlationId": "abcd-efgh-ijkl" 
+}
+```
+
+## Response structure 
+
+### Metadata 
+
+| Field | Description |
+|------|-------------|
+|`href`| Marand | 
+|`_type`| Defines type of the serialized object | 
+|`_schemaVersion` | The version of the specification definining the serialized object | 
+|`_format` | `raw` or `flat` (not yet supported) | 
+|`_created`| Timestamp when the resultset was created | 
+|`_generator` | Some identifier of the application that generated the result. Useful i.e. for debugging | 
+
+### Data 
+
+- `name` - Name of a query when registered as a stored query
+- `aql` - The AQL which was given in the request 
+- `executedAql` - The resulting executed AQL after parameters where exploded 
+- `totalResults`- The total number of results (rows) the server will return.
+- `columns`- definition of the columns of the resultset. Columns are defined by the client provided with the given AQL. I.e. `select c/uid/value as CidValue, c/context/start_time as StartTime from .... ` will give two columns. One columns for CidValue and another for StartTime. 
+- `columns.name`- defines the name of the column. I.e. CidValue or StartTime from the example above 
+- `columns.path`- defines the path from the given AQL of the specified column. I.e. columns CidValue will have path `/uid/value` 
+- `rows` - is a list/array of the results from the server. 
+- `rows.row` - each row contains an array of columns. 
+
+:::note 
+Marand and DIPS serialize the column/row definition differently. We should choose the best way to serialize data. 
+::: 
+
+### Examples 
+
+Below is a synthesized response with all attributes and variants from Marand and DIPS. 
+
+```JSON
+{
+  /*
+  The following is an edited resultset which combindes structures from both Marand and DIPS 
+  */
+  "meta": {
+    "href": "http://thinkehr2.marand.si:8082/rest/v1/query/?aql=select%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/magnitude%20as%20temperature,%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/units%20as%20unit%20from%20EHR%20CONTAINS%20Observation%20o%5BopenEHR-EHR-OBSERVATION.body_temperature-zn.v1%5D%20WHERE%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/magnitude%20%3E%2038.5%20order%20by%20temperature%20desc%20fetch%203",
+    "_type": "RESULTSET",
+    "_schemaVersion": "1.0.0",
+    "_format": "raw",
+    "_created": "2017-08-19T00:25:47.568+02:00",
+    "_generator": "DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)"
+
+  },
+  "name": null,
+  "aql": "select e/ehr_id/value as ehrId, c/context/start_time/value as startTime,  c/uid/value as cid from EHR e contains  Composition c limit 2",
+  "executedAql": "select e/ehr_id/value as ehrId, c/context/start_time/value as startTime,  c/uid/value as cid from EHR e contains  Composition c limit 2",
+  "totalResults": 2,
+  "columns": [
+    /*
+    DIPS puts naming and paths for the parameters in the columns attributes. 
+    Marand puts the paramaters in each row. 
+    */
+    {
+      "name": "ehrId",
+      "path": "/ehr_id/value"
+    },
+    {
+      "name": "startTime",
+      "path": "/context/start_time/value"
+    },
+    {
+      "name": "cid",
+      "path": "/uid/value"
+    }
+  ],
+  "rows": [
+    [ // the DIPS way
+      "81433066-c417-4813-9b29-79783e7bed23",
+      "2017-02-16T13:50:11.308+01:00",
+      "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"
+    ],
+    [ // the Marand way 
+      {
+        "ehrId": "83a1af08-7aca-4d50-ac0e-f4aa355b0181"
+      },
+      {
+        "startTime": "2017-02-16T13:50:11.374+01:00"
+      },
+      {
+        "cid": "afc2d4a0-4f7d-4b71-bcc6-50fbe9e6f585::default::1"
+      }
+    ]
+  ],
+  "tags": [
+            { // each tag defines an attribute of the cell, the tag is one from the tagScope of the query 
+                "row": 0,
+                "col": 0,
+                "name": "episodeOfCareId",
+                "value": "1234556"
+            }
+        ]
+
+}
+```
