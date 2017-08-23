@@ -1,9 +1,9 @@
 # Group Query Requirements
 
 ## Purpose 
-This specification describes the service endpoints and datamodels used when quering an openEHR system. 
+This specification describes the service endpoints and datamodels used when querying an openEHR system.
 
-AQL (Archetype Query Language) is the primary query language. For some endpoints there might be specified filter/query parameter which is used to invoke query/filter operations in the openEHR system. Then the `response` define below should be used. 
+AQL (Archetype Query Language) is the primary query language. For some endpoints there might be specified filter/query parameter which is used to invoke query/filter operations in the openEHR system. Then the `response` defined below should be used.
 
 The AQL specification is found here: http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html 
 
@@ -18,17 +18,17 @@ The following is an outline of the functional requirements which this specificat
 - Stored queries
 
 ### Query functions 
-Query functions are operators/functions which tunes and modifies the execeution of a specific query. The following types of query functions are identified:
+Query functions are operators/functions which tunes and modifies the execution of a specific query. The following types of query functions are identified:
 
 - Parameters 
 - Scope 
 
-**Parameters** within an AQL is define as `:parameter_name`. These parameters will be substituded by the server into the actual query that will be executed. 
+**Parameters** within an AQL is define as `:parameter_name`. These parameters will be substituted by the server into the actual query that will be executed.
 
 **Scope** is a way to define the set of compositions to be considered when running queries. _Examples_ of this might be: 
 
 - Episode(s) of care 
-- Periode(s) of care 
+- Period(s) of care
 - Workflow 
 
 :::note 
@@ -37,7 +37,7 @@ _I want to query all Temperature entries created after last saturday, and which 
 :::
 
 ### Single EHR queries
-A common use-case is to execute queries within a specific EHR. For single EHR queries the endpoint and resouces will be as much aligned to the RM classes as possible. That's why the `ehr_id` is added to the path for this queries.
+A common use-case is to execute queries within a specific EHR. For single EHR queries the endpoint and resources will be as much aligned to the RM classes as possible. That's why the `ehr_id` is added to the path for these queries.
 
 ### Population queries
 Population queries are queries which are executed on several EHRs in the same request. Examples of use-cases will be: 
@@ -93,7 +93,7 @@ Below is a mostly self-documented (?) AQL request. It is the maximal structure f
     "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"
   ],
   "ehrIds": [ //optional list of ehrIds to filter the query on 
-    "string81433066-c417-4813-9b29-79783e7bed23"
+    "81433066-c417-4813-9b29-79783e7bed23"
   ],
   "tagScope": { //optional (one) scope to filter the query on - this example will only query compositions which belongs to the two defined episodeOfCares 
     "tags": [{
@@ -123,7 +123,7 @@ Below is a mostly self-documented (?) AQL request. It is the maximal structure f
 |------|-------------|
 |`href`| Marand | 
 |`_type`| Defines type of the serialized object | 
-|`_schemaVersion` | The version of the specification definining the serialized object | 
+|`_schemaVersion` | The version of the specification defining the serialized object |
 |`_format` | `raw` or `flat` (not yet supported) | 
 |`_created`| Timestamp when the resultset was created | 
 |`_generator` | Some identifier of the application that generated the result. Useful i.e. for debugging | 
