@@ -80,22 +80,22 @@ Write something about this topic
 # Group Data structures 
 
 ## Request structure 
-Below is a mostly self-documented (?) AQL request. It is the maximal structure from Marand and DIPS. 
+Below is a mostly self-documented (?) AQL request.
 
 ```JSON 
 {
   "aql": "select o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude as temperature, o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/units as unit from EHR[ehr_id/value='554f896d-faca-4513-bddf-664541146308d'] CONTAINS Observation o[openEHR-EHR-OBSERVATION.body_temperature-zn.v1] WHERE o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude > :temperature and o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0.63 and name/value='Symptoms']/value/defining_code/code_string=:chills order by temperature desc fetch 3",
-  "aqlParameters": {
+  "aql_parameters": {
     "temperature": 38.5,
     "chills": "at0.64"
   },
-  "compositionUids": [ //optional list of composition uids to filter the query on 
+  "composition_uids": [ //optional list of composition uids to filter the query on
     "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"
   ],
-  "ehrIds": [ //optional list of ehrIds to filter the query on 
+  "ehr_ids": [ //optional list of ehrIds to filter the query on
     "81433066-c417-4813-9b29-79783e7bed23"
   ],
-  "tagScope": { //optional (one) scope to filter the query on - this example will only query compositions which belongs to the two defined episodeOfCares 
+  "tag_scope": { //optional (one) scope to filter the query on - this example will only query compositions which belongs to the two defined episodeOfCares
     "tags": [{
       "values": [
         "12345", "54321"
@@ -103,7 +103,7 @@ Below is a mostly self-documented (?) AQL request. It is the maximal structure f
       "tag": "episodeOfCareId"
     }]
   },
-  "partitionBy": { // for i.e. wardlist queries you will only have one (limit=1) result for each tag (episodeOfCareId)
+  "partition_by": { // for i.e. wardlist queries you will only have one (limit=1) result for each tag (episodeOfCareId)
     "tag": "episodeOfCareId",
     "limit": 1
   },
@@ -111,7 +111,7 @@ Below is a mostly self-documented (?) AQL request. It is the maximal structure f
   the server support batch queries - correlation id gives the client a possibility to correlate the requests with the result
   this is used in the POST /api/v1/queries endpoint where the request is a list of this kind of objects 
   */
-  "correlationId": "abcd-efgh-ijkl" 
+  "correlation_id": "abcd-efgh-ijkl"
 }
 ```
 
@@ -121,9 +121,9 @@ Below is a mostly self-documented (?) AQL request. It is the maximal structure f
 
 | Field | Description |
 |------|-------------|
-|`href`| Marand | 
+|`_href`| URL of the query executed (only for GET endpoint) |
 |`_type`| Defines type of the serialized object | 
-|`_schemaVersion` | The version of the specification defining the serialized object |
+|`_schema_version` | The version of the specification defining the serialized object |
 |`_format` | `raw` or `flat` (not yet supported) | 
 |`_created`| Timestamp when the resultset was created | 
 |`_generator` | Some identifier of the application that generated the result. Useful i.e. for debugging | 
@@ -132,47 +132,36 @@ Below is a mostly self-documented (?) AQL request. It is the maximal structure f
 
 - `name` - Name of a query when registered as a stored query
 - `aql` - The AQL which was given in the request 
-- `executedAql` - The resulting executed AQL after parameters where exploded 
-- `totalResults`- The total number of results (rows) the server will return.
+- `executed_aql` - The resulting executed AQL after parameters where exploded
+- `total_results`- The total number of results (rows) the server will return.
 - `columns`- definition of the columns of the resultset. Columns are defined by the client provided with the given AQL. I.e. `select c/uid/value as CidValue, c/context/start_time as StartTime from .... ` will give two columns. One columns for CidValue and another for StartTime. 
-- `columns.name`- defines the name of the column. I.e. CidValue or StartTime from the example above 
+- `columns.name`- defines the name of the column. I.e. CidValue or StartTime from the example above, when column alias is not present in the AQL a 0-based column index is used prefixed by a hash sign (i.e. #0, #1...)
 - `columns.path`- defines the path from the given AQL of the specified column. I.e. columns CidValue will have path `/uid/value` 
 - `rows` - is a list/array of the results from the server. 
 - `rows.row` - each row contains an array of columns. 
 
-:::note 
-Marand and DIPS serialize the column/row definition differently. We should choose the best way to serialize data. 
-::: 
+### Examples
 
-### Examples 
-
-Below is a synthesized response with all attributes and variants from Marand and DIPS. 
+Below is a synthesized response with all attributes.
 
 ```JSON
 {
-  /*
-  The following is an edited resultset which combindes structures from both Marand and DIPS 
-  */
   "meta": {
-    "href": "http://thinkehr2.marand.si:8082/rest/v1/query/?aql=select%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/magnitude%20as%20temperature,%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/units%20as%20unit%20from%20EHR%20CONTAINS%20Observation%20o%5BopenEHR-EHR-OBSERVATION.body_temperature-zn.v1%5D%20WHERE%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/magnitude%20%3E%2038.5%20order%20by%20temperature%20desc%20fetch%203",
+    "_href": "http://server:port/rest/v1/query/?aql=select%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/magnitude%20as%20temperature,%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/units%20as%20unit%20from%20EHR%20CONTAINS%20Observation%20o%5BopenEHR-EHR-OBSERVATION.body_temperature-zn.v1%5D%20WHERE%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/magnitude%20%3E%2038.5%20order%20by%20temperature%20desc%20fetch%203",
     "_type": "RESULTSET",
-    "_schemaVersion": "1.0.0",
+    "_schema_version": "1.0.0",
     "_format": "raw",
     "_created": "2017-08-19T00:25:47.568+02:00",
     "_generator": "DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)"
 
   },
-  "name": null,
-  "aql": "select e/ehr_id/value as ehrId, c/context/start_time/value as startTime,  c/uid/value as cid from EHR e contains  Composition c limit 2",
-  "executedAql": "select e/ehr_id/value as ehrId, c/context/start_time/value as startTime,  c/uid/value as cid from EHR e contains  Composition c limit 2",
-  "totalResults": 2,
+  "name": null, /* used when running a stored query otherwise skipped */
+  "aql": "select e/ehr_id/value, c/context/start_time/value as startTime,  c/uid/value as cid, c/name/value from EHR e contains  Composition c limit 2",
+  "executed_aql": "select e/ehr_id/value as ehrId, c/context/start_time/value as startTime,  c/uid/value as cid from EHR e contains  Composition c limit 2", /* should only be returned in debug mode */
+  "total_results": 2, /* to be removed */
   "columns": [
-    /*
-    DIPS puts naming and paths for the parameters in the columns attributes. 
-    Marand puts the paramaters in each row. 
-    */
     {
-      "name": "ehrId",
+      "name": "#0",
       "path": "/ehr_id/value"
     },
     {
@@ -182,27 +171,20 @@ Below is a synthesized response with all attributes and variants from Marand and
     {
       "name": "cid",
       "path": "/uid/value"
+    },
+    {
+      "name": "#3",
+      "path": "/name/value"
     }
   ],
   "rows": [
-    [ // the DIPS way
+    [
       "81433066-c417-4813-9b29-79783e7bed23",
       "2017-02-16T13:50:11.308+01:00",
       "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"
     ],
-    [ // the Marand way 
-      {
-        "ehrId": "83a1af08-7aca-4d50-ac0e-f4aa355b0181"
-      },
-      {
-        "startTime": "2017-02-16T13:50:11.374+01:00"
-      },
-      {
-        "cid": "afc2d4a0-4f7d-4b71-bcc6-50fbe9e6f585::default::1"
-      }
-    ]
   ],
-  "tags": [
+  "tags": [ /* DIPS extension */
             { // each tag defines an attribute of the cell, the tag is one from the tagScope of the query 
                 "row": 0,
                 "col": 0,
