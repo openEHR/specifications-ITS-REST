@@ -1,3 +1,5 @@
 *.html
 *.bat
 *.json
+*.feature
+*.vpp*

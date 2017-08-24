@@ -1,9 +1,10 @@
-## Query [/query]
+## Query AQL [/query/aql]
 
-### Execute AQL query [GET /query/?aql={aql}]
+### Execute AQL query [GET /query/aql/?q={aql}]
 
 Execute the AQL query supplied in the aql parameter and return result.
 
+.Example AQL
 ```sql
 select
 a_a/data[at0002]/events[at0003]/time as When,
@@ -19,46 +20,7 @@ offset 0 limit 2
 + Response 200 (application/json)
     
         {
-            "_type": "RESULTSET",
-            "@schemaversion": "0.1.0",
-            "_type": "raw",
-            "@created": "2016-06-22T07:54:04.758+02:00",
-            "@generator": "<The resultset generator>",
-            "total_results": 2,
-            "columns": [
-                {
-                    "name": "When",
-                    "path": "/data[at0002]/events[at0003]/time"
-                },
-                {
-                    "name": "Temperature",
-                    "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value"
-                }
-            ],
-            "rows": [
-                [
-                    {
-                        "_type": "DV_DATE_TIME",
-                        "value": "2016-06-08T11:02:47+02:00"
-                    },
-                    {
-                        "_type": "DV_QUANTITY",
-                        "magnitude": 38.0,
-                        "units": "?C"
-                    }
-                ],
-                [
-                    {
-                        "_type": "DV_DATE_TIME",
-                        "value": "2016-06-05T08:53:36+02:00"
-                    },
-                    {
-                        "_type": "DV_QUANTITY",
-                        "magnitude": 37.0,
-                        "units": "Cel"
-                    }
-                ]
-            ]
+           /* Se discussion on resultset in overview */
         }
 
 ### Execute AQL query [POST /query/aql]
@@ -85,44 +47,91 @@ to analyze the request body.
                 "ehr_ids": ["<ehr_id>"] // filter on the given ehr_ids
             }
 
-+ Response 200
++ Response 200 (application/json)
 
+         {
+           /* Se discussion on resultset in overview */
+         }
+
+### Batch AQl query [POST /query/aql/batch]
+
+Execute a batch of queries. 
+
++ Request (application/json) 
+
+    + Body 
+
+            [
                 {
-                    "_type": "RESULTSET",
-                    "@schemaversion": "0.1.0",
-                    "_type": "raw",
-                    "@created": "2016-06-22T07:54:04.758+02:00",
-                    "@generator": "<The resultset generator>",
-                    "total_results": 2,
-                    "columns": [{
-                            "name": "When",
-                            "path": "/data[at0002]/events[at0003]/time"
-                        },
+                    "aql": "select c/uid/value from Composition c limit 1",
+                    "correlationId": "3ca3434f-a8dd-4f04-a841-22a776a30602"
+                },
+                {
+                    "aql": "select c/context/start_time from Composition c limit 1"
+                    ,
+                    
+                    "tagScope": {
+                    "tags": [
                         {
-                            "name": "Temperature",
-                            "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value"
-                        }
-                    ],
-                    "rows": [
-                        [{
-                                "_type": "DV_DATE_TIME",
-                                "value": "2016-06-08T11:02:47+02:00"
-                            },
-                            {
-                                "_type": "DV_QUANTITY",
-                                "magnitude": 38.0,
-                                "units": "?C"
-                            }
+                        "values": [
+                            "bna01"
                         ],
-                        [{
-                                "_type": "DV_DATE_TIME",
-                                "value": "2016-06-05T08:53:36+02:00"
-                            },
+                        "tag": "PatientId"
+                        }
+                    ]
+                    },
+                
+                    "correlationId": "74a4366b-ed33-4e82-9d6b-bf20e3f4b78e"
+                }
+            ]
+
++ Response 200 (application/json) 
+
+        [
+            {
+                "totalResults": 1,
+                "columns": [
+                    {
+                        "path": "/uid/value",
+                        "name": "c/uid/value"
+                    }
+                ],
+                "rows": [
+                    {
+                        "items": [
+                            "9ce3b83b-f69f-48ba-a0f9-d34ac98e95d2::91215053-854b-45b8-bb2a-3b0d255858d1::1"
+                        ]
+                    }
+                ],
+                "correlationId": "3ca3434f-a8dd-4f04-a841-22a776a30602"
+            },
+            {
+                "totalResults": 1,
+                "columns": [
+                    {
+                        "path": "/context/start_time",
+                        "name": "c/context/start_time"
+                    }
+                ],
+                "rows": [
+                    {
+                        "items": [
                             {
-                                "_type": "DV_QUANTITY",
-                                "magnitude": 37.0,
-                                "units": "Cel"
+                                "value": "2016-03-30T15:08:30.831+02:00",
+                                "magnitude": 0,
+                                "asDateTime": "2016-03-30T15:08:30.831+02:00"
                             }
                         ]
-                    ]
-                }
+                    }
+                ],
+                "tags": [
+                    {
+                        "row": 0,
+                        "col": 0,
+                        "name": "PatientId",
+                        "value": "bna01"
+                    }
+                ],
+                "correlationId": "74a4366b-ed33-4e82-9d6b-bf20e3f4b78e"
+            }
+        ]
