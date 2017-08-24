@@ -1,6 +1,5 @@
 ## Preface
 
-
 <h3>Purpose</h3>
 
 This specification describes service endpoints, resources, functions and operations 
@@ -40,7 +39,7 @@ in this document are to be interpreted as described in [RFC 2119](https://tools.
 Types defined by openEHR specification are always capitalized (e.g. EHR, COMPOSITION, VERSIONED_OBJECT, etc.) when used in this specification. 
 For a list of all available types or a particular type definition please refer to the [RM index](http://www.openehr.org/releases/RM/Release-1.0.3/docs/index#_class_index). 
 
-Throughout this specification a set of short terms is being used as described below:
+Throughout this specification, a set of short terms is being used as described below:
 
 | Term | Description |
 |------|-------------|
@@ -53,27 +52,63 @@ Throughout this specification a set of short terms is being used as described be
 HTTP Methods used in this specification are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4).
 HTTP Status codes are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) 
 and in the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
-See [Design considerations](#header-design-considerations) section for more details on how (in general) 
-HTTP methods and status codes MUST be used by an openEHR REST API.  
+
+See [design considerations section](#design-considerations) section for more details on how some
+HTTP methods and status codes MUST be used by an openEHR REST API implementation to good interaction 
+between services and clients in the spirit of this specification.  
+
+**JSON** format is used in many of the example below, but this does not imply that **XML** might not be supported by the same service endpoint.
+See below how [data representation](#design-considerations-data-representation) MUST be done and negotiated.
 
 
-## Design considerations
+# Group Design considerations
 
-
-<h3>Authentication and authorization</h3>
+## Authentication and authorization [/--auth]
 ::: note 
 tbd  
 :::
 
 
-<h3>The `OPTIONS` method</h3> 
-This method allows a client to determine the options and/or requirements associated with a
+## Options and conformance [/]
+This `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a
 resource, or the capabilities of the service, without implying a resource action.
-Services SHOULD respond to this method with at least appropriate HTTP codes and headers and potentially with a payload.
-A usecase for this method is related to exposing service capabilities for an conformance manifest.  
+Services SHOULD respond to this method with at least appropriate HTTP codes, headers and potentially with a payload 
+revealing more details themselves.
+
+Another usecase for this method is related to exposing service capabilities for a conformance manifest.  
+
+### OPTIONS
+Expose available service endpoints and other details.
+
++ Request
+
+    + Headers
+    
+            Accept: application/json
+
++ Response 200 (application/json)
+
+    + Headers
+    
+            Allow: HEAD, GET, POST, PUT, DELETE, OPTIONS
+        
+    + Body 
+        
+            {
+                "solution": "BestEHRSys",
+                "solution_version": "v0.9",
+                "vendor": "BestEHR",
+                "restapi_specs_version": "v1.0",
+                "conformance_profile": "standard",
+                "accept": ["json", "xml"],
+                "endpoints": ["/ehrs", "/definitions", "/aql"],
+                "extra_endpoints": ["/termserv", "/stats"]
+            }
 
 
-<h3>The `commit-audit` headers</h3>
+## HTTP headers [/--headers]
+
+<h3>The `openEHR-commit-audit` headers</h3>
 ::: note 
 tbd  
 :::
@@ -94,7 +129,7 @@ tbd
 :::
 
 
-<h3>The `ETag` header and cache handling and HEAD header</h3>
+<h3>The `ETag` header and cache handling</h3>
 According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
 
 > The "ETag" header field in a response provides the current entity-tag
@@ -106,12 +141,13 @@ According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
     resulting in multiple representations being valid at the same time,
     or both.
 
-This header SHOULD be present in all responses that contains full representation of VERSION, VERSIONED_OBJECT or Models
-that have unique identifier for each of the state changed in time. The value of this header MAY be to the
+This header SHOULD be present in all responses that contains full representation of VERSION, VERSIONED_OBJECT or other resources
+that have unique identifier for each of the state changed in time. The value of this header MAY be the
 unique identifier of that resource (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).
 
 
-<h3>HTTP status codes</h3>
+## HTTP status codes [/--status]
+
 To indicate the status of the request or the executed operation, one of the following 
 subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) MUST be used: 
 
@@ -134,10 +170,9 @@ Meaning of these codes MAY be further detailed (nuanced) in this specification b
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.   
 
 
-## Data representation
+## Data representation [/--data]
 
-Services SHOULD support at least one of the **XML** or **JSON** format for resource representation. 
-See details below on how should this be negotiated.
+Services MUST support at least one of the **XML** or **JSON** format for resource representation. 
 
 <h3>XML Format</h3>
 
@@ -204,5 +239,3 @@ A typical case is a list of COMPOSITIONs part of an EHR, which, strictly followi
 list of OBJ_REF, but sometimes clients prefers to get COMPOSITIONs.
 Services that have this capability implemented SHOULD accept and honor `Prefer: resolve_refs` request header.
 
-
-<br><br><br><br><br>
