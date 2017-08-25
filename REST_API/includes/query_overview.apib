@@ -1,11 +1,13 @@
 # Group Query Requirements
 
 ## Purpose 
-This specification describes the service endpoints and datamodels used when querying an openEHR system.
+This specification describes the service endpoints and datamodels used when querying an openEHR system. 
 
-AQL (Archetype Query Language) is the primary query language. For some endpoints there might be specified filter/query parameter which is used to invoke query/filter operations in the openEHR system. Then the `response` defined below should be used.
+AQL (Archetype Query Language) is the primary query language. The AQL specification is found here: http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html 
 
-The AQL specification is found here: http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html 
+The endpoints are designed to be extended with other and not yet defined query languages. The returning `response` should always be the same structure as defined below. 
+
+The query `response` may also be used for other endpoints in the openEHR REST API. I.e. there might be specified filter/query parameter on Composition resources. These operations will return the `response`structure defined here. 
 
 ## Functional requirements
 
@@ -74,7 +76,7 @@ Some of the non-functional requirements will be:
 
 ### Synchronous/Asynchronous
 :::note
-Write something about this topic 
+TODO: Either write something here - or leave it out of current version of the specification. 
 :::
 
 # Group Data structures 
