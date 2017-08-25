@@ -1,6 +1,6 @@
 ## Query [/query]
 
-### Execute stored query [GET /query/{id}{?param1,param2}]
+### Execute stored query [GET /query/{id}{?param_1,param_n}]
 
 Execute a stored query with the supplied id.
 
@@ -10,8 +10,8 @@ to analyze the request body.
 
 + Parameters
     + id - Id of the stored query to be executed
-    + param1 (optional) - query parameter 1
-    + param2 (optional) - query parameter 2
+    + param_1 (optional) - query parameter 1
+    + param_n (optional) - query parameter n
 
 + Response 200 (application/json)
     
@@ -53,6 +53,23 @@ to analyze the request body.
            /* Se discussion on resultset in overview */
          }
 
+### Execute ad-hoc AQL query [GET /query/aql{?q}]
+
+Execute an AQL query 
+
+NOTE: we might add a header to indicate which EHR to execute against to
+allow systems that need to route based of EHR id to do so without having
+to analyze the request body.
+
++ Parameters 
+    + q - The AQL to be executed 
+
++ Response 200 (application/json)
+
+        {
+            /* See discussion on resultset in overview */
+        }
+
 ### Execute ad-hoc AQL query [POST /query/aql]
 
 Execute an AQL query.
@@ -68,7 +85,7 @@ to analyze the request body.
             {
                 "aql": "<the aql to be performed>",
                 "aql_parameters": [{
-                    "parameter-x-name": "paramater-x-value",
+                    "parameter-x-name": "parameter-x-value",
                     "parameter-y-name": "parameter-y-value"
                 }],
                 "offset": NUMBER_TO_START_FROM,
