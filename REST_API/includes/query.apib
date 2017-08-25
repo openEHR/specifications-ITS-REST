@@ -1,21 +1,17 @@
-## Query AQL [/query/aql]
+## Query [/query]
 
-### Execute AQL query [GET /query/aql/?q={aql}]
+### Execute stored query [GET /query/{id}{?param_1,param_n}]
 
-Execute the AQL query supplied in the aql parameter and return result.
+Execute a stored query with the supplied id.
 
-.Example AQL
-```sql
-select
-a_a/data[at0002]/events[at0003]/time as When,
-a_a/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value as Temperature
-from EHR e contains COMPOSITION a CONTAINS OBSERVATION a_a[openEHR-EHR-OBSERVATION.body_temperature.v1]
-order by a_a/data[at0002]/events[at0003]/time desc
-offset 0 limit 2
-```
+NOTE: we might add a header to indicate which EHR to execute against to
+allow systems that need to route based of EHR id to do so without having
+to analyze the request body.
 
-+ Parameters 
-    + aql - The aql to be executed
++ Parameters
+    + id - Id of the stored query to be executed
+    + param_1 (optional) - query parameter 1
+    + param_n (optional) - query parameter n
 
 + Response 200 (application/json)
     
@@ -23,7 +19,58 @@ offset 0 limit 2
            /* Se discussion on resultset in overview */
         }
 
-### Execute AQL query [POST /query/aql]
+### Execute stored query [POST /query/{id}]
+
+Execute a stored query.
+
+NOTE: we might add a header to indicate which EHR to execute against to
+allow systems that need to route based of EHR id to do so without having
+to analyze the request body.
+
++ Parameters
+    + id - Id of the stored query to be executed
+
++ Request (application/json)
+
+    + Body
+
+            {
+                "aql_parameters": [
+                    {
+                        "parameter-x-name": "paramater-x-value",
+                        "parameter-y-name": "parameter-y-value"
+                    }
+                ],
+                "offset": NUMBER_TO_START_FROM,
+                "fetch": NUMBER_TO_FETCH,
+                "composition_uids": ["<object_id>"], // filter on the given compositions uids
+                "ehr_ids": ["<ehr_id>"] // filter on the given ehr_ids
+            }
+
++ Response 200 (application/json)
+
+         {
+           /* Se discussion on resultset in overview */
+         }
+
+### Execute ad-hoc AQL query [GET /query/aql{?q}]
+
+Execute an AQL query 
+
+NOTE: we might add a header to indicate which EHR to execute against to
+allow systems that need to route based of EHR id to do so without having
+to analyze the request body.
+
++ Parameters 
+    + q - The AQL to be executed 
+
++ Response 200 (application/json)
+
+        {
+            /* See discussion on resultset in overview */
+        }
+
+### Execute ad-hoc AQL query [POST /query/aql]
 
 Execute an AQL query.
 
@@ -37,8 +84,8 @@ to analyze the request body.
 
             {
                 "aql": "<the aql to be performed>",
-                "aqlParameters": [{
-                    "parameter-x-name": "paramater-x-value",
+                "aql_parameters": [{
+                    "parameter-x-name": "parameter-x-value",
                     "parameter-y-name": "parameter-y-value"
                 }],
                 "offset": NUMBER_TO_START_FROM,
@@ -52,86 +99,3 @@ to analyze the request body.
          {
            /* Se discussion on resultset in overview */
          }
-
-### Batch AQl query [POST /query/aql/batch]
-
-Execute a batch of queries. 
-
-+ Request (application/json) 
-
-    + Body 
-
-            [
-                {
-                    "aql": "select c/uid/value from Composition c limit 1",
-                    "correlationId": "3ca3434f-a8dd-4f04-a841-22a776a30602"
-                },
-                {
-                    "aql": "select c/context/start_time from Composition c limit 1"
-                    ,
-                    
-                    "tagScope": {
-                    "tags": [
-                        {
-                        "values": [
-                            "bna01"
-                        ],
-                        "tag": "PatientId"
-                        }
-                    ]
-                    },
-                
-                    "correlationId": "74a4366b-ed33-4e82-9d6b-bf20e3f4b78e"
-                }
-            ]
-
-+ Response 200 (application/json) 
-
-        [
-            {
-                "totalResults": 1,
-                "columns": [
-                    {
-                        "path": "/uid/value",
-                        "name": "c/uid/value"
-                    }
-                ],
-                "rows": [
-                    {
-                        "items": [
-                            "9ce3b83b-f69f-48ba-a0f9-d34ac98e95d2::91215053-854b-45b8-bb2a-3b0d255858d1::1"
-                        ]
-                    }
-                ],
-                "correlationId": "3ca3434f-a8dd-4f04-a841-22a776a30602"
-            },
-            {
-                "totalResults": 1,
-                "columns": [
-                    {
-                        "path": "/context/start_time",
-                        "name": "c/context/start_time"
-                    }
-                ],
-                "rows": [
-                    {
-                        "items": [
-                            {
-                                "value": "2016-03-30T15:08:30.831+02:00",
-                                "magnitude": 0,
-                                "asDateTime": "2016-03-30T15:08:30.831+02:00"
-                            }
-                        ]
-                    }
-                ],
-                "tags": [
-                    {
-                        "row": 0,
-                        "col": 0,
-                        "name": "PatientId",
-                        "value": "bna01"
-                    }
-                ],
-                "correlationId": "74a4366b-ed33-4e82-9d6b-bf20e3f4b78e"
-            }
-        ]

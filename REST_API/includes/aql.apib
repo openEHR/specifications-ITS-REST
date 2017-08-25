@@ -1,0 +1,91 @@
+## AQL [/definitions/aqls]
+
+Management of stored (registered) AQLs in the system.
+
+### List stored AQLs [GET /definitions/aqls]
+
+List all available stored AQLs in the system
+
++ Response 200 (application/json) 
+
+    `200 OK` is returned when the resources are successfully retrieved.
+
+    + Body
+
+            [
+                {
+                    "id": "labs",
+                    "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]"
+                },
+                {
+                    "id": "vitals",
+                    "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] WHERE c/name/value = 'Vitals'"
+                }
+            ]
+
+### Create stored AQL [PUT /definitions/aqls/{id}]
+
++ Parameters
+
+    + id (string) - the id under which AQL will be available for execution (GET /query/{id})
+
++ Request
+    
+    + Body 
+
+            {
+                "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]"
+            }
+
++ Response 201 (application/json) 
+
+    `201 Created` is returned when the guide has been successfully uploaded to the server.
+
+    + Headers
+
+            Location: /definitions/aqls/{id}
+
+
++ Response 400 
+
+    `400 Bad Request` is returned when the server was unable to create a new stored AQL, could be due to incorrect request body (could not be parsed, etc)
+
+    + Body 
+
+### Get stored AQL [GET /definitions/aqls/{id}]
+
++ Parameters
+    
+    + id (string) - AQL id
+
++ Response 200 (application/json)
+    `200 OK` is returned when the stored AQL is successfully retrieved.
+
+    + Body 
+
+                {
+                    "id": "vitals",
+                    "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] WHERE c/name/value = 'Vitals'"
+                }
+
++ Response 404 (application/json)
+    `404 Not Found` is returned when the stored AQL with supplied id doesn't exist.
+
+    + Body
+
+### Delete stored AQL [DELETE /definitions/aqls/{id}]
+
++ Parameters
+
+    + id (string) - AQL id
+
++ Response 204 (application/json)
+    `204 No content` is returned when the stored AQL was successfully deleted.
+
+    + Body
+
++ Response 404 (application/json)
+    `404 Not Found` is returned when the stored AQL with supplied id doesn't exist.
+
+    + Body
+
