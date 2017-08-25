@@ -14,7 +14,7 @@ The following is an outline of the functional requirements which this specificat
 - Query functions
 - Single EHR queries
 - Population queries 
-- Batch queries 
+- Batch queries
 - Stored queries
 
 ### Query functions 
@@ -92,26 +92,9 @@ Below is a mostly self-documented (?) AQL request.
   "composition_uids": [ //optional list of composition uids to filter the query on
     "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"
   ],
-  "ehr_ids": [ //optional list of ehrIds to filter the query on
+  "ehr_ids": [ //optional list of ehr ids to filter the query on
     "81433066-c417-4813-9b29-79783e7bed23"
-  ],
-  "tag_scope": { //optional (one) scope to filter the query on - this example will only query compositions which belongs to the two defined episodeOfCares
-    "tags": [{
-      "values": [
-        "12345", "54321"
-      ],
-      "tag": "episodeOfCareId"
-    }]
-  },
-  "partition_by": { // for i.e. wardlist queries you will only have one (limit=1) result for each tag (episodeOfCareId)
-    "tag": "episodeOfCareId",
-    "limit": 1
-  },
-  /* 
-  the server support batch queries - correlation id gives the client a possibility to correlate the requests with the result
-  this is used in the POST /api/v1/queries endpoint where the request is a list of this kind of objects 
-  */
-  "correlation_id": "abcd-efgh-ijkl"
+  ]
 }
 ```
 
@@ -124,41 +107,38 @@ Below is a mostly self-documented (?) AQL request.
 |`_href`| URL of the query executed (only for GET endpoint) |
 |`_type`| Defines type of the serialized object | 
 |`_schema_version` | The version of the specification defining the serialized object |
-|`_format` | `raw` or `flat` (not yet supported) | 
-|`_created`| Timestamp when the resultset was created | 
+|`_created`| Result creation timestamp (in full ISO8601 format) |
 |`_generator` | Some identifier of the application that generated the result. Useful i.e. for debugging | 
+|`_executed_aql` | The actual query (i.e. AQL) that was executed by the server after exploding the parameters. This attribute is not mandatory, but is useful for debugging |
 
 ### Data 
 
-- `name` - Name of a query when registered as a stored query
-- `aql` - The AQL which was given in the request 
-- `executed_aql` - The resulting executed AQL after parameters where exploded
-- `total_results`- The total number of results (rows) the server will return.
-- `columns`- definition of the columns of the resultset. Columns are defined by the client provided with the given AQL. I.e. `select c/uid/value as CidValue, c/context/start_time as StartTime from .... ` will give two columns. One columns for CidValue and another for StartTime. 
-- `columns.name`- defines the name of the column. I.e. CidValue or StartTime from the example above, when column alias is not present in the AQL a 0-based column index is used prefixed by a hash sign (i.e. #0, #1...)
-- `columns.path`- defines the path from the given AQL of the specified column. I.e. columns CidValue will have path `/uid/value` 
-- `rows` - is a list/array of the results from the server. 
-- `rows.row` - each row contains an array of columns. 
+|Field | Description |
+|------|-------------|
+| `name`            | Name of a query when registered as a stored query
+| `aql`             | The AQL which was given in the request 
+| `columns`         | Columns are defined by the client provided with the given AQL. I.e. `select c/uid/value as CidValue, c/context/start_time as StartTime from .... ` will give two columns. One columns for CidValue and another for StartTime.
+| `columns.name`    | Name of the column. I.e. CidValue or StartTime from the example above, when column alias is not present in the AQL a 0-based column index is used prefixed by a hash sign (i.e. `#0`, `#1`...)
+| `columns.path`    | Path from the given AQL of the specified column. I.e. columns CidValue will have path `/uid/value` 
+| `rows`            | Ordered list with results.
+| `rows.row`        | Each row list of cells. One cell for each column. Content of a cell is `ANY` (i.e. a `OBJECT` in most programming languages) 
 
-### Examples
+### ResultSet example
 
 Below is a synthesized response with all attributes.
 
 ```JSON
 {
   "meta": {
-    "_href": "http://server:port/rest/v1/query/?aql=select%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/magnitude%20as%20temperature,%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/units%20as%20unit%20from%20EHR%20CONTAINS%20Observation%20o%5BopenEHR-EHR-OBSERVATION.body_temperature-zn.v1%5D%20WHERE%20o/data%5Bat0002%5D/events%5Bat0003%20and%20name/value%3D'Any%20event'%5D/data%5Bat0001%5D/items%5Bat0004%5D/value/magnitude%20%3E%2038.5%20order%20by%20temperature%20desc%20fetch%203",
+    "_href": "<the URI for the executed AQL - used only for GET executions >",
     "_type": "RESULTSET",
     "_schema_version": "1.0.0",
-    "_format": "raw",
     "_created": "2017-08-19T00:25:47.568+02:00",
-    "_generator": "DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)"
-
+    "_generator": "DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)",
+    "_executed_aql": "< the executed aql >", /* should only be returned in debug mode */
   },
-  "name": null, /* used when running a stored query otherwise skipped */
-  "aql": "select e/ehr_id/value, c/context/start_time/value as startTime,  c/uid/value as cid, c/name/value from EHR e contains  Composition c limit 2",
-  "executed_aql": "select e/ehr_id/value as ehrId, c/context/start_time/value as startTime,  c/uid/value as cid from EHR e contains  Composition c limit 2", /* should only be returned in debug mode */
-  "total_results": 2, /* to be removed */
+  "name": "<the name/identifier of the stored query that was executed>",
+  "aql": "select e/ehr_id/value, c/context/start_time/value as startTime,  c/uid/value as cid, c/name from EHR e contains  Composition c limit 2",
   "columns": [
     {
       "name": "#0",
@@ -174,24 +154,19 @@ Below is a synthesized response with all attributes.
     },
     {
       "name": "#3",
-      "path": "/name/value"
+      "path": "/name"
     }
   ],
   "rows": [
     [
       "81433066-c417-4813-9b29-79783e7bed23",
       "2017-02-16T13:50:11.308+01:00",
-      "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"
-    ],
-  ],
-  "tags": [ /* DIPS extension */
-            { // each tag defines an attribute of the cell, the tag is one from the tagScope of the query 
-                "row": 0,
-                "col": 0,
-                "name": "episodeOfCareId",
-                "value": "1234556"
-            }
-        ]
-
+      "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1",
+      {
+        "_type": "DV_TEXT",
+        "value": "Labs"
+      }
+    ]
+  ]
 }
 ```
