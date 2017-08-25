@@ -2,8 +2,9 @@
 Status: <strong><code>DEVELOPMENT</code></strong></p>
 </div><div class="middle"><section id="query-requirements" class="resource-group"><h2 class="group-heading">Query Requirements <a href="#query-requirements" class="permalink">&para;</a></h2><h2 id="header-purpose">Purpose <a class="permalink" href="#header-purpose" aria-hidden="true">¶</a></h2>
 <p>This specification describes the service endpoints and datamodels used when querying an openEHR system.</p>
-<p>AQL (Archetype Query Language) is the primary query language. For some endpoints there might be specified filter/query parameter which is used to invoke query/filter operations in the openEHR system. Then the <code>response</code> defined below should be used.</p>
-<p>The AQL specification is found here: <a href="http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html">http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html</a></p>
+<p>AQL (Archetype Query Language) is the primary query language. The AQL specification is found here: <a href="http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html">http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html</a></p>
+<p>The endpoints are designed to be extended with other and not yet defined query languages. The returning <code>response</code> should always be the same structure as defined below.</p>
+<p>The query <code>response</code> may also be used for other endpoints in the openEHR REST API. I.e. there might be specified filter/query parameter on Composition resources. These operations will return the <code>response</code>structure defined here.</p>
 <h2 id="header-functional-requirements">Functional requirements <a class="permalink" href="#header-functional-requirements" aria-hidden="true">¶</a></h2>
 <p>The following is an outline of the functional requirements which this specification is made to solve:</p>
 <ul>
@@ -99,7 +100,7 @@ Status: <strong><code>DEVELOPMENT</code></strong></p>
 </ul>
 <h3 id="header-synchronous-asynchronous">Synchronous/Asynchronous <a class="permalink" href="#header-synchronous-asynchronous" aria-hidden="true">¶</a></h3>
 <div class="note">
-<p>Write something about this topic</p>
+<p>TODO: Either write something here - or leave it out of current version of the specification.</p>
 </div>
 </section></div><div class="middle"><section id="data-structures" class="resource-group"><h2 class="group-heading">Data structures <a href="#data-structures" class="permalink">&para;</a></h2><h2 id="header-request-structure">Request structure <a class="permalink" href="#header-request-structure" aria-hidden="true">¶</a></h2>
 <p>Below is a mostly self-documented (?) AQL request.</p>
