@@ -55,7 +55,7 @@ HTTP Status codes are described by [RFC 7231](https://tools.ietf.org/html/rfc723
 and in the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 
 See [design considerations section](#design-considerations) section for more details on how some
-HTTP methods and status codes MUST be used by an openEHR REST API implementation to good interaction 
+HTTP methods and status codes MUST be used by an openEHR REST API implementation to achieve good interaction 
 between services and clients in the spirit of this specification.  
 
 **JSON** format is used in many of the example below, but this does not imply that **XML** might not be supported by the same service endpoint.
@@ -124,10 +124,20 @@ In case a service receives this header and the condition evaluates to `false` it
 HTTP status code`412 Precondition Failed`.
 
 
-<h3>The `Location` header</h3>
-::: note 
-tbd  
-:::
+<h3>The `Location` and `Content-Location` header</h3>
+The `Content-Location` response header indicates the resource location (URL). 
+Services SHOULD return this header whenever a create or update operation was performed. 
+See [representation details negotiation](#representation-details-negotiation) section
+for more details on how use this header.
+
+The `Location` and `Content-Location` headers are different: 
+the first is a redirect header and indicates the new target URL,
+whereas the second indicates the direct URL to use to access the resource.
+
+
+<h3>The `Prefer` header</h3>
+This request header MAY be used by clients for resource representation negotiation. 
+See more details on [representation details negotiation](#representation-details-negotiation) section.
 
 
 <h3>The `ETag` header and cache handling</h3>
@@ -169,7 +179,22 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 |  501 | Not Implemented        | The service does not support the functionality required to fulfill the request
 
 Meaning of these codes may be further detailed (nuanced) in this specification by particular responses.
-If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.   
+If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.
+
+In case of errors or exceptions (codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
+Example:
+::: note 
+tbd structure
+:::
+```
+{
+  "message": "Error message",
+  "validationErrors": [
+    "error1",
+    "error2"
+  ]
+}
+```   
 
 
 ## Data representation [/--data]
@@ -225,10 +250,10 @@ Any date or datetime value provided by a create or update action inside the comp
 will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
 
 
-<h3>The `Prefer` header</h3>
-When using the HTTP methods to create or update a resource, the service SHOULD give the option of returning either a complete
-representation of the (modified) resource or a minimal or no content in the payload response that indicates only the successful completion of the operation.
-See [RFC 7240](https://tools.ietf.org/html/rfc7240#section-4.2) for more details.
+<h3 id="representation-details-negotiation">Representation details negotiation <a href="#representation-details-negotiation" class="permalink">¶</a></h3>
+When using the HTTP methods to create or update a resource, the service SHOULD give clients the option for returning either a complete
+representation of the (modified) resource, or a minimal or no content in the payload response (assuming the operation was successfully completed).
+See [RFC 7240](https://tools.ietf.org/html/rfc7240#section-4.2) for more details on how achieve this using `Prefer` header.
 The client MAY choose followings:
  - send `Prefer: return=minimal` to inform the service that prefers only a minimal response to a successful request. 
  A `Content-Location` header indicating the direct URL to access the resource MUST be part of the service response. 
