@@ -6,9 +6,9 @@
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
 
-+ Request 
++ Request (application/json) 
 
-    + Body (application/json) 
+    + Body
 
             {
                 "versions": [
@@ -42,7 +42,7 @@
 
     + Headers
 
-            Prefer: return={representation/minimal}
+            Prefer: return=representation
 
 + Response 201 
 

@@ -156,6 +156,7 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 |------|------------------------|--------------------------------------------------------------------------------------------------------|       
 |  200 | OK                     | The request succeeded, payload sent in a 200 response depends on the request method
 |  201 | Created                | The request has been fulfilled and has resulted in one or more new resources being created
+|  204 | No content             | The request has been fulfilled and there is no additional content to send in the response payload body
 |  400 | Bad request            | The service cannot or will not process the request due to something that is perceived to be a client error
 |  401 | Unauthorized           | If the service requires authorization, this indicates that the request has not been applied because it lacks valid authentication credentials for the target resource 
 |  403 | Forbidden              | The service understood the request but refuses to authorize it
@@ -167,7 +168,7 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 |  500 | Internal Server Error  | The service encountered an unexpected condition that prevented it from fulfilling the request
 |  501 | Not Implemented        | The service does not support the functionality required to fulfill the request
 
-Meaning of these codes MAY be further detailed (nuanced) in this specification by particular responses
+Meaning of these codes may be further detailed (nuanced) in this specification by particular responses.
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.   
 
 
@@ -225,15 +226,20 @@ will be preserved as it was sent (i.e. if composition was saved as narrow format
 
 
 <h3>The `Prefer` header</h3>
-When using the HTTP methods to create or update a resource the service SHOULD give the option of returning either a complete
-representation of the (modified) resource or a minimal response that indicates only the successful completion of the operation.
+When using the HTTP methods to create or update a resource, the service SHOULD give the option of returning either a complete
+representation of the (modified) resource or a minimal or no content in the payload response that indicates only the successful completion of the operation.
 See [RFC 7240](https://tools.ietf.org/html/rfc7240#section-4.2) for more details.
-The client MAY choose one option by using following HTTP header:
- - `Prefer: return=minimal` to inform the server that prefers only a minimal response to a successful request. 
- A `Location` header MUST be part of the response. This SHOULD be also default return policy in case no `Prefer` header is present in request.
- - `Prefer: return=representation` to inform the server that prefers a full representation response to a successful request.
- A `Location` header MAY be part of the response and the response SHOULD include a full representation. 
+The client MAY choose followings:
+ - send `Prefer: return=minimal` to inform the service that prefers only a minimal response to a successful request. 
+ A `Content-Location` header indicating the direct URL to access the resource MUST be part of the service response. 
+ If there is not payload content to be returned, the service SHOULD use HTTP status code `204 No Content`.
+ A `Location` redirect header with direct URL MAY be as well part of the response. 
+ - send `Prefer: return=representation` to inform the service that prefers a full representation response to a successful request.
+ A `Content-Location` header indicating the direct URL to access the resource MAY be part of the service response 
+ and the payload content SHOULD include a full representation. 
 
+In case no `Prefer` header is present in request, the default response policy is considered to be `return=minimal`.
+ 
 Another preference is related to following and resolving OBJ_REF identifiers. Under some circumstances a client 
 MAY indicate that prefers response containing full or partial resource representation instead of references to resources using OBJ_REF.
 A typical case is a list of COMPOSITIONs part of an EHR, which, strictly following RM specification, should always return 

@@ -8,9 +8,9 @@
     + version_lifecycle_state (string) - The version Lifecycle State (532=complete, 553=incomplete, 523=deleted)
     + preceding_version_uid (string, optional) - This will result in a new Folder based on the preceding Folder version.
 
-+ Request
++ Request (application/json)
 
-    + Body (application/json)
+    + Body
 
             {
                 "items": [...],
@@ -19,7 +19,7 @@
 
     + Headers
 
-            Prefer: return={representation/minimal}
+            Prefer: return=representation
 
 + Response 201 (application/json)
 
@@ -59,9 +59,9 @@
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
 
-+ Request
++ Request (application/json)
 
-    + Body (application/json)
+    + Body
 
             {
                 "items": [...],
@@ -71,12 +71,11 @@
     + Headers
 
             Match-If: {preceding_version_uid}
-            Prefer: return={representation/minimal}
+            Prefer: return=representation
 
 + Response 200 (application/json)
 
     Directory was updated.
-    Returned when `Prefer` header is set to `return=representation`.
 
     + Headers
 
