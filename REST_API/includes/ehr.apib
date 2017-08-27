@@ -69,7 +69,7 @@ All other attributes will be left empty (null).
 
 + Parameters
 
-    + ehr_id (string) - User supplied EHR id
+    + `ehr_id` (string) - User supplied EHR identifier
 
 + Request
 
@@ -113,7 +113,7 @@ All other attributes will be left empty (null).
 + Response 409
 
     Unable to create a new EHR due to a conflict with an already existing EHR.
-    Can happen when the supplied ehr_id is already already used by an existing EHR.
+    It can happen when the supplied `ehr_id` is already used by an existing EHR.
 
     + Body
 
@@ -123,7 +123,7 @@ Retrieve the EHR with the specified `ehr_id`.
 
 + Parameters
 
-    + ehr_id (string) - EHR identifier
+    + `ehr_id` (string) - EHR identifier
 
 + Response 200 (application/json)
 
@@ -141,7 +141,7 @@ Retrieve the EHR with the specified `ehr_id`.
 
 + Response 400
 
-    `400 Bad Request` might be returned if the server validates the syntax of the supplied ehr_id, but this is not mandatory.
+    `400 Bad Request` might be returned if the server validates the syntax of the supplied `ehr_id`, but this is not mandatory.
 
     + Body
     
