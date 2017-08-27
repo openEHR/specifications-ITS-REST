@@ -198,12 +198,12 @@
     + Body
 
 
-### Get folder in directory vcersion by time [GET /ehrs/{ehr_id}/directory{?version_selector,path}]
+### Get folder in directory version at time [GET /ehrs/{ehr_id}/directory{?version_at_time,path}]
 
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + version_selector (string, optional) - version time specifier
+    + `version_at_time` (string, optional) - A timestamp in the ISO8601 format
     + path (string, optional) - path to a sub-folder
 
 + Response 200 (application/json)
@@ -223,7 +223,7 @@
 
 + Response 204
 
-    EHR has no directory at version_selector time or no Folder at provided path.
+    EHR has no directory at `version_at_time` time or no Folder at provided path.
 
     + Body
 
