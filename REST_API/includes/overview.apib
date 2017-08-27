@@ -65,9 +65,18 @@ See below how [data representation](#design-considerations-data-representation) 
 # Group Design considerations
 
 ## Authentication and authorization [/--auth]
-::: note 
-tbd  
-:::
+Services SHOULD implement and support a HTTP Authentication and Authorization framework.
+See [RFC 7235](https://tools.ietf.org/html/rfc7235) 
+or [Mozilla's HTTP Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) 
+for more details on this subject.
+
+If such framework is present, services MUST properly use `WWW-Authenticate`
+and/or `Proxy-Authenticate` response headers and return HTTP status code 
+`403 Forbidden` or `401 Unauthorized` or `407 Proxy Authentication` whenever applicable, 
+and clients MUST properly use `Authorization` and `Proxy-Authorization` in their request headers.
+
+Furthermore there is no assumption or recommendation being made in this specification 
+on which authentication scheme should be used by services and clients.  
 
 
 ## Options and conformance [/]
@@ -81,7 +90,7 @@ Another usecase for this method is related to exposing service capabilities for 
 ### OPTIONS
 Expose available service endpoints and other details.
 
-+ Request
++ Request Inspect services and conformance
 
     + Headers
     
@@ -100,7 +109,7 @@ Expose available service endpoints and other details.
                 "solution_version": "v0.9",
                 "vendor": "BestEHR",
                 "restapi_specs_version": "v1.0",
-                "conformance_profile": "standard",
+                "conformance_profile": "STANDARD",
                 "accept": ["json", "xml"],
                 "endpoints": ["/ehrs", "/definitions", "/aql"],
                 "extra_endpoints": ["/termserv", "/stats"]
