@@ -4,13 +4,13 @@
 
 + Parameters
 
-    + ehr_id (string) - EHR id
+    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
     + version_lifecycle_state (string) - The version Lifecycle State (532=complete, 553=incomplete, 523=deleted)
     + preceding_version_uid (string, optional) - This will result in a new Folder based on the preceding Folder version.
 
-+ Request
++ Request (application/json)
 
-    + Body (application/json)
+    + Body
 
             {
                 "items": [...],
@@ -19,7 +19,7 @@
 
     + Headers
 
-            Prefer: return={representation/minimal}
+            Prefer: return={representation|minimal}
 
 + Response 201 (application/json)
 
@@ -57,11 +57,11 @@
 
 + Parameters
 
-    + ehr_id (string) - EHR id
+    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
 
-+ Request
++ Request (application/json)
 
-    + Body (application/json)
+    + Body
 
             {
                 "items": [...],
@@ -71,12 +71,11 @@
     + Headers
 
             Match-If: {preceding_version_uid}
-            Prefer: return={representation/minimal}
+            Prefer: return={representation|minimal}
 
 + Response 200 (application/json)
 
     Directory was updated.
-    Returned when `Prefer` header is set to `return=representation`.
 
     + Headers
 
@@ -129,7 +128,7 @@
 
 + Parameters
 
-    + ehr_id (string) - EHR id
+    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
 
 + Request
 
@@ -171,7 +170,7 @@
 
 + Parameters
 
-    + ehr_id (string) - EHR id
+    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
     + version_uid (string) - version UID
     + path (string, optional) - path to a Folder
 
@@ -198,12 +197,12 @@
     + Body
 
 
-### Get folder in directory vcersion by time [GET /ehrs/{ehr_id}/directory{?version_selector,path}]
+### Get folder in directory version at time [GET /ehrs/{ehr_id}/directory{?version_at_time,path}]
 
 + Parameters
 
-    + ehr_id (string) - EHR id
-    + version_selector (string, optional) - version time specifier
+    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
+    + `version_at_time` (string, optional) - A timestamp in the ISO8601 format
     + path (string, optional) - path to a sub-folder
 
 + Response 200 (application/json)
@@ -223,7 +222,7 @@
 
 + Response 204
 
-    EHR has no directory at version_selector time or no Folder at provided path.
+    EHR has no directory at `version_at_time` time or no Folder at provided path.
 
     + Body
 

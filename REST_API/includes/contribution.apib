@@ -4,11 +4,11 @@
 
 + Parameters 
 
-    + ehr_id (string) - EHR id
+    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
 
-+ Request 
++ Request (application/json) 
 
-    + Body (application/json) 
+    + Body
 
             {
                 "versions": [
@@ -42,7 +42,7 @@
 
     + Headers
 
-            Prefer: return={representation/minimal}
+            Prefer: return={representation|minimal}
 
 + Response 201 
 
@@ -87,7 +87,7 @@
 
 + Parameters
 
-    + ehr_id (string) - EHR id
+    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
     + object_id (string) - CONTRIBUTION uid
 
 + Response 200 (application/json) 
