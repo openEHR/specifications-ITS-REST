@@ -1,15 +1,34 @@
 ## Link [/link]
-### Get locatable object by ehr-uri [GET /link{?ehr_uri,ehr_id}]
+### Get locatable object by ehr_uri [GET /link{?ehr_uri,ehr_id}]
 openEHR EHR-URIs are described in `http://www.openehr.org/releases/BASE/latest/docs/architecture_overview/architecture_overview.html#_ehr_uris`
-they can point to any object that inherit from LOCATABLE
+openEHR EHR-URIs can point to any object that inherit from the openEHR `LOCATABLE` class
 
-+ Parameters 
-        + ehr_uri: `ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B/content[openEHR-EHR-SECTION.vital_signs.v1]/items[openEHR-EHR-OBSERVATION.heart_rate-pulse.v1]/data/events[at0006, 'any event']/data/items[at0004]` (string) - The ehr_uri for the locatable resource 
-        + ehr_id: `/347a5490-55ee-4da9-b91a-9bba710f730e` (string, optional) - The ehr_id context needed only for resolving relative EHR-URIs that are constructed relative to the current EHR so that they do not mention the EHR id, as in the following example: `ehr:compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B/content[openEHR-EHR-SECTION.vital_signs.v1]/items[openEHR-EHR-OBSERVATION.blood_pressure.v1]/data/events[at0006, 'any event']/data/items[at0004]
+openEHR EHR-URIs can be either `absolute EHR-URIs` like
+
+            `ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B/content[openEHR-EHR-SECTION.vital_signs.v1]/items[openEHR-EHR-OBSERVATION.heart_rate-pulse.v1]/data/events[at0006, 'any event']/data/items[at0004]`
+
+or `relative EHR-URIs` - relative to the "current" ehr:
+
+            `ehr:compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B/content[openEHR-EHR-SECTION.vital_signs.v1]/items[openEHR-EHR-OBSERVATION.blood_pressure.v1]/data/events[at0006, 'any event']/data/items[at0004]`
+
+If the http header `ehr_id` is present in the request it MUST contain a single openEHR `ehr_id`.
+Clients SHOULD send the ehr_id header if they know that the query concerns only a specific EHR.
+The presence of such a header MAY be used by the server to restrict querying to only the identified EHR, and it MAY also be used by the server to route (e.g. in sharded scale-out systems) based on ehr_id 
+
++ Request 
+
+    + Headers
+
+            ehr_id: fc334f45-ffb7-4077-8134-4d3d5e6cb2a1
+
+    + Parameters 
+        + ehr_uri  (string) - The ehr_uri for the locatable resource 
+        + ehr_id: `347a5490-55ee-4da9-b91a-9bba710f730e` (string, optional) - An alternative way to supply the ehr_id context (in addition to the http header `ehr_id`) needed only for resolving relative EHR-URIs that are constructed relative to the current EHR so that they do not mention the EHR id (see above).
 
 + Response 200 (application/json) 
     The JSON serialized representation of the locatable. 
     + Body 
+
             {
                 /* JSON representation of the locatable */ 
             }
@@ -22,5 +41,5 @@ they can point to any object that inherit from LOCATABLE
             XML representation of the locatable
 
 + Response 404 
-    The locatable defined by the ehr_uri was not found. 
-  
+
+            The locatable defined by the ehr_uri (or the ehr_id) was not found. 
