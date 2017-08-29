@@ -49,6 +49,7 @@ Throughout this specification, a set of short terms is being used as described b
 |`object_id`| A placeholder for either `versioned_object_uid` or `version_uid` identifier |
 |`version_at_time`| Time specifier used to retrieve the VERSION at specified time; the value is a timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
 |`timestamp`| A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
+|`UUID`| A universally unique identifier ([RFC 4122](https://tools.ietf.org/html/rfc4122)) (e.g. 8849182c-82ad-4088-a07f-48ead4180515)
 
 HTTP Methods used in this specification are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4).
 HTTP Status codes are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) 
@@ -110,9 +111,7 @@ Expose available service endpoints and other details.
                 "vendor": "BestEHR",
                 "restapi_specs_version": "v1.0",
                 "conformance_profile": "STANDARD",
-                "accept": ["json", "xml"],
-                "endpoints": ["/ehrs", "/definitions", "/aql"],
-                "extra_endpoints": ["/termserv", "/stats"]
+                "endpoints": ["/ehrs", "/definitions", "/query"]
             }
 
 
@@ -133,15 +132,18 @@ In case a service receives this header and the condition evaluates to `false` it
 HTTP status code`412 Precondition Failed`.
 
 
-<h3>The `Location` and `Content-Location` header</h3>
-The `Content-Location` response header indicates the resource location (URL). 
-Services SHOULD return this header whenever a create or update operation was performed. 
+<h3>The `Location` header</h3>
+The `Location` response header indicates the resource location (URL). 
+According to [RFC 7231](https://tools.ietf.org/html/rfc7231#page-68), it is used to refer to a specific resource in relation to the response. 
+The type of relationship is defined by the combination of request method and status code semantics.
+Services MUST return this header whenever a create or update operation was performed, but it MAY
+return this header on other operation or action.
 See [representation details negotiation](#representation-details-negotiation) section
 for more details on how use this header.
 
-The `Location` and `Content-Location` headers are different: 
-the first is a redirect header and indicates the new target URL,
-whereas the second indicates the direct URL to use to access the resource.
+::: note 
+tbd `openehr-uri` response header (dv_ehr_uri) of the resources
+:::
 
 
 <h3>The `Prefer` header</h3>
@@ -182,6 +184,7 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 |  404 | Not found              | The origin service did not find the target resource or is not willing to disclose that one exists 
 |  405 | Method Not Allowed     | The method received in the request-line is known by the origin service but not supported by the target resource 
 |  406 | Not Acceptable         | The target resource does not have a current representation that would be acceptable to the user 
+|  409 | Conflict               | Indicates that the request could not be processed because it might generate a duplicate or a conflict
 |  412 | Precondition Failed    | One or more conditions given in the request header fields evaluated to false when tested on the server
 |  415 | Unsupported Media Type | The service is refusing the request because the payload is in a format not supported by this method on the target resource
 |  500 | Internal Server Error  | The service encountered an unexpected condition that prevented it from fulfilling the request
@@ -190,14 +193,15 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 Meaning of these codes may be further detailed (nuanced) in this specification by particular responses.
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.
 
-In case of errors or exceptions (codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
+In case of errors or exceptions (HTTP codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
 Example:
 ::: note 
-tbd structure
+tbd structure oauth message format
 :::
 ```
 {
   "message": "Error message",
+  "code": 90000,
   "validationErrors": [
     "error1",
     "error2"
@@ -228,8 +232,11 @@ Attribute names must be lowercase _snake_case_ names as specified in the RM spec
 ```
 {"context": {"start_time": "2016-01-01T00:00Z"}}
 ```
+
 Metadata attributes (those that are not also RM attributes) will always be prefixed by a `'_'`.
-One example is the `_type` attribute, which should be used to specify the RM type whenever polymorphism is involved or the underlying definition in RM type is abstract.
+One example is the `_type` attribute, which should be used to specify the RM type whenever polymorphism is involved or the underlying definition in RM type is abstract
+(dynamic type is different from the static type).
+This follows same rule as for XML typing.
 The value of this attribute MUST be the uppercase class name from the RM specification. For example:
 ```
 {
@@ -237,7 +244,10 @@ The value of this attribute MUST be the uppercase class name from the RM specifi
     "value": "Hello world!"
 }
 ```
-The `Null` RM attributes SHOULD be absent when serialized as JSON.
+
+The RM attributes that are `Null`, empty list or empty arrays SHOULD be absent when serialized as JSON.
+
+The order of attributes in the resource MAY follow the order of attributes in the RM specification of the type of the resource, but this is not mandatory.
 
 ::: note 
 tbd json-schema 
@@ -253,11 +263,11 @@ Proper header `Content-Type: application/json` MUST be present in the response o
 
 <h3>Datetime format</h3>
 
-Query parameters or timestamp path segments should always use the canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00.
+Query parameters and path segments that are date, datetime, or timestamp, MUST always use the canonical ISO8601 expanded format, e.g. 2016-06-23T13:42:16.117+02:00.
 
-Any date or datetime value provided by a create or update action inside the composition content 
-will be preserved as it was sent (i.e. if composition was saved as narrow format, it will always return the way it was).
-
+Any date, datetime or timestamp value provided by a create or update action inside the COMPOSITION content 
+will be preserved as it was sent by client (i.e. if COMPOSITION was saved as narrow format, it will always return the way it was).
+However, the RECOMMENDED format is to use the ISO8601 expanded format.
 
 <h3 id="representation-details-negotiation">Representation details negotiation <a href="#representation-details-negotiation" class="permalink">¶</a></h3>
 When using the HTTP methods to create or update a resource, the service SHOULD give clients the option for returning either a complete
@@ -265,14 +275,13 @@ representation of the (modified) resource, or a minimal or no content in the pay
 See [RFC 7240](https://tools.ietf.org/html/rfc7240#section-4.2) for more details on how achieve this using `Prefer` header.
 The client MAY choose followings:
  - send `Prefer: return=minimal` to inform the service that prefers only a minimal response to a successful request. 
- A `Content-Location` header indicating the direct URL to access the resource MUST be part of the service response. 
- If there is not payload content to be returned, the service SHOULD use HTTP status code `204 No Content`.
- A `Location` redirect header with direct URL MAY be as well part of the response. 
+ A `Location` header indicating the direct URL to access the resource MUST be part of the service response. 
+ If there is no payload content to be returned, the service SHOULD use HTTP status code `204 No Content`.
  - send `Prefer: return=representation` to inform the service that prefers a full representation response to a successful request.
- A `Content-Location` header indicating the direct URL to access the resource MAY be part of the service response 
+ A `Location` header indicating the direct URL to access the resource MAY be part of the service response 
  and the payload content SHOULD include a full representation. 
 
-In case no `Prefer` header is present in request, the default response policy is considered to be `return=minimal`.
+In case no `Prefer` header is present in request, the default response policy is `return=minimal`.
  
 Another preference is related to following and resolving OBJ_REF identifiers. Under some circumstances a client 
 MAY indicate that prefers response containing full or partial resource representation instead of references to resources using OBJ_REF.
