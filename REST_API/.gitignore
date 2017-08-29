@@ -1,6 +1,5 @@
 *.html
 *.bat
-*.json
 *.feature
 *.vpp*
 generated_api/*
