@@ -1,36 +1,83 @@
 ## Query [/query]
 
-### Execute stored query [GET /query/{id}{?param_1,param_n}]
+### Execute stored query [GET /query/{prefix}/{id}{?offset,fetch,dynamic_parameter,dynamic_parameter_n}]
 
-Execute a stored query with the supplied id.
+Execute a stored query with the supplied prefix+id. 
 
-NOTE: we might add a header to indicate which EHR to execute against to
-allow systems that need to route based of EHR id to do so without having
-to analyze the request body.
+If the http header 'ehr_id' is present in the request it MUST contain a single openEHR ehr_id.
+Clients SHOULD send the ehr_id header if they know that the query concerns only a singe EHR.
+The presence of such a header:   
+	* MAY be used by the server to restrict querying to only the identified EHR, and 
+	* it MAY also be used by the server to route (e.g. in sharded scale-out systems) based on ehr_id without first having to analyze the request body, 
+	* it MAY also be used by the server to handle ETag and If-None-Match http headers based on the latest known change to the identified EHR (e.g. by using the latest contribution uid of the identified EHR as ETag value) so that query responses can be safely cached (confirmed by http response code 304 Not Modified) and do not need to be re-run until changes may have occured.	
+The absence of the http header 'ehr_id' means that the stored query or dynamic request parameters MAY contain a list of several ehr_ids or be unconstrained regarding ehr_id (e.g. population queries).
 
-+ Parameters
-    + id - Id of the stored query to be executed
-    + param_1 (optional) - query parameter 1
-    + param_n (optional) - query parameter n
+All query parameters found except "offset" and "fetch" are treated as dynamic and sent to the query execution engine.
+For parameters in AQL queries, see http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_parameters
 
++ Request 
+	+ Headers
+		ehr_id: fc334f45-ffb7-4077-8134-4d3d5e6cb2a1
+		If-None-Match: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+		
+	+ Parameters
+		+ prefix - A prefix indicating type of identifier, in this API version "name" for manually named queries or "sha-1" for query-content-based auto-generated ids. Se details in documentation for /definitions/queries/.
+			+ Members
+				+ `name`
+				+ `sha-1`	
+		+ id - Id of the stored query to be executed
+		+ offset (optional) - Query response row number to start from 
+			+ Default: 0
+        + fetch (optional) - Number of query response rows to fetch	(from offset). For AQL queries: use wisely if combined with http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_top )	
+		+ dynamic_parameter (optional) - dynamic query parameter used in stored query. 
+		+ dynamic_parameter_n (optional) - dynamic query parameter n. 
+		
 + Response 200 (application/json)
-    
+	+ Headers
+		Etag: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+		
+    {
+          /* See discussion on resultset in overview */
+    }
+
++ Response 200 (application/xml)
+	+ Headers
+		Etag: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+		
         {
-           /* Se discussion on resultset in overview */
+           /* See discussion on resultset in overview */
         }
 
-### Execute stored query [POST /query/{id}]
+		
+		
+### Execute stored query [POST /query/{prefix}/{id}]
 
-Execute a stored query.
+Execute a stored query with the supplied prefix+id. 
 
-NOTE: we might add a header to indicate which EHR to execute against to
-allow systems that need to route based of EHR id to do so without having
-to analyze the request body.
+If the http header 'ehr_id' is present in the request it MUST contain a single openEHR ehr_id.
+Clients SHOULD send the ehr_id header if they know that the query concerns only a singe EHR.
+The presence of such a header:   
+	* MAY be used by the server to restrict querying to only the identified EHR, and 
+	* it MAY also be used by the server to route (e.g. in sharded scale-out systems) based on ehr_id without first having to analyze the request body, 
+The absence of the http header 'ehr_id' means that the stored query or dynamic request parameters MAY contain a list of several ehr_ids or be unconstrained regarding ehr_id (e.g. population queries).
 
-+ Parameters
-    + id - Id of the stored query to be executed
+TBD: Do we want XML Request and Response formats for POST /query/{prefix}/{id}? 
+TBD: Do we want to filter on containment in folders? 
+
+NOTE: The body of a POST request is usually not logged in the http log by default, so developers need to make sure to log the body content some other way in order to enable auditing of what query parameters have been executed. 
 
 + Request (application/json)
+
+	+ Headers
+		ehr_id: fc334f45-ffb7-4077-8134-4d3d5e6cb2a1
+		If-None-Match: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+		
+	+ Parameters
+		+ prefix - A prefix indicating type of identifier, in this API version "name" for manually named queries or "sha-1" for query-content-based auto-generated ids. Se datails in documentation for /definitions/queries/.
+			+ Members
+				+ `name`
+				+ `sha-1`	
+		+ id - Id of the stored query to be executed
 
     + Body
 
@@ -53,6 +100,7 @@ to analyze the request body.
            /* Se discussion on resultset in overview */
          }
 
+		 
 ### Execute ad-hoc AQL query [GET /query/aql{?q}]
 
 Execute an AQL query 
@@ -60,6 +108,8 @@ Execute an AQL query
 NOTE: we might add a header to indicate which EHR to execute against to
 allow systems that need to route based of EHR id to do so without having
 to analyze the request body.
+
+TBD: Add query url length warning?
 
 + Parameters 
     + q - The AQL to be executed 
@@ -77,6 +127,10 @@ Execute an AQL query.
 NOTE: we might add a header to indicate which EHR to execute against to
 allow systems that need to route based of EHR id to do so without having
 to analyze the request body.
+
+NOTE: We might add support for the request format application/x-www-form-urlencoded
+
+TBD: Add logging advice?
 
 + Request (application/json)
 
