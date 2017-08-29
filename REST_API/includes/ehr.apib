@@ -1,8 +1,8 @@
-## EHR [/ehrs]
+## EHR [/ehr]
 
 Management of EHR resources.
 
-### Create EHR [POST /ehrs]
+### Create EHR [POST /ehr]
 
 Create a new `EHR` with an auto-generated identifier.
 Request body may contain `ehr_status` attribute. When provided it
@@ -19,14 +19,31 @@ All other attributes will be left empty (null).
 
     + Headers
 
-            Prefer: return=representation
+            Prefer: return={representation|minimal}
 
     + Body
 
             {
                 "ehr_status": {
-                  "is_modifiable": "true"
-                  ...
+                  "subject": {
+                      "external_ref": {
+                        "id": {
+                          "_type": "GENERIC_ID",
+                          "value": "ins01",
+                          "scheme": "id_scheme"
+                        },
+                        "namespace": "ehr_craft",
+                        "type": "PERSON"
+                      }
+                  },
+                  "other_details": {                           /* optional, ITEM_STRUCTURE, archetypable */
+                    "_type": "ITEM_TREE",
+                    "items": {
+                      ...
+                    }
+                  },
+                  "is_modifiable": "true",
+                  "is_queryable": "true"
                 }
             }
 
@@ -34,10 +51,12 @@ All other attributes will be left empty (null).
 
     `201 Created` is returned when a new EHR has been successfully created. 
     The EHR resource is returned in the body when the `Prefer` header has the value of `return=representation`.
+    The default for `Prefer` header (or when `Prefer` header if missing) is `return=minimal`.
+    The `Location` header is always returned.
 
     + Headers
 
-            Location: /ehrs/{ehr_id}
+            Location: /ehr/{ehr_id}
 
     + Body
 
@@ -50,12 +69,13 @@ All other attributes will be left empty (null).
 
 + Response 400
 
-    `400 Bad Request` is returned when unable to parse the request body if provided.
+    `400 Bad Request` is returned when unable to parse the request body if provided or when a subject id,
+    namespace pair supplied is already present in the system.
 
     + Body
 
 
-### Create EHR with id [PUT /ehrs/{ehr_id}]
+### Create EHR with id [PUT /ehr/{ehr_id}]
 
 Create new `EHR` with the specified EHR identifier. 
 Request body may contain `ehr_status` attribute. When provided it
@@ -67,15 +87,18 @@ Default EHR_STATUS will have the following defaults:
 
 All other attributes will be left empty (null).
 
+It is recommended that the supplied `ehr_id` is a UUID, but others formats are also
+allowed (http://www.openehr.org/releases/RM/latest/docs/support/support.html#_uid_based_id_class)
+
 + Parameters
 
-    + `ehr_id` (string) - User supplied EHR identifier
+    + ehr_id (string) - User supplied EHR id
 
 + Request
 
     + Headers
 
-            Prefer: return=representation
+            Prefer: return={representation|minimal}
 
     + Body
 
@@ -93,7 +116,7 @@ All other attributes will be left empty (null).
 
     + Headers
 
-            Location: /ehrs/{ehr_id}
+            Location: /ehr/{ehr_id}
 
     + Body
 
@@ -106,24 +129,25 @@ All other attributes will be left empty (null).
 
 + Response 400
 
-    `400 Bad Request` is returned when unable to parse the request body if provided.
+    `400 Bad Request` is returned when unable to parse the request body if provided or when supplied `ehr_id`
+    doesn't follow the specification (http://www.openehr.org/releases/RM/latest/docs/support/support.html#_uid_based_id_class).
 
     + Body
 
 + Response 409
 
-    Unable to create a new EHR due to a conflict with an already existing EHR.
-    It can happen when the supplied `ehr_id` is already used by an existing EHR.
+    `409 Conflict` Unable to create a new EHR due to a conflict with an already existing EHR.
+    Can happen when the supplied ehr_id is already already used by an existing EHR.
 
     + Body
 
 
-### Get EHR by id [GET /ehrs/{ehr_id}]
+### Get EHR by id [GET /ehr/{ehr_id}]
 Retrieve the EHR with the specified `ehr_id`.
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier
+    + ehr_id (string) - EHR identifier
 
 + Response 200 (application/json)
 
@@ -139,14 +163,37 @@ Retrieve the EHR with the specified `ehr_id`.
                 ... // to be defined, possibly counts of compositions, contributions, etc.
             }
 
-+ Response 400
-
-    `400 Bad Request` might be returned if the server validates the syntax of the supplied `ehr_id`, but this is not mandatory.
-
-    + Body
-    
 + Response 404
 
     `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
+
+    + Body
+
+
+### Get EHR by subject id [GET /ehr{?subject_id,subject_namespace}]
+Retrieve the EHR with the specified `subject_id` and `subject_namespace`.
+
++ Parameters
+
+    + subject_id (string) - subject id
+    + subject_namespace (string) - subject namespace
+
++ Response 200 (application/json)
+
+    `200 OK` is returned when the EHR resource is successfully retrieved.
+
+    + Body
+
+            {
+                "system_id": {},
+                "ehr_id": {},
+                "ehr_status": "versioned ehr status uid",
+                "time_created", "...",
+                ... // to be defined, possibly counts of compositions, contributions, etc.
+            }
+
++ Response 404
+
+    `404 Not Found` is returned when an `EHR` with supplied subject parameters does not exist.
 
     + Body
