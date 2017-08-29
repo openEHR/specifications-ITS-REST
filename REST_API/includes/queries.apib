@@ -8,7 +8,7 @@ Named queries are aliases that point to a specific query id, the aliases are rec
 
 Note that execution of queries is done using the resource: /query/{prefix}/{id}{?param_1,param_n}
 
-### List named queries [GET /definitions/queries/named]
+### List named queries [GET /definitions/queries/name]
 
 List all available named queries in the system and the current query-id that the name points to
 
@@ -30,7 +30,7 @@ List all available named queries in the system and the current query-id that the
                 }
             ]
 
-### Show alias history of named queries [GET /definitions/queries/named/{name}]
+### Show alias history of named queries [GET /definitions/queries/name/{name}]
 
 List the what a specific named query has been pointing to over time. This is mainly for audit purposes.
 
@@ -52,27 +52,55 @@ List the what a specific named query has been pointing to over time. This is mai
             ]
 
 			
-### Create a stored query [POST /definitions/query{?type}]
+### Create a stored query [POST /definitions/query{?type,mode}]
+
+This resource operates in three modes
+	* debug: if the query is translated to a storage specific query-language query then the translated query MAY be returned as text to the client in addition to other debug information. TBD document: 200 OK + 400 Bad Request 
+	* store-only: stores query and redirects to /definitions/queries/sha-1/{id} using a Http response `201 Created`
+	* store-and-execute: stores query and redirects to /query/{prefix}/{id} using a Http response `303 See other` Any parameters starting with ‘_’ (underscore) that are POSTed with the original query are interpreted as being dynamic and are – after removing the underscore – converted to URI-encoded parameters and included in the redirection URI /query/{prefix}/{id}. Thus the redirected GET request logged in the standard HTTP log contains the unique query-SHA and the dynamic parameter values used in the call. Static parameters can be used for example to send extra configuration parameters to query translators. Static parameters are stored together with the query and included (sorted in alphabetical order as a JSON text string) in the calculated SHA-1 checksum.
+	
+TBD: Perhaps use /definitions/query/{type} instead?
+TBD: Determmine request types (json, url-encode etc)
 
 + Parameters
 
-    + type:  (string) - the id under which AQL will be available for execution (GET /query/{id})
+    + type: `AQL`(string) - the query language/type 
+	+ mode (string) - the mode; debug, store-only or store-and-execute (TBD: default)) 
+	
 
 + Request
+
+	TBD: Add form-url-enccoded not just JSON...
     
     + Body 
 
             {
-                "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]"
+                "q": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]"
+				"static-example-parameter" : "Lorem Ipsum 1"
+				_dynamic-example-parameter" : "Lorem Ipsum 2"
             }
 
+			
+			
 + Response 201
 
-    `201 Created` is returned when the guide has been successfully uploaded to the server.
+    `201 Created` is returned when the query has been successfully uploaded to the server.
 
     + Headers
 
-            Location: /definitions/aqls/{id}
+            Location: /definitions/queries/sha-1/{id}
+			
++ Response 303
+
+    `303 See other` is returned when the query has been successfully uploaded to the server.
+
+    + Headers
+
+            Location: /query/{prefix}/{id}
+
++ Response 200
+
+    `200 OK` is returned in debug mode when the query has been successfully parsed.
 
 
 + Response 400 
@@ -81,19 +109,21 @@ List the what a specific named query has been pointing to over time. This is mai
 
     + Body 
 
-### Get stored AQL [GET /definitions/queries/named/{id}]
+### Get stored query and info/metadata [GET /definitions/queries/sha-1/{id}]
 
 + Parameters
     
-    + id (string) - AQL id
+    + id (string) - query id
 
 + Response 200 (application/json)
     `200 OK` is returned when the stored AQL is successfully retrieved.
+	
+	TBD: add more metadata in response regarding creator, creation time, static parameters, possibly usage statistics (hit counter) etc 
 
     + Body 
 
                 {
-                    "id": "vitals",
+                    "id": "sha-1/fd625944dd9e2525630f0975d3dceb23f6825123",
                     "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] WHERE c/name/value = 'Vitals'"
                 }
 
@@ -102,19 +132,41 @@ List the what a specific named query has been pointing to over time. This is mai
 
     + Body
 
-### Delete stored AQL [DELETE /definitions/aqls/{id}]
+
+	
+### Create name/alias for a stored query [POST /definitions/queries/name/{name}]
 
 + Parameters
 
-    + id (string) - AQL id
+    + type: `AQL`(string) - the query language/type 
 
-+ Response 204 (application/json)
-    `204 No content` is returned when the stored AQL was successfully deleted.
++ Request
 
-    + Body
+	TBD: Add form-url-enccoded not just JSON...
+    
+    + Body 
 
-+ Response 404 (application/json)
-    `404 Not Found` is returned when the stored AQL with supplied id doesn't exist.
+            {
+                "id" : "sha-1/fd625944dd9e2525630f0975d3dceb23f6825123"
+            }
 
-    + Body
+			
+			
++ Response 201
 
+    `201 Created` ??? 
+
+    + Headers
+
+            Location: /definitions/queries/sha-1/{id}
+			
+
++ Response 200
+
+    `200 OK` 
+
+
++ Response 400 
+
+    `400 Bad Request` is returned when the server was unable to fulfill the request
+   
