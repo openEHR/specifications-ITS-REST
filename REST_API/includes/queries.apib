@@ -30,6 +30,40 @@ List all available named queries in the system and the current query-id that the
                 }
             ]
 
+### Create name/alias for a stored query [POST /definitions/queries/name/{name}]
+
++ Parameters
+
+    + name: `example-query`(string) - the query language/type 
+
++ Request
+
+    TBD: Add support for form-url-encoded not just JSON...
+    TBD: possibly add a special id "deleted" or "inactive" for deactivated names that should no longer be used/executed but still auditable using GET /definitions/queries/name/{name}. Alternative call implemenetation: add a http DELETE /definitions/queries/name/{name}
+    
+    + Body 
+
+            {
+                "id" : "sha-1/fd625944dd9e2525630f0975d3dceb23f6825123"
+            }
+       
++ Response 201
+
+    `201 Created` ??? 
+
+    + Headers
+            Location: /definitions/queries/name/{name}
+            
+
++ Response 200 ???
+
+    `200 OK` 
+
+
++ Response 400 
+
+    `400 Bad Request` is returned when the server was unable to fulfill the request
+   
 ### Show alias history of a named query [GET /definitions/queries/name/{name}]
 
 List what a specific named query has been pointing to over time. This is mainly for audit purposes.
@@ -51,37 +85,33 @@ List what a specific named query has been pointing to over time. This is mainly 
                 }
             ]
 
-            
 ### Create a stored query [POST /definitions/query{?type,mode}]
-
-This resource operates in three modes
-    * debug: the query is analyzed/debugged but not stored. If the query is translated to a storage specific query-language query then the translated query MAY be returned as text to the client in addition to other debug information. TBD document when results 200 OK or 400 Bad Request are sent.
-    * store-only: stores query and redirects to /definitions/queries/sha-1/{id} using a Http response `201 Created`
-    * store-and-execute: stores query and redirects to /query/{prefix}/{id} using a Http response `303 See other` Any parameters starting with ‘_’ (underscore) that are POSTed with the original query are interpreted as being dynamic and are – after removing the underscore – converted to URI-encoded parameters and included in the redirection URI /query/{prefix}/{id}. Thus the redirected GET request logged in the standard HTTP log contains the unique query-SHA and the dynamic parameter values used in the call. Static parameters can be used for example to send extra configuration parameters to query translators. Static parameters are stored together with the query and included (sorted in alphabetical order as a JSON text string) in the calculated SHA-1 checksum.
-    
 TBD: Perhaps use /definitions/query/{type}{?mode} instead?
 TBD: Determmine request types (json, form-url-enccoded etc)
+This resource operates in three modes
+    * `debug` - the query is analyzed/debugged but not stored. If the query is translated to a storage specific query-language query then the translated query MAY be returned as text to the client in addition to other debug information. TBD document when results 200 OK or 400 Bad Request are sent.
+    * `store-only` - stores query and redirects to /definitions/queries/sha-1/{id} using a Http response `201 Created`
+    * `store-and-execute` - stores query and redirects to /query/{prefix}/{id} using a Http response `303 See other` 
+    Any parameters starting with `_` (underscore) that are POSTed with the original query are interpreted as being 
+    dynamic and are – after removing the underscore – converted to URI-encoded parameters and included in the 
+    redirection URI /query/{prefix}/{id}. Thus the redirected GET request logged in the standard HTTP log contains
+    the unique query-SHA and the dynamic parameter values used in the call. Static parameters can be used for example 
+    to send extra configuration parameters to query translators. Static parameters are stored together with the query 
+    and included (sorted in alphabetical order as a JSON text string) in the calculated SHA-1 checksum. 
 
 + Parameters
+    + type: `AQL` (string) - the query language/type 
+    + mode: `store-only` (string) - the mode; debug, store-only or store-and-execute (TBD: default)) 
 
-    + type: `AQL`(string) - the query language/type 
-    + mode (string) - the mode; debug, store-only or store-and-execute (TBD: default)) 
-    
-
-+ Request
-
++ Body 
     TBD: Add form-url-enccoded not just JSON...
-    
-    + Body 
 
-            {
-                "q": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]"
-                "static-example-parameter" : "Lorem Ipsum 1"
-                _dynamic-example-parameter" : "Lorem Ipsum 2"
-            }
+    {
+        "q": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]",
+        "static-example-parameter" : "Lorem Ipsum 1",
+        "dynamic-example-parameter" : "Lorem Ipsum 2" // TODO: add an underscore in front of dynamic-example-parameter in a way that does non break apib
+    }
 
-            
-            
 + Response 201
 
     In store-only mode `201 Created` is returned when the query has been successfully uploaded to the server.
@@ -131,43 +161,3 @@ TBD: Determmine request types (json, form-url-enccoded etc)
     `404 Not Found` is returned when the stored AQL with supplied id doesn't exist.
 
     + Body
-
-
-    
-### Create name/alias for a stored query [POST /definitions/queries/name/{name}]
-
-+ Parameters
-
-    + name: `example-query`(string) - the query language/type 
-
-+ Request
-
-    TBD: Add support for form-url-encoded not just JSON...
-    TBD: possibly add a special id "deleted" or "inactive" for deactivated names that should no longer be used/executed but still auditable using GET /definitions/queries/name/{name}. Alternative call implemenetation: add a http DELETE /definitions/queries/name/{name}
-    
-    + Body 
-
-            {
-                "id" : "sha-1/fd625944dd9e2525630f0975d3dceb23f6825123"
-            }
-
-            
-            
-+ Response 201
-
-    `201 Created` ??? 
-
-    + Headers
-
-            Location: /definitions/queries/name/{name}
-            
-
-+ Response 200 ???
-
-    `200 OK` 
-
-
-+ Response 400 
-
-    `400 Bad Request` is returned when the server was unable to fulfill the request
-   
