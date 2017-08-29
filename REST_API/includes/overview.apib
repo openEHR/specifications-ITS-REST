@@ -124,10 +124,8 @@ HTTP status code`412 Precondition Failed`.
 
 
 <h3>The `Location` header</h3>
-::: note 
-tbd  
-:::
 
+All create, update and delete calls MUST return a `Location` header.
 
 <h3>The `ETag` header and cache handling</h3>
 According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
@@ -202,6 +200,7 @@ The value of this attribute MUST be the uppercase class name from the RM specifi
 }
 ```
 The `Null` RM attributes SHOULD be absent when serialized as JSON.
+The order of attributes does not have to follow the order they are specified in the RM.
 
 ::: note 
 tbd json-schema 
