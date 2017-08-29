@@ -1,8 +1,8 @@
-## COMPOSITION [/ehrs/{ehr_id}/compositions]
+## COMPOSITION [/ehr/{ehr_id}/compositions]
 
 This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_composition_class) described in the openEHR specification
 
-### Create composition [POST /ehrs/{ehr_id}/compositions]
+### Create composition [POST /ehr/{ehr_id}/compositions]
 
 + Parameters
 
@@ -24,7 +24,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
     + Headers
 
-            Location: /ehrs/{ehr_id}/compositions/{version_uid}
+            Location: /ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -39,11 +39,11 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
 + Response 400
 
-    Bad request: either the body of the request could not be read (or converted to a COMPOSITION object) or there were COMPOSITION validation errors.
+    `400 Bad Request` either the body of the request could not be read (or converted to a COMPOSITION object) or there were COMPOSITION validation errors.
 
     + Body
 
-            {
+            { /* see overview */
                 "message": "Error message",
                 "validationErrors": [
                     "error1", "error2"
@@ -57,7 +57,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
     + Body
 
 
-### Update composition [PUT /ehrs/{ehr_id}/compositions/{object_id}]
+### Update composition [PUT /ehr/{ehr_id}/composition/{object_id}]
 
 + Parameters
 
@@ -89,7 +89,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
     + Headers
 
-            Content-Location: /ehrs/{ehr_id}/compositions/{version_uid}
+            Location: /ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -106,7 +106,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 + Request no content (application/json)
 
     + Body
-    
+
             {
                 "_type": "COMPOSITION",
                 "name": {
@@ -124,7 +124,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
     + Headers
 
-            Content-Location: /ehrs/{ehr_id}/compositions/{version_uid}
+            Location: /ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
 + Request wrong type (application/json)
@@ -153,7 +153,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 + Request not found (application/json)
 
     + Body
-            
+
             {
                 "_type": "COMPOSITION",
                 "name": {
@@ -196,16 +196,16 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
     - supplied `object_id` is `versioned_object_uid` and `Match-If` header doesn't match the latest version
     - supplied `object_id` is `version_uid` and it's not the latest version
 
-    Returns latest version in the `Content-Location` and `ETag` headers.
+    Returns latest version in the `Location` and `ETag` headers.
 
     + Headers
 
-            Content-Location: /ehrs/{ehr_id}/compositions/{version_uid}
+            Location: /ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
 
-### Delete composition [DELETE /ehrs/{ehr_id}/compositions/{object_id}]
+### Delete composition [DELETE /ehr/{ehr_id}/composition/{object_id}]
 
 + Parameters
 
@@ -227,7 +227,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
     + Headers
 
-            Content-Location: /ehrs/{ehr_id}/compositions/{version_uid}
+            Location: /ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -244,17 +244,17 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
     - supplied `object_id` is `versioned_object_uid` and `Match-If` header doesn't match the latest version
     - supplied `object_id` is `version_uid` and it's not the latest version
 
-    Returns latest version in the `Content-Location` and `ETag` headers.
+    Returns latest version in the `Location` and `ETag` headers.
 
     + Headers
 
-            Content-Location: /ehrs/{ehr_id}/compositions/{version_uid}
+            Location: /ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
 
 
-### Get composition by version id [GET /ehrs/{ehr_id}/compositions/{version_uid}]
+### Get composition by version id [GET /ehr/{ehr_id}/composition/{version_uid}]
 
 + Parameters
 
@@ -280,7 +280,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
     + Body
 
-### Get composition at time [GET /ehrs/{ehr_id}/compositions/{versioned_object_uid}{?version_at_time}]
+### Get composition at time [GET /ehr/{ehr_id}/composition/{versioned_object_uid}{?version_at_time}]
 
 + Parameters
 
@@ -292,7 +292,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
     + Headers
 
-            Content-Location: /ehrs/{ehr_id}/compositions/{version_uid}
+            Location: /ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -320,11 +320,11 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
 
 
-## VERSIONED_COMPOSITION [/ehrs/{ehr_id}/versioned_compositions]
+## VERSIONED_COMPOSITION [/ehr/{ehr_id}/versioned_compositions]
 
 This resource is related to [VERSIONED_COMPOSITION](http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_versioned_composition_class) described in the openEHR specification  
 
-### Get versioned composition [GET /ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}]
+### Get versioned composition [GET /ehr/{ehr_id}/versioned_compositions/{versioned_object_uid}]
 
 Gets a complete VERSIONED_COMPOSITION.
 
@@ -337,7 +337,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Location: /ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}
+            Location: /ehr/{ehr_id}/versioned_compositions/{versioned_object_uid}
 
     + Body
 
@@ -360,7 +360,7 @@ Gets a complete VERSIONED_COMPOSITION.
     + Body
 
 
-### Get versioned composition version by id [GET /ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions/{version_uid}]
+### Get versioned composition version by id [GET /ehr/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions/{version_uid}]
 
 + Parameters
 
@@ -393,7 +393,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Body
 
-### Get versioned composition version at time [GET /ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions{?version_at_time}]
+### Get versioned composition version at time [GET /ehr/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions{?version_at_time}]
 
 + Parameters
 
@@ -405,7 +405,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Location: /ehrs/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions/{version_uid}
+            Location: /ehr/{ehr_id}/versioned_compositions/{versioned_object_uid}/versions/{version_uid}
             ETag: {version_uid}
 
     + Body
