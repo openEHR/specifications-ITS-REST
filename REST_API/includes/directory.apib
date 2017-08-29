@@ -19,7 +19,7 @@
 
     + Headers
 
-            Prefer: return=representation
+            Prefer: return={representation|minimal}
 
 + Response 201 (application/json)
 
@@ -71,7 +71,7 @@
     + Headers
 
             Match-If: {preceding_version_uid}
-            Prefer: return=representation
+            Prefer: return={representation|minimal}
 
 + Response 200 (application/json)
 
