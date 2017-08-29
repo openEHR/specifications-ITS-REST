@@ -1,0 +1,26 @@
+## Link [/link]
+### Get locatable object by ehr-uri [GET /link{?ehr_uri,ehr_id}]
+openEHR EHR-URIs are described in `http://www.openehr.org/releases/BASE/latest/docs/architecture_overview/architecture_overview.html#_ehr_uris`
+they can point to any object that inherit from LOCATABLE
+
++ Parameters 
+        + ehr_uri: `ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B/content[openEHR-EHR-SECTION.vital_signs.v1]/items[openEHR-EHR-OBSERVATION.heart_rate-pulse.v1]/data/events[at0006, 'any event']/data/items[at0004]` (string) - The ehr_uri for the locatable resource 
+        + ehr_id: `/347a5490-55ee-4da9-b91a-9bba710f730e` (string, optional) - The ehr_id context needed only for resolving relative EHR-URIs that are constructed relative to the current EHR so that they do not mention the EHR id, as in the following example: `ehr:compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B/content[openEHR-EHR-SECTION.vital_signs.v1]/items[openEHR-EHR-OBSERVATION.blood_pressure.v1]/data/events[at0006, 'any event']/data/items[at0004]
+
++ Response 200 (application/json) 
+    The JSON serialized representation of the locatable. 
+    + Body 
+            {
+                /* JSON representation of the locatable */ 
+            }
+
++ Response 200 (application/xml) 
+    The XML serialized representation of the locatable. 
+   
+   + Body 
+            
+            XML representation of the locatable
+
++ Response 404 
+    The locatable defined by the ehr_uri was not found. 
+  
