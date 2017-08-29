@@ -30,9 +30,9 @@ List all available named queries in the system and the current query-id that the
                 }
             ]
 
-### Show alias history of named queries [GET /definitions/queries/name/{name}]
+### Show alias history of a named query [GET /definitions/queries/name/{name}]
 
-List the what a specific named query has been pointing to over time. This is mainly for audit purposes.
+List what a specific named query has been pointing to over time. This is mainly for audit purposes.
 
 + Response 200 (application/json) 
 
@@ -55,12 +55,12 @@ List the what a specific named query has been pointing to over time. This is mai
 ### Create a stored query [POST /definitions/query{?type,mode}]
 
 This resource operates in three modes
-	* debug: if the query is translated to a storage specific query-language query then the translated query MAY be returned as text to the client in addition to other debug information. TBD document: 200 OK + 400 Bad Request 
+	* debug: the query is analyzed/debugged but not stored. If the query is translated to a storage specific query-language query then the translated query MAY be returned as text to the client in addition to other debug information. TBD document when results 200 OK or 400 Bad Request are sent.
 	* store-only: stores query and redirects to /definitions/queries/sha-1/{id} using a Http response `201 Created`
 	* store-and-execute: stores query and redirects to /query/{prefix}/{id} using a Http response `303 See other` Any parameters starting with ‘_’ (underscore) that are POSTed with the original query are interpreted as being dynamic and are – after removing the underscore – converted to URI-encoded parameters and included in the redirection URI /query/{prefix}/{id}. Thus the redirected GET request logged in the standard HTTP log contains the unique query-SHA and the dynamic parameter values used in the call. Static parameters can be used for example to send extra configuration parameters to query translators. Static parameters are stored together with the query and included (sorted in alphabetical order as a JSON text string) in the calculated SHA-1 checksum.
 	
-TBD: Perhaps use /definitions/query/{type} instead?
-TBD: Determmine request types (json, url-encode etc)
+TBD: Perhaps use /definitions/query/{type}{?mode} instead?
+TBD: Determmine request types (json, form-url-enccoded etc)
 
 + Parameters
 
@@ -84,15 +84,15 @@ TBD: Determmine request types (json, url-encode etc)
 			
 + Response 201
 
-    `201 Created` is returned when the query has been successfully uploaded to the server.
+    In store-only mode `201 Created` is returned when the query has been successfully uploaded to the server.
 
     + Headers
 
-            Location: /definitions/queries/sha-1/{id}
+            Location: /definitions/queries/{prefix}/{id}
 			
 + Response 303
 
-    `303 See other` is returned when the query has been successfully uploaded to the server.
+    In store-and-execute mode `303 See other` is returned when the query has been successfully uploaded to the server.
 
     + Headers
 
@@ -138,11 +138,12 @@ TBD: Determmine request types (json, url-encode etc)
 
 + Parameters
 
-    + type: `AQL`(string) - the query language/type 
+    + name: `example-query`(string) - the query language/type 
 
 + Request
 
-	TBD: Add form-url-enccoded not just JSON...
+	TBD: Add support for form-url-encoded not just JSON...
+	TBD: possibly add a special id "deleted" or "inactive" for deactivated names that should no longer be used/executed but still auditable using GET /definitions/queries/name/{name}. Alternative call implemenetation: add a http DELETE /definitions/queries/name/{name}
     
     + Body 
 
@@ -158,10 +159,10 @@ TBD: Determmine request types (json, url-encode etc)
 
     + Headers
 
-            Location: /definitions/queries/sha-1/{id}
+            Location: /definitions/queries/name/{name}
 			
 
-+ Response 200
++ Response 200 ???
 
     `200 OK` 
 
