@@ -1,80 +1,38 @@
 ## Stored queries [/definitions/queries]
 -- Alternative suggestion instead of aql.apib --
 
-Management of stored (registered) queries in the system. All stored queries automatically get an id, 
-in the current API-version based on the SHA1-hash of the query content (including static parameters), 
-thus if exactly same query is submitted more than once then no new id is generated.
+Management of stored (registered) queries in the system.
 
-Named queries are aliases that point to a specific query id, the aliases can be crated and reconfigured
-to point to a new query id using [POST /definitions/queries/name/{name}]
-The aliasing history can be audited using [GET /definitions/queries/name/{name}].
+All stored queries must have a name and version number using a pattern like:
+`{reverse-internet-id}::{queryname}.v{MAJOR}.{MINOR}.{PATCH}` for example
+`org.example.department-x.test::diabetes-patient-overview.v1.8.3`
+The pattern is inspired by the Archetype and Template IDs defined in
+`http://www.openehr.org/releases/RM/latest/docs/support/support.html#_identification_package` 
 
-Note that execution of queries is done using the resource: /query/{prefix}/{id}{?param_1,param_n}
+    *   `reverse-internet-id` identifying the query-authoring organization (and possibly sublevels within
+        that organization). If omitted it will be defaulted the opsystem id
+    *   `queryname` will be URL-encoded in the REST API urls to follow https://tools.ietf.org/html/rfc3986
+        so if you want easily 
+    *   `{MAJOR}.{MINOR}.{PATCH}` is a hierarchical verson number following the http://semver.org/ conventions
 
-TBD: clarify variable indicator in AQL - is it : or $ - so should it be :ehr_id or $ehr_id in query example?
+Because of audit reasons, queries and query versions are never deleted but can be set to `unlisted` if found to be unsuitable for use.
 
-### List named queries [GET /definitions/queries/name]
+Management of stored queries is done using resources starting /definitions/queries described here.
+Note that execution of queries is done using the resource:  /query/{reverse-internet-id}::{queryname}.v{MAJOR}.{MINOR}.{PATCH}/{?param_1,param_n}
 
-List all available named queries in the system and the current query-id that the name points to
-
-+ Response 200 (application/json) 
-
-    `200 OK` is returned when the resources are successfully retrieved.
-
-    + Body
-
-            [
-                {
-                    "name": "labs",
-                    "id": "sha-1/fd625944dd9e2525630f0975d3dceb23f6825123"
-                },
-                {
-                    "name": "vitals",
-                    "id": "sha-1/986fd9641b608f61d4041c058bafcfb369469c9d"
-                },
-                {
-                    "name": "emergency-ward-weekly-statistic-batch",
-                    "id": "batch/0d7dd181459e729addce84867071a2a11d4328f7"
-                }
-            ]
-
-### Create name/alias for a stored query [POST /definitions/queries/name/{name}]
-
+### List named queries [GET /definitions/queries/{reverse-internet-id}::{queryname}]
+The parameters are optional. if omitted they are treated as "wildcards" in the search
+Examples:
+    *   `GET /definitions/queries/org.example.department-x::` will list all versioins of all 
+        queries authored by `org.example.department-x`
+    *   `GET /definitions/queries/::diabetes-patient-overview` will list all versioins of all 
+        queries named `diabetes-patient-overview` irrespective of authoring organization. 
+    *   `GET /definitions/queries/org.example.department-x::diabetes-patient-overview` will 
+        list all versioins of the query named `diabetes-patient-overview` authored by `org.example.department-x`
 
 + Parameters
-
-    + name: `example-query`(string) - the query language/type 
-
-+ Request
-
-    TODO: Add form-url-encoded and XML encoding alternatives for to request body in addition to JSON...
-    TBD: possibly add a special id "deleted" or "inactive" for deactivated names that should no longer be used/executed but still auditable using GET /definitions/queries/name/{name}. Alternative call implemenetation: add a http DELETE /definitions/queries/name/{name}
-    
-    + Body 
-
-            {
-                "id" : "sha-1/fd625944dd9e2525630f0975d3dceb23f6825123"
-            }
-       
-+ Response 201
-
-    `201 Created`
-
-    + Headers
-
-            Location: /definitions/queries/name/{name}
-            
-+ Response 200
-
-            `200 OK` 
-
-+ Response 400 
-
-            `400 Bad Request` is returned when the server was unable to fulfill the request
-   
-### Show alias history of a named query [GET /definitions/queries/name/{name}]
-
-List what a specific named query has been pointing to over time. This is mainly for audit purposes.
+    +   `reverse-internet-id` (string, optional)
+    +   `queryname` (string, optional)
 
 + Response 200 (application/json) 
 
@@ -84,19 +42,21 @@ List what a specific named query has been pointing to over time. This is mainly 
 
             [
                 {
-                    "valid-since": "2017-07-16T19:20:30.45+01:00",
-                    "id": "sha-1/fd625944dd9e2525630f0975d3dceb23f6825123"
+                    "id": "org.example.department-x.test::diabetes-patient-overview.v1.1.0",
+                    "saved": "2017-07-16T19:20:30.45+01:00",
                 },
                 {
-                    "valid-since": "2017-06-13T09:37:20.53+01:00",
-                    "id": "sha-1/18a0cdc19228ae482f174ba2c71ddb911ead9336"
+                    "id": "org.example.department-x.test::diabetes-patient-overview.v1.0.1",
+                    "saved": "2017-06-13T09:37:20.53+01:00",
                 }
             ]
+
+
 
 ### Create a stored query [POST /definitions/query{?type,mode}]
 
 TBD: Perhaps use `/definitions/query/{type}{?querymode}` instead?
-TBD: Determmine request types (json, form-url-enccoded etc)
+TBD: Determmine request types (json, form-url-encoded etc)
 TBD: Determine if/how we provide simple post-processing of XML and JSON AQL result sets - see suggested post-process-json and post-process-xml
 TODO: Add form-url-encoded and XML encoding alternatives for to request body in addition to JSON...
 
@@ -119,6 +79,13 @@ This resource operates in several modes:
         In the current api version the `id` of of batsh queries SHOULD be created using the same SHA-1 as the other stored queries
 
 + Parameters
+
+    +   `reverse-internet-id` (string, optional) 
+    +   `queryname` will be URL-encoded in the REST API urls to follow https://tools.ietf.org/html/rfc3986
+        so if you want easily 
+    +   `{MAJOR}.{MINOR}.{PATCH}` is a hierarchical verson number following the http://semver.org/ conventions
+
+
     + type: `AQL` (string) - indicating the query language/type (presently usually AQL, but future additions possible) 
     + querymode: `store-only` (string) - indicating the mode; debug, store-only, store-and-execute, store-batch (TBD: decide default)) 
 
