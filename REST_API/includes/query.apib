@@ -1,10 +1,10 @@
 ## Query [/query]
 
-These resources use the pattern /query/{prefix}/{id}/{extra-path-paramaters}?{query-parameters} the prefixes used in this version of the specification are:
+These resources adhere to the pattern /query/{prefix}/{id}/{extra-path-paramaters}?{query-parameters} the prefixes used in this version of the specification are:
     * `aql` - is used for non-stored ad hoc AQL-queries, e.g. useful for test and development
     * `sha-1` - is used for stored queries automatically named using a sha-1 hash of the static query content
-    * `batch` - is used for long-running or scheduled. To later start execution or scheduling, /query/batch/{id} should be called
-    * `name` - is used for manually aliased/named stored queries (e.g. providing an alternative path to some `sha-1` or `batch` queries). 
+    * `batch` - is used for long-running or scheduled. To start execution or scheduling, POST /query/batch/{id} should be called
+    * `name` - is used for manually aliased/named stored queries (e.g. providing an alternative path to some `sha-1` or `batch` queries)
 
 The optional `{extra-path-paramaters}` is processed by the query engine to extract dynamic parameters from the path using the pattern in a uri-template specified in the static parameter `uri-template` that was provided when storing queries using `POST /definitions/query`
 
@@ -173,8 +173,8 @@ NOTE: The body of a POST request is usually not logged in the http log by defaul
 
 ### Execute stored batch-job query [POST /query/batch/{id}]
 
-TBD: very nuch like [POST /query/{prefix}/{id}] but we need some special parameters regarding scheduled time etc.
-The response should redirect (using suitable response code and location header) to  
+TBD: very much like [POST /query/{prefix}/{id}] but we need some special parameters regarding scheduled time etc.
+The response should redirect (using suitable response code and location header) to  /query/batch/{id}/{result-id}
     -   ...
 
 ### Fetch stored batch-job query result [GET /query/batch/{id}/{result-id}]
