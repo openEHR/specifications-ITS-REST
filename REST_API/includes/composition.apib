@@ -57,15 +57,78 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
     + Body
 
 
-### Update composition [PUT /ehr/{ehr_id}/composition/{object_id}]
+### Create composition with id [PUT /ehr/{ehr_id}/composition/{version_uid}]
+
+The request body MAY contain the composition uid in which case it must match the `version_uid` in the URL.
+http://openehr.org/releases/RM/latest/docs/support/support.html#_object_version_id_class.
+http://www.openehr.org/releases/RM/latest/docs/support/support.html#_version_tree_id_class
 
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `object_id` (string) - identifier of the COMPOSITION to update, taken from COMPOSITION.uid.value. 
-    This can be an exact `version_uid` or `versioned_object_uid`.
-    If `version_uid` is supplied, it must be the last (most recent) version.
-    If `versioned_object_uid` is supplied, a `Match-If` header must also be supplied containing the latest `version_uid` which must match for operation to succeed.
+    + `version_uid` (string) - Client supplied `version_uid`. The system id will not be checked by the server.
+    The trunk_version should be `1`.
+
++ Request with representation (application/json)
+
+    + Body
+
+<!-- include(../examples/composition_01.json) -->
+
+    + Headers
+
+            Prefer: return={representation|minimal}
+
++ Response 201 (application/json)
+
+    New COMPOSITION was created. Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+
+    + Headers
+
+            Location: /ehr/{ehr_id}/composition/{version_uid}
+            ETag: {version_uid}
+
+    + Body
+
+<!-- include(../examples/composition_01.json) -->
+
++ Request wrong type (application/json)
+
+    + Body
+
+<!-- include(../examples/wrong_type_01.json) -->
+
++ Response 400
+
+    `400 Bad Request` either the body of the request could not be read (or converted to a COMPOSITION object) or there were COMPOSITION validation errors
+    or the version number supplied was not `1`.
+
+    + Body
+
+            { /* see overview */
+                "message": "Error message",
+                "validationErrors": [
+                    "error1", "error2"
+                ]
+            }
+
++ Response 404
+
+    No EHR with the supplied `ehr_id`.
+
+    + Body
+
+
+### Update composition [PUT /ehr/{ehr_id}/composition/{preceding_version_uid}]
+
+If the request body already contains a composition uid it must match the
+`preceding_version_uid` in the URL.
+
++ Parameters
+
+    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
+    + `preceding_version_uid` (string) - identifier of the COMPOSITION to be updated.
+    This MUST be the last (most recent) version.
 
 + Request with full representation (application/json)
 
@@ -82,7 +145,6 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
     + Headers
 
-            Match-If: {preceding_version_uid}
             Prefer: return={representation|minimal}
 
 + Response 200 (application/json)
