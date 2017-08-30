@@ -1,17 +1,84 @@
 ## Query [/query]
 
-### Execute stored query [GET /query/{prefix}/{id}{?offset,fetch,dynamic_parameter,dynamic_parameter_n}]
+These resources use the pattern /query/{prefix}/{id}/{extra-path-paramaters}?{query-parameters} the prefixes used in this version of the specification are:
+    * `aql` - is used for non-stored ad hoc AQL-queries, e.g. useful for test and development
+    * `sha-1` - is used for stored queries automatically named using a sha-1 hash of the static query content
+    * `batch` - is used for long-running or scheduled. To later start execution or scheduling, /query/batch/{id} should be called
+    * `name` - is used for manually aliased/named stored queries (e.g. providing an alternative path to some `sha-1` or `batch` queries). 
 
-Execute a stored query with the supplied prefix+id. 
+The optional `{extra-path-paramaters}` is processed by the query engine to extract dynamic parameters from the path using the pattern in a uri-template specified in the static parameter `uri-template` that was provided when storing queries using `POST /definitions/query`
 
+The {query-parameters} is used for dynamic parameters in the `GET /query/{prefix}/{id}` described below.
+
+See API-description of /definitions/queries for more information regarding naming, {prefix} and {extra-path-paramaters}
+
+Http header information regarding all resources under /query:
 If the http header `ehr_id` is present in the request it MUST contain a single openEHR `ehr_id`.
 Clients SHOULD send the ehr_id header if they know that the query concerns only a singe EHR.
 The presence of such a header:   
-    * MAY be used by the server to restrict querying to only the identified EHR, and 
-    * it MAY also be used by the server to route (e.g. in sharded scale-out systems) based on ehr_id without first having to analyze the request body, 
-    * it MAY also be used by the server to handle ETag and If-None-Match http headers based on the latest known change to the identified EHR (e.g. by using the latest contribution uid of the identified EHR as ETag value) so that query responses can be safely cached (confirmed by http response code 304 Not Modified) and do not need to be re-run until changes may have occured.
+    * SHOULD be used by the server to provide the variable `ehr_id` in queries with the value of the header, overriding any static or dynamic parameters named `ehr_id` and
+    * MAY also be used by the server to restrict querying to only the identified EHR and 
+    * MAY also be used by the server to route (e.g. in sharded scale-out systems) based on ehr_id without first having to analyze the request body and 
+    * MAY also be used by the server to handle ETag and If-None-Match http headers based on the latest known change to the identified EHR (e.g. by using the latest contribution uid of the identified EHR as ETag value) so that query responses can be safely cached (confirmed by http response code 304 Not Modified) and do not need to be re-run until changes may have occured.
 
 The absence of the http header 'ehr_id' means that the stored query or dynamic request parameters MAY contain a list of several ehr_ids or be unconstrained regarding ehr_id (e.g. population queries).
+
+### Execute ad-hoc AQL query [GET /query/aql{?q}]
+
+Execute an AQL query 
+
+NOTE: we might add a header to indicate which EHR to execute against to
+allow systems that need to route based of EHR id to do so without having
+to analyze the request body.
+
+TBD: Add query url length warning?
+
++ Parameters 
+    + q - The AQL to be executed 
+
++ Response 200 (application/json)
+
+        {
+            /* See discussion on resultset in overview */
+        }
+
+### Execute ad-hoc AQL query [POST /query/aql]
+
+Execute an AQL query.
+
+NOTE: we might add a header to indicate which EHR to execute against to
+allow systems that need to route based of EHR id to do so without having
+to analyze the request body.
+
+NOTE: We might add support for the request format application/x-www-form-urlencoded
+
+TBD: Add logging advice?
+
++ Request (application/json)
+
+    + Body
+
+            {
+                "aql": "<the aql to be performed>",
+                "aql_parameters": [{
+                    "parameter-x-name": "parameter-x-value",
+                    "parameter-y-name": "parameter-y-value"
+                }],
+                "offset": NUMBER_TO_START_FROM,
+                "fetch": NUMBER_TO_FETCH,
+                "composition_uids": ["<object_id>"], // filter on the given compositions uids
+                "ehr_ids": ["<ehr_id>"] // filter on the given ehr_ids
+            }
+
++ Response 200 (application/json)
+
+         {
+           /* Se discussion on resultset in overview */
+         }
+
+### Execute stored query [GET /query/{prefix}/{id}/{extra-path-paramaters}{?offset,fetch,dynamic_parameter,dynamic_parameter_n}]
+
+Execute a stored query with the supplied prefix+id. 
 
 All query parameters found except "offset" and "fetch" are treated as dynamic and sent to the query execution engine.
 For parameters in AQL queries, see `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_parameters`
@@ -95,7 +162,7 @@ NOTE: The body of a POST request is usually not logged in the http log by defaul
                 "offset": NUMBER_TO_START_FROM,
                 "fetch": NUMBER_TO_FETCH,
                 "composition_uids": ["<object_id>"], // filter on the given compositions uids
-                "ehr_ids": ["<ehr_id>"] // filter on the given ehr_ids
+                "ehr_ids": ["<ehr_id>"] // filter on the given ehr_ids (for muliti-ehr queries)
             }
 
 + Response 200 (application/json)
@@ -104,56 +171,34 @@ NOTE: The body of a POST request is usually not logged in the http log by defaul
            /* Se discussion on resultset in overview */
          }
 
-         
-### Execute ad-hoc AQL query [GET /query/aql{?q}]
+### Execute stored batch-job query [POST /query/batch/{id}]
 
-Execute an AQL query 
+TBD: very nuch like [POST /query/{prefix}/{id}] but we need some special parameters regarding scheduled time etc.
+The response should redirect (using suitable response code and location header) to  
+    -   ...
 
-NOTE: we might add a header to indicate which EHR to execute against to
-allow systems that need to route based of EHR id to do so without having
-to analyze the request body.
+### Fetch stored batch-job query result [GET /query/batch/{id}/{result-id}]
 
-TBD: Add query url length warning?
-
-+ Parameters 
-    + q - The AQL to be executed 
++ Request 
+            
+    + Parameters
+        + id - Id of the stored query to be executed
+        + result-id - Id of the expected result 
+        
++ Response 102  (application/json)
+ 
+    `102 Processing` is sent if the expected result is not available yed (e.g. because of still processing or scheduled execution time time not reached yet).
 
 + Response 200 (application/json)
-
-        {
-            /* See discussion on resultset in overview */
-        }
-
-### Execute ad-hoc AQL query [POST /query/aql]
-
-Execute an AQL query.
-
-NOTE: we might add a header to indicate which EHR to execute against to
-allow systems that need to route based of EHR id to do so without having
-to analyze the request body.
-
-NOTE: We might add support for the request format application/x-www-form-urlencoded
-
-TBD: Add logging advice?
-
-+ Request (application/json)
-
+ 
     + Body
 
             {
-                "aql": "<the aql to be performed>",
-                "aql_parameters": [{
-                    "parameter-x-name": "parameter-x-value",
-                    "parameter-y-name": "parameter-y-value"
-                }],
-                "offset": NUMBER_TO_START_FROM,
-                "fetch": NUMBER_TO_FETCH,
-                "composition_uids": ["<object_id>"], // filter on the given compositions uids
-                "ehr_ids": ["<ehr_id>"] // filter on the given ehr_ids
+                  /* See discussion on resultset in overview */
             }
 
-+ Response 200 (application/json)
++ Response 200 (application/xml)
+        
+    + Body
 
-         {
-           /* Se discussion on resultset in overview */
-         }
+            /* See discussion on resultset in overview */  
