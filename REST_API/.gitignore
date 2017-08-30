@@ -3,3 +3,4 @@
 *.feature
 *.vpp*
 generated_api/*
+/*.json
