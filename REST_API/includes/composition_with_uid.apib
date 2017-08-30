@@ -1,8 +1,9 @@
-## COMPOSITION [/ehr/{ehr_id}/composition]
+## COMPOSITION WITH UID [/ehr/{ehr_id}/composition/withuid]
 
-This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_composition_class) described in the openEHR specification
+This resource is used for clients which provides the `Composition.uid`. 
+This functionality is separated to an separate path to not mix the different modes. The intention is to make it more explisit and easy for client developers to choose the right path. 
 
-### Create composition [POST /ehr/{ehr_id}/composition]
+### Create composition [POST /ehr/{ehr_id}/composition/withuid]
 
 + Parameters
 
@@ -24,7 +25,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: /ehr/{ehr_id}/composition/withuid/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -57,9 +58,9 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
     + Body
 
 
-### Update composition [PUT /ehr/{ehr_id}/composition/{preceding_version_uid}]
+### Update composition [PUT /ehr/{ehr_id}/composition/withuid/{preceding_version_uid}]
 
-If the request body already contains a composition uid it must match the
+The Composition in the request body MUST contain  a composition uid and it  MUST match the
 `preceding_version_uid` in the URL.
 
 + Parameters
@@ -89,7 +90,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: /ehr/{ehr_id}/composition/withuid/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -124,7 +125,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: /ehr/{ehr_id}/composition/withuid/{version_uid}
             ETag: {version_uid}
 
 + Request wrong type (application/json)
@@ -197,12 +198,12 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: /ehr/{ehr_id}/composition/withuid/{version_uid}
             ETag: {version_uid}
 
     + Body
 
-### Delete composition [DELETE /ehr/{ehr_id}/composition/{preceding_version_uid}]
+### Delete composition [DELETE /ehr/{ehr_id}/composition/withuid/{preceding_version_uid}]
 
 + Parameters
 
@@ -219,7 +220,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: /ehr/{ehr_id}/composition/withuid/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -243,13 +244,13 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: /ehr/{ehr_id}/composition/withuid/{version_uid}
             ETag: {version_uid}
 
     + Body
 
 
-### Get composition by version id [GET /ehr/{ehr_id}/composition/{version_uid}]
+### Get composition by version id [GET /ehr/{ehr_id}/composition/withuid/{version_uid}]
 
 + Parameters
 
@@ -280,7 +281,7 @@ If the request body already contains a composition uid it must match the
 
     + Body
 
-### Get composition at time [GET /ehr/{ehr_id}/composition/{versioned_object_uid}{?version_at_time}]
+### Get composition at time [GET /ehr/{ehr_id}/composition/withuid/{versioned_object_uid}{?version_at_time}]
 
 + Parameters
 
@@ -292,7 +293,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: /ehr/{ehr_id}/composition/withuid/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -316,117 +317,5 @@ If the request body already contains a composition uid it must match the
 
     No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or
     no COMPOSITION at specified `version_at_time` time.
-
-    + Body
-
-<!-- include(composition_with_uid.apib) --> 
-
-## VERSIONED_COMPOSITION [/ehr/{ehr_id}/versioned_composition]
-
-This resource is related to [VERSIONED_COMPOSITION](http://www.openehr.org/releases/RM/latest/docs/ehr/ehr.html#_versioned_composition_class) described in the openEHR specification  
-
-### Get versioned composition [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}]
-
-Gets a complete VERSIONED_COMPOSITION.
-
-+ Parameters
-
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-
-+ Response 200 (application/json)
-
-    + Headers
-
-            Location: /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}
-
-    + Body
-
-            {
-                "uid": "xxx",
-                "owner_id": "{ehr_id}",
-                "time_created": "ISO8601 timestamp",
-                "revision_history": [ // expanded
-                    ...
-                ]
-            }
-
-+ Response 404
-
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid`.
-
-    + Body
-
-
-### Get versioned composition version by id [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}]
-
-+ Parameters
-
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + `version_uid` (string) - VERSIONED identifier taken from VERSIONED.uid.value
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "_type": "ORIGINAL_VERSION",
-                "contribution": {},
-                "signature": "...",
-                "commit_audit": {},
-                "uid": "...",
-                "data": {
-                    "_type": "COMPOSITION",
-                    "name": {
-                        "_type": "DV_TEXT",
-                        "value": "Vital Signs"
-                    }
-                    ...
-                }
-            }
-
-+ Response 404
-
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or no VERSION with the supplied `versione_uid`.
-
-    + Body
-
-### Get versioned composition version at time [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version{?version_at_time}]
-
-+ Parameters
-
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + `version_at_time` (string, optional) - A timestamp in the ISO8601 format
-
-+ Response 200 (application/json)
-
-    + Headers
-
-            Location: /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}
-            ETag: {version_uid}
-
-    + Body
-
-            {
-                "_type": "ORIGINAL_VERSION",
-                "contribution": {},
-                "signature": "...",
-                "commit_audit": {},
-                "uid": "...",
-                "data": {
-                    "_type": "COMPOSITION",
-                    "name": {
-                        "_type": "DV_TEXT",
-                        "value": "Vital Signs"
-                    }
-                    ...
-                }
-            }
-
-+ Response 404
-
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or no VERSION with the supplied `versione_uid`.
 
     + Body
