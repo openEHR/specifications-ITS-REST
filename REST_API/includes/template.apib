@@ -1,11 +1,18 @@
-## TEMPLATE [/definitions/templates]
+## TEMPLATE [/definition/template]
 
 Management of OpenEHR operational templates. OpenEHR templates can be uploaded and downloaded as OPTs created
 by modelling tools such as the Template Designer.
 
-### Upload template [POST /definitions/templates]
+### Upload template [POST /definition/template{?type,version}]
 
 Upload a new template.
+
+TBD: Add links to opt14, opt2 spec pages.
+
++ Parameters
+
+    + type (string) - type of template, i.e. opt14, opt2
+    + version (string, optional) - a SEMVER version format is suggested, i.e. 1.0.1
 
 + Request
 
@@ -26,13 +33,13 @@ Upload a new template.
 
 
 
-+ Response 201 (application/json)
++ Response 201
 
-    `201 Created` is returned when the template has been successfully uploaded.
+    `201 Created` is returned when the template has been successfully uploaded. Version string in the location header is optional.
 
     + Headers
 
-            Location: /definitions/templates/{template_id}
+            Location: /definition/template/{template_id}/{version}
 
 + Response 400
 
@@ -41,18 +48,34 @@ Upload a new template.
     + Body
 
 
-### List all templates [GET /definitions/templates]
++ Response 409
+
+    '409 Conflict' is returned when a template with given id and version already exists.
+    This response is optional.
+
+    + Body
+
+
+### List all templates [GET /definition/template/{template_id}{?type}]
 
 List all available templates on the system
 
++ Parameters
+
+    + template_id (string, optional) - lists only versions for the id
+    + type (string, optional) - type of template, i.e. opt14, opt2
+
 + Response 200 (application/json)
-    `200 OK` is returned when the EHR resource is successfully retrieved. 
+
+    `200 OK` is returned when the EHR resource is successfully retrieved.
     
     + Body
 
             [
                 {
+                    "type": "opt14",
                     "template_id": "string",
+                    "version": "1.7.1", // optional
                     "concept": "string",
                     "archetype_id": "string",
                     "valid_to": "2017-08-14T19:24:56.639Z",
@@ -61,29 +84,31 @@ List all available templates on the system
             ]
 
 
-### Get template [GET /definitions/templates/{template_id}]
+### Get template [GET /definition/template/{template_id}/{version_pattern}]
 
 + Parameters
 
     + template_id (string) - template id
+    + version_pattern (string, optional) - SEMVER version pattern. This can be a complete version (i.e. 1.7.1) or partial
+    i.e. (1.0) in which case the latest version with given prefix is returned.
 
-+ Response 200 (application/json)
++ Response 200
     `200 OK` is returned when the EHR resource is successfully retrieved.
 
     + Body
 
-                    <template xmlns="http://schemas.openehr.org/v1">
-                        <language>
-                            <terminology_id>
-                                <value>ISO_639-1</value>
-                            </terminology_id>
-                            <code_string>en</code_string>
-                        </language>
-                        <description>
-                            <original_author id="Original Author">Not Specified</original_author>
-                            <lifecycle_state>Initial</lifecycle_state>
-                            <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
-                    ...
+            <template xmlns="http://schemas.openehr.org/v1">
+                <language>
+                    <terminology_id>
+                        <value>ISO_639-1</value>
+                    </terminology_id>
+                    <code_string>en</code_string>
+                </language>
+                <description>
+                    <original_author id="Original Author">Not Specified</original_author>
+                    <lifecycle_state>Initial</lifecycle_state>
+                    <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
+            ...
 
 + Response 404
 

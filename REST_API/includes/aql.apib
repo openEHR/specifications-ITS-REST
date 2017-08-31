@@ -1,10 +1,14 @@
-## AQL [/definitions/aqls]
+## AQL [/definition/aql]
 
 Management of stored (registered) AQLs in the system.
 
-### List stored AQLs [GET /definitions/aqls]
+### List stored AQLs [GET /definition/aql/{id}]
 
 List all available stored AQLs in the system
+
++ Parameters
+
+    + id (string, optional) - list only version of the AQL with id
 
 + Response 200 (application/json) 
 
@@ -15,15 +19,17 @@ List all available stored AQLs in the system
             [
                 {
                     "id": "labs",
+                    "version": "1.0.1",
                     "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]"
                 },
                 {
                     "id": "vitals",
+                    "version": "2.7.9",
                     "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] WHERE c/name/value = 'Vitals'"
                 }
             ]
 
-### Create stored AQL [PUT /definitions/aqls/{id}]
+### Create stored AQL [PUT /definition/aql/{id}]
 
 + Parameters
 
@@ -34,6 +40,7 @@ List all available stored AQLs in the system
     + Body 
 
             {
+                "version": "2.1.0",
                 "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]"
             }
 
@@ -43,7 +50,7 @@ List all available stored AQLs in the system
 
     + Headers
 
-            Location: /definitions/aqls/{id}
+            Location: /definition/aql/{id}/{version}
 
 
 + Response 400 
@@ -52,19 +59,28 @@ List all available stored AQLs in the system
 
     + Body 
 
-### Get stored AQL [GET /definitions/aqls/{id}]
++ Response 409
+
+    `409 Conflict` is returned when a stored AQL with id and version already exists.
+
+    + Body
+
+### Get stored AQL [GET /definition/aql/{id}/{version_pattern}]
 
 + Parameters
-    
+
     + id (string) - AQL id
+    + version_pattern (string, optional) - SEMVER version pattern. This can be a complete version (i.e. 1.7.1) or partial
+    i.e. (1.0) in which case the latest version with given prefix is returned.
 
 + Response 200 (application/json)
     `200 OK` is returned when the stored AQL is successfully retrieved.
 
-    + Body 
+    + Body
 
                 {
                     "id": "vitals",
+                    "version": "2.1.0",
                     "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] WHERE c/name/value = 'Vitals'"
                 }
 
@@ -73,11 +89,12 @@ List all available stored AQLs in the system
 
     + Body
 
-### Delete stored AQL [DELETE /definitions/aqls/{id}]
+### Delete stored AQL [DELETE /definition/aql/{id}/{version}]
 
 + Parameters
 
     + id (string) - AQL id
+    + version (string) - SEMVER version
 
 + Response 204 (application/json)
     `204 No content` is returned when the stored AQL was successfully deleted.

@@ -1,6 +1,11 @@
-## CONTRIBUTION [/ehrs/{ehr_id}/contributions]
+## CONTRIBUTION [/ehr/{ehr_id}/contribution]
 
-### Create contribution [POST /ehrs/{ehr_id}/contributions]
+### Create contribution [POST /ehr/{ehr_id}/contribution]
+
+We will use the relaxed CONTRIBUTION XSD with the following attributes optional:
+ - time_committed: server will always set it
+ - UID: if provided will be accepted unless it is already used in which case an error will be returned
+ - system_id: where provided will be validated
 
 + Parameters 
 
@@ -13,14 +18,18 @@
             {
                 "versions": [
                     {
-                        "data": {/* JSON serialized COMPOSITION, FOLDER or EHR_STATUS object */},
+                        "data": {
+                            /* optional JSON serialized COMPOSITION, FOLDER or EHR_STATUS object */
+                        },
                         "preceding_version_uid": "<optional string>", 
                         "signature": "<optional string>", 
                         "lifecycle_state": 0,
-                        "commit_audit":{
+                        "commit_audit": {
                             "change_type": {},
                             "description": {},
-                            "committer":{/* optional structure - will use the outer committer if absent */}
+                            "committer": {
+                                /* optional structure - will use the outer committer if absent */
+                            }
                         }
                     }
                 ],
@@ -28,16 +37,14 @@
                     "committer":{
                         "name": "<optional identifier of the committer>"  ,
                         "external_ref":{
-                                "namespace": "demographic",
-                                "type": "PERSON", 
-                                "id":{
-                                    "value": "<OBJECT_ID>"
-
-                                }
+                            "namespace": "demographic",
+                            "type": "PERSON",
+                            "id":{
+                                "value": "<OBJECT_ID>"
+                            }
                         }
                     }
                 }
-
             }
 
     + Headers
@@ -50,22 +57,64 @@
 
     + Headers
 
-            Location: /ehrs/{ehr_id}/contributions/{version_uid}
-            ETag: {version_uid}
+            Location: /ehr/{ehr_id}/contribution/{contribution_uid}
+            ETag: {contribution_uid}
 
     + Body 
 
-            [
-                {
-                    "content": {/** openEHR locatable; composition or folder */},
-                    "preceding_version_uid": "string",
-                    "version_lifecycle_state": 523
+            {
+                "_type": "CONTRIBUTION",
+                "uid": {
+                    "value": "0826851c-c4c2-4d61-92b9-410fb8275ff0"
+                },
+                "versions": [
+                    {
+                        "_type": "OBJECT_REF",
+                        "id": {
+                            "_type": "OBJECT_VERSION_ID",
+                            "value": "fb458d9c-1323-42bc-b7f8-787f3660a0b5::91215053-854b-45b8-bb2a-3b0d255858d1::1"
+                        },
+                        "namespace": "local",
+                        "type": "COMPOSITION"
+                    },
+                    {
+                        "_type": "OBJECT_REF",
+                        "id": {
+                            "_type": "OBJECT_VERSION_ID",
+                            "value": "abcdefgh-1323-42bc-b7f8-787f3660a0ba::91215053-854b-45b8-bb2a-3b0d255858d1::1"
+                        },
+                        "namespace": "local",
+                        "type": "FOLDER"
+                    }
+                ],
+                "audit": {
+                    "system_id": "9624982A-9F42-41A5-9318-AE13D5F5031F",
+                    "committer": {
+                        "_type": "PARTY_IDENTIFIED",
+                        "name": "bna"
+                    },
+                    "time_committed": {
+                        "value": "2017-08-15T10:37:15+02:00"
+                    },
+                    "change_type": {
+                        "value": "creation",
+                        "defining_code": {
+                            "terminology_id": {
+                                "value": "openehr"
+                            },
+                            "code_string": "249"
+                        }
+                    },
+                    "description": {
+                        "value": "comment"
+                    }
                 }
-            ]
+            }
 
 + Response 400 
 
-    Bad request: validation errors in one of the attached locatables 
+    Bad request: validation errors in one of the attached locatables, modification type doesn't match the operation - i.e. first version
+    of a composition with MODIFICATION.
 
     + Body 
 
@@ -83,12 +132,12 @@
 
     + Body 
 
-### Get contribution by id [GET /ehrs/{ehr_id}/contributions/{object_id}]
+### Get contribution by id [GET /ehrs/{ehr_id}/contributions/{contribution_uid}]
 
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + object_id (string) - CONTRIBUTION uid
+    + contribution_uid (string) - CONTRIBUTION uid
 
 + Response 200 (application/json) 
 
@@ -149,9 +198,4 @@
 
     + Body 
 
-+ Response 500 
 
-    Internal Server Error 
-
-    + Body 
-            

@@ -1,6 +1,6 @@
-## Directory [/ehrs/{ehr_id}/directory]
+## Directory [/ehr/{ehr_id}/directory]
 
-### Create directory [POST /ehrs/{ehr_id}/directory{?version_lifecycle_state,preceding_version_uid}]
+### Create directory [POST /ehr/{ehr_id}/directory{?version_lifecycle_state,preceding_version_uid}]
 
 + Parameters
 
@@ -29,7 +29,7 @@
 
     + Headers
 
-            Location: /ehrs/{ehr_id}/directory/{version_uid}
+            Location: /ehr/{ehr_id}/directory/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -53,7 +53,7 @@
     + Body
 
 
-### Update directory [PUT /ehrs/{ehr_id}/directory]
+### Update directory [PUT /ehr/{ehr_id}/directory]
 
 + Parameters
 
@@ -79,7 +79,7 @@
 
     + Headers
 
-            Location: /ehrs/{ehr_id}/directory/{version_uid}
+            Location: /ehr/{ehr_id}/directory/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -97,7 +97,7 @@
 
     + Headers
 
-            Location: /ehrs/{ehr_id}/directory/{version_uid}
+            Location: /ehr/{ehr_id}/directory/{version_uid}
             ETag: {version_uid}
 
 + Response 400
@@ -114,17 +114,17 @@
 
 + Response 412
 
-    `Match-If` header doesn't match the last version. Returns last version in the `Content-Location` and `ETag` headers.
+    `Match-If` header doesn't match the last version. Returns last version in the `Location` and `ETag` headers.
 
     + Headers
 
-            Content-Location: /ehrs/{ehr_id}/directory/{version_uid}
+            Location: /ehr/{ehr_id}/directory/{version_uid}
             ETag: {version_uid}
 
     + Body
 
 
-### Delete directory [DELETE /ehrs/{ehr_id}/directory]
+### Delete directory [DELETE /ehr/{ehr_id}/directory]
 
 + Parameters
 
@@ -157,16 +157,16 @@
 + Response 412
 
     `Match-If` header doesn't match the last version. Returns
-    last version in the `Content-Location` and `ETag` headers.
+    last version in the `Location` and `ETag` headers.
 
     + Headers
 
-            Content-Location: /ehrs/{ehr_id}/directory/{version_uid}
+            Location: /ehr/{ehr_id}/directory/{version_uid}
             ETag: {version_uid}
 
     + Body
 
-### Get folder in directory version [GET /ehrs/{ehr_id}/directory/{version_uid}{?path}]
+### Get folder in directory version [GET /ehr/{ehr_id}/directory/{version_uid}{?path}]
 
 + Parameters
 
@@ -197,7 +197,7 @@
     + Body
 
 
-### Get folder in directory version at time [GET /ehrs/{ehr_id}/directory{?version_at_time,path}]
+### Get folder in directory version at time [GET /ehr/{ehr_id}/directory{?version_at_time,path}]
 
 + Parameters
 
@@ -209,7 +209,7 @@
 
     + Headers
 
-            Location: /ehrs/{ehr_id}/directory/{version_uid}
+            Location: /ehr/{ehr_id}/directory/{version_uid}
             ETag: {version_uid}
 
     + Body
