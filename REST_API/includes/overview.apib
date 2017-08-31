@@ -151,7 +151,7 @@ This request header MAY be used by clients for resource representation negotiati
 See more details on [representation details negotiation](#representation-details-negotiation) section.
 
 
-<h3>The `ETag` header and cache handling</h3>
+<h3>The `ETag` and `Last-Modified` headers</h3>
 According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
 
 > The "ETag" header field in a response provides the current entity-tag
@@ -163,7 +163,15 @@ According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
     resulting in multiple representations being valid at the same time,
     or both.
 
-This header SHOULD be present in all responses that contains full representation of VERSION, VERSIONED_OBJECT or other resources
+The `Last-Modified` response HTTP header contains the datetime of the last modification of targeted resource
+which should be taken from VERSION.commit_audit.time_committed.value. 
+An example of such header value format is:
+```
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+```
+See more details on [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.2).
+
+These headers SHOULD be present in all responses targeting VERSION, VERSIONED_OBJECT or other resources
 that have unique identifier for each of the state changed in time. The value of this header MAY be the
 unique identifier of that resource (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).
 
