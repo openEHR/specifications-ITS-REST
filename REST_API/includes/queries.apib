@@ -1,5 +1,5 @@
 ## Stored queries [/definitions/queries]
--- Alternative suggestion instead of aql.apib --
+-- Alternative suggestion instead of aql.apib -- incomplete work in progress --
 
 Management of stored (registered) queries in the system.
 
@@ -18,7 +18,8 @@ The pattern is inspired by the Archetype and Template IDs defined in
 Because of audit reasons, queries and query versions are never deleted but can be set to `unlisted` if found to be unsuitable for use.
 
 Management of stored queries is done using resources starting /definitions/queries described here.
-Note that execution of queries is done using the resource:  /query/{reverse-internet-id}::{queryname}.v{MAJOR}.{MINOR}.{PATCH}/{?param_1,param_n}
+
+Note that _execution_ of queries is done using the resource:  `/query/{namecpaced-query-name}/{major}{.minor,patch}{;mode,offset,fetch}{?dynamic-query-parameters*}` 
 
 ### List named queries [GET /definitions/queries/{reverse-internet-id}::{queryname}]
 The parameters are optional. if omitted they are treated as "wildcards" in the search
@@ -53,42 +54,20 @@ Examples:
 
 
 
-### Create a stored query [POST /definitions/query{?type,mode}]
+### Store a query [PUT /query/{reverse-internet-id}{double-colon}{query-name}/{major}{.minor,patch}{?type}]
 
-TBD: Perhaps use `/definitions/query/{type}{?querymode}` instead?
 TBD: Determmine request types (json, form-url-encoded etc)
 TBD: Determine if/how we provide simple post-processing of XML and JSON AQL result sets - see suggested post-process-json and post-process-xml
 TODO: Add form-url-encoded and XML encoding alternatives for to request body in addition to JSON...
 
-This resource operates in several modes:
-    *   `validate` - the query is analyzed/validated but not stored or executed. If the query is translated to a storage
-        specific query-language query then the translated query MAY be returned in the response to the client in addition
-        to other debug information. TBD: document when results 200 OK or 400 Bad Request are sent.
-    *   `store-only` - stores query and redirects to /definitions/queries/sha-1/{id} using a Http response `201 Created`.
-        To later execute the query /query/sha-1/{id} should be called
-    *   `store-and-execute` - stores query and redirects to /query/sha-1/{id} using a Http response `303 See other` 
-        Any parameters starting with `_` (underscore) that were POSTed with the original query are interpreted as being 
-        dynamic and are – after removing the underscore – converted to URI-encoded parameters and included in the 
-        redirection URI /query/{prefix}/{id}. Thus the redirected GET request logged in the standard HTTP log contains
-        the unique query-SHA and the dynamic parameter values used in the call. Static parameters can be used for example 
-        to send extra configuration parameters to query translators. Static parameters are stored together with the query 
-        and included (sorted in alphabetical order as a JSON text string) in the calculated SHA-1 checksum.
-    *   `store-batch` - stores a query intended for long-running or scheduled batch-jobs and redirects to 
-        /definitions/queries/batch/{id} using a Http response `201 Created`. 
-        To later start execution or scheduling, /query/batch/{id} should be called.
-        In the current api version the `id` of of batsh queries SHOULD be created using the same SHA-1 as the other stored queries
-
 + Parameters
 
     +   `reverse-internet-id` (string, optional) 
-    +   `queryname` will be URL-encoded in the REST API urls to follow https://tools.ietf.org/html/rfc3986
-        so if you want easily 
+    +   query-name: (string) avoid using `:` and `/` in the name
     +   `{MAJOR}.{MINOR}.{PATCH}` is a hierarchical verson number following the http://semver.org/ conventions
-
-
-    + type: `AQL` (string) - indicating the query language/type (presently usually AQL, but future additions possible) 
-    + querymode: `store-only` (string) - indicating the mode; debug, store-only, store-and-execute, store-batch (TBD: decide default)) 
-
+    +   type: `AQL` (string) - indicating the query language/type (presently usually AQL, but future additions possible) 
+ 
+ 
 + Request
 
     + Body
@@ -102,42 +81,25 @@ This resource operates in several modes:
                 "post-process-xml" : "/definition/scripts/xslt/laboratory_test_view.xslt"
             }
 
-+ Response 201
-
-    In store-only and store-batch mode `201 Created` is returned when the query has been successfully uploaded to the server.
-
-    + Headers
-
-            Location: /definitions/queries/{prefix}/{id}
-            
-+ Response 303
-
-    In store-and-execute mode `303 See other` is returned when the query has been successfully uploaded to the server.
-
-    + Headers
-
-            Location: /query/{prefix}/{id}
-
 + Response 200
 
-            `200 OK` is returned in debug mode when the query has been successfully parsed.
+            `200 OK` 
 
+ TODO: add conflict reponse code           
 
 + Response 400 
 
-    `400 Bad Request` is returned when the server was unable to create a new stored AQL, could be due to incorrect request body (could not be parsed, etc)
+    `400 Bad Request` is returned when the server was unable to stored QL, could be due to incorrect request body (could not be parsed, etc)
 
     + Body 
 
-### Get stored query and info/metadata [GET /definitions/queries/{prefix}/{id}]
+### Get stored query and info/metadata [GET /query/{reverse-internet-id}{double-colon}{query-name}/{major}{.minor,patch}{]
 
 + Parameters
     
-    + id (string) - query 
-    + prefix (string) - A prefix indicating type of identifier, in this API version "name" for manually named queries or "sha-1" for query-content-based auto-generated ids. Se details in documentation for /definitions/queries/.
-        + Members
-            + `name`
-            + `sha-1`   
+    +   `reverse-internet-id` (string, optional) 
+    +   query-name: (string) avoid using `:` and `/` in the name
+    +   `{MAJOR}.{MINOR}.{PATCH}` is a hierarchical verson number following the http://semver.org/ conventions
 
 + Response 200 (application/json)
     `200 OK` is returned when the stored AQL is successfully retrieved.
@@ -163,20 +125,3 @@ This resource operates in several modes:
     + Body
 
 
-### Generating hash-based query ID
-
-    It is RECOMMENDED that the SHA-1 hash used as identifier for the query storage is generated in a standard deterministic d
-    by the following pseudo-code: 
-        *   create a collection/list of all parameters (the sum of from POSTed body parameters and the url parameters)
-        *   remove any parameters prefixed by underscore `_` and remove the `querymode` parameter
-        *   remove trailing whitespace from parameter values
-        *   sort the remaining parameters in alphabetical order 
-        *   and convert to compact JSON - TBD: Or is other format preferred?
-        *   Generate SHA-1 based 0n the above produced JSON string
-
-Example code (in some programming languages) of this procedure will later be linked to here. Related currently existing code: 
-https://github.com/LiU-IMT/EEE/blob/065c11ad1ec45a7c0c91586431472a89b78bfc13/src/main/java/se/liu/imt/mi/eee/ehr/res/Query.java
-
-TBD: Should avoidance of (very unusual) hash collisions be discussed in the spec? (It is not hard to
-implement, just an extra comparison step of the un-hashed parameter collectrion during the processing
-of the POST call) 
