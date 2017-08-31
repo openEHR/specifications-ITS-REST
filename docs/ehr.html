@@ -1026,17 +1026,21 @@ last version in the <code>Location</code> and <code>ETag</code> headers.</p>
 </div></div></div></div></div></div></div><div class="middle"><div id="directory-directory-get-1" class="action get"><h4 class="action-heading"><div class="name">Get folder in directory version at time</div><a href="#directory-directory-get-1" class="method get">GET</a><code class="uri">/ehr/{ehr_id}/directory{?version_at_time,path}</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>ehr_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>EHR identifier taken from EHR.ehr_id.value</p>
 </dd><dt>version_at_time</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>A timestamp in the ISO8601 format</p>
 </dd><dt>path</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>path to a sub-folder</p>
-</dd></dl></div></div></div><hr class="split"><div class="middle"><section id="contribution" class="resource-group"><h2 class="group-heading">CONTRIBUTION <a href="#contribution" class="permalink">&para;</a></h2></section></div><div class="middle"><div id="contribution-contribution" class="resource"><h3 class="resource-heading">CONTRIBUTION <a href="#contribution-contribution" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/ehrs/<span class="hljs-attribute" title="ehr_id">ehr_id</span>/contributions</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Prefer</span>: <span class="hljs-string">return={representation|minimal}</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+</dd></dl></div></div></div><hr class="split"><div class="middle"><section id="contribution" class="resource-group"><h2 class="group-heading">CONTRIBUTION <a href="#contribution" class="permalink">&para;</a></h2></section></div><div class="middle"><div id="contribution-contribution" class="resource"><h3 class="resource-heading">CONTRIBUTION <a href="#contribution-contribution" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/ehr/<span class="hljs-attribute" title="ehr_id">ehr_id</span>/contribution</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Prefer</span>: <span class="hljs-string">return={representation|minimal}</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
     <span class="hljs-string">"versions"</span>: [
         {
-            <span class="hljs-string">"data"</span>: {<span class="hljs-comment">/* JSON serialized COMPOSITION, FOLDER or EHR_STATUS object */</span>},
+            <span class="hljs-string">"data"</span>: {
+                <span class="hljs-comment">/* optional JSON serialized COMPOSITION, FOLDER or EHR_STATUS object */</span>
+            },
             <span class="hljs-string">"preceding_version_uid"</span>: <span class="hljs-string">"&lt;optional string&gt;"</span>, 
             <span class="hljs-string">"signature"</span>: <span class="hljs-string">"&lt;optional string&gt;"</span>, 
             <span class="hljs-string">"lifecycle_state"</span>: <span class="hljs-number">0</span>,
-            <span class="hljs-string">"commit_audit"</span>:{
+            <span class="hljs-string">"commit_audit"</span>: {
                 <span class="hljs-string">"change_type"</span>: {},
                 <span class="hljs-string">"description"</span>: {},
-                <span class="hljs-string">"committer"</span>:{<span class="hljs-comment">/* optional structure - will use the outer committer if absent */</span>}
+                <span class="hljs-string">"committer"</span>: {
+                    <span class="hljs-comment">/* optional structure - will use the outer committer if absent */</span>
+                }
             }
         }
     ],
@@ -1044,24 +1048,64 @@ last version in the <code>Location</code> and <code>ETag</code> headers.</p>
         <span class="hljs-string">"committer"</span>:{
             <span class="hljs-string">"name"</span>: <span class="hljs-string">"&lt;optional identifier of the committer&gt;"</span>  ,
             <span class="hljs-string">"external_ref"</span>:{
-                    <span class="hljs-string">"namespace"</span>: <span class="hljs-string">"demographic"</span>,
-                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"PERSON"</span>, 
-                    <span class="hljs-string">"id"</span>:{
-                        <span class="hljs-string">"value"</span>: <span class="hljs-string">"&lt;OBJECT_ID&gt;"</span>
-
-                    }
+                <span class="hljs-string">"namespace"</span>: <span class="hljs-string">"demographic"</span>,
+                <span class="hljs-string">"type"</span>: <span class="hljs-string">"PERSON"</span>,
+                <span class="hljs-string">"id"</span>:{
+                    <span class="hljs-string">"value"</span>: <span class="hljs-string">"&lt;OBJECT_ID&gt;"</span>
+                }
             }
         }
     }
-
 }</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">201</span><span class="tab-button">400</span><span class="tab-button">404</span></div><div class="tab"><div><div class="inner"><div class="description"><p>New Contribution was created. Content body is only returned when <code>Prefer</code> header has <code>return=representation</code> otherwise only headers are returned.</p>
-</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Location</span>: <span class="hljs-string">/ehrs/{ehr_id}/contributions/{version_uid}</span><br><span class="hljs-attribute">ETag</span>: <span class="hljs-string">{version_uid}</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Location</span>: <span class="hljs-string">/ehr/{ehr_id}/contribution/{contribution_uid}</span><br><span class="hljs-attribute">ETag</span>: <span class="hljs-string">{contribution_uid}</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"CONTRIBUTION"</span></span>,
+  "<span class="hljs-attribute">uid</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"0826851c-c4c2-4d61-92b9-410fb8275ff0"</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">versions</span>": <span class="hljs-value">[
     {
-        <span class="hljs-string">"content"</span>: {<span class="hljs-comment">/** openEHR locatable; composition or folder */</span>},
-        <span class="hljs-string">"preceding_version_uid"</span>: <span class="hljs-string">"string"</span>,
-        <span class="hljs-string">"version_lifecycle_state"</span>: <span class="hljs-number">523</span>
-    }
-]</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p>Bad request: validation errors in one of the attached locatables</p>
+      "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"OBJECT_REF"</span></span>,
+      "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"OBJECT_VERSION_ID"</span></span>,
+        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"fb458d9c-1323-42bc-b7f8-787f3660a0b5::91215053-854b-45b8-bb2a-3b0d255858d1::1"</span>
+      </span>}</span>,
+      "<span class="hljs-attribute">namespace</span>": <span class="hljs-value"><span class="hljs-string">"local"</span></span>,
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"COMPOSITION"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"OBJECT_REF"</span></span>,
+      "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"OBJECT_VERSION_ID"</span></span>,
+        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"abcdefgh-1323-42bc-b7f8-787f3660a0ba::91215053-854b-45b8-bb2a-3b0d255858d1::1"</span>
+      </span>}</span>,
+      "<span class="hljs-attribute">namespace</span>": <span class="hljs-value"><span class="hljs-string">"local"</span></span>,
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"FOLDER"</span>
+    </span>}
+  ]</span>,
+  "<span class="hljs-attribute">audit</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">system_id</span>": <span class="hljs-value"><span class="hljs-string">"9624982A-9F42-41A5-9318-AE13D5F5031F"</span></span>,
+    "<span class="hljs-attribute">committer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"PARTY_IDENTIFIED"</span></span>,
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"bna"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">time_committed</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"2017-08-15T10:37:15+02:00"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">change_type</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"creation"</span></span>,
+      "<span class="hljs-attribute">defining_code</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">terminology_id</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"openehr"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">code_string</span>": <span class="hljs-value"><span class="hljs-string">"249"</span>
+      </span>}
+    </span>}</span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"comment"</span>
+    </span>}
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p>Bad request: validation errors in one of the attached locatables, modification type doesn’t match the operation - i.e. first version
+of a composition with MODIFICATION.</p>
 </div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Error message"</span></span>,
   "<span class="hljs-attribute">validationErrors</span>": <span class="hljs-value">[
@@ -1070,8 +1114,20 @@ last version in the <code>Location</code> and <code>ETag</code> headers.</p>
     <span class="hljs-string">"errorN"</span>
   ]
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p>No EHR with the given id</p>
-</div></div></div></div></div></div></div></div><div class="middle"><div id="contribution-contribution-post" class="action post"><h4 class="action-heading"><div class="name">Create contribution</div><a href="#contribution-contribution-post" class="method post">POST</a><code class="uri">/ehrs/{ehr_id}/contributions</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>ehr_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>EHR identifier taken from EHR.ehr_id.value</p>
-</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/ehrs/<span class="hljs-attribute" title="ehr_id">ehr_id</span>/contributions/<span class="hljs-attribute" title="object_id">object_id</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span><span class="tab-button">404</span><span class="tab-button">500</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+</div></div></div></div></div></div></div></div><div class="middle"><div id="contribution-contribution-post" class="action post"><h4 class="action-heading"><div class="name">Create contribution</div><a href="#contribution-contribution-post" class="method post">POST</a><code class="uri">/ehr/{ehr_id}/contribution</code></h4><p>We will use the relaxed CONTRIBUTION XSD with the following attributes optional:</p>
+<ul>
+<li>
+<p>time_committed: server will always set it</p>
+</li>
+<li>
+<p>UID: if provided will be accepted unless it is already used in which case an error will be returned</p>
+</li>
+<li>
+<p>system_id: where provided will be validated</p>
+</li>
+</ul>
+<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>ehr_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>EHR identifier taken from EHR.ehr_id.value</p>
+</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/ehrs/<span class="hljs-attribute" title="ehr_id">ehr_id</span>/contributions/<span class="hljs-attribute" title="contribution_uid">contribution_uid</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span><span class="tab-button">404</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"CONTRIBUTION"</span></span>,
   "<span class="hljs-attribute">uid</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"0826851c-c4c2-4d61-92b9-410fb8275ff0"</span>
@@ -1119,9 +1175,8 @@ last version in the <code>Location</code> and <code>ETag</code> headers.</p>
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p>No EHR with the supplied id or no Contribution with the supplied id was found</p>
-</div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p>Internal Server Error</p>
-</div></div></div></div></div></div></div><div class="middle"><div id="contribution-contribution-get" class="action get"><h4 class="action-heading"><div class="name">Get contribution by id</div><a href="#contribution-contribution-get" class="method get">GET</a><code class="uri">/ehrs/{ehr_id}/contributions/{object_id}</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>ehr_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>EHR identifier taken from EHR.ehr_id.value</p>
-</dd><dt>object_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>CONTRIBUTION uid</p>
+</div></div></div></div></div></div></div><div class="middle"><div id="contribution-contribution-get" class="action get"><h4 class="action-heading"><div class="name">Get contribution by id</div><a href="#contribution-contribution-get" class="method get">GET</a><code class="uri">/ehrs/{ehr_id}/contributions/{contribution_uid}</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>ehr_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>EHR identifier taken from EHR.ehr_id.value</p>
+</dd><dt>contribution_uid</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>CONTRIBUTION uid</p>
 </dd></dl></div></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 31 Aug 2017</p></div></div></div></div><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
