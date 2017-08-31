@@ -1,100 +1,160 @@
-## Query [/query]
+## Execute Query [/query]
 
-These resources adhere to the pattern /query/{prefix}/{id}/{extra-path-paramaters}?{query-parameters} 
-the `prefix` parameter values used in this version of the specification are:
-    *   `aql` - is used for non-stored ad hoc AQL-queries, e.g. useful for test and development
-    *   `sha-1` - is used for stored queries automatically named using a sha-1 hash of the static query content
-    *   `batch` - is used for long-running or scheduled. To start execution or scheduling, POST /query/batch/{id} should be called
-    *   `name` - is used for manually aliased/named stored queries (e.g. providing an alternative path to some `sha-1` or `batch` queries)
+The query execution resources roughly adhere to following patterns
 
-The optional `{extra-path-paramaters}` is processed by the query engine to extract dynamic parameters from 
-the path using the pattern in a uri-template specified in the static parameter `uri-template` that was provided 
-when storing queries using `POST /definitions/query` Example usage:
-/query/name/{id}/{extra-path-paramaters}?{query-parameters}
+    *   `/query/aql/{major}{.minor,patch}{;mode,offset,fetch}{?q,dynamic-query-parameters*}`
+        used for executing ad-hoc non-stored AQL-queries, e.g. useful for test and development. Examples:
+        *   GET /query/aql?q=/*AQL query goes here*/  
+        *   POST /query/aql/2;
 
-The {query-parameters} is used for dynamic parameters in the `GET /query/{prefix}/{id}` described below.
+    *   Stored queries    
+        *   One way to handle query namespace+name as an opaque string (allowing double colon inside if users want to use nemespace): 
+            `/query/{namecpaced-query-name}/{major}{.minor,patch}{;mode,offset,fetch}{?dynamic-query-parameters*}` 
+        *   Another way to handle query names: `/query/{reverse-internet-id}{double-colon}{query-name}/{major}{.minor,patch}{;mode,offset,fetch}{?dynamic-query-parameters*}` 
+            used for executing stored queries. 
+            TBD: add info about how version resolution works e.g. asking for 1.2 returns highest numbered available 1.2 subversion e.g. 1.2.7
+        *   Examples:
+            *   `GET /query/diabetes-patient-overview;fetch=10?Hba1c-limit=6` - if there 
+                is no `{reverse-internet-id}::` pattern in the uri, then use the system's 
+                configured default reverse-internet-id is assumed
+            *   `GET /query/org.example.departmentx.test::diabetes-patient-overview/?Hba1c-limit=6` - if 
+                no version supplied then the latest version will be used
+            *   `GET /query/diabetes-patient-overview/1.0.2;mode=batch,T23:30?Hba1c-limit=6&latest-glucose-max=10` - 
+                run in batch mode starting at 23:30 today; a query-result uri like /query/diabetes-patient-overview/1.0.2/{query-result-id} 
+                will be created and it's location returned with a http `201 Created` response. 
+                In the current api full major.minor.patch version is required for starting batch queries and retrieving
+                the query result.
+            *   `POST /query/org.example.departmentx.test::diabetes-patient-overview/1.0.2`
 
-See API-description of /definitions/queries for more information regarding naming, {prefix} and {extra-path-paramaters}
+The {query-parameters*} part of the path is used for dynamic parameters in the `GET /query/{id}` described below.
+
+TBD - Server developer information:
+The `:` character is allowed in the `path` part of a URL so  it does not to be encoded, see
+https://www.talisman.org/~erlkonig/misc/lunatech%5Ewhat-every-webdev-must-know-about-url-encoding/#Thereservedcharactersaredifferentforeachpart
+...on the other hand some clients may happen to encode `:` to `%3A` anyway so a server SHOULD 
+allow both `::` and `%3A%3A` for the `{double-colon}` part described above but store/retrieve
+them in a single consistent way.
+
+See API-description of /definitions/queries for more information regarding naming, versioning etc. 
+
+By having the varables `mode, offset and fetch` as path parameters instead of query parameters 
+all the query-parameters can be passed directly to the AQL processing as dynamic paramters (and possibly
+their names can be reused also as dynamic aql parameters sent in the query string - TODO: this part 
+witin the parenthesis needs fact checking).
+
+
+#### ehr_id http request header
 
 Http header information regarding all resources under /query:
 If the http header `ehr_id` is present in the request it MUST contain a single openEHR `ehr_id`.
 Clients SHOULD send the `ehr_id` header if they know that the query concerns only a singe EHR.
 The presence of a `ehr_id` header:   
-    *   SHOULD be used by the server to provide the variable `ehr_id` in queries with the value of 
+    *   MUST be used by the server to provide the variable `ehr_id` in queries with the value of 
         the header, overriding any static or dynamic parameters named `ehr_id` and
-    *   MAY also be used by the server to restrict querying to only the identified EHR and 
+    *   SHOULD also be used by the server to restrict querying to only the identified EHR and 
     *   MAY also be used by the server to route (e.g. in sharded scale-out systems) based on ehr_id
         without first having to analyze the request body and 
     *   MAY also be used by the server to handle ETag and If-None-Match http headers based on the 
-        latest known change to the identified EHR (e.g. by using the latest contribution uid of 
-        the identified EHR as ETag value) so that query responses can be safely cached (confirmed 
-        by http response code 304 Not Modified) and do not need to be re-run until changes may have 
-        occured.
+        latest known change to the identified EHR or its access-rights (e.g. by basing the Etag
+        value on the latest contribution uid of the identified EHR + addess rights) so that query
+        responses can be safely cached (confirmed by http response code 304 Not Modified) and do
+        not need to be re-run until changes may have occured.
 
 The absence of the http header 'ehr_id' means that the stored query or dynamic request parameters 
 MAY contain a list of several ehr_ids or be unconstrained regarding ehr_id (e.g. population queries).
 
+#### Paging
 
-### Execute ad-hoc AQL query [GET /query/aql{?q}]
+The `offset` and `fetch` parameters can be used for "paging", for example  
+`GET /query/diabetes-patient-overview;offset=20;fetch=10?Hba1c-limit=6` could get the third 
+"page" of results in a 10-results per page view. Please note that the query REST calls are 
+"stateless" on the serverside, so the server always presents a selection from the "current"
+response at the time of calling the query resource. 
 
-Execute an AQL query 
+If there have been changes to the data like  additions or deletions between for example the
+time of query for the first (offset=0;fetch=10) and the time of query for the second (offset=10;fetch=10)
+"page" then some of the results may be duplicated or missed unless the requesting client
+handles detection of this. Query result analysis and row identification and/or a properly implemeted
+Etag usage may assist in such detection.
 
-NOTE: we might add a header to indicate which EHR to execute against to
-allow systems that need to route based of EHR id to do so without having
-to analyze the request body.
+Ranged retrieval of a stored batch-mode response via `GET /query/batch/{id}/{result-id}`  may also 
+be used as a way of making the server present chunks of a "frozen" view, if the server implemetation
+supports it (many web servers do). 
+See the http headers `Range` https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35
+and `Content-Range` https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.16
 
-TBD: Add query url length warning?
+### Execute ad-hoc (non-stored) AQL query [GET /query/aql/{major}{.minor,patch}{;mode,offset,fetch}{?q,dynamic-query-parameters*}]
 
-+ Parameters 
-    + q - The AQL to be executed 
+Warning: URIs in practie have a length restriction. Long query definitions `q` and many long 
+`dynamic-query-parameters` may add up to reach that limit, thus we recommend using the 
+`POST /query/aql/{major}{.minor,patch}` instead when such risks are expected.
+
++ Request 
+    + Headers
+
+            ehr_id: fc334f45-ffb7-4077-8134-4d3d5e6cb2a1
+        
+    + Parameters
+        + q (string) - The AQL to be executed 
+        + offset (number, optional) Row number in result-set to start listning reslults from
+        + fetch  (number, optional) Nuber of rows of rows to fetch
+        + mode (string, optional) batch or validate
 
 + Response 200 (application/json)
+   + Headers
 
-        {
-            /* See discussion on resultset in overview */
-        }
-
-
-### Execute ad-hoc AQL query [POST /query/aql]
-
-Execute an AQL query.
-
-NOTE: we might add a header to indicate which EHR to execute against to
-allow systems that need to route based of EHR id to do so without having
-to analyze the request body.
-
-NOTE: We might add support for the request format application/x-www-form-urlencoded
-
-TBD: Add logging advice?
-
-+ Request (application/json)
+            Etag: cdbb5db1-e466-4429-a9e5-bf80a54e120b
 
     + Body
 
             {
-                "aql": "<the aql to be performed>",
-                "aql_parameters": [{
-                    "parameter-x-name": "parameter-x-value",
-                    "parameter-y-name": "parameter-y-value"
-                }],
+                /* See discussion on resultset in overview */
+            }
+
+### Execute ad-hoc (non-stored) AQL query [POST /query/aql/{major}{.minor,patch}]
+
+TBD: Add support for the request format application/x-www-form-urlencoded often used in html forms
+
+TBD: Add logging advice?
+
++ Request (application/json)
+    + Headers
+
+            ehr_id: fc334f45-ffb7-4077-8134-4d3d5e6cb2a1
+        
+    + Body
+
+            {
+                "q": "<the query to be performed>",
                 "offset": NUMBER_TO_START_FROM,
                 "fetch": NUMBER_TO_FETCH,
-                "composition_uids": ["<object_id>"], // filter on the given compositions uids
-                "ehr_ids": ["<ehr_id>"] // filter on the given ehr_ids
+                "composition_uids": ["<object_id>"],        // filter on the given compositions uids
+                "ehr_ids": ["<ehr_id>"],                    // filter on the given ehr_ids
+                dynamic-query-parameters: {
+                    "parameter-x-name": "parameter-x-value",
+                    "parameter-y-name": "parameter-y-value",
+                }
             }
+            TBD: add mode
 
 + Response 200 (application/json)
 
-         {
-           /* Se discussion on resultset in overview */
-         }
+   + Headers
+
+            Etag: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+
+    + Body
+
+            {
+                /* See discussion on resultset in overview */
+            }
 
 
-### Execute stored query [GET /query/{prefix}/{id}/{extra-path-paramaters}{?offset,fetch,dynamic_parameter,dynamic_parameter_n}]
+### Execute stored query [GET `/query/{reverse-internet-id}{double-colon}{query-name}/{major}{.minor,patch}{;mode,offset,fetch}{?dynamic-query-parameters*}`]
 
-Execute a stored query with the supplied prefix+id. 
+Execute a stored query with the supplied query-name. 
 
-All query parameters found except "offset" and "fetch" are treated as dynamic and sent to the query execution engine.
+All query parameters found except "mode", "offset" and "fetch" are treated as dynamic and sent to the query execution engine.
 For parameters in AQL queries, see `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_parameters`
 
 + Request 
@@ -104,16 +164,14 @@ For parameters in AQL queries, see `http://www.openehr.org/releases/QUERY/latest
             If-None-Match: cdbb5db1-e466-4429-a9e5-bf80a54e120b
         
     + Parameters
-        + prefix - A prefix indicating type of identifier, in this API version "name" for manually named queries or "sha-1" for query-content-based auto-generated ids. Se details in documentation for /definitions/queries/.
-            + Members
-                + `name`
-                + `sha-1`    
-        + id - Id of the stored query to be executed
-        + offset (optional) - Query response row number to start from 
-            + Default: 0
-        + fetch (optional) - Number of query response rows to fetch (from offset). For AQL queries: use wisely if combined with `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_top`
-        + dynamic_parameter (optional) - dynamic query parameter used in stored query. 
-        + dynamic_parameter_n (optional) - dynamic query parameter n. 
+  
+        +   id - Id of the stored query to be executed
+        +   offset (optional) - Query response row number to start from 
+            +   Default: 0
+        +   fetch (optional) - Number of query response rows to fetch (from offset). For AQL queries: use wisely 
+            if combined with `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_top`
+        +   dynamic_parameters (optional) - a number of dynamic query parameter used in stored query. 
+        +   dynamic_parameter_n (optional) - dynamic query parameter n. 
         
 + Response 200 (application/json)
     + Headers
@@ -133,10 +191,20 @@ For parameters in AQL queries, see `http://www.openehr.org/releases/QUERY/latest
         
     + Body
 
-            /* See discussion on resultset in overview */    
+            /* See discussion on resultset in overview */
+
+
+ Response 200 
+    + Headers
+
+            Etag: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+        
+    + Body
+
+            /* See discussion on resultset in overview */
         
 
-### Execute stored query [POST /query/{prefix}/{id}]
+### Execute stored query [POST /query/{query-id}/{?offset,fetch,dynamic_parameter,dynamic_parameter_n}
 
 Execute a stored query with the supplied prefix+id. 
 
@@ -189,23 +257,25 @@ NOTE: The body of a POST request is usually not logged in the http log by defaul
          }
 
 
-### Execute stored batch-job query [POST /query/batch/{id}]
 
-TBD: very much like [POST /query/{prefix}/{id}] but we need some special parameters regarding scheduled time etc.
-The response should redirect (using suitable response code and location header) to  /query/batch/{id}/{result-id}
-    -   ...
-
-### Fetch stored batch-job query result [GET /query/batch/{id}/{result-id}]
+### Fetch stored batch-job query result [GET /query/{namecpaced-query-name}/{major}{.minor,patch}/{result-id}]
 
 + Request 
             
     + Parameters
         + id - Id of the stored query to be executed
+            
         + result-id - Id of the expected result 
         
-+ Response 102  (application/json)
++ Response 202 (application/json)
  
-    `102 Processing` is sent if the expected result is not available yed (e.g. because of still processing or scheduled execution time time not reached yet).
+    `202 Accepted` is sent if the expected result is not available yet (e.g. because of still processing or scheduled execution time time not reached yet).
+    The entity (body) returned with this response SHOULD include an indication of the request´s current status and 
+    either a pointer to a status monitor or some estimate of when the user can expect the request to be fulfilled.
+
+    + Body
+
+        TBD: provide example body content
 
 + Response 200 (application/json)
  
@@ -220,3 +290,28 @@ The response should redirect (using suitable response code and location header) 
     + Body
 
             /* See discussion on resultset in overview */  
+
+
+### Things to be tested and determined
+
+Test uri-template expansion of...
+
+`/query/{reverse-internet-id}{double-colon}{query-name}{.major,minor,patch}{;mode,offset,fetch}{?dynamic-query-parameters*}` 
+
+...using test parameters like...
+
+            {
+            "reverse-internet-id": "org.example.departmentx.test",
+            "double-colon": "%3A%3A",
+            "query-name": "diabetes-patient-overview",
+            "major": "1",
+            "minor": "0",
+            "patch": "2",            
+            "dynamic-query-parameters": {
+                "a": "mars",
+                "b": "jupiter"
+            }
+
+...locally in dev-environments using Uri-template libraries or in services like...
+
+http://bigbluehat.github.io/vue-uri/
