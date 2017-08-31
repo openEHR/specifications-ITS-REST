@@ -2,9 +2,13 @@
 
 Management of stored (registered) AQLs in the system.
 
-### List stored AQLs [GET /definition/aql]
+### List stored AQLs [GET /definition/aql/{id}]
 
 List all available stored AQLs in the system
+
++ Parameters
+
+    + id (string, optional) - list only version of the AQL with id
 
 + Response 200 (application/json) 
 
@@ -55,33 +59,9 @@ List all available stored AQLs in the system
 
     + Body 
 
-### Get stored AQLs [GET /definition/aql/{id}]
++ Response 409
 
-+ Parameters
-    
-    + id (string) - AQL id
-
-+ Response 200 (application/json)
-
-    `200 OK` is returned when the resources are successfully retrieved.
-
-    + Body
-
-            [
-                {
-                    "id": "labs",
-                    "version": "1.0.1",
-                    "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]"
-                },
-                {
-                    "id": "labs",
-                    "version": "1.0.2",
-                    "aql": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] WHERE c/name/value = 'Vitals'"
-                }
-            ]
-
-+ Response 404 (application/json)
-    `404 Not Found` is returned when the stored AQL with supplied id doesn't exist.
+    `409 Conflict` is returned when a stored AQL with id and version already exists.
 
     + Body
 
