@@ -201,20 +201,13 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 Meaning of these codes may be further detailed (nuanced) in this specification by particular responses.
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.
 
-In case of errors or exceptions (HTTP codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
+In case of errors (HTTP codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
 Example:
 ::: note 
-tbd structure oauth message format
+some codes/messages https://github.com/ppazos/cabolabs-ehrserver/wiki/API-error-codes-and-messages and http://veratechnas1.synology.me:13606/InstanceValidator/rules.html
 :::
 ```
-{
-  "message": "Error message",
-  "code": 90000,
-  "validationErrors": [
-    "error1",
-    "error2"
-  ]
-}
+<!-- include(../examples/error_01.json) -->
 ```   
 
 
