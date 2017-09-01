@@ -275,9 +275,19 @@ Proper header `Content-Type: application/xml` MUST be present in the response of
 
 <h3>JSON Format</h3>
 
-Attribute names must be lowercase _snake_case_ names as specified in the RM specification for attributes. For example:
+Attribute names must be lowercase _snake_case_ names as specified in the equivalent RM type. For example:
 ```json
-{"context": {"start_time": "2016-01-01T00:00Z"}}
+{
+    "category": {
+        "value": "event",
+        "defining_code": {
+            "terminology_id": {
+                "value": "openehr"
+            },
+            "code_string": "433"
+        }
+    }
+}
 ```
 
 Metadata attributes (those that are not also RM attributes) will always be prefixed by a `'_'`.
@@ -335,4 +345,6 @@ MAY indicate that prefers response containing full or partial resource represent
 A typical case is a list of COMPOSITIONs part of an EHR, which, strictly following RM specification, should always return 
 list of OBJ_REF, but sometimes clients prefers to get COMPOSITIONs.
 Services that have this capability implemented SHOULD accept and honor `Prefer: resolve_refs` request header.
-
+```http
+Prefer: return=representation, resolve_refs
+```
