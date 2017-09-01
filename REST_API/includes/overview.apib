@@ -120,10 +120,44 @@ Expose available service endpoints and other details.
 
 This specification is using a few standard and custom HTTP headers that are described below.
  
-<h3>The `openEHR-commit-audit` headers</h3>
-::: note 
-tbd  
-:::
+
+<h3>The `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` headers</h3>
+
+When it comes to committing content to an openEHR system, for all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.) the services are 
+[performing versioning](http://www.openehr.org/releases/RM/latest/docs/common/common.html#_change_control_package) under the hood.
+Thus, the 'native' way of committing content is to wrap it as VERSION and [use CONTRIBUTION](http://www.openehr.org/releases/RM/latest/docs/common/common.html#_contributions).
+
+But in order to keep things simpler and consistent, service MUST allow `PUT`, `POST` and `DELETE` methods also directly on these change-controlled resources.
+However, internally, these operations MUST be executed using the 'native' way with CONTRIBUTION.
+
+In order to allow clients to provide committal metadata, services MUST accept `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` request custom header. 
+For clients, it is RECOMMENDED to provision these headers based on [authentication and authorization](#design-considerations-authentication-and-authorization) runtime data.
+Below is an complex example of these request headers used in a PUT action to update a COMPOSITION:
+```http
+openEHR-VERSION.lifecycle_state: code_string="532"
+openEHR-AUDIT_DETAILS.change_type: code_string="251"
+openEHR-AUDIT_DETAILS.description: value="An updated composition contribution description"
+openEHR-AUDIT_DETAILS.committer: name="John Doe",
+        external_ref.id="BC8132EA-8F4A-11E7-BB31-BE2E44B06B34",
+        external_ref.namespace="demographic",
+        external_ref.type="PERSON"
+```
+None of these headers are mandatory, but whatever is provided it MUST be merged with the default VERSION and VERSION.audit_details attributes on commit runtime.
+
+Below a list of code_string and their meaning (taken from [openEHR terminology](https://raw.githubusercontent.com/openEHR/terminology/Release-2.0.0/openEHR_RM/en/openehr_terminology.xml))
+
+| header                            | code | value / meaning  |
+|-----------------------------------|------|------------------| 
+| openEHR-VERSION.lifecycle_state   |  532 | complete         |
+| openEHR-VERSION.lifecycle_state   |  553 | incomplete       |
+| openEHR-VERSION.lifecycle_state   |  523 | deleted          |
+| openEHR-AUDIT_DETAILS.change_type |  249 | creation         |
+| openEHR-AUDIT_DETAILS.change_type |  250 | amendment        |
+| openEHR-AUDIT_DETAILS.change_type |  251 | modification     |
+| openEHR-AUDIT_DETAILS.change_type |  252 | synthesis        |
+| openEHR-AUDIT_DETAILS.change_type |  523 | deleted          |
+| openEHR-AUDIT_DETAILS.change_type |  666 | attestation      |
+| openEHR-AUDIT_DETAILS.change_type |  253 | unknown          |
 
 
 <h3>The `If-Match` header and accidental overwrites</h3>
