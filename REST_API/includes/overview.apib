@@ -145,7 +145,7 @@ openEHR-AUDIT_DETAILS.committer: name="John Doe",
 ```
 None of these headers are mandatory, but whatever is provided it MUST be merged with the default VERSION and VERSION.audit_details attributes on commit runtime.
 
-Below a list of code_string and their meaning (taken from [openEHR terminology](https://raw.githubusercontent.com/openEHR/terminology/Release-2.0.0/openEHR_RM/en/openehr_terminology.xml))
+Below a list of `code_string` values and their meaning (taken from [openEHR terminology](https://raw.githubusercontent.com/openEHR/terminology/Release-2.0.0/openEHR_RM/en/openehr_terminology.xml)):
 
 | header                            | code | value / meaning  |
 |-----------------------------------|------|------------------| 
@@ -163,25 +163,33 @@ Below a list of code_string and their meaning (taken from [openEHR terminology](
 
 <h3>The `If-Match` header and accidental overwrites</h3>
 The use case of this is described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
+```http
+If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+```
 This HTTP request header SHOULD be used by the clients to prevent accidental overwrites when multiple user
 agents might be acting in parallel on the same resource. This is only required by a small set of resources of this specification, 
-as in most of the other cases `preceding_version_uid` is instead required in order to prevent such accidental overwrites.
+as in most of the other cases the `preceding_version_uid` path segment is instead required in order to prevent such accidental overwrites.
 In case a service receives this header and the condition evaluates to `false` it MUST respond with
 HTTP status code`412 Precondition Failed`.
 
 
 <h3>The `Location` header</h3>
-The `Location` response header indicates the resource location (URL). 
-According to [RFC 7231](https://tools.ietf.org/html/rfc7231#page-68), it is used to refer to a specific resource in relation to the response. 
+This response header indicates the resource location (URL). 
+According to [RFC 7231](https://tools.ietf.org/html/rfc7231#section-7.1.2), it is used to refer to a specific resource in relation to the response. 
 The type of relationship is defined by the combination of request method and status code semantics.
 Services MUST return this header whenever a create or update operation was performed, but it MAY
-return this header on other operation or action.
+return this header on other operation or action. Example:
+```http
+Location: http://www.openehr.org/api/v1/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+```
 See [representation details negotiation](#representation-details-negotiation) section
 for more details on how use this header.
 
-::: note 
-tbd `openehr-uri` response header (dv_ehr_uri) of the resources
-:::
+Services MAY generate resource URL as specified by DV_URI/DV_EHR_URI format, and if this feature is supported then the services 
+MUST use `openEHR-uri` response header. Example: 
+```http
+openEHR-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B
+```
 
 
 <h3>The `Prefer` header</h3>
@@ -204,7 +212,7 @@ According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
 The `Last-Modified` response HTTP header contains the datetime of the last modification of targeted resource
 which should be taken from VERSION.commit_audit.time_committed.value. 
 An example of such header value format is:
-```
+```http
 Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
 ```
 See more details on [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.2).
@@ -244,7 +252,7 @@ Example:
 ::: note 
 some codes/messages https://github.com/ppazos/cabolabs-ehrserver/wiki/API-error-codes-and-messages and http://veratechnas1.synology.me:13606/InstanceValidator/rules.html
 :::
-```
+```json
 <!-- include(../examples/error_01.json) -->
 ```   
 
@@ -268,7 +276,7 @@ Proper header `Content-Type: application/xml` MUST be present in the response of
 <h3>JSON Format</h3>
 
 Attribute names must be lowercase _snake_case_ names as specified in the RM specification for attributes. For example:
-```
+```json
 {"context": {"start_time": "2016-01-01T00:00Z"}}
 ```
 
@@ -277,7 +285,7 @@ One example is the `_type` attribute, which should be used to specify the RM typ
 (dynamic type is different from the static type).
 This follows same rule as for XML typing.
 The value of this attribute MUST be the uppercase class name from the RM specification. For example:
-```
+```json
 {
     "_type": "DV_TEXT",
     "value": "Hello world!"
