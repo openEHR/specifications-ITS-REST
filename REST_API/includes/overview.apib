@@ -33,11 +33,12 @@ Feedback should be provided the [Specification PR tracker](https://openehr.atlas
 
 ## Glossary and conventions
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" 
-in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" 
+in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC 2119](https://tools.ietf.org/html/rfc2119) 
+[RFC 8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
 Types defined by openEHR specification are always capitalized (e.g. EHR, COMPOSITION, VERSIONED_OBJECT, etc.) when used in this specification. 
-For a list of all available types or a particular type definition please refer to the [RM index](http://www.openehr.org/releases/RM/Release-1.0.3/docs/index#_class_index). 
+For a list of all available types or a particular type definition please refer to the [RM index](http://www.openehr.org/releases/RM/latest/docs/index#_class_index). 
 
 Throughout this specification, a set of short terms is being used as described below:
 
@@ -82,7 +83,7 @@ on which authentication scheme should be used by services and clients.
 
 
 ## Options and conformance [/]
-This `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a
+The `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a
 resource, or the capabilities of the service, without implying a resource action.
 Services SHOULD respond to this method with at least appropriate HTTP codes, headers and potentially with a payload 
 revealing more details themselves.
@@ -102,7 +103,7 @@ Expose available service endpoints and other details.
 
     + Headers
     
-            Allow: HEAD, GET, POST, PUT, DELETE, OPTIONS
+            Allow: GET, POST, PUT, DELETE, OPTIONS
         
     + Body 
         
