@@ -83,15 +83,13 @@ on which authentication scheme should be used by services and clients.
 
 
 ## Options and conformance [/]
+### OPTIONS
 The `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a
 resource, or the capabilities of the service, without implying a resource action.
 Services SHOULD respond to this method with at least appropriate HTTP codes, headers and potentially with a payload 
 revealing more details themselves.
 
 Another usecase for this method is related to exposing service capabilities for a conformance manifest.  
-
-### OPTIONS
-Expose available service endpoints and other details.
 
 + Request Inspect services and conformance
 
@@ -138,10 +136,7 @@ Below is an complex example of these request headers used in a PUT action to upd
 openEHR-VERSION.lifecycle_state: code_string="532"
 openEHR-AUDIT_DETAILS.change_type: code_string="251"
 openEHR-AUDIT_DETAILS.description: value="An updated composition contribution description"
-openEHR-AUDIT_DETAILS.committer: name="John Doe",
-        external_ref.id="BC8132EA-8F4A-11E7-BB31-BE2E44B06B34",
-        external_ref.namespace="demographic",
-        external_ref.type="PERSON"
+openEHR-AUDIT_DETAILS.committer: name="John Doe", external_ref.id="BC8132EA-8F4A-11E7-BB31-BE2E44B06B34", external_ref.namespace="demographic", external_ref.type="PERSON"
 ```
 None of these headers are mandatory, but whatever is provided it MUST be merged with the default VERSION and VERSION.audit_details attributes on commit runtime.
 
@@ -199,7 +194,6 @@ See more details on [representation details negotiation](#representation-details
 
 <h3>The `ETag` and `Last-Modified` headers</h3>
 According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
-
 > The "ETag" header field in a response provides the current entity-tag
     for the selected representation, as determined at the conclusion of
     handling the request.  An entity-tag is an opaque validator for
@@ -208,6 +202,9 @@ According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
     due to resource state changes over time, content negotiation
     resulting in multiple representations being valid at the same time,
     or both.
+```http
+ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+```
 
 The `Last-Modified` response HTTP header contains the datetime of the last modification of targeted resource
 which should be taken from VERSION.commit_audit.time_committed.value. 
