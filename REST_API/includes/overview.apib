@@ -33,11 +33,12 @@ Feedback should be provided the [Specification PR tracker](https://openehr.atlas
 
 ## Glossary and conventions
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" 
-in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" 
+in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC 2119](https://tools.ietf.org/html/rfc2119) 
+[RFC 8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
 Types defined by openEHR specification are always capitalized (e.g. EHR, COMPOSITION, VERSIONED_OBJECT, etc.) when used in this specification. 
-For a list of all available types or a particular type definition please refer to the [RM index](http://www.openehr.org/releases/RM/Release-1.0.3/docs/index#_class_index). 
+For a list of all available types or a particular type definition please refer to the [RM index](http://www.openehr.org/releases/RM/latest/docs/index#_class_index). 
 
 Throughout this specification, a set of short terms is being used as described below:
 
@@ -45,7 +46,8 @@ Throughout this specification, a set of short terms is being used as described b
 |------|-------------|
 |`ehr_id`| The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
 |`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
-|`version_uid`| The value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
+|`version_uid`| The value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2 |
+|`preceding_version_uid`| The value of a previous VERSION unique identifier, used usually for PUT or DELETE methods, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
 |`object_id`| A placeholder for either `versioned_object_uid` or `version_uid` identifier |
 |`version_at_time`| Time specifier used to retrieve the VERSION at specified time; the value is a timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
 |`timestamp`| A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
@@ -81,15 +83,13 @@ on which authentication scheme should be used by services and clients.
 
 
 ## Options and conformance [/]
-This `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a
+### OPTIONS
+The `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a
 resource, or the capabilities of the service, without implying a resource action.
 Services SHOULD respond to this method with at least appropriate HTTP codes, headers and potentially with a payload 
 revealing more details themselves.
 
 Another usecase for this method is related to exposing service capabilities for a conformance manifest.  
-
-### OPTIONS
-Expose available service endpoints and other details.
 
 + Request Inspect services and conformance
 
@@ -101,7 +101,7 @@ Expose available service endpoints and other details.
 
     + Headers
     
-            Allow: HEAD, GET, POST, PUT, DELETE, OPTIONS
+            Allow: GET, POST, PUT, DELETE, OPTIONS
         
     + Body 
         
@@ -117,33 +117,74 @@ Expose available service endpoints and other details.
 
 ## HTTP headers [/--headers]
 
-<h3>The `openEHR-commit-audit` headers</h3>
-::: note 
-tbd  
-:::
+This specification is using a few standard and custom HTTP headers that are described below.
+ 
+
+<h3>The `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` headers</h3>
+
+When it comes to committing content to an openEHR system, for all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.) the services are 
+[performing versioning](http://www.openehr.org/releases/RM/latest/docs/common/common.html#_change_control_package) under the hood.
+Thus, the 'native' way of committing content is to wrap it as VERSION and [use CONTRIBUTION](http://www.openehr.org/releases/RM/latest/docs/common/common.html#_contributions).
+
+But in order to keep things simpler and consistent, service MUST allow `PUT`, `POST` and `DELETE` methods also directly on these change-controlled resources.
+However, internally, these operations MUST be executed using the 'native' way with CONTRIBUTION.
+
+In order to allow clients to provide committal metadata, services MUST accept `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` request custom header. 
+For clients, it is RECOMMENDED to provision these headers based on [authentication and authorization](#design-considerations-authentication-and-authorization) runtime data.
+Below is an complex example of these request headers used in a PUT action to update a COMPOSITION:
+```http
+openEHR-VERSION.lifecycle_state: code_string="532"
+openEHR-AUDIT_DETAILS.change_type: code_string="251"
+openEHR-AUDIT_DETAILS.description: value="An updated composition contribution description"
+openEHR-AUDIT_DETAILS.committer: name="John Doe", external_ref.id="BC8132EA-8F4A-11E7-BB31-BE2E44B06B34", external_ref.namespace="demographic", external_ref.type="PERSON"
+```
+None of these headers are mandatory, but whatever is provided it MUST be merged with the default VERSION and VERSION.audit_details attributes on commit runtime.
+
+Below a list of `code_string` values and their meaning (taken from [openEHR terminology](https://raw.githubusercontent.com/openEHR/terminology/Release-2.0.0/openEHR_RM/en/openehr_terminology.xml)):
+
+| header                            | code | value / meaning  |
+|-----------------------------------|------|------------------| 
+| openEHR-VERSION.lifecycle_state   |  532 | complete         |
+| openEHR-VERSION.lifecycle_state   |  553 | incomplete       |
+| openEHR-VERSION.lifecycle_state   |  523 | deleted          |
+| openEHR-AUDIT_DETAILS.change_type |  249 | creation         |
+| openEHR-AUDIT_DETAILS.change_type |  250 | amendment        |
+| openEHR-AUDIT_DETAILS.change_type |  251 | modification     |
+| openEHR-AUDIT_DETAILS.change_type |  252 | synthesis        |
+| openEHR-AUDIT_DETAILS.change_type |  523 | deleted          |
+| openEHR-AUDIT_DETAILS.change_type |  666 | attestation      |
+| openEHR-AUDIT_DETAILS.change_type |  253 | unknown          |
 
 
-<h3>The `If-Match` header</h3>
+<h3>The `If-Match` header and accidental overwrites</h3>
 The use case of this is described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
-This HTTP header MUST be used by the clients to prevent accidental overwrites when multiple user
-agents might be acting in parallel on the same resource. It MUST be used together with all 
-request methods that are changing states or performing updates on a VERSIONED_OBJECT.
+```http
+If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+```
+This HTTP request header SHOULD be used by the clients to prevent accidental overwrites when multiple user
+agents might be acting in parallel on the same resource. This is only required by a small set of resources of this specification, 
+as in most of the other cases the `preceding_version_uid` path segment is instead required in order to prevent such accidental overwrites.
 In case a service receives this header and the condition evaluates to `false` it MUST respond with
 HTTP status code`412 Precondition Failed`.
 
 
 <h3>The `Location` header</h3>
-The `Location` response header indicates the resource location (URL). 
-According to [RFC 7231](https://tools.ietf.org/html/rfc7231#page-68), it is used to refer to a specific resource in relation to the response. 
+This response header indicates the resource location (URL). 
+According to [RFC 7231](https://tools.ietf.org/html/rfc7231#section-7.1.2), it is used to refer to a specific resource in relation to the response. 
 The type of relationship is defined by the combination of request method and status code semantics.
 Services MUST return this header whenever a create or update operation was performed, but it MAY
-return this header on other operation or action.
+return this header on other operation or action. Example:
+```http
+Location: http://www.openehr.org/api/v1/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+```
 See [representation details negotiation](#representation-details-negotiation) section
 for more details on how use this header.
 
-::: note 
-tbd `openehr-uri` response header (dv_ehr_uri) of the resources
-:::
+Services MAY generate resource URL as specified by DV_URI/DV_EHR_URI format, and if this feature is supported then the services 
+MUST use `openEHR-uri` response header. Example: 
+```http
+openEHR-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B
+```
 
 
 <h3>The `Prefer` header</h3>
@@ -151,9 +192,8 @@ This request header MAY be used by clients for resource representation negotiati
 See more details on [representation details negotiation](#representation-details-negotiation) section.
 
 
-<h3>The `ETag` header and cache handling</h3>
+<h3>The `ETag` and `Last-Modified` headers</h3>
 According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
-
 > The "ETag" header field in a response provides the current entity-tag
     for the selected representation, as determined at the conclusion of
     handling the request.  An entity-tag is an opaque validator for
@@ -162,8 +202,19 @@ According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
     due to resource state changes over time, content negotiation
     resulting in multiple representations being valid at the same time,
     or both.
+```http
+ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+```
 
-This header SHOULD be present in all responses that contains full representation of VERSION, VERSIONED_OBJECT or other resources
+The `Last-Modified` response HTTP header contains the datetime of the last modification of targeted resource
+which should be taken from VERSION.commit_audit.time_committed.value. 
+An example of such header value format is:
+```http
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+```
+See more details on [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.2).
+
+These headers SHOULD be present in all responses targeting VERSION, VERSIONED_OBJECT or other resources
 that have unique identifier for each of the state changed in time. The value of this header MAY be the
 unique identifier of that resource (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).
 
@@ -193,20 +244,13 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 Meaning of these codes may be further detailed (nuanced) in this specification by particular responses.
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.
 
-In case of errors or exceptions (HTTP codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
+In case of errors (HTTP codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
 Example:
 ::: note 
-tbd structure oauth message format
+some codes/messages https://github.com/ppazos/cabolabs-ehrserver/wiki/API-error-codes-and-messages and http://veratechnas1.synology.me:13606/InstanceValidator/rules.html
 :::
-```
-{
-  "message": "Error message",
-  "code": 90000,
-  "validationErrors": [
-    "error1",
-    "error2"
-  ]
-}
+```json
+<!-- include(../examples/error_01.json) -->
 ```   
 
 
@@ -228,9 +272,19 @@ Proper header `Content-Type: application/xml` MUST be present in the response of
 
 <h3>JSON Format</h3>
 
-Attribute names must be lowercase _snake_case_ names as specified in the RM specification for attributes. For example:
-```
-{"context": {"start_time": "2016-01-01T00:00Z"}}
+Attribute names must be lowercase _snake_case_ names as specified in the equivalent RM type. For example:
+```json
+{
+    "category": {
+        "value": "event",
+        "defining_code": {
+            "terminology_id": {
+                "value": "openehr"
+            },
+            "code_string": "433"
+        }
+    }
+}
 ```
 
 Metadata attributes (those that are not also RM attributes) will always be prefixed by a `'_'`.
@@ -238,7 +292,7 @@ One example is the `_type` attribute, which should be used to specify the RM typ
 (dynamic type is different from the static type).
 This follows same rule as for XML typing.
 The value of this attribute MUST be the uppercase class name from the RM specification. For example:
-```
+```json
 {
     "_type": "DV_TEXT",
     "value": "Hello world!"
@@ -288,4 +342,6 @@ MAY indicate that prefers response containing full or partial resource represent
 A typical case is a list of COMPOSITIONs part of an EHR, which, strictly following RM specification, should always return 
 list of OBJ_REF, but sometimes clients prefers to get COMPOSITIONs.
 Services that have this capability implemented SHOULD accept and honor `Prefer: resolve_refs` request header.
-
+```http
+Prefer: return=representation, resolve_refs
+```
