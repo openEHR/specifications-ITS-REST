@@ -1,4 +1,4 @@
-## Stored queries [/definitions/queries]
+## Stored queries [/definition/query]
 -- Alternative suggestion instead of aql.apib -- incomplete work in progress --
 
 Management of stored (registered) queries in the system.
@@ -9,27 +9,29 @@ All stored queries must have a name and version number using a pattern like:
 The pattern is inspired by the Archetype and Template IDs defined in
 `http://www.openehr.org/releases/RM/latest/docs/support/support.html#_identification_package` 
 
-    *   `reverse-internet-id` identifying the query-authoring organization (and possibly sublevels within
-        that organization). If omitted it will be defaulted the opsystem id
-    *   `queryname` will be URL-encoded in the REST API urls to follow https://tools.ietf.org/html/rfc3986
-        so if you want easily 
-    *   `{MAJOR}.{MINOR}.{PATCH}` is a hierarchical verson number following the http://semver.org/ conventions
+*   `reverse-internet-id` identifying the query-authoring organization (and possibly sublevels within
+    that organization). If omitted it will use default system id
+*   `queryname` will be URL-encoded in the REST API urls to follow https://tools.ietf.org/html/rfc3986
+    so if you want easily
+*   `{version}` is a hierarchical version number following the http://semver.org/ conventions
 
 Because of audit reasons, queries and query versions are never deleted but can be set to `unlisted` if found to be unsuitable for use.
 
-Management of stored queries is done using resources starting /definitions/queries described here.
+Management of stored queries is done using resources starting /definition/query described here.
 
-Note that _execution_ of queries is done using the resource:  `/query/{namecpaced-query-name}/{major}{.minor,patch}{;mode,offset,fetch}{?dynamic-query-parameters*}` 
+Note that _execution_ of queries is done using the resource:  `/query/{namespaced-query-name}/{major}{.minor,patch}{?offset,fetch,dynamic-query-parameters*}`
 
-### List named queries [GET /definitions/queries/{reverse-internet-id}::{queryname}]
+### List named queries [GET /definition/query/{reverse-internet-id}::{queryname}]
+
 The parameters are optional. if omitted they are treated as "wildcards" in the search
+
 Examples:
-    *   `GET /definitions/queries/org.example.department-x::` will list all versioins of all 
-        queries authored by `org.example.department-x`
-    *   `GET /definitions/queries/::diabetes-patient-overview` will list all versioins of all 
-        queries named `diabetes-patient-overview` irrespective of authoring organization. 
-    *   `GET /definitions/queries/org.example.department-x::diabetes-patient-overview` will 
-        list all versioins of the query named `diabetes-patient-overview` authored by `org.example.department-x`
+*   `GET /definition/query/org.example.department-x::` will list all versions of all
+    queries authored by `org.example.department-x`
+*   `GET /definition/query/::diabetes-patient-overview` will list all versions of all
+    queries named `diabetes-patient-overview` irrespective of authoring organization.
+*   `GET /definition/query/org.example.department-x::diabetes-patient-overview` will
+    list all versions of the query named `diabetes-patient-overview` authored by `org.example.department-x`
 
 + Parameters
     +   `reverse-internet-id` (string, optional)
@@ -43,29 +45,33 @@ Examples:
 
             [
                 {
-                    "id": "org.example.department-x.test::diabetes-patient-overview.v1.1.0",
+                    "name": "org.example.department-x.test::diabetes-patient-overview",
+                    "type": "aql",
+                    "version": "1.0.1",
                     "saved": "2017-07-16T19:20:30.45+01:00",
                 },
                 {
-                    "id": "org.example.department-x.test::diabetes-patient-overview.v1.0.1",
+                    "name": "org.example.department-x.test::diabetes-patient-overview",
+                    "type": "aql",
+                    "version": "3.1.7",
                     "saved": "2017-06-13T09:37:20.53+01:00",
                 }
             ]
 
 
 
-### Store a query [PUT /query/{reverse-internet-id}{double-colon}{query-name}/{major}{.minor,patch}{?type}]
+### Store a query [PUT /query/{reverse-internet-id}::{query-name}/{version}{?type}]
 
-TBD: Determmine request types (json, form-url-encoded etc)
+TBD: Determine request types (json, form-url-encoded etc)
 TBD: Determine if/how we provide simple post-processing of XML and JSON AQL result sets - see suggested post-process-json and post-process-xml
 TODO: Add form-url-encoded and XML encoding alternatives for to request body in addition to JSON...
 
 + Parameters
 
     +   `reverse-internet-id` (string, optional) 
-    +   query-name: (string) avoid using `:` and `/` in the name
-    +   `{MAJOR}.{MINOR}.{PATCH}` is a hierarchical verson number following the http://semver.org/ conventions
-    +   type: `AQL` (string) - indicating the query language/type (presently usually AQL, but future additions possible) 
+    +   `query-name` (string) - avoid using `:` and `/` in the name
+    +   version - a hierarchical version number following the http://semver.org/ conventions
+    +   type (string, optional) - indicating the query language/type (presently AQL, but future additions possible)
  
  
 + Request
@@ -83,23 +89,33 @@ TODO: Add form-url-encoded and XML encoding alternatives for to request body in 
 
 + Response 200
 
-            `200 OK` 
+    `200 OK` query was successfully stored.
 
- TODO: add conflict reponse code           
+    + Body
 
-+ Response 400 
+    + Headers
+
+            Location: /query/{reverse-internet-id}::{query-name}/{version}
+
++ Response 400
 
     `400 Bad Request` is returned when the server was unable to stored QL, could be due to incorrect request body (could not be parsed, etc)
 
     + Body 
 
-### Get stored query and info/metadata [GET /query/{reverse-internet-id}{double-colon}{query-name}/{major}{.minor,patch}{]
++ Response 409
+
+    `409 Conflict` is returned when a query with the given name and version already exists on the server.
+
+    + Body
+
+### Get stored query and info/metadata [GET /query/{reverse-internet-id}::{query-name}/{version}]
 
 + Parameters
     
     +   `reverse-internet-id` (string, optional) 
-    +   query-name: (string) avoid using `:` and `/` in the name
-    +   `{MAJOR}.{MINOR}.{PATCH}` is a hierarchical verson number following the http://semver.org/ conventions
+    +   `query-name` (string) - avoid using `:` and `/` in the name
+    +   version (string) - is a hierarchical version number following the http://semver.org/ conventions
 
 + Response 200 (application/json)
     `200 OK` is returned when the stored AQL is successfully retrieved.
@@ -110,8 +126,10 @@ TODO: Add form-url-encoded and XML encoding alternatives for to request body in 
     + Body 
 
                 {
-                    "id": "sha-1/fd625944dd9e2525630f0975d3dceb23f6825123",
-                    "type" : "AQL",
+                    "name": "org.example.department-x.test::diabetes-patient-overview",
+                    "type": "aql",
+                    "version": "1.0.1",
+                    "saved": "2017-07-16T19:20:30.45+01:00",
                     "q": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[:compositionid] WHERE c/name/value = 'Vitals'",
                     "static-parameter-example" : "Lorem Ipsum 1",
                     "uri-template": "/{compositionid}",
@@ -120,7 +138,8 @@ TODO: Add form-url-encoded and XML encoding alternatives for to request body in 
                 }
 
 + Response 404 (application/json)
-    `404 Not Found` is returned when the stored AQL with supplied id doesn't exist.
+
+    `404 Not Found` is returned when the stored AQL with supplied name and version doesn't exist.
 
     + Body
 
