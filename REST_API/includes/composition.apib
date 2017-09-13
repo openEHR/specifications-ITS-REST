@@ -52,7 +52,7 @@ This resource is related to [COMPOSITION](http://www.openehr.org/releases/RM/lat
 
 + Response 404
 
-    No EHR with the supplied `ehr_id`.
+    EHR with the supplied `ehr_id` doesn't exists.
 
     + Body
 
@@ -169,7 +169,7 @@ If the request body already contains a composition uid it must match the
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `object_id`.
+    EHR with the supplied `ehr_id` doesn't exists or COMPOSITION with the supplied `preceding_version_uid` doesn't exists.
 
     + Body
 
@@ -229,7 +229,7 @@ If the request body already contains a composition uid it must match the
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `preceding_version_uid`.
+    EHR with the supplied `ehr_id` doesn't exists or COMPOSITION with the supplied `preceding_version_uid` doesn't exists.
 
     + Body
 
@@ -273,7 +273,7 @@ If the request body already contains a composition uid it must match the
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `version_uid`.
+    EHR with the supplied `ehr_id` doesn't exists or COMPOSITION with the supplied `version_uid` doesn't exists.
 
     + Body
 
@@ -311,8 +311,8 @@ If the request body already contains a composition uid it must match the
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or
-    no COMPOSITION at specified `version_at_time` time.
+    EHR with the supplied `ehr_id` doesn't exists or VERSIONED_COMPOSITION with the supplied `versioned_object_uid` doesn't exists
+    or COMPOSITION at specified `version_at_time` time doesn't exists.
 
     + Body
 
@@ -348,7 +348,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid`.
+    EHR with the supplied `ehr_id` doesn't exists or VERSIONED_COMPOSITION with the supplied `versioned_object_uid` doesn't exists.
 
     + Body
 
@@ -383,7 +383,8 @@ Gets a complete VERSIONED_COMPOSITION.
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or no VERSION with the supplied `versione_uid`.
+    EHR with the supplied `ehr_id` doesn't exists or VERSIONED_COMPOSITION with the supplied `versioned_object_uid` doesn't exists
+    or VERSION with the supplied `versione_uid` doesn't exists.
 
     + Body
 
@@ -422,6 +423,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or no VERSION with the supplied `versione_uid`.
+    EHR with the supplied `ehr_id` doesn't exists or VERSIONED_COMPOSITION with the supplied `versioned_object_uid` doesn't exists
+    or VERSION with the supplied `versione_uid` doesn't exists.
 
     + Body
