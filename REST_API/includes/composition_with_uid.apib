@@ -53,7 +53,7 @@ This functionality is separated to an separate path to not mix the different mod
 
 + Response 404
 
-    No EHR with the supplied `ehr_id`.
+    EHR with the supplied `ehr_id` doesn't exists.
 
     + Body
 
@@ -170,7 +170,7 @@ The Composition in the request body MUST contain  a composition uid and it  MUST
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `object_id`.
+    EHR with the supplied `ehr_id` doesn't exists or COMPOSITION with the supplied `preceding_version_uid` doesn't exists.
 
     + Body
 
@@ -233,7 +233,7 @@ The Composition in the request body MUST contain  a composition uid and it  MUST
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `preceding_version_uid`.
+    EHR with the supplied `ehr_id` doesn't exists or COMPOSITION with the supplied `preceding_version_uid` doesn't exists.
 
     + Body
 
@@ -277,7 +277,7 @@ The Composition in the request body MUST contain  a composition uid and it  MUST
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `version_uid`.
+    EHR with the supplied `ehr_id` doesn't exists or COMPOSITION with the supplied `version_uid` doesn't exists.
 
     + Body
 
@@ -315,7 +315,7 @@ The Composition in the request body MUST contain  a composition uid and it  MUST
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or
-    no COMPOSITION at specified `version_at_time` time.
+    EHR with the supplied `ehr_id` doesn't exists or VERSIONED_COMPOSITION with the supplied `versioned_object_uid` doesn't exists
+    or COMPOSITION at specified `version_at_time` time doesn't exists.
 
     + Body
