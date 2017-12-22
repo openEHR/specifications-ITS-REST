@@ -1,5 +1,5 @@
 ## EHR_STATUS [/ehr/{ehr_id}/ehr_status]
-Management of EHR_STATUS resources.
+Management of EHR_STATUSes.
 
 ### Get EHR_STATUS version by time [GET /ehr/{ehr_id}/ehr_status{?version_at_time}]
 
@@ -161,7 +161,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 + Response 200
 
     `200 OK` return when `EHR_STATUS` resource is successfully updated. 
-    The updated `EHR_STATUS` resource is returned in the body when `prefer` header value is `return=representation`.
+    The updated `EHR_STATUS` resource is returned in the body when `Prefer` header value is `return=representation`.
 
     + Headers
 
@@ -220,7 +220,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
 + Response 412
 
-    `412 Precondition Failed` is return when `Match-If` header doesn't match the latest trunk version.
+    `412 Precondition Failed` is returned when `Match-If` header doesn't match the latest trunk version.
     Returns latest trunk version in the `Location` and `ETag` headers.
 
     + Headers
@@ -232,7 +232,8 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
 
 ## VERSIONED_EHR_STATUS [/ehr/{ehr_id}/versioned_ehr_status]
-Management of `VERSIONED_EHR_STATUS` resources.
+Management of VERSIONED_EHR_STATUSes.
+
 
 ### Get versioned EHR_STATUS [GET /ehr/{ehr_id}/versioned_ehr_status]
 

@@ -1,14 +1,14 @@
 ## EHR [/ehr]
 
-Management of EHR resources.
+Management of EHRs.
 
 ### Create EHR [POST /ehr]
 
 Create a new `EHR` with an auto-generated identifier.
 Request body may contain `ehr_status` attribute. When provided it
 will also be created as part of the same request,
-otherwise default resources will be created automatically by the service.
-Default EHR_STATUS will have the following defaults:
+otherwise default resources will be created automatically by the service
+with the following defaults:
 - `is_queryable`: true
 - `is_modifiable`: true
 
@@ -69,25 +69,31 @@ All other attributes will be left empty (null).
 
 + Response 400
 
-    `400 Bad Request` is returned when unable to parse the request body if provided or when a subject id,
-    namespace pair supplied is already present in the system.
+    `400 Bad Request` is returned when the request body (if provided) could not be parsed.
+
+    + Body
+
++ Response 409
+
+    `409 Conflict` Unable to create a new EHR due to a conflict with an already existing EHR
+    with the same subject id, namespace pair.
 
     + Body
 
 
 ### Create EHR with id [PUT /ehr/{ehr_id}]
 
-Create new `EHR` with the specified EHR identifier. 
+Create a new `EHR` with the specified EHR identifier. 
 Request body may contain `ehr_status` attribute. When provided it
 will also be created as part of the same request,
-otherwise default resources will be created automatically by the service.
-Default EHR_STATUS will have the following defaults:
+otherwise default resources will be created automatically by the service
+with the following defaults:
 - `is_queryable`: true
 - `is_modifiable`: true
 
 All other attributes will be left empty (null).
 
-It is recommended that the supplied `ehr_id` is a UUID, but others formats are also
+It is recommended that the supplied `ehr_id` is a UUID, but other formats are also
 allowed (http://www.openehr.org/releases/RM/latest/docs/support/support.html#_uid_based_id_class)
 
 + Parameters
@@ -129,7 +135,7 @@ allowed (http://www.openehr.org/releases/RM/latest/docs/support/support.html#_ui
 
 + Response 400
 
-    `400 Bad Request` is returned when unable to parse the request body if provided or when supplied `ehr_id`
+    `400 Bad Request` is returned when unable to parse the request body (if provided) or when supplied `ehr_id`
     doesn't follow the specification (http://www.openehr.org/releases/RM/latest/docs/support/support.html#_uid_based_id_class).
 
     + Body
@@ -142,7 +148,7 @@ allowed (http://www.openehr.org/releases/RM/latest/docs/support/support.html#_ui
     + Body
 
 
-### Get EHR by id [GET /ehr/{ehr_id}]
+### Get EHR summary by id [GET /ehr/{ehr_id}]
 Retrieve the EHR with the specified `ehr_id`.
 
 + Parameters
@@ -170,7 +176,7 @@ Retrieve the EHR with the specified `ehr_id`.
     + Body
 
 
-### Get EHR by subject id [GET /ehr{?subject_id,subject_namespace}]
+### Get EHR summary by subject id [GET /ehr{?subject_id,subject_namespace}]
 Retrieve the EHR with the specified `subject_id` and `subject_namespace`.
 
 + Parameters

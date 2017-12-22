@@ -2,29 +2,30 @@
 
 The query execution resources roughly adhere to following patterns
 
-*   Ad-hoc queries: `/query/aql{?q,dynamic-query-parameters*,offset,fetch}`
-    used for executing non-stored AQL-queries, e.g. useful for test and development.
+### Ad-hoc queries: `/query/aql{?q,dynamic-query-parameters*,offset,fetch}`
 
-    Examples:
+Used for executing non-stored AQL-queries, e.g. useful for test and development.
 
-    *   `GET /query/aql?q=SELECT...`
-    *   `POST /query/aql`
+Examples:
+
+*   `GET /query/aql?q=SELECT...`
+*   `POST /query/aql`
 
 
-*   Stored queries
+### Stored queries
 
-    These can use namespaces in order to separate queries used by different domains (apps), etc.
-    In this case query name can contain a namespace prefix, suggested to be formatted as a reverse internet id (for example `org.openehr`).
-    Stored queries SHOULD also be versioned in order to allow using several different versions of the same query.
-    SEMVER versions are suggested (major.minor.patch).
+These can use namespaces in order to separate queries used by different domains (apps), etc.
+In this case query name can contain a namespace prefix, suggested to be formatted as a reverse internet id (for example `org.openehr`).
+Stored queries SHOULD also be versioned in order to allow using several different versions of the same query.
+SEMVER versions are suggested (major.minor.patch).
 
-    Examples:
+Examples:
 
-    *   `GET /query/diabetes-patient-overview/1?fetch=10&Hba1c-limit=6` - if there is no `{reverse-internet-id}::` pattern in the uri, then use the system's
-        configured default reverse-internet-id is assumed
-    *   `GET /query/org.example.departmentx.test::diabetes-patient-overview?Hba1c-limit=6` - if no version supplied then the latest version will be used
-    *   `GET /query/diabetes-patient-overview/1.0.2?Hba1c-limit=6&latest-glucose-max=10` - query with exact version number.
-    *   `POST /query/org.example.departmentx.test::diabetes-patient-overview/1.0.2`
+*   `GET /query/diabetes-patient-overview/1?fetch=10&Hba1c-limit=6` - if there is no `{reverse-internet-id}::` pattern in the uri, then use the system's
+    configured default reverse-internet-id is assumed
+*   `GET /query/org.example.departmentx.test::diabetes-patient-overview?Hba1c-limit=6` - if no version supplied then the latest version will be used
+*   `GET /query/diabetes-patient-overview/1.0.2?Hba1c-limit=6&latest-glucose-max=10` - query with exact version number.
+*   `POST /query/org.example.departmentx.test::diabetes-patient-overview/1.0.2`
 
 The {query-parameters*} part of the path is used for dynamic parameters in the `GET /query/{qualified-query-name}` described below.
 
@@ -35,7 +36,7 @@ https://www.talisman.org/~erlkonig/misc/lunatech%5Ewhat-every-webdev-must-know-a
 allow both `::` and `%3A%3A` for the `{double-colon}` part described above but store/retrieve
 them in a single consistent way.
 
-See API-description of `/definition/query` for more information regarding naming, versioning etc.
+See API-description of `/definition/query` for more information regarding naming, versioning, etc.
 
 #### openEHR-EHR-id http request header
 
@@ -64,10 +65,10 @@ MAY contain a list of several ehr_ids or be unconstrained regarding ehr_id (e.g.
 The `offset` and `fetch` parameters can be used for "paging", for example
 `GET /query/diabetes-patient-overview?offset=20&fetch=10&Hba1c-limit=6` could get the third
 "page" of results in a 10-results per page view. Please note that the query REST calls are
-"stateless" on the serverside, so the server always presents a selection from the "current"
+"stateless", so the server always presents a selection from the "current"
 response at the time of calling the query resource.
 
-If there have been changes to the data like  additions or deletions between for example the
+If there have been changes to the data such as additions or deletions between for example the
 time of query for the first (?offset=0&fetch=10) and the time of query for the second (?offset=10&fetch=10)
 "page" then some of the results may be duplicated or missed unless the requesting client
 handles detection of this. Query result analysis and row identification and/or a properly implemented
@@ -80,7 +81,7 @@ See the http headers `Range` https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.
 and `Content-Range` https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.16
 
 
-### Execute ad-hoc (non-stored) AQL query [GET /query/aql{?q,dynamic_parameter,offset,fetch}]
+### Execute AQL query [GET /query/aql{?q,dynamic_parameter,offset,fetch}]
 
 Warning: URIs in practice have a length restriction. Long query definitions `q` and many long
 `dynamic-query-parameters` may add up to reach that limit, thus we recommend using the

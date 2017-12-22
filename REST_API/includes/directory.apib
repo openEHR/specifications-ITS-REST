@@ -1,12 +1,12 @@
 ## Directory [/ehr/{ehr_id}/directory]
 
-### Create directory [POST /ehr/{ehr_id}/directory{?version_lifecycle_state,preceding_version_uid}]
+### Create directory [POST /ehr/{ehr_id}/directory]
+
+Creates a new `FOLDER` associated with the `ehr_id`.
 
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + version_lifecycle_state (string) - The version Lifecycle State (532=complete, 553=incomplete, 523=deleted)
-    + preceding_version_uid (string, optional) - This will result in a new Folder based on the preceding Folder version.
 
 + Request (application/json)
 
@@ -55,11 +55,19 @@
 
 ### Update directory [PUT /ehr/{ehr_id}/directory]
 
+Update `FOLDER` associated with the specified `ehr_id`.
+The existing latest `version_uid` of `FOLDER` resource must be specified in the `Match-If` header.
+
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
 
 + Request (application/json)
+
+    + Header
+
+            Match-If: {preceding_version_uid}
+            Prefer: return={representation|minimal}
 
     + Body
 
@@ -67,11 +75,6 @@
                 "items": [...],
                 "folders": [{}]
             }
-
-    + Headers
-
-            Match-If: {preceding_version_uid}
-            Prefer: return={representation|minimal}
 
 + Response 200 (application/json)
 
@@ -126,6 +129,9 @@
 
 ### Delete directory [DELETE /ehr/{ehr_id}/directory]
 
+Delete `FOLDER` associated with the specified `ehr_id`.
+The existing latest `version_uid` of `FOLDER` resource must be specified in the `Match-If` header.
+
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
@@ -172,7 +178,7 @@
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
     + version_uid (string) - version UID
-    + path (string, optional) - path to a Folder
+    + path (string, optional) - path to a sub-folder
 
 + Response 200 (application/json)
 
@@ -202,7 +208,7 @@
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `version_at_time` (string, optional) - A timestamp in the ISO8601 format
+    + `version_at_time` (string, optional) - A timestamp in the extended ISO8601 format
     + path (string, optional) - path to a sub-folder
 
 + Response 200 (application/json)

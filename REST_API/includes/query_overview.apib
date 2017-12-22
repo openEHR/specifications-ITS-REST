@@ -1,13 +1,14 @@
 # Group Query Requirements
 
 ## Purpose 
-This specification describes the service endpoints and datamodels used when querying an openEHR system. 
 
-AQL (Archetype Query Language) is the primary query language. The AQL specification is found here: http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html 
+This specification describes the service endpoints and data-models used when querying an openEHR system. 
 
-The endpoints are designed to be extended with other and not yet defined query languages. The returning `response` should always be the same structure as defined below. 
+AQL [Archetype Query Language](#http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html) is the primary query language. 
 
-The query `response` may also be used for other endpoints in the openEHR REST API. I.e. there might be specified filter/query parameter on Composition resources. These operations will return the `response`structure defined here. 
+The query `response` may also be used for other endpoints in the openEHR REST API. 
+I.e. there might be specified filter/query parameter on Composition resources. These operations will return the `response`
+structure defined here. 
 
 ## Functional requirements
 
@@ -20,7 +21,8 @@ The following is an outline of the functional requirements which this specificat
 - Stored queries
 
 ### Query functions 
-Query functions are operators/functions which tunes and modifies the execution of a specific query. The following types of query functions are identified:
+
+Query functions are operators/functions which tune and modify the execution of a specific query. The following types of query functions are identified:
 
 - Parameters 
 - Scope 
@@ -33,31 +35,35 @@ Query functions are operators/functions which tunes and modifies the execution o
 - Period(s) of care
 - Workflow 
 
-:::note 
-Parameters and Scope might be used in combination. One example might be: 
-_I want to query all Temperature entries created after last saturday, and which where registered to a specific Episode of care._ 
-:::
+> Parameters and Scope might be used in combination. One example might be: 
+> _I want to query all Temperature entries created after last saturday, and which where registered to a specific Episode of care._ 
 
 ### Single EHR queries
-A common use-case is to execute queries within a specific EHR. For single EHR queries the endpoint and resources will be as much aligned to the RM classes as possible. That's why the `ehr_id` is added to the path for these queries.
+A common use-case is to execute queries within a specific EHR. 
+For single EHR queries the endpoint and resources will be as much aligned to the RM classes as possible. 
+That's why the `ehr_id` is added to the path for these queries.
 
 ### Population queries
 Population queries are queries which are executed on several EHRs in the same request. Examples of use-cases will be: 
 
 - Ward lists 
 - Explore correlations between patients in an pandemic situation
-- research, e.g. epidemiology
+- Research, e.g. epidemiology, population health
 
 
 ### Batch queries
-Most application will present different data points in the same screen. The datapoints will be collected from different archetypes committed in multiple compositions. To supplement this kind of use-cases the endpoint must provide batch query operations. 
+Most application will present different data points in the same screen. 
+The data-points will be collected from different archetypes committed in multiple compositions. 
+To supplement this kind of use-cases the endpoint must provide batch query operations. 
 
-Batch query is an operation (e.g. request) where the client submits several queries to be executed within the same operation. The `correlation_id` is used to correlate the queries provided by the client with specific results in the `RESULT_SET`. 
+Batch query is an operation (e.g. request) where the client submits several queries to be executed within the same operation. 
+The `correlation_id` is used to correlate the queries provided by the client with specific results in the `RESULT_SET`. 
 
 ### Stored queries 
-Stored queries are queries which are present on the server pre-request time. The queries will expose mandatory and optional parameters for the clients. 
+Stored queries are queries which are present on the server pre-request time. 
+The queries will expose mandatory and optional parameters for the clients. 
 
-## Non- functional requirements
+## Non-functional requirements
 
 Some of the non-functional requirements will be: 
 
