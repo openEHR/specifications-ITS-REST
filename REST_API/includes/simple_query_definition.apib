@@ -1,0 +1,119 @@
+## Stored queries [/definition/query]
+
+Management of stored (registered) queries in the system.
+
+Stored queries must have a name and an optional version number.
+Implementers can choose a schema for query names, such as `<namespace>::<query-name>`, 
+this way queries can be separated by domain, etc. Version numbers, if used must be
+in SEMVER style (major.minor.patch). If only a partial version is supplied or version is not supplied at all, the
+system must use the latest version with the supplied prefix. 
+
+Management of stored queries is done using resources starting /definition/query described here.
+
+### List stored queries [GET /definition/query/{qualified-query-name}]
+
+Parameter `qualified-query-name` is optional. If omitted they are treated as “wildcards” in the search
+
+Examples:
+*   `GET /definition/query/org.openehr` will list all versions of all
+    queries with names starting with `org.openehr`
+*   `GET /definition/query/org.openehr::compositions` will
+    list all versions of the query named `org.openehr::compositions`
+
++ Parameters
+    +   `qualified-query-name` (string)
+
++ Response 200 (application/json) 
+
+    `200 OK` is returned when the resources are successfully retrieved.
+
+    + Body
+
+            [
+                {
+                    "name": "org.openehr::compositions",
+                    "type": "aql",
+                    "version": "1.0.1",
+                    "saved": "2017-07-16T19:20:30.45+01:00",
+                },
+                {
+                    "name": "org.openehr::compositions",
+                    "type": "aql",
+                    "version": "3.1.7",
+                    "saved": "2017-06-13T09:37:20.53+01:00",
+                }
+            ]
+
+
+
+### Store a query [PUT /query/{qualified-query-name}/{version}{?type}]
+
+Store a new query on the system.
+
++ Parameters
+
+    +   `qualified-query-name` (string, required) - query name
+    +   version - version number following the http://semver.org/ conventions
+    +   type (string, optional) - indicating the query language/type (presently AQL, but future additions possible)
+ 
+ 
++ Request
+
+    + Body
+
+            {
+                "q": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]",
+                "dynamic-parameter-example" : "Lorem Ipsum 2"
+            }
+
++ Response 200
+
+    `200 OK` query was successfully stored.
+
+    + Body
+
+    + Headers
+
+            Location: /query/{qualified-query-name}/{version}
+
++ Response 400
+
+    `400 Bad Request` is returned when the server was unable to store the query. 
+    Could be due to incorrect request body (could not be parsed, etc), unknown query type, etc.
+
+    + Body 
+
++ Response 409
+
+    `409 Conflict` is returned when a query with the given name and version already exists on the server.
+
+    + Body
+
+### Get stored query and info/metadata [GET /query/{qualified-query-name}/{version}]
+
++ Parameters
+    
+    +   `qualified-query-name` (string) - query name
+    +   version (string) - version number following the http://semver.org/ conventions
+
++ Response 200 (application/json)
+
+    `200 OK` is returned when the stored AQL is successfully retrieved.
+    
+    + Body 
+
+                {
+                    "name": "org.openehr::compositions",
+                    "type": "aql",
+                    "version": "1.0.1",
+                    "saved": "2017-07-16T19:20:30.45+01:00",
+                    "q": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[:compositionid] WHERE c/name/value = 'Vitals'"
+                }
+
++ Response 404 (application/json)
+
+    `404 Not Found` is returned when the stored AQL with supplied name and version doesn't exist.
+
+    + Body
+
+
