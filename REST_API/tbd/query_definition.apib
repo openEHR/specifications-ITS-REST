@@ -1,0 +1,146 @@
+## Stored queries [/definition/query]
+-- Alternative suggestion instead of aql.apib -- incomplete work in progress --
+
+Management of stored (registered) queries in the system.
+
+All stored queries must have a name and version number using a pattern like:
+`{reverse-internet-id}::{queryname}.v{MAJOR}.{MINOR}.{PATCH}` for example
+`org.example.department-x.test::diabetes-patient-overview.v1.8.3`
+The pattern is inspired by the Archetype and Template IDs defined in
+`http://www.openehr.org/releases/RM/latest/docs/support/support.html#_identification_package` 
+
+*   `reverse-internet-id` identifying the query-authoring organization (and possibly sublevels within
+    that organization). If omitted it will use default system id
+*   `queryname` will be URL-encoded in the REST API urls to follow https://tools.ietf.org/html/rfc3986
+    so if you want easily
+*   `{version}` is a hierarchical version number following the http://semver.org/ conventions
+
+Because of audit reasons, queries and query versions are never deleted but can be set to `unlisted` if found to be unsuitable for use.
+
+Management of stored queries is done using resources starting /definition/query described here.
+
+Note that _execution_ of queries is done using the resource:  `/query/{namespaced-query-name}/{major}{.minor,patch}{?offset,fetch,dynamic-query-parameters*}`
+
+### List named queries [GET /definition/query/{reverse-internet-id}::{queryname}]
+
+The parameters are optional. if omitted they are treated as "wildcards" in the search
+
+Examples:
+*   `GET /definition/query/org.example.department-x::` will list all versions of all
+    queries authored by `org.example.department-x`
+*   `GET /definition/query/::diabetes-patient-overview` will list all versions of all
+    queries named `diabetes-patient-overview` irrespective of authoring organization.
+*   `GET /definition/query/org.example.department-x::diabetes-patient-overview` will
+    list all versions of the query named `diabetes-patient-overview` authored by `org.example.department-x`
+
++ Parameters
+    +   `reverse-internet-id` (string, optional)
+    +   `queryname` (string, optional)
+
++ Response 200 (application/json) 
+
+    `200 OK` is returned when the resources are successfully retrieved.
+
+    + Body
+
+            [
+                {
+                    "name": "org.example.department-x.test::diabetes-patient-overview",
+                    "type": "aql",
+                    "version": "1.0.1",
+                    "saved": "2017-07-16T19:20:30.45+01:00",
+                },
+                {
+                    "name": "org.example.department-x.test::diabetes-patient-overview",
+                    "type": "aql",
+                    "version": "3.1.7",
+                    "saved": "2017-06-13T09:37:20.53+01:00",
+                }
+            ]
+
+
+
+### Store a query [PUT /query/{reverse-internet-id}::{query-name}/{version}{?type}]
+
+TBD: Determine request types (json, form-url-encoded etc)
+TBD: Determine if/how we provide simple post-processing of XML and JSON AQL result sets - see suggested post-process-json and post-process-xml
+TODO: Add form-url-encoded and XML encoding alternatives for to request body in addition to JSON...
+
++ Parameters
+
+    +   `reverse-internet-id` (string, optional) 
+    +   `query-name` (string) - avoid using `:` and `/` in the name
+    +   version - a hierarchical version number following the http://semver.org/ conventions
+    +   type (string, optional) - indicating the query language/type (presently AQL, but future additions possible)
+ 
+ 
++ Request
+
+    + Body
+
+            {
+                "q": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.laboratory_test.v0]",
+                "static-parameter-example" : "Lorem Ipsum 1",
+                "dynamic-parameter-example" : "Lorem Ipsum 2", // TODO: add an underscore in front of dynamic-parameter-example in a way that does non break apib
+                "uri-template" : "{observation-archetype-id}/{some-other-path-parameter-example}",
+                "post-process-json" : "/definition/scripts/js/laboratory_test_view.js"
+                "post-process-xml" : "/definition/scripts/xslt/laboratory_test_view.xslt"
+            }
+
++ Response 200
+
+    `200 OK` query was successfully stored.
+
+    + Body
+
+    + Headers
+
+            Location: /query/{reverse-internet-id}::{query-name}/{version}
+
++ Response 400
+
+    `400 Bad Request` is returned when the server was unable to stored QL, could be due to incorrect request body (could not be parsed, etc)
+
+    + Body 
+
++ Response 409
+
+    `409 Conflict` is returned when a query with the given name and version already exists on the server.
+
+    + Body
+
+### Get stored query and info/metadata [GET /query/{reverse-internet-id}::{query-name}/{version}]
+
++ Parameters
+    
+    +   `reverse-internet-id` (string, optional) 
+    +   `query-name` (string) - avoid using `:` and `/` in the name
+    +   version (string) - is a hierarchical version number following the http://semver.org/ conventions
+
++ Response 200 (application/json)
+    `200 OK` is returned when the stored AQL is successfully retrieved.
+    
+    TBD: add more metadata in response regarding creator, creation time, static parameters (including e.g. uri-template if set)
+    TBD: determine if  usage statistics (hit counter) etc should be returned in some standardized way. If so, then here or somewhere under /query?
+ 
+    + Body 
+
+                {
+                    "name": "org.example.department-x.test::diabetes-patient-overview",
+                    "type": "aql",
+                    "version": "1.0.1",
+                    "saved": "2017-07-16T19:20:30.45+01:00",
+                    "q": "SELECT c FROM EHR e[ehr_id/value=:ehr_id] CONTAINS COMPOSITION c[:compositionid] WHERE c/name/value = 'Vitals'",
+                    "static-parameter-example" : "Lorem Ipsum 1",
+                    "uri-template": "/{compositionid}",
+                    "post-process-json" : "/definition/scripts/js/laboratory_test_view.js",
+                    "post-process-xml" : "/definition/scripts/xslt/laboratory_test_view.xslt"
+                }
+
++ Response 404 (application/json)
+
+    `404 Not Found` is returned when the stored AQL with supplied name and version doesn't exist.
+
+    + Body
+
+

@@ -1,0 +1,255 @@
+## Execute Query [/query]
+
+The query execution resources roughly adhere to following patterns
+
+### Ad-hoc queries: `/query/aql{?q,dynamic-query-parameters*,offset,fetch}`
+
+Used for executing non-stored AQL-queries, e.g. useful for test and development.
+
+Examples:
+
+*   `GET /query/aql?q=SELECT...`
+*   `POST /query/aql`
+
+
+### Stored queries
+
+These can use namespaces in order to separate queries used by different domains (apps), etc.
+In this case query name can contain a namespace prefix, suggested to be formatted as a reverse internet id (for example `org.openehr`).
+Stored queries SHOULD also be versioned in order to allow using several different versions of the same query.
+SEMVER versions are suggested (major.minor.patch).
+
+Examples:
+
+*   `GET /query/diabetes-patient-overview/1?fetch=10&Hba1c-limit=6` - if there is no `{reverse-internet-id}::` pattern in the uri, then use the system's
+    configured default reverse-internet-id is assumed
+*   `GET /query/org.example.departmentx.test::diabetes-patient-overview?Hba1c-limit=6` - if no version supplied then the latest version will be used
+*   `GET /query/diabetes-patient-overview/1.0.2?Hba1c-limit=6&latest-glucose-max=10` - query with exact version number.
+*   `POST /query/org.example.departmentx.test::diabetes-patient-overview/1.0.2`
+
+The {query-parameters*} part of the path is used for dynamic parameters in the `GET /query/{qualified-query-name}` described below.
+
+TBD - Server developer information:
+The `:` character is allowed in the `path` part of a URL so  it does not to be encoded, see
+https://www.talisman.org/~erlkonig/misc/lunatech%5Ewhat-every-webdev-must-know-about-url-encoding/#Thereservedcharactersaredifferentforeachpart
+...on the other hand some clients may happen to encode `:` to `%3A` anyway so a server SHOULD
+allow both `::` and `%3A%3A` for the `{double-colon}` part described above but store/retrieve
+them in a single consistent way.
+
+See API-description of `/definition/query` for more information regarding naming, versioning, etc.
+
+#### openEHR-EHR-id http request header
+
+Http header information regarding all resources under /query:
+
+If the http header `openEHR-EHR-id` is present in the request it MUST contain a single openEHR `ehr_id`.
+Clients SHOULD send the `openEHR-EHR-id` header if they know that the query concerns only a singe EHR.
+
+The presence of a `ehr_id` header:
+*   MUST be used by the server to provide the variable `ehr_id` in queries with the value of
+    the header, overriding any static or dynamic parameters named `ehr_id`
+*   SHOULD be used by the server to restrict querying to only the identified EHR
+*   MAY be used by the server to route (e.g. in sharded scale-out systems) based on ehr_id
+    without first having to analyze the request body
+*   MAY be used by the server to handle `ETag` and `If-None-Match` http headers based on the
+    latest known change to the identified EHR or its access-rights (e.g. by basing the `ETag`
+    value on the latest contribution uid of the identified EHR + access rights) so that query
+    responses can be safely cached (confirmed by http response code `304 Not Modified`) and do
+    not need to be re-run until changes have occurred.
+
+The absence of the http header 'openEHR-EHR-id' means that the stored query or dynamic request parameters
+MAY contain a list of several ehr_ids or be unconstrained regarding ehr_id (e.g. population queries).
+
+#### Paging
+
+The `offset` and `fetch` parameters can be used for "paging", for example
+`GET /query/diabetes-patient-overview?offset=20&fetch=10&Hba1c-limit=6` could get the third
+"page" of results in a 10-results per page view. Please note that the query REST calls are
+"stateless", so the server always presents a selection from the "current"
+response at the time of calling the query resource.
+
+If there have been changes to the data such as additions or deletions between for example the
+time of query for the first (?offset=0&fetch=10) and the time of query for the second (?offset=10&fetch=10)
+"page" then some of the results may be duplicated or missed unless the requesting client
+handles detection of this. Query result analysis and row identification and/or a properly implemented
+ETag usage may assist in such detection.
+
+Ranged retrieval of a stored batch-mode response via `GET /query/batch/{id}/{result-id}`  may also
+be used as a way of making the server present chunks of a "frozen" view, if the server implementation
+supports it (many web servers do).
+See the http headers `Range` https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35
+and `Content-Range` https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.16
+
+
+### Execute AQL query [GET /query/aql{?q,dynamic_parameter,offset,fetch}]
+
+Warning: URIs in practice have a length restriction. Long query definitions `q` and many long
+`dynamic-query-parameters` may add up to reach that limit, thus we recommend using the
+`POST /query/aql` instead when such risks are expected.
+
++ Parameters
+    + q (string) - the AQL to be executed
+    + offset (number, optional) - row number in result-set to start result-set from (0-based)
+    + fetch  (number, optional) - number of rows to fetch
+    + `dynamic_parameter` (string, optional) - dynamic query parameters
+
++ Request
+
+    + Headers
+
+            openEHR-EHR-id: fc334f45-ffb7-4077-8134-4d3d5e6cb2a1
+
++ Response 200 (application/json)
+
+    + Headers
+
+            ETag: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+
+    + Body
+
+            {
+                /* See discussion on result-set in overview */
+            }
+
+### Execute ad-hoc (non-stored) AQL query [POST /query/aql]
+
+TBD: Add support for the request format application/x-www-form-urlencoded often used in html forms
+TBD: Add logging advice?
+
++ Request (application/json)
+
+    + Headers
+
+            openEHR-EHR-id: fc334f45-ffb7-4077-8134-4d3d5e6cb2a1
+
+    + Body
+
+            {
+                "q": "<the query to be performed>",
+                "offset": NUMBER_TO_START_FROM,
+                "fetch": NUMBER_TO_FETCH,
+                "composition_uids": ["<object_id>"],        // filter on the given compositions uids
+                "ehr_ids": ["<ehr_id>"],                    // filter on the given ehr_ids
+                "dynamic-query-parameters": {
+                    "parameter-x-name": "parameter-x-value",
+                    "parameter-y-name": "parameter-y-value",
+                }
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            ETag: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+
+    + Body
+
+            {
+                /* See discussion on result-set in overview */
+            }
+
+
+### Execute stored query [GET /query/{qualified-query-name}/{version}{?offset,fetch,dynamic_query_parameter}]
+
+Execute a stored query with the supplied qualified-query-name.
+
+All query parameters found except "offset" and "fetch" are treated as dynamic and sent to the query execution engine.
+For parameters in AQL queries, see `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_parameters`.
+For example call:
+
+    - GET /query/org.openehr::compositions?temperature_from=36&temperature_unit=degC
+
+Will pass parameters `temperature_from` and `temperature_unit` to the underlying query.
+
++ Parameters
+
+    +   `qualified-query-name` (string) - qualified query name to be executed. It should be formatted as
+        <reverse-internet-id>::<query-name>, this way we can separate queries by domain, etc.
+        Example qualified query name: `org.openehr::compositions`
+    +   version (string) - SEMVER style (major.minor.patch) version prefix. If only major or major.minor are used then the latest version with
+        supplied prefix will be used.
+    +   offset (optional) - Query response row number to start from (default: 0)
+    +   fetch (optional) - Number of query response rows to fetch (from offset). For AQL queries: use wisely
+        if combined with `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_top`
+    +   `dynamic_query_parameter` (optional) - dynamic query parameters (can appear multiple times)
+
++ Request
+
+    + Headers
+
+            openEHR-EHR-id: fc334f45-ffb7-4077-8134-4d3d5e6cb2a1
+            If-None-Match: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+
++ Response 200 (application/json)
+
+    + Headers
+
+            ETag: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+
+    + Body
+
+            {
+              /* See discussion on result-set in overview */
+            }
+
+
+
+
+### Execute stored query [POST /query/{qualified-query-name}/{version}{?offset,fetch,dynamic_parameter,dynamic_parameter_n}]
+
+Execute a stored query with the supplied prefix+id.
+
+If the http header 'ehr_id' is present in the request it MUST contain a single openEHR ehr_id.
+Clients SHOULD send the ehr_id header if they know that the query concerns only a singe EHR.
+The presence of such a header:
+
+- MAY be used by the server to restrict querying to only the identified EHR, and
+- it MAY also be used by the server to route (e.g. in sharded scale-out systems) based on ehr_id without first having to analyze the request body,
+
+
+The absence of the http header 'ehr_id' means that the stored query or dynamic request parameters MAY contain a list of several ehr_ids or be
+unconstrained regarding ehr_id (e.g. population queries).
+
+NOTE: The body of a POST request is usually not logged in the http log by default, so developers need to make sure to log the body content some other
+way in order to enable auditing of what query parameters have been executed.
+
++ Parameters
+
+    +   `qualified-query-name` (string) - qualified query name to be executed. It should be formatted as
+        <reverse-internet-id>::<query-name>, this way we can separate queries by domain, etc.
+        Example qualified query name: `org.openehr::compositions`
+    +   version (string) - SEMVER style (major.minor.patch) version prefix. If only major or major.minor are used then the latest version with
+        supplied prefix will be used.
+
++ Request (application/json)
+
+    + Headers
+
+            openEHR-EHR-id: fc334f45-ffb7-4077-8134-4d3d5e6cb2a1
+            If-None-Match: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+
+    + Body
+
+            {
+                "aql_parameters": {
+                    "parameter-x-name": "paramater-x-value",
+                    "parameter-y-name": "parameter-y-value"
+                },
+                "offset": NUMBER_TO_START_FROM,
+                "fetch": NUMBER_TO_FETCH,
+                "composition_uids": ["<object_id>"], // filter on the given compositions uids
+                "ehr_ids": ["<ehr_id>"] // filter on the given ehr_ids (for muliti-ehr queries)
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            ETag: cdbb5db1-e466-4429-a9e5-bf80a54e120b
+
+    + Body
+
+            {
+              /* See discussion on result-set in overview */
+            }
+
