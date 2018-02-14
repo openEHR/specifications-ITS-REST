@@ -2,17 +2,17 @@
 
 Release: **`_Release_`**
 
-### Execute ad-hoc (non-stored) AQL query [GET /query/aql{?q,dynamic_parameter,offset,fetch}]
+### Execute ad-hoc (non-stored) AQL query [GET /query/aql{?q,query_parameter,offset,fetch}]
 
 Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` and many long
-`dynamic-query-parameters` may add up to reach that limit, thus we recommend using the
+`query_parameter`s may add up to reach that limit, thus we recommend using the
 `POST /query/aql` instead when such risks are expected.
 
 + Parameters
     + q (string) - the AQL to be executed
     + offset (number, optional) - row number in result-set to start result-set from (0-based)
     + fetch  (number, optional) - number of rows to fetch
-    + `dynamic_parameter` (string, optional) - dynamic query parameters
+    + `query_parameter` (string, optional) - query parameters
 
 + Response 200 (application/json)
 
@@ -55,15 +55,15 @@ Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` 
             }
 
 
-### Execute stored query [GET /query/{qualified-query-name}/{version}{?offset,fetch,dynamic_query_parameter}]
+### Execute stored query [GET /query/{qualified-query-name}/{version}{?offset,fetch,query_parameter}]
 
 Execute a stored query with the supplied qualified-query-name.
 
-All query parameters found except "offset" and "fetch" are treated as dynamic and sent to the query execution engine.
+All query parameters found except "offset" and "fetch" are sent to the query execution engine.
 For parameters in AQL queries, see `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_parameters`.
 For example call:
 
-    - GET /query/org.openehr::compositions?temperature_from=36&temperature_unit=degC
+    - GET /query/com.vendor::compositions?temperature_from=36&temperature_unit=Cel
 
 Will pass parameters `temperature_from` and `temperature_unit` to the underlying query.
 
@@ -77,7 +77,7 @@ Will pass parameters `temperature_from` and `temperature_unit` to the underlying
     +   offset (optional) - Query response row number to start from (default: 0)
     +   fetch (optional) - Number of query response rows to fetch (from offset). For AQL queries: cannot be 
         combined with `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_top`
-    +   `dynamic_query_parameter` (optional) - dynamic query parameters (can appear multiple times)
+    +   `query_parameter` (optional) - query parameters (can appear multiple times)
 
 + Response 200 (application/json)
 
@@ -96,7 +96,7 @@ Will pass parameters `temperature_from` and `temperature_unit` to the underlying
 
 Execute a stored query with the supplied qualified-query-name.
 
-The absence of the http header 'ehr_id' means that the stored query or dynamic request parameters MAY contain a list of several ehr_ids or be
+The absence of the http header 'ehr_id' means that the stored query or request parameters MAY contain a list of several ehr_ids or be
 unconstrained regarding ehr_id (e.g. population queries).
 
 + Parameters

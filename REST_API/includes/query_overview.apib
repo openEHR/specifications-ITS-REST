@@ -30,19 +30,20 @@ Stored queries are queries which have their definition stored on the server.
 The queries will expose mandatory and optional parameters for the clients.
 
 Using stored queries has lots of advantages:
-- separation of responsibilites (some users/developers write queries, others just consume them)
+- separation of responsibilites (some users/developers write queries, others just call/execute them and consume the responses)
 - no need to pass long query string over the network 
 
-# Common Query Parameters
+# Common Headers and Query Parameters
 
 All query calls will be able to use at least the following parameters:
 
-- `ehr_id` - this parameter might be supplied in header `openEHR-EHR-id`, i.e.: `openEHR-EHR-id: 81433066-c417-4813-9b29-79783e7bed23`.
-This parameter will only be supplied when executing a single-patient query and might be used by the underlying backend to perform routing or
-similar.
-- `offset` and `fetch` - these two parameters can be used for paging, both 0-based
-- other parameters might allowed an replace a placeholder within the query, i.e.:
-for the following AQL query `SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = :uid`, user can supply parameter `uid`, i.e.:
+- `ehr_id` - this parameter SHOULD be supplied when executing single EHR queries and MAY be used by the underlying backend 
+to perform routing, optimizations or similar, It MUST NOT be supplied for ’population queries’ and similar multi-patient queries.
+It can be supplied as query parameter `ehr_id` or as header `openEHR-EHR-id`.
+- `offset` and `fetch` - these two parameters can be used for paging, both 0-based. Default for offset is 0. 
+Default for limit depends on the implementation.
+- other parameters to replace placeholders within the query. 
+For the following AQL query `SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid`, user can supply parameter `uid`, i.e.:
 `/aql?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1`
 
 
@@ -54,7 +55,7 @@ Below is a mostly self-documented AQL query request.
 
 ```json 
 {
-  "q": "select o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude as temperature, o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/units as unit from EHR[ehr_id/value='554f896d-faca-4513-bddf-664541146308d'] CONTAINS Observation o[openEHR-EHR-OBSERVATION.body_temperature-zn.v1] WHERE o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude > :temperature and o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0.63 and name/value='Symptoms']/value/defining_code/code_string=:chills order by temperature desc fetch 3",
+  "q": "select o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude as temperature, o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/units as unit from EHR[ehr_id/value='554f896d-faca-4513-bddf-664541146308d'] CONTAINS Observation o[openEHR-EHR-OBSERVATION.body_temperature-zn.v1] WHERE o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude > $temperature and o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0.63 and name/value='Symptoms']/value/defining_code/code_string=$chills order by temperature desc fetch 3",
   "query_parameters": {
     "temperature": 38.5,
     "chills": "at0.64"
