@@ -2,13 +2,13 @@
 
 Release: **_Release_**
 
-### Purpose
+<h3>Purpose</h3>
 
 This specification describes service endpoints, resources, functions and operations 
 as well as details of requests and responses that interacts with an openEHR API in a RESTful manner.
 
 
-### Related Documents
+<h3>Related Documents</h3>
 
 Prerequisite documents for reading this document include:
 - The [openEHR Architecture Overview](http://www.openehr.org/releases/BASE/latest/docs/architecture_overview/architecture_overview.html)
@@ -18,7 +18,7 @@ Related documents include:
 - The [RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/)
 
 
-### Status
+<h3>Status</h3>
 
 This specification is in the DEVELOPMENT state. It might not be complete and can still be subject to changes before the final release.
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content. 
@@ -26,7 +26,8 @@ Users are encouraged to comment on and/or advise on these paragraphs as well as 
 Feedback should be provided the [Specification PR tracker](https://openehr.atlassian.net/browse/SPECPR) or on [specifications-ITS](https://github.com/openEHR/specifications-ITS/issues) issue tracker.
 
 
-### Trademarks
+<h3>Trademarks</h3>
+
 - 'openEHR' is a trademark of the [openEHR Foundation](https://www.openEHR.org)
 
 
@@ -56,19 +57,17 @@ HTTP Methods used in this specification are described by [RFC 7231](https://tool
 HTTP Status codes are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) 
 and in the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 
-See [design considerations section](#header-design-considerations) section for more details on how some
+See [design considerations section](#design-considerations) section for more details on how some
 HTTP methods and status codes MUST be used by an openEHR REST API implementation to achieve good interaction 
 between services and clients in the spirit of this specification.  
 
 **JSON** format is used in many of the example below, but this does not imply that **XML** might not be supported by the same service endpoint.
-See below how [data representation](#header-data-representation) MUST be done and negotiated.
+See below how [data representation](#design-considerations-data-representation) MUST be done and negotiated.
 
 
-# Design considerations
+# Group Design considerations
 
-
-## Authentication and authorization
-
+## Authentication and authorization [/--auth]
 Services SHOULD implement and support a HTTP Authentication and Authorization framework.
 See [RFC 7235](https://tools.ietf.org/html/rfc7235) 
 or [Mozilla's HTTP Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) 
@@ -83,12 +82,47 @@ Furthermore there is no assumption or recommendation being made in this specific
 about which authentication scheme should be used by services and clients.  
 
 
-## HTTP headers
+## Options and conformance [/]
+
+### OPTIONS
+
+The `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a
+resource, or the capabilities of the service, without implying a resource action.
+Services SHOULD respond to this method with at least appropriate HTTP codes, headers and potentially with a payload 
+revealing more details themselves.
+
+Another use-case for this method is related to exposing service capabilities for a conformance manifest.  
+
++ Request Inspect services and conformance
+
+    + Headers
+    
+            Accept: application/json
+
++ Response 200 (application/json)
+
+    + Headers
+    
+            Allow: GET, POST, PUT, DELETE, OPTIONS
+        
+    + Body 
+        
+            {
+                "solution": "BestEHRSys",
+                "solution_version": "v0.9",
+                "vendor": "BestEHR",
+                "restapi_specs_version": "v1.0",
+                "conformance_profile": "STANDARD",
+                "endpoints": ["/ehrs", "/definitions", "/query"]
+            }
+
+
+## HTTP headers [/--headers]
 
 This specification is using a few standard and custom HTTP headers that are described below.
  
 
-### The `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` headers
+<h3>The `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` headers</h3>
 
 When it comes to committing content to an openEHR system, for all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.) the services are 
 [performing versioning](http://www.openehr.org/releases/RM/latest/docs/common/common.html#_change_control_package) under the hood.
@@ -98,7 +132,7 @@ But in order to keep things simpler and consistent, service MUST allow `PUT`, `P
 However, internally, these operations MUST be executed using the 'native' way with CONTRIBUTION.
 
 In order to allow clients to provide committal metadata, services MUST accept `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` request custom header. 
-For clients, it is RECOMMENDED to provision these headers based on [authentication and authorization](#header-authentication-and-authorization) runtime data.
+For clients, it is RECOMMENDED to provision these headers based on [authentication and authorization](#design-considerations-authentication-and-authorization) runtime data.
 Below is an complex example of these request headers used in a PUT action to update a COMPOSITION:
 ```http
 openEHR-VERSION.lifecycle_state: code_string="532"
@@ -124,7 +158,7 @@ Below a list of `code_string` values and their meaning (taken from [openEHR term
 | openEHR-AUDIT_DETAILS.change_type |  253 | unknown          |
 
 
-### The `If-Match` header and accidental overwrites
+<h3>The `If-Match` header and accidental overwrites</h3>
 
 The use case of this is described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
 ```http
@@ -137,7 +171,7 @@ In case a service receives this header and the condition evaluates to `false` it
 HTTP status code`412 Precondition Failed`.
 
 
-### The `Location` header
+<h3>The `Location` header</h3>
 
 This response header indicates the resource location (URL). 
 According to [RFC 7231](https://tools.ietf.org/html/rfc7231#section-7.1.2), it is used to refer to a specific resource in relation to the response. 
@@ -147,7 +181,7 @@ return this header on other operation or action. Example:
 ```http
 Location: http://www.openehr.org/api/v1/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 ```
-See [representation details negotiation](#header-representation-details-negotiation) section
+See [representation details negotiation](#representation-details-negotiation) section
 for more details on how use this header.
 
 Services MAY generate resource URL as specified by DV_URI/DV_EHR_URI format, and if this feature is supported then the services 
@@ -157,13 +191,13 @@ openEHR-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4
 ```
 
 
-### The `Prefer` header
+<h3>The `Prefer` header</h3>
 
 This request header MAY be used by clients for resource representation negotiation. 
-See more details on [representation details negotiation](#header-representation-details-negotiation) section.
+See more details on [representation details negotiation](#representation-details-negotiation) section.
 
 
-### The `ETag` and `Last-Modified` headers
+<h3>The `ETag` and `Last-Modified` headers</h3>
 
 According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
 > The "ETag" header field in a response provides the current entity-tag
@@ -191,7 +225,7 @@ that have unique identifier for each of the changes in time. The value of this h
 unique identifier of that resource (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).
 
 
-### HTTP status codes
+## HTTP status codes [/--status]
 
 To indicate the status of the request or the executed operation, one of the following 
 subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) MUST be used: 
@@ -213,7 +247,6 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 |  500 | Internal Server Error  | The service encountered an unexpected condition that prevented it from fulfilling the request
 |  501 | Not Implemented        | The service does not support the functionality required to fulfill the request
 
-
 Meaning of these codes may be further detailed (nuanced) in this specification by particular responses.
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.
 
@@ -227,11 +260,12 @@ Example:
 ```   
 
 
-## Data representation
+## Data representation [/--data]
 
 Services MUST support at least one of the **XML** or **JSON** format for resource representation. 
 
-### XML Format
+
+<h3>XML Format</h3>
 
 When resources representation is serialized as XML, the result MUST be valid against [published XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/).
 
@@ -243,7 +277,7 @@ If the service cannot fulfill this aspect of the request, it MUST respond with H
 Proper header `Content-Type: application/xml` MUST be present in the response of the service. 
 
 
-### JSON Format
+<h3>JSON Format</h3>
 
 Attribute names must be lowercase _snake_case_ names as specified in the equivalent RM type. For example:
 ```json
@@ -287,7 +321,7 @@ If the service cannot fulfill this aspect of the request, it MUST respond with H
 Proper header `Content-Type: application/json` MUST be present in the response of the service. 
 
 
-### Datetime format
+<h3>Datetime format</h3>
 
 Query parameters and path segments that are date, datetime, or timestamp, MUST always use the canonical ISO8601 extended format, e.g. 2016-06-23T13:42:16.117+02:00.
 
@@ -296,7 +330,7 @@ will be preserved as it was sent by client (i.e. if COMPOSITION was saved as nar
 However, the RECOMMENDED format is to use the ISO8601 extended format.
 
 
-### Representation details negotiation
+<h3 id="representation-details-negotiation">Representation details negotiation <a href="#representation-details-negotiation" class="permalink">¶</a></h3>
 
 When using the HTTP methods to create or update a resource, the service SHOULD give clients the option for returning either a complete
 representation of the (modified) resource, or a minimal or no content in the payload response (assuming the operation was successfully completed).
@@ -319,37 +353,3 @@ Services that have this capability implemented SHOULD accept and honor `Prefer: 
 ```http
 Prefer: return=representation, resolve_refs
 ```
-
-## Options and conformance [/]
-
-### OPTIONS
-
-The `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a
-resource, or the capabilities of the service, without implying a resource action.
-Services SHOULD respond to this method with at least appropriate HTTP codes, headers and potentially with a payload 
-revealing more details themselves.
-
-Another use-case for this method is related to exposing service capabilities for a conformance manifest.  
-
-+ Request Inspect services and conformance
-
-    + Headers
-    
-            Accept: application/json
-
-+ Response 200 (application/json)
-
-    + Headers
-    
-            Allow: GET, POST, PUT, DELETE, OPTIONS
-        
-    + Body 
-        
-            {
-                "solution": "BestEHRSys",
-                "solution_version": "v0.9",
-                "vendor": "BestEHR",
-                "restapi_specs_version": "v1.0",
-                "conformance_profile": "STANDARD",
-                "endpoints": ["/ehrs", "/definitions", "/query"]
-            }
