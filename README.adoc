@@ -10,4 +10,4 @@ See (and contribute to) "issues" in this GitHub repository https://github.com/op
 
 ### Older REST API links
 An older version of the REST API development file (apiary.apib) is rendered at http://www.openehr.org/releases/ITS/latest/ehr_restapi.html
-or at http://docs.openehr.apiary.io/rest_index.html#.
+or at http://docs.openehr.apiary.io/#.
