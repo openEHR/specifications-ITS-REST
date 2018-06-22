@@ -85,13 +85,14 @@ List all available templates on the system
             ]
 
 
-### Get template [GET /definition/template/{template_id}/{version_pattern}]
+### Get template [GET /definition/template/{template_id}/{version_pattern}{?type}]
 
 + Parameters
 
     + template_id (string) - template id
     + version_pattern (string, optional) - SEMVER version pattern. This can be a complete version (i.e. 1.7.1) or partial
     i.e. (1.0) in which case the latest version with given prefix is returned.
+    + type (string, optional) - type of template, i.e. opt14, opt2
 
 + Response 200
     `200 OK` is returned when the EHR resource is successfully retrieved.
