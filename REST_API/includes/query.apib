@@ -55,9 +55,9 @@ Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` 
             }
 
 
-### Execute stored query [GET /query/{qualified-query-name}/{version}{?offset,fetch,query_parameter}]
+### Execute stored query [GET /query/{qualified_query_name}/{version}{?offset,fetch,query_parameter}]
 
-Execute a stored query with the supplied qualified-query-name.
+Execute a stored query with the supplied qualified_query_name.
 
 All query parameters found except "offset" and "fetch" are sent to the query execution engine.
 For parameters in AQL queries, see `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_parameters`.
@@ -69,7 +69,7 @@ Will pass parameters `temperature_from` and `temperature_unit` to the underlying
 
 + Parameters
 
-    +   `qualified-query-name` (string) - qualified query name to be executed. It may be formatted as
+    +   `qualified_query_name` (string) - qualified query name to be executed. It may be formatted as
         `<namespace>::<query-name>`, this way we can separate queries by domain, etc.
         Example qualified query name: `org.openehr::compositions`
     +   version (string, optional) - SEMVER style (major.minor.patch) version prefix. If only major or major.minor are used then the latest version with
@@ -92,16 +92,16 @@ Will pass parameters `temperature_from` and `temperature_unit` to the underlying
             }
 
 
-### Execute stored query [POST /query/{qualified-query-name}/{version}]
+### Execute stored query [POST /query/{qualified_query_name}/{version}]
 
-Execute a stored query with the supplied qualified-query-name.
+Execute a stored query with the supplied qualified_query_name.
 
 The absence of the http header 'ehr_id' means that the stored query or request parameters MAY contain a list of several ehr_ids or be
 unconstrained regarding ehr_id (e.g. population queries).
 
 + Parameters
 
-    +   `qualified-query-name` (string) - qualified query name to be executed. It may be formatted as
+    +   `qualified_query_name` (string) - qualified query name to be executed. It may be formatted as
         `<namespace>::<query-name>`, this way we can separate queries by domain, etc.
         Example qualified query name: `org.openehr::compositions`
     +   version (string) - SEMVER style (major.minor.patch) version prefix. If only major or major.minor are used then the latest version with

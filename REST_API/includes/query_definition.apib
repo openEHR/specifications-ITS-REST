@@ -12,9 +12,9 @@ system must use the latest version with the supplied prefix.
 
 Management of stored queries is done using resources starting /definition/query described here.
 
-### List stored queries [GET /definition/query/{qualified-query-name}]
+### List stored queries [GET /definition/query/{qualified_query_name}]
 
-Parameter `qualified-query-name` is optional. If omitted they are treated as “wildcards” in the search
+Parameter `qualified_query_name` is optional. If omitted they are treated as “wildcards” in the search
 
 Examples:
 *   `GET /definition/query/org.openehr` will list all versions of all
@@ -23,7 +23,7 @@ Examples:
     list all versions of the query named `org.openehr::compositions`
 
 + Parameters
-    +   `qualified-query-name` (string)
+    +   `qualified_query_name` (string)
 
 + Response 200 (application/json) 
 
@@ -48,13 +48,13 @@ Examples:
 
 
 
-### Store a query [PUT /query/{qualified-query-name}/{version}{?type}]
+### Store a query [PUT /query/{qualified_query_name}/{version}{?type}]
 
 Store a new query on the system.
 
 + Parameters
 
-    +   `qualified-query-name` (string, required) - query name
+    +   `qualified_query_name` (string, required) - query name
     +   version - version number following the http://semver.org/ conventions
     +   type (string, optional) - indicating the query language/type (presently AQL, but future additions possible)
  
@@ -76,7 +76,7 @@ Store a new query on the system.
 
     + Headers
 
-            Location: /query/{qualified-query-name}/{version}
+            Location: /query/{qualified_query_name}/{version}
 
 + Response 400
 
@@ -91,11 +91,11 @@ Store a new query on the system.
 
     + Body
 
-### Get stored query and info/metadata [GET /query/{qualified-query-name}/{version}]
+### Get stored query and info/metadata [GET /query/{qualified_query_name}/{version}]
 
 + Parameters
     
-    +   `qualified-query-name` (string) - query name
+    +   `qualified_query_name` (string) - query name
     +   version (string) - version number following the http://semver.org/ conventions
 
 + Response 200 (application/json)
