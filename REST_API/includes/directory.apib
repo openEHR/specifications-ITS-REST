@@ -58,7 +58,7 @@ Creates a new `FOLDER` associated with the `ehr_id`.
 ### Update directory [PUT /ehr/{ehr_id}/directory]
 
 Update `FOLDER` associated with the specified `ehr_id`.
-The existing latest `version_uid` of `FOLDER` resource must be specified in the `Match-If` header.
+The existing latest `version_uid` of `FOLDER` resource must be specified in the `If-Match` header.
 
 + Parameters
 
@@ -68,7 +68,7 @@ The existing latest `version_uid` of `FOLDER` resource must be specified in the 
 
     + Header
 
-            Match-If: {preceding_version_uid}
+            If-Match: {preceding_version_uid}
             Prefer: return={representation|minimal}
 
     + Body
@@ -119,7 +119,7 @@ The existing latest `version_uid` of `FOLDER` resource must be specified in the 
 
 + Response 412
 
-    `Match-If` header doesn't match the last version. Returns last version in the `Location` and `ETag` headers.
+    `If-Match` header doesn't match the last version. Returns last version in the `Location` and `ETag` headers.
 
     + Headers
 
@@ -132,7 +132,7 @@ The existing latest `version_uid` of `FOLDER` resource must be specified in the 
 ### Delete directory [DELETE /ehr/{ehr_id}/directory]
 
 Delete `FOLDER` associated with the specified `ehr_id`.
-The existing latest `version_uid` of `FOLDER` resource must be specified in the `Match-If` header.
+The existing latest `version_uid` of `FOLDER` resource must be specified in the `If-Match` header.
 
 + Parameters
 
@@ -142,7 +142,7 @@ The existing latest `version_uid` of `FOLDER` resource must be specified in the 
 
     + Headers
 
-            Match-If: {preceding_version_uid}
+            If-Match: {preceding_version_uid}
 
 + Response 204
 
@@ -164,7 +164,7 @@ The existing latest `version_uid` of `FOLDER` resource must be specified in the 
 
 + Response 412
 
-    `Match-If` header doesn't match the last version. Returns
+    `If-Match` header doesn't match the last version. Returns
     last version in the `Location` and `ETag` headers.
 
     + Headers

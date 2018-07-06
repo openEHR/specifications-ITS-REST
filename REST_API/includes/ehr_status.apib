@@ -118,7 +118,7 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` 
 ### Update EHR_STATUS [PUT /ehr/{ehr_id}/ehr_status]
 
 Update `EHR_STATUS` associated with the specified `ehr_id`.
-The existing latest `version_uid` of `EHR_STATUS` resource must be specified in the `Match-If` header.
+The existing latest `version_uid` of `EHR_STATUS` resource must be specified in the `If-Match` header.
 The response will contain the updated `EHR_STATUS` resource when the `Prefer` header has a value of `return=representation`
 
 + Parameters
@@ -128,7 +128,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
     + Header
 
-            Match-If: {preceding_version_uid}
+            If-Match: {preceding_version_uid}
             Prefer: return={representation|minimal}
 
     + Body
@@ -223,7 +223,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
 + Response 412
 
-    `412 Precondition Failed` is returned when `Match-If` header doesn't match the latest trunk version.
+    `412 Precondition Failed` is returned when `If-Match` header doesn't match the latest trunk version.
     Returns latest trunk version in the `Location` and `ETag` headers.
 
     + Headers
