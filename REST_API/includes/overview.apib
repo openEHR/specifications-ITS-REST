@@ -68,18 +68,16 @@ See below how [data representation](#design-considerations-data-representation) 
 # Group Design considerations
 
 ## Authentication and authorization [/--auth]
-Services SHOULD implement and support a HTTP Authentication and Authorization framework.
-See [RFC 7235](https://tools.ietf.org/html/rfc7235) 
-or [Mozilla's HTTP Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) 
-for more details on this subject.
+Services SHOULD implement and support a HTTP Authentication and Authorization framework 
+(which can support various schemes) but there is no assumption or recommendation being made 
+in this specification about which authentication scheme should be used by services and clients. 
+See [RFC 7235](https://tools.ietf.org/html/rfc7235) or [Mozilla's HTTP Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+for details on this subject.
 
-If such framework is present, services MUST properly use `WWW-Authenticate`
-and/or `Proxy-Authenticate` response headers and return HTTP status code 
-`403 Forbidden` or `401 Unauthorized` or `407 Proxy Authentication` whenever applicable, 
-and clients MUST properly use `Authorization` and `Proxy-Authorization` in their request headers.
-
-Furthermore there is no assumption or recommendation being made in this specification 
-about which authentication scheme should be used by services and clients.  
+If an Authentication and Authorisation framework is present, services MUST properly use `WWW-Authenticate` and/or 
+`Proxy-Authenticate` response headers and return HTTP status code `403 Forbidden` or `401 Unauthorized` or 
+`407 Proxy Authentication` whenever applicable, and clients MUST properly use `Authorization` and `Proxy-Authorization`
+ in their request headers.
 
 
 ## Options and conformance [/]
