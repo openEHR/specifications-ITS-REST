@@ -44,6 +44,8 @@ endif::[]
 |===
 h|Specification h|Description
 
+2+^|REST APIs
+
 |link:/releases/ITS/{its_release}/docs/ehr.html[openEHR REST EHR API]
 |This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR EHR API in a RESTful manner.
 
@@ -53,15 +55,26 @@ h|Specification h|Description
 |link:/releases/ITS/{its_release}/docs/definitions.html[openEHR REST Definitions API]
 |This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with the openEHR definitions API in a RESTful manner. Definitions includes Archetypes, Templates and Operational Templates (OPTs).
 
-|===
-
-== Computable Expressions
-
-[cols="2,5", options="header"]
-|===
-|Resource |Description
-
 |https://github.com/openEHR/specifications-ITS/tree/master/REST_API[REST API .apib files]
 |Apiary files.
 
+
+2+^|XML Schemas (XSDs)
+
+|link:/releases/trunk/its/XML-schema[Reference Model XSDs]
+|XML schema 1.0 expression of the Reference Model.
+
+|link:/releases/trunk/its/XML-schema[Archetype Model 1.4 XSDs]
+|XML schema 1.0 expression of ADL/AOM 1.4.
+
+|https://github.com/openEHR/java-libs/tree/master/oet-parser/src/main/xsd[Templating (OET based)]
+|Simple XML format for templates.
+
+|https://github.com/openEHR/java-libs/tree/master/oet-parser[Java OET parser]
+|Simple OET file parser in Java
+
+|https://github.com/openEHR/specifications/tree/master/ITS/AOM2/XML-schema[Archetype Model 2.x XSD]
+|XML schema 1.1 expression of ADL/AOM 2.
+
+		
 |===
