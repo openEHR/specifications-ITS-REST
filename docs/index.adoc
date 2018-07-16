@@ -1,0 +1,80 @@
+//
+// ============================================ Asciidoc HEADER =============================================
+//
+:doctype: book
+:pagenums:
+:numbered!:
+// get rid of PDF 'Chapter' labs on level 1 headings
+:chapter-label:
+//
+// HTML-only attributes
+//
+:linkcss:
+:keywords: REST API, openehr
+:description: openEHR REST APIs
+:sectanchors:
+:its_release: latest
+:rm_release: latest
+:base_release: latest
+:jira-roadmap: https://openehr.atlassian.net/projects/SPECITS?orderField=RANK&selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=unreleased
+:jira-hist-issues: https://openehr.atlassian.net/projects/SPECITS?orderField=RANK&selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=released
+
+image::/releases/BASE/latest/resources/images/openehr_logo_large.png["openEHR logo",align="center"]
+
+= Implementation Technology Specifications (ITS) - {its_release}
+
+// Use the following version for 'latest'
+ifeval::["{its_release}" == "latest"]
+:jira-issues: https://openehr.atlassian.net/projects/SPECITS/issues/SPECITS-1?filter=allopenissues
+[.title-para]
+{jira-roadmap}[Roadmap] | {jira-issues}[Current Issues] | {jira-hist-issues}[Change History]
+endif::[]
+
+// Use the following version for a named release
+ifeval::["{its_release}" != "latest"]
+:jira-pr-release: https://openehr.atlassian.net/projects/SPECPR/versions/12510
+:jira-cr-release: https://openehr.atlassian.net/projects/SPECITS?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=released
+[.title-para]
+{jira-pr-release}[Problems Fixed] | {jira-cr-release}[Changes Implemented] | {jira-roadmap}[Roadmap] | {jira-hist-issues}[Change History]
+endif::[]
+
+== Specifications
+
+[cols="1,5", options="header"]
+|===
+h|Specification h|Description
+
+2+^|REST APIs
+
+|link:/releases/ITS/{its_release}/docs/ehr.html[openEHR REST EHR API]
+|This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR EHR API in a RESTful manner.
+
+|link:/releases/ITS/{its_release}/docs/query.html[openEHR REST Query API]
+|This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR query API in a RESTful manner.
+
+|link:/releases/ITS/{its_release}/docs/definitions.html[openEHR REST Definitions API]
+|This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with the openEHR definitions API in a RESTful manner. Definitions includes Archetypes, Templates and Operational Templates (OPTs).
+
+|https://github.com/openEHR/specifications-ITS/tree/master/REST_API[REST API .apib files]
+|Apiary files.
+
+
+2+^|XML Schemas (XSDs)
+
+|link:/releases/trunk/its/XML-schema[Reference Model XSDs]
+|XML schema 1.0 expression of the Reference Model.
+
+|link:/releases/trunk/its/XML-schema[Archetype Model 1.4 XSDs]
+|XML schema 1.0 expression of ADL/AOM 1.4.
+
+|https://github.com/openEHR/java-libs/tree/master/oet-parser/src/main/xsd[Templating (OET based)]
+|Simple XML format for templates.
+
+|https://github.com/openEHR/java-libs/tree/master/oet-parser[Java OET parser]
+|Simple OET file parser in Java
+
+|https://github.com/openEHR/specifications/tree/master/ITS/AOM2/XML-schema[Archetype Model 2.x XSD]
+|XML schema 1.1 expression of ADL/AOM 2.
+
+		
+|===
