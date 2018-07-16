@@ -14,7 +14,7 @@ with the following defaults:
 - `is_queryable`: true
 - `is_modifiable`: true
 
-All other attributes will be left empty (null).
+All other attributes will be created as needed by the backend to ensure that a valid RM type instance is created.
 
 
 + Request
@@ -65,7 +65,7 @@ All other attributes will be left empty (null).
             {
                 "system_id": {...},
                 "ehr_id": {...},
-                "ehr_status": "versioned ehr status uid",
+                "ehr_status": {...},
                 "time_created", "..."
             }
 
@@ -131,7 +131,7 @@ allowed (http://www.openehr.org/releases/RM/latest/docs/support/support.html#_ui
             {
                 "system_id": {},
                 "ehr_id": {},
-                "ehr_status": "versioned ehr status uid",
+                "ehr_status": {},
                 "time_created", "..."
             }
 
@@ -166,7 +166,7 @@ Retrieve the EHR with the specified `ehr_id`.
             {
                 "system_id": {},
                 "ehr_id": {},
-                "ehr_status": "versioned ehr status uid",
+                "ehr_status": {},
                 "time_created", "...",
                 ... // to be defined, possibly counts of compositions, contributions, etc.
             }
@@ -195,7 +195,7 @@ Retrieve the EHR with the specified `subject_id` and `subject_namespace`.
             {
                 "system_id": {},
                 "ehr_id": {},
-                "ehr_status": "versioned ehr status uid",
+                "ehr_status": {},
                 "time_created", "...",
                 ... // to be defined, possibly counts of compositions, contributions, etc.
             }

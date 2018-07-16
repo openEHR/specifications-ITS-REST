@@ -70,7 +70,7 @@ If the request body already contains a composition uid it must match the
     + `preceding_version_uid` (string) - identifier of the COMPOSITION to be updated.
     This MUST be the last (most recent) version.
 
-+ Request with full representation (application/json)
++ Request full (application/json)
 
     + Body
 
@@ -85,7 +85,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Prefer: return={representation|minimal}
+            Prefer: return=representation
 
 + Response 200 (application/json)
 
@@ -105,7 +105,7 @@ If the request body already contains a composition uid it must match the
                 ...
             }
 
-+ Request no content (application/json)
++ Request minimal (application/json)
 
     + Body
 
@@ -120,7 +120,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            If-Match: {preceding_version_uid}
+            Prefer: return=minimal
 
 + Response 204
 
