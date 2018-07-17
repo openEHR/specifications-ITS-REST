@@ -26,7 +26,7 @@ Management of [COMPOSITIONs](http://www.openehr.org/releases/RM/latest/docs/ehr/
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -91,7 +91,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -126,7 +126,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
 + Request wrong type (application/json)
@@ -199,7 +199,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -218,7 +218,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -242,7 +242,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -291,7 +291,7 @@ If the request body already contains a composition uid it must match the
 
     + Headers
 
-            Location: /ehr/{ehr_id}/composition/{version_uid}
+            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
             ETag: {version_uid}
 
     + Body
@@ -335,7 +335,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Location: /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}
+            Location: {baseUrl}/ehr/{ehr_id}/versioned_composition/{versioned_object_uid}
 
     + Body
 
@@ -401,7 +401,7 @@ Gets a complete VERSIONED_COMPOSITION.
 
     + Headers
 
-            Location: /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}
+            Location: {baseUrl}/ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}
             ETag: {version_uid}
 
     + Body
