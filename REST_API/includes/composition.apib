@@ -33,6 +33,12 @@ Management of [COMPOSITIONs](http://www.openehr.org/releases/RM/latest/docs/ehr/
 
 <!-- include(../examples/composition_01.json) -->
 
++ Response 404
+
+    No EHR with the supplied `ehr_id`.
+
+    + Body
+
 + Request wrong type (application/json)
 
     + Body
@@ -52,11 +58,6 @@ Management of [COMPOSITIONs](http://www.openehr.org/releases/RM/latest/docs/ehr/
                 ]
             }
 
-+ Response 404
-
-    No EHR with the supplied `ehr_id`.
-
-    + Body
 
 
 ### Update composition [PUT /ehr/{ehr_id}/composition/{preceding_version_uid}]
