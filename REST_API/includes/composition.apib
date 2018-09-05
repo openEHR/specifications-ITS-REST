@@ -33,9 +33,19 @@ Management of [COMPOSITIONs](http://www.openehr.org/releases/RM/latest/docs/ehr/
 
 <!-- include(../examples/composition_01.json) -->
 
++ Response 400
+    
+     Invalid `ehr_id`. E.g. parsing an inconrrectly formatted `ehr_id`. Some
+     implementing systems may require that all `ehr_id` are GUIDs, i.e.
+     formatted as five groups of characters separated by hyphens:
+     01234567-0123-0123-0123-012345678abc
+
+     + Body
+    
+
 + Response 404
 
-    No EHR with the supplied `ehr_id`.
+    The EHR with the supplied `ehr_id` did not exist.
 
     + Body
 
