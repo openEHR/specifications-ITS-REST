@@ -37,11 +37,30 @@ TBD: Add links to opt14, opt2 spec pages.
 
 + Response 201
 
-    `201 Created` is returned when the template has been successfully uploaded. Version string in the location header is optional.
+    `201 Created` is returned when the template has been successfully uploaded.
+    As of [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6.3.2) the
+    created resource is returned in the body of the response.  Version string in
+    the location header is optional.
 
     + Headers
 
             Location: {baseUrl}/definition/template/{template_id}/{version}
+
+    + Body
+
+            <template xmlns="http://schemas.openehr.org/v1">
+                <language>
+                    <terminology_id>
+                        <value>ISO_639-1</value>
+                    </terminology_id>
+                    <code_string>en</code_string>
+                </language>
+                <description>
+                    <original_author id="Original Author">Not Specified</original_author>
+                    <lifecycle_state>Initial</lifecycle_state>
+                    <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
+            ...
+
 
 + Response 400
 
