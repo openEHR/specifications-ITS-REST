@@ -302,7 +302,7 @@ This resource is related to [VERSIONED_COMPOSITION](http://www.openehr.org/relea
 
 ### Get versioned composition [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}]
 
-Gets a complete VERSIONED_COMPOSITION.
+Gets a `VERSIONED_COMPOSITION`.
 
 + Parameters
 
@@ -321,10 +321,40 @@ Gets a complete VERSIONED_COMPOSITION.
                 "uid": "xxx",
                 "owner_id": "{ehr_id}",
                 "time_created": "ISO8601 timestamp",
-                "revision_history": [ // expanded
-                    ...
-                ]
             }
+
++ Response 404
+
+    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid`.
+
+    + Body
+
+
+### Get versioned composition revision history [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history]
+
+Gets a `VERSIONED_COMPOSITION` revision history.
+
++ Parameters
+
+    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
+    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: {baseUrl}/ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history
+
+    + Body
+
+            [
+                {
+                    "_type": "ORIGINAL_VERSION",
+                    ...
+                },
+                {
+                ...
+            ]
 
 + Response 404
 
