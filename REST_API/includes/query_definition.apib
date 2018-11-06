@@ -9,6 +9,11 @@ Implementers can choose a schema for query names, such as `<namespace>::<query-n
 this way queries can be separated by domain, etc. Version numbers, if used must be
 in SEMVER style (major.minor.patch). If only a partial version is supplied or version is not supplied at all, the
 system must use the latest version with the supplied prefix. 
+Namespace (if used) should be reverse domain name, which allows for separation of 
+stored queries by teams, companies, etc.
+In the future several standard openEHR stored queries might be developed, those will
+use namespace `org.openehr`. 
+
 
 Management of stored queries is done using resources starting /definition/query described here.
 
