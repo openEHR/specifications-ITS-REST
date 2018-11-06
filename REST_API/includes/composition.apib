@@ -105,30 +105,6 @@ If the request body already contains a composition uid it must match the
                 ...
             }
 
-+ Request minimal (application/json)
-
-    + Body
-
-            {
-                "_type": "COMPOSITION",
-                "name": {
-                    "_type": "DV_TEXT",
-                    "value": "Vital Signs"
-                },
-                ...
-            }
-
-    + Headers
-
-            Prefer: return=minimal
-
-+ Response 204
-
-    + Headers
-
-            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
-            ETag: {version_uid}
-
 + Request wrong type (application/json)
 
     + Headers
