@@ -271,7 +271,8 @@ If the service cannot process the request payload as XML format is not supported
 
 The `Accept: application/xml` SHOULD be used in the request by the client in order to specify the expected XML response format. 
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
-Proper header `Content-Type: application/xml` MUST be present in the response of the service. 
+Proper header `Content-Type: application/xml` MUST be present in the response of the service
+unless response has no body (status 204). 
 
 
 <h3>JSON Format</h3>
@@ -315,7 +316,8 @@ If the service cannot process the request payload as JSON format is not supporte
 
 The `Accept: application/json` SHOULD be used in the request by the client in order to specify the expected JSON response format. 
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
-Proper header `Content-Type: application/json` MUST be present in the response of the service. 
+Proper header `Content-Type: application/json` MUST be present in the response of the service
+unless response has no body (status 204). 
 
 
 <h3>Datetime format</h3>
