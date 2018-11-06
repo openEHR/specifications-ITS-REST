@@ -317,14 +317,7 @@ otherwise the latest trunk version is returned.
             {
               "_type": "ORIGINAL_VERSION",
               "uid": "OBJECT_VERSION_ID",                  /* _ehr_status_uid_::_system_id_::1 _system_id_ is the ID of the system from which the EHR was created */
-              "contribution": {                            /* does not include reference to other versions, even that is mandatory in the IM */
-                "uid": "HIER_OBJECT_ID",
-                "audit": {
-                  "system_id": "String",
-                  "time_committed": "DV_DATE_TIME",
-                  "description": "String"                  /* optional */
-                }
-              },
+              "contribution": "OBJECT_REF",
               "signature": "String",                       /* optional */
               "data": {
                 "_type": "EHR_STATUS",
