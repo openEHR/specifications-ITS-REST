@@ -59,16 +59,17 @@ Management of [COMPOSITIONs](http://www.openehr.org/releases/RM/latest/docs/ehr/
     + Body
 
 
-### Update composition [PUT /ehr/{ehr_id}/composition/{preceding_version_uid}]
+### Update composition [PUT /ehr/{ehr_id}/composition/{versioned_object_uid}]
 
 If the request body already contains a composition uid it must match the
-`preceding_version_uid` in the URL.
+`preceding_version_uid` in the URL. The existing latest `version_uid` of `COMPOSITION` resource must be 
+specified in the `If-Match` header.
+
 
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `preceding_version_uid` (string) - identifier of the COMPOSITION to be updated.
-    This MUST be the last (most recent) version.
+    + `versioned_object_uid` (string) - identifier of the VERSIONED COMPOSITION to be updated.
 
 + Request full (application/json)
 
@@ -86,6 +87,7 @@ If the request body already contains a composition uid it must match the
     + Headers
 
             Prefer: return=representation
+            If-Match: {preceding_version_uid}
 
 + Response 200 (application/json)
 
