@@ -56,7 +56,7 @@ Below is a mostly self-documented AQL query request.
 ```json 
 {
   "q": "select o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude as temperature, o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/units as unit from EHR[ehr_id/value='554f896d-faca-4513-bddf-664541146308d'] CONTAINS Observation o[openEHR-EHR-OBSERVATION.body_temperature-zn.v1] WHERE o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude > $temperature and o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0.63 and name/value='Symptoms']/value/defining_code/code_string=$chills order by temperature desc fetch 3",
-  "query_parameters": {
+  "query-parameters": {
     "temperature": 38.5,
     "chills": "at0.64"
   }

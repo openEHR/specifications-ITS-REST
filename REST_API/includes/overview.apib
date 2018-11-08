@@ -1,7 +1,5 @@
 ## Preface
 
-Release: **_Release_**
-
 <h3>Purpose</h3>
 
 This specification describes service endpoints, resources, functions and operations 
@@ -16,7 +14,7 @@ Prerequisite documents for reading this document include:
 Related documents include:
 - The [openEHR RM Class Index](http://www.openehr.org/releases/RM/latest/docs/index#_class_index)
 - The [RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/)
-
+- The other [openEHR REST APIs](https://www.openehr.org/releases/ITS/latest/docs/index.html)
 
 <h3>Status</h3>
 
@@ -48,7 +46,6 @@ Throughout this specification, a set of short terms is being used as described b
 |`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
 |`version_uid`| The value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2 |
 |`preceding_version_uid`| The value of a previous VERSION unique identifier, used usually for PUT or DELETE methods, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1 |
-|`object_id`| A placeholder for either `versioned_object_uid` or `version_uid` identifier |
 |`version_at_time`| Time specifier used to retrieve the VERSION at specified time; the value is a timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
 |`timestamp`| A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
 |`UUID`| A universally unique identifier ([RFC 4122](https://tools.ietf.org/html/rfc4122)) (e.g. 8849182c-82ad-4088-a07f-48ead4180515)
@@ -111,7 +108,7 @@ Another use-case for this method is related to exposing service capabilities for
                 "vendor": "BestEHR",
                 "restapi_specs_version": "v1.0",
                 "conformance_profile": "STANDARD",
-                "endpoints": ["/ehrs", "/definitions", "/query"]
+                "endpoints": ["/ehr", "/definitions", "/query"]
             }
 
 
@@ -129,9 +126,9 @@ Thus, the 'native' way of committing content is to wrap it as VERSION and [use C
 But in order to keep things simpler and consistent, service MUST allow `PUT`, `POST` and `DELETE` methods also directly on these change-controlled resources.
 However, internally, these operations MUST be executed using the 'native' way with CONTRIBUTION.
 
-In order to allow clients to provide committal metadata, services MUST accept `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` request custom header. 
+In order to allow clients to provide committal metadata, services MUST accept `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` request custom headers. 
 For clients, it is RECOMMENDED to provision these headers based on [authentication and authorization](#design-considerations-authentication-and-authorization) runtime data.
-Below is an complex example of these request headers used in a PUT action to update a COMPOSITION:
+Below is a complex example of these request headers used in a PUT action to update a COMPOSITION:
 ```http
 openEHR-VERSION.lifecycle_state: code_string="532"
 openEHR-AUDIT_DETAILS.change_type: code_string="251"
@@ -260,7 +257,7 @@ Example:
 
 ## Data representation [/--data]
 
-Services MUST support at least one of the **XML** or **JSON** format for resource representation. 
+Services MUST support at least one of the openEHR **XML** or **JSON** formats (described below) for resource representation. 
 
 
 <h3>XML Format</h3>
@@ -272,7 +269,8 @@ If the service cannot process the request payload as XML format is not supported
 
 The `Accept: application/xml` SHOULD be used in the request by the client in order to specify the expected XML response format. 
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
-Proper header `Content-Type: application/xml` MUST be present in the response of the service. 
+Proper header `Content-Type: application/xml` MUST be present in the response of the service
+unless response has no body (status 204). 
 
 
 <h3>JSON Format</h3>
@@ -316,7 +314,8 @@ If the service cannot process the request payload as JSON format is not supporte
 
 The `Accept: application/json` SHOULD be used in the request by the client in order to specify the expected JSON response format. 
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
-Proper header `Content-Type: application/json` MUST be present in the response of the service. 
+Proper header `Content-Type: application/json` MUST be present in the response of the service
+unless response has no body (status 204). 
 
 
 <h3>Datetime format</h3>
@@ -325,15 +324,15 @@ Query parameters and path segments that are date, datetime, or timestamp, MUST a
 
 Any date, datetime or timestamp value provided by a create or update action inside the COMPOSITION content 
 will be preserved as it was sent by client (i.e. if COMPOSITION was saved as narrow format, it will always return the way it was).
-However, the RECOMMENDED format is to use the ISO8601 extended format.
+However, the strongly RECOMMENDED format is to use the ISO8601 extended format.
 
 
 <h3 id="representation-details-negotiation">Representation details negotiation <a href="#representation-details-negotiation" class="permalink">¶</a></h3>
 
-When using the HTTP methods to create or update a resource, the service SHOULD give clients the option for returning either a complete
+When using the HTTP methods to create or update a resource, the service SHOULD give clients the option of returning either a complete
 representation of the (modified) resource, or a minimal or no content in the payload response (assuming the operation was successfully completed).
 See [RFC 7240](https://tools.ietf.org/html/rfc7240#section-4.2) for more details on how achieve this using `Prefer` header.
-The client MAY choose followings:
+The client MAY choose any of the following:
  - send `Prefer: return=minimal` to inform the service that prefers only a minimal response to a successful request. 
  A `Location` header indicating the direct URL to access the resource MUST be part of the service response. 
  If there is no payload content to be returned, the service SHOULD use HTTP status code `204 No Content`.
