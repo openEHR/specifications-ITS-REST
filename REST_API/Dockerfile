@@ -8,4 +8,6 @@ VOLUME /project
 WORKDIR /project
 ENV PATH /project/:$PATH
 
-# ENTRYPOINT ["build.sh"]
+ADD "build.sh" "/project/build.sh"
+
+CMD "/project/build.sh" 
