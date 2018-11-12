@@ -36,9 +36,8 @@ Upload a new ADL 1.4 operational template (OPT).
 + Response 201
 
     `201 Created` is returned when the template has been successfully uploaded.
-    As of [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6.3.2) the
-    created resource is returned in the body of the response.  Version string in
-    the location header is optional.
+    Depending on the header `Prefer` either an empty body or a full representation body is returned.  
+    Version string in the location header is optional.
 
     + Headers
 
