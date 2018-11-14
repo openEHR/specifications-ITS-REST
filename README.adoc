@@ -2,7 +2,7 @@
 REST API Specifications
 
 ## Current REST API 
-The REST API development files are rendered at https://openehr.github.io/specifications-ITS-REST/rest_index.html
+The REST API development files are rendered at https://openehr.github.io/specifications-ITS-REST
 See (and contribute to) "issues" in this GitHub repository https://github.com/openEHR/specifications-ITS-REST/issues for 
 the currently ongoing REST API discussions. 
 
