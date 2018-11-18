@@ -7,7 +7,7 @@ Management of EHRs.
 ### Create EHR [POST /ehr]
 
 Create a new `EHR` with an auto-generated identifier.
-Request body may contain `ehr_status` attribute. When provided it
+An `ehr_status` may be supplied as the request body. When provided it
 will also be created as part of the same request,
 otherwise default resources will be created automatically by the service
 with the following defaults:
@@ -65,7 +65,7 @@ All other attributes will be created as needed by the backend to ensure that a v
 ### Create EHR with id [PUT /ehr/{ehr_id}]
 
 Create a new `EHR` with the specified EHR identifier. 
-Request body may contain `ehr_status` attribute. When provided it
+An `ehr_status` may be supplied as the request body. When provided it
 will also be created as part of the same request,
 otherwise default resources will be created automatically by the service
 with the following defaults:
