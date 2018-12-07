@@ -8,6 +8,7 @@ VOLUME /project
 WORKDIR /project
 ENV PATH /project/:$PATH
 
-ADD "build.sh" "/project/build.sh"
+ADD "tools/entrypoint.sh" "/entrypoint.sh"
+RUN chmod +x /entrypoint.sh
 
-CMD "/project/build.sh" 
+CMD [ "/entrypoint.sh" ]
