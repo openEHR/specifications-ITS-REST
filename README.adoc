@@ -8,18 +8,22 @@ Specifications are written in https://apiblueprint.org[API Blueprint] format. La
 
 The HTML pages are building using https://github.com/danielgtaylor/aglio[aglio] in a Docker container. 
 
-. Build docker image using:
+. Build the `docker` image using:
 
- $ docker build -t rest-api-doc .
+----
+$ docker build -t rest-api-doc .
+----
 
 . Build the whole documentation running:
 
- $ docker run -v "$(pwd):/project" -t rest-api-doc
+----
+$ docker run -v "$(pwd):/project" -t rest-api-doc
+----
  
-. Build a single HTML page, supplying all necessary parameters to aglio:
+. Or build a single HTML page, supplying all necessary parameters to `aglio`:
  
 ----
-docker run --rm -v "$(pwd):/project" rest-api-doc aglio --theme-template triple \
+$ docker run --rm -v "$(pwd):/project" rest-api-doc aglio --theme-template triple \
                 --theme-full-width \
                 --theme-style default \
                 --theme-style /project/src/styles/layout-openEHR.less \
@@ -27,6 +31,7 @@ docker run --rm -v "$(pwd):/project" rest-api-doc aglio --theme-template triple 
                 -i /project/src/query.apib \
                 -o /project/docs/query.html
 ----
-More usage info on https://github.com/danielgtaylor/aglio#executable
+
+. (See more usage info on https://github.com/danielgtaylor/aglio#executable)
 
 . View the rendered docs in the `docs/` folder.
