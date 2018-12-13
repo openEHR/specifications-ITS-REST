@@ -70,7 +70,7 @@ Execute a stored query with the supplied qualified_query_name. Queries can be st
 via the query definition API endpoint.
 
 All query parameters found except "offset" and "fetch" are sent to the query execution engine.
-For parameters in AQL queries, see `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_parameters`.
+For parameters in AQL queries, see (https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_parameters).
 For example call:
 
     - GET /query/com.vendor::compositions?temperature_from=36&temperature_unit=Cel
@@ -86,7 +86,7 @@ Will pass parameters `temperature_from` and `temperature_unit` to the underlying
         supplied prefix will be used.
     +   offset (optional) - Query response row number to start from (default: 0)
     +   fetch (optional) - Number of query response rows to fetch (from offset). For AQL queries: cannot be 
-        combined with `http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_top`
+        combined with (https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_top)
     +   `query_parameter` (optional) - query parameters (can appear multiple times)
 
 + Response 200 (application/json)

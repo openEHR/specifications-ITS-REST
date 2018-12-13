@@ -9,19 +9,19 @@ as well as details of requests and responses that interacts with an openEHR API 
 <h3>Related Documents</h3>
 
 Prerequisite documents for reading this document include:
-- The [openEHR Architecture Overview](http://www.openehr.org/releases/BASE/latest/docs/architecture_overview/architecture_overview.html)
+- The [openEHR Architecture Overview](https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html)
 
 Related documents include:
-- The [openEHR RM Class Index](http://www.openehr.org/releases/RM/latest/docs/index#_class_index)
-- The [RM XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/)
-- The other [openEHR REST APIs](https://www.openehr.org/releases/ITS/latest/docs/index.html)
+- The [openEHR Global Class Index](https://specifications.openehr.org/releases/AA_GLOBAL/latest/index.html)
+- The [XSDs](https://github.com/openEHR/specifications-ITS-XML) or [JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON)
+- The other [openEHR REST APIs](https://specifications.openehr.org/releases/ITS-REST/latest/index.html)
 
 <h3>Status</h3>
 
 This specification is in the DEVELOPMENT state. It might not be complete and can still be subject to changes before the final release.
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content. 
 
-Feedback should be provided the [Specification PR tracker](https://openehr.atlassian.net/browse/SPECPR) or on [specifications-ITS](https://github.com/openEHR/specifications-ITS/issues) issue tracker.
+Feedback should be provided on the [Specification PR tracker](https://openehr.atlassian.net/browse/SPECPR) or on [github repo issues](https://github.com/openEHR/specifications-ITS-REST/issues) tracker.
 
 
 <h3>Trademarks</h3>
@@ -36,7 +36,7 @@ in this document are to be interpreted as described in [BCP 14](https://tools.ie
 [RFC 8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
 Types defined by openEHR specification are always capitalized (e.g. EHR, COMPOSITION, VERSIONED_OBJECT, etc.) when used in this specification. 
-For a list of all available types or a particular type definition please refer to the [RM index](http://www.openehr.org/releases/RM/latest/docs/index#_class_index). 
+For a list of all available types or a particular type definition please refer to the [class index](https://specifications.openehr.org/releases/AA_GLOBAL/latest/index.html). 
 
 Throughout this specification, a set of short terms is being used as described below:
 
@@ -120,8 +120,8 @@ This specification is using a few standard and custom HTTP headers that are desc
 <h3>The `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` headers</h3>
 
 When it comes to committing content to an openEHR system, for all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.) the services are 
-[performing versioning](http://www.openehr.org/releases/RM/latest/docs/common/common.html#_change_control_package) under the hood.
-Thus, the 'native' way of committing content is to wrap it as VERSION and [use CONTRIBUTION](http://www.openehr.org/releases/RM/latest/docs/common/common.html#_contributions).
+[performing versioning](https://specifications.openehr.org/releases/RM/latest/common.html#_change_control_package) under the hood.
+Thus, the 'native' way of committing content is to wrap it as VERSION and [use CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contributions).
 
 But in order to keep things simpler and consistent, service MUST allow `PUT`, `POST` and `DELETE` methods also directly on these change-controlled resources.
 However, internally, these operations MUST be executed using the 'native' way with CONTRIBUTION.
@@ -262,7 +262,7 @@ Services MUST support at least one of the openEHR **XML** or **JSON** formats (d
 
 <h3>XML Format</h3>
 
-When resources representation is serialized as XML, the result MUST be valid against [published XSDs](http://www.openehr.org/releases/trunk/its/XML-schema/).
+When resources representation is serialized as XML, the result MUST be valid against [published XSDs](https://github.com/openEHR/specifications-ITS-XML).
 
 A client MAY use the header `Content-Type: application/xml` in the requests to specify the XML payload format. 
 If the service cannot process the request payload as XML format is not supported, it MUST respond with HTTP status code`415 Unsupported Media Type`.
