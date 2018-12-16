@@ -5,14 +5,10 @@ Release: **_Release_**
 Management of OpenEHR operational templates. OpenEHR templates can be uploaded and downloaded as OPTs created
 by modelling tools such as the Template Designer.
 
-### Upload a template [POST /definition/template/adl1.4/{?version}]
+### Upload a template [POST /definition/template/adl1.4]
 
 Upload a new ADL 1.4 operational template (OPT).
 
-
-+ Parameters
-
-    + version (string, optional) - a SEMVER version format, i.e. 1.0.1
 
 + Request
 
@@ -37,11 +33,10 @@ Upload a new ADL 1.4 operational template (OPT).
 
     `201 Created` is returned when the template has been successfully uploaded.
     Depending on the header `Prefer` either an empty body or a full representation body is returned.  
-    Version string in the location header is optional.
 
     + Headers
 
-            Location: {baseUrl}/definition/template/adl1.4/{template_id}/{version}
+            Location: {baseUrl}/definition/template/adl1.4/{template_id}
 
     + Body
 
@@ -68,19 +63,15 @@ Upload a new ADL 1.4 operational template (OPT).
 
 + Response 409
 
-    `409 Conflict` is returned when a template with given id and version already exists.
+    `409 Conflict` is returned when a template with given id already exists.
     This response is optional.
 
     + Body
 
 
-### List all templates [GET /definition/template/adl1.4/{template_id}]
+### List all templates [GET /definition/template/adl1.4]
 
 List all available ADL 1.4 operational templates on the system.
-
-+ Parameters
-
-    + template_id (string, optional) - lists only versions of the template with the given id
 
 + Response 200 (application/json)
 
@@ -91,7 +82,6 @@ List all available ADL 1.4 operational templates on the system.
             [
                 {
                     "template_id": "string",
-                    "version": "1.7.1", // optional
                     "concept": "string",
                     "archetype_id": "string",
                     "created_timestamp": "2017-08-14T19:24:56.639Z"
@@ -99,15 +89,13 @@ List all available ADL 1.4 operational templates on the system.
             ]
 
 
-### Get template [GET /definition/template/adl1.4/{template_id}/{version_pattern}]
+### Get template [GET /definition/template/adl1.4/{template_id}]
 
 Gets a specified ADL 1.4 operational template.
 
 + Parameters
 
     + template_id (string) - template id
-    + version_pattern (string, optional) - SEMVER version pattern. This can be a complete version (i.e. 1.7.1) or partial
-    i.e. (1.0) in which case the latest version with given prefix is returned.
 
 + Response 200
     `200 OK` is returned when the template is successfully retrieved.
