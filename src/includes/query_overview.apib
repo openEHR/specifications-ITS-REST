@@ -3,12 +3,11 @@
 ## Purpose 
 
 This specification describes the service endpoints and data-models used when querying an openEHR system. 
+The [Archetype Query Language](https://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html) (AQL) is the primary query language. 
 
-AQL [Archetype Query Language](https://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html) is the primary query language. 
-
-The query `response` may also be used by other API endpoints in the openEHR REST API. 
-I.e. composition resource might return several compositions. These operations will return the `response`
-structure defined here. 
+The query `response` may also be used by other openEHR API endpoints - 
+i.e. the [composition resource](ehr.html#composition-composition) might return several COMPOSITIONs. 
+These operations will return the `response` structure defined here. 
 
 <h3>Single EHR queries</h3>
 
@@ -17,7 +16,6 @@ A common use-case is to execute queries within a specific EHR.
 <h3>Population queries</h3>
 
 Population queries are queries which are executed on several EHRs in the same request. Examples of use-cases will be: 
-
 - Ward lists 
 - Explore correlations between patients in an pandemic situation
 - Research, e.g. epidemiology, population health
@@ -28,18 +26,19 @@ Stored queries are queries which have their definition stored on the server.
 The queries will expose mandatory and optional parameters for the clients.
 
 Using stored queries has lots of advantages:
-- separation of responsibilites (some users/developers write queries, others just call/execute them and consume the responses)
+- separation of responsibilities (some users/developers write queries, others just call/execute them and consume the responses)
 - no need to pass long query string over the network 
+
+Stored queries have a name (`qualified_query_name`) and an optional `version` number in [SEMVER](http://semver.org/) style (`major.minor.patch`).
 
 ## Common Headers and Query Parameters [/--headers]
 
 All query calls will be able to use at least the following parameters:
-
 - `ehr_id` - this parameter SHOULD be supplied when executing single EHR queries and MAY be used by the underlying backend 
-to perform routing, optimizations or similar, It MUST NOT be supplied for ’population queries’ and similar multi-patient queries.
+to perform routing, optimizations or similar, It MUST NOT be supplied for 'population queries' and similar multi-patient queries.
 It can be supplied as query parameter `ehr_id` or as header `openEHR-EHR-id`.
-- `offset` and `fetch` - these two parameters can be used for paging, both 0-based. Default for offset is 0. 
-Default for limit depends on the implementation.
+- `offset` - used for paging, row number in result-set to start result-set from (`0`-based), default `0`
+- `fetch` - used for paging, number of rows to fetch, default depends on the implementation
 - other parameters to replace placeholders within the query. 
 For the following AQL query `SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid`, user can supply parameter `uid`, i.e.:
 `/aql?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1`
@@ -91,45 +90,5 @@ Below is a mostly self-documented AQL query request.
 Below is a synthesized response with all attributes.
 
 ```json
-{
-  "meta": {
-    "_href": "... the URI for the executed AQL - used only for GET executions ...",
-    "_type": "RESULTSET",
-    "_schema_version": "1.0.0",
-    "_created": "2017-08-19T00:25:47.568+02:00",
-    "_generator": "DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)",
-    "_executed_aql": "... the executed aql ..."
-  },
-  "name": "... the name/identifier of the stored query that was executed ...",
-  "q": "select e/ehr_id/value, c/context/start_time/value as startTime,  c/uid/value as cid, c/name from EHR e contains  Composition c limit 2",
-  "columns": [
-    {
-      "name": "#0",
-      "path": "/ehr_id/value"
-    },
-    {
-      "name": "startTime",
-      "path": "/context/start_time/value"
-    },
-    {
-      "name": "cid",
-      "path": "/uid/value"
-    },
-    {
-      "name": "#3",
-      "path": "/name"
-    }
-  ],
-  "rows": [
-    [
-      "81433066-c417-4813-9b29-79783e7bed23",
-      "2017-02-16T13:50:11.308+01:00",
-      "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1",
-      {
-        "_type": "DV_TEXT",
-        "value": "Labs"
-      }
-    ]
-  ]
-}
+<!-- include(../examples/query_resultset_01.json) -->
 ```
