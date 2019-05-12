@@ -251,7 +251,7 @@ mixin ContentTriple()
                           span.method(class=action.methodLower)= action.method
                           | &nbsp;
                           span.uri
-                            span.hostname= metas.ENDPOINT
+                            span.hostname= self.api.host
                             != action.colorizedUriTemplate
                       .tabs
                           if action.hasRequest
@@ -301,13 +301,12 @@ mixin ContentTriple()
 
                 hr.split
 
-mixin Sitenav(spaces)
+mixin Sitenav(apis)
     div.sitenav
         img(src="https://www.openehr.org/static/img/about/Logo.png")
         span= 'REST API specification:'
-        each space in spaces
-            - var page = space.api || 'index'
-            if metas.API == space.api
-                a.active(href=page+".html")= space.name
+        each item in apis
+            if metas.API == item.api
+                a.active(href=item.href)= item.name
             else
-                a(href=page+".html")= space.name
+                a(href=item.href)= item.name

@@ -2,10 +2,11 @@ doctype
 
 include ./mixins.jade
 
-- var metas = {API: ""}
+- var apis = [{api:".",name:"Overview",href:"index.html"}, {api:"ehr",name:"Ehr",href:"ehr.html"}, {api:"query",name:"Query",href:"query.html"}, {api:"definition",name:"Definitions",href:"definitions.html"}]
+- var metas = {}
 each meta in self.api.metadata || {}
     - metas[meta.name] = meta.value
-if metas.API
+if metas.API != "."
     - metas.ENDPOINT = self.api.host+'/'+metas.API
 else
     - metas.ENDPOINT = self.api.host
@@ -17,8 +18,7 @@ html
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
         style!= self.css
     body.preload
-        - var spaces = [{api:"",name:"Overview"},{api:"ehr",name:"Ehr"},{api:"query",name:"Query"},{api:"definition",name:"Definitions"}]
-            +Sitenav(spaces)
+        +Sitenav(apis)
         div.container-fluid.triple
             .row
                 block nav
