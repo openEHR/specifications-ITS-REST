@@ -1,26 +1,25 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');
 
 /* Page-wide variables */
 @padding: 12px;
 @border-radius: 6px;
 @font-size: 14px;
 @nav-width: 220px;
-@nav-triple-width: 16.5%;
-@right-panel-width: 48.5%;
-@right-panel-background-width: 48.6%;
+@nav-triple-width: 16%;
+@right-panel-width: 40%;
+@right-panel-background-width: 34%;
 
-@base-font: 400 14px ~"/" 1.42 'Roboto', Helvetica, sans-serif;
-@title-font: 200 36px 'Raleway', Helvetica, sans-serif;
-@code-font: 'Inconsolata', monospace;
+@base-font: 400 1.05em ~"/" 1.6 "Georgia", "Times", serif;
+@title-font: 200 1.79em ~"/" 1.2 "Helvetica", "Arial", sans-serif;
+@code-font: 400 0.875em ~"/" 1.2 "Droid Sans Mono", "DejaVu Sans Mono", monospace;
 
 /* Basic page-wide colors */
 @background-color: white;
-@text-color: black;
+@text-color: rgba(0, 0, 0, 0.8);
 
-@link-color: #428bca;
-@right-link-color: @link-color;
+@link-color: #2156a5;
+@right-link-color: #70bbe1;
 
-@heading-text-color: @text-color;
+@heading-text-color: #0066cc;
 
 @table-row-background-color: darken(@background-color, 2%);
 @table-border-color: darken(@background-color, 10%);
@@ -34,6 +33,9 @@
 @right-background-color: #333;
 @right-text-color: @background-color;
 @badge-margin: -2px 0;
+
+@sitenav-height: 32px;
+@nav-font-size: 15px;
 
 /* Tabs */
 @tabs-background-color: #eee;
@@ -118,8 +120,8 @@
 @delete-border-color: darken(spin(@delete-background-color, -10), 5%);
 
 /* Code colors */
-@inline-code-background-color: #f5f5f5;
-@inline-code-text-color: #444;
+@inline-code-background-color: #f7f7f8;
+@inline-code-text-color: rgba(0,0,0,0.9);
 
 @code-block-text-color: @text-color;
 @code-block-background-color: #f5f5f5;

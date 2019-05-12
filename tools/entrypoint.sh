@@ -5,11 +5,11 @@ find *.apib | while read -r file;
 do
 	name="${file%.*}";
 	echo "building $file as $name.html";
-	aglio --theme-template triple \
+	aglio --theme-template /project/src/templates/openehr.jade \
 	    --theme-full-width \
-	    --theme-style default \
+	    --theme-variables /project/src/styles/variables-default.less \
+	    --theme-style /project/src/styles/layout-default.less \
 	    --theme-style /project/src/styles/layout-openEHR.less \
-	    --theme-variables flatly \
 	    -i /project/src/$file \
 	    -o /project/docs/$name.html;
     echo "...done";

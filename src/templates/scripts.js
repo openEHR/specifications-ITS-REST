@@ -220,4 +220,8 @@ window.onload = function () {
     autoCollapse();
     // Remove the `preload` class to enable animations
     document.querySelector('body').className = '';
+    if(window.location.hash) {
+        var elmnt = document.getElementById(window.location.hash.substring(1));
+        elmnt.scrollIntoView(true);
+    }
 };

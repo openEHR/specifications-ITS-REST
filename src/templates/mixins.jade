@@ -57,11 +57,6 @@ mixin Nav()
                               a(href=action.elementLink)
                                   +Badge(action.method)
                                   != action.name || resource.name || action.method + ' ' + (action.attributes && action.attributes.uriTemplate || resource.uriTemplate)
-        //- Link to the API hostname, e.g. api.yourcompany.com
-        each meta in self.api.metadata || {}
-            if meta.name == 'HOST'
-                p(style="text-align: center; word-wrap: break-word;")
-                    a(href=meta.value)= meta.value
 
 mixin Parameters(params)
     //- Draw a definition list of parameter names, types, defaults,
@@ -190,7 +185,7 @@ mixin Content()
                                 span.method(class=action.methodLower)= action.method
                                 | &nbsp;
                                 span.uri
-                                  span.hostname= self.api.host
+                                  span.hostname= metas.ENDPOINT
                                   != action.colorizedUriTemplate
 
                             //- A list of sub-sections for parameters, requests
@@ -207,8 +202,22 @@ mixin ContentTriple()
             h1#top!= self.api.name || 'API Documentation'
 
     .right
+        h5 Release
+            pre
+                code.meta
+                    != metas.RELEASE || 'latest'
+        h5 Status
+            pre
+                code.meta
+                    != metas.STATUS || 'DEVELOPMENT'
+        h5 Date
+            pre
+                code.meta
+                    = self.date().format('DD MMM YYYY')
         h5 API Endpoint
-        a(href=self.api.host)= self.api.host
+            pre
+                code.meta
+                    = metas.ENDPOINT
     .middle
         if self.api.descriptionHtml
             != self.api.descriptionHtml
@@ -242,7 +251,7 @@ mixin ContentTriple()
                           span.method(class=action.methodLower)= action.method
                           | &nbsp;
                           span.uri
-                            span.hostname= self.api.host
+                            span.hostname= metas.ENDPOINT
                             != action.colorizedUriTemplate
                       .tabs
                           if action.hasRequest
@@ -291,3 +300,14 @@ mixin ContentTriple()
                             +Parameters(action.parameters)
 
                 hr.split
+
+mixin Sitenav(spaces)
+    div.sitenav
+        img(src="https://www.openehr.org/static/img/about/Logo.png")
+        span= 'REST API specification:'
+        each space in spaces
+            - var page = space.api || 'index'
+            if metas.API == space.api
+                a.active(href=page+".html")= space.name
+            else
+                a(href=page+".html")= space.name
