@@ -1,5 +1,8 @@
 ## Execute Query [/query]
 
+This currently supports [AQL](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) queries only, 
+other types might be added at a later time. 
+
 ### Execute ad-hoc (non-stored) AQL query [GET /query/aql{?q,query_parameter,offset,fetch}]
 
 Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` and many long

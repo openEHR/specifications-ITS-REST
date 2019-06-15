@@ -55,10 +55,9 @@ Throughout this specification, a set of short terms is being used as described b
 |------|-------------|
 |API| Application Programmer Interface |
 |REST| [Representational state transfer](https://en.wikipedia.org/wiki/Representational_state_transfer), a type of Web service that allows clients to access and manipulate textual representations of Web resources. |
-|AQL| openEHR's [Archetype Query Language](https://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html) |
-|SEMVER| [Semantic Versioning 2.0.0](http://semver.org/) |
+|AQL| openEHR's [Archetype Query Language](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) |
+|SEMVER| [Semantic Versioning 2.0.0](https://semver.org/) |
 |`{baseUrl}`| The base URL of the openEHR APIs; the value depends on the implementation (e.g. `https://api.best-ehr-sys.io/rest`) |
-|`{endpoint_url}`| The service endpoint URL of a specific openEHR API, e.g. the EHR API endpoint url is `{base_url}/v1/ehr` |
 |`ehr_id`| The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
 |`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
 |`version_uid`| The value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2 |
@@ -191,7 +190,7 @@ The type of relationship is defined by the combination of request method and sta
 Services MUST return this header whenever a create or update operation was performed, but it MAY
 return this header on other operation or action. Example:
 ```http
-Location: http://www.openehr.org/api/v1/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+Location: {baseUrl}/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 ```
 See [representation details negotiation](#representation-details-negotiation) section
 for more details on how use this header.

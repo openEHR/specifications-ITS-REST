@@ -3,7 +3,7 @@
 ## Purpose 
 
 This specification describes the service endpoints and data-models used when querying an openEHR system. 
-The [Archetype Query Language](https://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html) (AQL) is the primary query language. 
+The [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) is the primary query language. 
 
 The query `response` may also be used by other openEHR API endpoints - 
 i.e. the [composition resource](ehr.html#composition-composition) might return several COMPOSITIONs. 
@@ -29,7 +29,7 @@ Using stored queries has lots of advantages:
 - separation of responsibilities (some users/developers write queries, others just call/execute them and consume the responses)
 - no need to pass long query string over the network 
 
-Stored queries have a name (`qualified_query_name`) and an optional `version` number in [SEMVER](http://semver.org/) style (`major.minor.patch`).
+Stored queries have a name (`qualified_query_name`) and an optional `version` number in [SEMVER](https://semver.org/) style (`major.minor.patch`).
 
 ## Common Headers and Query Parameters [/--headers]
 
