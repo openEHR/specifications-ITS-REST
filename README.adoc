@@ -2,3 +2,4 @@
 
 This repository contains the document and sources (in https://apiblueprint.org[API Blueprint] format) for the openEHR REST API specifications.
 The published form may be accessed from the https://specifications.openehr.org/releases/ITS/latest/index[ITS specifications index page].
+Latest version (rendered as HTML pages) may be alternatively accessed from https://openehr.github.io/specifications-ITS-REST.
