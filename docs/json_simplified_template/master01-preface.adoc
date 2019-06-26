@@ -2,7 +2,7 @@
 
 == Purpose
 
-This document describes various JSON data formats based on the openEHR Reference Model and Archetype Model, intended to be easier to use than the canonical formats, for typical developers with minimal exposure to openEHR. These formats are designed to enable easier creation of openEHR content (i.e. Compositions etc).
+This document describes a 'simplified template' (ST) format, along with various JSON concrete data formats, intended to be easier to use than the canonical formats, for typical developers with minimal exposure to openEHR. These formats are designed to enable easier creation of openEHR content (i.e. Compositions etc).
 
 == Status
 
