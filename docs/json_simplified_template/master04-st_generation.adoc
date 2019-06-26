@@ -1,0 +1,5 @@
+= ST Generation
+
+This section describes how a Simlified Template may be machine-derived from its corresponding canonical OPT definition and the Simplified Reference Model (SRM).
+
+

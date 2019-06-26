@@ -1,0 +1,38 @@
+= Overview
+
+== Requirements
+
+The default serialised data representations for openEHR content are canonical XML, based on the {openehr_its_xml_releases}[openEHR RM XSDs^], canonical JSON, described by the {openehr_its_json_releases}[openEHR JSON schemas^], and potentially any other canonical serial format based on the underlying Reference Model (e.g. YAML etc). Here, 'canonical' means any fully-expressed instance data in which all RM mandatory fields are present, all attributes are named as per the RM, and all cardinalities respect the RM.
+
+The canonical formats are routinely used by all openEHR implementations implementing the {openehr_ehr_rest_api}[openEHR REST API specification^], and in many other ways, e.g. for DB dump/load implementation, ETL and so on. However, creating data instances according to these formats is not always straightforward, particularly for developers with minimal exposure to openEHR, and various alternatives have been used in the past to simplify the job of content creation and committal for application developers.
+
+This specification responds to the requirement for a minimal but formally complete serial form of content creation for openEHR applications.
+
+== Conceptual Approach
+
+The starting point for defining a developer-friendly commit format is to assume that the great majority of applications are typically targetted to one or a few specific data sets, e.g. vital signs, diabetic monitoring, pregnancy plan etc. In openEHR, each such data set is defined in terms of an {openehr_am_opt2}[openEHR Operational Template (OPT)^], derived from a source template, and ultimately archetypes, which are themselves constraint models based on the underlying reference model (i.e. the 'canonical model').
+
+Template-specificity provides a route for defining and generating a serial format such that _each openEHR template_ has its own reasonably simple, commit format. In simple terms, a lab result data structure could be represented using non-canonical attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (or in any other natural language, including script-based languages), instead of each node appearing under the canonical `CLUSTER._items_` attribute.
+
+To make the 'simplified format' idea work, the following requirements must be met:
+
+* the format makes it possible to _abstract away rigorous structural complexity_ of the canonical model where possible, typically reducing data path depth;
+* the format definition for any given commit data can be completely and routinely _machine generated_ from its canonical definition, i.e. from an openEHR OPT, or other upstream canonical definition;
+* data instances of the simplified format definition can be _routinely converted to canonical format_ at execution time.
+
+The approach used to achieve this consists of a number of elements, illustrated below.
+
+[.text-center]
+.Simplified template scheme
+image::{diagrams_uri}/simplified_template_approach.svg[id=simplified_template_approach, align="center"]
+
+In the above, a Simplified Reference Model (SRM) is defined, based on the canonical Reference Model (RM). The SRM is a _logical sub-set_ of classes relevant to the definition of EHR commitable content, with each class being a potentially simplified form of its counterpart in the RM. The latter simplifications may consist of:
+
+* merging of Composition relationships (de-normalisation);
+* stringification of specific attributes, i.e. replacement of (usually low-level) attribute types with `String`, so that the attribute may contain a string form of a complex object.
+
+Each class in the SRM contains a factory routine whose purpose is to generate a canonical form instance from an instance of the SRM class. This formalises the relationship between every SRM class and its RM counterpart, and allows for the easy implementation of a simplified -> canonical instance converter.
+
+Using the SRM, an abstract Simplified Template (ST) can be generated from any Operational Template (OPT), and from there, various concrete form STs may be generated, including JSON 'flat' and 'sparse' forms. The specification of the ST generator transformation rules is effectively the specification of an ST.
+
+Following this scheme, this specification describes the Simplified Reference Model (SRM), Simplified Template Generator (ST Generator), and the downstream JSON concrete formats.
