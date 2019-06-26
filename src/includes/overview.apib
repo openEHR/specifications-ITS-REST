@@ -13,15 +13,26 @@ Prerequisite documents for reading this document include:
 
 Related documents include:
 - The [openEHR Global Class Index](https://specifications.openehr.org/releases/AA_GLOBAL/latest/index.html)
-- The [XSDs](https://github.com/openEHR/specifications-ITS-XML) or [JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON)
-- The other [openEHR REST APIs](https://specifications.openehr.org/releases/ITS-REST/latest/index.html)
+- The [XML-Schemas (XSD)](https://github.com/openEHR/specifications-ITS-XML) 
+- The [JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON)
+- The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html)
+
 
 <h3>Status</h3>
 
-This specification is in the DEVELOPMENT state. It might not be complete and can still be subject to changes before the final release.
+This specification is in the `TRIAL` state. It might not be complete and can still be subject to changes before the final release.
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content. 
 
-Feedback should be provided on the [Specification PR tracker](https://openehr.atlassian.net/browse/SPECPR) or on [github repo issues](https://github.com/openEHR/specifications-ITS-REST/issues) tracker.
+The development version of this document can be found at [https://specifications.openehr.org/releases/ITS-REST/latest](https://specifications.openehr.org/releases/ITS-REST/latest).
+
+
+<h3>Feedback</h3>
+
+Feedback may be provided on the technical mailing list or on [github repo](https://github.com/openEHR/specifications-ITS-REST/issues).
+
+Issues may be raised on the [specifications Problem Report tracker](https://openehr.atlassian.net/browse/SPECPR).
+
+To see changes made due to previously reported issues, see the [ITS component Change Request tracker](https://specifications.openehr.org/components/ITS/history).
 
 
 <h3>Trademarks</h3>
@@ -42,6 +53,11 @@ Throughout this specification, a set of short terms is being used as described b
 
 | Term | Description |
 |------|-------------|
+|API| Application Programmer Interface |
+|REST| [Representational state transfer](https://en.wikipedia.org/wiki/Representational_state_transfer), a type of Web service that allows clients to access and manipulate textual representations of Web resources. |
+|AQL| openEHR's [Archetype Query Language](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) |
+|SEMVER| [Semantic Versioning 2.0.0](https://semver.org/) |
+|`{baseUrl}`| The base URL of the openEHR APIs; the value depends on the implementation (e.g. `https://api.best-ehr-sys.io/rest`) |
 |`ehr_id`| The value for an EHR identifier, stored under EHR.ehr_id.value, usually an UUID or GUID |
 |`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515 |
 |`version_uid`| The value of a VERSION unique identifier, stored under VERSION.uid.value, e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2 |
@@ -106,9 +122,9 @@ Another use-case for this method is related to exposing service capabilities for
                 "solution": "BestEHRSys",
                 "solution_version": "v0.9",
                 "vendor": "BestEHR",
-                "restapi_specs_version": "v1.0",
+                "restapi_specs_version": "v1.1",
                 "conformance_profile": "STANDARD",
-                "endpoints": ["/ehr", "/definitions", "/query"]
+                "endpoints": ["/ehr", "/definition", "/query"]
             }
 
 
@@ -174,7 +190,7 @@ The type of relationship is defined by the combination of request method and sta
 Services MUST return this header whenever a create or update operation was performed, but it MAY
 return this header on other operation or action. Example:
 ```http
-Location: http://www.openehr.org/api/v1/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+Location: {baseUrl}/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 ```
 See [representation details negotiation](#representation-details-negotiation) section
 for more details on how use this header.

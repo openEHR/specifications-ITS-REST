@@ -1,18 +1,24 @@
 FORMAT: 1A
-HOST: http://www.openehr.org/api/v1
+HOST: {baseUrl}/v1
+API: definition
+RELEASE: 1.0.1
+STATUS: TRIAL
 
-# OpenEHR REST Definitions API
+# Definitions API
 
-Release: **_Release_**
+<!-- include(includes/copyright.html) -->
 
-Status: **`TRIAL`**
+<h3>Amendment Record</h3>
 
-<!-- include(includes/overview.apib) -->
+<!-- include(includes/changelogs/definitions.html) -->
 
 # Group Definitions 
 
-This is a collection of resources to manage the clinical definitions and models of the openEHR Server. 
-They allow management of openEHR templates and queries. 
+This is a collection of resources to manage the clinical definitions and models (e.g. templates, queries) of an openEHR Server. 
+
+Actions upon resources of this group are also formally described in the 
+[Definition Package](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_definition_package)
+of the Abstract Service Model.
 
 <!-- include(includes/template.apib) -->
 

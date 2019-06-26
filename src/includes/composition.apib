@@ -1,8 +1,6 @@
 ## COMPOSITION [/ehr/{ehr_id}/composition]
 
-Release: **_Release_**
-
-Management of [COMPOSITIONs](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class).
+Management of [COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class) resources.
 
 ### Create composition [POST /ehr/{ehr_id}/composition]
 
@@ -35,7 +33,7 @@ Management of [COMPOSITIONs](https://specifications.openehr.org/releases/RM/late
 
 + Response 400
     
-     Invalid `ehr_id`. E.g. parsing an inconrrectly formatted `ehr_id`. Some
+     Invalid `ehr_id`. E.g. parsing an incorrectly formatted `ehr_id`. Some
      implementing systems may require that all `ehr_id` are GUIDs, i.e.
      formatted as five groups of characters separated by hyphens:
      01234567-0123-0123-0123-012345678abc
@@ -309,7 +307,7 @@ specified in the `If-Match` header.
 
 ## VERSIONED_COMPOSITION [/ehr/{ehr_id}/versioned_composition]
 
-This resource is related to [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class) described in the openEHR specification  
+Management of [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class) resources.  
 
 ### Get versioned composition [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}]
 

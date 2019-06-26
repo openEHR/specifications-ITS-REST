@@ -1,37 +1,5 @@
-# specifications-ITS-REST
+# specifications-ITS-REST - openEHR REST API Specifications
 
-REST APIs Specifications. See https://www.openehr.org/programs/specification/workingbaseline[working baseline] of current openEHR specifications.
-
-Specifications are written in https://apiblueprint.org[API Blueprint] format. Latest version is rendered as HTML pages at https://openehr.github.io/specifications-ITS-REST.
-
-### Building Documentation
-
-The HTML pages are building using https://github.com/danielgtaylor/aglio[aglio] in a Docker container. 
-
-. Build the `docker` image using:
-
-----
-$ docker build -t rest-api-doc .
-----
-
-. Build the whole documentation running:
-
-----
-$ docker run -v "$(pwd):/project" -t rest-api-doc
-----
- 
-. Or build a single HTML page, supplying all necessary parameters to `aglio`:
- 
-----
-$ docker run --rm -v "$(pwd):/project" rest-api-doc aglio --theme-template triple \
-                --theme-full-width \
-                --theme-style default \
-                --theme-style /project/src/styles/layout-openEHR.less \
-                --theme-variables flatly \ 
-                -i /project/src/query.apib \
-                -o /project/docs/query.html
-----
-
-. (See more usage info on https://github.com/danielgtaylor/aglio#executable)
-
-. View the rendered docs in the `docs/` folder.
+This repository contains the document and sources (in https://apiblueprint.org[API Blueprint] format) for the openEHR REST API specifications.
+The published form may be accessed from the https://specifications.openehr.org/releases/ITS/latest/index[ITS specifications index page].
+Latest version (rendered as HTML pages) may be alternatively accessed from https://openehr.github.io/specifications-ITS-REST.

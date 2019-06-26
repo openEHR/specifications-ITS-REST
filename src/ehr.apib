@@ -1,30 +1,53 @@
 FORMAT: 1A
-HOST: http://www.openehr.org/api/v1
+HOST: {baseUrl}/v1
+API: ehr
+RELEASE: 1.0.1
+STATUS: TRIAL
 
-# OpenEHR REST EHR API
+# EHR API
 
-Release: **_Release_**
+<!-- include(includes/copyright.html) -->
 
-Status: **`TRIAL`**
+<h3>Amendment Record</h3>
 
-<!-- include(includes/overview.apib) -->
+<!-- include(includes/changelogs/ehr.html) -->
 
 # Group EHR
+
+Actions upon resources of this group are also formally described in the 
+[I_EHR_SERVICE](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_service_interface)
+Abstract Service Model interface.
 
 <!-- include(includes/ehr.apib) -->
 
 # Group EHR_STATUS
 
+Actions upon resources of this group are also formally described in the 
+[I_EHR_STATUS](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_status_interface)
+Abstract Service Model interface.
+
 <!-- include(includes/ehr_status.apib) -->
 
 # Group COMPOSITION
+
+Actions upon resources of this group are also formally described in the 
+[I_EHR_COMPOSITION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_composition_interface)
+Abstract Service Model interface.
 
 <!-- include(includes/composition.apib) -->
 
 # Group DIRECTORY
 
+Actions upon resources of this group are also formally described in the 
+[I_EHR_DIRECTORY](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_directory_interface)
+Abstract Service Model interface.
+
 <!-- include(includes/directory.apib) -->
 
 # Group CONTRIBUTION
+
+Actions upon resources of this group are also formally described in the 
+[I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_contribution_interface)
+Abstract Service Model interface.
 
 <!-- include(includes/contribution.apib) -->

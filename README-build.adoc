@@ -1,0 +1,33 @@
+# Instructions for building docs
+
+The docs (HTML) pages are build using https://github.com/danielgtaylor/aglio[aglio tool] with a help of a https://www.docker.com/products/docker-desktop[Docker] container.
+Follow these steps to have a new build:
+
+. Build the `docker` image using:
++
+----
+$ docker build -t rest-api-doc .
+----
+
+. Build the whole project (all docs) running:
++
+----
+$ docker run -v "$(pwd):/project" -t rest-api-doc
+----
+ 
+.. If you need to build a single page (e.g. the `ehr.html`), supply all necessary parameters to `aglio`:
++
+----
+$ docker run --rm -v "$(pwd):/project" rest-api-doc aglio \
+    --theme-template /project/src/templates/openehr.jade \
+    --theme-full-width \
+    --theme-variables /project/src/styles/variables-default.less \ 
+    --theme-style /project/src/styles/layout-default.less \
+    --theme-style /project/src/styles/layout-openEHR.less \
+    -i /project/src/ehr.apib \
+    -o /project/docs/ehr.html
+----
+
+.. See more usage info on https://github.com/danielgtaylor/aglio#executable
+
+. View the rendered docs in the `docs/` folder of this project, the start page being `docs/index.html`.

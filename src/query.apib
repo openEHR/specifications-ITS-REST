@@ -1,15 +1,23 @@
 FORMAT: 1A
-HOST: http://www.openehr.org/api/v1
+HOST: {baseUrl}/v1
+API: query
+RELEASE: 1.0.1
+STATUS: TRIAL
 
-# OpenEHR REST Query API
+# Query API
 
-Release: **_Release_**
+<!-- include(includes/copyright.html) -->
 
-Status: **`TRIAL`**
+<h3>Amendment Record</h3>
+
+<!-- include(includes/changelogs/query.html) -->
 
 <!-- include(includes/query_overview.apib) -->
 
 # Group Query
-The REST API currently supports AQL queries. Other query types might be added at a later time. 
+
+Actions upon resources of this group are also formally described in the 
+[I_QUERY_SERVICE](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_query_service_interface)
+Abstract Service Model interface.
 
 <!-- include(includes/query.apib) -->

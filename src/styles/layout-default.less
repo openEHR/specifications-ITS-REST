@@ -3,6 +3,7 @@ body {
   color: @text-color;
   background: @background-color;
   font: @base-font;
+  margin: 0;
 }
 
 header {
@@ -12,7 +13,8 @@ header {
 
 h1, h2, h3, h4, h5 {
     color: @heading-text-color;
-    margin: @padding 0;
+    margin: 1em 0 0.5em 0;
+    font: @title-font;
 
     & .permalink {
         margin-left: 0;
@@ -49,8 +51,8 @@ h2 {
 }
 
 h3 {
-    font-size: 100%;
-    text-transform: uppercase;
+    font-size: 1.37em;
+    text-transform: unset;
 }
 
 h5 {
@@ -63,6 +65,10 @@ p {
 
     &.choices {
       line-height: 1.6;
+    }
+
+    a {
+      text-decoration: underline;
     }
 }
 
@@ -83,7 +89,7 @@ hr.split {
     width: 100%;
     padding-left: @padding / 2;
     margin: @padding auto;
-    background-image: linear-gradient(to right, fade(@text-color, 0%) 20%, fade(@text-color, 20%) 100% - @right-panel-background-width, fade(@right-text-color, 20%) 100% - @right-panel-background-width, fade(@right-text-color, 0%) 80%);
+    background-image: linear-gradient(to right, fade(@text-color, 0%) 20%, fade(@text-color, 20%) 100% - @right-panel-width, fade(@right-text-color, 20%) 100% - @right-panel-width, fade(@right-text-color, 0%) 80%);
 }
 
 dl {
@@ -121,6 +127,7 @@ pre {
     border: 1px solid @code-block-border-color;
     border-radius: @border-radius;
     overflow: auto;
+    white-space: pre-wrap;
 
     code {
         color: @code-block-text-color;
@@ -134,9 +141,11 @@ code {
     color: @inline-code-text-color;
     background-color: @inline-code-background-color;
     font: @code-font;
-    padding: 1px 4px;
-    border: 1px solid @code-block-border-color;
+    padding: 0 3px;
+    border: 1px solid #eee; //@code-block-border-color
     border-radius: 3px;
+    word-spacing: -0.15em;
+    text-rendering: optimizeSpeed;
 }
 
 ul, ol {
@@ -156,10 +165,22 @@ table {
     padding: @padding/2 @padding;
     border: 1px solid @table-border-color;
   }
+
+  th {
+    font: @title-font;
+    font-size: 0.95em;
+    font-weight: 700;
+    background-color: skyblue;
+    padding: 9px;
+  }
 }
 
 .text-muted {
   opacity: 0.5;
+  margin-bottom: 2.2em;
+  font: @code-font;
+  font-size: 0.8em;
+  word-spacing: -0.1em;
 }
 
 .note, .warning {
@@ -316,12 +337,12 @@ nav {
     display: inline-block;
     float: right;
     min-width: 10px;
-    min-height: @font-size;
-    padding: 3px 7px;
+    min-height: 12px;
+    padding: 2px 7px;
     font-size: 12px;
     color: @group-text-color;
     background-color: @group-title-background-color;
-    border-radius: 10px;
+    border-radius: 5px;
     margin: @badge-margin;
 
     &.get {
@@ -453,6 +474,24 @@ nav {
     box-sizing: border-box;
     width: 100% - @right-panel-width;
     padding-right: @padding;
+    div.title {
+      font: @title-font;
+      font-size: 0.95em;
+      font-weight: bold;
+    }
+    dl {
+      dt {
+        font: @title-font;
+        font-size: 0.88em;
+        font-weight: bold;
+        letter-spacing: -0.02em;
+        line-height: 1.9em;
+        width: 150px;
+      }
+      dd {
+        margin-left: 155px;
+      }
+    }
 }
 
 .right {
@@ -468,28 +507,48 @@ nav {
     h1, h2, h3, h4, h5, p, div {
         color: @right-text-color;
     }
+    div.tabs div.example-names,
+    h5 {
+      font: @title-font;
+      font-size: 0.80em;
+      margin: 0.5em 0 0;
+    }
 
     pre {
         background-color: @right-code-block-background-color;
         border: 1px solid @right-code-block-border-color;
-
+        margin: 0.5em 0 0;
+        padding: 0.5em;
         code {
             color: @right-code-block-text-color;
+            font-size: 0.8em;
+            &.meta {
+              font-size: 1em;
+              font-weight: 900;
+            }
         }
     }
 
     .description {
         margin-top: @padding;
+        p code {
+          color: @right-code-block-text-color;
+          background-color: @right-code-block-background-color;
+          border: 1px solid @right-code-block-border-color;
+        }
     }
 }
 
 .triple .resource-heading {
-  font-size: 125%;
+  font-size: 1.6em;
 }
 
 .definition {
   margin-top: @padding;
   margin-bottom: @padding;
+  font: @title-font;
+  font-size: 0.90em;
+  letter-spacing: -0.05em;
 
   .method {
     font-weight: bold;
@@ -524,6 +583,9 @@ nav {
   }
 
   .uri {
+    font: @code-font;
+    font-size: 0.95em;
+    margin-left: 0.3em;
     word-break: break-all;
     word-wrap: break-word;
   }
@@ -579,8 +641,8 @@ nav {
 
 #right-panel-background {
     position: absolute;
-    right: -@padding;
-    top: -@padding;
+    right: 0;
+    top: -(@padding / 2);
     bottom: -@padding;
     width: @right-panel-background-width;
     background-color: @right-background-color;
@@ -687,7 +749,7 @@ nav {
 }
 
 .triple .content .resource-group {
-    padding: 0;
+    padding: 25px 0 0;
     border: none;
 
     h2.group-heading, .heading a {
@@ -721,6 +783,10 @@ nav .resource-group{
         border-top-left-radius: @border-radius;
         border-top-right-radius: @border-radius;
         overflow: hidden;
+        font: @title-font;
+        font-size: 0.95em;
+        font-weight: bold;
+        letter-spacing: -0.05em;
 
         .name {
             float: right;
