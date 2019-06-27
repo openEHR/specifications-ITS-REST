@@ -1,0 +1,29 @@
+=== S_ENTRY Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_S_ENTRY (abstract)_*
+
+h|*Description*
+2+a|Simplified RM form of `ENTRY` RM class.
+
+h|*Inherit*
+2+|`S_CONTENT_ITEM`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*subject*: `S_PARTY_PROXY`
+a|
+
+h|*0..1*
+|*provider*: `S_PARTY_PROXY`
+a|
+
+h|*0..1*
+|*other_participations*: `List<S_PARTICIPATION>`
+a|
+|===

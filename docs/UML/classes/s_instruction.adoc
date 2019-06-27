@@ -1,0 +1,29 @@
+=== S_INSTRUCTION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*S_INSTRUCTION*
+
+h|*Description*
+2+a|Simplified RM form of `INSTRUCTION` RM class.
+
+h|*Inherit*
+2+|`S_CARE_ENTRY`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*narrative*: `String`
+a|
+
+h|*0..1*
+|*expiry_time*: `String`
+a|
+
+h|*0..1*
+|*activities*: `List<S_ACTIVITY>`
+a|
+|===

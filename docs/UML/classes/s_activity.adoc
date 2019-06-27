@@ -1,0 +1,26 @@
+=== S_ACTIVITY Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*S_ACTIVITY*
+
+h|*Description*
+2+a|Simplified RM form of `ACTIVITY` RM class.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*timing*: `String`
+a|
+
+h|*0..1*
+|*action_archetype_id*: `String`
+a|
+
+h|*1..1*
+|*description*: `S_CLUSTER`
+a|
+|===

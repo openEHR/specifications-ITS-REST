@@ -1,0 +1,28 @@
+=== S_TYPE Interface
+
+[cols="^1,3,5"]
+|===
+h|*Interface*
+2+^h|*_S_TYPE (abstract)_*
+
+h|*Description*
+2+a|Interface defining routine signatures for Simplified RM classes defining how to convert to and from the corresponding RM class.
+
+Specialised in descendants.
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|(abstract)
+|*to_rm* ( +
+rm: `BMM_MODEL[1]` +
+): `Any`
+a|
+
+h|(abstract)
+|*from_rm* ( +
+a_val: `Any[1]` +
+)
+a|
+|===

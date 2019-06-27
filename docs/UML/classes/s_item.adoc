@@ -1,0 +1,11 @@
+=== S_ITEM Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_S_ITEM (abstract)_*
+
+h|*Description*
+2+a|Simplified RM form of `ITEM` RM class.
+
+|===

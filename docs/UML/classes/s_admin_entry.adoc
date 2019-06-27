@@ -1,0 +1,14 @@
+=== S_ADMIN_ENTRY Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*S_ADMIN_ENTRY*
+
+h|*Description*
+2+a|Simplified RM form of `ADMIN_ENTRY` RM class.
+
+h|*Inherit*
+2+|`S_ENTRY`
+
+|===

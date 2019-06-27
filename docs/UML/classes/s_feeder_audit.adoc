@@ -1,0 +1,30 @@
+=== S_FEEDER_AUDIT Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*S_FEEDER_AUDIT*
+
+h|*Description*
+2+a|Simplified RM form of `FEEDER_AUDIT` RM class.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*originating_system_audit*: `S_FEEDER_AUDIT_DETAILS`
+a|
+
+h|*0..1*
+|*original_content*: `S_DV_PARSABLE`
+a|
+
+h|*0..1*
+|*feeder_system_item_id*: `List<S_DV_IDENTIFIER>`
+a|
+
+h|*0..1*
+|*originating_system_item_id*: `List<S_DV_IDENTIFIER>`
+a|
+|===
