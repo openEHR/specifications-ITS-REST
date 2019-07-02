@@ -14,13 +14,13 @@ h|*Attributes*
 
 h|*0..1*
 |*timing*: `String`
-a|
+a|Converted from `DV_PARSABLE`.
 
 h|*0..1*
 |*action_archetype_id*: `String`
-a|
+a|(unchanged from RM)
 
 h|*1..1*
 |*description*: `S_CLUSTER`
-a|
+a|Converted from `ITEM_STRUCTURE`.
 |===

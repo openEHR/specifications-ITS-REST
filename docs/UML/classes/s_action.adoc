@@ -21,7 +21,7 @@ a|Converted from `DV_DATE_TIME`.
 
 h|*1..1*
 |*description*: `S_CLUSTER`
-a|
+a|Converted from `ITEM_STRUCTURE`.
 
 h|*1..1*
 |*current_state*: `String`
@@ -37,9 +37,9 @@ a|Converted from `_ism_transition.transition_: DV_CODED_TEXT` to `String`.
 
 h|*0..1*
 |*instruction_id*: `String`
-a|
+a|Converted from `_instruction_details.instruction_id_`.
 
 h|*0..1*
 |*activity_id*: `String`
-a|
+a|Converted from `_instruction_details.activity_id_`.
 |===
