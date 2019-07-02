@@ -14,21 +14,21 @@ h|*Attributes*
 
 h|*0..1*
 |*summary*: `S_CLUSTER`
-a|
+a|Converted from `ITEM_STRUCTURE`.
 
 h|*0..1*
 |*events*: `List<S_EVENT>`
-a|
+a|(unchanged from RM)
 
 h|*1..1*
 |*origin*: `String`
-a|
+a|Converted from `DV_DATE_TIME`.
 
 h|*1..1*
 |*period*: `String`
-a|
+a|Converted from `DV_DURATION`.
 
 h|*1..1*
 |*duration*: `String`
-a|
+a|Converted from `DV_DURATION`.
 |===

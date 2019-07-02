@@ -18,9 +18,9 @@ a|Converted from `PARTICIPATION._performer.external_ref.id.value_`.
 
 h|*0..1*
 |*mode*: `String`
-a|Converted from `PARTICIPATION._mode_`.
+a|Converted from `PARTICIPATION._mode_: DV_CODED_TEXT`.
 
 h|*1..1*
 |*function*: `String`
-a|Converted from `PARTICIPATION._function_`.
+a|Converted from `PARTICIPATION._function_: DV_TEXT`.
 |===

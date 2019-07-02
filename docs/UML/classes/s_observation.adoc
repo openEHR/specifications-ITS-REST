@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*S_OBSERVATION*
 
 h|*Description*
-2+a|Simplified RM form of `OBSERVATION` RM class.
+2+a|Simplified RM form of `OBSERVATION` RM class for use with multi-sample Observations. For single sample Observations, use `S_OBSERVATION_SINGLE`.
 
 h|*Inherit*
 2+|`S_CARE_ENTRY`
@@ -17,9 +17,9 @@ h|*Attributes*
 
 h|*1..1*
 |*data*: `S_HISTORY`
-a|
+a|(unchanged from RM)
 
 h|*0..1*
 |*state*: `S_HISTORY`
-a|
+a|(unchanged from RM)
 |===

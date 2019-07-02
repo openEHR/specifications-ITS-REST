@@ -8,6 +8,8 @@ h|*Class*
 h|*Description*
 2+a|Simplified RM form of `PARTY_IDENTIFIED` RM class.
 
+TODO: `PARTY_IDENTIFIED._identifiers_` not included.
+
 h|*Inherit*
 2+|`S_PARTY_PROXY`
 
@@ -17,5 +19,5 @@ h|*Attributes*
 
 h|*1..1*
 |*name*: `String`
-a|Converted from `PARTY_IDENTIFIED._name_`.
+a|(unchanged from RM)
 |===

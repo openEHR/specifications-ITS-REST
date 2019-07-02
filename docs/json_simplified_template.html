@@ -66,21 +66,20 @@
 <li><a href="#_s_instruction_class">3.3.11. S_INSTRUCTION Class</a></li>
 <li><a href="#_s_activity_class">3.3.12. S_ACTIVITY Class</a></li>
 <li><a href="#_s_action_class">3.3.13. S_ACTION Class</a></li>
-<li><a href="#_s_instruction_details_class">3.3.14. S_INSTRUCTION_DETAILS Class</a></li>
-<li><a href="#_s_ism_transition_class">3.3.15. S_ISM_TRANSITION Class</a></li>
 </ul>
 </li>
 <li><a href="#_common_package">3.4. Common Package</a>
 <ul class="sectlevel3">
 <li><a href="#_class_definitions_3">3.4.1. Class Definitions</a></li>
 <li><a href="#_s_locatable_class">3.4.2. S_LOCATABLE Class</a></li>
-<li><a href="#_s_link_class">3.4.3. S_LINK Class</a></li>
-<li><a href="#_s_feeder_audit_class">3.4.4. S_FEEDER_AUDIT Class</a></li>
-<li><a href="#_s_feeder_audit_details_class">3.4.5. S_FEEDER_AUDIT_DETAILS Class</a></li>
-<li><a href="#_s_party_proxy_class">3.4.6. S_PARTY_PROXY Class</a></li>
-<li><a href="#_s_party_identified_class">3.4.7. S_PARTY_IDENTIFIED Class</a></li>
-<li><a href="#_s_participation_class">3.4.8. S_PARTICIPATION Class</a></li>
-<li><a href="#_s_participation_identified_class">3.4.9. S_PARTICIPATION_IDENTIFIED Class</a></li>
+<li><a href="#_s_archetyped_class">3.4.3. S_ARCHETYPED Class</a></li>
+<li><a href="#_s_link_class">3.4.4. S_LINK Class</a></li>
+<li><a href="#_s_feeder_audit_class">3.4.5. S_FEEDER_AUDIT Class</a></li>
+<li><a href="#_s_feeder_audit_details_class">3.4.6. S_FEEDER_AUDIT_DETAILS Class</a></li>
+<li><a href="#_s_party_proxy_class">3.4.7. S_PARTY_PROXY Class</a></li>
+<li><a href="#_s_party_identified_class">3.4.8. S_PARTY_IDENTIFIED Class</a></li>
+<li><a href="#_s_participation_class">3.4.9. S_PARTICIPATION Class</a></li>
+<li><a href="#_s_participation_identified_class">3.4.10. S_PARTICIPATION_IDENTIFIED Class</a></li>
 </ul>
 </li>
 <li><a href="#_data_structures_package">3.5. Data Structures Package</a>
@@ -99,11 +98,15 @@
 <ul class="sectlevel3">
 <li><a href="#_class_definitions_5">3.6.1. Class Definitions</a></li>
 <li><a href="#_s_data_value_class">3.6.2. S_DATA_VALUE Class</a></li>
-<li><a href="#_s_dv_text_class">3.6.3. S_DV_TEXT Class</a></li>
-<li><a href="#_s_dv_coded_text_class">3.6.4. S_DV_CODED_TEXT Class</a></li>
-<li><a href="#_s_code_phrase_class">3.6.5. S_CODE_PHRASE Class</a></li>
-<li><a href="#_s_dv_parsable_class">3.6.6. S_DV_PARSABLE Class</a></li>
-<li><a href="#_s_dv_identifier_class">3.6.7. S_DV_IDENTIFIER Class</a></li>
+<li><a href="#_s_dv_identifier_class">3.6.3. S_DV_IDENTIFIER Class</a></li>
+<li><a href="#_s_dv_text_class">3.6.4. S_DV_TEXT Class</a></li>
+<li><a href="#_s_dv_coded_text_class">3.6.5. S_DV_CODED_TEXT Class</a></li>
+<li><a href="#_s_code_phrase_class">3.6.6. S_CODE_PHRASE Class</a></li>
+<li><a href="#_s_dv_parsable_class">3.6.7. S_DV_PARSABLE Class</a></li>
+<li><a href="#_s_dv_quantity_class">3.6.8. S_DV_QUANTITY Class</a></li>
+<li><a href="#_s_dv_count_class">3.6.9. S_DV_COUNT Class</a></li>
+<li><a href="#_s_dv_proportion_class">3.6.10. S_DV_PROPORTION Class</a></li>
+<li><a href="#_s_dv_ordinal_class">3.6.11. S_DV_ORDINAL Class</a></li>
 </ul>
 </li>
 </ul>
@@ -216,7 +219,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.7.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECITS-X" target="_blank" rel="noopener">SPECITS-X</a>. Initial writing, adapted from the Marand Better Platform 'Web Templates' specification.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">openEHR SEC</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>17 Jun 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>02 Jul 2019</p></td>
 </tr>
 </tbody>
 </table>
@@ -467,14 +470,37 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>to_rm</strong> (<br>
 rm: <code>BMM_MODEL[1]</code><br>
 ): <code>Any</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Abstract interface of function to convert data of concrete <code>S_</code> type to an instance of its RM counterpart.</p>
+</div>
+<div class="paragraph">
+<p>Implement in concrete descendants.</p>
+</div>
+<div class="hdlist">
+<div class="title">Parameters<br></div>
+<table>
+<tr>
+<td class="hdlist1">
+<code><em>rm</em></code>
+</td>
+<td class="hdlist2">
+<p>Computable representation of canonical RM, used for lookup of terminology ids, types etc changed from or abstracted out of the SRM.</p>
+</td>
+</tr>
+</table>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>from_rm</strong> (<br>
 a_val: <code>Any[1]</code><br>
 )</p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Abstract procedure to create an <code>S_</code> instance from a canonical RM instance.</p>
+</div>
+<div class="paragraph">
+<p>Implement in concrete descendants.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -660,7 +686,9 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code>List&lt;S_CONTENT_ITEM&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(unchanged from RM)</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -789,7 +817,7 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Simplified RM form of <code>OBSERVATION</code> RM class.</p>
+<p>Simplified RM form of <code>OBSERVATION</code> RM class for use with multi-sample Observations. For single sample Observations, use <code>S_OBSERVATION_SINGLE</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -804,12 +832,16 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data</strong>: <code>S_HISTORY</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(unchanged from RM)</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state</strong>: <code>S_HISTORY</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(unchanged from RM)</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -845,7 +877,9 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data</strong>: <code>S_CLUSTER</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted to <code>S_CLUSTER</code> from <code>ITEM_STRUCTURE</code>.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -881,12 +915,16 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>narrative</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>DV_TEXT</code> to <code>String</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expiry_time</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>DV_DATE_TIME</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
@@ -969,7 +1007,9 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>DV_DATE_TIME</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
@@ -977,92 +1017,34 @@ a_val: <code>Any[1]</code><br>
 <td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>instruction_details</strong>: <code>S_INSTRUCTION_DETAILS</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ism_transition</strong>: <code>S_ISM_TRANSITION</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_s_instruction_details_class"><a class="anchor" href="#_s_instruction_details_class"></a>3.3.14. S_INSTRUCTION_DETAILS Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_INSTRUCTION_DETAILS</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Simplified RM form of <code>INSTRUCTION_DETAILS</code> RM class.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>instruction_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>activity_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_s_ism_transition_class"><a class="anchor" href="#_s_ism_transition_class"></a>3.3.15. S_ISM_TRANSITION Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_ISM_TRANSITION</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Simplified RM form of <code>ISM_TRANSITION</code> RM class.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>current_state</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code><em>ism_transition.current_state</em>: DV_CODED_TEXT</code> to <code>String</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>careflow_step</strong>: <code>S_DV_CODED_TEXT</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code><em>ism_transition.careflow_step</em></code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>transition</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code><em>ism_transition.transition</em>: DV_CODED_TEXT</code> to <code>String</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>instruction_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>activity_id</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 </tbody>
@@ -1110,18 +1092,10 @@ a_val: <code>Any[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>archetype_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>template_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_version</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code>S_DV_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(unchanged from RM)</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
@@ -1134,15 +1108,59 @@ a_val: <code>Any[1]</code><br>
 <td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code>S_DV_TEXT</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>archetype_details</strong>: <code>S_ARCHETYPED</code></p></td>
 <td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_link_class"><a class="anchor" href="#_s_link_class"></a>3.4.3. S_LINK Class</h4>
+<h4 id="_s_archetyped_class"><a class="anchor" href="#_s_archetyped_class"></a>3.4.3. S_ARCHETYPED Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_ARCHETYPED</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>archetype_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>ARCHETYPE_ID</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>template_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>TEMPLATE_ID</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_version</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_s_link_class"><a class="anchor" href="#_s_link_class"></a>3.4.4. S_LINK Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1170,6 +1188,9 @@ a_val: <code>Any[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>meaning</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Converted from <code>LINK.<em>meaning.value</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>TODO: what if original was coded?</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1177,6 +1198,9 @@ a_val: <code>Any[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Converted from <code>LINK.<em>type.value</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>TODO: what if original was coded?</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1190,7 +1214,7 @@ a_val: <code>Any[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_feeder_audit_class"><a class="anchor" href="#_s_feeder_audit_class"></a>3.4.4. S_FEEDER_AUDIT Class</h4>
+<h4 id="_s_feeder_audit_class"><a class="anchor" href="#_s_feeder_audit_class"></a>3.4.5. S_FEEDER_AUDIT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1221,23 +1245,38 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_content</strong>: <code>S_DV_PARSABLE</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>DV_ENCAPSULATED</code></p>
+</div>
+<div class="paragraph">
+<p>TODO: what happens for scanned doc images etc, which are presumably <code>DV_MULTIMEDIA</code>?</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>feeder_system_item_id</strong>: <code>List&lt;S_DV_IDENTIFIER&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(unchanged from RM)</p>
+</div>
+<div class="paragraph">
+<p>TODO: Web template attribute name is singular form of name in RM - probably going to be confusing.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>originating_system_item_id</strong>: <code>List&lt;S_DV_IDENTIFIER&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(unchanged from RM)</p>
+</div>
+<div class="paragraph">
+<p>TODO: Web template attribute name is singular form of name in RM - probably going to be confusing.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_feeder_audit_details_class"><a class="anchor" href="#_s_feeder_audit_details_class"></a>3.4.5. S_FEEDER_AUDIT_DETAILS Class</h4>
+<h4 id="_s_feeder_audit_details_class"><a class="anchor" href="#_s_feeder_audit_details_class"></a>3.4.6. S_FEEDER_AUDIT_DETAILS Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1253,6 +1292,9 @@ a_val: <code>Any[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
 <p>Simplified RM form of <code>FEEDER_AUDIT_DETAILS</code> RM class.</p>
+</div>
+<div class="paragraph">
+<p>TODO: removes 4 attributes from original RM form - lossy copy?</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1278,7 +1320,7 @@ a_val: <code>Any[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_party_proxy_class"><a class="anchor" href="#_s_party_proxy_class"></a>3.4.6. S_PARTY_PROXY Class</h4>
+<h4 id="_s_party_proxy_class"><a class="anchor" href="#_s_party_proxy_class"></a>3.4.7. S_PARTY_PROXY Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1326,7 +1368,7 @@ a_val: <code>Any[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_party_identified_class"><a class="anchor" href="#_s_party_identified_class"></a>3.4.7. S_PARTY_IDENTIFIED Class</h4>
+<h4 id="_s_party_identified_class"><a class="anchor" href="#_s_party_identified_class"></a>3.4.8. S_PARTY_IDENTIFIED Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1342,6 +1384,9 @@ a_val: <code>Any[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
 <p>Simplified RM form of <code>PARTY_IDENTIFIED</code> RM class.</p>
+</div>
+<div class="paragraph">
+<p>TODO: <code>PARTY_IDENTIFIED.<em>identifiers</em></code> not included.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1357,14 +1402,14 @@ a_val: <code>Any[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Converted from <code>PARTY_IDENTIFIED.<em>name</em></code>.</p>
+<p>(unchanged from RM)</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_participation_class"><a class="anchor" href="#_s_participation_class"></a>3.4.8. S_PARTICIPATION Class</h4>
+<h4 id="_s_participation_class"><a class="anchor" href="#_s_participation_class"></a>3.4.9. S_PARTICIPATION Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1398,21 +1443,21 @@ a_val: <code>Any[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>mode</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Converted from <code>PARTICIPATION.<em>mode</em></code>.</p>
+<p>Converted from <code>PARTICIPATION.<em>mode</em>: DV_CODED_TEXT</code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>function</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Converted from <code>PARTICIPATION.<em>function</em></code>.</p>
+<p>Converted from <code>PARTICIPATION.<em>function</em>: DV_TEXT</code>.</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_participation_identified_class"><a class="anchor" href="#_s_participation_identified_class"></a>3.4.9. S_PARTICIPATION_IDENTIFIED Class</h4>
+<h4 id="_s_participation_identified_class"><a class="anchor" href="#_s_participation_identified_class"></a>3.4.10. S_PARTICIPATION_IDENTIFIED Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1492,27 +1537,37 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>summary</strong>: <code>S_CLUSTER</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>ITEM_STRUCTURE</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events</strong>: <code>List&lt;S_EVENT&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(unchanged from RM)</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>origin</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>DV_DATE_TIME</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>period</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>DV_DURATION</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>duration</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>DV_DURATION</code>.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -1544,17 +1599,23 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>DV_DATE_TIME</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state</strong>: <code>S_CLUSTER</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>ITEM_TREE</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data</strong>: <code>S_CLUSTER</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>ITEM_TREE</code>.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -1616,17 +1677,23 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>width</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>DV_DURATION</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sample_count</strong>: <code>Integer</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(unchanged from RM)</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>math_function</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Converted from <code>DV_CODED_TEXT</code>.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -1684,7 +1751,9 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code>List&lt;S_ITEM&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(unchanged from RM)</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -1720,13 +1789,15 @@ a_val: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>S_DATA_VALUE</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Contains a converted form of original <code>DATA_VALUE</code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>null_flavour</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Flavour of null value, e.g. indeterminate, not asked etc.</p>
+<p>Converted from <code>DV_CODED_TEXT</code>.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1790,7 +1861,33 @@ a_val: <code>DATA_VALUE[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_dv_text_class"><a class="anchor" href="#_s_dv_text_class"></a>3.6.3. S_DV_TEXT Class</h4>
+<h4 id="_s_dv_identifier_class"><a class="anchor" href="#_s_dv_identifier_class"></a>3.6.3. S_DV_IDENTIFIER Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_DV_IDENTIFIER</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Simplified RM form of <code>DV_IDENTIFIER</code> RM class.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DV_IDENTIFIER</code>, <code>S_DATA_VALUE</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_s_dv_text_class"><a class="anchor" href="#_s_dv_text_class"></a>3.6.4. S_DV_TEXT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1812,7 +1909,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_dv_coded_text_class"><a class="anchor" href="#_s_dv_coded_text_class"></a>3.6.4. S_DV_CODED_TEXT Class</h4>
+<h4 id="_s_dv_coded_text_class"><a class="anchor" href="#_s_dv_coded_text_class"></a>3.6.5. S_DV_CODED_TEXT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1857,7 +1954,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_code_phrase_class"><a class="anchor" href="#_s_code_phrase_class"></a>3.6.5. S_CODE_PHRASE Class</h4>
+<h4 id="_s_code_phrase_class"><a class="anchor" href="#_s_code_phrase_class"></a>3.6.6. S_CODE_PHRASE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1902,7 +1999,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_dv_parsable_class"><a class="anchor" href="#_s_dv_parsable_class"></a>3.6.6. S_DV_PARSABLE Class</h4>
+<h4 id="_s_dv_parsable_class"><a class="anchor" href="#_s_dv_parsable_class"></a>3.6.7. S_DV_PARSABLE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1947,7 +2044,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_s_dv_identifier_class"><a class="anchor" href="#_s_dv_identifier_class"></a>3.6.7. S_DV_IDENTIFIER Class</h4>
+<h4 id="_s_dv_quantity_class"><a class="anchor" href="#_s_dv_quantity_class"></a>3.6.8. S_DV_QUANTITY Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1957,17 +2054,107 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_DV_IDENTIFIER</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_DV_QUANTITY</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Simplified RM form of <code>DV_IDENTIFIER</code> RM class.</p>
+<p>Simplified RM form of <code>DV_QUANTITY</code> RM class.</p>
+</div>
+<div class="paragraph">
+<p>TODO: define</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DV_IDENTIFIER</code>, <code>S_DATA_VALUE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>S_DATA_VALUE</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_s_dv_count_class"><a class="anchor" href="#_s_dv_count_class"></a>3.6.9. S_DV_COUNT Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_DV_COUNT</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Simplified RM form of <code>DV_COUNT</code> RM class.</p>
+</div>
+<div class="paragraph">
+<p>TODO: define</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>S_DATA_VALUE</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_s_dv_proportion_class"><a class="anchor" href="#_s_dv_proportion_class"></a>3.6.10. S_DV_PROPORTION Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_DV_PROPORTION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Simplified RM form of <code>DV_PROPORTION</code> RM class.</p>
+</div>
+<div class="paragraph">
+<p>TODO: define</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>S_DATA_VALUE</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_s_dv_ordinal_class"><a class="anchor" href="#_s_dv_ordinal_class"></a>3.6.11. S_DV_ORDINAL Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_DV_ORDINAL</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Simplified RM form of <code>DV_ORDINAL</code> RM class.</p>
+</div>
+<div class="paragraph">
+<p>TODO: define</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>S_DATA_VALUE</code></p></td>
 </tr>
 </tbody>
 </table>

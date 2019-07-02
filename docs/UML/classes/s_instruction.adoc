@@ -17,11 +17,11 @@ h|*Attributes*
 
 h|*0..1*
 |*narrative*: `String`
-a|
+a|Converted from `DV_TEXT` to `String`.
 
 h|*0..1*
 |*expiry_time*: `String`
-a|
+a|Converted from `DV_DATE_TIME`.
 
 h|*0..1*
 |*activities*: `List<S_ACTIVITY>`

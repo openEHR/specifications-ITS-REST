@@ -18,11 +18,19 @@ h|(abstract)
 |*to_rm* ( +
 rm: `BMM_MODEL[1]` +
 ): `Any`
-a|
+a|Abstract interface of function to convert data of concrete `S_` type to an instance of its RM counterpart.
+
+Implement in concrete descendants.
+
+.Parameters +
+[horizontal]
+`_rm_`:: Computable representation of canonical RM, used for lookup of terminology ids, types etc changed from or abstracted out of the SRM.
 
 h|(abstract)
 |*from_rm* ( +
 a_val: `Any[1]` +
 )
-a|
+a|Abstract procedure to create an `S_` instance from a canonical RM instance.
+
+Implement in concrete descendants.
 |===

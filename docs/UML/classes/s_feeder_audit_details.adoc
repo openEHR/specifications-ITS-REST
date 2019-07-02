@@ -8,6 +8,8 @@ h|*Class*
 h|*Description*
 2+a|Simplified RM form of `FEEDER_AUDIT_DETAILS` RM class.
 
+TODO: removes 4 attributes from original RM form - lossy copy?
+
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*

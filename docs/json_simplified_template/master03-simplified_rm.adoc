@@ -48,8 +48,6 @@ include::{uml_export_dir}/classes/s_evaluation.adoc[]
 include::{uml_export_dir}/classes/s_instruction.adoc[]
 include::{uml_export_dir}/classes/s_activity.adoc[]
 include::{uml_export_dir}/classes/s_action.adoc[]
-include::{uml_export_dir}/classes/s_instruction_details.adoc[]
-include::{uml_export_dir}/classes/s_ism_transition.adoc[]
 
 == Common Package
 
@@ -62,6 +60,7 @@ image::{uml_diagrams_uri}/SM-simplified_rm.common.svg[id=sm_simplified_rm_common
 === Class Definitions
 
 include::{uml_export_dir}/classes/s_locatable.adoc[]
+include::{uml_export_dir}/classes/s_archetyped.adoc[]
 include::{uml_export_dir}/classes/s_link.adoc[]
 include::{uml_export_dir}/classes/s_feeder_audit.adoc[]
 include::{uml_export_dir}/classes/s_feeder_audit_details.adoc[]
@@ -99,9 +98,16 @@ image::{uml_diagrams_uri}/SM-simplified_rm.data_types.svg[id=sm_simplified_rm_da
 === Class Definitions
 
 include::{uml_export_dir}/classes/s_data_value.adoc[]
+include::{uml_export_dir}/classes/s_dv_identifier.adoc[]
+
 include::{uml_export_dir}/classes/s_dv_text.adoc[]
 include::{uml_export_dir}/classes/s_dv_coded_text.adoc[]
 include::{uml_export_dir}/classes/s_code_phrase.adoc[]
+
 include::{uml_export_dir}/classes/s_dv_parsable.adoc[]
-include::{uml_export_dir}/classes/s_dv_identifier.adoc[]
+
+include::{uml_export_dir}/classes/s_dv_quantity.adoc[]
+include::{uml_export_dir}/classes/s_dv_count.adoc[]
+include::{uml_export_dir}/classes/s_dv_proportion.adoc[]
+include::{uml_export_dir}/classes/s_dv_ordinal.adoc[]
 

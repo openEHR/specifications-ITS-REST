@@ -13,16 +13,8 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*archetype_id*: `String`
-a|
-
-h|*0..1*
-|*template_id*: `String`
-a|
-
-h|*0..1*
-|*rm_version*: `String`
-a|
+|*name*: `S_DV_TEXT`
+a|(unchanged from RM)
 
 h|*0..1*
 |*links*: `List<S_LINK>`
@@ -32,7 +24,7 @@ h|*0..1*
 |*feeder_audit*: `S_FEEDER_AUDIT`
 a|
 
-h|*1..1*
-|*name*: `S_DV_TEXT`
+h|*0..1*
+|*archetype_details*: `S_ARCHETYPED`
 a|
 |===

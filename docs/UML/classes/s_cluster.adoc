@@ -17,5 +17,5 @@ h|*Attributes*
 
 h|*0..1*
 |*items*: `List<S_ITEM>`
-a|
+a|(unchanged from RM)
 |===

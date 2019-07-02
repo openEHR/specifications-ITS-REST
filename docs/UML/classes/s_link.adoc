@@ -16,9 +16,13 @@ h|*1..1*
 |*meaning*: `String`
 a|Converted from `LINK._meaning.value_`.
 
+TODO: what if original was coded?
+
 h|*1..1*
 |*type*: `String`
 a|Converted from `LINK._type.value_`.
+
+TODO: what if original was coded?
 
 h|*1..1*
 |*target*: `String`

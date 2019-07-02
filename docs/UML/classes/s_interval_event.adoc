@@ -17,13 +17,13 @@ h|*Attributes*
 
 h|*1..1*
 |*width*: `String`
-a|
+a|Converted from `DV_DURATION`.
 
 h|*0..1*
 |*sample_count*: `Integer`
-a|
+a|(unchanged from RM)
 
 h|*1..1*
 |*math_function*: `String`
-a|
+a|Converted from `DV_CODED_TEXT`.
 |===

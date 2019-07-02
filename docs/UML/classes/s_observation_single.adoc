@@ -1,0 +1,25 @@
+=== S_OBSERVATION_SINGLE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*S_OBSERVATION_SINGLE*
+
+h|*Description*
+2+a|Variant of `S_OBSERVATION` to use for single sample Observations.
+
+h|*Inherit*
+2+|`S_CARE_ENTRY`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*data*: `S_EVENT`
+a|Converted from `OBSERVATION._data.events[1]_`.
+
+h|*0..1*
+|*state*: `S_EVENT`
+a|Converted from `OBSERVATION._state.events[1]_`.
+|===

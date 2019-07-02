@@ -17,9 +17,9 @@ h|*Attributes*
 
 h|*0..1*
 |*value*: `S_DATA_VALUE`
-a|
+a|Contains a converted form of original `DATA_VALUE`.
 
 h|*0..1*
 |*null_flavour*: `String`
-a|Flavour of null value, e.g. indeterminate, not asked etc.
+a|Converted from `DV_CODED_TEXT`.
 |===

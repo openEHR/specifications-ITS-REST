@@ -14,13 +14,13 @@ h|*Attributes*
 
 h|*1..1*
 |*time*: `String`
-a|
+a|Converted from `DV_DATE_TIME`.
 
 h|*0..1*
 |*state*: `S_CLUSTER`
-a|
+a|Converted from `ITEM_TREE`.
 
 h|*1..1*
 |*data*: `S_CLUSTER`
-a|
+a|Converted from `ITEM_TREE`.
 |===

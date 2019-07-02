@@ -18,13 +18,19 @@ a|
 
 h|*0..1*
 |*original_content*: `S_DV_PARSABLE`
-a|
+a|Converted from `DV_ENCAPSULATED`
+
+TODO: what happens for scanned doc images etc, which are presumably `DV_MULTIMEDIA`?
 
 h|*0..1*
 |*feeder_system_item_id*: `List<S_DV_IDENTIFIER>`
-a|
+a|(unchanged from RM)
+
+TODO: Web template attribute name is singular form of name in RM - probably going to be confusing.
 
 h|*0..1*
 |*originating_system_item_id*: `List<S_DV_IDENTIFIER>`
-a|
+a|(unchanged from RM)
+
+TODO: Web template attribute name is singular form of name in RM - probably going to be confusing.
 |===

@@ -17,17 +17,29 @@ h|*Attributes*
 
 h|*1..1*
 |*time*: `String`
-a|
+a|Converted from `DV_DATE_TIME`.
 
 h|*1..1*
 |*description*: `S_CLUSTER`
 a|
 
+h|*1..1*
+|*current_state*: `String`
+a|Converted from `_ism_transition.current_state_: DV_CODED_TEXT` to `String`.
+
 h|*0..1*
-|*instruction_details*: `S_INSTRUCTION_DETAILS`
+|*careflow_step*: `S_DV_CODED_TEXT`
+a|Converted from `_ism_transition.careflow_step_`.
+
+h|*0..1*
+|*transition*: `String`
+a|Converted from `_ism_transition.transition_: DV_CODED_TEXT` to `String`.
+
+h|*0..1*
+|*instruction_id*: `String`
 a|
 
-h|*1..1*
-|*ism_transition*: `S_ISM_TRANSITION`
+h|*0..1*
+|*activity_id*: `String`
 a|
 |===
