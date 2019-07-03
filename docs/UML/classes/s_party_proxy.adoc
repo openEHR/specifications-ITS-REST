@@ -8,6 +8,9 @@ h|*Class*
 h|*Description*
 2+a|Simplified RM form of `PARTY_PROXY` RM class.
 
+h|*Inherit*
+2+|`S_TYPE`
+
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*

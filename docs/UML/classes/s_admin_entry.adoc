@@ -11,4 +11,11 @@ h|*Description*
 h|*Inherit*
 2+|`S_ENTRY`
 
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*data*: `S_CLUSTER`
+a|Converted from `ITEM_STRUCTURE`.
 |===

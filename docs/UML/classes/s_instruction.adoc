@@ -25,5 +25,5 @@ a|Converted from `DV_DATE_TIME`.
 
 h|*0..1*
 |*activities*: `List<S_ACTIVITY>`
-a|
+a|(unchanged from RM)
 |===

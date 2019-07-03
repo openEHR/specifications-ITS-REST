@@ -8,17 +8,20 @@ h|*Class*
 h|*Description*
 2+a|Simplified RM form of `EVENT_CONTEXT` RM class.
 
+h|*Inherit*
+2+|`S_TYPE`
+
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
 |*start_time*: `String`
-a|
+a|Converted from `DV_DATE_TIME`.
 
 h|*0..1*
 |*end_time*: `String`
-a|
+a|Converted from `DV_DATE_TIME`.
 
 h|*0..1*
 |*location*: `String`
@@ -26,11 +29,11 @@ a|
 
 h|*0..1*
 |*setting*: `String`
-a|
+a|(unchanged from RM)
 
 h|*0..1*
 |*other_context*: `S_CLUSTER`
-a|
+a|Converted from `ITEM_STRUCTURE`.
 
 h|*0..1*
 |*participations*: `List<S_PARTICIPATION>`

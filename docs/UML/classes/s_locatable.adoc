@@ -8,6 +8,9 @@ h|*Class*
 h|*Description*
 2+a|Simplified RM form of `LOCATABLE` RM class.
 
+h|*Inherit*
+2+|`S_TYPE`
+
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
@@ -18,11 +21,11 @@ a|(unchanged from RM)
 
 h|*0..1*
 |*links*: `List<S_LINK>`
-a|
+a|(unchanged from RM)
 
 h|*0..1*
 |*feeder_audit*: `S_FEEDER_AUDIT`
-a|
+a|(unchanged from RM)
 
 h|*0..1*
 |*archetype_details*: `S_ARCHETYPED`

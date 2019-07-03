@@ -8,6 +8,9 @@ h|*Class*
 h|*Description*
 2+a|Simplified RM form of `HISTORY` RM class.
 
+h|*Inherit*
+2+|`S_LOCATABLE`
+
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*

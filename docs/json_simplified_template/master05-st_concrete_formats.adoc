@@ -1,8 +1,73 @@
 = ST Concrete Formats
 
-== Flat JSON
+NOTE: under development; currently just notes.
 
-xxxx
+== Flat JSON Simple Path Format (Web Template flavour)
+
+An example of the flat JSON format based on the Web Template SRM is as follows: 
+
+[source, json]
+--------
+{
+  "laboratory_order/_uid": "23d69330-7790-4394-8abc-1455681f6ffa::ydh.code4health.com::1",
+  "laboratory_order/language|code": "en",
+  "laboratory_order/language|terminology": "ISO_639-1",
+  "laboratory_order/territory|code": "GB",
+  "laboratory_order/territory|terminology": "ISO_3166-1",
+  "laboratory_order/context/_health_care_facility|id": "999999-345",
+  "laboratory_order/context/_health_care_facility|id_scheme": "2.16.840.1.113883.2.1.4.3",
+  "laboratory_order/context/_health_care_facility|id_namespace": "NHS-UK",
+  "laboratory_order/context/_health_care_facility|name": "Northumbria Community NHS",
+  "laboratory_order/context/setting|terminology": "openehr",
+  "laboratory_order/laboratory_test_request/_uid": "b8c17799-457d-4583-8d85-c369dffacc21",
+  "laboratory_order/laboratory_test_request/lab_request/service_requested|code": "444164000",
+  "laboratory_order/laboratory_test_request/lab_request/service_requested|value": "Urea, electrolytes and creatinine measurement",
+  "laboratory_order/laboratory_test_request/lab_request/service_requested|terminology": "SNOMED-CT",
+  "laboratory_order/laboratory_test_request/lab_request/timing": "R5/2015-04-10T00:19:00+02:00/P2M",
+  "laboratory_order/laboratory_test_request/lab_request/timing|formalism": "timing",
+  "laboratory_order/laboratory_test_request/narrative": "Urea, electrolytes and creatinine measurement",
+  "laboratory_order/laboratory_test_request/language|code": "en",
+  "laboratory_order/laboratory_test_tracker/time": "2015-04-10T00:19:02.518+02:00",
+  "laboratory_order/laboratory_test_tracker/language|code": "en",
+  "laboratory_order/laboratory_test_tracker/language|terminology": "ISO_639-1",
+  "laboratory_order/laboratory_test_tracker/encoding|code": "UTF-8",
+  "laboratory_order/laboratory_test_tracker/encoding|terminology": "IANA_character-sets",
+  "laboratory_order/composer|name": "Dr Joyce Smith",
+  "ctx/language": "en",
+  "ctx/territory": "GB"
+}
+--------
+
+== Flat JSON AQL Path Format (ECIS flavour)
+
+A second format used in the EtherCIS project, known as ECIS format, uses a near canonical RM, and also formal AQL paths rather than the more human-friendly paths in the WT flavour. An example:
+
+[source, json]
+--------
+{
+    "/context/health_care_facility|name":"Northumbria Community NHS",
+    "/context/health_care_facility|identifier":"999999-345",
+    "/context/start_time":"2015-09-28T10:18:17.352+07:00",
+    "/context/end_time":"2015-09-28T11:18:17.352+07:00",
+    "/context/participation|function":"Oncologist",
+    "/context/participation|name":"Dr. Marcus Johnson",
+    "/context/participation|identifier":"1345678",
+    "/context/participation|mode":"face-to-face communication::openehr::216",
+    "/context/location":"local",
+    "/context/setting":"openehr::227|emergency care|",
+    "/composer|identifier":"1345678",
+    "/composer|name":"Dr. Marcus Johnson",
+    "/category":"openehr::433|event|",
+    "/territory":"FR",
+    "/language":"fr",
+    "/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/participation:0":"Nurse|1345678::Jessica|face-to-face communication::openehr::216",
+    "/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/participation:1":"Assistant|1345678::2.16.840.1.113883.2.1.4.3::NHS-UK::ANY::D. Mabuse|face-to-face communication::openehr::216",
+    "/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/activities[at0001]/timing":"before sleep",
+    "/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/activities[at0001]/description[openEHR-EHR-ITEM_TREE.medication_mod.v1]/items[at0001]":"aspirin",
+    "/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/activities[at0002]/timing":"lunch",
+    "/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/activities[at0002]/description[openEHR-EHR-ITEM_TREE.medication_mod.v1]/items[at0001]":"Atorvastatin"
+}
+--------
 
 == Sparse JSON
 

@@ -8,4 +8,7 @@ h|*Class*
 h|*Description*
 2+a|Simplified RM form of `ITEM` RM class.
 
+h|*Inherit*
+2+|`S_LOCATABLE`
+
 |===

@@ -17,11 +17,11 @@ h|*Attributes*
 
 h|*0..1*
 |*subject*: `S_PARTY_PROXY`
-a|
+a|Converted to `S_PARTY_PROXY` or `S_PARTY_IDENTIFIED` from `PARTY_SELF`, `PARTY_IDENTIFIED` or `PARTY_RELATED`.
 
 h|*0..1*
 |*provider*: `S_PARTY_PROXY`
-a|
+a|Converted to `S_PARTY_PROXY` or `S_PARTY_IDENTIFIED` from `PARTY_SELF`, `PARTY_IDENTIFIED` or `PARTY_RELATED`.
 
 h|*0..1*
 |*other_participations*: `List<S_PARTICIPATION>`

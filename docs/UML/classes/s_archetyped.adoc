@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*S_ARCHETYPED*
 
 h|*Description*
-2+a|
+2+a|Simplified RM form of `ARCHETYPED` RM class.
 
 h|*Attributes*
 ^h|*Signature*
@@ -22,5 +22,5 @@ a|Converted from `TEMPLATE_ID`.
 
 h|*0..1*
 |*rm_version*: `String`
-a|
+a|(unchanged from RM)
 |===

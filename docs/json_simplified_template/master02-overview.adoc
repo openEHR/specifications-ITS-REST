@@ -16,11 +16,11 @@ Template-specificity provides a route for defining and generating a serial forma
 
 To make the 'simplified format' idea work, the following requirements must be met:
 
-* the format makes it possible to _abstract away rigorous structural complexity_ of the canonical model where possible, typically reducing data path depth;
+* the format makes it possible to _abstract away rigorous structural complexity_ of the canonical model where possible, mainly by making the data less self-standing, and relying more on a schema;
 * the format definition for any given commit data can be completely and routinely _machine generated_ from its canonical definition, i.e. from an openEHR OPT, or other upstream canonical definition;
 * data instances of the simplified format definition can be _routinely converted to canonical format_ at execution time.
 
-The approach used to achieve this consists of a number of elements, illustrated below.
+The approach used to create a simplified format definition from an Operational Template (OPT) consists of a number of elements, illustrated below.
 
 [.text-center]
 .Simplified template scheme
@@ -28,11 +28,11 @@ image::{diagrams_uri}/simplified_template_approach.svg[id=simplified_template_ap
 
 In the above, a Simplified Reference Model (SRM) is defined, based on the canonical Reference Model (RM). The SRM is a _logical sub-set_ of classes relevant to the definition of EHR commitable content, with each class being a potentially simplified form of its counterpart in the RM. The latter simplifications may consist of:
 
-* merging of Composition relationships (de-normalisation);
+* merging of Composition relationships (de-normalisation), which has the effect of reducing data path depth;
 * stringification of specific attributes, i.e. replacement of (usually low-level) attribute types with `String`, so that the attribute may contain a string form of a complex object.
 
 Each class in the SRM contains a factory routine whose purpose is to generate a canonical form instance from an instance of the SRM class. This formalises the relationship between every SRM class and its RM counterpart, and allows for the easy implementation of a simplified -> canonical instance converter.
 
-Using the SRM, an abstract Simplified Template (ST) can be generated from any Operational Template (OPT), and from there, various concrete form STs may be generated, including JSON 'flat' and 'sparse' forms. The specification of the ST generator transformation rules is effectively the specification of an ST.
+Using the SRM, an abstract Simplified OPT (SOPT) can be generated from any Operational Template (OPT), and from there, various concrete form Simplified Templates (STs) may be generated, including JSON 'flat' and 'sparse' forms.
 
-Following this scheme, this specification describes the Simplified Reference Model (SRM), Simplified Template Generator (ST Generator), and the downstream JSON concrete formats.
+Following this scheme, this specification describes the Simplified Reference Model (SRM), Simplified OPT Generator (SOPT Generator), and the downstream JSON concrete formats.

@@ -17,5 +17,5 @@ h|*Attributes*
 
 h|*1..1*
 |*data*: `S_CLUSTER`
-a|Converted to `S_CLUSTER` from `ITEM_STRUCTURE`.
+a|Converted from `ITEM_STRUCTURE`.
 |===

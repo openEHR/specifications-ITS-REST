@@ -21,7 +21,7 @@ a|
 
 h|*0..1*
 |*context*: `S_EVENT_CONTEXT`
-a|
+a|(unchanged from RM)
 
 h|*1..1*
 |*composer*: `S_PARTY_PROXY`

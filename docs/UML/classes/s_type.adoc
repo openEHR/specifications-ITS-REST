@@ -1,8 +1,8 @@
-=== S_TYPE Interface
+=== S_TYPE Class
 
 [cols="^1,3,5"]
 |===
-h|*Interface*
+h|*Class*
 2+^h|*_S_TYPE (abstract)_*
 
 h|*Description*

@@ -8,17 +8,20 @@ h|*Class*
 h|*Description*
 2+a|Simplified RM form of `DATA_VALUE` RM class.
 
+h|*Inherit*
+2+|`S_TYPE`
+
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|(abstract)
+h|(effected)
 |*to_rm* ( +
 rm: `BMM_MODEL[1]` +
 ): `DATA_VALUE`
 a|
 
-h|(abstract)
+h|(effected)
 |*from_rm* ( +
 a_val: `DATA_VALUE[1]` +
 )

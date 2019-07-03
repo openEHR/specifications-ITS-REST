@@ -17,5 +17,5 @@ h|*Attributes*
 
 h|*0..1*
 |*protocol*: `S_CLUSTER`
-a|
+a|Converted from `ITEM_STRUCTURE`.
 |===

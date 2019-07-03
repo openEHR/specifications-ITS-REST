@@ -21,7 +21,7 @@ a|Converted from `DV_DATE_TIME`.
 
 h|*1..1*
 |*description*: `S_CLUSTER`
-a|Converted from `ITEM_STRUCTURE`.
+a|Converted to `S_CLUSTER` from `ITEM_STRUCTURE`.
 
 h|*1..1*
 |*current_state*: `String`
