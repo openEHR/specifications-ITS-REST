@@ -25,5 +25,5 @@ a|Converted to `S_PARTY_PROXY` or `S_PARTY_IDENTIFIED` from `PARTY_SELF`, `PARTY
 
 h|*0..1*
 |*other_participations*: `List<S_PARTICIPATION>`
-a|
+a|(unchanged from RM)
 |===

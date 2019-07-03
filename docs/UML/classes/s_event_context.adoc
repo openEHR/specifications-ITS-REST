@@ -25,7 +25,7 @@ a|Converted from `DV_DATE_TIME`.
 
 h|*0..1*
 |*location*: `String`
-a|
+a|(unchanged from RM)
 
 h|*0..1*
 |*setting*: `String`
@@ -37,9 +37,9 @@ a|Converted from `ITEM_STRUCTURE`.
 
 h|*0..1*
 |*participations*: `List<S_PARTICIPATION>`
-a|
+a|(unchanged from RM)
 
 h|*0..1*
 |*health_care_facility*: `S_PARTY_IDENTIFIED`
-a|
+a|(unchanged from RM)
 |===
