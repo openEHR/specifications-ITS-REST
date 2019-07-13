@@ -15,11 +15,15 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*1..1*
-|*data*: `S_EVENT`
+h|*0..1*
+|*data*: `List<S_EVENT>`
 a|Converted from `OBSERVATION._data.events[1]_`.
 
 h|*0..1*
-|*state*: `S_EVENT`
+|*state*: `List<S_EVENT>`
 a|Converted from `OBSERVATION._state.events[1]_`.
+
+h|*0..1*
+|*history_origin*: `String`
+a|
 |===

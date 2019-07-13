@@ -4,7 +4,7 @@ NOTE: under development; currently just notes.
 
 == Flat JSON Simple Path Format (Web Template flavour)
 
-An example of the flat JSON format based on the Web Template SRM is as follows: 
+An example of the flat JSON format based on the Web Template SIM is as follows: 
 
 [source, json]
 --------

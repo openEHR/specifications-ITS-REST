@@ -19,11 +19,23 @@ h|*1..1*
 |*content*: `S_CONTENT_ITEM`
 a|(unchanged from RM)
 
-h|*0..1*
-|*context*: `S_EVENT_CONTEXT`
-a|(unchanged from RM)
-
 h|*1..1*
 |*composer*: `S_PARTY_PROXY`
 a|Converted to `S_PARTY_PROXY` or `S_PARTY_IDENTIFIED` from `PARTY_SELF`, `PARTY_IDENTIFIED` or `PARTY_RELATED`.
+
+h|*1..1*
+|*language*: `String`
+a|Converted from `DV_DATE_TIME`.
+
+h|*1..1*
+|*territory*: `String`
+a|ISO3166-1 country code to be used for composition territory (e.g. "GB", "DE", …).
+
+h|*0..1*
+|*category*: `String`
+a|Value of Composition `_category_` in String form: "event" or "persistent".
+
+h|*0..1*
+|*context*: `S_EVENT_CONTEXT`
+a|
 |===

@@ -9,17 +9,21 @@ h|*Description*
 2+a|Simplified RM form of `OBSERVATION` RM class for use with multi-sample Observations. For single sample Observations, use `S_OBSERVATION_SINGLE`.
 
 h|*Inherit*
-2+|`S_CARE_ENTRY`
+2+|`S_OBSERVATION_SINGLE`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*1..1*
-|*data*: `S_HISTORY`
-a|(unchanged from RM)
+h|*0..1*
+|*history_period*: `String`
+a|
 
 h|*0..1*
-|*state*: `S_HISTORY`
-a|(unchanged from RM)
+|*history_summary*: `S_ITEM`
+a|
+
+h|*0..1*
+|*history_duration*: `String`
+a|
 |===

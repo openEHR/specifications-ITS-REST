@@ -10,9 +10,16 @@ This specification responds to the requirement for a minimal but formally comple
 
 == Conceptual Approach
 
-The starting point for defining a developer-friendly commit format is to assume that the great majority of applications are typically targetted to one or a few specific data sets, e.g. vital signs, diabetic monitoring, pregnancy plan etc. In openEHR, each such data set is defined in terms of an {openehr_am_opt2}[openEHR Operational Template (OPT)^], derived from a source template, and ultimately archetypes, which are themselves constraint models based on the underlying reference model (i.e. the 'canonical model').
+The information models of openEHR are structured in multiple layers, with the primary distinction being between an information model layer (the 'Reference Model' or RM), and domain-level models expressed in archetypes and templates, that latter of which express particular data sets. Each such data set is defined in terms of an {openehr_am_opt2}[openEHR Operational Template (OPT)^], derived from a source template, and ultimately particular archetypes, which are themselves constraint models based on the RM, i.e. the 'canonical model.
 
-Template-specificity provides a route for defining and generating a serial format such that _each openEHR template_ has its own reasonably simple, commit format. In simple terms, a lab result data structure could be represented using non-canonical attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (or in any other natural language, including script-based languages), instead of each node appearing under the canonical `CLUSTER._items_` attribute.
+The openEHR reference model (RM) and supporting models (BASE component) are designed with two computational goals in mind:
+
+* data instances (healthcare data) are fully defined and self-standing, for example if shared with a data partner that does not use openEHR;
+* software that implements the model works in regular, expected ways; for example, the structure of the openEHR `OBSERVATION`, `HISTORY` and `EVENT` classes will generically represent any obsrevation, from a single weight measurement to 100,000 samples of complex vital signs data.
+
+The model is accordingly rigorous. However, for some developers who simply need to instantiate, commit and/or read relatively limited data-sets, the canonical format can be demanding. This is particularly so for situations in which only a few kinds of data are implicated, i.e. a relatively small number of templates, e.g. vitals signs data, lab results etc. The starting point for defining a developer-friendly commit format is therefore to assume that the great majority of applications are typically targetted to one or a few specific data sets, e.g. vital signs, diabetic monitoring, pregnancy plan etc. 
+
+Template-specificity provides a route for defining and generating a serial format such that _each openEHR template_ has its own reasonably simple commit format. In simple terms, a lab result data structure could be represented using non-canonical attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (or in any other natural language, including script-based languages), instead of each node appearing under the canonical `CLUSTER._items_` attribute.
 
 To make the 'simplified format' idea work, the following requirements must be met:
 
@@ -23,16 +30,18 @@ To make the 'simplified format' idea work, the following requirements must be me
 The approach used to create a simplified format definition from an Operational Template (OPT) consists of a number of elements, illustrated below.
 
 [.text-center]
-.Simplified template scheme
-image::{diagrams_uri}/simplified_template_approach.svg[id=simplified_template_approach, align="center"]
+.Scheme for generation of Simplified Template definitions
+image::{diagrams_uri}/simplified_template_definition.svg[id=simplified_template_definition, align="center"]
 
-In the above, a Simplified Reference Model (SRM) is defined, based on the canonical Reference Model (RM). The SRM is a _logical sub-set_ of classes relevant to the definition of EHR commitable content, with each class being a potentially simplified form of its counterpart in the RM. The latter simplifications may consist of:
+In the above, a Simplified Information Model (SIM) is defined, based on the canonical Reference Model (RM) and related openEHR Information Models (Base, etc). The SIM is approximately a _logical sub-set_ of classes relevant to the definition of EHR commitable content, with each class being a potentially simplified form of one or more classes in the RM. The simplifications may consist of:
 
-* merging of Composition relationships (de-normalisation), which has the effect of reducing data path depth;
-* stringification of specific attributes, i.e. replacement of (usually low-level) attribute types with `String`, so that the attribute may contain a string form of a complex object.
+* merging of Composition relationships (de-normalisation), which has the effect of reducing data path depth; i.e. in some cases, 2 RM classes are replaced by a single SIM class, which is relatively easy in the case of 0..1 and 1..1 relationships;
+* stringification of specific attributes, i.e. replacement of (usually low-level) types with `String`, so that the attribute may contain a string form of a complex object.
 
-Each class in the SRM contains a factory routine whose purpose is to generate a canonical form instance from an instance of the SRM class. This formalises the relationship between every SRM class and its RM counterpart, and allows for the easy implementation of a simplified -> canonical instance converter.
+These rules are formalised in the model-to-model Transformation rules shown above. Using the SIM and the rules, an abstract Simplified OPT (SOPT) can be generated from any Operational Template (OPT), and from there, various concrete form Simplified Templates (STs) may be generated, including JSON 'flat' and 'sparse' forms.
 
-Using the SRM, an abstract Simplified OPT (SOPT) can be generated from any Operational Template (OPT), and from there, various concrete form Simplified Templates (STs) may be generated, including JSON 'flat' and 'sparse' forms.
+[.text-center]
+.Scheme for conversion of Simplified Template instance to canonical form
+image::{diagrams_uri}/simplified_template_data_conversion.svg[id=simplified_template_conversion, align="center"]
 
-Following this scheme, this specification describes the Simplified Reference Model (SRM), Simplified OPT Generator (SOPT Generator), and the downstream JSON concrete formats.
+Following this scheme, this specification describes the Simplified Reference Model (SIM), Simplified OPT Generator (SOPT Generator), and the downstream JSON concrete formats.

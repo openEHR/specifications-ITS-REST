@@ -17,13 +17,13 @@ h|*Attributes*
 
 h|*0..1*
 |*id*: `String`
-a|Converted from `PARTY_PROXY._external_ref.id.value_`
+a|Equivalent of `PARTY_PROXY._external_ref.id.value_`
 
 h|*0..1*
 |*id_namespace*: `String`
-a|Converted from `PARTY_PROXY._external_ref.namespace_`.
+a|Equivalent of `PARTY_PROXY._external_ref.namespace_`.
 
 h|*0..1*
 |*id_scheme*: `String`
-a|Converted from `PARTY_PROXY._external_ref.id.scheme_`, if `_external_ref.id_` is a `GENERIC_ID`.
+a|Equivalent of `PARTY_PROXY._external_ref.id.scheme_`, if `_external_ref.id_` is a `GENERIC_ID`.
 |===

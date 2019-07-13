@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*start_time*: `String`
+|*time*: `String`
 a|Converted from `DV_DATE_TIME`.
 
 h|*0..1*
@@ -28,18 +28,18 @@ h|*0..1*
 a|(unchanged from RM)
 
 h|*0..1*
-|*setting*: `String`
-a|(unchanged from RM)
-
-h|*0..1*
-|*other_context*: `S_CLUSTER`
-a|Converted from `ITEM_STRUCTURE`.
-
-h|*0..1*
 |*participations*: `List<S_PARTICIPATION>`
 a|(unchanged from RM)
 
 h|*0..1*
 |*health_care_facility*: `S_PARTY_IDENTIFIED`
 a|(unchanged from RM)
+
+h|*0..1*
+|*setting*: `String`
+a|(unchanged from RM)
+
+h|*0..1*
+|*other_context*: `S_CLUSTER`
+a|Converted from `ITEM_STRUCTURE`.
 |===
