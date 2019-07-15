@@ -30,7 +30,7 @@ To make the 'simplified format' idea work, the following requirements must be me
 The approach used to create a simplified format definition from an Operational Template (OPT) consists of a number of elements, illustrated below.
 
 [.text-center]
-.Scheme for generation of Simplified Template definitions
+.Scheme for generation of JSON Template definitions
 image::{diagrams_uri}/simplified_template_definition.svg[id=simplified_template_definition, align="center"]
 
 In the above, a Simplified Information Model (SIM) is defined, based on the canonical Reference Model (RM) and related openEHR Information Models (Base, etc). The SIM is approximately a _logical sub-set_ of classes relevant to the definition of EHR commitable content, with each class being a potentially simplified form of one or more classes in the RM. The simplifications may consist of:
@@ -38,10 +38,12 @@ In the above, a Simplified Information Model (SIM) is defined, based on the cano
 * merging of Composition relationships (de-normalisation), which has the effect of reducing data path depth; i.e. in some cases, 2 RM classes are replaced by a single SIM class, which is relatively easy in the case of 0..1 and 1..1 relationships;
 * stringification of specific attributes, i.e. replacement of (usually low-level) types with `String`, so that the attribute may contain a string form of a complex object.
 
-These rules are formalised in the model-to-model Transformation rules shown above. Using the SIM and the rules, an abstract Simplified OPT (SOPT) can be generated from any Operational Template (OPT), and from there, various concrete form Simplified Templates (STs) may be generated, including JSON 'flat' and 'sparse' forms.
+These rules are formalised in the model-to-model Transformation rules shown above. Using the SIM and the rules, a Simplified OPT (SOPT) can be generated from any Operational Template (OPT), and from there, various concrete form Simplified Templates (STs) may be generated, including JSON 'flat' and 'sparse' forms. The SOPT is a regular OPT in the formal sense, and can be processed by any tool that accepts an OPT as an input.
+
+Instances of both JSON flat and sparse simplified template formats can be created by developers to represent openEHR data to be committed to a system. These will be converted to canonical RM format (also obeying their original OPTs) by a Simplified Template -> RM converter on the serve side at data commit time, as shown in the following diagram.
 
 [.text-center]
 .Scheme for conversion of Simplified Template instance to canonical form
 image::{diagrams_uri}/simplified_template_data_conversion.svg[id=simplified_template_conversion, align="center"]
 
-Following this scheme, this specification describes the Simplified Reference Model (SIM), Simplified OPT Generator (SOPT Generator), and the downstream JSON concrete formats.
+Following this scheme, this specification describes the Simplified Reference Model (SIM), Simplified OPT Transformer (SOPT Transformer), and the downstream JSON concrete formats and the ST -> canonical instance converter.

@@ -424,7 +424,7 @@
 <div class="content">
 <img src="json_simplified_template/diagrams/simplified_template_definition.svg" alt="simplified template definition">
 </div>
-<div class="title">Figure 1. Scheme for generation of Simplified Template definitions</div>
+<div class="title">Figure 1. Scheme for generation of JSON Template definitions</div>
 </div>
 <div class="paragraph">
 <p>In the above, a Simplified Information Model (SIM) is defined, based on the canonical Reference Model (RM) and related openEHR Information Models (Base, etc). The SIM is approximately a <em>logical sub-set</em> of classes relevant to the definition of EHR commitable content, with each class being a potentially simplified form of one or more classes in the RM. The simplifications may consist of:</p>
@@ -440,7 +440,10 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>These rules are formalised in the model-to-model Transformation rules shown above. Using the SIM and the rules, an abstract Simplified OPT (SOPT) can be generated from any Operational Template (OPT), and from there, various concrete form Simplified Templates (STs) may be generated, including JSON 'flat' and 'sparse' forms.</p>
+<p>These rules are formalised in the model-to-model Transformation rules shown above. Using the SIM and the rules, a Simplified OPT (SOPT) can be generated from any Operational Template (OPT), and from there, various concrete form Simplified Templates (STs) may be generated, including JSON 'flat' and 'sparse' forms. The SOPT is a regular OPT in the formal sense, and can be processed by any tool that accepts an OPT as an input.</p>
+</div>
+<div class="paragraph">
+<p>Instances of both JSON flat and sparse simplified template formats can be created by developers to represent openEHR data to be committed to a system. These will be converted to canonical RM format (also obeying their original OPTs) by a Simplified Template &#8594; RM converter on the serve side at data commit time, as shown in the following diagram.</p>
 </div>
 <div id="simplified_template_conversion" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -449,7 +452,7 @@
 <div class="title">Figure 2. Scheme for conversion of Simplified Template instance to canonical form</div>
 </div>
 <div class="paragraph">
-<p>Following this scheme, this specification describes the Simplified Reference Model (SIM), Simplified OPT Generator (SOPT Generator), and the downstream JSON concrete formats.</p>
+<p>Following this scheme, this specification describes the Simplified Reference Model (SIM), Simplified OPT Transformer (SOPT Transformer), and the downstream JSON concrete formats and the ST &#8594; canonical instance converter.</p>
 </div>
 </div>
 </div>
@@ -2826,31 +2829,147 @@ a_val: <code>DATA_VALUE[1]</code><br>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>EVENT_CONTEXT</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>EVENT_CONTEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>start_time</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DATE_TIME</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_EVENT_CONTEXT</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>S_EVENT_CONTEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>start_time</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>EVENT_CONTEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>end_time</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DATE_TIME</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_EVENT_CONTEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>end_time</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>EVENT_CONTEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>other_context</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ITEM_STRUCTURE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_EVENT_CONTEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>other_context</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_CLUSTER</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>EVALUATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_EVALUATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_CLUSTER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>INSTRUCTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>narrative</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>S_INSTRUCTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>narrative</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>expiry_time</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>expiry_time</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>activities</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;ACTIVITY&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>activities</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;S_ACTIVITY&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>ACTIVITY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>timing</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_PARSABLE</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>S_ACTIVITY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>timing</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>description</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>description</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_CLUSTER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>action_archetype_id</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>action_archetype_id</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="9"><p class="tableblock"><code>ACTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>time</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DATE_TIME</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="9"><p class="tableblock"><code>S_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>time</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>description</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>description</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_CLUSTER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>ism_transition</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ISM_TRANSITION</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>collapse()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>ism_transition.current_state</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>current_state</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>ism_transition.careflow_step</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>careflow_step</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>ism_transition.transition</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>transition</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>instruction_id</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INSTRUCTION_DETAILS</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>collapse()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>instruction_details.instruction_id</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>instruction_id</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>instruction_details.activity_id</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>activity_id</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -3322,7 +3441,7 @@ under development; currently just notes.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-07-10 10:38:40 BST
+Last updated 2019-07-15 14:21:43 BST
 </div>
 </div>
 </body>
