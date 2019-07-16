@@ -8,14 +8,4 @@ h|*Class*
 h|*Description*
 2+a|Simplified RM form of `DV_TEXT` RM class.
 
-h|*Inherit*
-2+|`S_DATA_VALUE`
-
-h|*Attributes*
-^h|*Signature*
-^h|*Meaning*
-
-h|*1..1*
-|*value*: `String`
-a|(unchanged from RM)
 |===

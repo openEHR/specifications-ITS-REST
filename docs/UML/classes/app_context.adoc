@@ -72,7 +72,7 @@ h|*0..1*
 |*category*: `String`
 a|Value of Composition `_category_` : "event" or "persistent".
 
-_To RM_: match term text from vocabulary at https://github.com/openEHR/terminology/blob/master/openEHR_RM/en/openehr_terminology.xml#L35; create `DV_CODED_TEXT` with `_terminology_id_ = "openEHR"`.
+_To RM_: match term text from https://github.com/openEHR/terminology/blob/master/openEHR_RM/en/openehr_terminology.xml#L35[`category` vocabulary]; create `DV_CODED_TEXT` with `_terminology_id_ = "openEHR"`.
 
 _From RM_: `COMPOSITION._setting.defining_code.code_string_`.
 
@@ -82,7 +82,7 @@ h|*0..1*
 |*setting*: `String`
 a|Equivalent to `COMPOSITION._setting_`.
 
-_To RM_: obtain code definition from https://github.com/openEHR/terminology/blob/master/openEHR_RM/en/openehr_terminology.xml#L307; create `DV_CODED_TEXT`.
+_To RM_: obtain code definition from https://github.com/openEHR/terminology/blob/master/openEHR_RM/en/openehr_terminology.xml#L307[openEHR `setting` vocabulary]; create `DV_CODED_TEXT`.
 
 _From RM_: `COMPOSITION._setting.defining_code.code_string_`.
 
@@ -95,7 +95,7 @@ TODO: There are 2 new codes in EhrScape ?not in openEHR terminology:
 
 h|*0..1*
 |*history_origin*: `String`
-a|
+a|Default value for `HISTORY._origin_` within `OBSERVATION._data_` and _state_` in the commit.
 
 h|*0..1*
 |*id_namespace*: `String`

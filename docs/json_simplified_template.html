@@ -130,12 +130,11 @@
 <li><a href="#_s_entry_class">3.7.1.5. S_ENTRY Class</a></li>
 <li><a href="#_s_admin_entry_class">3.7.1.6. S_ADMIN_ENTRY Class</a></li>
 <li><a href="#_s_care_entry_class">3.7.1.7. S_CARE_ENTRY Class</a></li>
-<li><a href="#_s_observation_single_class">3.7.1.8. S_OBSERVATION_SINGLE Class</a></li>
-<li><a href="#_s_observation_class">3.7.1.9. S_OBSERVATION Class</a></li>
-<li><a href="#_s_evaluation_class">3.7.1.10. S_EVALUATION Class</a></li>
-<li><a href="#_s_instruction_class">3.7.1.11. S_INSTRUCTION Class</a></li>
-<li><a href="#_s_activity_class">3.7.1.12. S_ACTIVITY Class</a></li>
-<li><a href="#_s_action_class">3.7.1.13. S_ACTION Class</a></li>
+<li><a href="#_s_observation_class">3.7.1.8. S_OBSERVATION Class</a></li>
+<li><a href="#_s_evaluation_class">3.7.1.9. S_EVALUATION Class</a></li>
+<li><a href="#_s_instruction_class">3.7.1.10. S_INSTRUCTION Class</a></li>
+<li><a href="#_s_activity_class">3.7.1.11. S_ACTIVITY Class</a></li>
+<li><a href="#_s_action_class">3.7.1.12. S_ACTION Class</a></li>
 </ul>
 </li>
 <li><a href="#_transformation_rules_5">3.7.2. Transformation Rules</a></li>
@@ -143,8 +142,16 @@
 </li>
 </ul>
 </li>
-<li><a href="#_sopt_generation">4. SOPT Generation</a></li>
-<li><a href="#_st_concrete_formats">5. ST Concrete Formats</a>
+<li><a href="#_sopt_generation">4. SOPT Generation</a>
+<ul class="sectlevel2">
+<li><a href="#_visitor_algorithm">4.1. Visitor algorithm</a>
+<ul class="sectlevel3">
+<li><a href="#_c_complex_object">4.1.1. C_COMPLEX_OBJECT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_simple_template_concrete_formats">5. Simple Template Concrete Formats</a>
 <ul class="sectlevel2">
 <li><a href="#_flat_json_simple_path_format_web_template_flavour">5.1. Flat JSON Simple Path Format (Web Template flavour)</a></li>
 <li><a href="#_flat_json_aql_path_format_ecis_flavour">5.2. Flat JSON AQL Path Format (ECIS flavour)</a></li>
@@ -260,9 +267,9 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.7.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECITS-X" target="_blank" rel="noopener">SPECITS-X</a>. Initial writing, adapted from the Marand Better Platform 'Web Templates' specification.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECITS-X" target="_blank" rel="noopener">SPECITS-X</a>. Initial writing, adapted from the Marand Better Platform 'Web Templates' specification and EtherCIS documentation.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">openEHR SEC</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 Jul 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Jul 2019</p></td>
 </tr>
 </tbody>
 </table>
@@ -695,23 +702,29 @@ a_val: <code>Any[1]</code><br>
 <h4 id="_transformation_rules"><a class="anchor" href="#_transformation_rules"></a>3.3.2. Transformation Rules</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">RM class</th>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">RM Path</th>
+<th class="tableblock halign-left valign-top">RM Type</th>
 <th class="tableblock halign-left valign-top">SIM class</th>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Conversion</th>
+<th class="tableblock halign-left valign-top">SIM Path</th>
+<th class="tableblock halign-left valign-top">SIMType</th>
+<th class="tableblock halign-left valign-top">Data<br>
+                                                    conversion<br>
+                                                    rule</th>
+<th class="tableblock halign-left valign-top">Constraint<br>
+                                                                    conversion<br>
+                                                                    rule</th>
 </tr>
 </thead>
 <tbody>
@@ -723,6 +736,7 @@ a_val: <code>Any[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>id_namespace</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OBJECT_REF</code></p></td>
@@ -732,6 +746,7 @@ a_val: <code>Any[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>id_type</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -838,22 +853,6 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
 <p>Simplified RM form of <code>DV_TEXT</code> RM class.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>S_DATA_VALUE</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>(unchanged from RM)</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1115,23 +1114,29 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <h4 id="_transformation_rules_2"><a class="anchor" href="#_transformation_rules_2"></a>3.4.2. Transformation Rules</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">RM class</th>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">RM Path</th>
+<th class="tableblock halign-left valign-top">RM Type</th>
 <th class="tableblock halign-left valign-top">SIM class</th>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Conversion</th>
+<th class="tableblock halign-left valign-top">SIM Path</th>
+<th class="tableblock halign-left valign-top">SIMType</th>
+<th class="tableblock halign-left valign-top">Data<br>
+                                                    conversion<br>
+                                                    rule</th>
+<th class="tableblock halign-left valign-top">Constraint<br>
+                                                                    conversion<br>
+                                                                    rule</th>
 </tr>
 </thead>
 <tbody>
@@ -1143,6 +1148,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>value</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
@@ -1152,6 +1158,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>code</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
@@ -1161,6 +1168,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>terminology</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>CODE_PHRASE</code></p></td>
@@ -1170,6 +1178,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>code</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>CODE_PHRASE</code></p></td>
@@ -1179,6 +1188,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>terminology</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -1507,23 +1517,29 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <h4 id="_transformation_rules_3"><a class="anchor" href="#_transformation_rules_3"></a>3.5.2. Transformation Rules</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">RM class</th>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">RM Path</th>
+<th class="tableblock halign-left valign-top">RM Type</th>
 <th class="tableblock halign-left valign-top">SIM class</th>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Conversion</th>
+<th class="tableblock halign-left valign-top">SIM Path</th>
+<th class="tableblock halign-left valign-top">SIMType</th>
+<th class="tableblock halign-left valign-top">Data<br>
+                                                    conversion<br>
+                                                    rule</th>
+<th class="tableblock halign-left valign-top">Constraint<br>
+                                                                    conversion<br>
+                                                                    rule</th>
 </tr>
 </thead>
 <tbody>
@@ -1535,6 +1551,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>value</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DATE_TIME</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>EVENT</code></p></td>
@@ -1543,7 +1560,8 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_EVENT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_CLUSTER</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>cvt_item_tree()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>EVENT</code></p></td>
@@ -1552,7 +1570,8 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_EVENT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_CLUSTER</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>cvt_item_tree()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>INTERVAL_EVENT</code></p></td>
@@ -1562,6 +1581,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>width</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>INTERVAL_EVENT</code></p></td>
@@ -1571,6 +1591,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>sample_count</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>INTERVAL_EVENT</code></p></td>
@@ -1579,7 +1600,8 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_INTERVAL_EVENT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>math_function</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>extract_code()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>cvt_openehr_term()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_TERMINOLOGY_CODE</code> at <code><em>defining_code</em></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -2064,23 +2086,29 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <h4 id="_transformation_rules_4"><a class="anchor" href="#_transformation_rules_4"></a>3.6.2. Transformation Rules</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">RM class</th>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">RM Path</th>
+<th class="tableblock halign-left valign-top">RM Type</th>
 <th class="tableblock halign-left valign-top">SIM class</th>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Conversion</th>
+<th class="tableblock halign-left valign-top">SIM Path</th>
+<th class="tableblock halign-left valign-top">SIMType</th>
+<th class="tableblock halign-left valign-top">Data<br>
+                                                    conversion<br>
+                                                    rule</th>
+<th class="tableblock halign-left valign-top">Constraint<br>
+                                                                    conversion<br>
+                                                                    rule</th>
 </tr>
 </thead>
 <tbody>
@@ -2092,6 +2120,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>meaning</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>LINK</code></p></td>
@@ -2100,6 +2129,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_LINK</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>type</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
 </tr>
 <tr>
@@ -2110,6 +2140,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>id</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PARTY_PROXY</code></p></td>
@@ -2119,6 +2150,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>id_namespace</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PARTY_PROXY</code></p></td>
@@ -2128,6 +2160,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>id_scheme</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>if external_ref.id instance_of(GENERIC_ID) then {<em>xxx()</em> }</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -2490,7 +2523,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_s_observation_single_class"><a class="anchor" href="#_s_observation_single_class"></a>3.7.1.8. S_OBSERVATION_SINGLE Class</h5>
+<h5 id="_s_observation_class"><a class="anchor" href="#_s_observation_class"></a>3.7.1.8. S_OBSERVATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2500,7 +2533,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_OBSERVATION_SINGLE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_OBSERVATION</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -2534,59 +2567,76 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history_origin</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
-</tr>
-</tbody>
-</table>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For multi-event series, converted from <code>OBSERVATION.<em>data.origin</em></code>.</p>
 </div>
-<div class="sect4">
-<h5 id="_s_observation_class"><a class="anchor" href="#_s_observation_class"></a>3.7.1.9. S_OBSERVATION Class</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>S_OBSERVATION</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Simplified RM form of <code>OBSERVATION</code> RM class for use with multi-sample Observations. For single sample Observations, use <code>S_OBSERVATION_SINGLE</code>.</p>
+<div class="paragraph">
+<p>TODO: should be called <code><em>data_origin</em></code>.</p>
 </div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>S_OBSERVATION_SINGLE</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history_period</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For multi-event series, converted from <code>OBSERVATION.<em>data.period</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>TODO: should be called <code><em>data_period</em></code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history_summary</strong>: <code>S_ITEM</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For multi-event series, converted from <code>OBSERVATION.<em>data.summary</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>TODO: should be called <code><em>data_summary</em></code>.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history_duration</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For multi-event series, converted from <code>OBSERVATION.<em>data.duration</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>TODO: should be called <code><em>data_duration</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state_origin</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For multi-event series, converted from <code>OBSERVATION.<em>state.origin</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state_period</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For multi-event series, converted from <code>OBSERVATION.<em>state.period</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state_summary</strong>: <code>S_ITEM</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For multi-event series, converted from <code>OBSERVATION.<em>state.summary</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state_duration</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For multi-event series, converted from <code>OBSERVATION.<em>state.duration</em></code>.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_s_evaluation_class"><a class="anchor" href="#_s_evaluation_class"></a>3.7.1.10. S_EVALUATION Class</h5>
+<h5 id="_s_evaluation_class"><a class="anchor" href="#_s_evaluation_class"></a>3.7.1.9. S_EVALUATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2624,7 +2674,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_s_instruction_class"><a class="anchor" href="#_s_instruction_class"></a>3.7.1.11. S_INSTRUCTION Class</h5>
+<h5 id="_s_instruction_class"><a class="anchor" href="#_s_instruction_class"></a>3.7.1.10. S_INSTRUCTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2676,7 +2726,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_s_activity_class"><a class="anchor" href="#_s_activity_class"></a>3.7.1.12. S_ACTIVITY Class</h5>
+<h5 id="_s_activity_class"><a class="anchor" href="#_s_activity_class"></a>3.7.1.11. S_ACTIVITY Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2724,7 +2774,7 @@ a_val: <code>DATA_VALUE[1]</code><br>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_s_action_class"><a class="anchor" href="#_s_action_class"></a>3.7.1.13. S_ACTION Class</h5>
+<h5 id="_s_action_class"><a class="anchor" href="#_s_action_class"></a>3.7.1.12. S_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2808,34 +2858,41 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <h4 id="_transformation_rules_5"><a class="anchor" href="#_transformation_rules_5"></a>3.7.2. Transformation Rules</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 8.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">RM class</th>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">RM Path</th>
+<th class="tableblock halign-left valign-top">RM Type</th>
 <th class="tableblock halign-left valign-top">SIM class</th>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Conversion</th>
+<th class="tableblock halign-left valign-top">SIM Path</th>
+<th class="tableblock halign-left valign-top">SIMType</th>
+<th class="tableblock halign-left valign-top">Data<br>
+                                                    conversion<br>
+                                                    rule</th>
+<th class="tableblock halign-left valign-top">Constraint<br>
+                                                                    conversion<br>
+                                                                    rule</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>EVENT_CONTEXT</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock"><code>EVENT_CONTEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>start_time</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DATE_TIME</code></p></td>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>S_EVENT_CONTEXT</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock"><code>S_EVENT_CONTEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>start_time</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DATE_TIME</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>end_time</em></code></p></td>
@@ -2843,61 +2900,133 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>end_time</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DATE_TIME</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>other_context</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ITEM_STRUCTURE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>other_context</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_CLUSTER</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>EVALUATION</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="12"><p class="tableblock"><code>OBSERVATION</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ITEM_STRUCTURE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_EVALUATION</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_CLUSTER</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HISTORY</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="12"><p class="tableblock"><code>S_OBSERVATION</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>collapse()</em></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>INSTRUCTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HISTORY</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>collapse()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data.events</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;EVENT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;S_EVENT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>convert()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state.events</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;EVENT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;S_EVENT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>convert()</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data.origin</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DATE_TIME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>history_origin</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DATE_TIME</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data.period</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DURATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>history_period</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DURATION</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data.duration</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DURATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>history_duration</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DURATION</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>data.summary</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>history_summary</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_ITEM</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see <code>ITEM_STRUCTURE</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state.origin</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DATE_TIME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state_origin</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DATE_TIME</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state.period</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DURATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state_period</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DURATION</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state.duration</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DURATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state_duration</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DURATION</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state.summary</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>state_summary</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_ITEM</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see <code>ITEM_STRUCTURE</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock"><code>INSTRUCTION</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>narrative</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>S_INSTRUCTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock"><code>S_INSTRUCTION</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>narrative</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_TERMINOLOGY_CODE</code> at <code>DV_TEXT.<em>value</em></code> or <code>DV_CODED_TEXT.<em>defining_code</em></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>expiry_time</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DATE_TIME</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>expiry_time</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DATE_TIME</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>activities</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;ACTIVITY&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>activities</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;S_ACTIVITY&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>ACTIVITY</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock"><code>ACTIVITY</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>timing</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_PARSABLE</code></p></td>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>S_ACTIVITY</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock"><code>S_ACTIVITY</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>timing</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>description</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ITEM_STRUCTURE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>description</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_CLUSTER</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>action_archetype_id</em></code></p></td>
@@ -2905,26 +3034,22 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>action_archetype_id</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="9"><p class="tableblock"><code>ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="8"><p class="tableblock"><code>ACTION</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>time</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_DATE_TIME</code></p></td>
-<td class="tableblock halign-left valign-top" rowspan="9"><p class="tableblock"><code>S_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="8"><p class="tableblock"><code>S_ACTION</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>time</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>description</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ITEM_STRUCTURE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>description</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_CLUSTER</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_DATE_TIME</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>ism_transition</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ISM_TRANSITION</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>collapse()</em></code></p></td>
@@ -2934,7 +3059,8 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>current_state</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>cvt_openehr_term()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_TERMINOLOGY_CODE</code> at <code><em>defining_code</em></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>ism_transition.careflow_step</em></code></p></td>
@@ -2942,33 +3068,38 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>careflow_step</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>S_DV_CODED_TEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>xxx()</em></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>ism_transition.transition</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>transition</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>cvt_openehr_term()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create <code>C_STRING</code> from <code>C_TERMINOLOGY_CODE</code> at <code><em>defining_code</em></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>instruction_id</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>INSTRUCTION_DETAILS</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>collapse()</em></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>instruction_details.instruction_id</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>LOCATABLE_REF</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>instruction_id</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>as_string()</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">n/a</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>instruction_details.activity_id</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>activity_id</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>copy()</em></code></p></td>
 </tr>
 </tbody>
@@ -2983,10 +3114,74 @@ a_val: <code>DATA_VALUE[1]</code><br>
 <div class="paragraph">
 <p>This section describes how a Simlified OPT may be machine-derived from its corresponding canonical OPT definition and the Simplified Reference Model (SIM).</p>
 </div>
+<div class="sect2">
+<h3 id="_visitor_algorithm"><a class="anchor" href="#_visitor_algorithm"></a>4.1. Visitor algorithm</h3>
+<div class="sect3">
+<h4 id="_c_complex_object"><a class="anchor" href="#_c_complex_object"></a>4.1.1. C_COMPLEX_OBJECT</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><span class="tok-nl">SOptVisitor:</span><span class="tok-o">:</span> <span class="tok-n">OptVisitor</span> <span class="tok-o">{</span>
+
+    <span class="tok-c1">//</span>
+    <span class="tok-c1">// Visitor function for C_COMPLEX_OBJECT node in OPT</span>
+    <span class="tok-c1">//</span>
+    <span class="tok-kd">public</span> <span class="tok-nf">enterCComplexObject</span> <span class="tok-o">(</span><span class="tok-n">CComplexObject</span> <span class="tok-n">cObj</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-c1">// obtain or synthesise SIM class name for cCObj.rmTypeName</span>
+        <span class="tok-n">simClassName</span> <span class="tok-o">=</span> <span class="tok-n">xxx</span><span class="tok-o">;</span>
+
+        <span class="tok-c1">// create SOpt CComplexObject</span>
+        <span class="tok-n">CComplexObject</span> <span class="tok-n">SCobj</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">CComplexObject</span><span class="tok-o">(</span><span class="tok-n">simClassName</span><span class="tok-o">);</span>
+
+        <span class="tok-c1">// process attributes</span>
+        <span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">CAttribute</span> <span class="tok-n">cAttr</span> <span class="tok-n">in</span> <span class="tok-n">cCObj</span><span class="tok-o">.</span><span class="tok-na">attributes</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+
+            <span class="tok-c1">// find any rule for this attribute</span>
+            <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">hasPathRule</span> <span class="tok-o">(</span><span class="tok-n">cObj</span><span class="tok-o">.</span><span class="tok-na">rmTypeName</span><span class="tok-o">,</span> <span class="tok-n">CAttr</span><span class="tok-o">.</span><span class="tok-na">rmAttributeName</span><span class="tok-o">))</span> <span class="tok-o">{</span>
+                <span class="tok-n">attrRule</span> <span class="tok-o">=</span> <span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">pathRule</span> <span class="tok-o">(</span><span class="tok-n">cObj</span><span class="tok-o">.</span><span class="tok-na">rmTypeName</span><span class="tok-o">,</span> <span class="tok-n">CAttr</span><span class="tok-o">.</span><span class="tok-na">rmAttributeName</span><span class="tok-o">);</span>
+
+                <span class="tok-c1">// deal with collapse case - go through all matching paths</span>
+                <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">attrRule</span><span class="tok-o">.</span><span class="tok-na">collapse</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+                    <span class="tok-c1">// create a new output C_ATTRIBUTE with the SIM attribute name</span>
+                    <span class="tok-n">CAttribute</span> <span class="tok-n">sCAttr</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">CAttribute</span> <span class="tok-o">(</span><span class="tok-n">baseName</span><span class="tok-o">(</span><span class="tok-n">attrRule</span><span class="tok-o">.</span><span class="tok-na">simPath</span><span class="tok-o">));</span>
+
+                    <span class="tok-c1">// attach new C_OBJECT to cAttr</span>
+                    <span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">collapseRule</span> <span class="tok-n">in</span> <span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">matchingPathRules</span> <span class="tok-o">(</span><span class="tok-n">cCObj</span><span class="tok-o">.</span><span class="tok-na">rmTypeName</span><span class="tok-o">,</span> <span class="tok-n">CAttr</span><span class="tok-o">.</span><span class="tok-na">rmAttributeName</span><span class="tok-o">)</span>
+                        <span class="tok-n">sCAttr</span><span class="tok-o">.</span><span class="tok-na">appendChildren</span> <span class="tok-o">(</span><span class="tok-n">makeCCObjects</span> <span class="tok-o">(</span><span class="tok-n">collapseRule</span><span class="tok-o">));</span>
+
+                <span class="tok-o">}</span>
+                <span class="tok-k">else</span>
+                    <span class="tok-n">sCAttr</span><span class="tok-o">.</span><span class="tok-na">appendChildren</span> <span class="tok-o">(</span><span class="tok-n">makeCCObjects</span> <span class="tok-o">(</span><span class="tok-n">attrRule</span><span class="tok-o">));</span>
+            <span class="tok-o">}</span>
+        <span class="tok-o">}</span>
+    <span class="tok-o">}</span>
+
+    <span class="tok-kd">private</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;</span> <span class="tok-nf">makeCCObjects</span> <span class="tok-o">(</span><span class="tok-n">CAttribute</span> <span class="tok-n">cAttr</span><span class="tok-o">,</span> <span class="tok-n">SOptRule</span> <span class="tok-n">aRule</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;</span> <span class="tok-n">sChildCObjList</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;;</span>
+        <span class="tok-n">CObject</span> <span class="tok-n">sChildCObj</span><span class="tok-o">;</span>
+
+        <span class="tok-c1">// if SIM target type is primitive, apply constraint conversion rule</span>
+        <span class="tok-c1">// e.g. convert C_TERMINOLOGY_CODE to a C_STRING</span>
+        <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">PrimitiveTypes</span><span class="tok-o">.</span><span class="tok-na">has</span> <span class="tok-o">(</span><span class="tok-n">aRule</span><span class="tok-o">.</span><span class="tok-na">sim_type</span><span class="tok-o">))</span> <span class="tok-o">{</span>
+            <span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">cChildObj</span> <span class="tok-n">in</span> <span class="tok-n">cAttr</span><span class="tok-o">.</span><span class="tok-na">children</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+                <span class="tok-n">sChildCObj</span> <span class="tok-o">=</span> <span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">execute</span> <span class="tok-o">(</span><span class="tok-n">aRule</span><span class="tok-o">.</span><span class="tok-na">constraintConvRule</span> <span class="tok-o">(</span><span class="tok-n">cChildObj</span><span class="tok-o">));</span>
+                <span class="tok-n">sChildCObjList</span><span class="tok-o">.</span><span class="tok-na">append</span> <span class="tok-o">(</span><span class="tok-n">cChildObj</span><span class="tok-o">)</span>
+            <span class="tok-o">}</span>
+        <span class="tok-o">}</span>
+        <span class="tok-c1">// otherwise, execute visitor on sub-tree at path to create new C_COMPLEX_OBJECT</span>
+        <span class="tok-k">else</span>
+            <span class="tok-n">sChildCObjList</span><span class="tok-o">.</span><span class="tok-na">extend</span> <span class="tok-o">(</span><span class="tok-n">visit</span> <span class="tok-o">(</span><span class="tok-n">aRule</span><span class="tok-o">.</span><span class="tok-na">rmPath</span><span class="tok-o">));</span>
+
+        <span class="tok-k">return</span> <span class="tok-n">sChildCObjList</span><span class="tok-o">;</span>
+    <span class="tok-o">}</span>
+<span class="tok-o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_st_concrete_formats"><a class="anchor" href="#_st_concrete_formats"></a>5. ST Concrete Formats</h2>
+<h2 id="_simple_template_concrete_formats"><a class="anchor" href="#_simple_template_concrete_formats"></a>5. Simple Template Concrete Formats</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -3226,7 +3421,7 @@ under development; currently just notes.
 <p>Value of Composition <code><em>category</em></code> : "event" or "persistent".</p>
 </div>
 <div class="paragraph">
-<p><em>To RM</em>: match term text from vocabulary at <a href="https://github.com/openEHR/terminology/blob/master/openEHR_RM/en/openehr_terminology.xml#L35" class="bare">https://github.com/openEHR/terminology/blob/master/openEHR_RM/en/openehr_terminology.xml#L35</a>; create <code>DV_CODED_TEXT</code> with <code><em>terminology_id</em> = "openEHR"</code>.</p>
+<p><em>To RM</em>: match term text from <a href="https://github.com/openEHR/terminology/blob/master/openEHR_RM/en/openehr_terminology.xml#L35"><code>category</code> vocabulary</a>; create <code>DV_CODED_TEXT</code> with <code><em>terminology_id</em> = "openEHR"</code>.</p>
 </div>
 <div class="paragraph">
 <p><em>From RM</em>: <code>COMPOSITION.<em>setting.defining_code.code_string</em></code>.</p>
@@ -3242,7 +3437,7 @@ under development; currently just notes.
 <p>Equivalent to <code>COMPOSITION.<em>setting</em></code>.</p>
 </div>
 <div class="paragraph">
-<p><em>To RM</em>: obtain code definition from <a href="https://github.com/openEHR/terminology/blob/master/openEHR_RM/en/openehr_terminology.xml#L307" class="bare">https://github.com/openEHR/terminology/blob/master/openEHR_RM/en/openehr_terminology.xml#L307</a>; create <code>DV_CODED_TEXT</code>.</p>
+<p><em>To RM</em>: obtain code definition from <a href="https://github.com/openEHR/terminology/blob/master/openEHR_RM/en/openehr_terminology.xml#L307">openEHR <code>setting</code> vocabulary</a>; create <code>DV_CODED_TEXT</code>.</p>
 </div>
 <div class="paragraph">
 <p><em>From RM</em>: <code>COMPOSITION.<em>setting.defining_code.code_string</em></code>.</p>
@@ -3267,7 +3462,9 @@ under development; currently just notes.
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history_origin</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Default value for <code>HISTORY.<em>origin</em></code> within <code>OBSERVATION.<em>data</em></code> and <em>state</em>` in the commit.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>

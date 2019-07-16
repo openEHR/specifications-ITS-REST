@@ -1,4 +1,4 @@
-= ST Concrete Formats
+= Simple Template Concrete Formats
 
 NOTE: under development; currently just notes.
 

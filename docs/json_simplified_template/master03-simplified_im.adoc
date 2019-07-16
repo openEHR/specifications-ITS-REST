@@ -48,9 +48,13 @@ include::{uml_export_dir}/classes/s_generic_id.adoc[leveloffset=+1]
 
 === Transformation Rules
 
-[cols="1,2,1,1,2,1,2", options="header"]
+[cols="1,2,1,1,2,1,2,2", options="header"]
 |===
-|RM class|Path|Type|SIM class|Path|Type|Conversion
+|RM class|RM Path|RM Type|SIM class|SIM Path|SIMType|Data +
+                                                    conversion +
+                                                    rule            |Constraint +
+                                                                    conversion +
+                                                                    rule
 
 |`OBJECT_REF`
 |`_namespace_`
@@ -59,6 +63,7 @@ include::{uml_export_dir}/classes/s_generic_id.adoc[leveloffset=+1]
 |`_id_namespace_`
 |`String`
 |`_copy()_`
+|
 
 |`OBJECT_REF`
 |`_type_`
@@ -67,6 +72,7 @@ include::{uml_export_dir}/classes/s_generic_id.adoc[leveloffset=+1]
 |`_id_type_`
 |`String`
 |`_copy()_`
+|
 
 |===
 
@@ -96,9 +102,13 @@ include::{uml_export_dir}/classes/s_dv_ordinal.adoc[leveloffset=+1]
 
 === Transformation Rules
 
-[cols="1,2,1,1,2,1,2", options="header"]
+[cols="1,2,1,1,2,1,2,2", options="header"]
 |===
-|RM class|Path|Type|SIM class|Path|Type|Conversion
+|RM class|RM Path|RM Type|SIM class|SIM Path|SIMType|Data +
+                                                    conversion +
+                                                    rule            |Constraint +
+                                                                    conversion +
+                                                                    rule
 
 |`DV_TEXT`
 |`_value_`
@@ -107,6 +117,7 @@ include::{uml_export_dir}/classes/s_dv_ordinal.adoc[leveloffset=+1]
 |`_value_`
 |`String`
 |`_copy()_`
+|
 
 |`DV_CODED_TEXT`
 |`_defining_code.code_string_`
@@ -115,6 +126,7 @@ include::{uml_export_dir}/classes/s_dv_ordinal.adoc[leveloffset=+1]
 |`_code_`
 |`String`
 |`_copy()_`
+|
 
 |`DV_CODED_TEXT`
 |`_defining_code.terminology_id_`
@@ -123,6 +135,7 @@ include::{uml_export_dir}/classes/s_dv_ordinal.adoc[leveloffset=+1]
 |`_terminology_`
 |`String`
 |`_as_string()_`
+|
 
 |`CODE_PHRASE`
 |`_code_string_`
@@ -131,6 +144,7 @@ include::{uml_export_dir}/classes/s_dv_ordinal.adoc[leveloffset=+1]
 |`_code_`
 |`String`
 |`_copy()_`
+|
 
 |`CODE_PHRASE`
 |`_terminology_id_`
@@ -139,6 +153,7 @@ include::{uml_export_dir}/classes/s_dv_ordinal.adoc[leveloffset=+1]
 |`_terminology_`
 |`String`
 |`_as_string()_`
+|
 
 |===
 
@@ -162,9 +177,13 @@ include::{uml_export_dir}/classes/s_element.adoc[leveloffset=+1]
 
 === Transformation Rules
 
-[cols="1,2,1,1,2,1,2", options="header"]
+[cols="1,2,1,1,2,1,2,2", options="header"]
 |===
-|RM class|Path|Type|SIM class|Path|Type|Conversion
+|RM class|RM Path|RM Type|SIM class|SIM Path|SIMType|Data +
+                                                    conversion +
+                                                    rule            |Constraint +
+                                                                    conversion +
+                                                                    rule
 
 |`EVENT`
 |`_time_`
@@ -173,6 +192,7 @@ include::{uml_export_dir}/classes/s_element.adoc[leveloffset=+1]
 |`_value_`
 |`String`
 |`_as_string()_`
+|create `C_STRING` from `C_DATE_TIME`
 
 |`EVENT`
 |`_data_`
@@ -180,7 +200,8 @@ include::{uml_export_dir}/classes/s_element.adoc[leveloffset=+1]
 |`S_EVENT`
 |`_data_`
 |`S_CLUSTER`
-|`_xxx()_`
+|`_cvt_item_tree()_`
+|
 
 |`EVENT`
 |`_state_`
@@ -188,7 +209,8 @@ include::{uml_export_dir}/classes/s_element.adoc[leveloffset=+1]
 |`S_EVENT`
 |`_state_`
 |`S_CLUSTER`
-|`_xxx()_`
+|`_cvt_item_tree()_`
+|
 
 |`INTERVAL_EVENT`
 |`_width_`
@@ -197,6 +219,7 @@ include::{uml_export_dir}/classes/s_element.adoc[leveloffset=+1]
 |`_width_`
 |`String`
 |`_as_string()_`
+|
 
 |`INTERVAL_EVENT`
 |`_sample_count_`
@@ -205,6 +228,7 @@ include::{uml_export_dir}/classes/s_element.adoc[leveloffset=+1]
 |`_sample_count_`
 |`String`
 |`_copy()_`
+|
 
 |`INTERVAL_EVENT`
 |`_math_function_`
@@ -212,7 +236,8 @@ include::{uml_export_dir}/classes/s_element.adoc[leveloffset=+1]
 |`S_INTERVAL_EVENT`
 |`_math_function_`
 |`String`
-|`_extract_code()_`
+|`_cvt_openehr_term()_`
+|create `C_STRING` from `C_TERMINOLOGY_CODE` at `_defining_code_`
 
 |===
 
@@ -238,9 +263,13 @@ include::{uml_export_dir}/classes/s_participation_identified.adoc[leveloffset=+1
 
 === Transformation Rules
 
-[cols="1,2,1,1,2,1,2", options="header"]
+[cols="1,2,1,1,2,1,2,2", options="header"]
 |===
-|RM class|Path|Type|SIM class|Path|Type|Conversion
+|RM class|RM Path|RM Type|SIM class|SIM Path|SIMType|Data +
+                                                    conversion +
+                                                    rule            |Constraint +
+                                                                    conversion +
+                                                                    rule
 
 |`LINK`
 |`_meaning.value_`
@@ -249,6 +278,7 @@ include::{uml_export_dir}/classes/s_participation_identified.adoc[leveloffset=+1
 |`_meaning_`
 |`String`
 |`_copy()_`
+|
 
 |`LINK`
 |`_type.value_`
@@ -256,6 +286,7 @@ include::{uml_export_dir}/classes/s_participation_identified.adoc[leveloffset=+1
 |`S_LINK`
 |`_type_`
 |`String`
+|`_copy()_`
 |`_copy()_`
 
 |`PARTY_PROXY`
@@ -265,6 +296,7 @@ include::{uml_export_dir}/classes/s_participation_identified.adoc[leveloffset=+1
 |`_id_`
 |`String`
 |`_xxx()_`
+|`_copy()_`
 
 |`PARTY_PROXY`
 |`_external_ref.namespace_`
@@ -273,6 +305,7 @@ include::{uml_export_dir}/classes/s_participation_identified.adoc[leveloffset=+1
 |`_id_namespace_`
 |`String`
 |`_xxx()_`
+|`_copy()_`
 
 |`PARTY_PROXY`
 |`_external_ref.id.scheme_`
@@ -281,6 +314,7 @@ include::{uml_export_dir}/classes/s_participation_identified.adoc[leveloffset=+1
 |`_id_scheme_`
 |`String`
 |`if external_ref.id instance_of(GENERIC_ID) then {_xxx()_ }`
+|
 
 |===
 
@@ -301,7 +335,6 @@ include::{uml_export_dir}/classes/s_section.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/s_entry.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/s_admin_entry.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/s_care_entry.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/s_observation_single.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/s_observation.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/s_evaluation.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/s_instruction.adoc[leveloffset=+1]
@@ -310,95 +343,160 @@ include::{uml_export_dir}/classes/s_action.adoc[leveloffset=+1]
 
 === Transformation Rules
 
-[cols="1,2,1,1,2,1,2", options="header"]
+[cols="1,2,1,1,2,1,2,2", options="header"]
 |===
-|RM class|Path|Type|SIM class|Path|Type|Conversion
+|RM class|RM Path|RM Type|SIM class|SIM Path|SIMType|Data +
+                                                    conversion +
+                                                    rule            |Constraint +
+                                                                    conversion +
+                                                                    rule
 
-.3+|`EVENT_CONTEXT`
+.2+|`EVENT_CONTEXT`
 |`_start_time_`
 |`DV_DATE_TIME`
-.3+|`S_EVENT_CONTEXT`
+.2+|`S_EVENT_CONTEXT`
 |`_start_time_`
 |`String`
 |`_as_string()_`
+|create `C_STRING` from `C_DATE_TIME`
 
 |`_end_time_`
 |`DV_DATE_TIME`
 |`_end_time_`
 |`String`
 |`_as_string()_`
+|create `C_STRING` from `C_DATE_TIME`
 
-|`_other_context_`
-|`ITEM_STRUCTURE`
-
-|`_other_context_`
-|`S_CLUSTER`
-|`_xxx()_`
-
-|`EVALUATION`
+.12+|`OBSERVATION`
 |`_data_`
-|`ITEM_STRUCTURE`
-|`S_EVALUATION`
-|`_data_`
-|`S_CLUSTER`
-|`_xxx()_`
+|`HISTORY`
+.12+|`S_OBSERVATION`
+|
+|
+|
+|`_collapse()_`
 
-.3+|`INSTRUCTION`
+|`_state_`
+|`HISTORY`
+|
+|
+|
+|`_collapse()_`
+
+|`_data.events_`
+|`List<EVENT>`
+|`_data_`
+|`List<S_EVENT>`
+|
+|`_convert()_`
+
+|`_state.events_`
+|`List<EVENT>`
+|`_state_`
+|`List<S_EVENT>`
+| 
+|`_convert()_`
+
+|`_data.origin_`
+|`DV_DATE_TIME`
+|`_history_origin_`
+|`String`
+|`_as_string()_`
+|create `C_STRING` from `C_DATE_TIME`
+
+|`_data.period_`
+|`DV_DURATION`
+|`_history_period_`
+|`String`
+|`_as_string()_`
+|create `C_STRING` from `C_DURATION`
+
+|`_data.duration_`
+|`DV_DURATION`
+|`_history_duration_`
+|`String`
+|`_as_string()_`
+|create `C_STRING` from `C_DURATION`
+
+|`_data.summary_`
+|`ITEM_STRUCTURE`
+|`_history_summary_`
+|`S_ITEM`
+|`_xxx()_`
+|see `ITEM_STRUCTURE`
+
+|`_state.origin_`
+|`DV_DATE_TIME`
+|`_state_origin_`
+|`String`
+|`_as_string()_`
+|create `C_STRING` from `C_DATE_TIME`
+
+|`_state.period_`
+|`DV_DURATION`
+|`_state_period_`
+|`String`
+|`_as_string()_`
+|create `C_STRING` from `C_DURATION`
+
+|`_state.duration_`
+|`DV_DURATION`
+|`_state_duration_`
+|`String`
+|`_as_string()_`
+|create `C_STRING` from `C_DURATION`
+
+|`_state.summary_`
+|`ITEM_STRUCTURE`
+|`_state_summary_`
+|`S_ITEM`
+|`_xxx()_`
+|see `ITEM_STRUCTURE`
+
+.2+|`INSTRUCTION`
 |`_narrative_`
-|`DV_CODED_TEXT`
-.3+|`S_INSTRUCTION`
+|`DV_TEXT`
+.2+|`S_INSTRUCTION`
 |`_narrative_`
 |`String`
 |`_xxx()_`
+|create `C_STRING` from `C_TERMINOLOGY_CODE` at `DV_TEXT._value_` or `DV_CODED_TEXT._defining_code_`
 
 |`_expiry_time_`
-|`DV_CODED_TEXT`
+|`DV_DATE_TIME`
 |`_expiry_time_`
 |`String`
 |`_as_string()_`
+|create `C_STRING` from `C_DATE_TIME`
 
-|`_activities_`
-|`List<ACTIVITY>`
-|`_activities_`
-|`List<S_ACTIVITY>`
-|`_xxx()_`
-
-.3+|`ACTIVITY`
+.2+|`ACTIVITY`
 |`_timing_`
 |`DV_PARSABLE`
-.3+|`S_ACTIVITY`
+.2+|`S_ACTIVITY`
 |`_timing_`
 |`String`
 |`_as_string()_`
-
-|`_description_`
-|`ITEM_STRUCTURE`
-|`_description_`
-|`S_CLUSTER`
-|`_xxx()_`
+|
 
 |`_action_archetype_id_`
 |`String`
 |`_action_archetype_id_`
 |`String`
 |`_copy()_`
+|`_copy()_`
 
-.9+|`ACTION`
+.8+|`ACTION`
 |`_time_`
 |`DV_DATE_TIME`
-.9+|`S_ACTION`
+.8+|`S_ACTION`
 |`_time_`
 |`String`
 |`_as_string()_`
-
-|`_description_`
-|`ITEM_STRUCTURE`
-|`_description_`
-|`S_CLUSTER`
-|`_xxx()_`
+|create `C_STRING` from `C_DATE_TIME`
 
 |`_ism_transition_`
 |`ISM_TRANSITION`
+|
 |
 |
 |`_collapse()_`
@@ -407,36 +505,42 @@ include::{uml_export_dir}/classes/s_action.adoc[leveloffset=+1]
 |`DV_CODED_TEXT`
 |`_current_state_`
 |`String`
-|`_xxx()_`
+|`_cvt_openehr_term()_`
+|create `C_STRING` from `C_TERMINOLOGY_CODE` at `_defining_code_`
 
 |`_ism_transition.careflow_step_`
 |`DV_CODED_TEXT`
 |`_careflow_step_`
 |`S_DV_CODED_TEXT`
 |`_xxx()_`
+|
 
 |`_ism_transition.transition_`
 |`DV_CODED_TEXT`
 |`_transition_`
 |`String`
-|`_as_string()_`
+|`_cvt_openehr_term()_`
+|create `C_STRING` from `C_TERMINOLOGY_CODE` at `_defining_code_`
 
 |`_instruction_id_`
 |`INSTRUCTION_DETAILS`
 |
 |
+|
 |`_collapse()_`
 
 |`_instruction_details.instruction_id_`
-|`DV_CODED_TEXT`
+|`LOCATABLE_REF`
 |`_instruction_id_`
 |`String`
 |`_as_string()_`
+|n/a
 
 |`_instruction_details.activity_id_`
 |`String`
 |`_activity_id_`
 |`String`
+|`_copy()_`
 |`_copy()_`
 
 |===
