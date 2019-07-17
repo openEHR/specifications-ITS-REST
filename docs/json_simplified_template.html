@@ -529,10 +529,10 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>These rules are formalised in the model-to-model Transformation rules shown above. Using the SIM and the rules, a Simplified OPT (sOPT) can be generated from any Operational Template (OPT), and from there, various concrete form Simplified Templates (STs) may be generated, including JSON 'flat' and 'sparse' forms. The sOPT is a regular OPT in the formal sense, and can be processed by any tool that accepts an OPT as an input.</p>
+<p>These rules are formalised in the model-to-model Transformation rules shown above. Using the SIM and the rules, a Simplified OPT (sOPT) can be generated from any Operational Template (OPT), and from there, various concrete form JSON Data Templates (JDTs) may be generated, including regular JSON and 'flat form' JSON. Regular JSON is the usual sparse hierarchical structure where hierarchy follows data model. Flat form JSON is legal JSON, extracted from regular JSON by converting it to the logical model of the tuple <code>[path, leaf_data_item:Any]</code>, i.e. a logical 2-column table of path/value. In the generation of the regular JSON, paths can expressed in <code>AQL</code> (standard openEHR) format, or be converted to simplified format according to a small algorithm. The option to do this is shown in the JDT formatter in the diagram above.</p>
 </div>
 <div class="paragraph">
-<p>Instances of both JSON flat and sparse simplified template formats can be created by developers to represent openEHR data to be committed to a system. These will be converted to canonical RM format (also obeying their original OPTs) by a Simplified Template &#8594; RM converter on the serve side at data commit time, as shown in the following diagram.</p>
+<p>Instances of both JSON regular and flat JDT formats can be created by developers to represent openEHR data to be committed to a system. These will be converted to canonical RM format (also obeying their original OPTs) by the sJDT &#8594; RM converter on the server side at data commit time, as shown in the following diagram.</p>
 </div>
 <div id="simplified_template_conversion" class="imageblock text-center" style="text-align: center">
 <div class="content">
