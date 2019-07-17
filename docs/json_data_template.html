@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<meta name="description" content="JSON Data Template (JDT)">
+<meta name="keywords" content="JSON, template, REST, commit">
+<title>JSON Data Template (JDT)</title>
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_json_data_template_jdt">JSON Data Template (JDT)</a>
+<ul class="sectlevel1">
+<li><a href="#_amendment_record">Amendment Record</a></li>
+<li><a href="#_acknowledgements">Acknowledgements</a>
+<ul class="sectlevel2">
+<li><a href="#_primary_author">Primary Author</a></li>
+<li><a href="#_contributors">Contributors</a></li>
+<li><a href="#_support">Support</a></li>
+<li><a href="#_trademarks">Trademarks</a></li>
+</ul>
+</li>
+<li><a href="#_preface">1. Preface</a>
+<ul class="sectlevel2">
+<li><a href="#_purpose">1.1. Purpose</a></li>
+<li><a href="#_status">1.2. Status</a></li>
+<li><a href="#_feedback">1.3. Feedback</a></li>
+<li><a href="#_conformance">1.4. Conformance</a></li>
+<li><a href="#_tooling">1.5. Tooling</a></li>
+</ul>
+</li>
+<li><a href="#_overview">2. Overview</a>
+<ul class="sectlevel2">
+<li><a href="#_requirements">2.1. Requirements</a></li>
+<li><a href="#_conceptual_approach">2.2. Conceptual Approach</a></li>
+</ul>
+</li>
+<li><a href="#_sopt_generation">3. sOPT Generation</a>
+<ul class="sectlevel2">
+<li><a href="#_visitor_algorithm">3.1. Visitor algorithm</a>
+<ul class="sectlevel3">
+<li><a href="#_c_complex_object">3.1.1. C_COMPLEX_OBJECT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_simple_template_concrete_formats">4. Simple Template Concrete Formats</a>
+<ul class="sectlevel2">
+<li><a href="#_sparse_json">4.1. Sparse JSON</a></li>
+</ul>
+</li>
+<li><a href="#_instance_conversion">5. Instance Conversion</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="https://specifications.openehr.org/images/openEHR_logo_RGB.svg" alt="openEHR logo">
+</div>
+</div>
+</div>
+</div>
+<h1 id="_json_data_template_jdt" class="sect0">JSON Data Template (JDT)</h1>
+<div class="openblock partintro">
+<div class="content">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="https://www.openehr.org/programs/specification" target="_blank" rel="noopener">openEHR Specification Program</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: ITS-REST latest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: DEVELOPMENT</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revision</strong>: <a href="#latest_issue">[latest_issue]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: JSON, template, REST, commit</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<object type="image/svg+xml" data="openehr_block_diagram.svg" width="60%"><span class="alt">openEHR components</span></object>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2019 - 2019 The openEHR Foundation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="https://www.openehr.org" target="_blank" rel="noopener">The openEHR Foundation</a> is an independent, non-profit foundation, facilitating the sharing of health records by consumers and clinicians via open specifications, clinical models and open platform implementations.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported. <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Support</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://specifications.openehr.org/components/ITS-REST/open_issues" target="_blank" rel="noopener">Problem Reports</a><br>
+ Web: <a href="https://specifications.openehr.org" target="_blank" rel="noopener">specifications.openEHR.org</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_amendment_record">Amendment Record</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 54.5454%;">
+<col style="width: 18.1818%;">
+<col style="width: 18.1819%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Details</th>
+<th class="tableblock halign-left valign-top">Raiser</th>
+<th class="tableblock halign-left valign-top">Completed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release 1.?.?</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.7.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECITS-33" target="_blank" rel="noopener">SPECITS-33</a>. Add JSON Data Template format specification;<br>
+ Initial writing, adapted from the Marand Better Platform 'Web Templates' specification and EtherCIS documentation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openEHR SEC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>17 Jul 2019</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_acknowledgements">Acknowledgements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_primary_author">Primary Author</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>xxxx</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_contributors">Contributors</h3>
+<div class="paragraph">
+<p>This specification has benefited from formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>xxxx</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_support">Support</h3>
+<div class="paragraph">
+<p>A significant part of the content of this specification was adapted from the Marand 'Web Templates' specification, kindly provided by Marand d.o.o. (Slovenia).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_trademarks">Trademarks</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>'openEHR' is a registered trademark of the openEHR Foundation</p>
+</li>
+<li>
+<p>'OMG' and 'UML' are registered trademarks of the Object Management Group</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preface"><a class="anchor" href="#_preface"></a>1. Preface</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
+<div class="paragraph">
+<p>This document describes a 'simplified template' (ST) format, along with various JSON concrete data formats, intended to be easier to use than the canonical formats, for typical developers with minimal exposure to openEHR. These formats are designed to enable easier creation of openEHR content (i.e. Compositions etc).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_status"><a class="anchor" href="#_status"></a>1.2. Status</h3>
+<div class="paragraph">
+<p>This specification is in the DEVELOPMENT state. The development version of this document can be found at <a href="https://specifications.openehr.org/releases/ITS-REST/latest/json_commit_formats.html" target="_blank" rel="noopener">https://specifications.openehr.org/releases/ITS-REST/latest/json_commit_formats.html</a>.</p>
+</div>
+<div class="paragraph">
+<p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
+</div>
+<div class="paragraph tbd">
+<p><strong>TBD</strong>: (example To Be Determined paragraph)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.3. Feedback</h3>
+<div class="paragraph">
+<p>Feedback may be provided on the <a href="http://lists.openehr.org/mailman/listinfo/openehr-technical_lists.openehr.org" target="_blank" rel="noopener">technical mailing list</a>.</p>
+</div>
+<div class="paragraph">
+<p>Issues may be raised on the <a href="https://specifications.openehr.org/components/ITS-REST/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
+</div>
+<div class="paragraph">
+<p>To see changes made due to previously reported issues, see the <a href="https://specifications.openehr.org/components/ITS-REST/history" target="_blank" rel="noopener">ITS-REST component Change Request tracker</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conformance"><a class="anchor" href="#_conformance"></a>1.4. Conformance</h3>
+<div class="paragraph">
+<p>xxx</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tooling"><a class="anchor" href="#_tooling"></a>1.5. Tooling</h3>
+<div class="paragraph">
+<p>xxx</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>2. Overview</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_requirements"><a class="anchor" href="#_requirements"></a>2.1. Requirements</h3>
+<div class="paragraph">
+<p>The default serialised data representations for openEHR content are canonical XML, based on the <a href="https://specifications.openehr.org/releases/ITS-XML/latest" target="_blank" rel="noopener">openEHR RM XSDs</a>, canonical JSON, described by the <a href="https://specifications.openehr.org/releases/ITS-JSON/latest" target="_blank" rel="noopener">openEHR JSON schemas</a>, and potentially any other canonical serial format based on the underlying Reference Model (e.g. YAML etc). Here, 'canonical' means any fully-expressed instance data in which all RM mandatory fields are present, all attributes are named as per the RM, and all cardinalities respect the RM.</p>
+</div>
+<div class="paragraph">
+<p>The canonical formats are routinely used by all openEHR implementations implementing the <a href="https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html" target="_blank" rel="noopener">openEHR REST API specification</a>, and in many other ways, e.g. for DB dump/load implementation, ETL and so on. However, creating data instances according to these formats is not always straightforward, particularly for developers with minimal exposure to openEHR, and various alternatives have been used in the past to simplify the job of content creation and committal for application developers.</p>
+</div>
+<div class="paragraph">
+<p>This specification responds to the requirement for a minimal but formally complete serial form of content creation for openEHR applications.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conceptual_approach"><a class="anchor" href="#_conceptual_approach"></a>2.2. Conceptual Approach</h3>
+<div class="paragraph">
+<p>The information models of openEHR are structured in multiple layers, with the primary distinction being between an information model layer (the 'Reference Model' or RM), and domain-level models expressed in archetypes and templates, that latter of which express particular data sets. Each such data set is defined in terms of an <a href="https://specifications.openehr.org/releases/AM/latest/OPT2.html" target="_blank" rel="noopener">openEHR Operational Template (OPT)</a>, derived from a source template, and ultimately particular archetypes, which are themselves constraint models based on the RM, i.e. the 'canonical model.</p>
+</div>
+<div class="paragraph">
+<p>The openEHR reference model (RM) and supporting models (BASE component) are designed with two computational goals in mind:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>data instances (healthcare data) are fully defined and self-standing, for example if shared with a data partner that does not use openEHR;</p>
+</li>
+<li>
+<p>software that implements the model works in regular, expected ways; for example, the structure of the openEHR <code>OBSERVATION</code>, <code>HISTORY</code> and <code>EVENT</code> classes will generically represent any observation, from a single weight measurement to 100,000 samples of complex vital signs data.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The model is accordingly rigorous. However, for some developers who only need to instantiate, commit and/or read relatively limited data-sets, the canonical format can be demanding. This is particularly so for situations in which only a few kinds of data are implicated, i.e. a relatively small number of templates, e.g. vitals signs data, lab results etc.</p>
+</div>
+<div class="paragraph">
+<p>The starting point for defining a developer-friendly commit format is therefore to assume that the great majority of applications are typically targetted to one or a few specific data sets, e.g. vital signs, diabetic monitoring, pregnancy plan etc.</p>
+</div>
+<div class="paragraph">
+<p>Template-specificity provides a route for defining and generating a serial format such that <em>each openEHR template</em> can be used to define one or more reasonably simple commit formats. Two such formats are discussed here:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>near-canonical RM JSON data template (ncJDT)</em>, originally devised for the EtherCIS project;</p>
+</li>
+<li>
+<p><em>simplified IM JSON data template (sJDT)</em>, based on the 'web template' format originally created by Marand for the Better platform.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The first of these is an extract from an Operational Template (OPT) that uses AQL-style paths, and apart from simplification of the <code>DV_XXX</code> and <code>PARTY_PROXY</code> types, retains the openEHR RM structure. An example is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="json"><span class="tok-p">{</span>
+    <span class="tok-nt">&quot;/context/health_care_facility|name&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;Northumbria Community NHS&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/context/health_care_facility|identifier&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;999999-345&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/context/start_time&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;2015-09-28T10:18:17.352+07:00&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/context/end_time&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;2015-09-28T11:18:17.352+07:00&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/context/participation|function&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;Oncologist&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/context/participation|name&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;Dr. Marcus Johnson&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/context/participation|identifier&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;1345678&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/context/participation|mode&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;face-to-face communication::openehr::216&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/context/location&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;local&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/context/setting&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;openehr::227|emergency care|&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/composer|identifier&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;1345678&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/composer|name&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;Dr. Marcus Johnson&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/category&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;openehr::433|event|&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/territory&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;FR&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/language&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;fr&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/participation:0&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;Nurse|1345678::Jessica|face-to-face communication::openehr::216&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/participation:1&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;Assistant|1345678::2.16.840.1.113883.2.1.4.3::NHS-UK::ANY::D. Mabuse|face-to-face communication::openehr::216&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/activities[at0001]/timing&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;before sleep&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/activities[at0001]/description[openEHR-EHR-ITEM_TREE.medication_mod.v1]/items[at0001]&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;aspirin&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/activities[at0002]/timing&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;lunch&quot;</span><span class="tok-p">,</span>
+    <span class="tok-nt">&quot;/content[openEHR-EHR-SECTION.medications.v1]/items[openEHR-EHR-INSTRUCTION.medication.v1]/activities[at0002]/description[openEHR-EHR-ITEM_TREE.medication_mod.v1]/items[at0001]&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;Atorvastatin&quot;</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The latter is based on a more radical simplification of the openEHR RM and BASE models, as well as a more programmer-friendly rendering of paths. Under the latter approach, a lab result data structure could be represented using non-canonical attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (or in any other natural language, including script-based languages), instead of each node appearing under the canonical <code>CLUSTER.<em>items</em></code> attribute. An example is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="json"><span class="tok-p">{</span>
+  <span class="tok-nt">&quot;laboratory_order/_uid&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;23d69330-7790-4394-8abc-1455681f6ffa::ydh.code4health.com::1&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/language|code&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;en&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/language|terminology&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;ISO_639-1&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/territory|code&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;GB&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/territory|terminology&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;ISO_3166-1&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/context/_health_care_facility|id&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;999999-345&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/context/_health_care_facility|id_scheme&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;2.16.840.1.113883.2.1.4.3&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/context/_health_care_facility|id_namespace&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;NHS-UK&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/context/_health_care_facility|name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;Northumbria Community NHS&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/context/setting|terminology&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;openehr&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_request/_uid&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;b8c17799-457d-4583-8d85-c369dffacc21&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_request/lab_request/service_requested|code&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;444164000&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_request/lab_request/service_requested|value&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;Urea, electrolytes and creatinine measurement&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_request/lab_request/service_requested|terminology&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;SNOMED-CT&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_request/lab_request/timing&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;R5/2015-04-10T00:19:00+02:00/P2M&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_request/lab_request/timing|formalism&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;timing&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_request/narrative&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;Urea, electrolytes and creatinine measurement&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_request/language|code&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;en&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_tracker/time&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;2015-04-10T00:19:02.518+02:00&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_tracker/language|code&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;en&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_tracker/language|terminology&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;ISO_639-1&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_tracker/encoding|code&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;UTF-8&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/laboratory_test_tracker/encoding|terminology&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;IANA_character-sets&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;laboratory_order/composer|name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;Dr Joyce Smith&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;ctx/language&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;en&quot;</span><span class="tok-p">,</span>
+  <span class="tok-nt">&quot;ctx/territory&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;GB&quot;</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To make any form of 'simplified format' work, the following requirements must be met:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the format makes it possible to <em>abstract away rigorous structural complexity</em> of the canonical model where possible, mainly by making the data less self-standing, and relying more on a schema;</p>
+</li>
+<li>
+<p>the format definition for any given commit data can be completely and routinely <em>machine generated</em> from its canonical definition, i.e. from an openEHR OPT, or other upstream canonical definition;</p>
+</li>
+<li>
+<p>data instances of the simplified format definition can be <em>routinely converted to canonical format</em> at execution time.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A generic high-level algorithm for creating both kinds of data template definition from an Operational Template (OPT) is illustrated below.</p>
+</div>
+<div id="simplified_template_definition" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="json_data_template/diagrams/simplified_template_definition.svg" alt="simplified template definition">
+</div>
+<div class="title">Figure 1. Scheme for generation of JSON Template definitions</div>
+</div>
+<div class="paragraph">
+<p>In the above, both the near-canonical data and simplified data template definitions are created via a series of transformations starting with an OPT, followed by RM flattening, and then two stages of JSON format generation. The more heavily simplified form is created via an extra step, in which an original OPT is converted by the <code>sOPT transformer</code> to a <em>simplified OPT (sOPT)</em>, which is a regular-structured OPT, but whose underlying reference model is a Simplified Information Model (SIM), based on the canonical Reference Model (RM) and related openEHR Information Models (Base, etc).</p>
+</div>
+<div class="paragraph">
+<p>TODO: in fact, even the near-canonical data template has to be generated via a minimal sOPT step.</p>
+</div>
+<div class="paragraph">
+<p>The SIM is approximately a <em>logical sub-set</em> of classes relevant to the definition of EHR commitable content, with each class being a potentially simplified form of one or more classes in the RM. The simplifications may consist of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>merging of Composition relationships (de-normalisation), which has the effect of reducing data path depth; i.e. in some cases, 2 RM classes are replaced by a single SIM class, which is relatively easy in the case of <code>0..1</code> and <code>1..1</code> relationships;</p>
+</li>
+<li>
+<p>stringification of specific attributes, i.e. replacement of (usually low-level) types with <code>String</code>, so that the attribute may contain a string form of a complex object.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These rules are formalised in the model-to-model Transformation rules shown above. Using the SIM and the rules, a Simplified OPT (sOPT) can be generated from any Operational Template (OPT), and from there, various concrete form JSON Data Templates (JDTs) may be generated, including regular JSON and 'flat form' JSON. Regular JSON is the usual sparse hierarchical structure where hierarchy follows data model. Flat form JSON is legal JSON, extracted from regular JSON by converting it to the logical model of the tuple <code>[path, leaf_data_item:Any]</code>, i.e. a logical 2-column table of path/value. In the generation of the regular JSON, paths can expressed in <code>AQL</code> (standard openEHR) format, or be converted to simplified format according to a small algorithm. The option to do this is shown in the JDT formatter in the diagram above.</p>
+</div>
+<div class="paragraph">
+<p>Instances of both JSON regular and flat JDT formats can be created by developers to represent openEHR data to be committed to a system. These will be converted to canonical RM format (also obeying their original OPTs) by the sJDT &#8594; RM converter on the server side at data commit time, as shown in the following diagram.</p>
+</div>
+<div id="simplified_template_conversion" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="json_data_template/diagrams/simplified_template_data_conversion.svg" alt="simplified template data conversion">
+</div>
+<div class="title">Figure 2. Scheme for conversion of Simplified Template instance to canonical form</div>
+</div>
+<div class="paragraph">
+<p>Following this scheme, this specification describes the Simplified Reference Model (SIM), Simplified OPT Transformer (sOPT Transformer), and the downstream JSON concrete formats and the ST &#8594; canonical instance converter.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sopt_generation"><a class="anchor" href="#_sopt_generation"></a>3. sOPT Generation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes how a Simlified OPT may be machine-derived from its corresponding canonical OPT definition and the Simplified Reference Model (SIM).</p>
+</div>
+<div class="sect2">
+<h3 id="_visitor_algorithm"><a class="anchor" href="#_visitor_algorithm"></a>3.1. Visitor algorithm</h3>
+<div class="sect3">
+<h4 id="_c_complex_object"><a class="anchor" href="#_c_complex_object"></a>3.1.1. C_COMPLEX_OBJECT</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><span class="tok-nl">SOptVisitor:</span><span class="tok-o">:</span> <span class="tok-n">OptVisitor</span> <span class="tok-o">{</span>
+
+    <span class="tok-c1">//</span>
+    <span class="tok-c1">// Visitor function for C_COMPLEX_OBJECT node in OPT</span>
+    <span class="tok-c1">//</span>
+    <span class="tok-kd">public</span> <span class="tok-nf">enterCComplexObject</span> <span class="tok-o">(</span><span class="tok-n">CComplexObject</span> <span class="tok-n">cObj</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-c1">// obtain or synthesise SIM class name for cCObj.rmTypeName</span>
+        <span class="tok-n">simClassName</span> <span class="tok-o">=</span> <span class="tok-n">xxx</span><span class="tok-o">;</span>
+
+        <span class="tok-c1">// create SOpt CComplexObject</span>
+        <span class="tok-n">CComplexObject</span> <span class="tok-n">SCobj</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">CComplexObject</span><span class="tok-o">(</span><span class="tok-n">simClassName</span><span class="tok-o">);</span>
+
+        <span class="tok-c1">// process attributes</span>
+        <span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">CAttribute</span> <span class="tok-n">cAttr</span> <span class="tok-n">in</span> <span class="tok-n">cCObj</span><span class="tok-o">.</span><span class="tok-na">attributes</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+
+            <span class="tok-c1">// find any rule for this attribute</span>
+            <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">hasPathRule</span> <span class="tok-o">(</span><span class="tok-n">cObj</span><span class="tok-o">.</span><span class="tok-na">rmTypeName</span><span class="tok-o">,</span> <span class="tok-n">CAttr</span><span class="tok-o">.</span><span class="tok-na">rmAttributeName</span><span class="tok-o">))</span> <span class="tok-o">{</span>
+                <span class="tok-n">attrRule</span> <span class="tok-o">=</span> <span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">pathRule</span> <span class="tok-o">(</span><span class="tok-n">cObj</span><span class="tok-o">.</span><span class="tok-na">rmTypeName</span><span class="tok-o">,</span> <span class="tok-n">CAttr</span><span class="tok-o">.</span><span class="tok-na">rmAttributeName</span><span class="tok-o">);</span>
+
+                <span class="tok-c1">// deal with collapse case - go through all matching paths</span>
+                <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">attrRule</span><span class="tok-o">.</span><span class="tok-na">collapse</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+                    <span class="tok-c1">// create a new output C_ATTRIBUTE with the SIM attribute name</span>
+                    <span class="tok-n">CAttribute</span> <span class="tok-n">sCAttr</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">CAttribute</span> <span class="tok-o">(</span><span class="tok-n">baseName</span><span class="tok-o">(</span><span class="tok-n">attrRule</span><span class="tok-o">.</span><span class="tok-na">simPath</span><span class="tok-o">));</span>
+
+                    <span class="tok-c1">// attach new C_OBJECT to cAttr</span>
+                    <span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">collapseRule</span> <span class="tok-n">in</span> <span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">matchingPathRules</span> <span class="tok-o">(</span><span class="tok-n">cCObj</span><span class="tok-o">.</span><span class="tok-na">rmTypeName</span><span class="tok-o">,</span> <span class="tok-n">CAttr</span><span class="tok-o">.</span><span class="tok-na">rmAttributeName</span><span class="tok-o">)</span>
+                        <span class="tok-n">sCAttr</span><span class="tok-o">.</span><span class="tok-na">appendChildren</span> <span class="tok-o">(</span><span class="tok-n">makeCCObjects</span> <span class="tok-o">(</span><span class="tok-n">collapseRule</span><span class="tok-o">));</span>
+
+                <span class="tok-o">}</span>
+                <span class="tok-k">else</span>
+                    <span class="tok-n">sCAttr</span><span class="tok-o">.</span><span class="tok-na">appendChildren</span> <span class="tok-o">(</span><span class="tok-n">makeCCObjects</span> <span class="tok-o">(</span><span class="tok-n">attrRule</span><span class="tok-o">));</span>
+            <span class="tok-o">}</span>
+        <span class="tok-o">}</span>
+    <span class="tok-o">}</span>
+
+    <span class="tok-kd">private</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;</span> <span class="tok-nf">makeCCObjects</span> <span class="tok-o">(</span><span class="tok-n">CAttribute</span> <span class="tok-n">cAttr</span><span class="tok-o">,</span> <span class="tok-n">SOptRule</span> <span class="tok-n">aRule</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;</span> <span class="tok-n">sChildCObjList</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;;</span>
+        <span class="tok-n">CObject</span> <span class="tok-n">sChildCObj</span><span class="tok-o">;</span>
+
+        <span class="tok-c1">// if SIM target type is primitive, apply constraint conversion rule</span>
+        <span class="tok-c1">// e.g. convert C_TERMINOLOGY_CODE to a C_STRING</span>
+        <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">PrimitiveTypes</span><span class="tok-o">.</span><span class="tok-na">has</span> <span class="tok-o">(</span><span class="tok-n">aRule</span><span class="tok-o">.</span><span class="tok-na">sim_type</span><span class="tok-o">))</span> <span class="tok-o">{</span>
+            <span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">cChildObj</span> <span class="tok-n">in</span> <span class="tok-n">cAttr</span><span class="tok-o">.</span><span class="tok-na">children</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+                <span class="tok-n">sChildCObj</span> <span class="tok-o">=</span> <span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">execute</span> <span class="tok-o">(</span><span class="tok-n">aRule</span><span class="tok-o">.</span><span class="tok-na">constraintConvRule</span> <span class="tok-o">(</span><span class="tok-n">cChildObj</span><span class="tok-o">));</span>
+                <span class="tok-n">sChildCObjList</span><span class="tok-o">.</span><span class="tok-na">append</span> <span class="tok-o">(</span><span class="tok-n">cChildObj</span><span class="tok-o">)</span>
+            <span class="tok-o">}</span>
+        <span class="tok-o">}</span>
+        <span class="tok-c1">// otherwise, execute visitor on sub-tree at path to create new C_COMPLEX_OBJECT</span>
+        <span class="tok-k">else</span>
+            <span class="tok-n">sChildCObjList</span><span class="tok-o">.</span><span class="tok-na">extend</span> <span class="tok-o">(</span><span class="tok-n">visit</span> <span class="tok-o">(</span><span class="tok-n">aRule</span><span class="tok-o">.</span><span class="tok-na">rmPath</span><span class="tok-o">));</span>
+
+        <span class="tok-k">return</span> <span class="tok-n">sChildCObjList</span><span class="tok-o">;</span>
+    <span class="tok-o">}</span>
+<span class="tok-o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_simple_template_concrete_formats"><a class="anchor" href="#_simple_template_concrete_formats"></a>4. Simple Template Concrete Formats</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+under development; currently just notes.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_sparse_json"><a class="anchor" href="#_sparse_json"></a>4.1. Sparse JSON</h3>
+<div class="paragraph">
+<p>xxxx</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_instance_conversion"><a class="anchor" href="#_instance_conversion"></a>5. Instance Conversion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes how an instance of a given JSON commit template can be converted to its canonical form at execution time, so as to enable committing to the persistence layer.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2019-07-17 14:34:58 BST
+</div>
+</div>
+</body>
+</html>

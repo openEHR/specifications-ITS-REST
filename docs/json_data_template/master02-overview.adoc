@@ -103,7 +103,7 @@ image::{diagrams_uri}/simplified_template_definition.svg[id=simplified_template_
 
 In the above, both the near-canonical data and simplified data template definitions are created via a series of transformations starting with an OPT, followed by RM flattening, and then two stages of JSON format generation. The more heavily simplified form is created via an extra step, in which an original OPT is converted by the `sOPT transformer` to a _simplified OPT (sOPT)_, which is a regular-structured OPT, but whose underlying reference model is a Simplified Information Model (SIM), based on the canonical Reference Model (RM) and related openEHR Information Models (Base, etc).
 
-TODO: this is not 100% true; in fact, even the near-canonical data template has to be generated via an sOPT step.
+TODO: in fact, even the near-canonical data template has to be generated via a minimal sOPT step.
 
 The SIM is approximately a _logical sub-set_ of classes relevant to the definition of EHR commitable content, with each class being a potentially simplified form of one or more classes in the RM. The simplifications may consist of:
 

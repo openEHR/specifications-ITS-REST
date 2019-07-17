@@ -72,11 +72,9 @@ A significant part of the content of this specification was adapted from the Mar
 :sectnums:
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-overview.adoc[leveloffset=+1]
-include::master03-simplified_im.adoc[leveloffset=+1]
-include::master04-sopt_generation.adoc[leveloffset=+1]
-include::master05-st_concrete_formats.adoc[leveloffset=+1]
-include::master06-instance_conversion.adoc[leveloffset=+1]
-include::master07-app_context.adoc[leveloffset=+1]
+include::master03-sopt_generation.adoc[leveloffset=+1]
+include::master04-jdt_concrete_formats.adoc[leveloffset=+1]
+include::master05-instance_conversion.adoc[leveloffset=+1]
 
 //
 // --------------------------------------------- REFERENCES -----------------------------------------------
