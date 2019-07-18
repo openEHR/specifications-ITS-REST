@@ -116,7 +116,7 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` 
 ### Update EHR_STATUS [PUT /ehr/{ehr_id}/ehr_status]
 
 Update `EHR_STATUS` associated with the specified `ehr_id`.
-The existing latest `version_uid` of `EHR_STATUS` resource must be specified in the `If-Match` header.
+The existing latest `version_uid` of `EHR_STATUS` resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
 The response will contain the updated `EHR_STATUS` resource when the `Prefer` header has a value of `return=representation`
 
 + Parameters

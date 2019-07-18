@@ -59,7 +59,7 @@ Creates a new directory `FOLDER` associated with the `ehr_id`.
 ### Update directory [PUT /ehr/{ehr_id}/directory]
 
 Update directory `FOLDER` associated with the specified `ehr_id`.
-The existing latest `version_uid` of directory `FOLDER` resource must be specified in the `If-Match` header.
+The existing latest `version_uid` of directory `FOLDER` resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
 
 + Parameters
 
@@ -133,7 +133,7 @@ The existing latest `version_uid` of directory `FOLDER` resource must be specifi
 ### Delete directory [DELETE /ehr/{ehr_id}/directory]
 
 Delete directory `FOLDER` associated with the specified `ehr_id`.
-The existing latest `version_uid` of directory `FOLDER` resource must be specified in the `If-Match` header.
+The existing latest `version_uid` of directory `FOLDER` resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
 
 + Parameters
 
