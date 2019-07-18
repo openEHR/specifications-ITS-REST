@@ -3,6 +3,7 @@
 This currently supports [AQL](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) queries only, 
 other types might be added at a later time. 
 
+
 ### Execute ad-hoc (non-stored) AQL query [GET /query/aql{?q,query_parameter,offset,fetch}]
 
 Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` and many long
@@ -24,6 +25,7 @@ Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` 
     + Body
 
 <!-- include(../examples/query_resultset_01.json) -->
+
 
 ### Execute ad-hoc (non-stored) AQL query [POST /query/aql]
 
@@ -58,8 +60,6 @@ Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` 
     syntax. 
 
     + Body
-
-
 
 
 ### Execute stored query [GET /query/{qualified_query_name}/{version}{?offset,fetch,query_parameter}]

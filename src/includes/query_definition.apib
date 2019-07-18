@@ -55,7 +55,6 @@ Examples:
             ]
 
 
-
 ### Store a query [PUT /query/{qualified_query_name}/{version}{?type}]
 
 Store a new query on the system.
@@ -100,6 +99,7 @@ Store a new query on the system.
     `409 Conflict` is returned when a query with the given `qualified_query_name` and `version` already exists on the server.
 
     + Body
+
 
 ### Get stored query and info/metadata [GET /query/{qualified_query_name}/{version}]
 

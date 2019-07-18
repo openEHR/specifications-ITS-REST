@@ -3,6 +3,7 @@
 Management of [ADL 1.4](https://specifications.openehr.org/releases/AM/latest) Operational Templates (OPTs). These templates can be created
 using [modelling tools](https://www.openehr.org/downloads/modellingtools) such as the Template Designer.
 
+
 ### Upload a template [POST /definition/template/adl1.4]
 
 Upload a new ADL 1.4 operational template (OPT).
@@ -24,8 +25,6 @@ Upload a new ADL 1.4 operational template (OPT).
                     <lifecycle_state>Initial</lifecycle_state>
                     <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
             ...
-
-
 
 + Response 201
 
@@ -50,7 +49,6 @@ Upload a new ADL 1.4 operational template (OPT).
                     <lifecycle_state>Initial</lifecycle_state>
                     <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
             ...
-
 
 + Response 400
 
@@ -119,9 +117,12 @@ Gets a specified ADL 1.4 operational template.
 
     + Body
 
+
+
 ## ADL 2 TEMPLATE [/definition/template/adl2]
 
 Management of [ADL 2](https://specifications.openehr.org/releases/AM/latest) Operational Templates (OPTs).
+
 
 ### Upload a template [POST /definition/template/adl2/{?version}]
 
@@ -230,7 +231,6 @@ List all available ADL2 operational templates on the system
                     ["organisation"] = <"openEHR Foundation">
                     ["email"] = <"ian.mcnicoll@openehr.org">
             ...
-
 
 + Response 404
 

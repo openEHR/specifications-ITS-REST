@@ -13,6 +13,7 @@ otherwise the latest trunk version is returned.
     + version_at_time (string, optional) - A timestamp in the extended ISO8601 format
 
 + Response 200 (application/json)
+
     `200 OK` is return with the EHR_STATUS resource in the body when it is successfully retrieved. 
 
     + Headers
@@ -209,6 +210,7 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
             ETag: {version_uid}
 
 + Response 400
+
     `400 Bad Request` is returned when the request has invalid content.
     
     + Body
@@ -232,9 +234,11 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
     + Body
 
 
+
 ## VERSIONED_EHR_STATUS [/ehr/{ehr_id}/versioned_ehr_status]
 
 Management of [VERSIONED_EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_ehr_status_class) resource.
+
 
 ### Get versioned EHR_STATUS [GET /ehr/{ehr_id}/versioned_ehr_status]
 
@@ -245,6 +249,7 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehr_id`.
     + ehr_id (string) - EHR identifier
 
 + Response 200 (application/json)
+
     `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` is successfully retrieved.
 
     + Body
@@ -271,37 +276,38 @@ Retrieve `VERSIONED_EHR_STATUS` revision history.
     + ehr_id (string) - EHR identifier
 
 + Response 200 (application/json)
+
     `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` revision history is successfully retrieved.
 
     + Body
 
-             [
-               {
-                 "version_id": "OBJECT_VERSION_ID",    /* object_id::creating_system_id::version_tree_id */
-                 "audits": [
-                   {
-                     "system_id": "String",
-                     "time_committed": "DV_DATE_TIME",
-                     "change_type": {
-                       "value": "String",              /* value from openehr terminology, change_type http://openehr.org/releases/1.0.2/architecture/terminology.pdf */
-                       "defining_code": {
-                         "terminology_id": {
-                           "value": "openehr"
-                         },
-                         "code_string": "String"
-                       }
-                     },
-                     "description": {
-                       "value": "String"
-                     }
-                   },
-                   {...},
-                   {...}
-                 ]
-               },
-               {...},
-               {...}
-             ]
+            [
+              {
+                "version_id": "OBJECT_VERSION_ID",    /* object_id::creating_system_id::version_tree_id */
+                "audits": [
+                  {
+                    "system_id": "String",
+                    "time_committed": "DV_DATE_TIME",
+                    "change_type": {
+                      "value": "String",              /* value from openehr terminology, change_type http://openehr.org/releases/1.0.2/architecture/terminology.pdf */
+                      "defining_code": {
+                        "terminology_id": {
+                          "value": "openehr"
+                        },
+                        "code_string": "String"
+                      }
+                    },
+                    "description": {
+                      "value": "String"
+                    }
+                  },
+                  {...},
+                  {...}
+                ]
+              },
+              {...},
+              {...}
+            ]
                   
 
 + Response 404
@@ -323,6 +329,7 @@ otherwise the latest trunk version is returned.
     + version_at_time (string, optional) - version time specifier
 
 + Response 200 (application/json)
+
     `200 OK` is return when the requested `VERSION` is successfully retrieved, which is provided in the body.
 
     + Headers
@@ -397,6 +404,7 @@ otherwise the latest trunk version is returned.
 
 
 ### Get versioned EHR_STATUS version by id [GET /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid}]
+
 Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
 
 + Parameters
