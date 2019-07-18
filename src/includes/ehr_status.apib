@@ -221,8 +221,8 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
 + Response 412
 
-    `412 Precondition Failed` is returned when `If-Match` header doesn't match the latest trunk version.
-    Returns latest trunk version in the `Location` and `ETag` headers.
+    `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
+    Returns also latest `version_uid` in the `Location` and `ETag` headers.
 
     + Headers
 

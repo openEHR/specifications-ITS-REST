@@ -120,7 +120,8 @@ The existing latest `version_uid` of directory `FOLDER` resource (i.e the `prece
 
 + Response 412
 
-    `If-Match` header doesn't match the last version. Returns last version in the `Location` and `ETag` headers.
+    `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
+    Returns also latest `version_uid` in the `Location` and `ETag` headers.
 
     + Headers
 
@@ -165,8 +166,8 @@ The existing latest `version_uid` of directory `FOLDER` resource (i.e the `prece
 
 + Response 412
 
-    `If-Match` header doesn't match the last version. Returns
-    last version in the `Location` and `ETag` headers.
+    `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
+    Returns also latest `version_uid` in the `Location` and `ETag` headers.
 
     + Headers
 

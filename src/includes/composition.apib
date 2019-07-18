@@ -176,10 +176,10 @@ The existing latest `version_uid` of `COMPOSITION` resource (i.e the `preceding_
 
             If-Match: {preceding_version_uid}
 
-+ Response 409
++ Response 412
 
-    Returned when supplied `preceding_version_uid` is not the latest version.
-    Returns latest version in the `Location` and `ETag` headers.
+    `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version (of this versioned object) on the service side.
+    Returns also latest `version_uid` in the `Location` and `ETag` headers.
 
     + Headers
 

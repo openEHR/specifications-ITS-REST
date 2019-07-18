@@ -178,8 +178,8 @@ If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 This HTTP request header SHOULD be used by the clients to prevent accidental overwrites when multiple user
 agents might be acting in parallel on the same resource. This is only required by a small set of resources of this specification, 
 as in most of the other cases the `preceding_version_uid` path segment is instead required in order to prevent such accidental overwrites.
-In case a service receives this header and the condition evaluates to `false` it MUST respond with
-HTTP status code`412 Precondition Failed`.
+In case a service receives this header and the condition evaluates to `false`, it MUST respond with
+HTTP status code `412 Precondition Failed` and return also latest `version_uid` in the `Location` and `ETag` response headers.
 
 
 <h3>The `Location` header</h3>
