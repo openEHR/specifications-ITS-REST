@@ -2,6 +2,7 @@
 
 Management of [EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_status_class) resource.
 
+
 ### Get EHR_STATUS version by time [GET /ehr/{ehr_id}/ehr_status{?version_at_time}]
 
 Retrieve the `EHR_STATUS` associated with the EHR specified by `ehr_id`.
@@ -65,6 +66,7 @@ otherwise the latest trunk version is returned.
 
     + Body
 
+
 ### Get EHR_STATUS by version id [GET /ehr/{ehr_id}/ehr_status/{version_uid}]
 
 Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
@@ -113,6 +115,7 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` 
     an `EHR_STATUS` with `version_uid` does not exist.
 
     + Body
+
 
 ### Update EHR_STATUS [PUT /ehr/{ehr_id}/ehr_status]
 
@@ -266,6 +269,7 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehr_id`.
     `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
 
     + Body
+
 
 ### Get versioned EHR_STATUS revision history [GET /ehr/{ehr_id}/versioned_ehr_status/revision_history]
 
