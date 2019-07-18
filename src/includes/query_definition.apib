@@ -122,7 +122,7 @@ Store a new query on the system.
                 "q": "SELECT c FROM EHR e[ehr_id/value=$ehr_id] CONTAINS COMPOSITION c[$compositionid] WHERE c/name/value = 'Vitals'"
             }
 
-+ Response 404 (application/json)
++ Response 404
 
     `404 Not Found` is returned when the stored AQL with supplied `qualified_query_name` and `version` doesn't exist.
 
