@@ -237,7 +237,7 @@ The existing latest `version_uid` of `COMPOSITION` resource (i.e the `preceding_
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `version_uid` (string) - VERSION identifier
+    + `version_uid` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
 
@@ -375,7 +375,7 @@ Gets a `VERSIONED_COMPOSITION` revision history.
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
     + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + `version_uid` (string) - VERSIONED identifier taken from VERSIONED.uid.value
+    + `version_uid` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
 
