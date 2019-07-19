@@ -36,7 +36,8 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
 
 + Response 400
     
-    Invalid `ehr_id` (i.e. an incorrectly formatted `ehr_id`).
+    `400 Bad Request` is returned when the request has invalid `ehr_id` or invalid content 
+    (e.g. content could not be converted to a valid COMPOSITION object, or it references a template_id that is not known by the server)
 
     + Body    
 

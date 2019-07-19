@@ -51,6 +51,7 @@
     <tr>
         <td>2.3</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-32" target="_blank" rel="noopener">SPECITS-32</a>: Fix typos and minor documentary errors (fixes
+            <a href="https://specifications.openehr.org/tickets/SPECPR-298" target="_blank" rel="noopener">SPECPR-298</a>,
             <a href="https://specifications.openehr.org/tickets/SPECPR-333" target="_blank" rel="noopener">SPECPR-333</a>)</td>
         <td>J Smolka, P Pazos, T Beale, S Iancu</td>
         <td>19 July 2019</td>
@@ -610,7 +611,8 @@ Abstract Service Model interface.</p>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">content</span>": <span class="hljs-value">[]
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p>Invalid <code>ehr_id</code> (i.e. an incorrectly formatted <code>ehr_id</code>).</p>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>400 Bad Request</code> is returned when the request has invalid <code>ehr_id</code> or invalid content
+(e.g. content could not be converted to a valid COMPOSITION object, or it references a template_id that is not known by the server)</p>
 </div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p>The EHR with the supplied <code>ehr_id</code> did not exist.</p>
 </div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"XYZ"</span></span>,
