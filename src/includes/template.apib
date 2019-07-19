@@ -8,7 +8,7 @@ using [modelling tools](https://www.openehr.org/downloads/modellingtools) such a
 
 Upload a new ADL 1.4 operational template (OPT).
 
-+ Request
++ Request (application/xml)
 
     + Body
 
@@ -25,7 +25,7 @@ Upload a new ADL 1.4 operational template (OPT).
                     <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
             ...
 
-+ Response 201
++ Response 201 (application/xml)
 
     `201 Created` is returned when the template has been successfully uploaded.
     Depending on the header `Prefer` either an empty body or a full representation body is returned.  
@@ -92,7 +92,7 @@ Gets a specified ADL 1.4 operational template.
 
     + template_id (string) - template id
 
-+ Response 200
++ Response 200 (application/xml)
 
     `200 OK` is returned when the template is successfully retrieved.
 
