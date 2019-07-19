@@ -5,9 +5,8 @@ Management of [EHR_STATUS](https://specifications.openehr.org/releases/RM/latest
 
 ### Get EHR_STATUS version by time [GET /ehr/{ehr_id}/ehr_status{?version_at_time}]
 
-Retrieve the `EHR_STATUS` associated with the EHR specified by `ehr_id`.
-When the `version_at_time` parameter is provided, the `EHR_STATUS` version that existed at the specified time is returned,
-otherwise the latest trunk version is returned.
+Retrieves the version of the EHR_STATUS associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the version extant at specified time, otherwise retrieves the latest EHR_STATUS version.
 
 + Parameters
     + ehr_id (string) - EHR identifier
@@ -61,22 +60,23 @@ otherwise the latest trunk version is returned.
     
 + Response 404
 
-    `404 Not Found` returned when `EHR` with `ehr_id` does not exist or
-    a version of an `EHR_STATUS` resource does not exist at the specified `version_at_time`.
+    `404 Not Found` returned when EHR with `ehr_id` does not exist or
+    a version of an EHR_STATUS resource does not exist at the specified `version_at_time`.
 
     + Body
 
 
 ### Get EHR_STATUS by version id [GET /ehr/{ehr_id}/ehr_status/{version_uid}]
 
-Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
+Retrieves a particular version of the EHR_STATUS identified by `version_uid` and associated with the EHR identified by `ehr_id`.
 
 + Parameters
     + ehr_id (string) - EHR identifier
     + version_uid (string) - version UID
 
 + Response 200 (application/json)
-    `200 OK` is return when the `EHR_STATUS` is successfully retrieved.
+
+    `200 OK` is return when the EHR_STATUS is successfully retrieved.
 
     + Body
 
@@ -111,17 +111,17 @@ Retrieve the version of the `EHR_STATUS` associated with the specified `ehr_id` 
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist or
-    an `EHR_STATUS` with `version_uid` does not exist.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    an EHR_STATUS with `version_uid` does not exist.
 
     + Body
 
 
 ### Update EHR_STATUS [PUT /ehr/{ehr_id}/ehr_status]
 
-Update `EHR_STATUS` associated with the specified `ehr_id`.
-The existing latest `version_uid` of `EHR_STATUS` resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
-The response will contain the updated `EHR_STATUS` resource when the `Prefer` header has a value of `return=representation`
+Updates EHR_STATUS associated with the EHR identified by `ehr_id`.
+The existing latest `version_uid` of EHR_STATUS resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
+The response will contain the updated EHR_STATUS resource when the `Prefer` header has a value of `return=representation`
 
 + Parameters
     + ehr_id (string) - EHR identifier
@@ -165,8 +165,8 @@ The response will contain the updated `EHR_STATUS` resource when the `Prefer` he
 
 + Response 200
 
-    `200 OK` return when `EHR_STATUS` resource is successfully updated. 
-    The updated `EHR_STATUS` resource is returned in the body when `Prefer` header value is `return=representation`.
+    `200 OK` return when EHR_STATUS resource is successfully updated. 
+    The updated EHR_STATUS resource is returned in the body when `Prefer` header value is `return=representation`.
 
     + Headers
 
@@ -245,7 +245,7 @@ Management of [VERSIONED_EHR_STATUS](https://specifications.openehr.org/releases
 
 ### Get versioned EHR_STATUS [GET /ehr/{ehr_id}/versioned_ehr_status]
 
-Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehr_id`.
+Retrieves a VERSIONED_EHR_STATUS associated with an EHR identified by `ehr_id`.
 
 + Parameters
 
@@ -253,7 +253,7 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehr_id`.
 
 + Response 200 (application/json)
 
-    `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` is successfully retrieved.
+    `200 OK` is return when the requested EHR's VERSIONED_EHR_STATUS is successfully retrieved.
 
     + Body
 
@@ -266,14 +266,14 @@ Retrieve `VERSIONED_EHR_STATUS` associated with an EHR specified by `ehr_id`.
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
 
     + Body
 
 
 ### Get versioned EHR_STATUS revision history [GET /ehr/{ehr_id}/versioned_ehr_status/revision_history]
 
-Retrieve `VERSIONED_EHR_STATUS` revision history.
+Retrieves revision history of the VERSIONED_EHR_STATUS associated with the EHR identified by `ehr_id`.
 
 + Parameters
 
@@ -281,7 +281,7 @@ Retrieve `VERSIONED_EHR_STATUS` revision history.
 
 + Response 200 (application/json)
 
-    `200 OK` is return when the requested EHR's `VERSIONED_EHR_STATUS` revision history is successfully retrieved.
+    `200 OK` is return when the requested EHR's VERSIONED_EHR_STATUS revision history is successfully retrieved.
 
     + Body
 
@@ -316,16 +316,15 @@ Retrieve `VERSIONED_EHR_STATUS` revision history.
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
 
     + Body
 
 
 ### Get versioned EHR_STATUS version by time [GET /ehr/{ehr_id}/versioned_ehr_status/version{?version_at_time}]
 
-Retrieve the `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` at `version_at_time`.
-When the `version_at_time` parameter is provided, the `VERSION` that existed at the specified version time is returned,
-otherwise the latest trunk version is returned. 
+Retrieves the VERSION of an EHR_STATUS associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the VERSION extant at specified time, otherwise retrieves the latest VERSION.
 
 + Parameters
 
@@ -334,7 +333,7 @@ otherwise the latest trunk version is returned.
 
 + Response 200 (application/json)
 
-    `200 OK` is return when the requested `VERSION` is successfully retrieved, which is provided in the body.
+    `200 OK` is return when the requested VERSION is successfully retrieved, which is provided in the body.
 
     + Headers
 
@@ -401,15 +400,15 @@ otherwise the latest trunk version is returned.
 
 + Response 404
 
-    `404 Not Found` is returned when `EHR` with `ehr_id` does not exist or
-    when `EHR_STATUS` does not exist at the specified `version_at_time`.
+    `404 Not Found` is returned when EHR with `ehr_id` does not exist or
+    when EHR_STATUS does not exist at the specified `version_at_time`.
 
     + Body
 
 
 ### Get versioned EHR_STATUS version by id [GET /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid}]
 
-Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and `version_uid`.
+Retrieves a VERSION identified by `version_uid` of an EHR_STATUS associated with the EHR identified by `ehr_id`.
 
 + Parameters
 
@@ -417,7 +416,7 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
     + version_uid (string) - version uid
 
 + Response 200 (application/json)
-    `200 OK` is return when the requested `VERSION` is successfully retrieved.
+    `200 OK` is return when the requested VERSION is successfully retrieved.
     
     + Body
 
@@ -481,6 +480,6 @@ Retrieve `VERSION` of an `EHR_STATUS` associated with the specified `ehr_id` and
 
 + Response 404
 
-    `404 Not Found` is returned when an `EHR` with `ehr_id` does not exist or `EHR_STATUS` with `version_uid` does not exist.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or EHR_STATUS with `version_uid` does not exist.
 
     + Body

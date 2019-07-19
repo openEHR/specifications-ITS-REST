@@ -5,6 +5,8 @@ Management of [COMPOSITION](https://specifications.openehr.org/releases/RM/lates
 
 ### Create composition [POST /ehr/{ehr_id}/composition]
 
+Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`.
+
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
@@ -66,9 +68,9 @@ Management of [COMPOSITION](https://specifications.openehr.org/releases/RM/lates
 
 ### Update composition [PUT /ehr/{ehr_id}/composition/{versioned_object_uid}]
 
-Update `COMPOSITION` associated with the specified `ehr_id` and identified by `versioned_object_uid`.
+Updates COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 If the request body already contains a COMPOSITION.uid.value, it must match the `versioned_object_uid` in the URL. 
-The existing latest `version_uid` of `COMPOSITION` resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
+The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
 
 + Parameters
 
@@ -189,6 +191,8 @@ The existing latest `version_uid` of `COMPOSITION` resource (i.e the `preceding_
 
 ### Delete composition [DELETE /ehr/{ehr_id}/composition/{preceding_version_uid}]
 
+Deletes the COMPOSITION identified by `preceding_version_uid` and associated with the EHR identified by `ehr_id`.
+
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
@@ -233,6 +237,8 @@ The existing latest `version_uid` of `COMPOSITION` resource (i.e the `preceding_
 
 ### Get composition by version id [GET /ehr/{ehr_id}/composition/{version_uid}]
 
+Retrieves a particular version of the COMPOSITION identified by `version_uid` and associated with the EHR identified by `ehr_id`.
+
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
@@ -264,6 +270,9 @@ The existing latest `version_uid` of `COMPOSITION` resource (i.e the `preceding_
 
 
 ### Get composition at time [GET /ehr/{ehr_id}/composition/{versioned_object_uid}{?version_at_time}]
+
+Retrieves the version of the COMPOSITION identified by `version_uid` and associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the version extant at specified time, otherwise retrieves the latest COMPOSITION version.
 
 + Parameters
 
@@ -311,7 +320,7 @@ Management of [VERSIONED_COMPOSITION](https://specifications.openehr.org/release
 
 ### Get versioned composition [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}]
 
-Gets a `VERSIONED_COMPOSITION`.
+Retrieves a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 
 + Parameters
 
@@ -341,7 +350,7 @@ Gets a `VERSIONED_COMPOSITION`.
 
 ### Get versioned composition revision history [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history]
 
-Gets a `VERSIONED_COMPOSITION` revision history.
+Retrieves revision history of the VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 
 + Parameters
 
@@ -373,6 +382,8 @@ Gets a `VERSIONED_COMPOSITION` revision history.
 
 
 ### Get versioned composition version by id [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}]
+
+Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 
 + Parameters
 
@@ -408,6 +419,9 @@ Gets a `VERSIONED_COMPOSITION` revision history.
 
 
 ### Get versioned composition version at time [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version{?version_at_time}]
+
+Retrieves a VERSION of a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the VERSION extant at specified time, otherwise retrieves the latest VERSION.
 
 + Parameters
 

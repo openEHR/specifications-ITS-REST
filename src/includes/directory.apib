@@ -6,7 +6,7 @@ Management of the [directory](https://specifications.openehr.org/releases/RM/lat
 
 ### Create directory [POST /ehr/{ehr_id}/directory]
 
-Creates a new directory `FOLDER` associated with the `ehr_id`.
+Creates a new directory FOLDER associated with the EHR identified by `ehr_id`.
 
 + Parameters
 
@@ -59,8 +59,8 @@ Creates a new directory `FOLDER` associated with the `ehr_id`.
 
 ### Update directory [PUT /ehr/{ehr_id}/directory]
 
-Update directory `FOLDER` associated with the specified `ehr_id`.
-The existing latest `version_uid` of directory `FOLDER` resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
+Updates directory FOLDER associated with the EHR identified by `ehr_id`.
+The existing latest `version_uid` of directory FOLDER resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
 
 + Parameters
 
@@ -134,8 +134,8 @@ The existing latest `version_uid` of directory `FOLDER` resource (i.e the `prece
 
 ### Delete directory [DELETE /ehr/{ehr_id}/directory]
 
-Delete directory `FOLDER` associated with the specified `ehr_id`.
-The existing latest `version_uid` of directory `FOLDER` resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
+Deletes directory FOLDER associated with the EHR identified by `ehr_id`.
+The existing latest `version_uid` of directory FOLDER resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
 
 + Parameters
 
@@ -180,6 +180,8 @@ The existing latest `version_uid` of directory `FOLDER` resource (i.e the `prece
 
 ### Get folder in directory version [GET /ehr/{ehr_id}/directory/{version_uid}{?path}]
 
+Retrieves a FOLDER in a particular version of the directory identified by `version_uid` and associated with the EHR identified by `ehr_id`.
+
 + Parameters
 
     + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
@@ -210,6 +212,9 @@ The existing latest `version_uid` of directory `FOLDER` resource (i.e the `prece
 
 
 ### Get folder in directory version at time [GET /ehr/{ehr_id}/directory{?version_at_time,path}]
+
+Retrieves the version of the directory FOLDER associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the version extant at specified time, otherwise retrieves the latest directory FOLDER version.
 
 + Parameters
 
