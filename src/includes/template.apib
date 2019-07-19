@@ -10,6 +10,10 @@ Upload a new ADL 1.4 operational template (OPT).
 
 + Request (application/xml)
 
+    + Headers
+    
+            Prefer: return={representation|minimal}
+            
     + Body
 
             <template xmlns="http://schemas.openehr.org/v1">
@@ -28,6 +32,7 @@ Upload a new ADL 1.4 operational template (OPT).
 + Response 201 (application/xml)
 
     `201 Created` is returned when the template has been successfully uploaded.
+    Server assigned `template_id` SHOULD be returned as `Location` response header.
     Depending on the header `Prefer` either an empty body or a full representation body is returned.  
 
     + Headers
@@ -58,15 +63,14 @@ Upload a new ADL 1.4 operational template (OPT).
 
 + Response 409
 
-    `409 Conflict` is returned when a template with given id already exists.
-    This response is optional.
+    `409 Conflict` is returned when a template with same `template_id` already exists.
 
     + Body
 
 
-### List all templates [GET /definition/template/adl1.4]
+### List templates [GET /definition/template/adl1.4]
 
-List all available ADL 1.4 operational templates on the system.
+List available ADL 1.4 operational templates on the system.
 
 + Response 200 (application/json)
 
@@ -86,11 +90,11 @@ List all available ADL 1.4 operational templates on the system.
 
 ### Get template [GET /definition/template/adl1.4/{template_id}]
 
-Gets a specified ADL 1.4 operational template.
+Gets the ADL 1.4 operational template identified by `template_id` identifier.
 
 + Parameters
 
-    + template_id (string) - template id
+    + template_id (string) - template identifier
 
 + Response 200 (application/xml)
 
@@ -111,9 +115,15 @@ Gets a specified ADL 1.4 operational template.
                     <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
             ...
 
++ Response 400
+    
+    `400 Bad Request` is returned when the request has invalid `template_id` (i.e. an incorrectly formatted `template_id`).
+
+    + Body    
+
 + Response 404
 
-    `404 Not Found` is returned when a template with the specified id does not exist.
+    `404 Not Found` is returned when a template with the specified `template_id` does not exist.
 
     + Body
 
@@ -134,6 +144,10 @@ Upload a new ADL 2 operational template.
 
 + Request
 
+    + Headers
+    
+            Prefer: return={representation|minimal}
+            
     + Body
 
             template (adl_version=2.0.5; rm_release=1.0.2)
@@ -156,7 +170,9 @@ Upload a new ADL 2 operational template.
 
 + Response 201
 
-    `201 Created` is returned when the template has been successfully uploaded. Version string in the location header is optional.
+    `201 Created` is returned when the template has been successfully uploaded. 
+    Depending on the header `Prefer` either an empty body or a full representation body is returned.  
+    The `version` in the `Location` header is optional.
 
     + Headers
 
@@ -171,30 +187,25 @@ Upload a new ADL 2 operational template.
 
 + Response 409
 
-    `409 Conflict` is returned when a template with given id and version already exists.
-    This response is optional.
+    `409 Conflict` is returned when a template with given `template_id` and `version` already exists.
 
     + Body
 
 
-### List all templates [GET /definition/template/adl2/{template_id}]
+### List templates [GET /definition/template/adl2]
 
-List all available ADL2 operational templates on the system
-
-+ Parameters
-
-    + template_id (string, optional) - lists only versions of the template with the given id
+List available ADL2 operational templates on the system.
 
 + Response 200 (application/json)
 
-    `200 OK` is returned when the template is successfully retrieved.
+    `200 OK` is returned when the template list is successfully retrieved.
     
     + Body
 
             [
                 {
                     "template_id": "string",
-                    "version": "1.7.1", // optional
+                    "version": "1.7.1", 
                     "concept": "string",
                     "archetype_id": "string",
                     "created_timestamp": "2017-08-14T19:24:56.639Z"
@@ -204,11 +215,15 @@ List all available ADL2 operational templates on the system
 
 ### Get template [GET /definition/template/adl2/{template_id}/{version_pattern}]
 
+Gets the ADL2 operational template identified by `template_id` identifier.
+
+If `version_pattern` is specified then the latest template version with given prefix pattern is returned. 
+If `version_pattern` is omitted, then the latest version of the operational template is returned.
+
 + Parameters
 
-    + template_id (string) - template id
-    + version_pattern (string, optional) - SEMVER version pattern. This can be a complete version (i.e. 1.7.1) or partial
-    i.e. (1.0) in which case the latest version with given prefix is returned.
+    + template_id (string) - template identifier
+    + version_pattern (string, optional) - SEMVER version pattern; this can be a complete version (i.e. 1.7.1) or partial prefix (i.e. 1.0)
 
 + Response 200
 
@@ -233,8 +248,14 @@ List all available ADL2 operational templates on the system
                     ["email"] = <"ian.mcnicoll@openehr.org">
             ...
 
++ Response 400
+    
+    `400 Bad Request` is returned when the request has invalid `template_id` (i.e. an incorrectly formatted `template_id`).
+
+    + Body    
+
 + Response 404
 
-    `404 Not Found` is returned when a template with the specified id does not exist.
+    `404 Not Found` is returned when a template with the specified `template_id` and `version_pattern` does not exist.
 
     + Body
