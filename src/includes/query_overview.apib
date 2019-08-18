@@ -38,10 +38,16 @@ All query calls will be able to use at least the following parameters:
 to perform routing, optimizations or similar, It MUST NOT be supplied for 'population queries' and similar multi-patient queries.
 It can be supplied as query parameter `ehr_id` or as header `openEHR-EHR-id`.
 - `offset` - used for paging, row number in result-set to start result-set from (`0`-based), default `0`
-- `fetch` - used for paging, number of rows to fetch, default depends on the implementation
-- other parameters to replace placeholders within the query. 
-For the following AQL query `SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid`, user can supply parameter `uid`, i.e.:
-`/aql?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1`
+- `fetch` - used for paging, number of rows to fetch, default depends on the implementation, but
+cannot be combined with [AQL-top](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_top)
+- other parameters to replace placeholders within the query, 
+see [AQL-parameters](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_parameters) specification. 
+
+API supplied parameters does not have to be prefixed with `$` sign. Instead, the server will have to (whenever necessary) 
+add them or format queries as valid AQL queries before executing them. 
+
+As an example, for the following AQL query `SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid`, 
+the client can supply the `uid` parameter, i.e.: `GET /query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1`
 
 
 # Group Data structures
