@@ -37,7 +37,7 @@ Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` 
                 "q": "SELECT c FROM EHR e[ehr_id/value=$ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION obs[openEHR-EHR-OBSERVATION.blood_pressure.v1] WHERE obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude >= $systolic_bp",
                 "offset": 0,
                 "fetch": 10,
-                "query-parameters": {
+                "query_parameters": {
                     "ehr_id": "7d44b88c-4199-4bad-97dc-d78268e01398", 
                     "systolic_bp": 140
                 }
@@ -119,7 +119,7 @@ unconstrained regarding `ehr_id` (e.g. population queries).
             {
                 "offset": 0,
                 "fetch": 10,
-                "query-parameters": {
+                "query_parameters": {
                     "ehr_id": "7d44b88c-4199-4bad-97dc-d78268e01398", 
                     "systolic_bp": 140
                 }
