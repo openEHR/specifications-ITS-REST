@@ -33,12 +33,12 @@ Stored queries have a name (`qualified_query_name`) and an optional `version` nu
 
 ## Common Headers and Query Parameters [/--headers]
 
-All query calls will be able to use at least the following parameters:
+All query calls will be able to use at least the following parameters and request headers:
 - `ehr_id` - this parameter SHOULD be supplied when executing single EHR queries and MAY be used by the underlying backend 
-to perform routing, optimizations or similar, It MUST NOT be supplied for 'population queries' and similar multi-patient queries.
-It can be supplied as query parameter `ehr_id` or as header `openEHR-EHR-id`.
-- `offset` - used for paging, row number in result-set to start result-set from (`0`-based), default `0`
-- `fetch` - used for paging, number of rows to fetch, default depends on the implementation, but
+to perform routing, optimizations or similar. It MUST NOT be supplied for 'population queries' and similar multi-patient queries.
+It can be supplied as query parameter `ehr_id` or as request header `openEHR-EHR-id`.
+- `offset` - used for paging, row number in result to start result-set from (`0`-based); default `0`
+- `fetch` - used for paging, number of rows to fetch (i.e. limit); default depends on the implementation, but
 cannot be combined with [AQL-top](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_top)
 - other parameters to replace placeholders within the query, 
 see [AQL-parameters](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_parameters) specification. 
