@@ -262,7 +262,7 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 Meaning of these codes may be further detailed (nuanced) in this specification by particular responses.
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.
 
-In case of errors (HTTP codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
+In case of errors (HTTP status codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
 Example:
 > some codes/messages https://github.com/ppazos/cabolabs-ehrserver/wiki/API-error-codes-and-messages and 
 > http://veratechnas1.synology.me:13606/InstanceValidator/rules.html
@@ -284,10 +284,10 @@ When resources representation is serialized as XML, the result MUST be valid aga
 A client MAY use the header `Content-Type: application/xml` in the requests to specify the XML payload format. 
 If the service cannot process the request payload as XML format is not supported, it MUST respond with HTTP status code`415 Unsupported Media Type`.
 
-The `Accept: application/xml` SHOULD be used in the request by the client in order to specify the expected XML response format. 
+The client SHOULD use the `Accept: application/xml` request header in order to specify the expected XML response format. 
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
 Proper header `Content-Type: application/xml` MUST be present in the response of the service
-unless response has no body (status 204). 
+unless the response has no body (HTTP status code 204). 
 
 
 <h3>JSON Format</h3>
@@ -329,10 +329,10 @@ The order of attributes in the resource MAY follow the order of attributes in th
 A client MAY use the header `Content-Type: application/json` in the requests to specify the JSON payload format. 
 If the service cannot process the request payload as JSON format is not supported, it MUST respond with HTTP status code `415 Unsupported Media Type`.
 
-The `Accept: application/json` SHOULD be used in the request by the client in order to specify the expected JSON response format. 
+The client SHOULD use the `Accept: application/json` request header in order to specify the expected JSON response format. 
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
 Proper header `Content-Type: application/json` MUST be present in the response of the service
-unless response has no body (status 204). 
+unless the response has no body (HTTP status code 204). 
 
 
 <h3>Datetime format</h3>
