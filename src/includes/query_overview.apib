@@ -1,13 +1,12 @@
-# Group Query Requirements
+# Group Requirements
 
 ## Purpose 
 
 This specification describes the service endpoints and data-models used when querying an openEHR system. 
 The [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) is the primary query language. 
 
-The query `response` may also be used by other openEHR API endpoints - 
-i.e. the [composition resource](ehr.html#composition-composition) might return several COMPOSITIONs. 
-These operations will return the `response` structure defined here. 
+
+## Query types
 
 <h3>Single EHR queries</h3>
 
@@ -96,6 +95,13 @@ Below is a mostly self-documented AQL query request.
     }
 }
 ```
+
+<h3>GET vs POST</h3>
+
+Requests based on `GET` method have URI length restriction or some characters might not be allowed and have to ne encoded. 
+Long queries in the `q` parameter and having a long list of `query_parameter` may add up to reach that limit, 
+thus we recommend clients using the `POST` method instead of `GET`.
+
 
 ## Response structure 
 
