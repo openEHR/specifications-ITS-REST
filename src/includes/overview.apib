@@ -14,7 +14,7 @@ Prerequisite documents for reading this document include:
 Related documents include:
 - The [openEHR Global Class Index](https://specifications.openehr.org/releases/AA_GLOBAL/latest/index.html)
 - The [XML-Schemas (XSD)](https://github.com/openEHR/specifications-ITS-XML) 
-- The [JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON)
+- The [JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON) and [JSON Data Template](/json_data_template.html)
 - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html)
 
 
@@ -334,6 +334,21 @@ The client SHOULD use the `Accept: application/json` request header in order to 
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
 Proper header `Content-Type: application/json` MUST be present in the response of the service
 unless the response has no body (HTTP status code 204). 
+
+
+<h3>Flat JSON Format</h3>
+
+Creating data instances according to JSON format is not always straightforward, 
+particularly for developers with minimal exposure to openEHR, and various alternatives 
+have been used in the past to simplify the job of content creation and committal for application developers.
+
+There is an initiative exploring and documenting these formats, which specifications can be consulted at
+[JSON Data Template](/json_data_template.html) page.
+
+In order to use such formats, content negotiation should be done in the same manner as for the canonical JSON format above,
+but instead of `application/json`, clients and servers should use:  
+ - `openehr.ncjdt+json` for near-canonical RM JSON data template (ncJDT), originally devised for the EtherCIS project,
+ - `openehr.sjdt+json` for simplified IM JSON data template (sJDT), based on the 'web template' format originally created by Marand for the Better platform.
 
 
 <h3>Datetime format</h3>
