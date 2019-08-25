@@ -4,16 +4,17 @@ This currently supports [AQL](https://specifications.openehr.org/releases/QUERY/
 other types might be added at a later time. 
 
 
-### Execute ad-hoc (non-stored) AQL query [GET /query/aql{?q,query_parameter,offset,fetch}]
+### Execute ad-hoc (non-stored) AQL query [GET /query/aql{?q,ehr_id,offset,fetch,query_parameter}]
 
 Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` and many long
 `query_parameter`'s may add up to reach that limit, thus we recommend using the
 `POST {baseUrl}/query/aql` instead when such risks are expected.
 
 + Parameters
-    + q (string) - the AQL query to be executed
-    + offset (number, optional) - row number in result-set to start result-set from (`0`-based), default `0`
-    + fetch (number, optional) - number of rows to fetch, default depends on the implementation
+    + q: `SELECT ... WHERE ...` (string) - the AQL query to be executed
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string, optional) - an optional parameter to execute the query within an EHR context
+    + offset: `10` (number, optional) - row number in result-set to start result-set from (`0`-based), default `0`
+    + fetch: `10` (number, optional) - number of rows to fetch, default depends on the implementation
     + query_parameter (optional) - query parameters (can appear multiple times)
 
 + Response 200 (application/json)
@@ -78,10 +79,7 @@ Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` 
     + Body
 
 
-### Execute stored query [GET /query/{qualified_query_name}/{version}{?offset,fetch,query_parameter}]
-
-Execute a stored query with the supplied `qualified_query_name`. Queries can be stored
-via the [query definition API endpoint](definitions.html#definitions-stored-query-put).
+### Execute stored query [GET /query/{qualified_query_name}/{version}{?ehr_id,offset,fetch,query_parameter}]
 
 All query parameters found except `offset` and `fetch` are sent to the query execution engine.
 For AQL queries `fetch` cannot be combined with [AQL-top](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_top).
@@ -95,10 +93,11 @@ Will pass parameters `temperature_from` and `temperature_unit` to the underlying
 
 + Parameters
 
-    + qualified_query_name (string, required) - query name to be executed, example: `org.openehr::compositions`
-    + version (string, optional) - SEMVER version number
-    + offset (number, optional) - row number in result-set to start result-set from (`0`-based), default `0`
-    + fetch (number, optional) - number of rows to fetch, default depends on the implementation
+    + qualified_query_name: `org.openehr::compositions` (string, required) - name of the query to be executed
+    + version: `1.0` (string, optional) - query SEMVER version number
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string, optional) - an optional parameter to execute the query within an EHR context
+    + offset: `10` (number, optional) - row number in result-set to start result-set from (`0`-based), default `0`
+    + fetch: `10` (number, optional) - number of rows to fetch, default depends on the implementation
     + query_parameter (optional) - query parameters (can appear multiple times)
 
 + Response 200 (application/json)
@@ -139,8 +138,8 @@ unconstrained regarding `ehr_id` (e.g. population queries).
 
 + Parameters
 
-    + qualified_query_name (string) - query name to be executed, example: `org.openehr::compositions`
-    + version (string, optional) - SEMVER version number
+    + qualified_query_name: `org.openehr::compositions` (string, required) - name of the query to be executed
+    + version: `1.0` (string, optional) - query SEMVER version number
 
 + Request (application/json)
 

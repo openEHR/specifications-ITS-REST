@@ -31,7 +31,7 @@ Examples:
 
 + Parameters
 
-    + qualified_query_name (string)
+    + qualified_query_name: `org.openehr::compositions` (string, optional)
 
 + Response 200 (application/json) 
 
@@ -61,9 +61,9 @@ Store a new query on the system.
 
 + Parameters
 
-    + qualified_query_name (string, required) - query name
-    + version (string, optional) - SEMVER version number
-    + type (string, optional) - indicating the query language/type (presently `AQL`, but future additions possible)
+    + qualified_query_name: `org.openehr::compositions` (string, required) - query name
+    + version: `1.0.1` (string, optional) - query SEMVER version number
+    + type: `AQL` (string, optional) - indicating the query language/type
  
 + Request
 
@@ -105,8 +105,8 @@ Store a new query on the system.
 
 + Parameters
     
-    + qualified_query_name (string, required) - query name
-    + version (string, optional) - SEMVER version number
+    + qualified_query_name: `org.openehr::compositions` (string, required) - query name
+    + version: `1.0.1` (string, optional) - query SEMVER version number
 
 + Response 200 (application/json)
 
