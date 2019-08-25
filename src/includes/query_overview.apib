@@ -12,6 +12,7 @@ These operations will return the `response` structure defined here.
 <h3>Single EHR queries</h3>
 
 A common use-case is to execute queries within a specific EHR. 
+This is achieved by supplying a `ehr_id` query parameter or setting a `openEHR-EHR-id` request header. 
 
 <h3>Population queries</h3>
 
@@ -29,28 +30,58 @@ Using stored queries has lots of advantages:
 - separation of responsibilities (some users/developers write queries, others just call/execute them and consume the responses)
 - no need to pass long query string over the network 
 
-Stored queries have a name (`qualified_query_name`) and an optional `version` number in [SEMVER](https://semver.org/) style (`major.minor.patch`).
+Stored queries are identified by name, used as `qualified_query_name`, 
+and an optional `version` number in [SEMVER](https://semver.org/) style (i.e. `major.minor.patch`).
+
+Usually a `qualified_query_name` has a format like `<namespace>::<query-name>` (e.g. `org.openehr::compositions`). 
+
+If only a partial `version` is supplied or `version` is not supplied at all, the
+system must use the latest `version` with the supplied prefix - i.e. if only `major` or `major.minor` 
+is used, then the latest query version with supplied prefix will be used.
+
+Queries can be stored or, if once stored, their definition can be retrieved 
+using the [definition endpoint](definitions.html#definitions-stored-query).
 
 ## Common Headers and Query Parameters [/--headers]
 
-All query calls will be able to use at least the following parameters and request headers:
-- `ehr_id` - this parameter SHOULD be supplied when executing single EHR queries and MAY be used by the underlying backend 
-to perform routing, optimizations or similar. It MUST NOT be supplied for 'population queries' and similar multi-patient queries.
-It can be supplied as query parameter `ehr_id` or as request header `openEHR-EHR-id`.
-- `offset` - used for paging, row number in result to start result-set from (`0`-based); default `0`
-- `fetch` - used for paging, number of rows to fetch (i.e. limit); default depends on the implementation, but
+All query execution requests SHOULD support at least the following parameters:
+- `ehr_id` - used to execute the query within a single EHR context: an EHR identifier taken from EHR.ehr_id.value
+- `offset` - used for paging: the row number in result to start result-set from (`0`-based); default `0`
+- `fetch` - used for paging: the number of rows to fetch (i.e. limit); default depends on the implementation, but
 cannot be combined with [AQL-top](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_top)
-- other parameters to replace placeholders within the query, 
-see [AQL-parameters](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_parameters) specification. 
+- other parameter(s) to replace placeholder(s) within the query, generically named `query_parameters` here.
 
-API supplied parameters does not have to be prefixed with `$` sign. Instead, the server will have to (whenever necessary) 
-add them or format queries as valid AQL queries before executing them. 
+Query related request headers:
+- `openEHR-EHR-id` - used to execute the query within a single EHR context: an EHR identifier taken from EHR.ehr_id.value
+
+
+<h3>About the `ehr_id` parameter</h3>
+
+This parameter SHOULD be supplied by clients when executing single EHR queries and MAY be used by the underlying backend 
+to perform routing, optimizations or similar. It MUST NOT be supplied for 'population queries' and similar multi-patient queries.
+
+Depending on the needs, clients MAY supply it as a query parameter `ehr_id` or alternatively 
+as a request header named `openEHR-EHR-id`.
+
+
+<h3>About `query_parameter`</h3>
+
+Depending on each query definition, various query parameters SHOULD be supported, generically named `query_parameter`
+in this specification, but in the real request they will have specific names (e.g. `uid`, `systolic_bp`, etc.) 
+according to their names in the query definition.  
+
+Query parameters does not have to be prefixed with `$` sign. Instead, the server will have to (whenever necessary) 
+add the prefix or format queries as valid AQL queries, before executing them. 
 
 As an example, for the following AQL query `SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid`, 
-the client can supply the `uid` parameter, i.e.: `GET /query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1`
+named as `'myQuery'`, the client can supply the `uid` as `query_parameter`, 
+i.e. `GET {baseUrl}/query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1`.
 
+As another example, the request `GET {baseUrl}/query/com.vendor::compositions?temperature_from=36&temperature_unit=Cel`
+will pass query parameters `temperature_from` and `temperature_unit` to the underlying AQL query named `com.vendor::compositions`.
 
-# Group Data structures
+See [AQL-parameters](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_parameters) specification for more details. 
+
 
 ## Request structure 
 

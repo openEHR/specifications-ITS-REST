@@ -6,9 +6,10 @@ other types might be added at a later time.
 
 ### Execute ad-hoc (non-stored) AQL query [GET /query/aql{?q,ehr_id,offset,fetch,query_parameter}]
 
-Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` and many long
-`query_parameter`'s may add up to reach that limit, thus we recommend using the
-`POST {baseUrl}/query/aql` instead when such risks are expected.
+Execute ad-hoc query, supplied by `q` parameter,
+fetching `fetch` numbers of rows from `offset` and passing `query_parameter` to the underlying query engine.
+
+See also details on usage of [query parameters](query.html#requirements-common-headers-and-query-parameters). 
 
 + Parameters
     + q: `SELECT ... WHERE ...` (string) - the AQL query to be executed
@@ -41,6 +42,11 @@ Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` 
 
 
 ### Execute ad-hoc (non-stored) AQL query [POST /query/aql]
+
+Execute ad-hoc query, supplied by `q` attribute,
+fetching `fetch` numbers of rows from `offset` and passing `query_parameter` to the underlying query engine.
+
+See also details on usage of [query parameters](query.html#requirements-common-headers-and-query-parameters). 
 
 + Request (application/json)
 
@@ -81,15 +87,13 @@ Warning: URIs in practice have a length restriction. Long AQLs in parameter `q` 
 
 ### Execute stored query [GET /query/{qualified_query_name}/{version}{?ehr_id,offset,fetch,query_parameter}]
 
-All query parameters found except `offset` and `fetch` are sent to the query execution engine.
-For AQL queries `fetch` cannot be combined with [AQL-top](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_top).
+Execute stored query identified by the supplied `qualified_query_name` (at specified `version`),
+fetching `fetch` numbers of rows from `offset` and passing `query_parameter` to the underlying query engine.
 
-For parameters in AQL queries, see [AQL-parameters](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_parameters).
-For example call:
+See also details on usage of [query parameters](query.html#requirements-common-headers-and-query-parameters). 
 
-    - GET {baseUrl}/query/com.vendor::compositions?temperature_from=36&temperature_unit=Cel
-
-Will pass parameters `temperature_from` and `temperature_unit` to the underlying query.
+Queries can be stored or, if once stored, their definition can be retrieved 
+using the [definition endpoint](definitions.html#definitions-stored-query).
 
 + Parameters
 
@@ -131,10 +135,12 @@ Will pass parameters `temperature_from` and `temperature_unit` to the underlying
 
 ### Execute stored query [POST /query/{qualified_query_name}/{version}]
 
-Execute a stored query with the supplied `qualified_query_name`.
+Execute stored query identified by the supplied `qualified_query_name` (at specified `version`).
 
-The absence of the `openEHR-EHR-id` request header means that the stored query or request parameters MAY contain a list of several `ehr_id`'s or be
-unconstrained regarding `ehr_id` (e.g. population queries).
+See also details on usage of [query parameters](query.html#requirements-common-headers-and-query-parameters). 
+
+Queries can be stored or, if once stored, their definition can be retrieved 
+using the [definition endpoint](definitions.html#definitions-stored-query).
 
 + Parameters
 

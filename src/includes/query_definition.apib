@@ -10,14 +10,15 @@ Namespace (if used) should be reverse domain name, which allows for separation o
 stored queries by teams, companies, etc.
 Example of a qualified query name: `org.openehr::compositions`.
 
-Version numbers, if used must be in [SEMVER](https://semver.org/) style (`major.minor.patch`). 
+In the future several standard openEHR stored queries might be developed, those will
+use namespace `org.openehr`. 
+
+Version numbers, if used must be in [SEMVER](https://semver.org/) style (i.e. `major.minor.patch`). 
 If only a partial `version` is supplied or `version` is not supplied at all, the
 system must use the latest `version` with the supplied prefix - i.e. if only `major` or `major.minor` 
 is used, then the latest query version with supplied prefix will be used.
 
-In the future several standard openEHR stored queries might be developed, those will
-use namespace `org.openehr`. 
-
+Queries can be executed using the [query endpoint](query.html#definitions-stored-query).
 
 ### List stored queries [GET /query/{qualified_query_name}]
 
