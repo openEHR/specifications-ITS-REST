@@ -54,7 +54,8 @@
             <a href="https://specifications.openehr.org/tickets/SPECPR-252" target="_blank" rel="noopener">SPECPR-253</a>,
             <a href="https://specifications.openehr.org/tickets/SPECPR-255" target="_blank" rel="noopener">SPECPR-255</a>,
             <a href="https://specifications.openehr.org/tickets/SPECPR-298" target="_blank" rel="noopener">SPECPR-298</a>,
-            <a href="https://specifications.openehr.org/tickets/SPECPR-333" target="_blank" rel="noopener">SPECPR-333</a>)</td>
+            <a href="https://specifications.openehr.org/tickets/SPECPR-333" target="_blank" rel="noopener">SPECPR-333</a>,
+            <a href="https://specifications.openehr.org/tickets/SPECPR-337" target="_blank" rel="noopener">SPECPR-337</a>)</td>
         <td>J Smolka, P Pazos, E Sundvall, T Beale, S Iancu</td>
         <td>1 Sep 2019</td>
     </tr>
@@ -87,6 +88,10 @@ Abstract Service Model interface.</p>
 </section></div><div class="middle"><div id="ehr-ehr" class="resource"><h3 class="resource-heading">EHR <a href="#ehr-ehr" class="permalink">&para;</a></h3><p>Management of <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class">EHRs</a>.</p>
 </div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">{baseUrl}/v1</span>/ehr</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Prefer</span>: <span class="hljs-string">return={representation|minimal}</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"EHR_STATUS"</span></span>,
+  "<span class="hljs-attribute">archetype_node_id</span>": <span class="hljs-value"><span class="hljs-string">"openEHR-EHR-EHR_STATUS.generic.v1"</span></span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"EHR Status"</span>
+  </span>}</span>,
   "<span class="hljs-attribute">subject</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">external_ref</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
