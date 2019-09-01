@@ -284,7 +284,7 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
         taken from EHR.ehr_id.value
     + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A timestamp in the ISO8601 format
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO8601 format
 
 + Response 200 (application/json)
 
@@ -345,7 +345,7 @@ Retrieves a VERSIONED_COMPOSITION identified by `versioned_object_uid` and assoc
             {
                 "uid": "xxx",
                 "owner_id": "7d44b88c-4199-4bad-97dc-d78268e01398",
-                "time_created": "ISO8601 timestamp",
+                "time_created": "ISO8601 time",
             }
 
 + Response 404
@@ -437,7 +437,7 @@ If `version_at_time` is supplied, retrieves the VERSION extant at specified time
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
         taken from EHR.ehr_id.value
     + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A timestamp in the ISO8601 format
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO8601 format
 
 + Response 200 (application/json)
 

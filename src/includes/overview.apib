@@ -63,8 +63,7 @@ Throughout this specification, a set of short terms is being used as described b
 |`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value (e.g. 8849182c-82ad-4088-a07f-48ead4180515) |
 |`version_uid`| The value of a VERSION unique identifier, stored under VERSION.uid.value (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2) |
 |`preceding_version_uid`| The value of a previous VERSION unique identifier, used usually for PUT or DELETE methods (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1) |
-|`version_at_time`| Time specifier used to retrieve the VERSION at specified time; the value is a timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
-|`timestamp`| A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
+|`version_at_time`| Time specifier used to retrieve the VERSION at a given time; the value is in the extended ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
 
 HTTP Methods used in this specification are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4).
 HTTP Status codes are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) 
@@ -353,9 +352,9 @@ but instead of `application/json`, clients and servers should use:
 
 <h3>Datetime format</h3>
 
-Query parameters and path segments that are date, datetime, or timestamp, MUST always use the canonical ISO8601 extended format, e.g. 2016-06-23T13:42:16.117+02:00.
+Query parameters and path segments that are date, datetime, or timestamp, MUST always use the extended ISO8601 format, e.g. 2016-06-23T13:42:16.117+02:00.
 
-Any date, datetime or timestamp value provided by a create or update action inside the COMPOSITION content 
+Any date, datetime or time value provided by a create or update action inside the COMPOSITION content 
 will be preserved as it was sent by client (i.e. if COMPOSITION was saved as narrow format, it will always return the way it was).
 However, the strongly RECOMMENDED format is to use the ISO8601 extended format.
 
