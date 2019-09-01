@@ -352,11 +352,14 @@ but instead of `application/json`, clients and servers should use:
 
 <h3>Datetime format</h3>
 
-Query parameters and path segments that are date, datetime, or timestamp, MUST always use the extended ISO8601 format, e.g. 2016-06-23T13:42:16.117+02:00.
+Query parameters and path segments that are date, datetime, or time, MUST always use the extended ISO8601 format, e.g. 2016-06-23T13:42:16.117+02:00.
 
+Timezone SHOULD be only supplied when needed and that when not supplied, the local timezone is assumed. 
+ 
 Any date, datetime or time value provided by a create or update action inside the COMPOSITION content 
 will be preserved as it was sent by client (i.e. if COMPOSITION was saved as narrow format, it will always return the way it was).
 However, the strongly RECOMMENDED format is to use the ISO8601 extended format.
+This is to enable time information in EHRs shared across timezones to be computed properly.
 
 
 <h3 id="representation-details-negotiation">Representation details negotiation <a href="#representation-details-negotiation" class="permalink">¶</a></h3>
