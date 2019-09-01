@@ -177,11 +177,7 @@ For a list of all available types or a particular type definition please refer t
 </tr>
 <tr>
 <td><code>version_at_time</code></td>
-<td>Time specifier used to retrieve the VERSION at specified time; the value is a timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)</td>
-</tr>
-<tr>
-<td><code>timestamp</code></td>
-<td>A timestamp in the ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)</td>
+<td>Time specifier used to retrieve the VERSION at a given time; the value is in the extended ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00)</td>
 </tr>
 </tbody>
 </table>
@@ -522,10 +518,12 @@ but instead of <code>application/json</code>, clients and servers should use:</p
 </li>
 </ul>
 <p><h3>Datetime format</h3></p>
-<p>Query parameters and path segments that are date, datetime, or timestamp, MUST always use the canonical ISO8601 extended format, e.g. 2016-06-23T13:42:16.117+02:00.</p>
-<p>Any date, datetime or timestamp value provided by a create or update action inside the COMPOSITION content
+<p>Query parameters and path segments that are date, datetime, or time, MUST always use the extended ISO8601 format, e.g. 2016-06-23T13:42:16.117+02:00.</p>
+<p>Timezone SHOULD be only supplied when needed and that when not supplied, the local timezone is assumed.</p>
+<p>Any date, datetime or time value provided by a create or update action inside the COMPOSITION content
 will be preserved as it was sent by client (i.e. if COMPOSITION was saved as narrow format, it will always return the way it was).
-However, the strongly RECOMMENDED format is to use the ISO8601 extended format.</p>
+However, the strongly RECOMMENDED format is to use the ISO8601 extended format.
+This is to enable time information in EHRs shared across timezones to be computed properly.</p>
 <p><h3 id="representation-details-negotiation">Representation details negotiation <a href="#representation-details-negotiation" class="permalink">¶</a></h3></p>
 <p>When using the HTTP methods to create or update a resource, the service SHOULD give clients the option of returning either a complete
 representation of the (modified) resource, or a minimal or no content in the payload response (assuming the operation was successfully completed).
