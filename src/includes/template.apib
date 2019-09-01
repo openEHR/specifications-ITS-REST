@@ -37,7 +37,7 @@ Upload a new ADL 1.4 operational template (OPT).
 
     + Headers
 
-            Location: {baseUrl}/definition/template/adl1.4/{template_id}
+            Location: {baseUrl}/definition/template/adl1.4/Example.v1::c7ec861c-c413-39ff-9965-a198ebf44747
 
     + Body
 
@@ -94,7 +94,7 @@ Retrieves the ADL 1.4 operational template identified by `template_id` identifie
 
 + Parameters
 
-    + template_id (string) - template identifier
+    + template_id: `Example.v1::c7ec861c-c413-39ff-9965-a198ebf44747` (string) - template identifier
 
 + Response 200 (application/xml)
 
@@ -140,7 +140,7 @@ Upload a new ADL 2 operational template.
 
 + Parameters
 
-    + version (string, optional) - a SEMVER version format, i.e. 1.0.1
+    + version: `1.0.1` (string, optional) - a SEMVER version format
 
 + Request
 
@@ -151,7 +151,7 @@ Upload a new ADL 2 operational template.
     + Body
 
             template (adl_version=2.0.5; rm_release=1.0.2)
-                openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0
+                openEHR-EHR-COMPOSITION.test.v1.0.0
             
             specialize
                 openEHR-EHR-COMPOSITION.discharge.v1
@@ -176,7 +176,7 @@ Upload a new ADL 2 operational template.
 
     + Headers
 
-            Location: {baseUrl}/definition/template/adl2/{template_id}/{version}
+            Location: {baseUrl}/definition/template/adl2/openEHR-EHR-COMPOSITION.test.v1.0.0/1.0.1
 
 + Response 400
 
@@ -222,8 +222,8 @@ If `version_pattern` is omitted, then the latest version of the operational temp
 
 + Parameters
 
-    + template_id (string) - template identifier
-    + version_pattern (string, optional) - SEMVER version pattern; this can be a complete version (i.e. 1.7.1) or partial prefix (i.e. 1.0)
+    + template_id: `openEHR-EHR-COMPOSITION.test.v1.0.0` (string) - template identifier
+    + version_pattern: `1.0` (string, optional) - SEMVER version pattern; this can be a complete version (i.e. 1.7.1) or partial prefix (i.e. 1.0)
 
 + Response 200
 
@@ -232,7 +232,7 @@ If `version_pattern` is omitted, then the latest version of the operational temp
     + Body
 
             template (adl_version=2.0.5; rm_release=1.0.2)
-                openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0
+                openEHR-EHR-COMPOSITION.test.v1.0.0
             
             specialize
                 openEHR-EHR-COMPOSITION.discharge.v1

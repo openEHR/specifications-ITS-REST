@@ -9,7 +9,8 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
 
 + Request example1 (application/json)
 
@@ -27,8 +28,8 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 
     + Body
 
@@ -75,8 +76,9 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - identifier of the COMPOSITION to be updated.
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - identifier of the COMPOSITION to be updated.
 
 + Request example1 (application/json)
 
@@ -94,14 +96,14 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
     + Headers
 
             Prefer: return=representation
-            If-Match: {preceding_version_uid}
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 
     + Body
 
@@ -118,7 +120,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: {preceding_version_uid}
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 
     + Body
 
@@ -152,7 +154,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: {preceding_version_uid}
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 
 + Response 404
 
@@ -175,7 +177,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: {preceding_version_uid}
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 
 + Response 412
 
@@ -184,8 +186,8 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 
     + Body
 
@@ -196,8 +198,9 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `preceding_version_uid` (string) - identifier of the COMPOSITION to be deleted.
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + preceding_version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - identifier of the COMPOSITION to be deleted.
     This MUST be the last (most recent) version.
 
 + Response 204
@@ -206,8 +209,8 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 
     + Body
 
@@ -230,8 +233,8 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 
     + Body
 
@@ -242,8 +245,9 @@ Retrieves a particular version of the COMPOSITION identified by `version_uid` an
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `version_uid` (string) - VERSION identifier taken from VERSION.uid.value
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
 
@@ -277,16 +281,17 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + `version_at_time` (string, optional) - A timestamp in the ISO8601 format
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A timestamp in the ISO8601 format
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/composition/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 
     + Body
 
@@ -325,20 +330,21 @@ Retrieves a VERSIONED_COMPOSITION identified by `versioned_object_uid` and assoc
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/versioned_composition/{versioned_object_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515
 
     + Body
 
             {
                 "uid": "xxx",
-                "owner_id": "{ehr_id}",
+                "owner_id": "7d44b88c-4199-4bad-97dc-d78268e01398",
                 "time_created": "ISO8601 timestamp",
             }
 
@@ -355,14 +361,15 @@ Retrieves revision history of the VERSIONED_COMPOSITION identified by `versioned
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515/revision_history
 
     + Body
 
@@ -388,9 +395,10 @@ Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION ident
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + `version_uid` (string) - VERSION identifier taken from VERSION.uid.value
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
 
@@ -426,16 +434,17 @@ If `version_at_time` is supplied, retrieves the VERSION extant at specified time
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `versioned_object_uid` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + `version_at_time` (string, optional) - A timestamp in the ISO8601 format
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A timestamp in the ISO8601 format
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515/version/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 
     + Body
 

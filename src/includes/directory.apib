@@ -10,7 +10,8 @@ Creates a new directory FOLDER associated with the EHR identified by `ehr_id`.
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
 
 + Request (application/json)
 
@@ -33,8 +34,8 @@ Creates a new directory FOLDER associated with the EHR identified by `ehr_id`.
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/directory/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 
     + Body
 
@@ -52,7 +53,7 @@ Creates a new directory FOLDER associated with the EHR identified by `ehr_id`.
 
 + Response 404
 
-    No EHR with the given id.
+    No EHR with the given `ehr_id`.
 
     + Body
 
@@ -64,13 +65,14 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
 
 + Request (application/json)
 
     + Header
 
-            If-Match: {preceding_version_uid}
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
             Prefer: return={representation|minimal}
 
     + Body
@@ -86,8 +88,8 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/directory/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 
     + Body
 
@@ -104,8 +106,8 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/directory/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 
 + Response 400
 
@@ -115,7 +117,7 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
 + Response 404
 
-    No EHR with the given id.
+    No EHR with the given `ehr_id`.
 
     + Body
 
@@ -126,8 +128,8 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/directory/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::3
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::3
 
     + Body
 
@@ -139,13 +141,14 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
 
 + Request
 
     + Headers
 
-            If-Match: {preceding_version_uid}
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 
 + Response 204
 
@@ -161,7 +164,7 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
 + Response 404
 
-    No EHR with the given id.
+    No EHR with the given `ehr_id`.
 
     + Body
 
@@ -172,8 +175,8 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/directory/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::3
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::3
 
     + Body
 
@@ -184,8 +187,9 @@ Retrieves a FOLDER in a particular version of the directory identified by `versi
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + version_uid (string) - version UID
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - version UID
     + path (string, optional) - path to a sub-folder
 
 + Response 200 (application/json)
@@ -206,7 +210,7 @@ Retrieves a FOLDER in a particular version of the directory identified by `versi
 
 + Response 404
 
-    No EHR with the given id or no directory with specified version_uid.
+    No EHR with the given `ehr_id` or no directory with specified `version_uid`.
 
     + Body
 
@@ -218,16 +222,17 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
 
 + Parameters
 
-    + `ehr_id` (string) - EHR identifier taken from EHR.ehr_id.value
-    + `version_at_time` (string, optional) - A timestamp in the extended ISO8601 format
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A timestamp in the extended ISO8601 format
     + path (string, optional) - path to a sub-folder
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}/directory/{version_uid}
-            ETag: {version_uid}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 
     + Body
 
@@ -245,7 +250,7 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
 
 + Response 404
 
-    No EHR with the given id.
+    No EHR with the given `ehr_id`.
 
     + Body
 

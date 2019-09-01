@@ -35,8 +35,8 @@ All other attributes will be created as needed by the backend to ensure that a v
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}
-            ETag: {ehr_id}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398
+            ETag: 7d44b88c-4199-4bad-97dc-d78268e01398
 
     + Body
 
@@ -78,7 +78,7 @@ allowed (https://specifications.openehr.org/releases/BASE/latest/base_types.html
 
 + Parameters
 
-    + ehr_id (string) - User supplied EHR identifier
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - User supplied EHR identifier
 
 + Request
 
@@ -102,8 +102,8 @@ allowed (https://specifications.openehr.org/releases/BASE/latest/base_types.html
 
     + Headers
 
-            Location: {baseUrl}/ehr/{ehr_id}
-            ETag: {ehr_id}
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398
+            ETag: 7d44b88c-4199-4bad-97dc-d78268e01398
 
     + Body
 
@@ -135,7 +135,7 @@ Retrieve the EHR with the specified `ehr_id`.
 
 + Parameters
 
-    + ehr_id (string) - EHR identifier
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier
 
 + Response 200 (application/json)
 
