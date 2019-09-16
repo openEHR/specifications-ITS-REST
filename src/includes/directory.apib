@@ -202,15 +202,11 @@ Retrieves a FOLDER in a particular version of the directory identified by `versi
                 "folders": [{}]
             }
 
-+ Response 204
-
-    No Folder at provided path.
-
-    + Body
-
 + Response 404
 
-    No EHR with the given `ehr_id` or no directory with specified `version_uid`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a directory with `version_uid` does not exist or
+    when `path` does not exists within the directory.
 
     + Body
 
@@ -244,13 +240,15 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
 
 + Response 204
 
-    EHR has no directory at `version_at_time` time or no Folder at provided path.
+    `204 No Content` is returned when directory at `version_at_time` time has been deleted.
 
     + Body
 
 + Response 404
 
-    No EHR with the given `ehr_id`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a directory does not exists at `version_at_time` time or
+    when `path` does not exists within the directory.
 
     + Body
 
