@@ -28,7 +28,7 @@ Creates a new directory FOLDER associated with the EHR identified by `ehr_id`.
 
 + Response 201 (application/json)
 
-    New directory was created. Content body is only returned when
+    `201 Created` is returned when new directory was created. Content body is only returned when
     `Prefer` header has `return=representation` otherwise only headers are
     returned.
 
@@ -47,13 +47,14 @@ Creates a new directory FOLDER associated with the EHR identified by `ehr_id`.
 
 + Response 400
 
-    Bad request - error creating a directory.
+    `400 Bad Request` is returned when the request has invalid `ehr_id` or invalid content 
+        (e.g. content could not be converted to a valid directory FOLDER)
 
     + Body
 
 + Response 404
 
-    No EHR with the given `ehr_id`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
 
     + Body
 
@@ -84,7 +85,8 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
 + Response 200 (application/json)
 
-    Directory was updated.
+    `200 OK` is return when directory is successfully updated and
+    the updated EHR_STATUS resource is returned in the body when `Prefer` header value is `return=representation`.
 
     + Headers
 
@@ -101,8 +103,7 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
 + Response 204
 
-    Directory was updated.
-    Returned when `Prefer` header is NOT set to `return=representation`.
+    `204 No Content` is returned when directory was updated and `Prefer` header is missing or is set to `return=minimal`.
 
     + Headers
 
@@ -111,13 +112,14 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
 + Response 400
 
-    Bad request - error when updating a directory.
+    `400 Bad Request` is returned when the request has invalid `ehr_id` or invalid content 
+        (e.g. content could not be converted to a valid directory FOLDER)
 
     + Body
 
 + Response 404
 
-    No EHR with the given `ehr_id`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
 
     + Body
 
@@ -152,19 +154,19 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
 + Response 204
 
-    Directory was deleted.
+    `204 No Content` is returned when directory was deleted.
 
     + Body
 
 + Response 400
 
-    Bad request - error deleting directory.
+    `400 Bad Request` is returned when the request has invalid `ehr_id`.
 
     + Body
 
 + Response 404
 
-    No EHR with the given `ehr_id`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
 
     + Body
 

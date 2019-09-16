@@ -112,7 +112,7 @@ Retrieves a particular version of the EHR_STATUS identified by `version_uid` and
 + Response 404
 
     `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
-    an EHR_STATUS with `version_uid` does not exist.
+    when an EHR_STATUS with `version_uid` does not exist.
 
     + Body
 
@@ -165,8 +165,8 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
 
 + Response 200
 
-    `200 OK` return when EHR_STATUS resource is successfully updated. 
-    The updated EHR_STATUS resource is returned in the body when `Prefer` header value is `return=representation`.
+    `200 OK` return when EHR_STATUS resource is successfully updated and 
+    the updated EHR_STATUS resource is returned in the body when `Prefer` header value is `return=representation`.
 
     + Headers
 
@@ -220,7 +220,7 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
     
 + Response 404
 
-    `404 Not Found` is returned when EHR with `ehr_id` does not exist.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
 
     + Body
 
@@ -400,8 +400,8 @@ If `version_at_time` is supplied, retrieves the VERSION extant at specified time
 
 + Response 404
 
-    `404 Not Found` is returned when EHR with `ehr_id` does not exist or
-    when EHR_STATUS does not exist at the specified `version_at_time`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when an EHR_STATUS does not exist at the specified `version_at_time`.
 
     + Body
 
@@ -480,6 +480,7 @@ Retrieves a VERSION identified by `version_uid` of an EHR_STATUS associated with
 
 + Response 404
 
-    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or EHR_STATUS with `version_uid` does not exist.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or 
+    when an EHR_STATUS with `version_uid` does not exist.
 
     + Body

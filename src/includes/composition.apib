@@ -24,7 +24,8 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
 
 + Response 201 (application/json)
 
-    New COMPOSITION was created. Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+    `201 Created` is returned when the COMPOSITION was created. 
+    Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
 
     + Headers
 
@@ -44,7 +45,7 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
 
 + Response 404
 
-    The EHR with the supplied `ehr_id` did not exist.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
 
     + Body
 
@@ -128,7 +129,8 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
 + Response 400 (application/json)
 
-    Bad request: either the body of the request could not be read (or converted to a COMPOSITION object) or there were composition validation errors.
+    `400 Bad Request` is returned when the request has invalid `ehr_id` or invalid content 
+    (e.g. either the body of the request could not be read, or converted to a COMPOSITION object, or there were composition validation errors)
 
     + Body
 
@@ -158,7 +160,8 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `versioned_object_uid`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a COMPOSITION with `versioned_object_uid` does not exist.
 
     + Body
 
@@ -205,7 +208,7 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 
 + Response 204
 
-    COMPOSITION was deleted.
+    `204 No Content` is returned when COMPOSITION was deleted.
 
     + Headers
 
@@ -216,19 +219,20 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 
 + Response 400
 
-    The composition with `preceding_version_uid` is already deleted.
+    `400 Bad Request` is returned when the composition with `preceding_version_uid` is already deleted.
 
     + Body
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `preceding_version_uid`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a COMPOSITION with `preceding_version_uid` does not exist.
 
     + Body
 
 + Response 409
 
-    Returned when supplied `preceding_version_uid` doesn't match the latest version.
+    `409 Conflict` is returned when supplied `preceding_version_uid` doesn't match the latest version.
     Returns latest version in the `Location` and `ETag` headers.
 
     + Headers
@@ -263,13 +267,14 @@ Retrieves a particular version of the COMPOSITION identified by `version_uid` an
 
 + Response 204
 
-    Returned when the composition is deleted (logically).
+    `204 No Content` is returned when the COMPOSITION is deleted (logically).
 
     + Body
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no COMPOSITION with the supplied `version_uid`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a COMPOSITION with `version_uid` does not exist.
 
     + Body
 
@@ -306,14 +311,16 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
 
 + Response 204
 
-    The COMPOSITION at specified `version_at_time` time has been deleted.
+    `204 No Content` is returned when COMPOSITION with `versioned_object_uid` 
+    at specified `version_at_time` time has been deleted.
 
     + Body
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or
-    no COMPOSITION at specified `version_at_time` time.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist or
+    when a COMPOSITION does not exists at `version_at_time` time.
 
     + Body
 
@@ -350,7 +357,8 @@ Retrieves a VERSIONED_COMPOSITION identified by `versioned_object_uid` and assoc
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist.
 
     + Body
 
@@ -384,7 +392,8 @@ Retrieves revision history of the VERSIONED_COMPOSITION identified by `versioned
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist.
 
     + Body
 
@@ -422,7 +431,9 @@ Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION ident
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or no VERSION with the supplied `version_uid`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist or
+    when a VERSION with `version_uid` does not exist.
 
     + Body
 
@@ -466,6 +477,8 @@ If `version_at_time` is supplied, retrieves the VERSION extant at specified time
 
 + Response 404
 
-    No EHR with the supplied `ehr_id` or no VERSIONED_COMPOSITION with the supplied `versioned_object_uid` or no VERSION with the supplied `version_uid`.
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist or
+    when a VERSION with `version_uid` does not exist.
 
     + Body

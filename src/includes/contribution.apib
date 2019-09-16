@@ -57,7 +57,8 @@ We will use the relaxed CONTRIBUTION XSD with the following attributes optional:
 
 + Response 201 
 
-    New Contribution was created. Content body is only returned when `Prefer` header has `return=representation` otherwise only headers are returned. 
+    `201 Created` is returned when the CONTRIBUTION was created. 
+    Content body is only returned when `Prefer` header has `return=representation` otherwise only headers are returned. 
 
     + Headers
 
@@ -117,7 +118,8 @@ We will use the relaxed CONTRIBUTION XSD with the following attributes optional:
 
 + Response 400 
 
-    Bad request: validation errors in one of the attached locatables, modification type doesn't match the operation - i.e. first version
+    `400 Bad Request` is returned when the are validation errors in one of the attached locatables, 
+    modification type doesn't match the operation - i.e. first version
     of a composition with MODIFICATION.
 
     + Body 
@@ -132,7 +134,7 @@ We will use the relaxed CONTRIBUTION XSD with the following attributes optional:
 
 + Response 404
 
-    No EHR with the given `ehr_id` 
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
 
     + Body 
 
@@ -200,7 +202,8 @@ We will use the relaxed CONTRIBUTION XSD with the following attributes optional:
 
 + Response 404 
 
-    No EHR with the supplied `ehr_id` or no Contribution with the supplied `contribution_uid` was found
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a CONTRIBUTION with `contribution_uid` does not exist.
 
     + Body 
 
