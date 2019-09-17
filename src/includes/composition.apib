@@ -101,6 +101,9 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
 + Response 200 (application/json)
 
+    `200 OK` is returned when the COMPOSITION is successfully updated and
+    the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
@@ -255,6 +258,8 @@ Retrieves a particular version of the COMPOSITION identified by `version_uid` an
 
 + Response 200 (application/json)
 
+    `200 OK` is returned when the COMPOSITION is successfully retrieved.
+
     + Body
 
             {
@@ -292,6 +297,8 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
     + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO8601 format
 
 + Response 200 (application/json)
+
+    `200 OK` is returned when the COMPOSITION is successfully retrieved.
 
     + Headers
 
@@ -343,9 +350,7 @@ Retrieves a VERSIONED_COMPOSITION identified by `versioned_object_uid` and assoc
 
 + Response 200 (application/json)
 
-    + Headers
-
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515
+    `200 OK` is returned when the VERSIONED_COMPOSITION is successfully retrieved.
 
     + Body
 
@@ -375,9 +380,7 @@ Retrieves revision history of the VERSIONED_COMPOSITION identified by `versioned
 
 + Response 200 (application/json)
 
-    + Headers
-
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515/revision_history
+    `200 OK` is returned when the VERSIONED_COMPOSITION history is successfully retrieved.
 
     + Body
 
@@ -410,6 +413,8 @@ Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION ident
     + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
+
+    `200 OK` is returned when the VERSION is successfully retrieved.
 
     + Body
 
@@ -451,6 +456,8 @@ If `version_at_time` is supplied, retrieves the VERSION extant at specified time
     + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO8601 format
 
 + Response 200 (application/json)
+
+    `200 OK` is returned when the VERSION is successfully retrieved.
 
     + Headers
 

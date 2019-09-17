@@ -14,7 +14,7 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
 
 + Response 200 (application/json)
 
-    `200 OK` is return with the EHR_STATUS resource in the body when it is successfully retrieved. 
+    `200 OK` is returned when the requested EHR_STATUS is successfully retrieved. 
 
     + Headers
 
@@ -76,7 +76,7 @@ Retrieves a particular version of the EHR_STATUS identified by `version_uid` and
 
 + Response 200 (application/json)
 
-    `200 OK` is return when the EHR_STATUS is successfully retrieved.
+    `200 OK` is returned when the requested EHR_STATUS is successfully retrieved.
 
     + Body
 
@@ -165,8 +165,8 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
 
 + Response 200
 
-    `200 OK` return when EHR_STATUS resource is successfully updated and 
-    the updated EHR_STATUS resource is returned in the body when `Prefer` header value is `return=representation`.
+    `200 OK` is returned when the EHR_STATUS is successfully updated and 
+    the updated resource is returned in the body when `Prefer` header value is `return=representation`.
 
     + Headers
 
@@ -253,7 +253,7 @@ Retrieves a VERSIONED_EHR_STATUS associated with an EHR identified by `ehr_id`.
 
 + Response 200 (application/json)
 
-    `200 OK` is return when the requested EHR's VERSIONED_EHR_STATUS is successfully retrieved.
+    `200 OK` is returned when the requested VERSIONED_EHR_STATUS is successfully retrieved.
 
     + Body
 
@@ -281,7 +281,7 @@ Retrieves revision history of the VERSIONED_EHR_STATUS associated with the EHR i
 
 + Response 200 (application/json)
 
-    `200 OK` is return when the requested EHR's VERSIONED_EHR_STATUS revision history is successfully retrieved.
+    `200 OK` is returned when the requested VERSIONED_EHR_STATUS revision history is successfully retrieved.
 
     + Body
 
@@ -333,11 +333,12 @@ If `version_at_time` is supplied, retrieves the VERSION extant at specified time
 
 + Response 200 (application/json)
 
-    `200 OK` is return when the requested VERSION is successfully retrieved, which is provided in the body.
+    `200 OK` is returned when the requested VERSION is successfully retrieved.
 
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_ehr_status/version/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
 
     + Body
 
@@ -416,7 +417,8 @@ Retrieves a VERSION identified by `version_uid` of an EHR_STATUS associated with
     + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - version UID
 
 + Response 200 (application/json)
-    `200 OK` is return when the requested VERSION is successfully retrieved.
+
+    `200 OK` is returned when the requested VERSION is successfully retrieved.
     
     + Body
 

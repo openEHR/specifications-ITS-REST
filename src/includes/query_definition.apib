@@ -36,7 +36,7 @@ Examples:
 
 + Response 200 (application/json) 
 
-    `200 OK` is returned when the resources are successfully retrieved.
+    `200 OK` is returned when the query resources are successfully retrieved.
 
     + Body
 
@@ -82,13 +82,13 @@ Store a new query on the system.
 
 + Response 200
 
-    `200 OK` query was successfully stored.
+    `200 OK` is returned when the query was successfully stored.
 
     + Body
 
     + Headers
 
-            Location: {baseUrl}/definition/query/{qualified_query_name}/{version}
+            Location: {baseUrl}/definition/query/org.openehr::compositions/1.0.1
 
 + Response 400
 
