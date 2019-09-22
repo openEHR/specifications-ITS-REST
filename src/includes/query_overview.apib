@@ -50,8 +50,11 @@ All query execution requests SHOULD support at least the following parameters:
 cannot be combined with [AQL-top](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_top)
 - other parameter(s) to replace placeholder(s) within the query, generically named `query_parameters` here.
 
-Query related request headers:
+Related request headers:
 - `openEHR-EHR-id` - used to execute the query within a single EHR context: an EHR identifier taken from EHR.ehr_id.value
+
+Related response headers:
+- `ETag` - A unique identifier of the resultSet
 
 
 <h3>About the `ehr_id` parameter</h3>

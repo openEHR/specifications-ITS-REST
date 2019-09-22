@@ -209,6 +209,9 @@ See more details on [representation details negotiation](#representation-details
 
 <h3>The `ETag` and `Last-Modified` headers</h3>
 
+These headers are mainly related to whether or not a returned resource may be cacheable.
+Their purpose is to give clients information about the state of the requested resources.    
+
 According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
 > The "ETag" header field in a response provides the current entity-tag
     for the selected representation, as determined at the conclusion of
@@ -218,9 +221,15 @@ According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
     due to resource state changes over time, content negotiation
     resulting in multiple representations being valid at the same time,
     or both.
+
+The `ETag` response HTTP header contains a string token that the server associates with a resource in order to 
+uniquely identify the state of that resource over its lifetime. The value of the token changes as soon as the resource changes.
+An example of such header value format is:
 ```http
 ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 ```
+Servers MAY choose their own format for this header, but the recommended value is the unique identifier of the requested resource 
+(e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).    
 
 The `Last-Modified` response HTTP header contains the datetime of the last modification of targeted resource
 which should be taken from VERSION.commit_audit.time_committed.value. 
@@ -228,11 +237,9 @@ An example of such header value format is:
 ```http
 Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
 ```
-See more details on [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.2).
 
-These headers SHOULD be present in all responses targeting VERSION, VERSIONED_OBJECT or other resources
-that have unique identifier for each of the changes in time. The value of this header MAY be the
-unique identifier of that resource (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).
+These two headers SHOULD be present in all responses targeting VERSION, VERSIONED_OBJECT or other resources
+that have similar unique identifier. 
 
 
 ## HTTP status codes [/--status]
