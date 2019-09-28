@@ -30,10 +30,8 @@ All other required EHR attributes and resources will be automatically created as
 
 + Response 201 (application/json)
 
-    `201 Created` is returned when a new EHR has been successfully created. 
-    The EHR resource is returned in the body when the `Prefer` header has the value of `return=representation`.
-    The default for `Prefer` header (or when `Prefer` header if missing) is `return=minimal`.
-    The `Location` header is always returned.
+    `201 Created` is returned when the EHR has been successfully created. 
+    The new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`, otherwise only headers are returned.
 
     + Headers
 
@@ -98,8 +96,8 @@ All other required EHR attributes and resources will be automatically created as
 
 + Response 201 (application/json)
 
-    `201 Created` is returned when a new EHR has been successfully created. 
-    The new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`.
+    `201 Created` is returned when the EHR has been successfully created. 
+    The new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`, otherwise only headers are returned.
 
     + Headers
 
