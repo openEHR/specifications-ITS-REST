@@ -6,14 +6,16 @@ Management of [EHRs](https://specifications.openehr.org/releases/RM/latest/ehr.h
 ### Create EHR [POST /ehr]
 
 Create a new `EHR` with an auto-generated identifier.
-An `ehr_status` may be supplied as the request body. When provided it
-will also be created as part of the same request,
-otherwise default resources will be created automatically by the service
-with the following defaults:
+
+An EHR_STATUS resource needs to be always created and committed in the new EHR.
+This resource MAY be also supplied by the client as the request body. 
+If not supplied, a default EHR_STATUS with the following attributes SHOULD be used by the service:  
 - `is_queryable`: true
 - `is_modifiable`: true
+- `subject`: a PARTY_SELF object
 
-All other attributes will be created as needed by the backend to ensure that a valid RM type instance is created.
+All other required EHR attributes and resources will be automatically created as needed by the
+[EHR creation semantics](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_creation_semantics).
 
 
 + Request
@@ -24,7 +26,7 @@ All other attributes will be created as needed by the backend to ensure that a v
 
     + Body
 
-<!-- include(../examples/ehr_01.json) -->
+<!-- include(../examples/ehr_status_01.json) -->
 
 + Response 201 (application/json)
 
@@ -64,14 +66,16 @@ All other attributes will be created as needed by the backend to ensure that a v
 ### Create EHR with id [PUT /ehr/{ehr_id}]
 
 Create a new `EHR` with the specified EHR identifier. 
-An `ehr_status` may be supplied as the request body. When provided it
-will also be created as part of the same request,
-otherwise default resources will be created automatically by the service
-with the following defaults:
+
+An EHR_STATUS resource needs to be always created and committed in the new EHR.
+This resource MAY be also supplied by the client as the request body. 
+If not supplied, a default EHR_STATUS with the following attributes SHOULD be used by the service:  
 - `is_queryable`: true
 - `is_modifiable`: true
+- `subject`: a PARTY_SELF object
 
-All other attributes will be left empty (null).
+All other required EHR attributes and resources will be automatically created as needed by the
+[EHR creation semantics](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_creation_semantics).
 
 It is recommended that the supplied `ehr_id` is a UUID, but other formats are also
 allowed (https://specifications.openehr.org/releases/BASE/latest/base_types.html#_hier_object_id_class)
@@ -88,12 +92,7 @@ allowed (https://specifications.openehr.org/releases/BASE/latest/base_types.html
 
     + Body
 
-            {
-                "ehr_status": {
-                  "is_modifiable": "true"
-                  ...
-                }
-            }
+<!-- include(../examples/ehr_status_01.json) -->
 
 + Response 201 (application/json)
 
