@@ -6,14 +6,16 @@ Management of [EHRs](https://specifications.openehr.org/releases/RM/latest/ehr.h
 ### Create EHR [POST /ehr]
 
 Create a new `EHR` with an auto-generated identifier.
-An `ehr_status` may be supplied as the request body. When provided it
-will also be created as part of the same request,
-otherwise default resources will be created automatically by the service
-with the following defaults:
+
+An EHR_STATUS resource needs to be always created and committed in the new EHR.
+This resource MAY be also supplied by the client as the request body. 
+If not supplied, a default EHR_STATUS with the following attributes SHOULD be used by the service:  
 - `is_queryable`: true
 - `is_modifiable`: true
+- `subject`: a PARTY_SELF object
 
-All other attributes will be created as needed by the backend to ensure that a valid RM type instance is created.
+All other required EHR attributes and resources will be automatically created as needed by the
+[EHR creation semantics](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_creation_semantics).
 
 
 + Request
@@ -24,14 +26,12 @@ All other attributes will be created as needed by the backend to ensure that a v
 
     + Body
 
-<!-- include(../examples/ehr_01.json) -->
+<!-- include(../examples/ehr_status_01.json) -->
 
 + Response 201 (application/json)
 
-    `201 Created` is returned when a new EHR has been successfully created. 
-    The EHR resource is returned in the body when the `Prefer` header has the value of `return=representation`.
-    The default for `Prefer` header (or when `Prefer` header if missing) is `return=minimal`.
-    The `Location` header is always returned.
+    `201 Created` is returned when the EHR has been successfully created. 
+    The new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`, otherwise only headers are returned.
 
     + Headers
 
@@ -40,12 +40,7 @@ All other attributes will be created as needed by the backend to ensure that a v
 
     + Body
 
-            {
-                "system_id": {...},
-                "ehr_id": {...},
-                "ehr_status": {...},
-                "time_created", "..."
-            }
+<!-- include(../examples/ehr_01.json) -->
 
 + Response 400
 
@@ -63,22 +58,26 @@ All other attributes will be created as needed by the backend to ensure that a v
 
 ### Create EHR with id [PUT /ehr/{ehr_id}]
 
-Create a new `EHR` with the specified EHR identifier. 
-An `ehr_status` may be supplied as the request body. When provided it
-will also be created as part of the same request,
-otherwise default resources will be created automatically by the service
-with the following defaults:
+Create a new EHR with the specified `ehr_id` identifier. 
+
+The value of the `ehr_id` unique identifier MUST be valid  
+[HIER_OBJECT_ID](https://specifications.openehr.org/releases/BASE/latest/base_types.html#_hier_object_id_class)
+value. It is strongly RECOMMENDED that an UUID always be used for this.
+
+An EHR_STATUS resource needs to be always created and committed in the new EHR.
+This resource MAY be also supplied by the client as the request body. 
+If not supplied, a default EHR_STATUS with the following attributes SHOULD be used by the service:  
 - `is_queryable`: true
 - `is_modifiable`: true
+- `subject`: a PARTY_SELF object
 
-All other attributes will be left empty (null).
+All other required EHR attributes and resources will be automatically created as needed by the
+[EHR creation semantics](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_creation_semantics).
 
-It is recommended that the supplied `ehr_id` is a UUID, but other formats are also
-allowed (https://specifications.openehr.org/releases/BASE/latest/base_types.html#_hier_object_id_class)
 
 + Parameters
 
-    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - User supplied EHR identifier
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - A UUID as a user specified EHR identifier
 
 + Request
 
@@ -88,17 +87,12 @@ allowed (https://specifications.openehr.org/releases/BASE/latest/base_types.html
 
     + Body
 
-            {
-                "ehr_status": {
-                  "is_modifiable": "true"
-                  ...
-                }
-            }
+<!-- include(../examples/ehr_status_01.json) -->
 
 + Response 201 (application/json)
 
-    `201 Created` is returned when a new EHR has been successfully created. 
-    The new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`.
+    `201 Created` is returned when the EHR has been successfully created. 
+    The new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`, otherwise only headers are returned.
 
     + Headers
 
@@ -107,17 +101,12 @@ allowed (https://specifications.openehr.org/releases/BASE/latest/base_types.html
 
     + Body
 
-            {
-                "system_id": {},
-                "ehr_id": {},
-                "ehr_status": {},
-                "time_created", "..."
-            }
+<!-- include(../examples/ehr_01.json) -->
 
 + Response 400
 
-    `400 Bad Request` is returned when unable to parse the request body (if provided) or when supplied `ehr_id`
-    doesn't follow the specification (https://specifications.openehr.org/releases/BASE/latest/base_types.html#_hier_object_id_class).
+    `400 Bad Request` is returned when the request has invalid `ehr_id` format or invalid content 
+    (e.g. either the body of the request could not be read, or converted to an EHR_STATUS object).
 
     + Body
 
@@ -143,13 +132,7 @@ Retrieve the EHR with the specified `ehr_id`.
     
     + Body
 
-            {
-                "system_id": {},
-                "ehr_id": {},
-                "ehr_status": {},
-                "time_created", "...",
-                ... // to be defined, possibly counts of compositions, contributions, etc.
-            }
+<!-- include(../examples/ehr_01.json) -->
 
 + Response 404
 
@@ -161,11 +144,13 @@ Retrieve the EHR with the specified `ehr_id`.
 ### Get EHR summary by subject id [GET /ehr{?subject_id,subject_namespace}]
 
 Retrieve the EHR with the specified `subject_id` and `subject_namespace`.
+These subject parameters will be matched against EHR's EHR_STATUS.subject.external_ref.id.value and 
+EHR_STATUS.subject.external_ref.namespace values.
 
 + Parameters
 
-    + subject_id (string) - subject id
-    + subject_namespace (string) - subject namespace
+    + subject_id: `ins01` (string) - subject id
+    + subject_namespace: `examples` (string) - id namespace
 
 + Response 200 (application/json)
 
@@ -173,13 +158,7 @@ Retrieve the EHR with the specified `subject_id` and `subject_namespace`.
 
     + Body
 
-            {
-                "system_id": {},
-                "ehr_id": {},
-                "ehr_status": {},
-                "time_created", "...",
-                ... // to be defined, possibly counts of compositions, contributions, etc.
-            }
+<!-- include(../examples/ehr_01.json) -->
 
 + Response 404
 
