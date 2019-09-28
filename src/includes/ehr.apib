@@ -160,11 +160,13 @@ Retrieve the EHR with the specified `ehr_id`.
 ### Get EHR summary by subject id [GET /ehr{?subject_id,subject_namespace}]
 
 Retrieve the EHR with the specified `subject_id` and `subject_namespace`.
+These subject parameters will be matched against EHR's EHR_STATUS.subject.external_ref.id.value and 
+EHR_STATUS.subject.external_ref.namespace values.
 
 + Parameters
 
-    + subject_id (string) - subject id
-    + subject_namespace (string) - subject namespace
+    + subject_id: `ins01` (string) - subject id
+    + subject_namespace: `ehr_craft` (string) - id namespace
 
 + Response 200 (application/json)
 
