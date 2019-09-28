@@ -65,7 +65,11 @@ All other required EHR attributes and resources will be automatically created as
 
 ### Create EHR with id [PUT /ehr/{ehr_id}]
 
-Create a new `EHR` with the specified EHR identifier. 
+Create a new EHR with the specified `ehr_id` identifier. 
+
+The value of the `ehr_id` unique identifier MUST be valid  
+[HIER_OBJECT_ID](https://specifications.openehr.org/releases/BASE/latest/base_types.html#_hier_object_id_class)
+value. It is strongly RECOMMENDED that an UUID always be used for this.
 
 An EHR_STATUS resource needs to be always created and committed in the new EHR.
 This resource MAY be also supplied by the client as the request body. 
@@ -77,12 +81,10 @@ If not supplied, a default EHR_STATUS with the following attributes SHOULD be us
 All other required EHR attributes and resources will be automatically created as needed by the
 [EHR creation semantics](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_creation_semantics).
 
-It is recommended that the supplied `ehr_id` is a UUID, but other formats are also
-allowed (https://specifications.openehr.org/releases/BASE/latest/base_types.html#_hier_object_id_class)
 
 + Parameters
 
-    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - User supplied EHR identifier
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - A UUID as a user specified EHR identifier
 
 + Request
 
@@ -115,8 +117,8 @@ allowed (https://specifications.openehr.org/releases/BASE/latest/base_types.html
 
 + Response 400
 
-    `400 Bad Request` is returned when unable to parse the request body (if provided) or when supplied `ehr_id`
-    doesn't follow the specification (https://specifications.openehr.org/releases/BASE/latest/base_types.html#_hier_object_id_class).
+    `400 Bad Request` is returned when the request has invalid `ehr_id` format or invalid content 
+    (e.g. either the body of the request could not be read, or converted to an EHR_STATUS object).
 
     + Body
 
