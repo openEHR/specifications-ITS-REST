@@ -15,11 +15,7 @@
                     "type": "PERSON"
                   }
               },
-              "other_details": {                           
-                "_type": "ITEM_TREE",
-                "items": []
-              },
-              "is_modifiable": "true",
-              "is_queryable": "true"
+              "is_modifiable": true,
+              "is_queryable": true
             }
 

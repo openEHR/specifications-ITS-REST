@@ -18,39 +18,12 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
 
     + Body
 
-            {
-              "uid": "...",                                /* LOCATABLE */
-              "archetype_node_id": "",                     /* LOCATABLE */
-              "name": "",                                  /* LOCATABLE */
-              "archetype_details": {                       /* LOCATABLE */
-                "archetype_id": "...",
-                "rm_version": "1.0.3",
-              },
-              "subject": {
-                "external_ref": {
-                  "namespace": "DEMOGRAPHIC",
-                  "type": "PERSON",
-                  "id": {
-                    "_type": "HIER_OBJECT_ID",
-                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
-                  }
-                }
-              }
-              "is_queryable": true,
-              "is_modifiable": true,
-              "other_details": {                           /* optional, ITEM_STRUCTURE, archetypable */
-                "_type": "ITEM_TREE",
-                "items": {
-                  ...
-                }
-              }
-            }
-
+<!-- include(../examples/ehr_status_02.json) -->
 
 + Response 400
 
@@ -72,7 +45,7 @@ Retrieves a particular version of the EHR_STATUS identified by `version_uid` and
 
 + Parameters
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier
-    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - VERSION identifier taken from VERSION.uid.value
+    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
 
@@ -80,34 +53,7 @@ Retrieves a particular version of the EHR_STATUS identified by `version_uid` and
 
     + Body
 
-            {
-              "uid": "...",                                /* LOCATABLE */
-              "archetype_node_id": "",                     /* LOCATABLE */
-              "name": "",                                  /* LOCATABLE */
-              "archetype_details": {                       /* LOCATABLE */
-                "archetype_id": "...",
-                "rm_version": "1.0.3",
-              },
-              "subject": {
-                "external_ref": {
-                  "namespace": "DEMOGRAPHIC",
-                  "type": "PERSON",
-                  "id": {
-                    "_type": "HIER_OBJECT_ID",
-                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
-                  }
-                }
-              }
-              "is_queryable": true,
-              "is_modifiable": true,
-              "other_details": {                           /* optional, ITEM_STRUCTURE, archetypable */
-                "_type": "ITEM_TREE",
-                "items": {
-                  ...
-                }
-              }
-            }
-
+<!-- include(../examples/ehr_status_02.json) -->
 
 + Response 404
 
@@ -135,33 +81,7 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
 
     + Body
 
-            {
-              "uid": "...",                                  /* LOCATABLE */
-              "archetype_node_id": "",                       /* LOCATABLE */
-              "name": "",                                    /* LOCATABLE */
-              "archetype_details": {                         /* LOCATABLE */
-                "archetype_id": "...",
-                "rm_version": "1.0.3",
-              },
-              "subject": {
-                "external_ref": {
-                  "namespace": "DEMOGRAPHIC",
-                  "type": "PERSON",
-                  "id": {
-                    "_type": "HIER_OBJECT_ID",
-                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
-                  }
-                }
-              }
-              "is_queryable": true,
-              "is_modifiable": true,
-              "other_details": {                             /* optional, ITEM_STRUCTURE, archetypable */
-                "_type": "ITEM_TREE",
-                "items": {
-                  ...
-                }
-              }
-            }
+<!-- include(../examples/ehr_status_02.json) -->
 
 + Response 200
 
@@ -175,33 +95,7 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
 
     + Body
 
-            {
-              "uid": "...",                                  /* LOCATABLE */
-              "archetype_node_id": "",                       /* LOCATABLE */
-              "name": "",                                    /* LOCATABLE */
-              "archetype_details": {                         /* LOCATABLE */
-                "archetype_id": "...",
-                "rm_version": "1.0.3",
-              },
-              "subject": {
-                "external_ref": {
-                  "namespace": "DEMOGRAPHIC",
-                  "type": "PERSON",
-                  "id": {
-                    "_type": "HIER_OBJECT_ID",
-                    "value": "_valid_root_uid_::_extension_" /* root can be UUID or OID, UUID preferred '::_extension_' is optional */
-                  }
-                }
-              }
-              "is_queryable": true,
-              "is_modifiable": true,
-              "other_details": {                             /* optional, ITEM_STRUCTURE, archetypable */
-                "_type": "ITEM_TREE",
-                "items": {
-                  ...
-                }
-              }
-            }
+<!-- include(../examples/ehr_status_02.json) -->
 
 + Response 204
 
