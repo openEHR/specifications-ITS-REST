@@ -11,7 +11,7 @@
                       "value": "ins01",
                       "scheme": "id_scheme"
                     },
-                    "namespace": "ehr_craft",
+                    "namespace": "examples",
                     "type": "PERSON"
                   }
               },
