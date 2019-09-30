@@ -1,14 +1,5 @@
-# specifications-ITS
-Implementation technology specifications
+# specifications-ITS-REST - openEHR REST API Specifications
 
-## XML
-See XML schema in subdirectories
-
-## Current REST API draft (work in progress)
-The REST API development files are rendered at https://openehr.github.io/specifications-ITS/rest_index.html
-See (and contribute to) "issues" in this GitHub repository https://github.com/openEHR/specifications-ITS/issues for 
-the currently ongoing REST API discussion. Some discussion is also done using the OpenEHR SEC internal channels.
-
-### Older REST API links
-An older version of the REST API development file (apiary.apib) is rendered at http://www.openehr.org/releases/ITS/latest/ehr_restapi.html
-or at http://docs.openehr.apiary.io/#.
+This repository contains the document and sources (in https://apiblueprint.org[API Blueprint] format) for the openEHR REST API specifications.
+The published form may be accessed from the https://specifications.openehr.org/releases/ITS/latest/index[ITS specifications index page].
+Latest version (rendered as HTML pages) may be alternatively accessed from https://openehr.github.io/specifications-ITS-REST.

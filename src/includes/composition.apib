@@ -1,0 +1,491 @@
+## COMPOSITION [/ehr/{ehr_id}/composition]
+
+Management of [COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class) resources.
+
+
+### Create composition [POST /ehr/{ehr_id}/composition]
+
+Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`.
+
++ Parameters
+
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+
++ Request example1 (application/json)
+
+    + Body
+
+<!-- include(../examples/composition_01.json) -->
+
+    + Headers
+
+            Prefer: return={representation|minimal}
+
++ Response 201 (application/json)
+
+    `201 Created` is returned when the COMPOSITION was created. 
+    Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+
+    + Headers
+
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+
+    + Body
+
+<!-- include(../examples/composition_01.json) -->
+
++ Response 400
+    
+    `400 Bad Request` is returned when the request has invalid `ehr_id` or invalid content 
+    (e.g. content could not be converted to a valid COMPOSITION object, or it references a template_id that is not known by the server)
+
+    + Body    
+
++ Response 404
+
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+
+    + Body
+
++ Request wrong type (application/json)
+
+    + Body
+
+<!-- include(../examples/wrong_type_01.json) -->
+
++ Response 400
+
+    `400 Bad Request` either the body of the request could not be read (or converted to a COMPOSITION object) or there were COMPOSITION validation errors.
+
+    + Body
+
+            { /* see overview */
+                "message": "Error message",
+                "validationErrors": [
+                    "error1", "error2"
+                ]
+            }
+
+
+### Update composition [PUT /ehr/{ehr_id}/composition/{versioned_object_uid}]
+
+Updates COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+If the request body already contains a COMPOSITION.uid.value, it must match the `versioned_object_uid` in the URL. 
+The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
+
++ Parameters
+
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - identifier of the COMPOSITION to be updated.
+
++ Request example1 (application/json)
+
+    + Body
+
+            {
+                "_type": "COMPOSITION",
+                "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
+    + Headers
+
+            Prefer: return=representation
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+
++ Response 200 (application/json)
+
+    `200 OK` is returned when the COMPOSITION is successfully updated and
+    the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+
+    + Headers
+
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+
+    + Body
+
+            {
+                "_type": "COMPOSITION",
+                "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Request wrong type (application/json)
+
+    + Headers
+
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+
+    + Body
+
+<!-- include(../examples/wrong_type_01.json) -->
+
++ Response 400 (application/json)
+
+    `400 Bad Request` is returned when the request has invalid `ehr_id` or invalid content 
+    (e.g. either the body of the request could not be read, or converted to a COMPOSITION object, or there were composition validation errors)
+
+    + Body
+
+            {
+                "message": "Error message",
+                "validationErrors": [
+                    "error1", "error2"
+                ]
+            }
+
++ Request not found (application/json)
+
+    + Body
+
+            {
+                "_type": "COMPOSITION",
+                "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
+    + Headers
+
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+
++ Response 404
+
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a COMPOSITION with `versioned_object_uid` does not exist.
+
+    + Body
+
++ Request version conflict (application/json)
+
+    + Body
+
+            {
+                "_type": "COMPOSITION",
+                "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
+    + Headers
+
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+
++ Response 412
+
+    `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version (of this versioned object) on the service side.
+    Returns also latest `version_uid` in the `Location` and `ETag` headers.
+
+    + Headers
+
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+
+    + Body
+
+
+### Delete composition [DELETE /ehr/{ehr_id}/composition/{preceding_version_uid}]
+
+Deletes the COMPOSITION identified by `preceding_version_uid` and associated with the EHR identified by `ehr_id`.
+
++ Parameters
+
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + preceding_version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - identifier of the COMPOSITION to be deleted.
+    This MUST be the last (most recent) version.
+
++ Response 204
+
+    `204 No Content` is returned when COMPOSITION was deleted.
+
+    + Headers
+
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+
+    + Body
+
++ Response 400
+
+    `400 Bad Request` is returned when the composition with `preceding_version_uid` is already deleted.
+
+    + Body
+
++ Response 404
+
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a COMPOSITION with `preceding_version_uid` does not exist.
+
+    + Body
+
++ Response 409
+
+    `409 Conflict` is returned when supplied `preceding_version_uid` doesn't match the latest version.
+    Returns latest version in the `Location` and `ETag` headers.
+
+    + Headers
+
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+
+    + Body
+
+
+### Get composition by version id [GET /ehr/{ehr_id}/composition/{version_uid}]
+
+Retrieves a particular version of the COMPOSITION identified by `version_uid` and associated with the EHR identified by `ehr_id`.
+
++ Parameters
+
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - VERSION identifier taken from VERSION.uid.value
+
++ Response 200 (application/json)
+
+    `200 OK` is returned when the COMPOSITION is successfully retrieved.
+
+    + Body
+
+            {
+                "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 204
+
+    `204 No Content` is returned when the COMPOSITION is deleted (logically).
+
+    + Body
+
++ Response 404
+
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a COMPOSITION with `version_uid` does not exist.
+
+    + Body
+
+
+### Get composition at time [GET /ehr/{ehr_id}/composition/{versioned_object_uid}{?version_at_time}]
+
+Retrieves the version of the COMPOSITION identified by `version_uid` and associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the version extant at specified time, otherwise retrieves the latest COMPOSITION version.
+
++ Parameters
+
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO8601 format
+
++ Response 200 (application/json)
+
+    `200 OK` is returned when the COMPOSITION is successfully retrieved.
+
+    + Headers
+
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+
+    + Body
+
+            {
+                "_type": "COMPOSITION",
+                "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Vital Signs"
+                },
+                ...
+            }
+
++ Response 204
+
+    `204 No Content` is returned when COMPOSITION with `versioned_object_uid` 
+    at specified `version_at_time` time has been deleted.
+
+    + Body
+
++ Response 404
+
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist or
+    when a COMPOSITION does not exists at `version_at_time` time.
+
+    + Body
+
+
+
+## VERSIONED_COMPOSITION [/ehr/{ehr_id}/versioned_composition]
+
+Management of [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class) resources.  
+
+
+### Get versioned composition [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}]
+
+Retrieves a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+
++ Parameters
+
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+
++ Response 200 (application/json)
+
+    `200 OK` is returned when the VERSIONED_COMPOSITION is successfully retrieved.
+
+    + Body
+
+            {
+                "uid": "xxx",
+                "owner_id": "7d44b88c-4199-4bad-97dc-d78268e01398",
+                "time_created": "ISO8601 time",
+            }
+
++ Response 404
+
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist.
+
+    + Body
+
+
+### Get versioned composition revision history [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history]
+
+Retrieves revision history of the VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+
++ Parameters
+
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+
++ Response 200 (application/json)
+
+    `200 OK` is returned when the VERSIONED_COMPOSITION history is successfully retrieved.
+
+    + Body
+
+            [
+                {
+                    "_type": "ORIGINAL_VERSION",
+                    ...
+                },
+                {
+                ...
+            ]
+
++ Response 404
+
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist.
+
+    + Body
+
+
+### Get versioned composition version by id [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}]
+
+Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+
++ Parameters
+
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - VERSION identifier taken from VERSION.uid.value
+
++ Response 200 (application/json)
+
+    `200 OK` is returned when the VERSION is successfully retrieved.
+
+    + Body
+
+            {
+                "_type": "ORIGINAL_VERSION",
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "uid": "...",
+                "data": {
+                    "_type": "COMPOSITION",
+                    "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Vital Signs"
+                    }
+                    ...
+                }
+            }
+
++ Response 404
+
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist or
+    when a VERSION with `version_uid` does not exist.
+
+    + Body
+
+
+### Get versioned composition version at time [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version{?version_at_time}]
+
+Retrieves a VERSION of a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the VERSION extant at specified time, otherwise retrieves the latest VERSION.
+
++ Parameters
+
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO8601 format
+
++ Response 200 (application/json)
+
+    `200 OK` is returned when the VERSION is successfully retrieved.
+
+    + Headers
+
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515/version/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+
+    + Body
+
+            {
+                "_type": "ORIGINAL_VERSION",
+                "contribution": {},
+                "signature": "...",
+                "commit_audit": {},
+                "uid": "...",
+                "data": {
+                    "_type": "COMPOSITION",
+                    "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Vital Signs"
+                    }
+                    ...
+                }
+            }
+
++ Response 404
+
+    `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
+    when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist or
+    when a VERSION with `version_uid` does not exist.
+
+    + Body

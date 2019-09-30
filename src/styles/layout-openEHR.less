@@ -1,0 +1,135 @@
+
+p, td.content {
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* sitenav */
+
+nav {
+  top: @sitenav-height + 1;
+  font: @title-font;
+  //font-size: @nav-font-size;
+  padding: 0;
+  background-color: @nav-background-color;
+  border-right: 1px solid @nav-border-color;
+
+  .resource-group {
+    margin: @padding / 2;
+
+    a, ul a, .heading a, .chevron {
+      letter-spacing: -0.03em;
+      -webkit-font-smoothing: antialiased;
+      font-size: @nav-font-size;
+      color: @heading-text-color;
+    }
+
+    ul a {
+      font-size: @nav-font-size - 2;
+    }
+    .collapse-content > ul {
+      margin: 0 0 0 0;
+    }
+    ul {
+      & > li {
+        margin: 0;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+
+.sitenav {
+  font: @title-font;
+  font-weight: bold;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: @sitenav-height;
+  padding-right: 14.4px;
+  background-color: @tabs-background-color;
+  border-bottom: 1px solid darken(@tabs-border-color, 10%);
+  display: block;
+  overflow: hidden;
+  a {
+    float: left;
+    color: @heading-text-color;
+    text-align: center;
+    text-decoration: none;
+    padding: (@font-size - 4) @font-size 2px @font-size;
+    font-size: @font-size + 1;
+    border-bottom: 2px solid transparent;
+  }
+  a:hover {
+    text-decoration: none;
+    border-bottom: 2px solid @nav-hover-border-color;
+    background-color: darken(@tabs-background-color, 5%);
+  }
+  a.active {
+    background-color: @tabs-active-background-color;
+    color: @link-color;
+  }
+  a.active:hover {
+    background-color: @tabs-active-background-color;
+    border-bottom: 2px solid @tabs-active-background-color;
+  }
+  img {
+    height: 30px;
+    border: 0;
+    float: left;
+    padding: 2px @padding 0;
+  }
+  span {
+    font: @base-font;
+    font-size: @font-size + 4;
+    font-style: italic;
+    font-weight: 500;
+    color: #e1976e;
+    background-color: transparent;
+    padding: 4px @padding 2px 0;
+    float: left;
+  }
+}
+
+
+
+
+//@nav-triple-width: 300px;
+.container-fluid.triple {
+  top: @sitenav-height + (@padding / 2);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+
+  .row {
+    height: 100%;
+
+    .content {
+      overflow-y: auto;
+      height: 100%;
+      margin-top: 0;
+      top: 0;
+      padding-left: @padding;
+      .right {
+        padding-right: @padding;
+      }
+    }
+  }
+
+  .nav {
+    padding: 0;
+  }
+
+}
+
+

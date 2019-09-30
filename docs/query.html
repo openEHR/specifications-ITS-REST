@@ -1,16 +1,99 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>OpenEHR REST Query API</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 'Roboto',Helvetica,sans-serif}header{border-bottom:1px solid #ededed;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:36px}h2{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#18bc9c;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px 'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#eff7fc;border-left:4px solid #3498db}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#3498db}.warning{color:black;background-color:#fcf0ef;border-left:4px solid #d62c1a}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#d62c1a}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #ededed;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#ededed;border-radius:10px;margin:-2px 0}.badge.get{color:white;background-color:#3498db}.badge.head{color:white;background-color:#3498db}.badge.options{color:white;background-color:#3498db}.badge.put{color:white;background-color:#f39c12}.badge.patch{color:white;background-color:#f39c12}.badge.post{color:white;background-color:#18bc9c}.badge.delete{color:white;background-color:#e74c3c}.collapse-button{float:right}.collapse-button .close{display:none;color:#18bc9c;cursor:pointer}.collapse-button .open{color:#18bc9c;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#18bc9c}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e80b8}.definition .method.head{color:#2e80b8}.definition .method.options{color:#2e80b8}.definition .method.post{color:#2eb89d}.definition .method.put{color:#b8822e}.definition .method.patch{color:#b8822e}.definition .method.delete{color:#b83b2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#ededed;text-decoration:none !important;border-top:1px solid #ededed;border-left:1px solid #ededed;border-right:1px solid #ededed;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #ededed;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#ededed;border-bottom:1px solid #ededed;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #ededed}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#000;background-color:white}.action h4.action-heading .method.head{color:#000;background-color:white}.action h4.action-heading .method.options{color:#000;background-color:white}.action h4.action-heading .method.put{color:#000;background-color:white}.action h4.action-heading .method.patch{color:#000;background-color:white}.action h4.action-heading .method.post{color:#000;background-color:white}.action h4.action-heading .method.delete{color:#000;background-color:white}.action h4.action-heading code{color:#444;background-color:rgba(255,255,255,0.7);border-color:transparent;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#3498db}.action.get h4.action-heading{color:white;background:#3498db;border-bottom-color:#3498db}.action.head{border-color:#3498db}.action.head h4.action-heading{color:white;background:#3498db;border-bottom-color:#3498db}.action.options{border-color:#3498db}.action.options h4.action-heading{color:white;background:#3498db;border-bottom-color:#3498db}.action.post{border-color:#18bc9c}.action.post h4.action-heading{color:white;background:#18bc9c;border-bottom-color:#18bc9c}.action.put{border-color:#f39c12}.action.put h4.action-heading{color:white;background:#f39c12;border-bottom-color:#f39c12}.action.patch{border-color:#f39c12}.action.patch h4.action-heading{color:white;background:#f39c12;border-bottom-color:#f39c12}.action.delete{border-color:#e74c3c}.action.delete h4.action-heading{color:white;background:#e74c3c;border-bottom-color:#e74c3c}h1,h2,h3,h4,h5{color:black;margin:1.2em 0 14px 0}.triple .content .resource-group{padding-top:25px}h3{font-size:110%}.triple h3.resource-heading{font-size:130%}code{padding:0 3px}</style></head><body class="preload"><div id="nav-background"></div><div class="container-fluid triple"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#query-requirements">Query Requirements</a></div><div class="collapse-content"><ul><li><a href="#header-purpose">Purpose</a></li><li><a href="#header-single-ehr-queries">Single EHR queries</a></li><li><a href="#header-population-queries">Population queries</a></li><li><a href="#header-stored-queries">Stored queries</a></li><li><a href="#header-common-headers-and-query-parameters">Common Headers and Query Parameters</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#data-structures">Data structures</a></div><div class="collapse-content"><ul><li><a href="#header-request-structure">Request structure</a></li><li><a href="#header-response-structure">Response structure</a></li><li><a href="#header-metadata">Metadata</a></li><li><a href="#header-data">Data</a></li><li><a href="#header-resultset-example">ResultSet example</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#query">Query</a></div><div class="collapse-content"><ul><li><a href="#query-execute-query">Execute Query</a><ul><li><a href="#query-execute-query-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Execute ad-hoc (non-stored) AQL query</a></li><li><a href="#query-execute-query-post"><span class="badge post"><i class="fa fa-plus"></i></span>Execute ad-hoc (non-stored) AQL query</a></li><li><a href="#query-execute-query-get-1"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Execute stored query</a></li><li><a href="#query-execute-query-post-1"><span class="badge post"><i class="fa fa-plus"></i></span>Execute stored query</a></li></ul></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="http://www.openehr.org/api/v1">http://www.openehr.org/api/v1</a></p></nav><div class="content"><div id="right-panel-background"></div><div class="middle"><header><h1 id="top">OpenEHR REST Query API</h1></header></div><div class="right"><h5>API Endpoint</h5><a href="http://www.openehr.org/api/v1">http://www.openehr.org/api/v1</a></div><div class="middle"><p>Release: <strong>0.9.6</strong></p>
-<p>Status: <strong><code>DEVELOPMENT</code></strong></p>
-</div><div class="middle"><section id="query-requirements" class="resource-group"><h2 class="group-heading">Query Requirements <a href="#query-requirements" class="permalink">&para;</a></h2><p>Release: <strong>0.9.6</strong></p>
-<h2 id="header-purpose">Purpose <a class="permalink" href="#header-purpose" aria-hidden="true">¶</a></h2>
-<p>This specification describes the service endpoints and data-models used when querying an openEHR system.</p>
-<p>AQL <a href="#http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html">Archetype Query Language</a> is the primary query language.</p>
-<p>The query <code>response</code> may also be used by other API endpoints in the openEHR REST API.
-I.e. composition resource might return several compositions. These operations will return the <code>response</code>
-structure defined here.</p>
-<h3 id="header-single-ehr-queries">Single EHR queries <a class="permalink" href="#header-single-ehr-queries" aria-hidden="true">¶</a></h3>
-<p>A common use-case is to execute queries within a specific EHR.</p>
-<h3 id="header-population-queries">Population queries <a class="permalink" href="#header-population-queries" aria-hidden="true">¶</a></h3>
-<p>Population queries are queries which are executed on several EHRs in the same request. Examples of use-cases will be:</p>
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Query API</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:rgba(0,0,0,0.8);background:white;font:400 1.05em / 1.6 "Georgia","Times",serif;margin:0}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:#0066cc;margin:1em 0 .5em 0;font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;font-size:36px}h2{font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;font-size:30px}h3{font-size:1.37em;text-transform:unset}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}p a{text-decoration:underline}a{color:#2156a5;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 60%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.3);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto;white-space:pre-wrap}pre code{color:rgba(0,0,0,0.8);background-color:transparent;padding:0;border:none}code{color:rgba(0,0,0,0.9);background-color:#f7f7f8;font:400 .875em / 1.2 "Droid Sans Mono","DejaVu Sans Mono",monospace;padding:0 3px;border:1px solid #eee;border-radius:3px;word-spacing:-0.15em;text-rendering:optimizeSpeed}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}table th{font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;font-size:.95em;font-weight:700;background-color:skyblue;padding:9px}.text-muted{opacity:.5;margin-bottom:2.2em;font:400 .875em / 1.2 "Droid Sans Mono","DejaVu Sans Mono",monospace;font-size:.8em;word-spacing:-0.1em}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:rgba(0,0,0,0.8);background-color:#edf1f8;border-left:4px solid #2156a5}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#2156a5}.warning{color:rgba(0,0,0,0.8);background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:rgba(0,0,0,0.8);opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid rgba(0,0,0,0.8)}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid rgba(0,0,0,0.8)}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:12px;padding:2px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:5px;margin:-2px 0}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#2156a5;cursor:pointer}.collapse-button .open{color:#2156a5;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:60%;padding-right:12px}.middle div.title{font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;font-size:.95em;font-weight:bold}.middle dl dt{font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;font-size:.88em;font-weight:bold;letter-spacing:-0.02em;line-height:1.9em;width:150px}.middle dl dd{margin-left:155px}.right{box-sizing:border-box;float:right;width:40%;padding-left:12px}.right a{color:#70bbe1}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right div.tabs div.example-names,.right h5{font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;font-size:.8em;margin:.5em 0 0}.right pre{background-color:#1d1f21;border:1px solid #1d1f21;margin:.5em 0 0;padding:.5em}.right pre code{color:#c5c8c6;font-size:.8em}.right pre code.meta{font-size:1em;font-weight:900}.right .description{margin-top:12px}.right .description p code{color:#c5c8c6;background-color:#1d1f21;border:1px solid #1d1f21}.triple .resource-heading{font-size:1.6em}.definition{margin-top:12px;margin-bottom:12px;font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;font-size:.9em;letter-spacing:-0.05em}.definition .method{font-weight:bold}.definition .method.get{color:#2e8ab8}.definition .method.head{color:#2e8ab8}.definition .method.options{color:#2e8ab8}.definition .method.post{color:#56b82e}.definition .method.put{color:#b8a22e}.definition .method.patch{color:#b8a22e}.definition .method.delete{color:#b82e2e}.definition .uri{font:400 .875em / 1.2 "Droid Sans Mono","DejaVu Sans Mono",monospace;font-size:.95em;margin-left:.3em;word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:rgba(0,0,0,0.8);border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:0;top:-6px;bottom:-12px;width:34%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:34%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.3);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:25px 0 0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #d9d9d9}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden;font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;font-size:.95em;font-weight:bold;letter-spacing:-0.05em}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#fff;background-color:#1b4889}.action h4.action-heading .method.head{color:#fff;background-color:#1b4889}.action h4.action-heading .method.options{color:#fff;background-color:#1b4889}.action h4.action-heading .method.put{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.post{color:#fff;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#fff;background-color:#d9534f}.action h4.action-heading code{color:rgba(0,0,0,0.9);background-color:#f7f7f8;border-color:#cfcfcf;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#1b4889;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#1b4889;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#1b4889;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}p,td.content{letter-spacing:-0.01em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}nav{top:33px;font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;padding:0;background-color:#fbfbfb;border-right:1px solid #f0f0f0}nav .resource-group{margin:6px}nav .resource-group a,nav .resource-group ul a,nav .resource-group .heading a,nav .resource-group .chevron{letter-spacing:-0.03em;-webkit-font-smoothing:antialiased;font-size:15px;color:#0066cc}nav .resource-group ul a{font-size:13px}nav .resource-group .collapse-content>ul{margin:0 0 0 0}nav .resource-group ul>li{margin:0}nav .resource-group ul>li:first-child{margin-top:0}nav .resource-group ul>li:last-child{margin-bottom:0}.sitenav{font:200 1.79em / 1.2 "Helvetica","Arial",sans-serif;font-weight:bold;position:fixed;left:0;top:0;width:100%;height:32px;padding-right:14.4px;background-color:#eee;border-bottom:1px solid #c4c4c4;display:block;overflow:hidden}.sitenav a{float:left;color:#0066cc;text-align:center;text-decoration:none;padding:10px 14px 2px 14px;font-size:15px;border-bottom:2px solid transparent}.sitenav a:hover{text-decoration:none;border-bottom:2px solid rgba(0,0,0,0.8);background-color:#e1e1e1}.sitenav a.active{background-color:#d5d5d5;color:#2156a5}.sitenav a.active:hover{background-color:#d5d5d5;border-bottom:2px solid #d5d5d5}.sitenav img{height:30px;border:0;float:left;padding:2px 12px 0}.sitenav span{font:400 1.05em / 1.6 "Georgia","Times",serif;font-size:18px;font-style:italic;font-weight:500;color:#e1976e;background-color:transparent;padding:4px 12px 2px 0;float:left}.container-fluid.triple{top:38px;position:fixed;height:100%;width:100%}.container-fluid.triple .row{height:100%}.container-fluid.triple .row .content{overflow-y:auto;height:100%;margin-top:0;top:0;padding-left:12px}.container-fluid.triple .row .content .right{padding-right:12px}.container-fluid.triple .nav{padding:0}</style></head><body class="preload"><div class="sitenav"><img src="https://www.openehr.org/static/img/about/Logo.png"><span>REST API specification:</span><a href="index.html">Overview</a><a href="ehr.html">Ehr</a><a href="query.html" class="active">Query</a><a href="definitions.html">Definitions</a></div><div class="container-fluid triple"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#requirements">Requirements</a></div><div class="collapse-content"><ul><li><a href="#header-purpose">Purpose</a></li><li><a href="#header-query-types">Query types</a></li><li><a href="#requirements-common-headers-and-query-parameters">Common Headers and Query Parameters</a><ul></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#query">Query</a></div><div class="collapse-content"><ul><li><a href="#query-execute-query">Execute Query</a><ul><li><a href="#query-execute-query-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Execute ad-hoc (non-stored) AQL query</a></li><li><a href="#query-execute-query-post"><span class="badge post"><i class="fa fa-plus"></i></span>Execute ad-hoc (non-stored) AQL query</a></li><li><a href="#query-execute-query-get-1"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Execute stored query</a></li><li><a href="#query-execute-query-post-1"><span class="badge post"><i class="fa fa-plus"></i></span>Execute stored query</a></li></ul></li></ul></div></div></nav><div id="right-panel-background"></div><div class="content"><div class="middle"><header><h1 id="top">Query API</h1></header></div><div class="right"><h5>Release<pre><code class="meta">1.0.1</code></pre></h5><h5>Status<pre><code class="meta">TRIAL</code></pre></h5><h5>Date<pre><code class="meta">26 Sep 2019</code></pre></h5><h5>API Endpoint<pre><code class="meta">{baseUrl}/v1/query</code></pre></h5></div><div class="middle"><table>
+    <colgroup>
+        <col style="width: 20%;">
+        <col style="width: 80%;">
+    </colgroup>
+    <thead>
+    <tr>
+        <th colspan="2">© 2003 - 2019 The openEHR Foundation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="2">The <a href="https://www.openEHR.org" target="_blank" rel="noopener">openEHR Foundation</a> is an independent, non-profit community organisation, facilitating the sharing of
+            health records by consumers and clinicians via open standards-based implementations.
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Licence</strong></td>
+        <td><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported.
+            <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Support</strong></td>
+        <td>Issues: <a href="https://specifications.openehr.org/components/ITS/open_issues" target="_blank" rel="noopener">Problem Reports</a><br>
+            Web: <a href="https://specifications.openehr.org" target="_blank" rel="noopener">specifications.openEHR.org</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p><h3>Amendment Record</h3></p>
+<table>
+    <colgroup>
+        <col style="width: 9%;">
+        <col style="width: 55%;">
+        <col style="width: 18%;">
+        <col style="width: 18%;">
+    </colgroup>
+    <thead>
+    <tr>
+        <th>Issue</th>
+        <th>Details</th>
+        <th>Raiser, Implementer</th>
+        <th>Completed</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.1" target="_blank" rel="noopener">Release-1.0.1</a></th>
+    </tr>
+    <tr>
+        <td>3.0</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-32" target="_blank" rel="noopener">SPECITS-32</a>: Fix typos and minor documentary errors (fixes
+            <a href="https://specifications.openehr.org/tickets/SPECPR-252" target="_blank" rel="noopener">SPECPR-252</a>,
+            <a href="https://specifications.openehr.org/tickets/SPECPR-255" target="_blank" rel="noopener">SPECPR-255</a>)</td>
+        <td>E Sundvall, T Beale, S Iancu</td>
+        <td>1 Sep 2019</td>
+    </tr>
+    <tr>
+        <td>2.2</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-24" target="_blank" rel="noopener">SPECITS-24</a>: Added changelog</td>
+        <td>J Smolka, S Iancu</td>
+        <td>12 May 2019</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-25" target="_blank" rel="noopener">SPECITS-25</a>,
+            <a href="https://specifications.openehr.org/tickets/SPECITS-29" target="_blank" rel="noopener">SPECITS-29</a>: Change layout and structure</td>
+        <td>J Smolka, S Iancu</td>
+        <td>12 May 2019</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-30" target="_blank" rel="noopener">SPECITS-30</a>: Fix typos, links, examples and few other minor errors</td>
+        <td>S Iancu</td>
+        <td>12 May 2019</td>
+    </tr>
+    <tr>
+        <td>2.1</td>
+        <td>Update links to new openEHR specifications website</td>
+        <td>S Iancu</td>
+        <td>16 Dec 2018</td>
+    </tr>
+    <tr>
+        <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.0" target="_blank" rel="noopener">Release-1.0.0</a></th>
+    </tr>
+    </tbody>
+</table></div><div class="middle"><section id="requirements" class="resource-group"><h2 class="group-heading">Requirements <a href="#requirements" class="permalink">&para;</a></h2><h2 id="header-purpose">Purpose <a class="permalink" href="#header-purpose" aria-hidden="true">¶</a></h2>
+<p>This specification describes the service endpoints and data-models used when querying an openEHR system.
+The <a href="https://specifications.openehr.org/releases/QUERY/latest/AQL.html">Archetype Query Language (AQL)</a> is the primary query language.</p>
+<h2 id="header-query-types">Query types <a class="permalink" href="#header-query-types" aria-hidden="true">¶</a></h2>
+<p><h3>Single EHR queries</h3></p>
+<p>A common use-case is to execute queries within a specific EHR.
+This is achieved by supplying a <code>ehr_id</code> query parameter or setting a <code>openEHR-EHR-id</code> request header.</p>
+<p><h3>Population queries</h3></p>
+<p>Population queries are queries which are executed on several EHRs in the same request. Examples of use-cases can be:</p>
 <ul>
 <li>
 <p>Ward lists</p>
@@ -22,47 +105,82 @@ structure defined here.</p>
 <p>Research, e.g. epidemiology, population health</p>
 </li>
 </ul>
-<h3 id="header-stored-queries">Stored queries <a class="permalink" href="#header-stored-queries" aria-hidden="true">¶</a></h3>
-<p>Stored queries are queries which have their definition stored on the server.
+<p><h3>Stored queries</h3></p>
+<p>Stored queries are queries which have their definition stored (registered) on the server.
 The queries will expose mandatory and optional parameters for the clients.</p>
 <p>Using stored queries has lots of advantages:</p>
 <ul>
 <li>
-<p>separation of responsibilites (some users/developers write queries, others just call/execute them and consume the responses)</p>
+<p>separation of responsibilities (some users/developers write queries, others just call/execute them and consume the responses)</p>
 </li>
 <li>
 <p>no need to pass long query string over the network</p>
 </li>
 </ul>
-<h1 id="header-common-headers-and-query-parameters">Common Headers and Query Parameters <a class="permalink" href="#header-common-headers-and-query-parameters" aria-hidden="true">¶</a></h1>
-<p>All query calls will be able to use at least the following parameters:</p>
+<p>Stored queries are identified by name, used as <code>qualified_query_name</code>,
+and an optional <code>version</code> number in <a href="https://semver.org/">SEMVER</a> style (i.e. <code>major.minor.patch</code>).</p>
+<p>Usually a <code>qualified_query_name</code> has a format like <code>&lt;namespace&gt;::&lt;query-name&gt;</code> (e.g. <code>org.openehr::compositions</code>).</p>
+<p>If only a partial <code>version</code> is supplied or <code>version</code> is not supplied at all, the
+system must use the latest <code>version</code> with the supplied prefix - i.e. if only <code>major</code> or <code>major.minor</code>
+is used, then the latest query version with supplied prefix will be used.</p>
+<p>Queries can be stored or, if once stored, their definition can be retrieved
+using the <a href="definitions.html#definitions-stored-query">definition endpoint</a>.</p>
+</section></div><div class="middle"><div id="requirements-common-headers-and-query-parameters" class="resource"><h3 class="resource-heading">Common Headers and Query Parameters <a href="#requirements-common-headers-and-query-parameters" class="permalink">&para;</a></h3><p>All query execution requests SHOULD support at least the following parameters:</p>
 <ul>
 <li>
-<p><code>ehr_id</code> - this parameter SHOULD be supplied when executing single EHR queries and MAY be used by the underlying backend
-to perform routing, optimizations or similar, It MUST NOT be supplied for ’population queries’ and similar multi-patient queries.
-It can be supplied as query parameter <code>ehr_id</code> or as header <code>openEHR-EHR-id</code>.</p>
+<p><code>ehr_id</code> - used to execute the query within a single EHR context: an EHR identifier taken from EHR.ehr_id.value</p>
 </li>
 <li>
-<p><code>offset</code> and <code>fetch</code> - these two parameters can be used for paging, both 0-based. Default for offset is 0.
-Default for limit depends on the implementation.</p>
+<p><code>offset</code> - used for paging: the row number in result to start result-set from (<code>0</code>-based); default <code>0</code></p>
 </li>
 <li>
-<p>other parameters to replace placeholders within the query.
-For the following AQL query <code>SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid</code>, user can supply parameter <code>uid</code>, i.e.:
-<code>/aql?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1</code></p>
+<p><code>fetch</code> - used for paging: the number of rows to fetch (i.e. limit); default depends on the implementation, but
+cannot be combined with <a href="https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_top">AQL-top</a></p>
+</li>
+<li>
+<p>other parameter(s) to replace placeholder(s) within the query, generically named <code>query_parameters</code> here.</p>
 </li>
 </ul>
-</section></div><div class="middle"><section id="data-structures" class="resource-group"><h2 class="group-heading">Data structures <a href="#data-structures" class="permalink">&para;</a></h2><h2 id="header-request-structure">Request structure <a class="permalink" href="#header-request-structure" aria-hidden="true">¶</a></h2>
+<p>Related request headers:</p>
+<ul>
+<li><code>openEHR-EHR-id</code> - used to execute the query within a single EHR context: an EHR identifier taken from EHR.ehr_id.value</li>
+</ul>
+<p>Related response headers:</p>
+<ul>
+<li><code>ETag</code> - A unique identifier of the resultSet</li>
+</ul>
+<p><h3>About the <code>ehr_id</code> parameter</h3></p>
+<p>This parameter SHOULD be supplied by clients when executing single EHR queries and MAY be used by the underlying backend
+to perform routing, optimizations or similar. It MUST NOT be supplied for ‘population queries’ and similar multi-patient queries.</p>
+<p>Depending on the needs, clients MAY supply it as a query parameter <code>ehr_id</code> or alternatively
+as a request header named <code>openEHR-EHR-id</code>.</p>
+<p><h3>About <code>query_parameter</code></h3></p>
+<p>Depending on each query definition, various query parameters SHOULD be supported, generically named <code>query_parameter</code>
+in this specification, but in the real request they will have specific names (e.g. <code>uid</code>, <code>systolic_bp</code>, etc.)
+according to their names in the query definition.</p>
+<p>Query parameters does not have to be prefixed with <code>$</code> sign. Instead, the server will have to (whenever necessary)
+add the prefix or format queries as valid AQL queries, before executing them.</p>
+<p>As an example, for the following AQL query <code>SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid</code>,
+named as <code>'myQuery'</code>, the client can supply the <code>uid</code> as <code>query_parameter</code>,
+i.e. <code>GET {baseUrl}/query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1</code>.</p>
+<p>As another example, the request <code>GET {baseUrl}/query/com.vendor::compositions?temperature_from=36&amp;temperature_unit=Cel</code>
+will pass query parameters <code>temperature_from</code> and <code>temperature_unit</code> to the underlying AQL query named <code>com.vendor::compositions</code>.</p>
+<p>See <a href="https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_parameters">AQL-parameters</a> specification for more details.</p>
+<h2 id="header-request-structure">Request structure <a class="permalink" href="#header-request-structure" aria-hidden="true">¶</a></h2>
 <p>Below is a mostly self-documented AQL query request.</p>
 <pre><code class="language-json">{
-  "<span class="hljs-attribute">q</span>": <span class="hljs-value"><span class="hljs-string">"select o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude as temperature, o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/units as unit from EHR[ehr_id/value='554f896d-faca-4513-bddf-664541146308d'] CONTAINS Observation o[openEHR-EHR-OBSERVATION.body_temperature-zn.v1] WHERE o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude &gt; $temperature and o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0.63 and name/value='Symptoms']/value/defining_code/code_string=$chills order by temperature desc fetch 3"</span></span>,
-  "<span class="hljs-attribute">query-parameters</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">38.5</span></span>,
-    "<span class="hljs-attribute">chills</span>": <span class="hljs-value"><span class="hljs-string">"at0.64"</span>
-  </span>}
+    "<span class="hljs-attribute">q</span>": <span class="hljs-value"><span class="hljs-string">"select o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude as temperature, o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/units as unit from EHR[ehr_id/value='554f896d-faca-4513-bddf-664541146308d'] CONTAINS Observation o[openEHR-EHR-OBSERVATION.body_temperature-zn.v1] WHERE o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0004]/value/magnitude &gt; $temperature and o/data[at0002]/events[at0003 and name/value='Any event']/data[at0001]/items[at0.63 and name/value='Symptoms']/value/defining_code/code_string=$chills order by temperature desc fetch 3"</span></span>,
+    "<span class="hljs-attribute">query_parameters</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">38.5</span></span>,
+        "<span class="hljs-attribute">chills</span>": <span class="hljs-value"><span class="hljs-string">"at0.64"</span>
+    </span>}
 </span>}</code></pre>
+<p><h3>GET vs POST</h3></p>
+<p>Requests based on <code>GET</code> method have URI length restriction or some characters might not be allowed and have to ne encoded.
+Long queries in the <code>q</code> parameter and having a long list of <code>query_parameter</code> may add up to reach that limit,
+thus we recommend clients using the <code>POST</code> method instead of <code>GET</code>.</p>
 <h2 id="header-response-structure">Response structure <a class="permalink" href="#header-response-structure" aria-hidden="true">¶</a></h2>
-<h3 id="header-metadata">Metadata <a class="permalink" href="#header-metadata" aria-hidden="true">¶</a></h3>
+<p><h3>Metadata</h3></p>
 <table>
 <thead>
 <tr>
@@ -85,7 +203,7 @@ For the following AQL query <code>SELECT c/name/value FROM COMPOSITION c WHERE c
 </tr>
 <tr>
 <td><code>_created</code></td>
-<td>Result creation timestamp (in full ISO8601 format)</td>
+<td>Result creation time (in the extended ISO8601 format)</td>
 </tr>
 <tr>
 <td><code>_generator</code></td>
@@ -97,7 +215,7 @@ For the following AQL query <code>SELECT c/name/value FROM COMPOSITION c WHERE c
 </tr>
 </tbody>
 </table>
-<h3 id="header-data">Data <a class="permalink" href="#header-data" aria-hidden="true">¶</a></h3>
+<p><h3>Data</h3></p>
 <table>
 <thead>
 <tr>
@@ -136,108 +254,280 @@ For the following AQL query <code>SELECT c/name/value FROM COMPOSITION c WHERE c
 </tr>
 </tbody>
 </table>
-<h3 id="header-resultset-example">ResultSet example <a class="permalink" href="#header-resultset-example" aria-hidden="true">¶</a></h3>
+<p><h3>ResultSet example</h3></p>
 <p>Below is a synthesized response with all attributes.</p>
 <pre><code class="language-json">{
-  "meta": {
-    "_href": "&lt;the URI for the executed AQL - used only for GET executions &gt;",
-    "_type": "RESULTSET",
-    "_schema_version": "1.0.0",
-    "_created": "2017-08-19T00:25:47.568+02:00",
-    "_generator": "DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)",
-    "_executed_q": "&lt; the executed aql &gt;", /* should only be returned in debug mode */
-  },
-  "name": "&lt;the name/identifier of the stored query that was executed&gt;",
-  "q": "select e/ehr_id/value, c/context/start_time/value as startTime,  c/uid/value as cid, c/name from EHR e contains  Composition c limit 2",
-  "columns": [
+                "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">_href</span>": <span class="hljs-value"><span class="hljs-string">"... the URI for the executed AQL - used only for GET executions ..."</span></span>,
+                    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"RESULTSET"</span></span>,
+                    "<span class="hljs-attribute">_schema_version</span>": <span class="hljs-value"><span class="hljs-string">"1.0.0"</span></span>,
+                    "<span class="hljs-attribute">_created</span>": <span class="hljs-value"><span class="hljs-string">"2017-08-19T00:25:47.568+02:00"</span></span>,
+                    "<span class="hljs-attribute">_generator</span>": <span class="hljs-value"><span class="hljs-string">"DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)"</span></span>,
+                    "<span class="hljs-attribute">_executed_aql</span>": <span class="hljs-value"><span class="hljs-string">"... the executed aql ..."</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"... the name or identifier of the stored query that was executed ..."</span></span>,
+                "<span class="hljs-attribute">q</span>": <span class="hljs-value"><span class="hljs-string">"SELECT e/ehr_id/value, c/context/start_time/value as startTime, c/uid/value as cid, c/name FROM EHR e CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION obs[openEHR-EHR-OBSERVATION.blood_pressure.v1] WHERE obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude &gt;= $systolic_bp"</span></span>,
+                "<span class="hljs-attribute">columns</span>": <span class="hljs-value">[
+                    {
+                        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"#0"</span></span>,
+                        "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/ehr_id/value"</span>
+                    </span>},
+                    {
+                        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"startTime"</span></span>,
+                        "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/context/start_time/value"</span>
+                    </span>},
+                    {
+                        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"cid"</span></span>,
+                        "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/uid/value"</span>
+                    </span>},
+                    {
+                        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"#3"</span></span>,
+                        "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/name"</span>
+                    </span>}
+                ]</span>,
+                "<span class="hljs-attribute">rows</span>": <span class="hljs-value">[
+                    [
+                        <span class="hljs-string">"81433066-c417-4813-9b29-79783e7bed23"</span>,
+                        <span class="hljs-string">"2017-02-16T13:50:11.308+01:00"</span>,
+                        <span class="hljs-string">"90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"</span>,
+                        {
+                            "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DV_TEXT"</span></span>,
+                            "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Labs"</span>
+                        </span>}
+                    ]
+                ]
+            </span>}</code></pre>
+</div></div><div class="middle"><section id="query" class="resource-group"><h2 class="group-heading">Query <a href="#query" class="permalink">&para;</a></h2><p>Actions upon resources of this group are also formally described in the
+<a href="https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_query_service_interface">I_QUERY_SERVICE</a>
+Abstract Service Model interface.</p>
+</section></div><div class="middle"><div id="query-execute-query" class="resource"><h3 class="resource-heading">Execute Query <a href="#query-execute-query" class="permalink">&para;</a></h3><p>This currently supports <a href="https://specifications.openehr.org/releases/QUERY/latest/AQL.html">AQL</a> queries only,
+other query types might be added in the future.</p>
+</div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">{baseUrl}/v1</span>/query/aql?<span class="hljs-attribute">q=</span><span class="hljs-literal">SELECT ... WHERE ...</span>&<span class="hljs-attribute">ehr_id=</span><span class="hljs-literal">7d44b88c-4199-4bad-97dc-d78268e01398</span>&<span class="hljs-attribute">offset=</span><span class="hljs-literal">10</span>&<span class="hljs-attribute">fetch=</span><span class="hljs-literal">10</span>&<span class="hljs-attribute">query_parameter=</span><span class="hljs-literal"></span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span><span class="tab-button">400</span><span class="tab-button">408</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the server is able to execute the query.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">ETag</span>: <span class="hljs-string">cdbb5db1-e466-4429-a9e5-bf80a54e120b</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">_href</span>": <span class="hljs-value"><span class="hljs-string">"... the URI for the executed AQL - used only for GET executions ..."</span></span>,
+    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"RESULTSET"</span></span>,
+    "<span class="hljs-attribute">_schema_version</span>": <span class="hljs-value"><span class="hljs-string">"1.0.0"</span></span>,
+    "<span class="hljs-attribute">_created</span>": <span class="hljs-value"><span class="hljs-string">"2017-08-19T00:25:47.568+02:00"</span></span>,
+    "<span class="hljs-attribute">_generator</span>": <span class="hljs-value"><span class="hljs-string">"DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)"</span></span>,
+    "<span class="hljs-attribute">_executed_aql</span>": <span class="hljs-value"><span class="hljs-string">"... the executed aql ..."</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"... the name or identifier of the stored query that was executed ..."</span></span>,
+  "<span class="hljs-attribute">q</span>": <span class="hljs-value"><span class="hljs-string">"SELECT e/ehr_id/value, c/context/start_time/value as startTime, c/uid/value as cid, c/name FROM EHR e CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION obs[openEHR-EHR-OBSERVATION.blood_pressure.v1] WHERE obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude &gt;= $systolic_bp"</span></span>,
+  "<span class="hljs-attribute">columns</span>": <span class="hljs-value">[
     {
-      "name": "#0",
-      "path": "/ehr_id/value"
-    },
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"#0"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/ehr_id/value"</span>
+    </span>},
     {
-      "name": "startTime",
-      "path": "/context/start_time/value"
-    },
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"startTime"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/context/start_time/value"</span>
+    </span>},
     {
-      "name": "cid",
-      "path": "/uid/value"
-    },
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"cid"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/uid/value"</span>
+    </span>},
     {
-      "name": "#3",
-      "path": "/name"
-    }
-  ],
-  "rows": [
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"#3"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/name"</span>
+    </span>}
+  ]</span>,
+  "<span class="hljs-attribute">rows</span>": <span class="hljs-value">[
     [
-      "81433066-c417-4813-9b29-79783e7bed23",
-      "2017-02-16T13:50:11.308+01:00",
-      "90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1",
+      <span class="hljs-string">"81433066-c417-4813-9b29-79783e7bed23"</span>,
+      <span class="hljs-string">"2017-02-16T13:50:11.308+01:00"</span>,
+      <span class="hljs-string">"90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"</span>,
       {
-        "_type": "DV_TEXT",
-        "value": "Labs"
-      }
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DV_TEXT"</span></span>,
+        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Labs"</span>
+      </span>}
     ]
   ]
-}</code></pre>
-</section></div><div class="middle"><section id="query" class="resource-group"><h2 class="group-heading">Query <a href="#query" class="permalink">&para;</a></h2><p>The REST API currently supports AQL queries. Other query types might be added at a later time.</p>
-</section></div><div class="middle"><div id="query-execute-query" class="resource"><h3 class="resource-heading">Execute Query <a href="#query-execute-query" class="permalink">&para;</a></h3><p>Release: <strong>0.9.6</strong></p>
-</div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/query/aql?<span class="hljs-attribute">q=</span><span class="hljs-literal"></span>&<span class="hljs-attribute">query_parameter=</span><span class="hljs-literal"></span>&<span class="hljs-attribute">offset=</span><span class="hljs-literal"></span>&<span class="hljs-attribute">fetch=</span><span class="hljs-literal"></span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">ETag</span>: <span class="hljs-string">cdbb5db1-e466-4429-a9e5-bf80a54e120b</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-    <span class="hljs-comment">/* See discussion on result-set in overview */</span>
-}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="query-execute-query-get" class="action get"><h4 class="action-heading"><div class="name">Execute ad-hoc (non-stored) AQL query</div><a href="#query-execute-query-get" class="method get">GET</a><code class="uri">/query/aql{?q,query_parameter,offset,fetch}</code></h4><p>Warning: URIs in practice have a length restriction. Long AQLs in parameter <code>q</code> and many long
-<code>query_parameter</code>s may add up to reach that limit, thus we recommend using the
-<code>POST /query/aql</code> instead when such risks are expected.</p>
-<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>q</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the AQL to be executed</p>
-</dd><dt>offset</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<p>row number in result-set to start result-set from (0-based)</p>
-</dd><dt>fetch</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<p>number of rows to fetch</p>
-</dd><dt>query_parameter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>query parameters</p>
-</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/query/aql</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">q</span>": <span class="hljs-value"><span class="hljs-string">"&lt;the query to be executed&gt;"</span></span>,
-    "<span class="hljs-attribute">offset</span>": <span class="hljs-value">NUMBER_TO_START_FROM</span>,
-    "<span class="hljs-attribute">fetch</span>": <span class="hljs-value">NUMBER_TO_FETCH</span>,
-    "<span class="hljs-attribute">query-parameters</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">parameter-x-name</span>": <span class="hljs-value"><span class="hljs-string">"parameter-x-value"</span></span>,
-        "<span class="hljs-attribute">parameter-y-name</span>": <span class="hljs-value"><span class="hljs-string">"parameter-y-value"</span>
-    </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">ETag</span>: <span class="hljs-string">cdbb5db1-e466-4429-a9e5-bf80a54e120b</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-    <span class="hljs-comment">/* See discussion on result-set in overview */</span>
-}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="query-execute-query-post" class="action post"><h4 class="action-heading"><div class="name">Execute ad-hoc (non-stored) AQL query</div><a href="#query-execute-query-post" class="method post">POST</a><code class="uri">/query/aql</code></h4></div></div><hr class="split"><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/query/<span class="hljs-attribute" title="qualified_query_name">qualified_query_name</span>/<span class="hljs-attribute" title="version">version</span>?<span class="hljs-attribute">offset=</span><span class="hljs-literal"></span>&<span class="hljs-attribute">fetch=</span><span class="hljs-literal"></span>&<span class="hljs-attribute">query_parameter=</span><span class="hljs-literal"></span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">ETag</span>: <span class="hljs-string">cdbb5db1-e466-4429-a9e5-bf80a54e120b</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  <span class="hljs-comment">/* See discussion on result-set in overview */</span>
-}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="query-execute-query-get-1" class="action get"><h4 class="action-heading"><div class="name">Execute stored query</div><a href="#query-execute-query-get-1" class="method get">GET</a><code class="uri">/query/{qualified_query_name}/{version}{?offset,fetch,query_parameter}</code></h4><p>Execute a stored query with the supplied qualified_query_name. Queries can be stored
-via the query definition API endpoint.</p>
-<p>All query parameters found except “offset” and “fetch” are sent to the query execution engine.
-For parameters in AQL queries, see <code>http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_parameters</code>.
-For example call:</p>
-<ul>
-<li>GET /query/com.vendor::compositions?temperature_from=36&amp;temperature_unit=Cel</li>
-</ul>
-<p>Will pass parameters <code>temperature_from</code> and <code>temperature_unit</code> to the underlying query.</p>
-<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>qualified_query_name</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>qualified query name to be executed. It may be formatted as
-<code>&lt;namespace&gt;::&lt;query-name&gt;</code>, this way we can separate queries by domain, etc.
-Example qualified query name: <code>org.openehr::compositions</code></p>
-</dd><dt>version</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>SEMVER style (major.minor.patch) version prefix. If only major or major.minor are used then the latest version with
-supplied prefix will be used.</p>
-</dd><dt>offset</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Query response row number to start from (default: 0)</p>
-</dd><dt>fetch</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Number of query response rows to fetch (from offset). For AQL queries: cannot be
-combined with <code>http://www.openehr.org/releases/QUERY/latest/docs/AQL/AQL.html#_top</code></p>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>400 Bad Request</code> is returned when the server was unable to execute the query due to
+invalid input, e.g. a request with missing <code>q</code> parameter or an invalid query syntax.</p>
+</div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>408 Request Timeout</code> is returned when there is a query execution timeout
+(i.e. maximum query execution time reached and it was therefore stopped by the server).</p>
+</div></div></div></div></div></div></div><div class="middle"><div id="query-execute-query-get" class="action get"><h4 class="action-heading"><div class="name">Execute ad-hoc (non-stored) AQL query</div><a href="#query-execute-query-get" class="method get">GET</a><code class="uri">/query/aql{?q,ehr_id,offset,fetch,query_parameter}</code></h4><p>Execute ad-hoc query, supplied by <code>q</code> parameter,
+fetching <code>fetch</code> numbers of rows from <code>offset</code> and passing <code>query_parameter</code> to the underlying query engine.</p>
+<p>See also details on usage of <a href="query.html#requirements-common-headers-and-query-parameters">query parameters</a>.</p>
+<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>q</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>SELECT ... WHERE ...</span></span><p>the AQL query to be executed</p>
+</dd><dt>ehr_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>7d44b88c-4199-4bad-97dc-d78268e01398</span></span><p>an optional parameter to execute the query within an EHR context</p>
+</dd><dt>offset</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>10</span></span><p>row number in result-set to start result-set from (<code>0</code>-based), default <code>0</code></p>
+</dd><dt>fetch</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>10</span></span><p>number of rows to fetch, default depends on the implementation</p>
 </dd><dt>query_parameter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>query parameters (can appear multiple times)</p>
-</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://www.openehr.org/api/v1</span>/query/<span class="hljs-attribute" title="qualified_query_name">qualified_query_name</span>/<span class="hljs-attribute" title="version">version</span></span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">If-None-Match</span>: <span class="hljs-string">cdbb5db1-e466-4429-a9e5-bf80a54e120b</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">offset</span>": <span class="hljs-value">NUMBER_TO_START_FROM</span>,
-    "<span class="hljs-attribute">fetch</span>": <span class="hljs-value">NUMBER_TO_FETCH</span>,
-    "<span class="hljs-attribute">query-parameters</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">parameter-x-name</span>": <span class="hljs-value"><span class="hljs-string">"parameter-x-value"</span></span>,
-        "<span class="hljs-attribute">parameter-y-name</span>": <span class="hljs-value"><span class="hljs-string">"parameter-y-value"</span>
+</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">{baseUrl}/v1</span>/query/aql</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">q</span>": <span class="hljs-value"><span class="hljs-string">"SELECT c FROM EHR e[ehr_id/value=$ehr_id] CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION obs[openEHR-EHR-OBSERVATION.blood_pressure.v1] WHERE obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude &gt;= $systolic_bp"</span></span>,
+  "<span class="hljs-attribute">offset</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">fetch</span>": <span class="hljs-value"><span class="hljs-number">10</span></span>,
+  "<span class="hljs-attribute">query_parameters</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">ehr_id</span>": <span class="hljs-value"><span class="hljs-string">"7d44b88c-4199-4bad-97dc-d78268e01398"</span></span>,
+    "<span class="hljs-attribute">systolic_bp</span>": <span class="hljs-value"><span class="hljs-number">140</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span><span class="tab-button">400</span><span class="tab-button">408</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the server is able to execute the AQL query.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">ETag</span>: <span class="hljs-string">cdbb5db1-e466-4429-a9e5-bf80a54e120b</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">_href</span>": <span class="hljs-value"><span class="hljs-string">"... the URI for the executed AQL - used only for GET executions ..."</span></span>,
+    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"RESULTSET"</span></span>,
+    "<span class="hljs-attribute">_schema_version</span>": <span class="hljs-value"><span class="hljs-string">"1.0.0"</span></span>,
+    "<span class="hljs-attribute">_created</span>": <span class="hljs-value"><span class="hljs-string">"2017-08-19T00:25:47.568+02:00"</span></span>,
+    "<span class="hljs-attribute">_generator</span>": <span class="hljs-value"><span class="hljs-string">"DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)"</span></span>,
+    "<span class="hljs-attribute">_executed_aql</span>": <span class="hljs-value"><span class="hljs-string">"... the executed aql ..."</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"... the name or identifier of the stored query that was executed ..."</span></span>,
+  "<span class="hljs-attribute">q</span>": <span class="hljs-value"><span class="hljs-string">"SELECT e/ehr_id/value, c/context/start_time/value as startTime, c/uid/value as cid, c/name FROM EHR e CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION obs[openEHR-EHR-OBSERVATION.blood_pressure.v1] WHERE obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude &gt;= $systolic_bp"</span></span>,
+  "<span class="hljs-attribute">columns</span>": <span class="hljs-value">[
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"#0"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/ehr_id/value"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"startTime"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/context/start_time/value"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"cid"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/uid/value"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"#3"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/name"</span>
     </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">ETag</span>: <span class="hljs-string">cdbb5db1-e466-4429-a9e5-bf80a54e120b</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  <span class="hljs-comment">/* See discussion on result-set in overview */</span>
-}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="query-execute-query-post-1" class="action post"><h4 class="action-heading"><div class="name">Execute stored query</div><a href="#query-execute-query-post-1" class="method post">POST</a><code class="uri">/query/{qualified_query_name}/{version}</code></h4><p>Execute a stored query with the supplied qualified_query_name.</p>
-<p>The absence of the http header ‘ehr_id’ means that the stored query or request parameters MAY contain a list of several ehr_ids or be
-unconstrained regarding ehr_id (e.g. population queries).</p>
-<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>qualified_query_name</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>qualified query name to be executed. It may be formatted as
-<code>&lt;namespace&gt;::&lt;query-name&gt;</code>, this way we can separate queries by domain, etc.
-Example qualified query name: <code>org.openehr::compositions</code></p>
-</dd><dt>version</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>SEMVER style (major.minor.patch) version prefix. If only major or major.minor are used then the latest version with
-supplied prefix will be used.</p>
-</dd></dl></div></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 06 Nov 2018</p></div></div></div></div><script>/* eslint-env browser */
+  ]</span>,
+  "<span class="hljs-attribute">rows</span>": <span class="hljs-value">[
+    [
+      <span class="hljs-string">"81433066-c417-4813-9b29-79783e7bed23"</span>,
+      <span class="hljs-string">"2017-02-16T13:50:11.308+01:00"</span>,
+      <span class="hljs-string">"90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"</span>,
+      {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DV_TEXT"</span></span>,
+        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Labs"</span>
+      </span>}
+    ]
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>400 Bad Request</code> is returned when the server was unable to execute the query due to
+invalid input, e.g. a request with missing <code>q</code> parameter or an invalid query syntax.</p>
+</div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>408 Request Timeout</code> is returned when there is a query execution timeout
+(i.e. maximum query execution time reached and it was therefore stopped by the server).</p>
+</div></div></div></div></div></div></div></div><div class="middle"><div id="query-execute-query-post" class="action post"><h4 class="action-heading"><div class="name">Execute ad-hoc (non-stored) AQL query</div><a href="#query-execute-query-post" class="method post">POST</a><code class="uri">/query/aql</code></h4><p>Execute ad-hoc query, supplied by <code>q</code> attribute,
+fetching <code>fetch</code> numbers of rows from <code>offset</code> and passing <code>query_parameter</code> to the underlying query engine.</p>
+<p>See also details on usage of <a href="query.html#requirements-common-headers-and-query-parameters">query parameters</a>.</p>
+</div></div><hr class="split"><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">{baseUrl}/v1</span>/query/<span class="hljs-attribute" title="qualified_query_name">org.openehr::compositions</span>/<span class="hljs-attribute" title="version">1.0</span>?<span class="hljs-attribute">ehr_id=</span><span class="hljs-literal">7d44b88c-4199-4bad-97dc-d78268e01398</span>&<span class="hljs-attribute">offset=</span><span class="hljs-literal">10</span>&<span class="hljs-attribute">fetch=</span><span class="hljs-literal">10</span>&<span class="hljs-attribute">query_parameter=</span><span class="hljs-literal"></span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span><span class="tab-button">400</span><span class="tab-button">404</span><span class="tab-button">408</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the server is able to execute the query.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">ETag</span>: <span class="hljs-string">cdbb5db1-e466-4429-a9e5-bf80a54e120b</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">_href</span>": <span class="hljs-value"><span class="hljs-string">"... the URI for the executed AQL - used only for GET executions ..."</span></span>,
+    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"RESULTSET"</span></span>,
+    "<span class="hljs-attribute">_schema_version</span>": <span class="hljs-value"><span class="hljs-string">"1.0.0"</span></span>,
+    "<span class="hljs-attribute">_created</span>": <span class="hljs-value"><span class="hljs-string">"2017-08-19T00:25:47.568+02:00"</span></span>,
+    "<span class="hljs-attribute">_generator</span>": <span class="hljs-value"><span class="hljs-string">"DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)"</span></span>,
+    "<span class="hljs-attribute">_executed_aql</span>": <span class="hljs-value"><span class="hljs-string">"... the executed aql ..."</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"... the name or identifier of the stored query that was executed ..."</span></span>,
+  "<span class="hljs-attribute">q</span>": <span class="hljs-value"><span class="hljs-string">"SELECT e/ehr_id/value, c/context/start_time/value as startTime, c/uid/value as cid, c/name FROM EHR e CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION obs[openEHR-EHR-OBSERVATION.blood_pressure.v1] WHERE obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude &gt;= $systolic_bp"</span></span>,
+  "<span class="hljs-attribute">columns</span>": <span class="hljs-value">[
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"#0"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/ehr_id/value"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"startTime"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/context/start_time/value"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"cid"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/uid/value"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"#3"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/name"</span>
+    </span>}
+  ]</span>,
+  "<span class="hljs-attribute">rows</span>": <span class="hljs-value">[
+    [
+      <span class="hljs-string">"81433066-c417-4813-9b29-79783e7bed23"</span>,
+      <span class="hljs-string">"2017-02-16T13:50:11.308+01:00"</span>,
+      <span class="hljs-string">"90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"</span>,
+      {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DV_TEXT"</span></span>,
+        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Labs"</span>
+      </span>}
+    ]
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>400 Bad Request</code> is returned when the server was unable to execute the query due to
+invalid input, e.g. at least on of the parameters has an invalid syntax.</p>
+</div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>404 Not Found</code> is returned when a query with <code>qualified_query_name</code> and <code>version</code> does not exist.</p>
+</div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>408 Request Timeout</code> is returned when there is a query execution timeout
+(i.e. maximum query execution time reached and it was therefore stopped by the server).</p>
+</div></div></div></div></div></div></div><div class="middle"><div id="query-execute-query-get-1" class="action get"><h4 class="action-heading"><div class="name">Execute stored query</div><a href="#query-execute-query-get-1" class="method get">GET</a><code class="uri">/query/{qualified_query_name}/{version}{?ehr_id,offset,fetch,query_parameter}</code></h4><p>Execute stored query identified by the supplied <code>qualified_query_name</code> (at specified <code>version</code>),
+fetching <code>fetch</code> numbers of rows from <code>offset</code> and passing <code>query_parameter</code> to the underlying query engine.</p>
+<p>See also details on usage of <a href="query.html#requirements-common-headers-and-query-parameters">query parameters</a>.</p>
+<p>Queries can be stored or, if once stored, their definition can be retrieved
+using the <a href="definitions.html#definitions-stored-query">definition endpoint</a>.</p>
+<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>qualified_query_name</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>org.openehr::compositions</span></span><p>name of the query to be executed</p>
+</dd><dt>version</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1.0</span></span><p>query SEMVER version number</p>
+</dd><dt>ehr_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>7d44b88c-4199-4bad-97dc-d78268e01398</span></span><p>an optional parameter to execute the query within an EHR context</p>
+</dd><dt>offset</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>10</span></span><p>row number in result-set to start result-set from (<code>0</code>-based), default <code>0</code></p>
+</dd><dt>fetch</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>10</span></span><p>number of rows to fetch, default depends on the implementation</p>
+</dd><dt>query_parameter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>query parameters (can appear multiple times)</p>
+</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">{baseUrl}/v1</span>/query/<span class="hljs-attribute" title="qualified_query_name">org.openehr::compositions</span>/<span class="hljs-attribute" title="version">1.0</span></span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">If-None-Match</span>: <span class="hljs-string">cdbb5db1-e466-4429-a9e5-bf80a54e120b</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">offset</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">fetch</span>": <span class="hljs-value"><span class="hljs-number">10</span></span>,
+  "<span class="hljs-attribute">query_parameters</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">ehr_id</span>": <span class="hljs-value"><span class="hljs-string">"7d44b88c-4199-4bad-97dc-d78268e01398"</span></span>,
+    "<span class="hljs-attribute">systolic_bp</span>": <span class="hljs-value"><span class="hljs-number">140</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span><span class="tab-button">400</span><span class="tab-button">404</span><span class="tab-button">408</span></div><div class="tab"><div><div class="inner"><div class="description"><p><code>200 OK</code> is returned when the server is able to execute the query.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">ETag</span>: <span class="hljs-string">cdbb5db1-e466-4429-a9e5-bf80a54e120b</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">_href</span>": <span class="hljs-value"><span class="hljs-string">"... the URI for the executed AQL - used only for GET executions ..."</span></span>,
+    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"RESULTSET"</span></span>,
+    "<span class="hljs-attribute">_schema_version</span>": <span class="hljs-value"><span class="hljs-string">"1.0.0"</span></span>,
+    "<span class="hljs-attribute">_created</span>": <span class="hljs-value"><span class="hljs-string">"2017-08-19T00:25:47.568+02:00"</span></span>,
+    "<span class="hljs-attribute">_generator</span>": <span class="hljs-value"><span class="hljs-string">"DIPS.OpenEhr.ResultSets.Serialization.Json.ResultSetJsonWriter (5.0.0.0)"</span></span>,
+    "<span class="hljs-attribute">_executed_aql</span>": <span class="hljs-value"><span class="hljs-string">"... the executed aql ..."</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"... the name or identifier of the stored query that was executed ..."</span></span>,
+  "<span class="hljs-attribute">q</span>": <span class="hljs-value"><span class="hljs-string">"SELECT e/ehr_id/value, c/context/start_time/value as startTime, c/uid/value as cid, c/name FROM EHR e CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION obs[openEHR-EHR-OBSERVATION.blood_pressure.v1] WHERE obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude &gt;= $systolic_bp"</span></span>,
+  "<span class="hljs-attribute">columns</span>": <span class="hljs-value">[
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"#0"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/ehr_id/value"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"startTime"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/context/start_time/value"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"cid"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/uid/value"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"#3"</span></span>,
+      "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/name"</span>
+    </span>}
+  ]</span>,
+  "<span class="hljs-attribute">rows</span>": <span class="hljs-value">[
+    [
+      <span class="hljs-string">"81433066-c417-4813-9b29-79783e7bed23"</span>,
+      <span class="hljs-string">"2017-02-16T13:50:11.308+01:00"</span>,
+      <span class="hljs-string">"90910cf0-66a0-4382-b1f8-c0f27e81b42d::default::1"</span>,
+      {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DV_TEXT"</span></span>,
+        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Labs"</span>
+      </span>}
+    ]
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>400 Bad Request</code> is returned when the server was unable to execute the query due to
+invalid input, e.g. at least on of the parameters has an invalid syntax.</p>
+</div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>404 Not Found</code> is returned when a query with <code>qualified_query_name</code> and <code>version</code> does not exist.</p>
+</div></div></div></div><div class="tab"><div><div class="inner"><div class="description"><p><code>408 Request Timeout</code> is returned when there is a query execution timeout
+(i.e. maximum query execution time reached and it was therefore stopped by the server).</p>
+</div></div></div></div></div></div></div></div><div class="middle"><div id="query-execute-query-post-1" class="action post"><h4 class="action-heading"><div class="name">Execute stored query</div><a href="#query-execute-query-post-1" class="method post">POST</a><code class="uri">/query/{qualified_query_name}/{version}</code></h4><p>Execute stored query identified by the supplied <code>qualified_query_name</code> (at specified <code>version</code>).</p>
+<p>See also details on usage of <a href="query.html#requirements-common-headers-and-query-parameters">query parameters</a>.</p>
+<p>Queries can be stored or, if once stored, their definition can be retrieved
+using the <a href="definitions.html#definitions-stored-query">definition endpoint</a>.</p>
+<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>qualified_query_name</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>org.openehr::compositions</span></span><p>name of the query to be executed</p>
+</dd><dt>version</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1.0</span></span><p>query SEMVER version number</p>
+</dd></dl></div></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated with&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 26 Sep 2019</p></div></div></div></div><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
@@ -459,5 +749,9 @@ window.onload = function () {
     autoCollapse();
     // Remove the `preload` class to enable animations
     document.querySelector('body').className = '';
+    if(window.location.hash) {
+        var elmnt = document.getElementById(window.location.hash.substring(1));
+        elmnt.scrollIntoView(true);
+    }
 };
 </script></body></html>
