@@ -252,7 +252,7 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 |  200 | OK                     | The request succeeded, payload sent in a 200 response depends on the request method
 |  201 | Created                | The request has been fulfilled and has resulted in one or more new resources being created
 |  204 | No content             | The request has been fulfilled and there is no additional content to send in the response payload body
-|  400 | Bad request            | The service cannot or will not process the request due to something that is perceived to be a client error
+|  400 | Bad request            | The service cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, syntactically invalid content)
 |  401 | Unauthorized           | If the service requires authorization, this indicates that the request has not been applied because it lacks valid authentication credentials for the target resource 
 |  403 | Forbidden              | The service understood the request but refuses to authorize it
 |  404 | Not found              | The origin service did not find the target resource or is not willing to disclose that one exists 
@@ -262,11 +262,15 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 |  409 | Conflict               | Indicates that the request could not be processed because it might generate a duplicate or a conflict
 |  412 | Precondition Failed    | One or more conditions given in the request header fields evaluated to false when tested on the server
 |  415 | Unsupported Media Type | The service is refusing the request because the payload is in a format not supported by this method on the target resource
+|  422 | Unprocessable Entity   | The request was well-formed but was unable to be followed due to semantic errors
 |  500 | Internal Server Error  | The service encountered an unexpected condition that prevented it from fulfilling the request
 |  501 | Not Implemented        | The service does not support the functionality required to fulfill the request
 
 Meaning of these codes may be further detailed (nuanced) in this specification by particular responses.
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.
+
+Status code 400 indicates a bad request or generic client-side error, used when no other 4xx error code is appropriate. 
+The client SHOULD NOT repeat the request without modifications.
 
 In case of errors (HTTP status codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
 Example:

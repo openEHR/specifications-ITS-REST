@@ -39,13 +39,20 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
 + Response 400
     
     `400 Bad Request` is returned when the request has invalid `ehr_id` or invalid content 
-    (e.g. content could not be converted to a valid COMPOSITION object, or it references a template_id that is not known by the server)
+    (e.g. content could not be converted to a valid COMPOSITION object)
 
     + Body    
 
 + Response 404
 
     `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+
+    + Body
+
++ Response 422
+
+    `422 Unprocessable Entity` is returned when the content could be converted to a COMPOSITION, but there are semantic validation errors,
+    such as the underlying template is not known or is not validating the supplied COMPOSITION).
 
     + Body
 
@@ -120,6 +127,13 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
                 ...
             }
 
++ Response 422
+
+    `422 Unprocessable Entity` is returned when the content could be converted to a COMPOSITION, but there are semantic validation errors,
+    such as the underlying template is not known or is not validating the supplied COMPOSITION).
+
+    + Body
+    
 + Request wrong type (application/json)
 
     + Headers
@@ -133,7 +147,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 + Response 400 (application/json)
 
     `400 Bad Request` is returned when the request has invalid `ehr_id` or invalid content 
-    (e.g. either the body of the request could not be read, or converted to a COMPOSITION object, or there were composition validation errors)
+    (e.g. either the body of the request could not be read, or converted to a valid COMPOSITION object)
 
     + Body
 
