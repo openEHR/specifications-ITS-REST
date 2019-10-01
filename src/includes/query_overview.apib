@@ -38,7 +38,7 @@ If only a partial `version` is supplied or `version` is not supplied at all, the
 system must use the latest `version` with the supplied prefix - i.e. if only `major` or `major.minor` 
 is used, then the latest query version with supplied prefix will be used.
 
-Queries can be stored or, if once stored, their definition can be retrieved 
+Queries can be stored or, once stored, their definition can be retrieved 
 using the [definition endpoint](definitions.html#definitions-stored-query).
 
 ## Common Headers and Query Parameters [/--headers]
@@ -73,7 +73,7 @@ in this specification, but in the real request they will have specific names (e.
 according to their names in the query definition.  
 
 Query parameters does not have to be prefixed with `$` sign. Instead, the server will have to (whenever necessary) 
-add the prefix or format queries as valid AQL queries, before executing them. 
+add the prefix or format queries as valid AQL queries. 
 
 As an example, for the following AQL query `SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid`, 
 named as `'myQuery'`, the client can supply the `uid` as `query_parameter`, 
@@ -101,7 +101,7 @@ Below is a mostly self-documented AQL query request.
 
 <h3>GET vs POST</h3>
 
-Requests based on `GET` method have URI length restriction or some characters might not be allowed and have to ne encoded. 
+Requests based on `GET` method have URI length restriction or some characters might not be allowed and have to be encoded. 
 Long queries in the `q` parameter and having a long list of `query_parameter` may add up to reach that limit, 
 thus we recommend clients using the `POST` method instead of `GET`.
 
