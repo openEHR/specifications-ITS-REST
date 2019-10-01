@@ -24,7 +24,7 @@ The starting point for defining a developer-friendly commit format is therefore 
 Template-specificity provides a route for defining and generating a serial format such that _each openEHR template_ can be used to define one or more reasonably simple commit formats. Two such formats are discussed here:
 
 * _near-canonical RM JSON data template (ncJDT)_, originally devised for the EtherCIS project, see https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md
-* _simplified IM JSON data template (sJDT)_, based on the 'web template' format originally created by Marand for the Better platform, see https://www.ehrscape.com/examples.htm
+* _simplified IM JSON data template (sJDT)_, based on the 'web template' format originally created by Marand for the Better platform, see https://www.ehrscape.com/examples.html
 
 The first of these (ncJDT) is an extract from an Operational Template (OPT) that uses AQL-style paths (based on natural language indepandent codes like at0001), and apart from simplification of the `DV_XXX` and `PARTY_PROXY` types, retains the openEHR RM structure. An example is shown below.
 
