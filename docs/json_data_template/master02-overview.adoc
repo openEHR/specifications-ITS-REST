@@ -26,7 +26,7 @@ Template-specificity provides a route for defining and generating a serial forma
 * _near-canonical RM JSON data template (ncJDT)_, originally devised for the EtherCIS project, see https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md
 * _simplified IM JSON data template (sJDT)_, based on the 'web template' format originally created by Marand for the Better platform, see https://www.ehrscape.com/examples.html
 
-The first of these (ncJDT) is an extract from an Operational Template (OPT) that uses AQL-style paths (based on natural language indepandent codes like `at0001`), and apart from simplification of the `DV_XXX` and `PARTY_PROXY` types, retains the openEHR RM structure. An example is shown below.
+The first of these (ncJDT) is an extract from an Operational Template (OPT) that uses AQL-style paths (based on natural language independent codes like `at0001`), and apart from simplification of the `DV_XXX` and `PARTY_PROXY` types, retains the openEHR RM structure. An example is shown below.
 
 [source, json]
 --------
@@ -89,7 +89,7 @@ The latter (sJDT) is based on a more radical simplification of the openEHR RM an
 }
 --------
 
-A developer just using the sJDT or ncJDT as illustrated above in a specific example-based use case does not necessarily need to understand the detailed steps of conversions described below. Platforms based on openEHR can have services that generate example instances based on openeEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.
+*A developer just using the sJDT or ncJDT as illustrated above in a specific example-based use case does not necessarily need to understand the detailed steps of conversions described below.* Platforms based on openEHR can have services that generate example instances based on openeEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.
 
 To make any form of 'simplified format' work, the following requirements must be met:
 
