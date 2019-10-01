@@ -14,7 +14,7 @@ Prerequisite documents for reading this document include:
 Related documents include:
 - The [openEHR Global Class Index](https://specifications.openehr.org/releases/AA_GLOBAL/latest/index.html)
 - The [XML-Schemas (XSD)](https://github.com/openEHR/specifications-ITS-XML) 
-- The [JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON) and [JSON Data Template](/json_data_template.html)
+- The [JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON) and [JSON Data Template](json_data_template.html)
 - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html)
 
 
@@ -61,8 +61,8 @@ Throughout this specification, a set of short terms is being used as described b
 |`UUID`| A universally unique identifier as described by [RFC 4122](https://tools.ietf.org/html/rfc4122) (e.g. 8849182c-82ad-4088-a07f-48ead4180515) |
 |`ehr_id`| The value for an EHR identifier, stored under EHR.ehr_id.value, usually an `UUID` or a `GUID` (e.g. 7d44b88c-4199-4bad-97dc-d78268e01398) |
 |`versioned_object_uid`| The value of a VERSIONED_OBJECT unique identifier, stored under VERSIONED_OBJECT.uid.value (e.g. 8849182c-82ad-4088-a07f-48ead4180515) |
-|`version_uid`| The value of a VERSION unique identifier, stored under VERSION.uid.value (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2) |
-|`preceding_version_uid`| The value of a previous VERSION unique identifier, used usually for PUT or DELETE methods (e.g. 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1) |
+|`version_uid`| The value of a VERSION unique identifier, stored under VERSION.uid.value (e.g. 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2) |
+|`preceding_version_uid`| The value of a previous VERSION unique identifier, used usually for PUT or DELETE methods (e.g. 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1) |
 |`version_at_time`| Time specifier used to retrieve the VERSION at a given time; the value is in the extended ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
 
 HTTP Methods used in this specification are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4).
@@ -118,10 +118,10 @@ Another use-case for this method is related to exposing service capabilities for
     + Body 
         
             {
-                "solution": "BestEHRSys",
+                "solution": "openEHRSys",
                 "solution_version": "v0.9",
-                "vendor": "BestEHR",
-                "restapi_specs_version": "v1.1",
+                "vendor": "My-openEHR",
+                "restapi_specs_version": "v1.0.1",
                 "conformance_profile": "STANDARD",
                 "endpoints": ["/ehr", "/definition", "/query"]
             }
@@ -172,7 +172,7 @@ Below a list of `code_string` values and their meaning (taken from [openEHR term
 
 The use case of this is described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
 ```http
-If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 ```
 This HTTP request header SHOULD be used by the clients to prevent accidental overwrites when multiple user
 agents might be acting in parallel on the same resource. This is only required by a small set of resources of this specification, 
@@ -189,7 +189,7 @@ The type of relationship is defined by the combination of request method and sta
 Services MUST return this header whenever a create or update operation was performed, but it MAY
 return this header on other operation or action. Example:
 ```http
-Location: {baseUrl}/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+Location: {baseUrl}/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 ```
 See [representation details negotiation](#representation-details-negotiation) section
 for more details on how use this header.
@@ -226,7 +226,7 @@ The `ETag` response HTTP header contains a string token that the server associat
 uniquely identify the state of that resource over its lifetime. The value of the token changes as soon as the resource changes.
 An example of such header value format is:
 ```http
-ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 ```
 Servers MAY choose their own format for this header, but the recommended value is the unique identifier of the requested resource 
 (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).    
@@ -252,7 +252,7 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 |  200 | OK                     | The request succeeded, payload sent in a 200 response depends on the request method
 |  201 | Created                | The request has been fulfilled and has resulted in one or more new resources being created
 |  204 | No content             | The request has been fulfilled and there is no additional content to send in the response payload body
-|  400 | Bad request            | The service cannot or will not process the request due to something that is perceived to be a client error
+|  400 | Bad request            | The service cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, syntactically invalid content)
 |  401 | Unauthorized           | If the service requires authorization, this indicates that the request has not been applied because it lacks valid authentication credentials for the target resource 
 |  403 | Forbidden              | The service understood the request but refuses to authorize it
 |  404 | Not found              | The origin service did not find the target resource or is not willing to disclose that one exists 
@@ -262,11 +262,15 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 |  409 | Conflict               | Indicates that the request could not be processed because it might generate a duplicate or a conflict
 |  412 | Precondition Failed    | One or more conditions given in the request header fields evaluated to false when tested on the server
 |  415 | Unsupported Media Type | The service is refusing the request because the payload is in a format not supported by this method on the target resource
+|  422 | Unprocessable Entity   | The request was well-formed but was unable to be followed due to semantic errors
 |  500 | Internal Server Error  | The service encountered an unexpected condition that prevented it from fulfilling the request
 |  501 | Not Implemented        | The service does not support the functionality required to fulfill the request
 
 Meaning of these codes may be further detailed (nuanced) in this specification by particular responses.
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.
+
+Status code 400 indicates a bad request or generic client-side error, used when no other 4xx error code is appropriate. 
+The client SHOULD NOT repeat the request without modifications.
 
 In case of errors (HTTP status codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
 Example:
@@ -299,7 +303,7 @@ unless the response has no body (HTTP status code 204).
 <h3>JSON Format</h3>
 
 When resources representation is serialized as JSON, the request payload as well as the result SHOULD be valid against [published JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON).
-> Note: The JSON-Schema project (status) is under development. 
+> Note: The JSON-Schema project is under development. 
 
 Attribute names must be lowercase _snake_case_ names as specified in the equivalent RM type. For example:
 ```json

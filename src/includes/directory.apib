@@ -34,8 +34,8 @@ Creates a new directory FOLDER associated with the EHR identified by `ehr_id`.
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
 
     + Body
 
@@ -73,7 +73,7 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
     + Header
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
             Prefer: return={representation|minimal}
 
     + Body
@@ -90,8 +90,8 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 
     + Body
 
@@ -107,8 +107,8 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 
 + Response 400
 
@@ -130,8 +130,8 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::3
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::3
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3
 
     + Body
 
@@ -150,7 +150,7 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
     + Headers
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
 
 + Response 204
 
@@ -177,8 +177,8 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::3
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::3
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3
 
     + Body
 
@@ -192,7 +192,7 @@ If `path` is supplied, retrieves from the directory only the sub-FOLDER that is 
 
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
         taken from EHR.ehr_id.value
-    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - VERSION identifier taken from VERSION.uid.value
+    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1` (string) - VERSION identifier taken from VERSION.uid.value
     + path: `episodes/a/b/c` (string, optional) - A path to a sub-FOLDER; consists of slash-separated values of the name attribute of FOLDERs in the directory 
 
 + Response 200 (application/json)
