@@ -20,7 +20,7 @@ is used, then the latest query version with supplied prefix will be used.
 
 Queries can be executed using the [query endpoint](query.html#definitions-stored-query).
 
-### List stored queries [GET /query/{qualified_query_name}]
+### List stored queries [GET /definition/query/{qualified_query_name}]
 
 Parameter `qualified_query_name` is optional. If omitted they are treated as "wildcards" in the search.
 
@@ -58,7 +58,7 @@ Examples:
             ]
 
 
-### Store a query [PUT /query/{qualified_query_name}/{version}{?type}]
+### Store a query [PUT /definition/query/{qualified_query_name}/{version}{?type}]
 
 Store a new query on the system.
 
@@ -104,7 +104,7 @@ Store a new query on the system.
     + Body
 
 
-### Get stored query and info/metadata [GET /query/{qualified_query_name}/{version}]
+### Get stored query and info/metadata [GET /definition/query/{qualified_query_name}/{version}]
 
 + Parameters
     
