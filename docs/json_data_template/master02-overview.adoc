@@ -23,10 +23,10 @@ The starting point for defining a developer-friendly commit format is therefore 
 
 Template-specificity provides a route for defining and generating a serial format such that _each openEHR template_ can be used to define one or more reasonably simple commit formats. Two such formats are discussed here:
 
-* _near-canonical RM JSON data template (ncJDT)_, originally devised for the EtherCIS project;
-* _simplified IM JSON data template (sJDT)_, based on the 'web template' format originally created by Marand for the Better platform.
+* _near-canonical RM JSON data template (ncJDT)_, originally devised for the EtherCIS project, see https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md
+* _simplified IM JSON data template (sJDT)_, based on the 'web template' format originally created by Marand for the Better platform, see https://www.ehrscape.com/examples.html
 
-The first of these is an extract from an Operational Template (OPT) that uses AQL-style paths, and apart from simplification of the `DV_XXX` and `PARTY_PROXY` types, retains the openEHR RM structure. An example is shown below.
+The first of these (ncJDT) is an extract from an Operational Template (OPT) that uses AQL-style paths (based on natural language independent codes like `at0001`), and apart from simplification of the `DV_XXX` and `PARTY_PROXY` types, retains the openEHR RM structure. An example is shown below.
 
 [source, json]
 --------
@@ -55,7 +55,7 @@ The first of these is an extract from an Operational Template (OPT) that uses AQ
 }
 --------
 
-The latter is based on a more radical simplification of the openEHR RM and BASE models, as well as a more programmer-friendly rendering of paths. Under the latter approach, a lab result data structure could be represented using non-canonical attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (or in any other natural language, including script-based languages), instead of each node appearing under the canonical `CLUSTER._items_` attribute. An example is shown below.
+The latter (sJDT) is based on a more radical simplification of the openEHR RM and BASE models, as well as a more programmer-friendly (atural language based) rendering of paths. Under this approach, a lab result data structure could be represented using non-canonical, attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (in English or in any other natural language, including script-based languages), instead of each node appearing under the canonical `CLUSTER._items_` attribute and codes like `at0001`. An example is shown below.
 
 [source, json]
 --------
@@ -89,11 +89,13 @@ The latter is based on a more radical simplification of the openEHR RM and BASE 
 }
 --------
 
+*A developer just using the sJDT or ncJDT as illustrated above in a specific example-based use case does not necessarily need to understand the detailed steps of conversions described below.* Platforms based on openEHR can have services that generate example instances based on openeEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.
+
 To make any form of 'simplified format' work, the following requirements must be met:
 
 * the format makes it possible to _abstract away rigorous structural complexity_ of the canonical model where possible, mainly by making the data less self-standing, and relying more on a schema;
 * the format definition for any given commit data can be completely and routinely _machine generated_ from its canonical definition, i.e. from an openEHR OPT, or other upstream canonical definition;
-* data instances of the simplified format definition can be _routinely converted to canonical format_ at execution time.
+* data instances of the simplified format definition can be _routinely machine converted to canonical format_ at execution time.
 
 A generic high-level algorithm for creating both kinds of data template definition from an Operational Template (OPT) is illustrated below.
 
@@ -101,7 +103,7 @@ A generic high-level algorithm for creating both kinds of data template definiti
 .Scheme for generation of JSON Template definitions
 image::{diagrams_uri}/simplified_template_definition.svg[id=simplified_template_definition, align="center"]
 
-In the above, both the near-canonical data and simplified data template definitions are created via a series of transformations starting with an OPT, followed by RM flattening, and then two stages of JSON format generation. The more heavily simplified form is created via an extra step, in which an original OPT is converted by the `sOPT transformer` to a _simplified OPT (sOPT)_, which is a regular-structured OPT, but whose underlying reference model is a Simplified Information Model (SIM), based on the canonical Reference Model (RM) and related openEHR Information Models (Base, etc).
+In the above, both the near-canonical data and simplified data template definitions are created via a series of transformations starting with an OPT, followed by RM flattening, and then two stages of JSON format generation. The more heavily simplified form is created via an extra step, in which an original OPT is converted by the `sOPT transformer` to a _simplified OPT (sOPT)_, which is a regular-structured OPT, but whose underlying reference model is a _Simplified Information Model (SIM)_, based on the canonical Reference Model (RM) and related openEHR Information Models (Base, etc).
 
 TODO: in fact, even the near-canonical data template has to be generated via a minimal sOPT step.
 
