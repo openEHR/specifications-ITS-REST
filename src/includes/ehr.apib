@@ -9,7 +9,7 @@ Create a new `EHR` with an auto-generated identifier.
 
 An EHR_STATUS resource needs to be always created and committed in the new EHR.
 This resource MAY be also supplied by the client as the request body. 
-If not supplied, a default EHR_STATUS with the following attributes SHOULD be used by the service:  
+If not supplied, a default EHR_STATUS will be used by the service with following attributes:  
 - `is_queryable`: true
 - `is_modifiable`: true
 - `subject`: a PARTY_SELF object
@@ -66,7 +66,7 @@ value. It is strongly RECOMMENDED that an UUID always be used for this.
 
 An EHR_STATUS resource needs to be always created and committed in the new EHR.
 This resource MAY be also supplied by the client as the request body. 
-If not supplied, a default EHR_STATUS with the following attributes SHOULD be used by the service:  
+If not supplied, a default EHR_STATUS will be used by the service with following attributes:  
 - `is_queryable`: true
 - `is_modifiable`: true
 - `subject`: a PARTY_SELF object
