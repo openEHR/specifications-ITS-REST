@@ -29,8 +29,8 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
 
     + Body
 
@@ -39,13 +39,20 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
 + Response 400
     
     `400 Bad Request` is returned when the request has invalid `ehr_id` or invalid content 
-    (e.g. content could not be converted to a valid COMPOSITION object, or it references a template_id that is not known by the server)
+    (e.g. content could not be converted to a valid COMPOSITION object)
 
     + Body    
 
 + Response 404
 
     `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+
+    + Body
+
++ Response 422
+
+    `422 Unprocessable Entity` is returned when the content could be converted to a COMPOSITION, but there are semantic validation errors,
+    such as the underlying template is not known or is not validating the supplied COMPOSITION).
 
     + Body
 
@@ -97,7 +104,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
     + Headers
 
             Prefer: return=representation
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
 
 + Response 200 (application/json)
 
@@ -106,8 +113,8 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 
     + Body
 
@@ -120,11 +127,18 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
                 ...
             }
 
++ Response 422
+
+    `422 Unprocessable Entity` is returned when the content could be converted to a COMPOSITION, but there are semantic validation errors,
+    such as the underlying template is not known or is not validating the supplied COMPOSITION).
+
+    + Body
+    
 + Request wrong type (application/json)
 
     + Headers
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
 
     + Body
 
@@ -133,7 +147,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 + Response 400 (application/json)
 
     `400 Bad Request` is returned when the request has invalid `ehr_id` or invalid content 
-    (e.g. either the body of the request could not be read, or converted to a COMPOSITION object, or there were composition validation errors)
+    (e.g. either the body of the request could not be read, or converted to a valid COMPOSITION object)
 
     + Body
 
@@ -159,7 +173,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
 
 + Response 404
 
@@ -183,7 +197,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
 
 + Response 412
 
@@ -192,8 +206,8 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 
     + Body
 
@@ -206,7 +220,7 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
         taken from EHR.ehr_id.value
-    + preceding_version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - identifier of the COMPOSITION to be deleted.
+    + preceding_version_uid: `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1` (string) - identifier of the COMPOSITION to be deleted.
     This MUST be the last (most recent) version.
 
 + Response 204
@@ -215,8 +229,8 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 
     + Body
 
@@ -240,8 +254,8 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 
     + Body
 
@@ -254,7 +268,7 @@ Retrieves a particular version of the COMPOSITION identified by `version_uid` an
 
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
         taken from EHR.ehr_id.value
-    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - VERSION identifier taken from VERSION.uid.value
+    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
 
@@ -302,8 +316,8 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::2
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 
     + Body
 
@@ -410,7 +424,7 @@ Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION ident
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
         taken from EHR.ehr_id.value
     + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1` (string) - VERSION identifier taken from VERSION.uid.value
+    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
 
@@ -461,8 +475,8 @@ If `version_at_time` is supplied, retrieves the VERSION extant at specified time
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515/version/8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::example.domain.com::1
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515/version/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
 
     + Body
 
