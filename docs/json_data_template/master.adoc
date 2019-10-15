@@ -14,7 +14,7 @@ include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
 //
 :linkcss:
 :keywords: JSON, template, REST, commit
-:description: JSON Data Template (JDT)
+:description: Simplified Data Template (SDT)
 
 include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
 
@@ -24,7 +24,7 @@ include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
 
 image::{openehr_logo}["openEHR logo",align="center"]
 
-= JSON Data Template (JDT)
+= Simplified Data Template (SDT)
 
 include::{ref_dir}/docs/boilerplate/full_front_block.adoc[]
 include::{ref_dir}/docs/references/reference_definitions.adoc[]

@@ -5,9 +5,9 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<meta name="description" content="JSON Data Template (JDT)">
+<meta name="description" content="Simplified Data Template (SDT)">
 <meta name="keywords" content="JSON, template, REST, commit">
-<title>JSON Data Template (JDT)</title>
+<title>Simplified Data Template (SDT)</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </head>
@@ -16,7 +16,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
-<li><a href="#_json_data_template_jdt">JSON Data Template (JDT)</a>
+<li><a href="#_simplified_data_template_sdt">Simplified Data Template (SDT)</a>
 <ul class="sectlevel1">
 <li><a href="#_amendment_record">Amendment Record</a></li>
 <li><a href="#_acknowledgements">Acknowledgements</a>
@@ -70,7 +70,7 @@
 </div>
 </div>
 </div>
-<h1 id="_json_data_template_jdt" class="sect0">JSON Data Template (JDT)</h1>
+<h1 id="_simplified_data_template_sdt" class="sect0">Simplified Data Template (SDT)</h1>
 <div class="openblock partintro">
 <div class="content">
 <table class="tableblock frame-all grid-all spread">
@@ -215,7 +215,7 @@
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
 <div class="paragraph">
-<p>This document describes a 'simplified template' (ST) format, along with various JSON concrete data formats, intended to be easier to use than the canonical formats, for typical developers with minimal exposure to openEHR. These formats are designed to enable easier creation of openEHR content (i.e. Compositions etc).</p>
+<p>This document describes a 'simplified template' (ST) format, along with various concrete data formats, intended to be easier to use than the canonical formats, for typical developers with minimal exposure to openEHR. These formats are designed to enable easier creation of openEHR content (i.e. Compositions etc).</p>
 </div>
 </div>
 <div class="sect2">
@@ -259,7 +259,7 @@
 <div class="sect2">
 <h3 id="_requirements"><a class="anchor" href="#_requirements"></a>2.1. Requirements</h3>
 <div class="paragraph">
-<p>The default serialised data representations for openEHR content are canonical XML, based on the <a href="https://specifications.openehr.org/releases/ITS-XML/latest" target="_blank" rel="noopener">openEHR RM XSDs</a>, canonical JSON, described by the <a href="https://specifications.openehr.org/releases/ITS-JSON/latest" target="_blank" rel="noopener">openEHR JSON schemas</a>, and potentially any other canonical serial format based on the underlying Reference Model (e.g. YAML etc). Here, 'canonical' means any fully-expressed instance data in which all RM mandatory fields are present, all attributes are named as per the RM, and all cardinalities respect the RM.</p>
+<p>The default serialised data representations for openEHR content are canonical XML, based on the <a href="https://specifications.openehr.org/releases/ITS/latest" target="_blank" rel="noopener">openEHR RM XSDs</a>, canonical JSON, described by the <a href="https://specifications.openehr.org/releases/ITS/latest" target="_blank" rel="noopener">openEHR JSON schemas</a>, and potentially any other canonical serial format based on the underlying Reference Model (e.g. YAML etc). Here, 'canonical' means any fully-expressed instance data in which all RM mandatory fields are present, all attributes are named as per the RM, and all cardinalities respect the RM.</p>
 </div>
 <div class="paragraph">
 <p>The canonical formats are routinely used by all openEHR implementations implementing the <a href="https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html" target="_blank" rel="noopener">openEHR REST API specification</a>, and in many other ways, e.g. for DB dump/load implementation, ETL and so on. However, creating data instances according to these formats is not always straightforward, particularly for developers with minimal exposure to openEHR, and various alternatives have been used in the past to simplify the job of content creation and committal for application developers.</p>
@@ -298,15 +298,15 @@
 <div class="ulist">
 <ul>
 <li>
-<p><em>near-canonical RM JSON data template (ncJDT)</em>, originally devised for the EtherCIS project, see <a href="https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md" class="bare">https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md</a></p>
+<p><em>near-canonical RM Simplified Data Template (ncSDT)</em>, originally devised for the EtherCIS project, see <a href="https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md" class="bare">https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md</a></p>
 </li>
 <li>
-<p><em>simplified IM JSON data template (sJDT)</em>, based on the 'web template' format originally created by Marand for the Better platform, see <a href="https://www.ehrscape.com/examples.html" class="bare">https://www.ehrscape.com/examples.html</a></p>
+<p><em>simplified IM Simplified Data template (simSDT)</em>, based on the 'web template' format originally created by Marand for the Better platform, see <a href="https://www.ehrscape.com/examples.html" class="bare">https://www.ehrscape.com/examples.html</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The first of these (ncJDT) is an extract from an Operational Template (OPT) that uses AQL-style paths (based on natural language independent codes like <code>at0001</code>), and apart from simplification of the <code>DV_XXX</code> and <code>PARTY_PROXY</code> types, retains the openEHR RM structure. An example is shown below.</p>
+<p>The first of these (ncSDT) is an extract from an Operational Template (OPT) that uses AQL-style paths (based on natural language independent codes like <code>at0001</code>), and apart from simplification of the <code>DV_XXX</code> and <code>PARTY_PROXY</code> types, retains the openEHR RM structure. An example is shown below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -336,7 +336,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>The latter (sJDT) is based on a more radical simplification of the openEHR RM and BASE models, as well as a more programmer-friendly (atural language based) rendering of paths. Under this approach, a lab result data structure could be represented using non-canonical, attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (in English or in any other natural language, including script-based languages), instead of each node appearing under the canonical <code>CLUSTER.<em>items</em></code> attribute and codes like <code>at0001</code>. An example is shown below.</p>
+<p>The latter (simSDT) is based on a more radical simplification of the openEHR RM and BASE models, as well as a more programmer-friendly (atural language based) rendering of paths. Under this approach, a lab result data structure could be represented using non-canonical, attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (in English or in any other natural language, including script-based languages), instead of each node appearing under the canonical <code>CLUSTER.<em>items</em></code> attribute and codes like <code>at0001</code>. An example is shown below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -371,7 +371,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p><strong>A developer just using the sJDT or ncJDT as illustrated above in a specific example-based use case does not necessarily need to understand the detailed steps of conversions described below.</strong> Platforms based on openEHR can have services that generate example instances based on openeEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.</p>
+<p><strong>A developer just using the simSDT or ncSDT as illustrated above in a specific example-based use case does not necessarily need to understand the detailed steps of conversions described below.</strong> Platforms based on openEHR can have services that generate example instances based on openeEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.</p>
 </div>
 <div class="paragraph">
 <p>To make any form of 'simplified format' work, the following requirements must be met:</p>
@@ -421,7 +421,7 @@
 <p>These rules are formalised in the model-to-model Transformation rules shown above. Using the SIM and the rules, a Simplified OPT (sOPT) can be generated from any Operational Template (OPT), and from there, various concrete form JSON Data Templates (JDTs) may be generated, including regular JSON and 'flat form' JSON. Regular JSON is the usual sparse hierarchical structure where hierarchy follows data model. Flat form JSON is legal JSON, extracted from regular JSON by converting it to the logical model of the tuple <code>[path, leaf_data_item:Any]</code>, i.e. a logical 2-column table of path/value. In the generation of the regular JSON, paths can expressed in <code>AQL</code> (standard openEHR) format, or be converted to simplified format according to a small algorithm. The option to do this is shown in the JDT formatter in the diagram above.</p>
 </div>
 <div class="paragraph">
-<p>Instances of both JSON regular and flat JDT formats can be created by developers to represent openEHR data to be committed to a system. These will be converted to canonical RM format (also obeying their original OPTs) by the sJDT &#8594; RM converter on the server side at data commit time, as shown in the following diagram.</p>
+<p>Instances of both JSON regular and flat JDT formats can be created by developers to represent openEHR data to be committed to a system. These will be converted to canonical RM format (also obeying their original OPTs) by the simSDT &#8594; RM converter on the server side at data commit time, as shown in the following diagram.</p>
 </div>
 <div id="simplified_template_conversion" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -534,14 +534,14 @@ under development; currently just notes.
 <h2 id="_instance_conversion"><a class="anchor" href="#_instance_conversion"></a>5. Instance Conversion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section describes how an instance of a given JSON commit template can be converted to its canonical form at execution time, so as to enable committing to the persistence layer.</p>
+<p>This section describes how an instance of a given Simplified Template can be converted to its canonical form at execution time, so as to enable committing to the persistence layer.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-10-01 10:50:59 BST
+Last updated 2019-10-15 12:01:53 -03
 </div>
 </div>
 </body>
