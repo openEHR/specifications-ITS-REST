@@ -72,7 +72,7 @@ Depending on each query definition, various query parameters SHOULD be supported
 in this specification, but in the real request they will have specific names (e.g. `uid`, `systolic_bp`, etc.) 
 according to their names in the query definition.  
 
-Query parameters does not have to be prefixed with `$` sign. Instead, the server will have to (whenever necessary) 
+Provided query parameters SHOULD NOT be prefixed with `$` sign. Instead, the server will (whenever necessary) 
 add the prefix or format queries as valid AQL queries. 
 
 As an example, for the following AQL query `SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid`, 
