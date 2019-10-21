@@ -14,7 +14,7 @@ Prerequisite documents for reading this document include:
 Related documents include:
 - The [openEHR Global Class Index](https://specifications.openehr.org/releases/AA_GLOBAL/latest/index.html)
 - The [XML-Schemas (XSD)](https://github.com/openEHR/specifications-ITS-XML) 
-- The [JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON) and [JSON Data Template](json_data_template.html)
+- The [JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON) and [Simplified Data Template (SDT)](simplified_data_template.html)
 - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html)
 
 
@@ -258,7 +258,7 @@ subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#s
 |  404 | Not found              | The origin service did not find the target resource or is not willing to disclose that one exists 
 |  405 | Method Not Allowed     | The method received in the request-line is known by the origin service but not supported by the target resource 
 |  406 | Not Acceptable         | The target resource does not have a current representation that would be acceptable to the user 
-|  408 | Request Timeout        | Request maximum execution time is reached, therefore the server decided to close the (idle) request connection 
+|  408 | Request Timeout        | Request maximum execution time is reached, therefore the server aborted the request 
 |  409 | Conflict               | Indicates that the request could not be processed because it might generate a duplicate or a conflict
 |  412 | Precondition Failed    | One or more conditions given in the request header fields evaluated to false when tested on the server
 |  415 | Unsupported Media Type | The service is refusing the request because the payload is in a format not supported by this method on the target resource
@@ -353,12 +353,12 @@ particularly for developers with minimal exposure to openEHR, and various altern
 have been used in the past to simplify the job of content creation and committal for application developers.
 
 There is an initiative exploring and documenting these alternative formats, which specifications can be consulted at
-[JSON Data Template](/json_data_template.html) page.
+[Simplified Data Template (SDT)](simplified_data_template.html) page.
 
 In order to use these formats, content negotiation should be done in the same manner as for the canonical JSON format above,
 but instead of `application/json`, clients and servers should use:  
- - `openehr.ncjdt+json` for near-canonical RM JSON data template (ncJDT), originally devised for the EtherCIS project,
- - `openehr.sjdt+json` for simplified IM JSON data template (sJDT), based on the 'web template' format originally created by Marand for the Better platform.
+ - `application/openehr.ncsdt+json` for near-canonical RM Simplified Data Template (ncSDT), [format](https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md) originally devised for the EtherCIS project,
+ - `application/openehr.simsdt+json` for simplified IM Simplified Data Template (simSDT), based on the ['web template' format](https://www.ehrscape.com/examples.html) originally created by Marand for the Better platform.
 
 
 <h3>Datetime format</h3>
