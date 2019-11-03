@@ -1,6 +1,6 @@
 = sOPT Generation
 
-This section describes how a Simlified OPT may be machine-derived from its corresponding canonical OPT definition and the Simplified Reference Model (SIM).
+This section describes how a Simplified OPT may be machine-derived from its corresponding canonical OPT definition and the Simplified Reference Model (SIM).
 
 
 == Visitor algorithm

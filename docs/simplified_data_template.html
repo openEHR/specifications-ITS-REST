@@ -290,7 +290,7 @@
 <p>The model is accordingly rigorous. However, for some developers who only need to instantiate, commit and/or read relatively limited data-sets, the canonical format can be demanding. This is particularly so for situations in which only a few kinds of data are implicated, i.e. a relatively small number of templates, e.g. vitals signs data, lab results etc.</p>
 </div>
 <div class="paragraph">
-<p>The starting point for defining a developer-friendly commit format is therefore to assume that the great majority of applications are typically targetted to one or a few specific data sets, e.g. vital signs, diabetic monitoring, pregnancy plan etc.</p>
+<p>The starting point for defining a developer-friendly commit format is therefore to assume that the great majority of applications are typically targeted to one or a few specific data sets, e.g. vital signs, diabetic monitoring, pregnancy plan etc.</p>
 </div>
 <div class="paragraph">
 <p>Template-specificity provides a route for defining and generating a serial format such that <em>each openEHR template</em> can be used to define one or more reasonably simple commit formats. Two such formats are discussed here:</p>
@@ -336,7 +336,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>The latter (simSDT) is based on a more radical simplification of the openEHR RM and BASE models, as well as a more programmer-friendly (atural language based) rendering of paths. Under this approach, a lab result data structure could be represented using non-canonical, attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (in English or in any other natural language, including script-based languages), instead of each node appearing under the canonical <code>CLUSTER.<em>items</em></code> attribute and codes like <code>at0001</code>. An example is shown below.</p>
+<p>The latter (simSDT) is based on a more radical simplification of the openEHR RM and BASE models, as well as a more programmer-friendly (natural language based) rendering of paths. Under this approach, a lab result data structure could be represented using non-canonical, attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (in English or in any other natural language, including script-based languages), instead of each node appearing under the canonical <code>CLUSTER.<em>items</em></code> attribute and codes like <code>at0001</code>. An example is shown below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -371,7 +371,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p><strong>A developer just using the simSDT or ncSDT as illustrated above in a specific example-based use case does not necessarily need to understand the detailed steps of conversions described below.</strong> Platforms based on openEHR can have services that generate example instances based on openeEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.</p>
+<p><strong>A developer just using the simSDT or ncSDT as illustrated above in a specific example-based use case does not necessarily need to understand the detailed steps of conversions described below.</strong> Platforms based on openEHR can have services that generate example instances based on openEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.</p>
 </div>
 <div class="paragraph">
 <p>To make any form of 'simplified format' work, the following requirements must be met:</p>
@@ -439,7 +439,7 @@
 <h2 id="_sopt_generation"><a class="anchor" href="#_sopt_generation"></a>3. sOPT Generation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section describes how a Simlified OPT may be machine-derived from its corresponding canonical OPT definition and the Simplified Reference Model (SIM).</p>
+<p>This section describes how a Simplified OPT may be machine-derived from its corresponding canonical OPT definition and the Simplified Reference Model (SIM).</p>
 </div>
 <div class="sect2">
 <h3 id="_visitor_algorithm"><a class="anchor" href="#_visitor_algorithm"></a>3.1. Visitor algorithm</h3>

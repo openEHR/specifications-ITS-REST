@@ -11,13 +11,13 @@ The openEHR reference model (RM) and supporting models (BASE component) are desi
 
 The model is accordingly rigorous. However, for some developers who only need to instantiate, commit and/or read relatively limited data-sets, the canonical format can be demanding. This is particularly so for situations in which only a few kinds of data are implicated, i.e. a relatively small number of templates, e.g. vitals signs data, lab results etc.
 
-The starting point for defining a developer-friendly commit format is therefore to assume that the great majority of applications are typically targetted to one or a few specific data sets, e.g. vital signs, diabetic monitoring, pregnancy plan etc. 
+The starting point for defining a developer-friendly commit format is therefore to assume that the great majority of applications are typically targeted to one or a few specific data sets, e.g. vital signs, diabetic monitoring, pregnancy plan etc.
 
 == Historical Formats
 
 Template-specificity provides a route to simplification such that _each openEHR template_ can be used to define one or more reasonably simple commit formats. Three such formats in historical use are:
 
-* _TDS, or Template Data Schema_, an XSD format originally devised by Ocean Informatics;
+* _TDS, or Template Data Schema_, an XSD format originally devised by Ocean Health Systems;
 * _near-canonical RM Simplified Data Template (ncSDT)_, originally devised for the EtherCIS project, see https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md
 * _simplified IM Simplified Data template (simSDT)_, based on the 'web template' format originally created by Marand for the Better platform, see https://www.ehrscape.com/examples.html
 
@@ -96,7 +96,7 @@ The first of the two JSON formats (ncSDT) is an extract from an Operational Temp
 }
 --------
 
-The latter (simSDT) is based on a more radical simplification of the openEHR RM and BASE models, as well as a more programmer-friendly (atural language based) rendering of paths. Under this approach, a lab result data structure could be represented using non-canonical, attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (in English or in any other natural language, including script-based languages), instead of each node appearing under the canonical `CLUSTER._items_` attribute and codes like `at0001`. An example is shown below.
+The latter (simSDT) is based on a more radical simplification of the openEHR RM and BASE models, as well as a more programmer-friendly (natural language based) rendering of paths. Under this approach, a lab result data structure could be represented using non-canonical, attribute or tag names such as 'serum_sodium', 'serum_potassium', etc (in English or in any other natural language, including script-based languages), instead of each node appearing under the canonical `CLUSTER._items_` attribute and codes like `at0001`. An example is shown below.
 
 [source, json]
 --------
@@ -130,7 +130,7 @@ The latter (simSDT) is based on a more radical simplification of the openEHR RM 
 }
 --------
 
-*A developer just using the simSDT or ncSDT as illustrated above in a specific example-based use case does not need to understand the detailed steps of conversions described below.* Platforms based on openEHR can have services that generate example instances based on openeEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.
+*A developer just using the simSDT or ncSDT as illustrated above in a specific example-based use case does not need to understand the detailed steps of conversions described below.* Platforms based on openEHR can have services that generate example instances based on openEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.
 
 To make any form of 'simplified format' work, the following requirements must be met:
 
