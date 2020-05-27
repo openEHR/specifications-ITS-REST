@@ -6,7 +6,7 @@ This document describes a 'simplified template' (ST) format, along with various 
 
 == Status
 
-This specification is in the {spec_status} state. The development version of this document can be found at {json_data_template}[{json_data_template}^].
+This specification is in the {spec_status} state. The development version of this document can be found at {openehr_simplified_data_template}[{openehr_simplified_data_template}^].
 
 Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
 [.tbd]
