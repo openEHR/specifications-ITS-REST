@@ -2,7 +2,7 @@ doctype
 
 include ./mixins.jade
 
-- var apis = [{api:".",name:"Overview",href:"index.html"}, {api:"ehr",name:"Ehr",href:"ehr.html"}, {api:"query",name:"Query",href:"query.html"}, {api:"definition",name:"Definitions",href:"definitions.html"}]
+- var apis = [{api:".",name:"Overview",href:"overview.html"}, {api:"ehr",name:"Ehr",href:"ehr.html"}, {api:"query",name:"Query",href:"query.html"}, {api:"definition",name:"Definitions",href:"definitions.html"}]
 - var metas = {}
 each meta in self.api.metadata || {}
     - metas[meta.name] = meta.value

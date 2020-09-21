@@ -12,9 +12,9 @@ Prerequisite documents for reading this document include:
 - The [openEHR Architecture Overview](https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html)
 
 Related documents include:
-- The [openEHR Global Class Index](https://specifications.openehr.org/releases/AA_GLOBAL/latest/index.html)
-- The [XML-Schemas (XSD)](https://github.com/openEHR/specifications-ITS-XML) 
-- The [JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON) and [Simplified Data Template (SDT)](simplified_data_template.html)
+- The [openEHR Global Class Index](https://specifications.openehr.org/classes)
+- The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
+- The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
 - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html)
 
 
@@ -47,7 +47,7 @@ in this document are to be interpreted as described in [BCP 14](https://tools.ie
 [RFC 8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
 Types defined by openEHR specification are always capitalized (e.g. EHR, COMPOSITION, VERSIONED_OBJECT, etc.) when used in this specification. 
-For a list of all available types or a particular type definition please refer to the [class index](https://specifications.openehr.org/releases/AA_GLOBAL/latest/index.html). 
+For a list of all available types or a particular type definition please refer to the [class index](https://specifications.openehr.org/classes).
 
 Throughout this specification, a set of short terms is being used as described below:
 
@@ -289,7 +289,7 @@ Services MUST support at least one of the openEHR **XML** or **JSON** formats (d
 
 <h3>XML Format</h3>
 
-When resources representation is serialized as XML, the request payload as well as the result MUST be valid against [published XSDs](https://github.com/openEHR/specifications-ITS-XML).
+When resources representation is serialized as XML, the request payload as well as the result MUST be valid against [published XSDs](https://specifications.openehr.org/releases/ITS-XML/latest).
 
 A client MAY use the header `Content-Type: application/xml` in the requests to specify the XML payload format. 
 If the service cannot process the request payload as XML format is not supported, it MUST respond with HTTP status code`415 Unsupported Media Type`.
@@ -302,7 +302,7 @@ unless the response has no body (HTTP status code 204).
 
 <h3>JSON Format</h3>
 
-When resources representation is serialized as JSON, the request payload as well as the result SHOULD be valid against [published JSON-Schemas](https://github.com/openEHR/specifications-ITS-JSON).
+When resources representation is serialized as JSON, the request payload as well as the result SHOULD be valid against [published JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest).
 > Note: The JSON-Schema project is under development. 
 
 Attribute names must be lowercase _snake_case_ names as specified in the equivalent RM type. For example:
