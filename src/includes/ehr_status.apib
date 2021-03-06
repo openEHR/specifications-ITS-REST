@@ -184,34 +184,7 @@ Retrieves revision history of the VERSIONED_EHR_STATUS associated with the EHR i
 
     + Body
 
-            [
-              {
-                "version_id": "OBJECT_VERSION_ID",    /* object_id::creating_system_id::version_tree_id */
-                "audits": [
-                  {
-                    "system_id": "String",
-                    "time_committed": "DV_DATE_TIME",
-                    "change_type": {
-                      "value": "String",              /* value from openehr terminology, change_type http://openehr.org/releases/1.0.2/architecture/terminology.pdf */
-                      "defining_code": {
-                        "terminology_id": {
-                          "value": "openehr"
-                        },
-                        "code_string": "String"
-                      }
-                    },
-                    "description": {
-                      "value": "String"
-                    }
-                  },
-                  {...},
-                  {...}
-                ]
-              },
-              {...},
-              {...}
-            ]
-                  
+<!-- include(../examples/revision_history_01.json) -->
 
 + Response 404
 
