@@ -153,7 +153,7 @@ using the <a href="definitions.html#definitions-stored-query">definition endpoin
 cannot be combined with <a href="https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_top">AQL-top</a></p>
 </li>
 <li>
-<p>other parameter(s) to replace placeholder(s) within the query, generically named <code>query_parameters</code> here (see <a href="#">below</a>.</p>
+<p>other parameter(s) to replace placeholder(s) within the query, here generically named <code>query_parameters</code> (see <a href="#header-query-parameters">below</a>).</p>
 </li>
 </ul>
 <p>Related request headers:</p>
@@ -164,22 +164,25 @@ cannot be combined with <a href="https://specifications.openehr.org/releases/QUE
 <ul>
 <li><code>ETag</code> - A unique identifier of the resultSet</li>
 </ul>
-<p><h3>About the <code>ehr_id</code> parameter</h3></p>
+<h3 id="header-about-the-parameter">About the <code>ehr_id</code> parameter <a class="permalink" href="#header-about-the-parameter" aria-hidden="true">¶</a></h3>
 <p>This parameter SHOULD be supplied by clients when executing single EHR queries and MAY be used by the underlying backend
 to perform routing, optimizations or similar. It MUST NOT be supplied for ‘population queries’ and similar multi-patient queries.</p>
 <p>Depending on the needs, clients MAY supply it as a query parameter <code>ehr_id</code> or alternatively
 as a request header named <code>openEHR-EHR-id</code>.</p>
-<p><h3>About <code>query_parameters</code></h3></p>
+<h3 id="header-query-parameters">Query parameters <a class="permalink" href="#header-query-parameters" aria-hidden="true">¶</a></h3>
 <p>Depending on each query definition, various query parameters SHOULD be supported, generically named <code>query_parameters</code>
 in this specification, but in the real request they will have specific names (e.g. <code>uid</code>, <code>systolic_bp</code>, etc.)
 according to their names in the query definition.</p>
 <p>Provided query parameters SHOULD NOT be prefixed with <code>$</code> sign. Instead, the server will (whenever necessary)
 add the prefix or format queries as valid AQL queries.</p>
-<p>As an example, for the following AQL query <code>SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid</code>,
-named as <code>'myQuery'</code>, the client can supply the <code>uid</code> as a query parameter,
-i.e. <code>GET {baseUrl}/query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::openEHRSys.example.com::1</code>.</p>
-<p>As another example, the request <code>GET {baseUrl}/query/com.vendor::compositions?temperature_from=36&amp;temperature_unit=Cel</code>
-will pass query parameters <code>temperature_from</code> and <code>temperature_unit</code> to the underlying AQL query named <code>com.vendor::compositions</code>.</p>
+<p>As an example, for the following AQL query</p>
+<pre><code><span class="hljs-operator"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">c</span>/<span class="hljs-keyword">name</span>/<span class="hljs-keyword">value</span> <span class="hljs-keyword">FROM</span> COMPOSITION <span class="hljs-keyword">c</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">c</span>/uid/<span class="hljs-keyword">value</span> = $uid
+</span></code></pre>
+<p>named as <code>'myQuery'</code>, the client can supply the <code>uid</code> as a query parameter:</p>
+<pre><code>GET {baseUrl}/query/myQuery?uid=<span class="hljs-number">90910</span>cf0-<span class="hljs-number">66</span>a0-<span class="hljs-number">4382</span>-b1f8-c0f27e81b42d::openEHRSys.example.com::<span class="hljs-number">1</span></code></pre>
+<p>As another example, the request</p>
+<pre><code>GET {baseUrl}/query/com.vendor::compositions?temperature_from=<span class="hljs-number">36</span>&amp;temperature_unit=Cel</code></pre>
+<p>will pass query parameters <code>temperature_from</code> and <code>temperature_unit</code> to the underlying AQL query named <code>com.vendor::compositions</code>.</p>
 <p>See <a href="https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_parameters">AQL-parameters</a> specification for more details.</p>
 </div></div><div class="middle"><div id="requirements-request-structure" class="resource"><h3 class="resource-heading">Request structure <a href="#requirements-request-structure" class="permalink">&para;</a></h3><p>Below is a mostly self-documented AQL query request.</p>
 <pre><code class="language-json">{
