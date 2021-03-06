@@ -136,14 +136,14 @@ This specification is using a few standard and custom HTTP headers that are desc
 
 When it comes to committing content to an openEHR system, for all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.) the services are 
 [performing versioning](https://specifications.openehr.org/releases/RM/latest/common.html#_change_control_package) under the hood.
-Thus, the 'native' way of committing content is to wrap it as VERSION and [use CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contributions).
+The 'native' way of committing is to use a [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contributions) 
+and wrap the content as a [VERSION](https://specifications.openehr.org/releases/RM/latest/common.html#_version_class).
+To keep things simpler and consistent, services MUST also allow `PUT`, `POST` and `DELETE` methods directly on these change-controlled resources.
+However, these operations MUST internally be executed using the 'native' way.
 
-But in order to keep things simpler and consistent, service MUST allow `PUT`, `POST` and `DELETE` methods also directly on these change-controlled resources.
-However, internally, these operations MUST be executed using the 'native' way with CONTRIBUTION.
-
-In order to allow clients to provide committal metadata, services MUST accept `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` request custom headers. 
+In order to allow clients to provide committal metadata, services MUST accept `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` custom request headers. 
 For clients, it is RECOMMENDED to provision these headers based on [authentication and authorization](#design-considerations-authentication-and-authorization) runtime data.
-Below is a complex example of these request headers used in a PUT action to update a COMPOSITION:
+Below is a complex example of these request headers used in a `PUT` action to update a COMPOSITION:
 ```http
 openEHR-VERSION.lifecycle_state: code_string="532"
 openEHR-AUDIT_DETAILS.change_type: code_string="251"
