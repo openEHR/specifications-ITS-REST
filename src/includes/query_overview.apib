@@ -17,7 +17,7 @@ This is achieved by supplying a `ehr_id` query parameter or setting a `openEHR-E
 
 Population queries are queries which are executed on several EHRs in the same request. Examples of use-cases can be: 
 - Ward lists 
-- Explore correlations between patients in an pandemic situation
+- Explore correlations between patients in a pandemic situation
 - Research, e.g. epidemiology, population health
 
 <h3>Stored queries</h3> 
@@ -76,7 +76,7 @@ Provided query parameters SHOULD NOT be prefixed with `$` sign. Instead, the ser
 add the prefix or format queries as valid AQL queries. 
 
 As an example, for the following AQL query `SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid`, 
-named as `'myQuery'`, the client can supply the `uid` as `query_parameter`, 
+named as `'myQuery'`, the client can supply the `uid` as a query parameter, 
 i.e. `GET {baseUrl}/query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::openEHRSys.example.com::1`.
 
 As another example, the request `GET {baseUrl}/query/com.vendor::compositions?temperature_from=36&temperature_unit=Cel`
@@ -101,7 +101,7 @@ Below is a mostly self-documented AQL query request.
 
 <h3>GET vs POST</h3>
 
-Requests based on `GET` method have URI length restriction or some characters might not be allowed and have to be encoded. 
+Requests based on thr `GET` method have URI length restriction, or some characters might not be allowed and have to be encoded. 
 Long queries in the `q` parameter and having a long list of `query_parameter` may add up to reach that limit, 
 thus we recommend clients using the `POST` method instead of `GET`.
 
