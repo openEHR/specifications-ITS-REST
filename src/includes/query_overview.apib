@@ -41,6 +41,7 @@ is used, then the latest query version with supplied prefix will be used.
 Queries can be stored or, once stored, their definition can be retrieved 
 using the [definition endpoint](definitions.html#definitions-stored-query).
 
+
 ## Common Headers and Query Parameters [/--headers]
 
 All query execution requests SHOULD support at least the following parameters:
@@ -85,7 +86,7 @@ will pass query parameters `temperature_from` and `temperature_unit` to the unde
 See [AQL-parameters](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_parameters) specification for more details. 
 
 
-## Request structure 
+## Request structure [/--request_structure]
 
 Below is a mostly self-documented AQL query request.
 
@@ -106,7 +107,7 @@ Long queries in the `q` parameter and having a long list of `query_parameters` m
 thus we recommend clients using the `POST` method instead of `GET`.
 
 
-## Response structure 
+## Response structure [/--response_structure]
 
 <h3>Metadata</h3>
 
