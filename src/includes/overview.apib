@@ -46,9 +46,6 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC 2119](https://tools.ietf.org/html/rfc2119) 
 [RFC 8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
-Types defined by openEHR specification are always capitalized (e.g. EHR, COMPOSITION, VERSIONED_OBJECT, etc.) when used in this specification. 
-For a list of all available types or a particular type definition please refer to the [class index](https://specifications.openehr.org/classes).
-
 Throughout this specification, a set of short terms is being used as described below:
 
 | Term | Description |
@@ -69,15 +66,15 @@ HTTP Methods used in this specification are described by [RFC 7231](https://tool
 HTTP Status codes are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) 
 and in the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 
-See [design considerations section](#design-considerations) section for more details on how some
-HTTP methods and status codes MUST be used by an openEHR REST API implementation to achieve good interaction 
-between services and clients in the spirit of this specification.  
-
-**JSON** format is used in many of the example below, but this does not imply that **XML** might not be supported by the same service endpoint.
-See below how [data representation](#design-considerations-data-representation) MUST be done and negotiated.
-
 
 # Group Design considerations
+
+The following describes in details how HTTP methods, [headers](#design-considerations-http-headers) and [status codes](#design-considerations-http-status-codes) 
+MUST be used by an openEHR REST API implementation in order to achieve good interaction between services and clients in the spirit of this specification.
+
+Further general details about resources, [data representation](#design-considerations-data-representation) and content negotiation are also described in this specification.  
+
+> NOTE: **JSON** format is used in many of the example below, but this does not imply that **XML** might not be supported by the same service endpoint.
 
 ## Authentication and authorization [/--auth]
 Services SHOULD implement and support an HTTP Authentication and Authorization framework 
@@ -280,6 +277,11 @@ Example:
 ```json
 <!-- include(../examples/error_01.json) -->
 ```   
+
+## Resources [/--resources]
+
+Types defined by openEHR specification are always capitalized (e.g. EHR, COMPOSITION, VERSIONED_OBJECT, etc.) when used in this specification.
+For a list of all available types or a particular type definition please refer to the [class index](https://specifications.openehr.org/classes).
 
 
 ## Data representation [/--data]
