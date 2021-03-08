@@ -62,17 +62,52 @@ Throughout this specification, a set of short terms is being used as described b
 |`preceding_version_uid`| The value of a previous VERSION unique identifier, used usually for PUT or DELETE methods (e.g. 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1) |
 |`version_at_time`| Time specifier used to retrieve the VERSION at a given time; the value is in the extended ISO8601 format (e.g. 2015-01-20T19:30:22.765+01:00) |
 
-HTTP Methods used in this specification are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4).
+<h3>HTTP Methods</h3>
+
+HTTP Methods are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4) 
+and by [IANA HTTP Method Registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
+The following subset is being used in this specification: 
+
+| Method  | Description |                                   
+|---------|-------------|
+| GET     | Transfer a current representation of the target resource. |                                       
+| POST    | Perform resource-specific processing on the request payload. |                                
+| PUT     | Replace all current representations of the target resource with the request payload. |       
+| DELETE  | Remove all current representations of the target resource. |
+| OPTIONS | Describe the communication options for the target resource. |                                
+
+<h3>HTTP Status codes</h3>
+
 HTTP Status codes are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) 
-and in the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
+and by the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
+The following subset of the is being used in this specification:
+
+| Code | Reason-Phrase          | Meaning, usecase and details                                                                                    |
+|------|------------------------|--------------------------------------------------------------------------------------------------------|       
+|  200 | OK                     | The request succeeded, payload sent in a 200 response depends on the request method
+|  201 | Created                | The request has been fulfilled and has resulted in one or more new resources being created
+|  204 | No content             | The request has been fulfilled and there is no additional content to send in the response payload body
+|  400 | Bad request            | The service cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, syntactically invalid content)
+|  401 | Unauthorized           | If the service requires authorization, this indicates that the request has not been applied because it lacks valid authentication credentials for the target resource
+|  403 | Forbidden              | The service understood the request but refuses to authorize it
+|  404 | Not found              | The origin service did not find the target resource or is not willing to disclose that one exists
+|  405 | Method Not Allowed     | The method received in the request-line is known by the origin service but not supported by the target resource
+|  406 | Not Acceptable         | The target resource does not have a current representation that would be acceptable to the user
+|  408 | Request Timeout        | Request maximum execution time is reached, therefore the server aborted the request
+|  409 | Conflict               | Indicates that the request could not be processed because it might generate a duplicate or a conflict
+|  412 | Precondition Failed    | One or more conditions given in the request header fields evaluated to false when tested on the server
+|  415 | Unsupported Media Type | The service is refusing the request because the payload is in a format not supported by this method on the target resource
+|  422 | Unprocessable Entity   | The request was well-formed but was unable to be followed due to semantic errors
+|  500 | Internal Server Error  | The service encountered an unexpected condition that prevented it from fulfilling the request
+|  501 | Not Implemented        | The service does not support the functionality required to fulfill the request
 
 
 # Group Design considerations
 
-The following describes in details how HTTP methods, [headers](#design-considerations-http-headers) and [status codes](#design-considerations-http-status-codes) 
+The following describes in details how HTTP [headers](#design-considerations-http-headers) and [status codes](#design-considerations-http-status-codes) 
 MUST be used by an openEHR REST API implementation in order to achieve good interaction between services and clients in the spirit of this specification.
 
-Further general details about resources, [data representation](#design-considerations-data-representation) and content negotiation are also described in this specification.  
+Furthermore, general details about resources, [data representation](#design-considerations-data-representation) and content negotiation are described in this specification.  
 
 > NOTE: **JSON** format is used in many of the example below, but this does not imply that **XML** might not be supported by the same service endpoint.
 
@@ -126,7 +161,9 @@ Another use-case for this method is related to exposing service capabilities for
 
 ## HTTP headers [/--headers]
 
-This specification is using a few standard and custom HTTP headers that are described below.
+Standard HTTP Request and Response headers are described by [RFC 7231](https://tools.ietf.org/html/rfc7231)
+and by the [IANA Message Headers](http://www.iana.org/assignments/message-headers/message-headers.xhtml).
+The following describes the use of a subset of these headers, as well as the custom headers used by an openEHR API.
  
 
 <h3>The `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` headers</h3>
@@ -241,35 +278,14 @@ that have similar unique identifier.
 
 ## HTTP status codes [/--status]
 
-To indicate the status of the request or the executed operation, one of the following 
-subset of the HTTP status codes [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6) MUST be used: 
-
-| Code | Reason-Phrase          | Meaning, usecase and details                                                                                    |
-|------|------------------------|--------------------------------------------------------------------------------------------------------|       
-|  200 | OK                     | The request succeeded, payload sent in a 200 response depends on the request method
-|  201 | Created                | The request has been fulfilled and has resulted in one or more new resources being created
-|  204 | No content             | The request has been fulfilled and there is no additional content to send in the response payload body
-|  400 | Bad request            | The service cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, syntactically invalid content)
-|  401 | Unauthorized           | If the service requires authorization, this indicates that the request has not been applied because it lacks valid authentication credentials for the target resource 
-|  403 | Forbidden              | The service understood the request but refuses to authorize it
-|  404 | Not found              | The origin service did not find the target resource or is not willing to disclose that one exists 
-|  405 | Method Not Allowed     | The method received in the request-line is known by the origin service but not supported by the target resource 
-|  406 | Not Acceptable         | The target resource does not have a current representation that would be acceptable to the user 
-|  408 | Request Timeout        | Request maximum execution time is reached, therefore the server aborted the request 
-|  409 | Conflict               | Indicates that the request could not be processed because it might generate a duplicate or a conflict
-|  412 | Precondition Failed    | One or more conditions given in the request header fields evaluated to false when tested on the server
-|  415 | Unsupported Media Type | The service is refusing the request because the payload is in a format not supported by this method on the target resource
-|  422 | Unprocessable Entity   | The request was well-formed but was unable to be followed due to semantic errors
-|  500 | Internal Server Error  | The service encountered an unexpected condition that prevented it from fulfilling the request
-|  501 | Not Implemented        | The service does not support the functionality required to fulfill the request
-
+To indicate the status of the request, or the executed operation, one of the HTTP status codes MUST be used, as described [above](#header-glossary-and-conventions). 
 Meaning of these codes may be further detailed (nuanced) in this specification by particular responses.
 If required, other status codes MAY be used by implementations as long as their usecase is not conflicting or overlapping with above codes.
 
-Status code 400 indicates a bad request or generic client-side error, used when no other 4xx error code is appropriate. 
+Status code `400` indicates a bad request or generic client-side error, used when no other `4xx` error code is appropriate. 
 The client SHOULD NOT repeat the request without modifications.
 
-In case of errors (HTTP status codes 400-500), the services MAY return more details (if `Prefer: return=representation` request header is present).
+In case of errors (HTTP status codes `400`-`500`), the services MAY return more details (if `Prefer: return=representation` request header is present).
 Example:
 > some codes/messages https://github.com/ppazos/cabolabs-ehrserver/wiki/API-error-codes-and-messages and 
 > http://veratechnas1.synology.me:13606/InstanceValidator/rules.html
