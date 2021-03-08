@@ -215,7 +215,7 @@ In case a service receives this header, and the condition evaluates to `false`, 
 HTTP status code `412 Precondition Failed` and return also latest `version_uid` in the `Location` and `ETag` response headers.
 
 
-<h3>The `Location` header</h3>
+<h3>The `Location` and `openEHR-uri` header</h3>
 
 This response header indicates the resource location (URL). 
 According to [RFC 7231](https://tools.ietf.org/html/rfc7231#section-7.1.2), it is used to refer to a specific resource in relation to the response. 
@@ -228,8 +228,7 @@ Location: {baseUrl}/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182
 See [representation details negotiation](#representation-details-negotiation) section
 for more details on how use this header.
 
-Services MAY generate resource URL as specified by DV_URI/DV_EHR_URI format, and if this feature is supported then the services 
-MUST use `openEHR-uri` response header. Example: 
+If services have support to generate resource URL as specified by the DV_URI/DV_EHR_URI format, then they MAY send also `openEHR-uri` response header. Example: 
 ```http
 openEHR-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B
 ```
