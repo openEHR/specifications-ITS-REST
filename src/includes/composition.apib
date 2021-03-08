@@ -264,6 +264,8 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 
 Retrieves a particular version of the COMPOSITION identified by `version_uid` and associated with the EHR identified by `ehr_id`.
 
+See [Resource identification](overview.html#header-resource-identification) for more details about the identifiers usage and meaning.
+
 + Parameters
 
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
@@ -302,6 +304,13 @@ Retrieves a particular version of the COMPOSITION identified by `version_uid` an
 
 Retrieves a version of the COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 If `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ COMPOSITION version.
+
+Without the `version_at_time` parameter, this resource endpoint is similar to [getting COMPOSITION by version id](#composition-composition-get),
+but the format and semantics of the `version_uid` and the `versioned_object_uid` identifiers are different.
+The former SHOULD be used to retrieve a specific version of the COMPOSITION (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+whereas the later SHOULD be used to retrieve a version from the version container whenever the _version_tree_id_ is unknown or irrelevant for the requester.
+
+See [Resource identification](overview.html#header-resource-identification) for more details about the identifiers usage and meaning.
 
 + Parameters
 
