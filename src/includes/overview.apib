@@ -214,6 +214,11 @@ as in most of the other cases the `preceding_version_uid` path segment is instea
 In case a service receives this header, and the condition evaluates to `false`, it MUST respond with
 HTTP status code `412 Precondition Failed` and return also latest `version_uid` in the `Location` and `ETag` response headers.
 
+<h3>The `openEHR-TEMPLATE_ID` header</h3>
+
+This request header MUST be used whenever committing COMPOSITION (via `PUT` or `POST` methods) 
+using a [simplified data format](#header-alternative-data-formats) which does not support TEMPLATE_ID value 
+under an equivalent `LOCATABLE.archetype_details.template_id` attribute of contained data.   
 
 <h3>The `Location` and `openEHR-uri` header</h3>
 
