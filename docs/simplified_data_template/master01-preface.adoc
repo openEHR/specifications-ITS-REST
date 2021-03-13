@@ -14,7 +14,7 @@ Known omissions or questions are indicated in the text with a 'to be determined'
 
 == Feedback
 
-Feedback may be provided on the {openehr_technical_list}[technical mailing list^].
+Feedback may be provided on the {openehr_technical_list}/its[openEHR ITS forum^].
 
 Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
 
