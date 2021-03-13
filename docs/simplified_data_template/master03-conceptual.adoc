@@ -196,9 +196,9 @@ Another variant for this simplification is the _structSDT_ JSON format, with the
 
 == General Form of an Algorithm
 
-NOTE: A developer just using the simSDT or ncSDT as illustrated above in a specific example-based use case does not need to understand the detailed steps of conversions described below.
-
-Platforms based on openEHR can have services that generate example instances based on openEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.
+NOTE: A developer just using the simplified formats as illustrated above in a specific example-based use case does not need to understand the detailed steps of conversions described below.
+ +
+ Platforms based on openEHR can have services that generate example instances based on openEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.
 
 To make any form of 'simplified format' work, the following requirements must be met:
 
