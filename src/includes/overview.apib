@@ -347,7 +347,9 @@ However, the former will only be valid as long there no more changes or modifica
 
 ## Data representation [/--data]
 
-Services MUST support at least one of the openEHR **XML** or **JSON** formats (described below) for resource representation. 
+Services MUST support at least one of the openEHR **XML** or **JSON** formats for resource representation. 
+Alternative formats MAY be also supported, such as a **Simplified Data Template (SDT)** format.
+These formats and their associated negotiation protocol is described below.
 
 
 ### XML Format
@@ -423,10 +425,15 @@ There is an initiative exploring and documenting these alternative formats, whic
 In order to use these formats, content negotiation SHOULD be done in the same manner as for the canonical XML or JSON format above,
 but instead of `application/xml` or `application/json`, clients and servers MUST use:  
  - `application/openehr.nc.flat+json` for near-canonical RM Simplified Data Template (ncSDT) as JSON, based on the
- [ECIFLAT format](https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md) originally devised for the EtherCIS project,
- - `application/openehr.wt.flat+json` for simplified IM Simplified Data Template (simSDT) as JSON, 
- based on the 'FLAT' version of the ['web template' format](https://www.ehrscape.com/reference.html) originally created by Marand for the Better platform
- (see also [their 'examples'](https://www.ehrscape.com/examples.html)).
+ [ECIFLAT format](https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md), originally devised for the EtherCIS project,
+ - `application/openehr.wt.flat+json` for the simplified IM Simplified Data Template (simSDT) as JSON, 
+ based on the 'FLAT' version of the ['web template' format](https://www.ehrscape.com/reference.html), originally created by Marand for the Better platform. 
+ More information can be found also in their ['examples'](https://www.ehrscape.com/examples.html) page, as well in their [tests on GitHub](https://github.com/better-care).
+   
+    EHRbase also has support for this format, and provides information in their [documentation](https://ehrbase.readthedocs.io/en/latest/02_getting_started/05_load_data/index.html#flat-format). 
+ - `application/openehr.wt.structured+json` for the structured IM Simplified Data Template (structSDT) as JSON, 
+ based on the 'STRUCTURED' version of the ['web template' format](https://www.ehrscape.com/reference.html) originally created by Marand for the Better platform
+ (see also their ['examples'](https://www.ehrscape.com/examples.html)).
  - `application/openehr.tds2+xml` for TDS simplification of RM as XML, 
  based on the 'TDS/TDD' format originally created by [Ocean Health Systems](http://oceanhealthsystems.com/)
  (see [this wiki page](https://openehr.atlassian.net/wiki/spaces/spec/pages/30408770/Template+Data+Schema+TDS+Specification+and+associated+Template+Data+Document+TDD)
@@ -435,6 +442,13 @@ but instead of `application/xml` or `application/json`, clients and servers MUST
 > Note: Other alternative formats may be added in the future, depending on innovative impact, simplicity, popular demand or adoption rate. 
 Current alternative formats might not be supported once they become obsolete or superseded by newer formats.
 
+A client MAY use the header `Content-Type` in the requests to specify the simplified payload format.
+If the service cannot process the request payload as the simplified format is not supported, it MUST respond with HTTP status code`415 Unsupported Media Type`.
+
+The client SHOULD use the `Accept` request header in order to specify the expected simplified response format.
+If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
+Proper header `Content-Type` MUST be present in the response of the service
+unless the response has no content body (HTTP status code `204`).
 
 
 ### Datetime format
