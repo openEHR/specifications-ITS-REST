@@ -96,6 +96,12 @@ Retrieves the ADL 1.4 operational template identified by `template_id` identifie
 
     + template_id: `Example.v1::c7ec861c-c413-39ff-9965-a198ebf44747` (string) - template identifier
 
++ Request XML OPT1.4
+
+    + Headers
+
+            Accept: application/xml
+    
 + Response 200 (application/xml)
 
     `200 OK` is returned when the template is successfully retrieved.
@@ -127,6 +133,37 @@ Retrieves the ADL 1.4 operational template identified by `template_id` identifie
 
     + Body
 
++ Request Web Template
+
+    + Headers
+
+            Accept: application/openehr.wt+json
+
++ Response 200 (application/openehr.wt+json)
+
+    `200 OK` is returned when the template is successfully retrieved as Web Template format.
+
+    + Body
+
+<!-- include(../examples/web_template_01.json) -->
+
++ Response 400
+    
+    `400 Bad Request` is returned when the request has invalid `template_id` (i.e. an incorrectly formatted `template_id`).
+
+    + Body    
+
++ Response 404
+
+    `404 Not Found` is returned when a template with the specified `template_id` does not exist.
+
+    + Body
+
++ Response 406
+    
+    `406 Not Acceptable` is returned when the service cannot produce a response matching `Accept` request header, i.e. the Web Template format is not supported.
+
+    + Body
 
 
 ## ADL 2 TEMPLATE [/definition/template/adl2]

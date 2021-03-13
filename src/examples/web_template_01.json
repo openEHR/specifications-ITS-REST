@@ -1,0 +1,774 @@
+            {
+                "templateId": "Demo Vitals",
+                "version": "1.1",
+                "defaultLanguage": "en",
+                "languages": [
+                    "en",
+                    "sl"
+                ],
+                "tree": {
+                    "id": "vitals",
+                    "name": "Vitals",
+                    "localizedName": "Vitals",
+                    "rmType": "COMPOSITION",
+                    "nodeId": "openEHR-EHR-COMPOSITION.encounter.v1",
+                    "min": 1,
+                    "max": 1,
+                    "localizedNames": {
+                        "sl": "Encounter",
+                        "en": "Encounter"
+                    },
+                    "aqlPath": "",
+                    "children": [
+                        {
+                            "id": "vitals",
+                            "name": "Vitals",
+                            "localizedName": "Vitals",
+                            "rmType": "SECTION",
+                            "nodeId": "openEHR-EHR-SECTION.ispek_dialog.v1",
+                            "min": 0,
+                            "max": 1,
+                            "localizedNames": {
+                                "sl": "Dialog",
+                                "en": "Dialog"
+                            },
+                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']",
+                            "children": [
+                                {
+                                    "id": "haemoglobin_a1c",
+                                    "name": "Haemoglobin A1c",
+                                    "localizedName": "Haemoglobin A1c",
+                                    "rmType": "OBSERVATION",
+                                    "nodeId": "openEHR-EHR-OBSERVATION.lab_test-hba1c.v1",
+                                    "min": 0,
+                                    "max": -1,
+                                    "localizedNames": {
+                                        "sl": "Hemoglobin A1c",
+                                        "en": "Haemoglobin A1c"
+                                    },
+                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]",
+                                    "children": [
+                                        {
+                                            "id": "requestor_order_identifier",
+                                            "name": "Requestor order identifier",
+                                            "localizedName": "Requestor order identifier",
+                                            "rmType": "DV_TEXT",
+                                            "nodeId": "at0062",
+                                            "min": 0,
+                                            "max": 1,
+                                            "dependsOn": [
+                                                "any_event"
+                                            ],
+                                            "localizedNames": {
+                                                "sl": "ID naročnika",
+                                                "en": "Requestor order identifier"
+                                            },
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/protocol[at0004]/items[at0062]/value",
+                                            "input": {
+                                                "type": "TEXT"
+                                            }
+                                        },
+                                        {
+                                            "id": "receiver_order_identifier",
+                                            "name": "Receiver order Identifier",
+                                            "localizedName": "Receiver order Identifier",
+                                            "rmType": "DV_TEXT",
+                                            "nodeId": "at0063",
+                                            "min": 0,
+                                            "max": 1,
+                                            "dependsOn": [
+                                                "any_event"
+                                            ],
+                                            "localizedNames": {
+                                                "sl": "ID prejemnika",
+                                                "en": "Receiver order Identifier"
+                                            },
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/protocol[at0004]/items[at0063]/value",
+                                            "input": {
+                                                "type": "TEXT"
+                                            }
+                                        },
+                                        {
+                                            "id": "laboratory_test_result_identifier",
+                                            "name": "Laboratory test result identifier",
+                                            "localizedName": "Laboratory test result identifier",
+                                            "rmType": "DV_TEXT",
+                                            "nodeId": "at0068",
+                                            "min": 0,
+                                            "max": 1,
+                                            "dependsOn": [
+                                                "any_event"
+                                            ],
+                                            "localizedNames": {
+                                                "sl": "ID laboratorijskega testa",
+                                                "en": "Laboratory test result identifier"
+                                            },
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/protocol[at0004]/items[at0068]/value",
+                                            "input": {
+                                                "type": "TEXT"
+                                            }
+                                        },
+                                        {
+                                            "id": "datetime_result_issued",
+                                            "name": "Datetime result issued",
+                                            "localizedName": "Datetime result issued",
+                                            "rmType": "DV_DATE_TIME",
+                                            "nodeId": "at0075",
+                                            "min": 0,
+                                            "max": 1,
+                                            "dependsOn": [
+                                                "any_event"
+                                            ],
+                                            "localizedNames": {
+                                                "sl": "Datum in čas dobljenih rezultatov",
+                                                "en": "Datetime result issued"
+                                            },
+                                            "annotations": {
+                                                "comment": "The date and time related to the results status is\n                                useful for version control and cumulative results for the report.\n                            "
+                                            },
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/protocol[at0004]/items[at0075]/value",
+                                            "input": {
+                                                "type": "DATETIME"
+                                            }
+                                        },
+                                        {
+                                            "id": "any_event",
+                                            "name": "Any event",
+                                            "localizedName": "Any event",
+                                            "rmType": "EVENT",
+                                            "nodeId": "at0002",
+                                            "min": 0,
+                                            "max": -1,
+                                            "localizedNames": {
+                                                "sl": "*Any event(en)",
+                                                "en": "Any event"
+                                            },
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/data[at0001]/events[at0002]",
+                                            "children": [
+                                                {
+                                                    "id": "test_name",
+                                                    "name": "Test name",
+                                                    "localizedName": "Test name",
+                                                    "rmType": "DV_TEXT",
+                                                    "nodeId": "at0005",
+                                                    "min": 0,
+                                                    "max": 1,
+                                                    "localizedNames": {
+                                                        "sl": "Naziv testa",
+                                                        "en": "Test name"
+                                                    },
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value",
+                                                    "input": {
+                                                        "type": "TEXT"
+                                                    }
+                                                },
+                                                {
+                                                    "id": "diagnostic_service",
+                                                    "name": "Diagnostic service",
+                                                    "localizedName": "Diagnostic service",
+                                                    "rmType": "DV_TEXT",
+                                                    "nodeId": "at0077",
+                                                    "min": 0,
+                                                    "max": 1,
+                                                    "localizedNames": {
+                                                        "sl": "Naziv diagnostičnega laboratorija",
+                                                        "en": "Diagnostic service"
+                                                    },
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0077]/value",
+                                                    "input": {
+                                                        "type": "TEXT"
+                                                    }
+                                                },
+                                                {
+                                                    "id": "test_status",
+                                                    "name": "Test status",
+                                                    "localizedName": "Test status",
+                                                    "rmType": "DV_CODED_TEXT",
+                                                    "nodeId": "at0073",
+                                                    "min": 0,
+                                                    "max": 1,
+                                                    "localizedNames": {
+                                                        "sl": "Status testa",
+                                                        "en": "Test status"
+                                                    },
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0073]/value/defining_code",
+                                                    "input": {
+                                                        "type": "CODED_TEXT",
+                                                        "list": [
+                                                            {
+                                                                "value": "at0037",
+                                                                "label": "Interim",
+                                                                "localizedLabels": {
+                                                                    "sl": "Začasen",
+                                                                    "en": "Interim"
+                                                                }
+                                                            },
+                                                            {
+                                                                "value": "at0038",
+                                                                "label": "Final",
+                                                                "localizedLabels": {
+                                                                    "sl": "Končni",
+                                                                    "en": "Final"
+                                                                }
+                                                            },
+                                                            {
+                                                                "value": "at0039",
+                                                                "label": "Supplementary",
+                                                                "localizedLabels": {
+                                                                    "sl": "Dodaten",
+                                                                    "en": "Supplementary"
+                                                                }
+                                                            },
+                                                            {
+                                                                "value": "at0040",
+                                                                "label": "Corrected (amended)",
+                                                                "localizedLabels": {
+                                                                    "sl": "Popravek",
+                                                                    "en": "Corrected (amended)"
+                                                                }
+                                                            },
+                                                            {
+                                                                "value": "at0074",
+                                                                "label": "Aborted",
+                                                                "localizedLabels": {
+                                                                    "sl": "Ni razvit",
+                                                                    "en": "Aborted"
+                                                                }
+                                                            },
+                                                            {
+                                                                "value": "at0079",
+                                                                "label": "Never performed",
+                                                                "localizedLabels": {
+                                                                    "sl": "Nikoli izveden",
+                                                                    "en": "Never performed"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "id": "hba1c",
+                                                    "name": "HbA1c",
+                                                    "localizedName": "HbA1c",
+                                                    "rmType": "DV_PROPORTION",
+                                                    "nodeId": "at0078.1",
+                                                    "min": 0,
+                                                    "max": 1,
+                                                    "localizedNames": {
+                                                        "sl": "HbA1c",
+                                                        "en": "HbA1c"
+                                                    },
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0078.1]/value",
+                                                    "input": {
+                                                        "type": "PROPORTION",
+                                                        "list": [
+                                                            {
+                                                                "value": "%",
+                                                                "label": "%",
+                                                                "validation": {
+                                                                    "range": {
+                                                                        "minOp": ">=",
+                                                                        "min": 0,
+                                                                        "maxOp": "<=",
+                                                                        "max": 100
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "id": "overall_interpretation",
+                                                    "name": "Overall interpretation",
+                                                    "localizedName": "Overall interpretation",
+                                                    "rmType": "DV_TEXT",
+                                                    "nodeId": "at0057",
+                                                    "min": 0,
+                                                    "max": 1,
+                                                    "localizedNames": {
+                                                        "sl": "Dodatne opombe",
+                                                        "en": "Overall interpretation"
+                                                    },
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0057]/value",
+                                                    "input": {
+                                                        "type": "TEXT"
+                                                    }
+                                                },
+                                                {
+                                                    "id": "time",
+                                                    "name": "Time",
+                                                    "rmType": "DV_DATE_TIME",
+                                                    "min": 1,
+                                                    "max": 1,
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/data[at0001]/events[at0002]/time",
+                                                    "input": {
+                                                        "type": "DATETIME"
+                                                    },
+                                                    "inContext": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "subject",
+                                            "name": "Subject",
+                                            "rmType": "PARTY_PROXY",
+                                            "min": 1,
+                                            "max": 1,
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/subject",
+                                            "inContext": true
+                                        },
+                                        {
+                                            "id": "encoding",
+                                            "name": "Encoding",
+                                            "rmType": "CODE_PHRASE",
+                                            "min": 1,
+                                            "max": 1,
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/encoding",
+                                            "input": {
+                                                "type": "CODED_TEXT"
+                                            },
+                                            "inContext": true
+                                        },
+                                        {
+                                            "id": "language",
+                                            "name": "Language",
+                                            "rmType": "CODE_PHRASE",
+                                            "min": 1,
+                                            "max": 1,
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.lab_test-hba1c.v1]/language",
+                                            "input": {
+                                                "type": "CODED_TEXT"
+                                            },
+                                            "inContext": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "body_temperature",
+                                    "name": "Body temperature",
+                                    "localizedName": "Body temperature",
+                                    "rmType": "OBSERVATION",
+                                    "nodeId": "openEHR-EHR-OBSERVATION.body_temperature-zn.v1",
+                                    "min": 0,
+                                    "max": -1,
+                                    "localizedNames": {
+                                        "sl": "Telesna temperatura",
+                                        "en": "Body temperature"
+                                    },
+                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]",
+                                    "children": [
+                                        {
+                                            "id": "site_of_measurement",
+                                            "name": "Site of measurement",
+                                            "localizedName": "Site of measurement",
+                                            "rmType": "DV_CODED_TEXT",
+                                            "nodeId": "at0021.1",
+                                            "min": 0,
+                                            "max": 1,
+                                            "dependsOn": [
+                                                "any_event"
+                                            ],
+                                            "localizedNames": {
+                                                "sl": "Lokacija",
+                                                "en": "Site of measurement"
+                                            },
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/protocol[at0020]/items[at0021.1]/value/defining_code",
+                                            "input": {
+                                                "type": "CODED_TEXT",
+                                                "list": [
+                                                    {
+                                                        "value": "at0.60",
+                                                        "label": "Buccal",
+                                                        "localizedLabels": {
+                                                            "sl": "Notranja stran ličnice",
+                                                            "en": "Buccal"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0.61",
+                                                        "label": "Sublingual",
+                                                        "localizedLabels": {
+                                                            "sl": "Pod jezikom",
+                                                            "en": "Sublingual"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0022",
+                                                        "label": "Mouth",
+                                                        "localizedLabels": {
+                                                            "sl": "Usta",
+                                                            "en": "Mouth"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0023",
+                                                        "label": "Ear canal",
+                                                        "localizedLabels": {
+                                                            "sl": "V ušesu",
+                                                            "en": "Ear canal"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0024",
+                                                        "label": "Axilla",
+                                                        "localizedLabels": {
+                                                            "sl": "Pod pazduho",
+                                                            "en": "Axilla"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0025",
+                                                        "label": "Rectum",
+                                                        "localizedLabels": {
+                                                            "sl": "Rektalno",
+                                                            "en": "Rectum"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0026",
+                                                        "label": "Nasopharynx",
+                                                        "localizedLabels": {
+                                                            "sl": "Nazofarinks",
+                                                            "en": "Nasopharynx"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0027",
+                                                        "label": "Urinary bladder",
+                                                        "localizedLabels": {
+                                                            "sl": "Sečni mehur",
+                                                            "en": "Urinary bladder"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0028",
+                                                        "label": "Intravascular",
+                                                        "localizedLabels": {
+                                                            "sl": "Intravaskularno",
+                                                            "en": "Intravascular"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0043",
+                                                        "label": "Skin",
+                                                        "localizedLabels": {
+                                                            "sl": "Na koži",
+                                                            "en": "Skin"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0051",
+                                                        "label": "Vagina",
+                                                        "localizedLabels": {
+                                                            "sl": "Vaginalno",
+                                                            "en": "Vagina"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0054",
+                                                        "label": "Oesophagus",
+                                                        "localizedLabels": {
+                                                            "sl": "V požiralniku",
+                                                            "en": "Oesophagus"
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "at0055",
+                                                        "label": "Inguinal skin crease",
+                                                        "localizedLabels": {
+                                                            "sl": "V ustih",
+                                                            "en": "Inguinal skin crease"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": "other_site_of_measurement",
+                                            "name": "Other site of measurement",
+                                            "localizedName": "Other site of measurement",
+                                            "rmType": "DV_TEXT",
+                                            "nodeId": "at0.62",
+                                            "min": 0,
+                                            "max": 1,
+                                            "dependsOn": [
+                                                "any_event"
+                                            ],
+                                            "localizedNames": {
+                                                "sl": "Drugo",
+                                                "en": "Other site of measurement"
+                                            },
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/protocol[at0020]/items[at0.62]/value",
+                                            "input": {
+                                                "type": "TEXT"
+                                            }
+                                        },
+                                        {
+                                            "id": "any_event",
+                                            "name": "Any event",
+                                            "localizedName": "Any event",
+                                            "rmType": "EVENT",
+                                            "nodeId": "at0003",
+                                            "min": 0,
+                                            "max": -1,
+                                            "localizedNames": {
+                                                "sl": "*Any event(en)",
+                                                "en": "Any event"
+                                            },
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/data[at0002]/events[at0003]",
+                                            "children": [
+                                                {
+                                                    "id": "body_exposure",
+                                                    "name": "Body exposure",
+                                                    "localizedName": "Body exposure",
+                                                    "rmType": "DV_CODED_TEXT",
+                                                    "nodeId": "at0030",
+                                                    "min": 0,
+                                                    "max": 1,
+                                                    "dependsOn": [
+                                                        "symptoms",
+                                                        "temperature"
+                                                    ],
+                                                    "localizedNames": {
+                                                        "sl": "Obleka",
+                                                        "en": "Body exposure"
+                                                    },
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/data[at0002]/events[at0003]/state[at0029]/items[at0030]/value/defining_code",
+                                                    "input": {
+                                                        "type": "CODED_TEXT",
+                                                        "list": [
+                                                            {
+                                                                "value": "at0031",
+                                                                "label": "Naked",
+                                                                "localizedLabels": {
+                                                                    "sl": "Nag",
+                                                                    "en": "Naked"
+                                                                }
+                                                            },
+                                                            {
+                                                                "value": "at0032",
+                                                                "label": "Reduced clothing/bedding",
+                                                                "localizedLabels": {
+                                                                    "sl": "Premalo oblečen (zavit)",
+                                                                    "en": "Reduced clothing/bedding"
+                                                                }
+                                                            },
+                                                            {
+                                                                "value": "at0033",
+                                                                "label": "Appropriate clothing/bedding",
+                                                                "localizedLabels": {
+                                                                    "sl": "Primerno oblečen (zavit)",
+                                                                    "en": "Appropriate clothing/bedding"
+                                                                }
+                                                            },
+                                                            {
+                                                                "value": "at0034",
+                                                                "label": "Increased clothing/bedding",
+                                                                "localizedLabels": {
+                                                                    "sl": "Preveč oblečen (zavit)",
+                                                                    "en": "Increased clothing/bedding"
+                                                                }
+                                                            }
+                                                        ],
+                                                        "defaultValue": {
+                                                            "value": "at0033",
+                                                            "label": "Appropriate clothing/bedding",
+                                                            "localizedLabels": {
+                                                                "sl": "Primerno oblečen (zavit)",
+                                                                "en": "Appropriate clothing/bedding"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "id": "description_of_thermal_stress",
+                                                    "name": "Description of thermal stress",
+                                                    "localizedName": "Description of thermal stress",
+                                                    "rmType": "DV_TEXT",
+                                                    "nodeId": "at0041",
+                                                    "min": 0,
+                                                    "max": 1,
+                                                    "dependsOn": [
+                                                        "symptoms",
+                                                        "temperature"
+                                                    ],
+                                                    "localizedNames": {
+                                                        "sl": "Opis",
+                                                        "en": "Description of thermal stress"
+                                                    },
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/data[at0002]/events[at0003]/state[at0029]/items[at0041]/value",
+                                                    "input": {
+                                                        "type": "TEXT"
+                                                    }
+                                                },
+                                                {
+                                                    "id": "temperature",
+                                                    "name": "Temperature",
+                                                    "localizedName": "Temperature",
+                                                    "rmType": "DV_QUANTITY",
+                                                    "nodeId": "at0004",
+                                                    "min": 0,
+                                                    "max": 1,
+                                                    "localizedNames": {
+                                                        "sl": "Telesna temperatura",
+                                                        "en": "Temperature"
+                                                    },
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value",
+                                                    "input": {
+                                                        "type": "QUANTITY",
+                                                        "list": [
+                                                            {
+                                                                "value": "°C",
+                                                                "label": "°C",
+                                                                "validation": {
+                                                                    "precision": {
+                                                                        "min": 1,
+                                                                        "max": 1
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "value": "°F",
+                                                                "label": "°F",
+                                                                "validation": {
+                                                                    "precision": {
+                                                                        "min": 1,
+                                                                        "max": 1
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "id": "symptoms",
+                                                    "name": "Symptoms",
+                                                    "localizedName": "Symptoms",
+                                                    "rmType": "DV_CODED_TEXT",
+                                                    "nodeId": "at0.63",
+                                                    "min": 0,
+                                                    "max": 2,
+                                                    "localizedNames": {
+                                                        "sl": "Ugotovitve",
+                                                        "en": "Symptoms"
+                                                    },
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/data[at0002]/events[at0003]/data[at0001]/items[at0.63]/value/defining_code",
+                                                    "input": {
+                                                        "type": "CODED_TEXT",
+                                                        "list": [
+                                                            {
+                                                                "value": "at0.64",
+                                                                "label": "Chills / rigor / shivering",
+                                                                "localizedLabels": {
+                                                                    "sl": "Mrazenje/mrzlica",
+                                                                    "en": "Chills / rigor / shivering"
+                                                                }
+                                                            },
+                                                            {
+                                                                "value": "at0.65",
+                                                                "label": "Goose- bumps",
+                                                                "localizedLabels": {
+                                                                    "sl": "Kurja polt",
+                                                                    "en": "Goose- bumps"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "id": "time",
+                                                    "name": "Time",
+                                                    "rmType": "DV_DATE_TIME",
+                                                    "min": 1,
+                                                    "max": 1,
+                                                    "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/data[at0002]/events[at0003]/time",
+                                                    "input": {
+                                                        "type": "DATETIME"
+                                                    },
+                                                    "inContext": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "subject",
+                                            "name": "Subject",
+                                            "rmType": "PARTY_PROXY",
+                                            "min": 1,
+                                            "max": 1,
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/subject",
+                                            "inContext": true
+                                        },
+                                        {
+                                            "id": "encoding",
+                                            "name": "Encoding",
+                                            "rmType": "CODE_PHRASE",
+                                            "min": 1,
+                                            "max": 1,
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/encoding",
+                                            "input": {
+                                                "type": "CODED_TEXT"
+                                            },
+                                            "inContext": true
+                                        },
+                                        {
+                                            "id": "language",
+                                            "name": "Language",
+                                            "rmType": "CODE_PHRASE",
+                                            "min": 1,
+                                            "max": 1,
+                                            "aqlPath": "/content[openEHR-EHR-SECTION.ispek_dialog.v1,'Vitals']/items[openEHR-EHR-OBSERVATION.body_temperature-zn.v1]/language",
+                                            "input": {
+                                                "type": "CODED_TEXT"
+                                            },
+                                            "inContext": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "context",
+                            "rmType": "EVENT_CONTEXT",
+                            "nodeId": "",
+                            "min": 1,
+                            "max": 1,
+                            "aqlPath": "/context",
+                            "children": [
+                                {
+                                    "id": "setting",
+                                    "name": "Setting",
+                                    "rmType": "DV_CODED_TEXT",
+                                    "min": 1,
+                                    "max": 1,
+                                    "aqlPath": "/context/setting",
+                                    "input": {
+                                        "type": "CODED_TEXT"
+                                    },
+                                    "inContext": true
+                                },
+                                {
+                                    "id": "start_time",
+                                    "name": "Start_time",
+                                    "rmType": "DV_DATE_TIME",
+                                    "min": 1,
+                                    "max": 1,
+                                    "aqlPath": "/context/start_time",
+                                    "input": {
+                                        "type": "DATETIME"
+                                    },
+                                    "inContext": true
+                                }
+                            ]
+                        },
+                        {
+                            "id": "composer",
+                            "name": "Composer",
+                            "rmType": "PARTY_PROXY",
+                            "min": 1,
+                            "max": 1,
+                            "aqlPath": "/composer",
+                            "inContext": true
+                        }
+                    ]
+                }
+            }
