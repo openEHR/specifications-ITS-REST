@@ -350,7 +350,7 @@ However, the former will only be valid as long there no more changes or modifica
 Services MUST support at least one of the openEHR **XML** or **JSON** formats (described below) for resource representation. 
 
 
-<h3>XML Format</h3>
+### XML Format
 
 When resources representation is serialized as XML, the request payload as well as the result MUST be valid against [published XSDs](https://specifications.openehr.org/releases/ITS-XML/latest).
 
@@ -360,10 +360,10 @@ If the service cannot process the request payload as XML format is not supported
 The client SHOULD use the `Accept: application/xml` request header in order to specify the expected XML response format. 
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
 Proper header `Content-Type: application/xml` MUST be present in the response of the service
-unless the response has no body (HTTP status code 204). 
+unless the response has no content body (HTTP status code `204`). 
 
 
-<h3>JSON Format</h3>
+### JSON Format
 
 When resources representation is serialized as JSON, the request payload as well as the result SHOULD be valid against [published JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest).
 > Note: The JSON-Schema project is under development. 
@@ -384,8 +384,9 @@ Attribute names must be lowercase _snake_case_ names as specified in the equival
 ```
 
 Metadata attributes (those that are not also RM attributes) will always be prefixed by a `'_'`.
+
 One example is the `_type` attribute, which should be used to specify the RM type whenever polymorphism 
-is involved or the underlying definition in RM type is abstract
+is involved, or when the underlying definition in RM type is abstract
 (dynamic type is different from the static type).
 This follows same rule as for XML typing.
 The value of this attribute MUST be the uppercase class name from the RM specification. For example:
@@ -406,10 +407,10 @@ If the service cannot process the request payload as JSON format is not supporte
 The client SHOULD use the `Accept: application/json` request header in order to specify the expected JSON response format. 
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
 Proper header `Content-Type: application/json` MUST be present in the response of the service
-unless the response has no body (HTTP status code 204). 
+unless the response has no content body (HTTP status code `204`). 
 
 
-<h3>Alternative data formats</h3>
+### Alternative data formats
 
 Creating data instances according to canonical XML or JSON format is not always straightforward, 
 particularly for developers with minimal exposure to openEHR, and various alternatives 
@@ -431,11 +432,12 @@ but instead of `application/xml` or `application/json`, clients and servers MUST
  (see [this wiki page](https://openehr.atlassian.net/wiki/spaces/spec/pages/30408770/Template+Data+Schema+TDS+Specification+and+associated+Template+Data+Document+TDD)
  and the [TDD2canonical](https://github.com/openEHR/openEHR-TDD2canonical) project).
 
-Other alternative formats may be added in the future, depending on innovative impact, simplicity, popular demand or adoption rate. 
+> Note: Other alternative formats may be added in the future, depending on innovative impact, simplicity, popular demand or adoption rate. 
 Current alternative formats might not be supported once they become obsolete or superseded by newer formats.
 
 
-<h3>Datetime format</h3>
+
+### Datetime format
 
 Query parameters and path segments that are date, datetime, or time, MUST always use the extended ISO8601 format, e.g. 2016-06-23T13:42:16.117+02:00.
 
