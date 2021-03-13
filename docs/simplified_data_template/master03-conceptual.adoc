@@ -130,15 +130,18 @@ The latter (simSDT) is based on a more radical simplification of the openEHR RM 
 }
 --------
 
-*A developer just using the simSDT or ncSDT as illustrated above in a specific example-based use case does not need to understand the detailed steps of conversions described below.* Platforms based on openEHR can have services that generate example instances based on openEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.
+
+== General Form of an Algorithm
+
+NOTE: A developer just using the simSDT or ncSDT as illustrated above in a specific example-based use case does not need to understand the detailed steps of conversions described below.
+
+Platforms based on openEHR can have services that generate example instances based on openEHR templates to make work easier for such developers. The detailed descriptions below are primarily intended for developers creating and maintaining underlying openEHR platforms or dealing with complex use cases.
 
 To make any form of 'simplified format' work, the following requirements must be met:
 
 * the format makes it possible to _abstract away rigorous structural complexity_ of the canonical model where possible, mainly by making the data less self-standing, and relying more on a schema;
 * the format definition for any given commit data can be completely and routinely _machine generated_ from its canonical definition, i.e. from an openEHR OPT, or other upstream canonical definition;
 * data instances of the simplified format definition can be _routinely machine converted to canonical format_ at execution time.
-
-== General Form of an Algorithm
 
 A generic high-level algorithm for creating both kinds of data template definition from an Operational Template (OPT) is illustrated below.
 
