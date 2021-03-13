@@ -2,4 +2,4 @@
 :copyright_year: 2019
 :spec_status: DEVELOPMENT
 :keywords: JSON, template, REST, commit
-:description: Simplified Data Template (SDT)
+:description: openEHR Simplified Data Template (SDT)

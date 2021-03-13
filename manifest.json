@@ -1,7 +1,7 @@
 {
     "id": "ITS-REST",
     "title": "REST API specifications",
-    "description": "openEHR REST API specifications COMPONENT (ITS-REST)",
+    "description": "openEHR REST API specifications Component (ITS-REST)",
     "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services",
     "specifications": [
         {
@@ -47,6 +47,17 @@
             "copyright_year": "2018",
             "spec_status": "TRIAL",
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, definitions, resources, templates"
+        },
+        {
+            "id": "simplified_data_template",
+            "title": "Simplified Data Template (SDT)",
+            "title_short": "SDT",
+            "description": "openEHR Simplified Data Template (SDT)",
+            "summary": "Simplified Data Template specification - a simplified data representation for committing data to the openEHR EHR.",
+            "micro_summary": "Simplified Data Template",
+            "copyright_year": "2019",
+            "spec_status": "DEVELOPMENT",
+            "keywords": "json, template, rest, commit, data"
         }
     ],
     "expressions": [
