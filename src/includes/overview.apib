@@ -458,14 +458,18 @@ unless the response has no content body (HTTP status code `204`).
 
 ### Datetime format
 
-Query parameters and path segments that are date, datetime, or time, MUST always use the extended ISO8601 format, e.g. 2016-06-23T13:42:16.117+02:00.
+The format of the date, time and datetime types should comply with the [ISO 8601 Date and Time](https://en.wikipedia.org/wiki/ISO_8601) format specification.
+The ISO 8601 semantics assumed by openEHR is defined in the classes of the [base.foundation_types.time package](https://specifications.openehr.org/releases/BASE/latest/foundation_types.html#_time_types). 
+It is strongly recommended using the _extended_ format for dates, times and datetimes.
+This greatly aids human readability, and reduces the need for special date/time parsing and formatting.
 
-Timezone SHOULD be only supplied when needed and that when not supplied, the local timezone is assumed. 
+HTTP query parameters and path segments that are dates, datetimes, or times, MUST always use the _extended_ ISO 8601 format.
+The general form of a datetime is `YYYY-MM-DDThh:mm:ss.sss[Z|±hh:mm]`, e.g. `2016-06-23T13:42:16.117+02:00`.  
+Timezone SHOULD be only supplied when needed, otherwise the local timezone is assumed. 
  
-Any date, datetime or time value provided by a create or update action inside the COMPOSITION content 
-will be preserved as it was sent by the client (i.e. if COMPOSITION was saved as narrow format, it will always return the way it was).
-However, the strongly RECOMMENDED format is to use the ISO8601 extended format.
-This is to enable time information in EHRs shared across timezones to be computed properly.
+Any date, datetime or time value provided as part of the HTTP message body, when creating or updating a resource (e.g. a DV_DATE_TIME value inside the COMPOSITION content), 
+will be preserved as it was sent by the client, and passed to the underlying backend engine as is. 
+Retrieval or querying those resources SHOULD return date, datetime, or time values in the (original) format provided by underlying backend engine, avoiding any format change. 
 
 
 ### Representation details negotiation [/--representation-details-negotiation]
