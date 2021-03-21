@@ -30,7 +30,7 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
     + Body
 
@@ -104,7 +104,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
     + Headers
 
             Prefer: return=representation
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
 + Response 200 (application/json)
 
@@ -114,7 +114,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -138,7 +138,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
     + Body
 
@@ -173,7 +173,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
 + Response 404
 
@@ -197,7 +197,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
 + Response 412
 
@@ -207,7 +207,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -230,7 +230,7 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -255,7 +255,7 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -326,7 +326,7 @@ See [Resource identification](overview.html#header-resource-identification) for 
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -474,7 +474,7 @@ If `version_at_time` is supplied, retrieves the VERSION extant _at specified tim
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515/version/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
     + Body
 

@@ -206,7 +206,7 @@ Below a list of `code_string` values and their meaning (taken from [openEHR term
 
 The use case of this is described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
 ```http
-If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 ```
 This HTTP request header SHOULD be used by the clients to prevent accidental overwrites when multiple user
 agents might be acting in parallel on the same resource. This is only required by a small set of resources of this specification, 
@@ -266,7 +266,7 @@ The `ETag` response HTTP header contains a string token that the server associat
 uniquely identify the state of that resource over its lifetime. The value of the token changes as soon as the resource changes.
 An example of such header value format is:
 ```http
-ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 ```
 Servers MAY choose their own format for this header, but the recommended value is the unique identifier of the requested resource 
 (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).    
