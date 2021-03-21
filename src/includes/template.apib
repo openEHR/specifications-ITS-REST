@@ -1,7 +1,7 @@
 ## ADL 1.4 TEMPLATE [/definition/template/adl1.4]
 
 Management of [ADL 1.4](https://specifications.openehr.org/releases/AM/latest) Operational Templates (OPTs). These templates can be created
-using [modelling tools](https://www.openehr.org/downloads/modellingtools) such as the Template Designer.
+using [modelling tools](https://www.openehr.org/downloads/modellingtools) such as the Template Designer and the Archetype Designer.
 
 
 ### Upload a template [POST /definition/template/adl1.4]
@@ -27,17 +27,36 @@ Upload a new ADL 1.4 operational template (OPT).
                     <original_author id="Original Author">Not Specified</original_author>
                     <lifecycle_state>Initial</lifecycle_state>
                     <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
-            ...
+                    <details>
+                        <language>
+                            <terminology_id>
+                              <value>ISO_639-1</value>
+                            </terminology_id>
+                            <code_string>en</code_string>
+                        </language>
+                        <purpose>A simple template</purpose>
+                    </details>
+                </description>
+                <uid>
+                    <value>c7ec861c-c413-39ff-9965-a198ebf44747</value>
+                </uid>
+                <template_id>
+                    <value>Example.v1</value>
+                </template_id>
+                <concept>Example</concept>
+                ...
 
 + Response 201 (application/xml)
 
     `201 Created` is returned when the template has been successfully uploaded.
-    Server assigned `template_id` SHOULD be returned as `Location` response header.
+    Server assigned `template_id` SHOULD be returned as part of the `Location` response header.
+    An `ETag` response header MAY be present and contain the unique identifier of the operational template instance.
     Depending on the header `Prefer` either an empty body or a full representation body is returned.  
 
     + Headers
 
-            Location: {baseUrl}/definition/template/adl1.4/Example.v1::c7ec861c-c413-39ff-9965-a198ebf44747
+            Location: {baseUrl}/definition/template/adl1.4/Example.v1
+            ETag: "c7ec861c-c413-39ff-9965-a198ebf44747"
 
     + Body
 
@@ -52,7 +71,24 @@ Upload a new ADL 1.4 operational template (OPT).
                     <original_author id="Original Author">Not Specified</original_author>
                     <lifecycle_state>Initial</lifecycle_state>
                     <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
-            ...
+                    <details>
+                        <language>
+                            <terminology_id>
+                              <value>ISO_639-1</value>
+                            </terminology_id>
+                            <code_string>en</code_string>
+                        </language>
+                        <purpose>A simple template</purpose>
+                    </details>
+                </description>
+                <uid>
+                    <value>c7ec861c-c413-39ff-9965-a198ebf44747</value>
+                </uid>
+                <template_id>
+                    <value>Example.v1</value>
+                </template_id>
+                <concept>Example</concept>
+                ...
 
 + Response 400
 
@@ -80,9 +116,9 @@ List available ADL 1.4 operational templates on the system.
 
             [
                 {
-                    "template_id": "string",
-                    "concept": "string",
-                    "archetype_id": "string",
+                    "template_id": "Example.v1",
+                    "concept": "Example",
+                    "archetype_id": "openEHR-EHR-OBSERVATION.example.v1",
                     "created_timestamp": "2017-08-14T19:24:56.639Z"
                 }
             ]
@@ -94,7 +130,7 @@ Retrieves the ADL 1.4 operational template identified by `template_id` identifie
 
 + Parameters
 
-    + template_id: `Example.v1::c7ec861c-c413-39ff-9965-a198ebf44747` (string) - template identifier
+    + template_id: `Example.v1` (string) - template identifier
 
 + Request XML OPT1.4
 
@@ -119,7 +155,24 @@ Retrieves the ADL 1.4 operational template identified by `template_id` identifie
                     <original_author id="Original Author">Not Specified</original_author>
                     <lifecycle_state>Initial</lifecycle_state>
                     <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
-            ...
+                    <details>
+                        <language>
+                            <terminology_id>
+                              <value>ISO_639-1</value>
+                            </terminology_id>
+                            <code_string>en</code_string>
+                        </language>
+                        <purpose>A simple template</purpose>
+                    </details>
+                </description>
+                <uid>
+                    <value>c7ec861c-c413-39ff-9965-a198ebf44747</value>
+                </uid>
+                <template_id>
+                    <value>Example.v1</value>
+                </template_id>
+                <concept>Example</concept>
+                ...
 
 + Response 400
     
@@ -210,10 +263,12 @@ Upload a new ADL 2 operational template.
     `201 Created` is returned when the template has been successfully uploaded. 
     Depending on the header `Prefer` either an empty body or a full representation body is returned.  
     The `version` in the `Location` header is optional.
+    An `ETag` response header MAY be present and contain the unique identifier of the template instance.
 
     + Headers
 
             Location: {baseUrl}/definition/template/adl2/openEHR-EHR-COMPOSITION.test.v1.0.0/1.0.1
+            ETag: "d8d643db-1cee-48ce-b609-12053077758f"
 
 + Response 400
 
@@ -241,10 +296,10 @@ List available ADL2 operational templates on the system.
 
             [
                 {
-                    "template_id": "string",
-                    "version": "1.7.1", 
-                    "concept": "string",
-                    "archetype_id": "string",
+                    "template_id": "openEHR-EHR-COMPOSITION.test.v1.0.0",
+                    "version": "1.0.1", 
+                    "concept": "Test",
+                    "archetype_id": "openEHR-EHR-COMPOSITION.discharge.v1",
                     "created_timestamp": "2017-08-14T19:24:56.639Z"
                 }
             ]
