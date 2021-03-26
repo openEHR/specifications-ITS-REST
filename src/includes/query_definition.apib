@@ -32,7 +32,7 @@ Examples:
 
 + Parameters
 
-    + qualified_query_name: `org.openehr::compositions` (string, optional)
+    + qualified_query_name: `org.openehr::compositions` (string, optional) - query name
 
 + Response 200 (application/json) 
 
@@ -78,7 +78,7 @@ Store a new query on the system.
             CONTAINS OBSERVATION obs[openEHR-EHR-OBSERVATION.blood_pressure.v1] 
             WHERE obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude >= $systolic_bp
 
-+ Response 200
++ Response 200 (application/json)
 
     `200 OK` is returned when the query was successfully stored.
 

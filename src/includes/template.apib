@@ -270,6 +270,25 @@ Upload a new ADL 2 operational template.
             Location: {baseUrl}/definition/template/adl2/openEHR-EHR-COMPOSITION.test.v1.0.0/1.0.1
             ETag: "d8d643db-1cee-48ce-b609-12053077758f"
 
+    + Body
+
+            template (adl_version=2.0.5; rm_release=1.0.2)
+                openEHR-EHR-COMPOSITION.test.v1.0.0
+            
+            specialize
+                openEHR-EHR-COMPOSITION.discharge.v1
+            
+            language
+                original_language = <[ISO_639-1::en]>
+            
+            description
+                lifecycle_state = <"unmanaged">
+                original_author = <
+                    ["name"] = <"Ian McNicoll">
+                    ["organisation"] = <"openEHR Foundation">
+                    ["email"] = <"ian.mcnicoll@openehr.org">
+            ...
+
 + Response 400
 
     `400 Bad Request` is returned when unable to upload a template, because of invalid content.
