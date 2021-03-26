@@ -429,8 +429,6 @@ There is an initiative exploring and documenting these alternative formats, whic
 
 In order to use these formats, content negotiation SHOULD be done in the same manner as for the canonical XML or JSON format above,
 but instead of `application/xml` or `application/json`, clients and servers MUST use:  
- - `application/openehr.nc.flat+json` for near-canonical RM Simplified Data Template (ncSDT) as JSON, based on the
- [ECISFLAT format](https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md), originally devised for the EtherCIS project,
  - `application/openehr.wt.flat+json` for the simplified IM Simplified Data Template (simSDT) as JSON, 
  based on the 'FLAT' version of the ['web template' format](https://www.ehrscape.com/reference.html), originally created by Marand for the Better platform. 
  More information can be found also in their ['examples'](https://www.ehrscape.com/examples.html) page, as well in their [tests on GitHub](https://github.com/better-care).
@@ -440,6 +438,8 @@ but instead of `application/xml` or `application/json`, clients and servers MUST
  based on the 'STRUCTURED' version of the ['web template' format](https://www.ehrscape.com/reference.html) originally created by Marand for the Better platform
  (see also their ['examples'](https://www.ehrscape.com/examples.html)).
  - `text/plain` for all textual ADL2 templates or AQL queries, or their alternative `application/openehr.adl2` and `application/openehr.aql` respectively,
+ - `application/openehr.nc.flat+json` for near-canonical RM Simplified Data Template (ncSDT) as JSON, based on the
+ [ECISFLAT format](https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md), originally devised for the EtherCIS project,
  - `application/openehr.tds2+xml` for TDS simplification of RM as XML, 
  based on the 'TDS/TDD' format originally created by [Ocean Health Systems](http://oceanhealthsystems.com/)
  (see [this wiki page](https://openehr.atlassian.net/wiki/spaces/spec/pages/30408770/Template+Data+Schema+TDS+Specification+and+associated+Template+Data+Document+TDD)
