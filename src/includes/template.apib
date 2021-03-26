@@ -232,7 +232,7 @@ Upload a new ADL 2 operational template.
 
     + version: `1.0.1` (string, optional) - a SEMVER version format
 
-+ Request
++ Request (text/plain)
 
     + Headers
     
@@ -258,7 +258,7 @@ Upload a new ADL 2 operational template.
             ...
 
 
-+ Response 201
++ Response 201 (text/plain)
 
     `201 Created` is returned when the template has been successfully uploaded. 
     Depending on the header `Prefer` either an empty body or a full representation body is returned.  
@@ -336,7 +336,7 @@ If `version_pattern` is omitted, then the latest version of the operational temp
     + template_id: `openEHR-EHR-COMPOSITION.test.v1.0.0` (string) - template identifier
     + version_pattern: `1.0` (string, optional) - SEMVER version pattern; this can be a complete version (i.e. 1.7.1) or partial prefix (i.e. 1.0)
 
-+ Response 200
++ Response 200 (text/plain)
 
     `200 OK` is returned when the template is successfully retrieved.
 
