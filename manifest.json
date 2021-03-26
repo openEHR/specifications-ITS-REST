@@ -12,7 +12,7 @@
             "summary": "An overview of various aspects of openEHR REST APIs.",
             "micro_summary": "REST API Overview",
             "copyright_year": "2018",
-            "spec_status": "TRIAL",
+            "spec_status": "STABLE",
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, headers, http"
         },
         {
@@ -23,7 +23,7 @@
             "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR EHR API in a RESTful manner.",
             "micro_summary": "EHR API",
             "copyright_year": "2018",
-            "spec_status": "TRIAL",
+            "spec_status": "STABLE",
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, EHR"
         },
         {
@@ -34,7 +34,7 @@
             "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR Query API in a RESTful manner.",
             "micro_summary": "Query API",
             "copyright_year": "2018",
-            "spec_status": "TRIAL",
+            "spec_status": "STABLE",
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, query, aql"
         },
         {
@@ -45,7 +45,7 @@
             "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with the openEHR Definitions API in a RESTful manner. Definitions includes Archetypes, Templates and Operational Templates (OPTs).",
             "micro_summary": "Definitions API",
             "copyright_year": "2018",
-            "spec_status": "TRIAL",
+            "spec_status": "STABLE",
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, definitions, resources, templates"
         },
         {
