@@ -232,7 +232,7 @@ return this header on other operation or action. Example:
 ```http
 Location: {baseUrl}/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 ```
-See [representation details negotiation](#representation-details-negotiation) section
+See [representation details negotiation](#design-considerations-representation-details-negotiation) section
 for more details on how use this header.
 
 If services have support to generate resource URL as specified by the DV_URI/DV_EHR_URI format, then they MAY send also `openEHR-uri` response header. Example: 
@@ -244,7 +244,7 @@ openEHR-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4
 <h3>The `Prefer` header</h3>
 
 This request header MAY be used by clients for resource representation negotiation. 
-See more details on [representation details negotiation](#representation-details-negotiation) section.
+See more details on [representation details negotiation](#design-considerations-representation-details-negotiation) section.
 
 
 <h3>The `ETag` and `Last-Modified` headers</h3>
@@ -437,7 +437,7 @@ but instead of `application/xml` or `application/json`, clients and servers MUST
  - `application/openehr.wt.structured+json` for the structured IM Simplified Data Template (structSDT) as JSON, 
  based on the 'STRUCTURED' version of the ['web template' format](https://www.ehrscape.com/reference.html) originally created by Marand for the Better platform
  (see also their ['examples'](https://www.ehrscape.com/examples.html)).
- - `text/plain` for all textual ADL2 templates or AQL queries, or their alternative `application/openehr.adl2` and `application/openehr.aql` respectively,
+ - `text/plain` for all textual ADL2 templates or AQL queries, or their alternative `application/openehr.adl2` and `application/openehr.aql` variant respectively,
  - `application/openehr.nc.flat+json` for near-canonical RM Simplified Data Template (ncSDT) as JSON, based on the
  [ECISFLAT format](https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md), originally devised for the EtherCIS project,
  - `application/openehr.tds2+xml` for TDS simplification of RM as XML, 

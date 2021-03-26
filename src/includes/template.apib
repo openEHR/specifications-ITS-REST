@@ -1,6 +1,6 @@
 ## ADL 1.4 TEMPLATE [/definition/template/adl1.4]
 
-Management of [ADL 1.4](https://specifications.openehr.org/releases/AM/latest) Operational Templates (OPTs). These templates can be created
+Management of [AOM and ADL 1.4](https://specifications.openehr.org/releases/AM/latest) Operational Templates (OPTs). These templates can be created
 using [modelling tools](https://www.openehr.org/downloads/modellingtools) such as the Template Designer and the Archetype Designer.
 
 
@@ -106,7 +106,7 @@ Upload a new ADL 1.4 operational template (OPT).
 
 ### List templates [GET /definition/template/adl1.4]
 
-List available ADL 1.4 operational templates on the system.
+List the available ADL 1.4 operational templates (OPT) on the system.
 
 + Response 200 (application/json)
 
@@ -126,7 +126,7 @@ List available ADL 1.4 operational templates on the system.
 
 ### Get template [GET /definition/template/adl1.4/{template_id}]
 
-Retrieves the ADL 1.4 operational template identified by `template_id` identifier.
+Retrieves the ADL 1.4 operational template (OPT) identified by `template_id` identifier.
 
 + Parameters
 
@@ -186,7 +186,7 @@ Retrieves the ADL 1.4 operational template identified by `template_id` identifie
 
     + Body
 
-+ Request Web Template
++ Request as Web Template
 
     + Headers
 
@@ -221,12 +221,13 @@ Retrieves the ADL 1.4 operational template identified by `template_id` identifie
 
 ## ADL 2 TEMPLATE [/definition/template/adl2]
 
-Management of [ADL 2](https://specifications.openehr.org/releases/AM/latest) Operational Templates (OPTs).
+Management of [AOM2](https://specifications.openehr.org/releases/AM/latest/AOM2.html#_templates) templates. 
+See also [ADL2 Template specifications](https://specifications.openehr.org/releases/AM/latest/ADL2.html#_templates).
 
 
 ### Upload a template [POST /definition/template/adl2/{?version}]
 
-Upload a new ADL 2 operational template.
+Upload a new ADL2 template.
 
 + Parameters
 
@@ -305,7 +306,7 @@ Upload a new ADL 2 operational template.
 
 ### List templates [GET /definition/template/adl2]
 
-List available ADL2 operational templates on the system.
+List the available ADL2 templates on the system.
 
 + Response 200 (application/json)
 
@@ -326,7 +327,7 @@ List available ADL2 operational templates on the system.
 
 ### Get template [GET /definition/template/adl2/{template_id}/{version_pattern}]
 
-Retrieves the ADL2 operational template identified by `template_id` identifier.
+Retrieves the ADL2 template identified by `template_id` identifier.
 
 If `version_pattern` is specified then the latest template version with given prefix pattern is returned. 
 If `version_pattern` is omitted, then the latest version of the operational template is returned.
