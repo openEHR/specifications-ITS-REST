@@ -1,7 +1,13 @@
 ## ADL 1.4 TEMPLATE [/definition/template/adl1.4]
 
-Management of [AOM and ADL 1.4](https://specifications.openehr.org/releases/AM/latest) Operational Templates (OPTs). These templates can be created
-using [modelling tools](https://www.openehr.org/downloads/modellingtools) such as the Template Designer and the Archetype Designer.
+Management of [AOM and ADL 1.4](https://specifications.openehr.org/releases/AM/latest) Operational Templates (OPTs). 
+These templates can be created using [modelling tools](https://www.openehr.org/downloads/modellingtools) such as the Template Designer and the Archetype Designer.
+
+Operational templates simplify the creation of openEHR-based input or storage implementations by, for a specific COMPOSITION template (use case), collecting all labels, requirements and constraints from all contained archetypes and sub-templates into a single easily parsed file. This file can be a basis for UI-generation/creation and for data validation.
+
+Note that `GET /definition/template/adl1.4/{template_id}` can return both the original (canonical) `XML` based OPT format (if called with the `Accept: application/xml` request header) as well as a simplified `JSON`-based “web template” format (if called with the `Accept: application/openehr.wt+json` request header). For more details see the [data representation specification](overview.html#design-considerations-data-representation). 
+
+<br/>
 
 
 ### Upload a template [POST /definition/template/adl1.4]
@@ -16,35 +22,7 @@ Upload a new ADL 1.4 operational template (OPT).
             
     + Body
 
-            <template xmlns="http://schemas.openehr.org/v1">
-                <language>
-                    <terminology_id>
-                        <value>ISO_639-1</value>
-                    </terminology_id>
-                    <code_string>en</code_string>
-                </language>
-                <description>
-                    <original_author id="Original Author">Not Specified</original_author>
-                    <lifecycle_state>Initial</lifecycle_state>
-                    <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
-                    <details>
-                        <language>
-                            <terminology_id>
-                              <value>ISO_639-1</value>
-                            </terminology_id>
-                            <code_string>en</code_string>
-                        </language>
-                        <purpose>A simple template</purpose>
-                    </details>
-                </description>
-                <uid>
-                    <value>c7ec861c-c413-39ff-9965-a198ebf44747</value>
-                </uid>
-                <template_id>
-                    <value>Example.v1</value>
-                </template_id>
-                <concept>Example</concept>
-                ...
+<!-- include(../examples/opt_template_adl14_01.xml) -->
 
 + Response 201 (application/xml)
 
@@ -55,40 +33,12 @@ Upload a new ADL 1.4 operational template (OPT).
 
     + Headers
 
-            Location: {baseUrl}/definition/template/adl1.4/Example.v1
-            ETag: "c7ec861c-c413-39ff-9965-a198ebf44747"
+            Location: {baseUrl}/definition/template/adl1.4/Vital Signs
+            ETag: "b4d7f203-b329-4e89-a58a-c605b19e94de"
 
     + Body
 
-            <template xmlns="http://schemas.openehr.org/v1">
-                <language>
-                    <terminology_id>
-                        <value>ISO_639-1</value>
-                    </terminology_id>
-                    <code_string>en</code_string>
-                </language>
-                <description>
-                    <original_author id="Original Author">Not Specified</original_author>
-                    <lifecycle_state>Initial</lifecycle_state>
-                    <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
-                    <details>
-                        <language>
-                            <terminology_id>
-                              <value>ISO_639-1</value>
-                            </terminology_id>
-                            <code_string>en</code_string>
-                        </language>
-                        <purpose>A simple template</purpose>
-                    </details>
-                </description>
-                <uid>
-                    <value>c7ec861c-c413-39ff-9965-a198ebf44747</value>
-                </uid>
-                <template_id>
-                    <value>Example.v1</value>
-                </template_id>
-                <concept>Example</concept>
-                ...
+<!-- include(../examples/opt_template_adl14_01.xml) -->
 
 + Response 400
 
@@ -116,9 +66,9 @@ List the available ADL 1.4 operational templates (OPT) on the system.
 
             [
                 {
-                    "template_id": "Example.v1",
-                    "concept": "Example",
-                    "archetype_id": "openEHR-EHR-OBSERVATION.example.v1",
+                    "template_id": "Vital Signs",
+                    "concept": "Vital Signs",
+                    "archetype_id": "openEHR-EHR-COMPOSITION.encounter.v1",
                     "created_timestamp": "2017-08-14T19:24:56.639Z"
                 }
             ]
@@ -130,7 +80,7 @@ Retrieves the ADL 1.4 operational template (OPT) identified by `template_id` ide
 
 + Parameters
 
-    + template_id: `Example.v1` (string) - template identifier
+    + template_id: `Vital Signs` (string) - template identifier
 
 + Request XML OPT1.4
 
@@ -144,35 +94,7 @@ Retrieves the ADL 1.4 operational template (OPT) identified by `template_id` ide
 
     + Body
 
-            <template xmlns="http://schemas.openehr.org/v1">
-                <language>
-                    <terminology_id>
-                        <value>ISO_639-1</value>
-                    </terminology_id>
-                    <code_string>en</code_string>
-                </language>
-                <description>
-                    <original_author id="Original Author">Not Specified</original_author>
-                    <lifecycle_state>Initial</lifecycle_state>
-                    <other_details id="MetaDataSet:Sample Set ">Template metadata sample set </other_details>
-                    <details>
-                        <language>
-                            <terminology_id>
-                              <value>ISO_639-1</value>
-                            </terminology_id>
-                            <code_string>en</code_string>
-                        </language>
-                        <purpose>A simple template</purpose>
-                    </details>
-                </description>
-                <uid>
-                    <value>c7ec861c-c413-39ff-9965-a198ebf44747</value>
-                </uid>
-                <template_id>
-                    <value>Example.v1</value>
-                </template_id>
-                <concept>Example</concept>
-                ...
+<!-- include(../examples/opt_template_adl14_01.xml) -->
 
 + Response 400
     
