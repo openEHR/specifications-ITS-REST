@@ -335,7 +335,7 @@ is using an URI that contains an EHR identifier `7d44b88c-4199-4bad-97dc-d78268e
 and a COMPOSITION identifier `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`, taken from COMPOSITION.uid.value,
 serviced by an openEHR API (of version `v1`), located at `https://api.openEHRSys.example.com`
 
-There are circumstances when resources can be uniquely identified by two different identifiers. For example, assuming that a VERSIONED_COMPOSITION container has the _versioned_object_uid_ identifier `8849182c-82ad-4088-a07f-48ead4180515`, and the latest version is `5` (taken from _version_tree_id_), then the that COMPOSITION can be identified either by following explicit URI: 
+There are circumstances when resources can be uniquely identified by two different identifiers. For example, assuming that a VERSIONED_COMPOSITION container has the _versioned_object_uid_ identifier `8849182c-82ad-4088-a07f-48ead4180515`, and the latest version is `5` (taken from _version_tree_id_), then that COMPOSITION can be identified either by following explicit URI: 
 ```http
 {baseUrl}/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com:5
 ```
