@@ -307,8 +307,8 @@ If `version_at_time` is supplied, retrieves the version extant _at specified tim
 
 Without the `version_at_time` parameter, this resource endpoint is similar to [getting COMPOSITION by version id](#composition-composition-get),
 but the format and semantics of the `version_uid` and the `versioned_object_uid` identifiers are different.
-The former SHOULD be used to retrieve a specific version of the COMPOSITION (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
-whereas the later SHOULD be used to retrieve a version from the version container whenever the _version_tree_id_ is unknown or irrelevant for the requester.
+The former is used to retrieve a specific known version of the COMPOSITION (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) should be used to retrieve a version from the version container whenever the _version_tree_id_ is unknown or irrelevant (such as when most recent version is requested).
 
 See [Resource identification](overview.html#header-resource-identification) for more details about the identifiers usage and meaning.
 
