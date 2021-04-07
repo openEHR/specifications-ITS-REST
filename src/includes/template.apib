@@ -149,7 +149,7 @@ See also [ADL2 Template specifications](https://specifications.openehr.org/relea
 
 ### Upload a template [POST /definition/template/adl2/{?version}]
 
-Upload a new ADL2 template.
+Upload a new ADL2 operational template.
 
 + Parameters
 
@@ -163,7 +163,7 @@ Upload a new ADL2 template.
             
     + Body
 
-            template (adl_version=2.0.5; rm_release=1.0.2)
+            operational_template (adl_version=2.0.5; rm_release=1.0.2)
                 openEHR-EHR-COMPOSITION.test.v1.0.0
             
             specialize
@@ -195,7 +195,7 @@ Upload a new ADL2 template.
 
     + Body
 
-            template (adl_version=2.0.5; rm_release=1.0.2)
+            operational_template (adl_version=2.0.5; rm_release=1.0.2)
                 openEHR-EHR-COMPOSITION.test.v1.0.0
             
             specialize
@@ -228,7 +228,7 @@ Upload a new ADL2 template.
 
 ### List templates [GET /definition/template/adl2]
 
-List the available ADL2 templates on the system.
+List the available ADL2 operational templates on the system.
 
 + Response 200 (application/json)
 
@@ -249,7 +249,7 @@ List the available ADL2 templates on the system.
 
 ### Get template [GET /definition/template/adl2/{template_id}/{version_pattern}]
 
-Retrieves the ADL2 template identified by `template_id` identifier.
+Retrieves the ADL2 operational template identified by `template_id` identifier.
 
 If `version_pattern` is specified then the latest template version with given prefix pattern is returned. 
 If `version_pattern` is omitted, then the latest version of the operational template is returned.
@@ -265,7 +265,7 @@ If `version_pattern` is omitted, then the latest version of the operational temp
 
     + Body
 
-            template (adl_version=2.0.5; rm_release=1.0.2)
+            operational_template (adl_version=2.0.5; rm_release=1.0.2)
                 openEHR-EHR-COMPOSITION.test.v1.0.0
             
             specialize
