@@ -32,7 +32,7 @@ Examples:
 
 + Parameters
 
-    + qualified_query_name: `org.openehr::compositions` (string, optional)
+    + qualified_query_name: `org.openehr::compositions` (string, optional) - query name
 
 + Response 200 (application/json) 
 
@@ -45,14 +45,14 @@ Examples:
                     "name": "org.openehr::compositions",
                     "type": "aql",
                     "version": "1.0.1",
-                    "saved": "2017-07-16T19:20:30.45+01:00",
+                    "saved": "2017-07-16T19:20:30.450+01:00",
                     "q": "SELECT c FROM EHR e[ehr_id/value=$ehr_id] CONTAINS COMPOSITION c[$compositionid] WHERE c/name/value = 'Vitals'"
                 },
                 {
                     "name": "org.openehr::compositions",
                     "type": "aql",
                     "version": "3.1.7",
-                    "saved": "2018-06-13T09:37:20.53+01:00",
+                    "saved": "2018-06-13T09:37:20.530+01:00",
                     "q": "SELECT c FROM EHR e[ehr_id/value=$ehr_id] CONTAINS COMPOSITION c[$uid] WHERE c/name/value = 'Vitals'"
                 }
             ]
@@ -78,7 +78,7 @@ Store a new query on the system.
             CONTAINS OBSERVATION obs[openEHR-EHR-OBSERVATION.blood_pressure.v1] 
             WHERE obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude >= $systolic_bp
 
-+ Response 200
++ Response 200 (application/json)
 
     `200 OK` is returned when the query was successfully stored.
 
@@ -119,7 +119,7 @@ Store a new query on the system.
                 "name": "org.openehr::compositions",
                 "type": "aql",
                 "version": "1.0.1",
-                "saved": "2017-07-16T19:20:30.45+01:00",
+                "saved": "2017-07-16T19:20:30.450+01:00",
                 "q": "SELECT c FROM EHR e[ehr_id/value=$ehr_id] CONTAINS COMPOSITION c[$compositionid] WHERE c/name/value = 'Vitals'"
             }
 

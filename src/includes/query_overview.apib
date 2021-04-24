@@ -17,7 +17,7 @@ This is achieved by supplying a `ehr_id` query parameter or setting a `openEHR-E
 
 Population queries are queries which are executed on several EHRs in the same request. Examples of use-cases can be: 
 - Ward lists 
-- Explore correlations between patients in an pandemic situation
+- Explore correlations between patients in a pandemic situation
 - Research, e.g. epidemiology, population health
 
 <h3>Stored queries</h3> 
@@ -41,6 +41,7 @@ is used, then the latest query version with supplied prefix will be used.
 Queries can be stored or, once stored, their definition can be retrieved 
 using the [definition endpoint](definitions.html#definitions-stored-query).
 
+
 ## Common Headers and Query Parameters [/--headers]
 
 All query execution requests SHOULD support at least the following parameters:
@@ -48,7 +49,7 @@ All query execution requests SHOULD support at least the following parameters:
 - `offset` - used for paging: the row number in result to start result-set from (`0`-based); default `0`
 - `fetch` - used for paging: the number of rows to fetch (i.e. limit); default depends on the implementation, but
 cannot be combined with [AQL-top](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_top)
-- other parameter(s) to replace placeholder(s) within the query, generically named `query_parameters` here.
+- other parameter(s) to replace placeholder(s) within the query, here generically named `query_parameters` (see [below](#header-query-parameters)).
 
 Related request headers:
 - `openEHR-EHR-id` - used to execute the query within a single EHR context: an EHR identifier taken from EHR.ehr_id.value
@@ -57,7 +58,7 @@ Related response headers:
 - `ETag` - A unique identifier of the resultSet
 
 
-<h3>About the `ehr_id` parameter</h3>
+### About the `ehr_id` parameter
 
 This parameter SHOULD be supplied by clients when executing single EHR queries and MAY be used by the underlying backend 
 to perform routing, optimizations or similar. It MUST NOT be supplied for 'population queries' and similar multi-patient queries.
@@ -66,26 +67,34 @@ Depending on the needs, clients MAY supply it as a query parameter `ehr_id` or a
 as a request header named `openEHR-EHR-id`.
 
 
-<h3>About `query_parameter`</h3>
+### Query parameters
 
-Depending on each query definition, various query parameters SHOULD be supported, generically named `query_parameter`
+Depending on each query definition, various query parameters SHOULD be supported, generically named `query_parameters`
 in this specification, but in the real request they will have specific names (e.g. `uid`, `systolic_bp`, etc.) 
 according to their names in the query definition.  
 
 Provided query parameters SHOULD NOT be prefixed with `$` sign. Instead, the server will (whenever necessary) 
 add the prefix or format queries as valid AQL queries. 
 
-As an example, for the following AQL query `SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid`, 
-named as `'myQuery'`, the client can supply the `uid` as `query_parameter`, 
-i.e. `GET {baseUrl}/query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::openEHRSys.example.com::1`.
+As an example, for the following AQL query 
+```
+SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid
+```
+named as `'myQuery'`, the client can supply the `uid` as a query parameter: 
+```
+GET {baseUrl}/query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::openEHRSys.example.com::1
+```
 
-As another example, the request `GET {baseUrl}/query/com.vendor::compositions?temperature_from=36&temperature_unit=Cel`
+As another example, the request 
+```
+GET {baseUrl}/query/com.vendor::compositions?temperature_from=36&temperature_unit=Cel
+```
 will pass query parameters `temperature_from` and `temperature_unit` to the underlying AQL query named `com.vendor::compositions`.
 
 See [AQL-parameters](https://specifications.openehr.org/releases/QUERY/latest/AQL.html#_parameters) specification for more details. 
 
 
-## Request structure 
+## Request structure [/--request_structure]
 
 Below is a mostly self-documented AQL query request.
 
@@ -101,12 +110,12 @@ Below is a mostly self-documented AQL query request.
 
 <h3>GET vs POST</h3>
 
-Requests based on `GET` method have URI length restriction or some characters might not be allowed and have to be encoded. 
-Long queries in the `q` parameter and having a long list of `query_parameter` may add up to reach that limit, 
+Requests based on the `GET` method have URI length restriction, or some characters might not be allowed and have to be encoded. 
+Long queries in the `q` parameter and having a long list of `query_parameters` may add up to reach that limit, 
 thus we recommend clients using the `POST` method instead of `GET`.
 
 
-## Response structure 
+## Response structure [/--response_structure]
 
 <h3>Metadata</h3>
 
@@ -115,7 +124,7 @@ thus we recommend clients using the `POST` method instead of `GET`.
 |`_href`           | URL of the query executed (only for GET endpoint) |
 |`_type`           | Defines type of the serialized object | 
 |`_schema_version` | The version of the specification defining the serialized object |
-|`_created`        | Result creation time (in the extended ISO8601 format) |
+|`_created`        | Result creation time (in the extended ISO 8601 format) |
 |`_generator`      | Some identifier of the application that generated the result. Useful i.e. for debugging | 
 |`_executed_aql`   | The actual query (i.e. AQL) that was executed by the server after exploding the parameters. This attribute is not mandatory, but is useful for debugging |
 

@@ -6,7 +6,7 @@ This document describes a 'simplified template' (ST) format, along with various 
 
 == Status
 
-This specification is in the {spec_status} state. The development version of this document can be found at {json_data_template}[{json_data_template}^].
+This specification is in the {spec_status} state. The development version of this document can be found at {openehr_simplified_data_template}[{openehr_simplified_data_template}^].
 
 Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
 [.tbd]
@@ -14,7 +14,7 @@ Known omissions or questions are indicated in the text with a 'to be determined'
 
 == Feedback
 
-Feedback may be provided on the {openehr_technical_list}[technical mailing list^].
+Feedback may be provided on the {openehr_technical_list}/its[openEHR ITS forum^].
 
 Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
 

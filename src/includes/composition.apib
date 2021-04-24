@@ -30,7 +30,7 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
     + Body
 
@@ -104,7 +104,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
     + Headers
 
             Prefer: return=representation
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
 + Response 200 (application/json)
 
@@ -114,7 +114,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -138,7 +138,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
     + Body
 
@@ -173,7 +173,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
 + Response 404
 
@@ -197,7 +197,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 
     + Headers
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
 + Response 412
 
@@ -207,7 +207,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -230,7 +230,7 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -255,7 +255,7 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -263,6 +263,8 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 ### Get composition by version id [GET /ehr/{ehr_id}/composition/{version_uid}]
 
 Retrieves a particular version of the COMPOSITION identified by `version_uid` and associated with the EHR identified by `ehr_id`.
+
+See [Resource identification](overview.html#header-resource-identification) for more details about the identifiers usage and meaning.
 
 + Parameters
 
@@ -300,15 +302,22 @@ Retrieves a particular version of the COMPOSITION identified by `version_uid` an
 
 ### Get composition at time [GET /ehr/{ehr_id}/composition/{versioned_object_uid}{?version_at_time}]
 
-Retrieves the version of the COMPOSITION identified by `version_uid` and associated with the EHR identified by `ehr_id`.
-If `version_at_time` is supplied, retrieves the version extant at specified time, otherwise retrieves the latest COMPOSITION version.
+Retrieves a version of the COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ COMPOSITION version.
+
+Without the `version_at_time` parameter, this resource endpoint is similar to [getting COMPOSITION by version id](#composition-composition-get),
+but the format and semantics of the `version_uid` and the `versioned_object_uid` identifiers are different.
+The former is used to retrieve a specific known version of the COMPOSITION (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) should be used to retrieve a version from the version container whenever the _version_tree_id_ is unknown or irrelevant (such as when most recent version is requested).
+
+See [Resource identification](overview.html#header-resource-identification) for more details about the identifiers usage and meaning.
 
 + Parameters
 
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
         taken from EHR.ehr_id.value
     + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO8601 format
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO 8601 format
 
 + Response 200 (application/json)
 
@@ -317,7 +326,7 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -368,11 +377,7 @@ Retrieves a VERSIONED_COMPOSITION identified by `versioned_object_uid` and assoc
 
     + Body
 
-            {
-                "uid": "xxx",
-                "owner_id": "7d44b88c-4199-4bad-97dc-d78268e01398",
-                "time_created": "ISO8601 time",
-            }
+<!-- include(../examples/versioned_composition_01.json) -->
 
 + Response 404
 
@@ -394,18 +399,11 @@ Retrieves revision history of the VERSIONED_COMPOSITION identified by `versioned
 
 + Response 200 (application/json)
 
-    `200 OK` is returned when the VERSIONED_COMPOSITION history is successfully retrieved.
+    `200 OK` is returned when the VERSIONED_COMPOSITION revision history is successfully retrieved.
 
     + Body
 
-            [
-                {
-                    "_type": "ORIGINAL_VERSION",
-                    ...
-                },
-                {
-                ...
-            ]
+<!-- include(../examples/revision_history_01.json) -->
 
 + Response 404
 
@@ -459,15 +457,15 @@ Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION ident
 
 ### Get versioned composition version at time [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version{?version_at_time}]
 
-Retrieves a VERSION of a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
-If `version_at_time` is supplied, retrieves the VERSION extant at specified time, otherwise retrieves the latest VERSION.
+Retrieves a VERSION from the VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
 
 + Parameters
 
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
         taken from EHR.ehr_id.value
     + versioned_object_uid: `8849182c-82ad-4088-a07f-48ead4180515` (string) - VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value
-    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO8601 format
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO 8601 format
 
 + Response 200 (application/json)
 
@@ -476,7 +474,7 @@ If `version_at_time` is supplied, retrieves the VERSION extant at specified time
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515/version/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
     + Body
 

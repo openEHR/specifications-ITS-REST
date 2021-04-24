@@ -5,12 +5,13 @@ Management of [EHR_STATUS](https://specifications.openehr.org/releases/RM/latest
 
 ### Get EHR_STATUS version by time [GET /ehr/{ehr_id}/ehr_status{?version_at_time}]
 
-Retrieves the version of the EHR_STATUS associated with the EHR identified by `ehr_id`.
-If `version_at_time` is supplied, retrieves the version extant at specified time, otherwise retrieves the latest EHR_STATUS version.
+Retrieves a version of the EHR_STATUS associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ EHR_STATUS version.
 
 + Parameters
-    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier
-    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO8601 format
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO 8601 format
 
 + Response 200 (application/json)
 
@@ -19,7 +20,7 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -44,7 +45,8 @@ If `version_at_time` is supplied, retrieves the version extant at specified time
 Retrieves a particular version of the EHR_STATUS identified by `version_uid` and associated with the EHR identified by `ehr_id`.
 
 + Parameters
-    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
     + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
@@ -66,32 +68,33 @@ Retrieves a particular version of the EHR_STATUS identified by `version_uid` and
 ### Update EHR_STATUS [PUT /ehr/{ehr_id}/ehr_status]
 
 Updates EHR_STATUS associated with the EHR identified by `ehr_id`.
-The existing latest `version_uid` of EHR_STATUS resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
+The existing latest `version_uid` of EHR_STATUS resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
 The response will contain the updated EHR_STATUS resource when the `Prefer` header has a value of `return=representation`
 
 + Parameters
-    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
 
 + Request (application/json)
 
     + Header
 
-            If-Match: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
             Prefer: return={representation|minimal}
 
     + Body
 
 <!-- include(../examples/ehr_status_02.json) -->
 
-+ Response 200
++ Response 200 (application/json)
 
-    `200 OK` is returned when the EHR_STATUS is successfully updated and 
+    `200 OK` is returned when the EHR_STATUS is successfully updated, and 
     the updated resource is returned in the body when `Prefer` header value is `return=representation`.
 
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
     + Body
 
@@ -104,7 +107,7 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
 + Response 400
 
@@ -126,7 +129,7 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3"
 
     + Body
 
@@ -143,7 +146,8 @@ Retrieves a VERSIONED_EHR_STATUS associated with an EHR identified by `ehr_id`.
 
 + Parameters
 
-    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
 
 + Response 200 (application/json)
 
@@ -151,11 +155,7 @@ Retrieves a VERSIONED_EHR_STATUS associated with an EHR identified by `ehr_id`.
 
     + Body
 
-            {
-               "uid": "_a_valid_uid_",                     /* UUID or OID, UUID preferred */
-               "owner_id": "7d44b88c-4199-4bad-97dc-d78268e01398",
-               "time_created": "DV_DATE_TIME"             /* ISO8601 YYYY-MM-DDThh:mm:ss.SSS(Z|[+-]hh:mm) e.g. 2017-08-01T01:06:46.000+00:00 */
-            }
+<!-- include(../examples/versioned_ehr_status_01.json) -->
                   
 
 + Response 404
@@ -171,7 +171,8 @@ Retrieves revision history of the VERSIONED_EHR_STATUS associated with the EHR i
 
 + Parameters
 
-    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
 
 + Response 200 (application/json)
 
@@ -179,34 +180,7 @@ Retrieves revision history of the VERSIONED_EHR_STATUS associated with the EHR i
 
     + Body
 
-            [
-              {
-                "version_id": "OBJECT_VERSION_ID",    /* object_id::creating_system_id::version_tree_id */
-                "audits": [
-                  {
-                    "system_id": "String",
-                    "time_committed": "DV_DATE_TIME",
-                    "change_type": {
-                      "value": "String",              /* value from openehr terminology, change_type http://openehr.org/releases/1.0.2/architecture/terminology.pdf */
-                      "defining_code": {
-                        "terminology_id": {
-                          "value": "openehr"
-                        },
-                        "code_string": "String"
-                      }
-                    },
-                    "description": {
-                      "value": "String"
-                    }
-                  },
-                  {...},
-                  {...}
-                ]
-              },
-              {...},
-              {...}
-            ]
-                  
+<!-- include(../examples/revision_history_01.json) -->
 
 + Response 404
 
@@ -217,13 +191,14 @@ Retrieves revision history of the VERSIONED_EHR_STATUS associated with the EHR i
 
 ### Get versioned EHR_STATUS version by time [GET /ehr/{ehr_id}/versioned_ehr_status/version{?version_at_time}]
 
-Retrieves the VERSION of an EHR_STATUS associated with the EHR identified by `ehr_id`.
-If `version_at_time` is supplied, retrieves the VERSION extant at specified time, otherwise retrieves the latest VERSION.
+Retrieves a VERSION from the VERSIONED_EHR_STATUS associated with the EHR identified by `ehr_id`.
+If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
 
 + Parameters
 
-    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier
-    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - version time specifier
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
+    + version_at_time: `2015-01-20T19:30:22.765+01:00` (string, optional) - A given time in the extended ISO 8601 format
 
 + Response 200 (application/json)
 
@@ -232,7 +207,7 @@ If `version_at_time` is supplied, retrieves the VERSION extant at specified time
     + Headers
 
             Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_ehr_status/version/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-            ETag: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
 
     + Body
 
@@ -307,7 +282,8 @@ Retrieves a VERSION identified by `version_uid` of an EHR_STATUS associated with
 
 + Parameters
 
-    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier
+    + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
+        taken from EHR.ehr_id.value
     + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
