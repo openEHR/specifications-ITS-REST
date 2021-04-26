@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.14">
 <meta name="description" content="openEHR Simplified Data Template (SDT)">
 <meta name="keywords" content="JSON, REST, web template, commit, simplified data, TDS, SDT, ncSDT, simSDT, structSDT">
 <title>Simplified Data Template (SDT)</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -95,7 +96,7 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: ITS-REST latest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: ITS-REST Release-1.0.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: DEVELOPMENT</p></td>
 </tr>
 <tr>
@@ -159,7 +160,7 @@
 </thead>
 <tbody>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release 1.0.2 (unreleased)</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release 1.0.2</strong></p></th>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.0.2</p></td>
@@ -266,7 +267,7 @@ S Iancu</p></td>
 <div class="sect2">
 <h3 id="_status"><a class="anchor" href="#_status"></a>1.2. Status</h3>
 <div class="paragraph">
-<p>This specification is in the DEVELOPMENT state. The development version of this document can be found at {json_data_template}[{json_data_template}^].</p>
+<p>This specification is in the DEVELOPMENT state. The development version of this document can be found at <a href="https://specifications.openehr.org/releases/ITS-REST/latest/simplified_data_template.html" target="_blank" rel="noopener">https://specifications.openehr.org/releases/ITS-REST/latest/simplified_data_template.html</a>.</p>
 </div>
 <div class="paragraph">
 <p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
@@ -304,7 +305,7 @@ S Iancu</p></td>
 <div class="sect2">
 <h3 id="_requirements"><a class="anchor" href="#_requirements"></a>2.1. Requirements</h3>
 <div class="paragraph">
-<p>The default serialised data representations for openEHR content are canonical XML, based on the <a href="https://specifications.openehr.org/releases/ITS/latest" target="_blank" rel="noopener">openEHR RM XSDs</a>, canonical JSON, described by the <a href="https://specifications.openehr.org/releases/ITS/latest" target="_blank" rel="noopener">openEHR JSON schemas</a>, and potentially any other canonical serial format based on the underlying Reference Model (e.g. YAML etc). Here, 'canonical' means any fully-expressed instance data in which:</p>
+<p>The default serialised data representations for openEHR content are canonical XML, based on the <a href="https://specifications.openehr.org/releases/ITS-XML/latest" target="_blank" rel="noopener">openEHR RM XSDs</a>, canonical JSON, described by the <a href="https://specifications.openehr.org/releases/ITS-JSON/latest" target="_blank" rel="noopener">openEHR JSON schemas</a>, and potentially any other canonical serial format based on the underlying Reference Model (e.g. YAML etc). Here, 'canonical' means any fully-expressed instance data in which:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -650,60 +651,60 @@ A developer just using the simplified formats as illustrated above in a specific
 <h4 id="_c_complex_object"><a class="anchor" href="#_c_complex_object"></a>4.1.1. C_COMPLEX_OBJECT</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-nl">SOptVisitor:</span><span class="tok-o">:</span> <span class="tok-n">OptVisitor</span> <span class="tok-o">{</span>
+<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-nl">SOptVisitor:</span><span class="tok-p">:</span> <span class="tok-n">OptVisitor</span> <span class="tok-p">{</span>
 
     <span class="tok-c1">//</span>
     <span class="tok-c1">// Visitor function for C_COMPLEX_OBJECT node in OPT</span>
     <span class="tok-c1">//</span>
-    <span class="tok-kd">public</span> <span class="tok-nf">enterCComplexObject</span> <span class="tok-o">(</span><span class="tok-n">CComplexObject</span> <span class="tok-n">cObj</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+    <span class="tok-kd">public</span> <span class="tok-nf">enterCComplexObject</span> <span class="tok-p">(</span><span class="tok-n">CComplexObject</span> <span class="tok-n">cObj</span><span class="tok-p">)</span> <span class="tok-p">{</span>
         <span class="tok-c1">// obtain or synthesise SIM class name for cCObj.rmTypeName</span>
-        <span class="tok-n">simClassName</span> <span class="tok-o">=</span> <span class="tok-n">xxx</span><span class="tok-o">;</span>
+        <span class="tok-n">simClassName</span> <span class="tok-o">=</span> <span class="tok-n">xxx</span><span class="tok-p">;</span>
 
         <span class="tok-c1">// create SOpt CComplexObject</span>
-        <span class="tok-n">CComplexObject</span> <span class="tok-n">SCobj</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">CComplexObject</span><span class="tok-o">(</span><span class="tok-n">simClassName</span><span class="tok-o">);</span>
+        <span class="tok-n">CComplexObject</span> <span class="tok-n">SCobj</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">CComplexObject</span><span class="tok-p">(</span><span class="tok-n">simClassName</span><span class="tok-p">);</span>
 
         <span class="tok-c1">// process attributes</span>
-        <span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">CAttribute</span> <span class="tok-n">cAttr</span> <span class="tok-n">in</span> <span class="tok-n">cCObj</span><span class="tok-o">.</span><span class="tok-na">attributes</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-k">for</span> <span class="tok-p">(</span><span class="tok-n">CAttribute</span> <span class="tok-n">cAttr</span> <span class="tok-n">in</span> <span class="tok-n">cCObj</span><span class="tok-p">.</span><span class="tok-na">attributes</span><span class="tok-p">)</span> <span class="tok-p">{</span>
 
             <span class="tok-c1">// find any rule for this attribute</span>
-            <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">hasPathRule</span> <span class="tok-o">(</span><span class="tok-n">cObj</span><span class="tok-o">.</span><span class="tok-na">rmTypeName</span><span class="tok-o">,</span> <span class="tok-n">CAttr</span><span class="tok-o">.</span><span class="tok-na">rmAttributeName</span><span class="tok-o">))</span> <span class="tok-o">{</span>
-                <span class="tok-n">attrRule</span> <span class="tok-o">=</span> <span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">pathRule</span> <span class="tok-o">(</span><span class="tok-n">cObj</span><span class="tok-o">.</span><span class="tok-na">rmTypeName</span><span class="tok-o">,</span> <span class="tok-n">CAttr</span><span class="tok-o">.</span><span class="tok-na">rmAttributeName</span><span class="tok-o">);</span>
+            <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">rules</span><span class="tok-p">.</span><span class="tok-na">hasPathRule</span> <span class="tok-p">(</span><span class="tok-n">cObj</span><span class="tok-p">.</span><span class="tok-na">rmTypeName</span><span class="tok-p">,</span> <span class="tok-n">CAttr</span><span class="tok-p">.</span><span class="tok-na">rmAttributeName</span><span class="tok-p">))</span> <span class="tok-p">{</span>
+                <span class="tok-n">attrRule</span> <span class="tok-o">=</span> <span class="tok-n">rules</span><span class="tok-p">.</span><span class="tok-na">pathRule</span> <span class="tok-p">(</span><span class="tok-n">cObj</span><span class="tok-p">.</span><span class="tok-na">rmTypeName</span><span class="tok-p">,</span> <span class="tok-n">CAttr</span><span class="tok-p">.</span><span class="tok-na">rmAttributeName</span><span class="tok-p">);</span>
 
                 <span class="tok-c1">// deal with collapse case - go through all matching paths</span>
-                <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">attrRule</span><span class="tok-o">.</span><span class="tok-na">collapse</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+                <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">attrRule</span><span class="tok-p">.</span><span class="tok-na">collapse</span><span class="tok-p">)</span> <span class="tok-p">{</span>
                     <span class="tok-c1">// create a new output C_ATTRIBUTE with the SIM attribute name</span>
-                    <span class="tok-n">CAttribute</span> <span class="tok-n">sCAttr</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">CAttribute</span> <span class="tok-o">(</span><span class="tok-n">baseName</span><span class="tok-o">(</span><span class="tok-n">attrRule</span><span class="tok-o">.</span><span class="tok-na">simPath</span><span class="tok-o">));</span>
+                    <span class="tok-n">CAttribute</span> <span class="tok-n">sCAttr</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">CAttribute</span> <span class="tok-p">(</span><span class="tok-n">baseName</span><span class="tok-p">(</span><span class="tok-n">attrRule</span><span class="tok-p">.</span><span class="tok-na">simPath</span><span class="tok-p">));</span>
 
                     <span class="tok-c1">// attach new C_OBJECT to cAttr</span>
-                    <span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">collapseRule</span> <span class="tok-n">in</span> <span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">matchingPathRules</span> <span class="tok-o">(</span><span class="tok-n">cCObj</span><span class="tok-o">.</span><span class="tok-na">rmTypeName</span><span class="tok-o">,</span> <span class="tok-n">CAttr</span><span class="tok-o">.</span><span class="tok-na">rmAttributeName</span><span class="tok-o">)</span>
-                        <span class="tok-n">sCAttr</span><span class="tok-o">.</span><span class="tok-na">appendChildren</span> <span class="tok-o">(</span><span class="tok-n">makeCCObjects</span> <span class="tok-o">(</span><span class="tok-n">collapseRule</span><span class="tok-o">));</span>
+                    <span class="tok-k">for</span> <span class="tok-p">(</span><span class="tok-n">collapseRule</span> <span class="tok-n">in</span> <span class="tok-n">rules</span><span class="tok-p">.</span><span class="tok-na">matchingPathRules</span> <span class="tok-p">(</span><span class="tok-n">cCObj</span><span class="tok-p">.</span><span class="tok-na">rmTypeName</span><span class="tok-p">,</span> <span class="tok-n">CAttr</span><span class="tok-p">.</span><span class="tok-na">rmAttributeName</span><span class="tok-p">)</span>
+                        <span class="tok-n">sCAttr</span><span class="tok-p">.</span><span class="tok-na">appendChildren</span> <span class="tok-p">(</span><span class="tok-n">makeCCObjects</span> <span class="tok-p">(</span><span class="tok-n">collapseRule</span><span class="tok-p">));</span>
 
-                <span class="tok-o">}</span>
+                <span class="tok-p">}</span>
                 <span class="tok-k">else</span>
-                    <span class="tok-n">sCAttr</span><span class="tok-o">.</span><span class="tok-na">appendChildren</span> <span class="tok-o">(</span><span class="tok-n">makeCCObjects</span> <span class="tok-o">(</span><span class="tok-n">attrRule</span><span class="tok-o">));</span>
-            <span class="tok-o">}</span>
-        <span class="tok-o">}</span>
-    <span class="tok-o">}</span>
+                    <span class="tok-n">sCAttr</span><span class="tok-p">.</span><span class="tok-na">appendChildren</span> <span class="tok-p">(</span><span class="tok-n">makeCCObjects</span> <span class="tok-p">(</span><span class="tok-n">attrRule</span><span class="tok-p">));</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
 
-    <span class="tok-kd">private</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;</span> <span class="tok-nf">makeCCObjects</span> <span class="tok-o">(</span><span class="tok-n">CAttribute</span> <span class="tok-n">cAttr</span><span class="tok-o">,</span> <span class="tok-n">SOptRule</span> <span class="tok-n">aRule</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-        <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;</span> <span class="tok-n">sChildCObjList</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;;</span>
-        <span class="tok-n">CObject</span> <span class="tok-n">sChildCObj</span><span class="tok-o">;</span>
+    <span class="tok-kd">private</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;</span> <span class="tok-nf">makeCCObjects</span> <span class="tok-p">(</span><span class="tok-n">CAttribute</span> <span class="tok-n">cAttr</span><span class="tok-p">,</span> <span class="tok-n">SOptRule</span> <span class="tok-n">aRule</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+        <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;</span> <span class="tok-n">sChildCObjList</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">CObject</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
+        <span class="tok-n">CObject</span> <span class="tok-n">sChildCObj</span><span class="tok-p">;</span>
 
         <span class="tok-c1">// if SIM target type is primitive, apply constraint conversion rule</span>
         <span class="tok-c1">// e.g. convert C_TERMINOLOGY_CODE to a C_STRING</span>
-        <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">PrimitiveTypes</span><span class="tok-o">.</span><span class="tok-na">has</span> <span class="tok-o">(</span><span class="tok-n">aRule</span><span class="tok-o">.</span><span class="tok-na">sim_type</span><span class="tok-o">))</span> <span class="tok-o">{</span>
-            <span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">cChildObj</span> <span class="tok-n">in</span> <span class="tok-n">cAttr</span><span class="tok-o">.</span><span class="tok-na">children</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-                <span class="tok-n">sChildCObj</span> <span class="tok-o">=</span> <span class="tok-n">rules</span><span class="tok-o">.</span><span class="tok-na">execute</span> <span class="tok-o">(</span><span class="tok-n">aRule</span><span class="tok-o">.</span><span class="tok-na">constraintConvRule</span> <span class="tok-o">(</span><span class="tok-n">cChildObj</span><span class="tok-o">));</span>
-                <span class="tok-n">sChildCObjList</span><span class="tok-o">.</span><span class="tok-na">append</span> <span class="tok-o">(</span><span class="tok-n">cChildObj</span><span class="tok-o">)</span>
-            <span class="tok-o">}</span>
-        <span class="tok-o">}</span>
+        <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">PrimitiveTypes</span><span class="tok-p">.</span><span class="tok-na">has</span> <span class="tok-p">(</span><span class="tok-n">aRule</span><span class="tok-p">.</span><span class="tok-na">sim_type</span><span class="tok-p">))</span> <span class="tok-p">{</span>
+            <span class="tok-k">for</span> <span class="tok-p">(</span><span class="tok-n">cChildObj</span> <span class="tok-n">in</span> <span class="tok-n">cAttr</span><span class="tok-p">.</span><span class="tok-na">children</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+                <span class="tok-n">sChildCObj</span> <span class="tok-o">=</span> <span class="tok-n">rules</span><span class="tok-p">.</span><span class="tok-na">execute</span> <span class="tok-p">(</span><span class="tok-n">aRule</span><span class="tok-p">.</span><span class="tok-na">constraintConvRule</span> <span class="tok-p">(</span><span class="tok-n">cChildObj</span><span class="tok-p">));</span>
+                <span class="tok-n">sChildCObjList</span><span class="tok-p">.</span><span class="tok-na">append</span> <span class="tok-p">(</span><span class="tok-n">cChildObj</span><span class="tok-p">)</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
         <span class="tok-c1">// otherwise, execute visitor on sub-tree at path to create new C_COMPLEX_OBJECT</span>
         <span class="tok-k">else</span>
-            <span class="tok-n">sChildCObjList</span><span class="tok-o">.</span><span class="tok-na">extend</span> <span class="tok-o">(</span><span class="tok-n">visit</span> <span class="tok-o">(</span><span class="tok-n">aRule</span><span class="tok-o">.</span><span class="tok-na">rmPath</span><span class="tok-o">));</span>
+            <span class="tok-n">sChildCObjList</span><span class="tok-p">.</span><span class="tok-na">extend</span> <span class="tok-p">(</span><span class="tok-n">visit</span> <span class="tok-p">(</span><span class="tok-n">aRule</span><span class="tok-p">.</span><span class="tok-na">rmPath</span><span class="tok-p">));</span>
 
-        <span class="tok-k">return</span> <span class="tok-n">sChildCObjList</span><span class="tok-o">;</span>
-    <span class="tok-o">}</span>
-<span class="tok-o">}</span></code></pre>
+        <span class="tok-k">return</span> <span class="tok-n">sChildCObjList</span><span class="tok-p">;</span>
+    <span class="tok-p">}</span>
+<span class="tok-p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -747,6 +748,5 @@ under development; currently just notes.
 Last updated 2021-03-13 13:19:34 UTC
 </div>
 </div>
-<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </body>
 </html>
