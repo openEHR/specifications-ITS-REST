@@ -1,14 +1,10 @@
 # Pull base image
-FROM node:0.12.7
+FROM node:16.3.0-alpine
 
 # Install Aglio
 RUN npm install -g aglio@latest
 
-VOLUME /project
-WORKDIR /project
-ENV PATH /project/:$PATH
-
 ADD "tools/entrypoint.sh" "/entrypoint.sh"
 RUN chmod +x /entrypoint.sh
 
-CMD [ "/entrypoint.sh" ]
+CMD . /entrypoint.sh

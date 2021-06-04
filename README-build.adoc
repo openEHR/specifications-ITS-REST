@@ -6,15 +6,18 @@ Follow these steps to have a new build:
 . Build the `docker` image using:
 +
 ----
-$ docker build -t rest-api-doc .
+$ docker build --no-cache -t rest-api-doc .
 ----
 
-. Build the whole project (all docs) running:
+. Build docs running:
++
+
+.. If you need to build all docs:
 +
 ----
-$ docker run -v "$(pwd):/project" -t rest-api-doc
+$ docker run --rm -v "$(pwd):/project" rest-api-doc
 ----
- 
+
 .. If you need to build a single page (e.g. the `ehr.html`), supply all necessary parameters to `aglio`:
 +
 ----
