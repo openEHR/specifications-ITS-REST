@@ -19,8 +19,8 @@ If `version_at_time` is supplied, retrieves the version extant _at specified tim
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+            ETag: "6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"
 
     + Body
 
@@ -47,7 +47,7 @@ Retrieves a particular version of the EHR_STATUS identified by `version_uid` and
 + Parameters
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
         taken from EHR.ehr_id.value
-    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2` (string) - VERSION identifier taken from VERSION.uid.value
+    + version_uid: `6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
 
@@ -79,7 +79,7 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
 
     + Header
 
-            If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
+            If-Match: "6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"
             Prefer: return={representation|minimal}
 
     + Body
@@ -93,8 +93,8 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+            ETag: "6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"
 
     + Body
 
@@ -106,8 +106,8 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
-            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+            ETag: "6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"
 
 + Response 400
 
@@ -128,8 +128,8 @@ The response will contain the updated EHR_STATUS resource when the `Prefer` head
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3
-            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3"
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::3
+            ETag: "6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::3"
 
     + Body
 
@@ -180,7 +180,7 @@ Retrieves revision history of the VERSIONED_EHR_STATUS associated with the EHR i
 
     + Body
 
-<!-- include(../examples/revision_history_01.json) -->
+<!-- include(../examples/revision_history_ehr_status_01.json) -->
 
 + Response 404
 
@@ -206,8 +206,8 @@ If `version_at_time` is supplied, retrieves the VERSION extant _at specified tim
 
     + Headers
 
-            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_ehr_status/version/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-            ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
+            Location: {baseUrl}/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_ehr_status/version/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1
+            ETag: "6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"
 
     + Body
 
@@ -284,7 +284,7 @@ Retrieves a VERSION identified by `version_uid` of an EHR_STATUS associated with
 
     + ehr_id: `7d44b88c-4199-4bad-97dc-d78268e01398` (string) - EHR identifier 
         taken from EHR.ehr_id.value
-    + version_uid: `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1` (string) - VERSION identifier taken from VERSION.uid.value
+    + version_uid: `6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1` (string) - VERSION identifier taken from VERSION.uid.value
 
 + Response 200 (application/json)
 
