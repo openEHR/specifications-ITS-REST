@@ -118,7 +118,7 @@ All other required EHR attributes and resources will be automatically created as
     + Body
 
 
-### Get EHR summary by id [GET /ehr/{ehr_id}]
+### Get EHR by id [GET /ehr/{ehr_id}]
 
 Retrieve the EHR with the specified `ehr_id`.
 
@@ -142,7 +142,7 @@ Retrieve the EHR with the specified `ehr_id`.
     + Body
 
 
-### Get EHR summary by subject id [GET /ehr{?subject_id,subject_namespace}]
+### Get EHR by subject id [GET /ehr{?subject_id,subject_namespace}]
 
 Retrieve the EHR with the specified `subject_id` and `subject_namespace`.
 These subject parameters will be matched against EHR's EHR_STATUS.subject.external_ref.id.value and 

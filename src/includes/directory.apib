@@ -62,7 +62,7 @@ Creates a new directory FOLDER associated with the EHR identified by `ehr_id`.
 ### Update directory [PUT /ehr/{ehr_id}/directory]
 
 Updates directory FOLDER associated with the EHR identified by `ehr_id`.
-The existing latest `version_uid` of directory FOLDER resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
+The existing latest `version_uid` of directory FOLDER resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
 
 + Parameters
 
@@ -139,7 +139,7 @@ The existing latest `version_uid` of directory FOLDER resource (i.e the `precedi
 ### Delete directory [DELETE /ehr/{ehr_id}/directory]
 
 Deletes directory FOLDER associated with the EHR identified by `ehr_id`.
-The existing latest `version_uid` of directory FOLDER resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
+The existing latest `version_uid` of directory FOLDER resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
 
 + Parameters
 
@@ -211,12 +211,12 @@ If `path` is supplied, retrieves from the directory only the sub-FOLDER that is 
 
     `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
     when a directory with `version_uid` does not exist or
-    when `path` does not exists within the directory.
+    when `path` does not exist within the directory.
 
     + Body
 
 
-### Get folder in directory version at time [GET /ehr/{ehr_id}/directory{?version_at_time,path}]
+### Get folder in directory at time [GET /ehr/{ehr_id}/directory{?version_at_time,path}]
 
 Retrieves the version of the directory FOLDER associated with the EHR identified by `ehr_id`.
 If `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ directory FOLDER version.
@@ -250,8 +250,8 @@ If `path` is supplied, retrieves from the directory only the sub-FOLDER that is 
 + Response 404
 
     `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
-    when a directory does not exists at `version_at_time` time or
-    when `path` does not exists within the directory.
+    when a directory does not exist at `version_at_time` time or
+    when `path` does not exist within the directory.
 
     + Body
 

@@ -1,14 +1,14 @@
 ## CONTRIBUTION [/ehr/{ehr_id}/contribution]
 
-Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resources.  
+Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.  
 
 
-### Create contribution [POST /ehr/{ehr_id}/contribution]
+### Create CONTRIBUTION [POST /ehr/{ehr_id}/contribution]
 
-We will use the relaxed CONTRIBUTION XSD with the following attributes optional:
- - time_committed: server will always set it
- - UID: if provided will be accepted unless it is already used in which case an error will be returned
- - system_id: where provided will be validated
+We will use the relaxed CONTRIBUTION with the following attributes optional:
+ - `time_committed`: server will always set it
+ - `uid`: if provided will be accepted unless it is already used in which case an error will be returned
+ - `system_id`: when provided will be validated
 
 + Parameters 
 
@@ -118,7 +118,7 @@ We will use the relaxed CONTRIBUTION XSD with the following attributes optional:
 
 + Response 400 
 
-    `400 Bad Request` is returned when the are validation errors in one of the attached locatables, 
+    `400 Bad Request` is returned when there are validation errors in one of the attached versions, 
     modification type doesn't match the operation - i.e. first version
     of a composition with MODIFICATION.
 
@@ -139,7 +139,7 @@ We will use the relaxed CONTRIBUTION XSD with the following attributes optional:
     + Body 
 
 
-### Get contribution by id [GET /ehr/{ehr_id}/contribution/{contribution_uid}]
+### Get CONTRIBUTION by id [GET /ehr/{ehr_id}/contribution/{contribution_uid}]
 
 + Parameters
 

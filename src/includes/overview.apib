@@ -476,7 +476,7 @@ Retrieval or querying those resources SHOULD return date, datetime, or time valu
 
 ### Representation details negotiation [/--representation-details-negotiation]
 
-When using the HTTP methods to create or update a resource, the service SHOULD give clients the option of returning either a complete
+When using the `POST` and `PUT` HTTP methods to create or update a resource, the service SHOULD give clients the option of returning either a complete
 representation of the (modified) resource, or a minimal or no content in the payload response (assuming the operation was successfully completed).
 See [RFC 7240](https://tools.ietf.org/html/rfc7240#section-4.2) for more details on how achieve this using `Prefer` header.
 The client MAY choose any of the following:
@@ -489,10 +489,10 @@ The client MAY choose any of the following:
 
 In case no `Prefer` header is present in request, the default response policy is `return=minimal`.
  
-Another preference is related to following and resolving OBJ_REF identifiers. Under some circumstances a client 
-MAY indicate that prefers response containing full or partial resource representation instead of references to resources using OBJ_REF.
+Another preference is related to following and resolving OBJECT_REF identifiers. Under some circumstances a client 
+MAY indicate that prefers response containing full or partial resource representation instead of references to resources using OBJECT_REF.
 A typical case is a list of COMPOSITIONs part of an EHR, which, strictly following RM specification, should always return 
-list of OBJ_REF, but sometimes clients prefers to get COMPOSITIONs.
+list of OBJECT_REF, but sometimes clients prefers to get COMPOSITIONs.
 Services that have this capability implemented SHOULD accept and honor `Prefer: resolve_refs` request header.
 ```http
 Prefer: return=representation, resolve_refs
