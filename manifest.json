@@ -17,7 +17,7 @@
         },
         {
             "id": "ehr",
-            "title": "EHR REST API Overview",
+            "title": "EHR REST API",
             "title_short": "EHR API",
             "description": "openEHR EHR REST API",
             "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR EHR API in a RESTful manner.",
@@ -28,7 +28,7 @@
         },
         {
             "id": "query",
-            "title": "Query REST API Overview",
+            "title": "Query REST API",
             "title_short": "Query API",
             "description": "openEHR Query REST API",
             "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR Query API in a RESTful manner.",
@@ -38,12 +38,12 @@
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, query, aql"
         },
         {
-            "id": "definitions",
-            "title": "Definitions REST API Overview",
-            "title_short": "Definitions API",
-            "description": "openEHR Definitions REST API",
-            "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with the openEHR Definitions API in a RESTful manner. Definitions includes Archetypes, Templates and Operational Templates (OPTs).",
-            "micro_summary": "Definitions API",
+            "id": "definition",
+            "title": "Definition REST API",
+            "title_short": "Definition API",
+            "description": "openEHR Definition REST API",
+            "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with the openEHR Definition API in a RESTful manner. Definitions includes Archetypes, Templates and Operational Templates (OPTs).",
+            "micro_summary": "Definition API",
             "copyright_year": "2018",
             "spec_status": "STABLE",
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, definitions, resources, templates"
@@ -62,11 +62,11 @@
     ],
     "expressions": [
         {
-            "id": "REST API src",
+            "id": "OpenAPI files",
             "type": "url",
-            "title": "REST-API .apib files",
-            "description": "REST API specifications as Blueprint (.apib) files.",
-            "link": "https://github.com/openEHR/specifications-ITS-REST/tree/master/src"
+            "title": "REST API OpenAPI files",
+            "description": "REST API specifications as OpenAPI 3.0.3 files in yaml format.",
+            "link": "https://github.com/openEHR/specifications-ITS-REST/tree/master/computable/OAS"
         }
     ],
     "jira": {
