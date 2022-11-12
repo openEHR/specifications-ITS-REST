@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{title}} openEHR specs</title>
+    <meta charset="utf-8">
+    <meta name="description" content="{{title}} openEHR specifications">
+    <meta name="author" content="openEHR Specification Program">
+    <meta name="rating" content="General">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="5 days">
+    <meta name="google-site-verification" content="zfPZfHQ-5oXYT119aAi7HdZELv8ubHPCxvIFANVPzcU"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        body {
+            margin: 0;
+            padding-top: 60px;
+        }
+        .api-content h3 {
+            font-weight: 500 !important;
+            font-size: 1.17em !important;
+            margin-top: 0.6rem !important;
+        }
+        .react-tabs__tab-panel pre {
+            color: #ffffff !important;
+        }
+        div.api-info div:first-child {
+            display: none;
+        }
+        ul[role=menu] ul ul ul li label {
+            padding-left: 60px;
+        }
+        label[type=group] span {
+            font-weight: bold;
+        }
+    </style>
+    <!-- Twitter Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
+    {{{redocHead}}}
+
+    {{#unless disableGoogleFont}}
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,500,700" rel="stylesheet">
+    {{/unless}}
+</head>
+<body>
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top shadow" style="background-color: #effaff">
+        <a class="navbar-brand pt-0" href="#">
+            <img src="https://www.openehr.org/static/img/logo.svg" height="24" class="d-inline-block align-middle mr-4" alt="openEHR">
+            <p class="h6 m-0 text-right"><em>REST specifications</em></p>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {{#if templateOptions.page_overview}} active {{/if}}">
+                    <a class="nav-link mx-2 {{#if templateOptions.page_overview}} text-primary {{/if}}" href="overview.html">APIs Overview{{#if templateOptions.page_overview}} <span class="sr-only">(current)</span>{{/if}}</a>
+                </li>
+                <li class="nav-item {{#if templateOptions.page_ehr}} active {{/if}}">
+                    <a class="nav-link mx-2 {{#if templateOptions.page_ehr}} text-primary {{/if}}" href="ehr.html">EHR API{{#if templateOptions.page_ehr}} <span class="sr-only">(current)</span>{{/if}}</a>
+                </li>
+                <li class="nav-item {{#if templateOptions.page_query}} active {{/if}}">
+                    <a class="nav-link mx-2 {{#if templateOptions.page_query}} text-primary {{/if}}" href="query.html">Query API{{#if templateOptions.page_query}} <span class="sr-only">(current)</span>{{/if}}</a>
+                </li>
+                <li class="nav-item {{#if templateOptions.page_definitions}} active {{/if}}">
+                    <a class="nav-link mx-2 {{#if templateOptions.page_definitions}} text-primary {{/if}}" href="definition.html">Definition API{{#if templateOptions.page_definitions}} <span class="sr-only">(current)</span>{{/if}}</a>
+                </li>
+            </ul>
+            <div class="nav">
+                <a href="https://specifications.openehr.org/" title="Specifications" target="_blank" class="text-secondary mx-2 fas fa-file-alt"></a>
+                <a href="https://discourse.openehr.org" title="Discourse Forums" target="_blank" class="text-secondary mx-2 fab fa-discourse"></a>
+                <a href="https://ckm.openehr.org/ckm/" title="CKM" target="_blank" class="text-secondary mx-2 fas fa-database"></a>
+                <a href="https://www.openehr.org/" title="openEHR" target="_blank" class="text-secondary mx-2 fas fa-globe-europe"></a>
+            </div>
+        </div>
+    </nav>
+    <div class="d-flex justify-content-center text-secondary m-5" id="loading_spinner">
+        <div class="spinner-border mr-2" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <strong class="h4">Loading...</strong>
+    </div>
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container-fluid px-0 d-none">
+{{{redocHTML}}}
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('body header #loading_spinner').remove();
+        $('body main').removeClass('d-none');
+        const status = __redoc_state.spec.data.info["x-status"].toUpperCase();
+        const spec = __redoc_state.spec.data.info["x-spec"];
+        let statusClass;
+        switch (status) {
+            case "STABLE":
+                statusClass = "success";
+                break;
+            case "TRIAL":
+                statusClass = "primary";
+                break;
+            default:
+                statusClass = "secondary";
+        }
+        $("div.api-info h1")
+            .addClass("d-inline-block mx-1")
+            .after("<a href='computable/OAS/"+spec+"-validation.openapi.yaml' download='"+spec+"-validation.openapi.yaml' type='application/yaml' target='_blank' class='d-none d-xl-block btn btn-outline-primary btn-sm mx-1 align-baseline float-right' role='button' aria-pressed='true' data-toggle='tooltip' data-placement='bottom' title='Download YAML for validation purpose'>Download</a>")
+            .after("<a href='computable/OAS/"+spec+"-codegen.openapi.yaml' download='"+spec+"-codegen.openapi.yaml' type='application/yaml' target='_blank' class='d-none d-xl-block btn btn-outline-primary btn-sm mx-1 align-baseline float-right' role='button' aria-pressed='true' data-toggle='tooltip' data-placement='bottom' title='Download YAML for code-generate purpose'>Codegen</a>")
+            .after("<span class='badge badge-" + statusClass + " align-top'>" + status + "</span>");
+    });
+</script>
+</body>
+</html>

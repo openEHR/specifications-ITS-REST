@@ -1,0 +1,20 @@
+{
+    "name": "openehr/specifications-tools-openapi",
+    "description": "Tools to manage openEHR OpenApi specifications.",
+    "type": "project",
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "league/openapi-psr7-validator": "^0.18",
+        "cebe/php-openapi": "^1.7"
+    }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenEHR\\Specifications\\Tools\\": "src/"
+        }
+    }
+}
