@@ -1,0 +1,15 @@
+title: NewContribution
+type: object
+description: A new (un-committed) CONTRIBUTION resource
+required:
+  - versions
+  - audit
+properties:
+  uid:
+    $ref: ../base_types/HierObjectId.yaml
+  versions:
+    type: array
+    items:
+      $ref: ../common/UVersion.yaml
+  audit:
+    $ref: ../common/NewAuditDetails.yaml

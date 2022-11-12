@@ -1,0 +1,10 @@
+title: GENERIC_ID
+type: object
+allOf:
+  - $ref: ../base_types/ObjectId.yaml
+required:
+  - scheme
+properties:
+  scheme:
+    type: string
+x-discriminator-value: GENERIC_ID

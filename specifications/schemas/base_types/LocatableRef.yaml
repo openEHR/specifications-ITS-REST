@@ -1,0 +1,15 @@
+title: LOCATABLE_REF
+type: object
+allOf:
+  - $ref: ../base_types/ObjectRef.yaml
+required:
+  - type
+properties:
+  _type:
+    type: string
+    default: LOCATABLE_REF
+  path:
+    type: string
+  id:
+    $ref: ../base_types/UUidBasedId.yaml
+x-discriminator-value: LOCATABLE_REF

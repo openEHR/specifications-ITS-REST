@@ -1,0 +1,16 @@
+title: DATA_VALUE
+type: object
+x-cg-discriminator:
+  propertyName: _type
+  mapping:
+    DV_TEXT: '#/components/schemas/DvText'
+    DV_CODED_TEXT: '#/components/schemas/DvCodedText'
+    DV_URI: '#/components/schemas/DvUri'
+    DV_EHR_URI: '#/components/schemas/DvEhrUri'
+    DV_MULTIMEDIA: '#/components/schemas/DvMultimedia'
+    DV_PARSABLE: '#/components/schemas/DvParsable'
+    DV_DATE_TIME: '#/components/schemas/DvDateTime'
+    DV_DURATION: '#/components/schemas/DvDuration'
+    DV_INTERVAL: '#/components/schemas/DvInterval'
+    DV_INTERVAL_of_DATE_TIME: '#/components/schemas/DvIntervalOfDateTime'
+    DV_IDENTIFIER: '#/components/schemas/DvIdentifier'

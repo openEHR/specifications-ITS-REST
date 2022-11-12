@@ -1,6 +1,0 @@
-*.html
-*.bat
-*.feature
-*.vpp*
-generated_api/*
-/*.json
