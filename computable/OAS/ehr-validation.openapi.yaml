@@ -69,7 +69,7 @@ info:
             <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
                 Migrate REST API specs to openAPI format</td>
             <td>S Iancu</td>
-            <td>15 Sep 2022</td>
+            <td>14 Nov 2022</td>
         </tr>
         <tr>
             <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.2" target="_blank" rel="noopener">Release-1.0.2</a></th>
@@ -205,7 +205,7 @@ info:
     This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
-    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest>.
+    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
 
     ### Feedback
 
@@ -2882,7 +2882,7 @@ components:
           _type: PARTY_IDENTIFIED
           name: A user name
     UpdateAttestation:
-      title: UPDATE_ATTESTATION
+      title: UpdateAttestation
       required:
         - change_type
         - committer
@@ -2898,7 +2898,7 @@ components:
           $ref: '#/components/schemas/UPartyProxy'
         _type:
           type: string
-          default: UPDATE_ATTESTATION
+          default: UpdateAttestation
         attested_view:
           $ref: '#/components/schemas/DvMultimedia'
         proof:
@@ -2911,7 +2911,7 @@ components:
           $ref: '#/components/schemas/UDvText'
         is_pending:
           type: boolean
-      x-discriminator-value: UPDATE_ATTESTATION
+      x-discriminator-value: UpdateAttestation
       example:
         change_type:
           value: creation
