@@ -176,7 +176,7 @@ Related documents include:
 
 ### Status
 
-This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](query-validation.openapi.yaml), or [for code generators](query-codegen.openapi.yaml).
+This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/query-validation.openapi.yaml), or [for code generators](computable/OAS/query-codegen.openapi.yaml).
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
 The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest>.
