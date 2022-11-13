@@ -83,6 +83,14 @@
             }
         },
         {
+            "id": "1.0.3",
+            "date": "",
+            "jira": {
+                "crs": "SPECITS/versions/12565",
+                "prs": "SPECPR/versions/12566"
+            }
+        },
+        {
             "id": "1.0.2",
             "date": "2021-04-24",
             "jira": {
