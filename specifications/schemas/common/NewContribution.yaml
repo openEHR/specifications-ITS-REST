@@ -10,6 +10,6 @@ properties:
   versions:
     type: array
     items:
-      $ref: ../common/UVersion.yaml
+      $ref: ../common/UpdateVersion.yaml
   audit:
-    $ref: ../common/NewAuditDetails.yaml
+    $ref: ../common/UpdateAudit.yaml

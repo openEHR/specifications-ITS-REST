@@ -2704,36 +2704,96 @@ components:
         items: []
         folders: []
       x-discriminator-value: FOLDER
-    NewAuditDetails:
-      title: NewAuditDetails
+    TerminologyCode:
+      title: TERMINOLOGY_CODE
+      required:
+        - terminology_id
+        - code_string
+      type: object
+      properties:
+        terminology_id:
+          type: string
+        terminology_version:
+          type: string
+        code_string:
+          type: string
+        uri:
+          type: string
+          format: uri
+      example:
+        terminology_id: snomed_ct
+        code_string: '308335008'
+    UpdateAudit:
+      title: UPDATE_AUDIT
       required:
         - change_type
         - committer
       type: object
       properties:
-        system_id:
-          type: string
-        time_committed:
-          $ref: '#/components/schemas/DvDateTime'
         change_type:
-          $ref: '#/components/schemas/DvCodedText'
+          $ref: '#/components/schemas/TerminologyCode'
         description:
           $ref: '#/components/schemas/DvText'
         committer:
           $ref: '#/components/schemas/PartyProxy'
-      description: The set of attributes required to document the committal of an information item to a repository.
+      description: The set of attributes required to document the committal of an information item to a repository. Used by the server to create an AUDIT_DETAILS object.
       example:
-        committer:
-          _type: PARTY_IDENTIFIED
-          name: A user name
         change_type:
           value: creation
           defining_code:
-            terminology_id:
-              value: openehr
+            terminology_id: openehr
             code_string: '249'
-        description:
-          value: Description text
+        description: Description text
+        committer:
+          _type: PARTY_IDENTIFIED
+          name: A user name
+    UpdateAttestation:
+      title: UPDATE_ATTESTATION
+      required:
+        - reason
+        - is_pending
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/UpdateAudit'
+      properties:
+        _type:
+          type: string
+          default: UPDATE_ATTESTATION
+        attested_view:
+          $ref: '#/components/schemas/DvMultimedia'
+        proof:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DvEhrUri'
+        reason:
+          $ref: '#/components/schemas/DvText'
+        is_pending:
+          type: boolean
+      x-discriminator-value: UPDATE_ATTESTATION
+    UpdateVersion:
+      title: UPDATE_VERSION
+      required:
+        - lifecycle_state
+        - data
+        - commit_audit
+      type: object
+      properties:
+        preceding_version_uid:
+          $ref: '#/components/schemas/ObjectVersionId'
+        signature:
+          type: string
+        lifecycle_state:
+          $ref: '#/components/schemas/TerminologyCode'
+        attestations:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateAttestation'
+        data:
+          $ref: '#/components/schemas/Versionable'
+        commit_audit:
+          $ref: '#/components/schemas/UpdateAudit'
     NewContribution:
       title: NewContribution
       required:
@@ -2746,9 +2806,9 @@ components:
         versions:
           type: array
           items:
-            $ref: '#/components/schemas/Version'
+            $ref: '#/components/schemas/UpdateVersion'
         audit:
-          $ref: '#/components/schemas/NewAuditDetails'
+          $ref: '#/components/schemas/UpdateAudit'
       description: A new (un-committed) CONTRIBUTION resource
     Contribution:
       title: CONTRIBUTION
