@@ -3,7 +3,7 @@
 Management of [COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class) resources.
 
 
-### Create composition [POST /ehr/{ehr_id}/composition]
+### Create COMPOSITION [POST /ehr/{ehr_id}/composition]
 
 Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`.
 
@@ -76,11 +76,11 @@ Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`
             }
 
 
-### Update composition [PUT /ehr/{ehr_id}/composition/{versioned_object_uid}]
+### Update COMPOSITION [PUT /ehr/{ehr_id}/composition/{versioned_object_uid}]
 
 Updates COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 If the request body already contains a COMPOSITION.uid.value, it must match the `versioned_object_uid` in the URL. 
-The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_version_uid`) must be specified in the `If-Match` header.
+The existing latest `version_uid` of COMPOSITION resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
 
 + Parameters
 
@@ -130,7 +130,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
 + Response 422
 
     `422 Unprocessable Entity` is returned when the content could be converted to a COMPOSITION, but there are semantic validation errors,
-    such as the underlying template is not known or is not validating the supplied COMPOSITION).
+    such as the underlying template is not known or is not validating the supplied COMPOSITION.
 
     + Body
     
@@ -212,7 +212,7 @@ The existing latest `version_uid` of COMPOSITION resource (i.e the `preceding_ve
     + Body
 
 
-### Delete composition [DELETE /ehr/{ehr_id}/composition/{preceding_version_uid}]
+### Delete COMPOSITION [DELETE /ehr/{ehr_id}/composition/{preceding_version_uid}]
 
 Deletes the COMPOSITION identified by `preceding_version_uid` and associated with the EHR identified by `ehr_id`.
 
@@ -250,7 +250,7 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
 + Response 409
 
     `409 Conflict` is returned when supplied `preceding_version_uid` doesn't match the latest version.
-    Returns latest version in the `Location` and `ETag` headers.
+    Returns also latest version in the `Location` and `ETag` headers.
 
     + Headers
 
@@ -260,7 +260,7 @@ Deletes the COMPOSITION identified by `preceding_version_uid` and associated wit
     + Body
 
 
-### Get composition by version id [GET /ehr/{ehr_id}/composition/{version_uid}]
+### Get COMPOSITION by version id [GET /ehr/{ehr_id}/composition/{version_uid}]
 
 Retrieves a particular version of the COMPOSITION identified by `version_uid` and associated with the EHR identified by `ehr_id`.
 
@@ -300,7 +300,7 @@ See [Resource identification](overview.html#header-resource-identification) for 
     + Body
 
 
-### Get composition at time [GET /ehr/{ehr_id}/composition/{versioned_object_uid}{?version_at_time}]
+### Get COMPOSITION at time [GET /ehr/{ehr_id}/composition/{versioned_object_uid}{?version_at_time}]
 
 Retrieves a version of the COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 If `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ COMPOSITION version.
@@ -350,7 +350,7 @@ See [Resource identification](overview.html#header-resource-identification) for 
 
     `404 Not Found` is returned when an EHR with `ehr_id` does not exist or
     when a VERSIONED_COMPOSITION with `versioned_object_uid` does not exist or
-    when a COMPOSITION does not exists at `version_at_time` time.
+    when a COMPOSITION does not exist at `version_at_time` time.
 
     + Body
 
@@ -361,7 +361,7 @@ See [Resource identification](overview.html#header-resource-identification) for 
 Management of [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class) resources.  
 
 
-### Get versioned composition [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}]
+### Get versioned COMPOSITION [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}]
 
 Retrieves a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 
@@ -387,7 +387,7 @@ Retrieves a VERSIONED_COMPOSITION identified by `versioned_object_uid` and assoc
     + Body
 
 
-### Get versioned composition revision history [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history]
+### Get versioned COMPOSITION revision history [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history]
 
 Retrieves revision history of the VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 
@@ -413,7 +413,7 @@ Retrieves revision history of the VERSIONED_COMPOSITION identified by `versioned
     + Body
 
 
-### Get versioned composition version by id [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}]
+### Get versioned COMPOSITION version by id [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}]
 
 Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 
@@ -455,7 +455,7 @@ Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION ident
     + Body
 
 
-### Get versioned composition version at time [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version{?version_at_time}]
+### Get versioned COMPOSITION version at time [GET /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version{?version_at_time}]
 
 Retrieves a VERSION from the VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
