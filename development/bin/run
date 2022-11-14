@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+use OpenEHR\Specifications\Tools\Writer;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// Send all errors to stderr
+ini_set('display_errors', 'stderr');
+
+$inputFile = '/data/'.$argv[1];
+
+(new Writer\Codegen($inputFile))->writeJsonFile();
+(new Writer\Validation($inputFile))->writeJsonFile();

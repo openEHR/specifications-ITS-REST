@@ -1,0 +1,22 @@
+title: DV_INTERVAL
+type: object
+allOf:
+  - $ref: ../data_types/DataValue.yaml
+required:
+  - lower_unbounded
+  - upper_unbounded
+  - lower_included
+  - upper_included
+properties:
+  _type:
+    type: string
+    default: DV_INTERVAL
+  lower_unbounded:
+    type: boolean
+  upper_unbounded:
+    type: boolean
+  lower_included:
+    type: boolean
+  upper_included:
+    type: boolean
+x-discriminator-value: DV_INTERVAL

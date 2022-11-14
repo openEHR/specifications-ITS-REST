@@ -1,0 +1,23 @@
+title: UPDATE_AUDIT
+type: object
+description: The set of attributes required to document the committal of an information item to a repository. Used by the server to create an AUDIT_DETAILS object.
+required:
+  - change_type
+  - committer
+properties:
+  change_type:
+    $ref: ../base_types/TerminologyCode.yaml
+  description:
+    $ref: ../data_types/UDvText.yaml
+  committer:
+    $ref: ../common/UPartyProxy.yaml
+example:
+  change_type:
+    value: creation
+    defining_code:
+      terminology_id: openehr
+      code_string: '249'
+  description: Description text
+  committer:
+    _type: PARTY_IDENTIFIED
+    name: A user name

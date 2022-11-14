@@ -1,0 +1,5 @@
+title: TEMPLATE_ID
+type: object
+allOf:
+  - $ref: ../base_types/ObjectId.yaml
+x-discriminator-value: TEMPLATE_ID

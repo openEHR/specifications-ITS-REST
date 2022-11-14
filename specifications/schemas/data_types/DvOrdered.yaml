@@ -1,0 +1,17 @@
+title: DV_ORDERED
+type: object
+allOf:
+  - $ref: ../data_types/DataValue.yaml
+properties:
+  _type:
+    type: string
+    default: DV_ORDERED
+  normal_status:
+    $ref: ../data_types/CodePhrase.yaml
+  normal_range:
+    $ref: ../data_types/DvInterval.yaml
+  other_reference_ranges:
+    type: array
+    items:
+      $ref: ../data_types/ReferenceRange.yaml
+x-discriminator-value: DV_ORDERED

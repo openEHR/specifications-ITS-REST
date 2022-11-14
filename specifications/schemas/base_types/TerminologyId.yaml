@@ -1,0 +1,5 @@
+title: TERMINOLOGY_ID
+type: object
+allOf:
+  - $ref: ../base_types/ObjectId.yaml
+x-discriminator-value: TERMINOLOGY_ID

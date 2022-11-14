@@ -1,0 +1,28 @@
+title: OBJECT_REF
+type: object
+required:
+  - namespace
+  - type
+  - id
+properties:
+  _type:
+    type: string
+    default: OBJECT_REF
+  namespace:
+    type: string
+  type:
+    type: string
+  id:
+    $ref: ../base_types/UObjectId.yaml
+x-discriminator-value: OBJECT_REF
+x-cg-discriminator:
+  propertyName: _type
+  mapping:
+    OBJECT_REF: '#/components/schemas/ObjectRef'
+    PARTY_REF: '#/components/schemas/PartyRef'
+example:
+  id:
+    _type: OBJECT_VERSION_ID
+    value: 'fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1'
+  namespace: local
+  type: COMPOSITION

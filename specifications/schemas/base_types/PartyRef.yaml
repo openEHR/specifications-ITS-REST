@@ -1,0 +1,28 @@
+title: PARTY_REF
+type: object
+description: Identifier for parties in a demographic or identity service.
+allOf:
+  - $ref: ../base_types/ObjectRef.yaml
+required:
+  - type
+properties:
+  _type:
+    type: string
+    default: PARTY_REF
+  type:
+    type: string
+    enum:
+      - PERSON
+      - ORGANISATION
+      - GROUP
+      - AGENT
+      - ROLE
+      - PARTY
+      - ACTOR
+x-discriminator-value: PARTY_REF
+example:
+  id:
+    _type: OBJECT_VERSION_ID
+    value: 'b52b9408-7048-4ec8-94bd-831fb0727e67::openEHRSys.example.com::1'
+  namespace: local
+  type: PERSON

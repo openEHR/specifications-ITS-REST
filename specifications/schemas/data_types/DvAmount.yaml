@@ -1,0 +1,13 @@
+title: DV_AMOUNT
+type: object
+allOf:
+  - $ref: ../data_types/DvQuantified.yaml
+properties:
+  _type:
+    type: string
+    default: DV_AMOUNT
+  accuracy_is_percent:
+    type: boolean
+  accuracy:
+    type: number
+x-discriminator-value: DV_AMOUNT
