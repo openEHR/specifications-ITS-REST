@@ -62,7 +62,7 @@
     ],
     "expressions": [
         {
-            "id": "OpenAPI files",
+            "id": "REST API src",
             "type": "url",
             "title": "REST API OpenAPI files",
             "description": "REST API specifications as OpenAPI 3.0.3 files in yaml format.",
