@@ -17,6 +17,9 @@ function render() {
     rm -rfv ../computable/OAS/*.json
 }
 
+function rendertest() {
+    docker run --rm -u 1000 -v "$(pwd):/spec" redocly/openapi-cli build-docs computable/OAS/"$1".openapi.yaml --cdn -o docs/"$1".html -t development/redoc-template.html --templateOptions.page_"$1"
+}
 
 case "${1:-}" in
 		overview | system | ehr | query | definition | resources)
@@ -29,6 +32,9 @@ case "${1:-}" in
 		  render query
 		  render definition
 		  render resources
+      ;;
+    test*)
+      rendertest "$@"
       ;;
 		"")
 			echo "Usage: bundle.sh [overview | system | ehr | query | definition | resources]"

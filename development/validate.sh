@@ -35,6 +35,10 @@ case "${1:-}" in
       SPEC="${2:-ehr}"
       docker run --init --rm -v "$(pwd):/data" -p 8000:4010 stoplight/prism:4 mock -h 0.0.0.0 /data/computable/OAS/"$SPEC"-validation.openapi.yaml --errors
       ;;
+		test*)
+      docker run --rm -u 1000 -v "$(pwd):/data" swagger-cli validate /data/computable/OAS/"$1".openapi.yaml
+      docker run --rm -u 1000 -v "$(pwd):/spec" redocly/openapi-cli lint /spec/computable/OAS/"$1".openapi.yaml
+      ;;
     maven)
       cd codegen/oas-ehr/java
       docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.8-openjdk-18 bash
