@@ -1080,56 +1080,17 @@ components:
       allOf:
         - $ref: '#/components/schemas/ObjectId'
       x-discriminator-value: ARCHETYPE_ID
-    UMArchetypeId:
-      title: ARCHETYPE_ID
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/ArchetypeId'
-      properties:
-        _type:
-          enum:
-            - ARCHETYPE_ID
-          type: string
-      x-discriminator-value: ARCHETYPE_ID
     TemplateId:
       title: TEMPLATE_ID
       type: object
       allOf:
         - $ref: '#/components/schemas/ObjectId'
       x-discriminator-value: TEMPLATE_ID
-    UMTemplateId:
-      title: TEMPLATE_ID
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/TemplateId'
-      properties:
-        _type:
-          enum:
-            - TEMPLATE_ID
-          type: string
-      x-discriminator-value: TEMPLATE_ID
     TerminologyId:
       title: TERMINOLOGY_ID
       type: object
       allOf:
         - $ref: '#/components/schemas/ObjectId'
-      x-discriminator-value: TERMINOLOGY_ID
-    UMTerminologyId:
-      title: TERMINOLOGY_ID
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/TerminologyId'
-      properties:
-        _type:
-          enum:
-            - TERMINOLOGY_ID
-          type: string
       x-discriminator-value: TERMINOLOGY_ID
     GenericId:
       title: GENERIC_ID
@@ -1142,39 +1103,6 @@ components:
         scheme:
           type: string
       x-discriminator-value: GENERIC_ID
-    UMGenericId:
-      title: GENERIC_ID
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/GenericId'
-      properties:
-        _type:
-          enum:
-            - GENERIC_ID
-          type: string
-      example:
-        _type: GENERIC_ID
-        value: c7ec861c-c413-39ff-9965-a198ebf44747
-        scheme: pid
-      x-discriminator-value: GENERIC_ID
-    UMHierObjectId:
-      title: HIER_OBJECT_ID
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/HierObjectId'
-      properties:
-        _type:
-          enum:
-            - HIER_OBJECT_ID
-          type: string
-      example:
-        _type: HIER_OBJECT_ID
-        value: 6cb19121-4307-4648-9da0-d62e4d51f19b
-      x-discriminator-value: HIER_OBJECT_ID
     ObjectVersionId:
       title: OBJECT_VERSION_ID
       required:
@@ -1186,22 +1114,6 @@ components:
         value:
           type: string
           example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
-      x-discriminator-value: OBJECT_VERSION_ID
-    UMObjectVersionId:
-      title: OBJECT_VERSION_ID
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/ObjectVersionId'
-      properties:
-        _type:
-          enum:
-            - OBJECT_VERSION_ID
-          type: string
-      example:
-        _type: OBJECT_VERSION_ID
-        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
       x-discriminator-value: OBJECT_VERSION_ID
     ObjectRef:
       title: OBJECT_REF
@@ -1326,19 +1238,6 @@ components:
           DV_URI: '#/components/schemas/DvUri'
           DV_EHR_URI: '#/components/schemas/DvEhrUri'
       x-discriminator-value: DV_URI
-    UMDvUri:
-      title: DV_URI
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DvUri'
-      properties:
-        _type:
-          enum:
-            - DV_URI
-          type: string
-      x-discriminator-value: DV_URI
     DvEhrUri:
       title: DV_EHR_URI
       type: object
@@ -1351,19 +1250,6 @@ components:
       example:
         _type: DV_EHR_URI
         value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
-      x-discriminator-value: DV_EHR_URI
-    UMDvEhrUri:
-      title: DV_EHR_URI
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DvEhrUri'
-      properties:
-        _type:
-          enum:
-            - DV_EHR_URI
-          type: string
       x-discriminator-value: DV_EHR_URI
     CodePhrase:
       title: CODE_PHRASE
@@ -1409,19 +1295,6 @@ components:
           DV_TEXT: '#/components/schemas/DvText'
           DV_CODED_TEXT: '#/components/schemas/DvCodedText'
       x-discriminator-value: DV_TEXT
-    UMDvText:
-      title: DV_TEXT
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DvText'
-      properties:
-        _type:
-          enum:
-            - DV_TEXT
-          type: string
-      x-discriminator-value: DV_TEXT
     DvCodedText:
       title: DV_CODED_TEXT
       required:
@@ -1441,19 +1314,6 @@ components:
           terminology_id:
             value: local
           code_string: at0001
-      x-discriminator-value: DV_CODED_TEXT
-    UMDvCodedText:
-      title: DV_CODED_TEXT
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DvCodedText'
-      properties:
-        _type:
-          enum:
-            - DV_CODED_TEXT
-          type: string
       x-discriminator-value: DV_CODED_TEXT
     Link:
       title: LINK
@@ -1553,19 +1413,6 @@ components:
         size:
           type: integer
       x-discriminator-value: DV_MULTIMEDIA
-    UMDvMultimedia:
-      title: DV_MULTIMEDIA
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DvMultimedia'
-      properties:
-        _type:
-          enum:
-            - DV_MULTIMEDIA
-          type: string
-      x-discriminator-value: DV_MULTIMEDIA
     DvParsable:
       title: DV_PARSABLE
       required:
@@ -1581,19 +1428,6 @@ components:
         value:
           type: string
         formalism:
-          type: string
-      x-discriminator-value: DV_PARSABLE
-    UMDvParsable:
-      title: DV_PARSABLE
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DvParsable'
-      properties:
-        _type:
-          enum:
-            - DV_PARSABLE
           type: string
       x-discriminator-value: DV_PARSABLE
     PartyRef:
@@ -1672,19 +1506,6 @@ components:
           type: PERSON
         name: A name
       x-discriminator-value: PARTY_IDENTIFIED
-    UMPartyIdentified:
-      title: PARTY_IDENTIFIED
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/PartyIdentified'
-      properties:
-        _type:
-          enum:
-            - PARTY_IDENTIFIED
-          type: string
-      x-discriminator-value: PARTY_IDENTIFIED
     PartyRelated:
       title: PARTY_RELATED
       required:
@@ -1699,19 +1520,6 @@ components:
         relationship:
           $ref: '#/components/schemas/DvCodedText'
       x-discriminator-value: PARTY_RELATED
-    UMPartyRelated:
-      title: PARTY_RELATED
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/PartyRelated'
-      properties:
-        _type:
-          enum:
-            - PARTY_RELATED
-          type: string
-      x-discriminator-value: PARTY_RELATED
     PartySelf:
       title: PARTY_SELF
       type: object
@@ -1721,19 +1529,6 @@ components:
         _type:
           type: string
           default: PARTY_SELF
-      x-discriminator-value: PARTY_SELF
-    UMPartySelf:
-      title: PARTY_SELF
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/PartySelf'
-      properties:
-        _type:
-          enum:
-            - PARTY_SELF
-          type: string
       x-discriminator-value: PARTY_SELF
     ItemStructure:
       title: ITEM_STRUCTURE
@@ -2098,19 +1893,6 @@ components:
         data:
           $ref: '#/components/schemas/ItemStructure'
       x-discriminator-value: ADMIN_ENTRY
-    UMAdminEntry:
-      title: ADMIN_ENTRY
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/AdminEntry'
-      properties:
-        _type:
-          enum:
-            - ADMIN_ENTRY
-          type: string
-      x-discriminator-value: ADMIN_ENTRY
     CareEntry:
       title: CARE_ENTRY
       type: object
@@ -2254,19 +2036,6 @@ components:
         state:
           $ref: '#/components/schemas/History'
       x-discriminator-value: OBSERVATION
-    UMObservation:
-      title: OBSERVATION
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Observation'
-      properties:
-        _type:
-          enum:
-            - OBSERVATION
-          type: string
-      x-discriminator-value: OBSERVATION
     Evaluation:
       title: EVALUATION
       required:
@@ -2280,19 +2049,6 @@ components:
           default: EVALUATION
         data:
           $ref: '#/components/schemas/ItemStructure'
-      x-discriminator-value: EVALUATION
-    UMEvaluation:
-      title: EVALUATION
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Evaluation'
-      properties:
-        _type:
-          enum:
-            - EVALUATION
-          type: string
       x-discriminator-value: EVALUATION
     Activity:
       title: ACTIVITY
@@ -2334,19 +2090,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity'
-      x-discriminator-value: INSTRUCTION
-    UMInstruction:
-      title: INSTRUCTION
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Instruction'
-      properties:
-        _type:
-          enum:
-            - INSTRUCTION
-          type: string
       x-discriminator-value: INSTRUCTION
     IsmTransition:
       title: ISM_TRANSITION
@@ -2426,19 +2169,6 @@ components:
           $ref: '#/components/schemas/InstructionDetails'
         description:
           $ref: '#/components/schemas/ItemStructure'
-      x-discriminator-value: ACTION
-    UMAction:
-      title: ACTION
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Action'
-      properties:
-        _type:
-          enum:
-            - ACTION
-          type: string
       x-discriminator-value: ACTION
     Composition:
       title: COMPOSITION
@@ -2593,19 +2323,6 @@ components:
           items:
             $ref: '#/components/schemas/Attestation'
       x-discriminator-value: ORIGINAL_VERSION
-    UMOriginalVersion:
-      title: ORIGINAL_VERSION
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/OriginalVersion'
-      properties:
-        _type:
-          enum:
-            - ORIGINAL_VERSION
-          type: string
-      x-discriminator-value: ORIGINAL_VERSION
     ImportedVersion:
       title: IMPORTED_VERSION
       required:
@@ -2619,19 +2336,6 @@ components:
           default: IMPORTED_VERSION
         item:
           $ref: '#/components/schemas/OriginalVersion'
-      x-discriminator-value: IMPORTED_VERSION
-    UMImportedVersion:
-      title: IMPORTED_VERSION
-      required:
-        - _type
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/ImportedVersion'
-      properties:
-        _type:
-          enum:
-            - IMPORTED_VERSION
-          type: string
       x-discriminator-value: IMPORTED_VERSION
     Error:
       title: Error

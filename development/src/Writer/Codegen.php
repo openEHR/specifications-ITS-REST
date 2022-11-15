@@ -22,6 +22,16 @@ class Codegen extends AbstractWriter {
      * @return void
      */
     protected function run(): void {
+        echo "removing ...";
+        $schemas = [];
+        foreach ($this->apiSpecification->components->schemas as $name => $schema) {
+            if (preg_match('/^UM?[A-Z][a-z][\w]+/', $name)) {
+                echo "$name, ";
+            } else {
+                $schemas[$name] = $schema;
+            }
+        }
+        $this->apiSpecification->components->schemas = $schemas;
     }
 
 }
