@@ -1847,7 +1847,7 @@ components:
           $ref: '#/components/schemas/PartyProxy'
         time:
           $ref: '#/components/schemas/DvIntervalOfDateTime'
-    Entry:
+    AbstractEntry:
       title: ENTRY
       required:
         - language
@@ -1885,7 +1885,7 @@ components:
         - data
       type: object
       allOf:
-        - $ref: '#/components/schemas/Entry'
+        - $ref: '#/components/schemas/AbstractEntry'
       properties:
         _type:
           type: string
@@ -1897,7 +1897,7 @@ components:
       title: CARE_ENTRY
       type: object
       allOf:
-        - $ref: '#/components/schemas/Entry'
+        - $ref: '#/components/schemas/AbstractEntry'
       properties:
         protocol:
           $ref: '#/components/schemas/ItemStructure'
