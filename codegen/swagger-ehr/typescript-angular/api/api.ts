@@ -1,0 +1,11 @@
+export * from './cOMPOSITION.service';
+import { COMPOSITIONService } from './cOMPOSITION.service';
+export * from './cONTRIBUTION.service';
+import { CONTRIBUTIONService } from './cONTRIBUTION.service';
+export * from './dIRECTORY.service';
+import { DIRECTORYService } from './dIRECTORY.service';
+export * from './eHR.service';
+import { EHRService } from './eHR.service';
+export * from './eHRSTATUS.service';
+import { EHRSTATUSService } from './eHRSTATUS.service';
+export const APIS = [COMPOSITIONService, CONTRIBUTIONService, DIRECTORYService, EHRService, EHRSTATUSService];

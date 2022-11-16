@@ -1,0 +1,6 @@
+# EhrApi.Item
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**type** | **String** |  | [optional] 

@@ -1,0 +1,4755 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: info@openehr.org
+    name: Specifications Editorial Committee openEHR
+    url: https://specifications.openehr.org/
+  description: |+
+    <table>
+        <colgroup>
+            <col style="width: 20%;">
+            <col style="width: 80%;">
+        </colgroup>
+        <thead>
+        <tr>
+            <th colspan="2">© 2003 - 2022 The openEHR Foundation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="2">
+                The <a href="https://www.openEHR.org" target="_blank" rel="noopener">openEHR Foundation</a> is an independent, non-profit foundation, facilitating the sharing of health records by consumers and clinicians via open specifications, clinical models and open platform implementations.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Licence</strong></td>
+            <td><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported.
+                <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Support</strong></td>
+            <td>Issues: <a href="https://specifications.openehr.org/components/ITS/open_issues" target="_blank" rel="noopener">Problem Reports</a><br>
+                Web: <a href="https://specifications.openehr.org" target="_blank" rel="noopener">specifications.openEHR.org</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    ### Amendment Record
+
+    <table>
+        <colgroup>
+            <col style="width: 9%;">
+            <col style="width: 55%;">
+            <col style="width: 18%;">
+            <col style="width: 18%;">
+        </colgroup>
+        <thead>
+        <tr>
+            <th>Issue</th>
+            <th>Details</th>
+            <th>Raiser, Implementer</th>
+            <th>Completed</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.0.3 (unreleased)</a></th>
+        </tr>
+        <tr>
+            <td>5.1</td>
+            <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
+                Migrate REST API specs to openAPI format</td>
+            <td>S Iancu</td>
+            <td>14 Nov 2022</td>
+        </tr>
+        <tr>
+            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.2" target="_blank" rel="noopener">Release-1.0.2</a></th>
+        </tr>
+        <tr>
+            <td>4.2</td>
+            <td><a href="https://specifications.openehr.org/tickets/SPECITS-41" target="_blank" rel="noopener">SPECITS-41</a>:
+                Add double quotes to ETag and If-Match headers</td>
+            <td>S Iancu</td>
+            <td>21 Mar 2021</td>
+        </tr>
+        <tr>
+            <td>4.1</td>
+            <td><a href="https://specifications.openehr.org/tickets/SPECITS-49" target="_blank" rel="noopener">SPECITS-49</a>:
+                Describing Resource Identification; add clarification over getting COMPOSITIONs by with `version_uid` vs `versioned_object_uid`</td>
+            <td>J Smolka, M Polajnar, S Iancu</td>
+            <td>08 Mar 2021</td>
+        </tr>
+        <tr>
+            <td>4.0</td>
+            <td><a href="https://specifications.openehr.org/tickets/SPECITS-52" target="_blank" rel="noopener">SPECITS-52</a>:
+                Fix wrong example on revision history of the VERSIONED_COMPOSITION and VERSIONED_EHR_STATUS</td>
+            <td>J Smolka, S Iancu</td>
+            <td>06 Mar 2021</td>
+        </tr>
+        <tr>
+            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.1" target="_blank" rel="noopener">Release-1.0.1</a></th>
+        </tr>
+        <tr>
+            <td>3.2</td>
+            <td><a href="https://specifications.openehr.org/tickets/SPECITS-38" target="_blank" rel="noopener">SPECITS-38</a>:
+                Fix response status code for semantic validation errors (fixes also
+                <a href="https://specifications.openehr.org/tickets/SPECPR-298" target="_blank" rel="noopener">SPECPR-298</a>)</td>
+            <td>P Pazos, S Iancu</td>
+            <td>01 Oct 2019</td>
+        </tr>
+        <tr>
+            <td>3.1</td>
+            <td><a href="https://specifications.openehr.org/tickets/SPECITS-40" target="_blank" rel="noopener">SPECITS-40</a>:
+                Fix and improve documentation on EHR (fixes also
+                <a href="https://specifications.openehr.org/tickets/SPECPR-312" target="_blank" rel="noopener">SPECPR-312</a>)</td>
+            <td>P Pazos, S Iancu</td>
+            <td>28 Sep 2019</td>
+        </tr>
+        <tr>
+            <td>3.0</td>
+            <td><a href="https://specifications.openehr.org/tickets/SPECITS-32" target="_blank" rel="noopener">SPECITS-32</a>: Fix typos and minor documentary errors (fixes
+                <a href="https://specifications.openehr.org/tickets/SPECPR-252" target="_blank" rel="noopener">SPECPR-253</a>,
+                <a href="https://specifications.openehr.org/tickets/SPECPR-255" target="_blank" rel="noopener">SPECPR-255</a>,
+                <a href="https://specifications.openehr.org/tickets/SPECPR-298" target="_blank" rel="noopener">SPECPR-298</a>,
+                <a href="https://specifications.openehr.org/tickets/SPECPR-333" target="_blank" rel="noopener">SPECPR-333</a>,
+                <a href="https://specifications.openehr.org/tickets/SPECPR-337" target="_blank" rel="noopener">SPECPR-337</a>)</td>
+            <td>J Smolka, P Pazos, E Sundvall, T Beale, S Iancu</td>
+            <td>1 Sep 2019</td>
+        </tr>
+        <tr>
+            <td>2.2</td>
+            <td><a href="https://specifications.openehr.org/tickets/SPECITS-24" target="_blank" rel="noopener">SPECITS-24</a>: Added changelog</td>
+            <td>J Smolka, S Iancu</td>
+            <td>12 May 2019</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://specifications.openehr.org/tickets/SPECITS-25" target="_blank" rel="noopener">SPECITS-25</a>,
+                <a href="https://specifications.openehr.org/tickets/SPECITS-29" target="_blank" rel="noopener">SPECITS-29</a>: Change layout and structure</td>
+            <td>J Smolka, S Iancu</td>
+            <td>12 May 2019</td>
+        </tr>
+        <tr>
+            <td>2.1</td>
+            <td>Update links to new openEHR specifications website</td>
+            <td>S Iancu</td>
+            <td>16 Dec 2018</td>
+        </tr>
+        <tr>
+            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.0" target="_blank" rel="noopener">Release-1.0.0</a></th>
+        </tr>
+        </tbody>
+    </table>
+
+
+    # Intro
+
+
+    ## Acknowledgements
+
+    ### Editor
+    - Sebastian Iancu, Architect, Code24, Netherlands
+
+    ### Contributors
+    This specification benefited from wide formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.
+    - Birger Haarbrandt, MSc, Peter L. Reichertz Institut for Medical Informatics (PLRI), Germany
+    - Bjørn Næss, DIPS, Norway
+    - Bostjan Lah, Senior Architect, Better, Slovenia
+    - Erik Sundvall, Information Architect at Karolinska University Hospital, Sweden
+    - Heath Frankel, Ocean Informatics, Australia
+    - Ian McNicoll MD, FreshEHR, UK
+    - Jake Smolka, Software Engineer, Better, Slovenia
+    - Matija Polajnar, PhD, Software Engineer, Better, Slovenia
+    - Pablo Pazos Gutierrez, Senior engineer, CaboLabs, Uruguay
+    - Rong Chen MD, PhD, Cambio Healthcare Systems, Sweden
+    - Sebastian Iancu, Architect, Code24, Netherlands
+    - Seref Arikan, MEcon, Ocean Informatics UK, Centre for Health Informatics and Multi-professional Education (CHIME) UK
+    - Thomas Beale, Ars Semantica UK, openEHR Foundation Management Board
+
+    ### Trademarks
+    - 'openEHR' is a trademark of the [openEHR Foundation](https://www.openEHR.org)
+    - 'OpenAPI' is a trademark of the [The Linux Foundation](https://www.linuxfoundation.org)
+
+
+    ## Preface
+
+    ### Purpose
+
+    This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with EHR openEHR API in a RESTful manner.
+
+    ### Related Documents
+
+    Prerequisite documents for reading this document include:
+
+    - The [EHR Information Model](https://specifications.openehr.org/releases/RM/latest/ehr.html#_the_ehr_information_model)
+
+    Related documents include:
+
+    - The [openEHR Architecture Overview](https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html)
+    - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
+    - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
+    - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
+    - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html)
+
+    ### Status
+
+    This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
+    Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
+
+    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
+
+    ### Feedback
+
+    Feedback may be provided on the [Implementation Technology Specifications forum](https://discourse.openehr.org/c/specifications/its/41).
+
+    Issues may be raised on the [specifications Problem Report tracker](https://openehr.atlassian.net/browse/SPECPR).
+
+    To see changes made due to previously reported issues, see the [ITS component Change Request tracker](https://specifications.openehr.org/components/ITS/history).
+
+    ### Conformance
+
+    tbd.
+
+  license:
+    name: Creative Commons Attribution-NoDerivs 3.0 Unported
+    url: https://creativecommons.org/licenses/by-nd/3.0/
+  title: EHR API
+  version: latest
+  x-status: STABLE
+  x-spec: ehr
+servers:
+- description: An example openEHR server URL.
+  url: "https://{baseUrl}/v1"
+  variables:
+    baseUrl:
+      default: openEHRSys.example.com
+      description: "The (example) server base URL prefix providing openEHR services.\
+        \ This may contain server name, port and base path prefix."
+tags:
+- description: |
+    Management of [EHRs](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class).
+    Actions upon resources of this group are also formally described in the [I_EHR_SERVICE](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_service_interface) Abstract Service Model interface.
+  name: EHR
+- description: |
+    Management of [EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_status_class) and [VERSIONED_EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_ehr_status_class) resources.
+    Actions upon resources of this group are also formally described in the [I_EHR_STATUS](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_status_interface) Abstract Service Model interface.
+  name: EHR_STATUS
+- description: |
+    Management of [COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class) and [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class) resources.
+    Actions upon resources of this group are also formally described in the [I_EHR_COMPOSITION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_composition_interface) Abstract Service Model interface.
+  name: COMPOSITION
+- description: |
+    Management of the [directory](https://specifications.openehr.org/releases/RM/latest/ehr.html#_directory) [FOLDER](https://specifications.openehr.org/releases/RM/latest/common.html#_folder_class) resource.
+    Actions upon resources of this group are also formally described in the [I_EHR_DIRECTORY](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_directory_interface) Abstract Service Model interface.
+  name: DIRECTORY
+- description: |
+    Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
+    Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
+  name: CONTRIBUTION
+- description: |
+    This is related to [EHR](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class).
+
+    <SchemaDefinition schemaRef="#/components/schemas/Ehr" />
+  name: EHR_schema
+  x-displayName: EHR
+- description: |
+    This is related to [EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_status_class) and [VERSIONED_EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_ehr_status_class).
+
+    <SchemaDefinition schemaRef="#/components/schemas/EhrStatus" />
+    <SchemaDefinition schemaRef="#/components/schemas/VersionedEhrStatus" />
+  name: EHR_STATUS_schema
+  x-displayName: EHR_STATUS
+- description: |
+    This is related to [COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class) and [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class).
+
+    <SchemaDefinition schemaRef="#/components/schemas/Composition" />
+    <SchemaDefinition schemaRef="#/components/schemas/VersionedComposition" />
+  name: COMPOSITION_schema
+  x-displayName: COMPOSITION
+- description: |
+    This is related to [directory](https://specifications.openehr.org/releases/RM/latest/ehr.html#_directory) [FOLDER](https://specifications.openehr.org/releases/RM/latest/common.html#_folder_class).
+
+    <SchemaDefinition schemaRef="#/components/schemas/Folder" />
+  name: DIRECTORY_schema
+  x-displayName: DIRECTORY
+- description: |
+    This is related to [ITEM_STRUCTURE](https://specifications.openehr.org/releases/RM/latest/data_structures.html#_item_structure_class).
+
+    <SchemaDefinition schemaRef="#/components/schemas/ItemStructure" />
+  name: ITEM_STRUCTURE_schema
+  x-displayName: ITEM_STRUCTURE
+- description: |
+    This is related to [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class).
+
+    <SchemaDefinition schemaRef="#/components/schemas/Contribution" />
+  name: CONTRIBUTION_schema
+  x-displayName: CONTRIBUTION
+paths:
+  /ehr:
+    get:
+      description: "Retrieve the EHR with the specified `subject_id` and `subject_namespace`.\n\
+        \nThese subject parameters will be matched against EHR's EHR_STATUS.subject.external_ref.id.value\
+        \ and \nEHR_STATUS.subject.external_ref.namespace values.\n"
+      operationId: ehr_get_by_subject
+      parameters:
+      - description: |
+          The EHR subject id.
+        explode: true
+        in: query
+        name: subject_id
+        required: true
+        schema:
+          example: ins01
+          type: string
+        style: form
+      - description: |
+          The EHR subject id namespace.
+        explode: true
+        in: query
+        name: subject_namespace
+        required: true
+        schema:
+          example: examples
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ehr'
+          description: |
+            `200 OK` is returned when the requested EHR resource is successfully retrieved.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with supplied subject parameters does not exist.
+      summary: Get EHR by subject id
+      tags:
+      - EHR
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR
+    post:
+      description: "Create a new `EHR` with an auto-generated identifier.\n\nAn EHR_STATUS\
+        \ resource needs to be always created and committed in the new EHR.\nThis\
+        \ resource MAY be also supplied by the client as the request body. \nIf not\
+        \ supplied, a default EHR_STATUS will be used by the service with following\
+        \ attributes:\n  - `is_queryable`: true\n  - `is_modifiable`: true\n  - `subject`:\
+        \ a PARTY_SELF object\n\nAll other required EHR attributes and resources will\
+        \ be automatically created as needed by the [EHR creation semantics](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_creation_semantics).\n"
+      operationId: ehr_create
+      parameters:
+      - description: |
+          Request header to indicate the preference over response details.
+          The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+        explode: false
+        in: header
+        name: Prefer
+        required: false
+        schema:
+          default: return=minimal
+          enum:
+          - return=representation
+          - return=minimal
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EhrStatus'
+        description: |
+          An EHR_STATUS resource MAY be also supplied by the client as the request body.
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ehr'
+          description: "`201 Created` is returned when the EHR has been successfully\
+            \ created. \nThe new EHR resource is returned in the body when the request's\
+            \ `Prefer` header value is `return=representation`, otherwise only headers\
+            \ are returned.\n"
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_EHR'
+            Location:
+              $ref: '#/components/headers/Location_EHR'
+        "400":
+          description: |
+            `400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content.
+        "409":
+          description: |
+            `409 Conflict` Unable to create a new EHR due to a conflict with an already existing EHR with the same subject id, namespace pair, whenever EHR_STATUS is supplied.
+      summary: Create EHR
+      tags:
+      - EHR
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR
+  /ehr/{ehr_id}:
+    get:
+      description: |
+        Retrieve the EHR with the specified `ehr_id`.
+      operationId: ehr_get_by_id
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ehr'
+          description: |
+            `200 OK` is returned when the requested EHR resource is successfully retrieved.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+      summary: Get EHR by id
+      tags:
+      - EHR
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR
+    put:
+      description: "Create a new EHR with the specified `ehr_id` identifier.\n\nThe\
+        \ value of the `ehr_id` unique identifier MUST be valid [HIER_OBJECT_ID](https://specifications.openehr.org/releases/BASE/latest/base_types.html#_hier_object_id_class)\
+        \ value. \nIt is strongly RECOMMENDED that an UUID always be used for this.\n\
+        \nAn EHR_STATUS resource needs to be always created and committed in the new\
+        \ EHR.\nThis resource MAY be also supplied by the client as the request body.\
+        \ \nIf not supplied, a default EHR_STATUS will be used by the service with\
+        \ following attributes:\n  - `is_queryable`: true\n  - `is_modifiable`: true\n\
+        \  - `subject`: a PARTY_SELF object\n\nAll other required EHR attributes and\
+        \ resources will be automatically created as needed by the [EHR creation semantics](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_creation_semantics).\n"
+      operationId: ehr_create_with_id
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          Request header to indicate the preference over response details.
+          The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+        explode: false
+        in: header
+        name: Prefer
+        required: false
+        schema:
+          default: return=minimal
+          enum:
+          - return=representation
+          - return=minimal
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EhrStatus'
+        description: |
+          An EHR_STATUS resource MAY be also supplied by the client as the request body.
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ehr'
+          description: "`201 Created` is returned when the EHR has been successfully\
+            \ created. \nThe new EHR resource is returned in the body when the request's\
+            \ `Prefer` header value is `return=representation`, otherwise only headers\
+            \ are returned.\n"
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_EHR'
+            Location:
+              $ref: '#/components/headers/Location_EHR'
+        "400":
+          description: |
+            `400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content.
+        "409":
+          description: "`409 Conflict` Unable to create a new EHR due to a conflict\
+            \ with an already existing EHR. \nCan happen when the supplied `ehr_id`\
+            \ is already used by an existing EHR.\n"
+      summary: Create EHR with id
+      tags:
+      - EHR
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR
+  /ehr/{ehr_id}/ehr_status/{version_uid}:
+    get:
+      description: |
+        Retrieves a particular version of the EHR_STATUS identified by `version_uid` and associated with the EHR identified by `ehr_id`.
+      operationId: ehr_status_get_by_version_id
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          VERSION identifier taken from VERSION.uid.value.
+        explode: false
+        in: path
+        name: version_uid
+        required: true
+        schema:
+          example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EhrStatus'
+          description: |
+            `200 OK` is returned when the requested EHR_STATUS is successfully retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            Location:
+              $ref: '#/components/headers/Location_EHR_STATUS'
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when the `version_uid` does not exist.
+      summary: Get EHR_STATUS by version id
+      tags:
+      - EHR_STATUS
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR_STATUS
+  /ehr/{ehr_id}/ehr_status:
+    get:
+      description: |
+        Retrieves a version of the EHR_STATUS associated with the EHR identified by `ehr_id`.
+
+        If `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ EHR_STATUS version.
+      operationId: ehr_status_get_at_time
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          A given time in the extended ISO 8601 format.
+        explode: true
+        in: query
+        name: version_at_time
+        required: false
+        schema:
+          example: 2015-01-20T19:30:22.765+01:00
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EhrStatus'
+          description: |
+            `200 OK` is returned when the requested EHR_STATUS is successfully retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            Location:
+              $ref: '#/components/headers/Location_EHR_STATUS'
+        "400":
+          description: |
+            `400 Bad Request` is returned when the request has invalid content such as an invalid `version_at_time` format.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a version of the resource identified by the request parameters (at specified `version_at_time`) does not exist.
+      summary: Get EHR_STATUS at time
+      tags:
+      - EHR_STATUS
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR_STATUS
+    put:
+      description: |
+        Updates EHR_STATUS associated with the EHR identified by `ehr_id`.
+
+        The existing latest `version_uid` of EHR_STATUS resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
+
+        The response will contain the updated EHR_STATUS resource when the `Prefer` header has a value of `return=representation`.
+      operationId: ehr_status_update
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: "Header to make the request conditional. \nTogether with `ETag`\
+          \ request tag, it helps to prevent simultaneous updates of a resource from\
+          \ overwriting each other (\"mid-air collisions\").\nThe format is always\
+          \ an `version_uid` identifier enclosed by double quotes.\nThe operation\
+          \ will be performed only if the existing latest `version_uid` of the resource\
+          \ (i.e. the `preceding_version_uid`) matches this header's value.\n"
+        explode: false
+        in: header
+        name: If-Match
+        required: true
+        schema:
+          example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"'
+          type: string
+        style: simple
+      - description: |
+          Request header to indicate the preference over response details.
+          The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+        explode: false
+        in: header
+        name: Prefer
+        required: false
+        schema:
+          default: return=minimal
+          enum:
+          - return=representation
+          - return=minimal
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EhrStatus'
+        description: |
+          The new EHR_STATUS.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EhrStatus'
+          description: |
+            `200 OK` is returned when the EHR_STATUS is successfully updated, and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            Location:
+              $ref: '#/components/headers/Location_EHR_STATUS'
+        "204":
+          description: |
+            `204 No Content` is returned when the `Prefer` header is missing or is set to `return=minimal`.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            Location:
+              $ref: '#/components/headers/Location_EHR_STATUS'
+        "400":
+          description: |
+            `400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+        "412":
+          description: |
+            `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
+            Returns also latest `version_uid` in the `Location` and `ETag` headers.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            Location:
+              $ref: '#/components/headers/Location_EHR_STATUS'
+      summary: Update EHR_STATUS
+      tags:
+      - EHR_STATUS
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR_STATUS
+  /ehr/{ehr_id}/versioned_ehr_status:
+    get:
+      description: |
+        Retrieves a VERSIONED_EHR_STATUS associated with an EHR identified by `ehr_id`.
+      operationId: versioned_ehr_status_get
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionedEhrStatus'
+          description: |
+            `200 OK` is returned when the requested VERSIONED_EHR_STATUS is successfully retrieved.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+      summary: Get versioned EHR_STATUS
+      tags:
+      - EHR_STATUS
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR_STATUS
+  /ehr/{ehr_id}/versioned_ehr_status/revision_history:
+    get:
+      description: |
+        Retrieves revision history of the VERSIONED_EHR_STATUS associated with the EHR identified by `ehr_id`.
+      operationId: versioned_ehr_status_revision_history
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevisionHistory'
+          description: |
+            `200 OK` is returned when the requested REVISION_HISTORY is successfully retrieved.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+      summary: Get versioned EHR_STATUS revision history
+      tags:
+      - EHR_STATUS
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR_STATUS
+  /ehr/{ehr_id}/versioned_ehr_status/version:
+    get:
+      description: |
+        Retrieves a VERSION from the VERSIONED_EHR_STATUS associated with the EHR identified by `ehr_id`.
+
+        If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
+      operationId: versioned_ehr_status_version_get_at_time
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          A given time in the extended ISO 8601 format.
+        explode: true
+        in: query
+        name: version_at_time
+        required: false
+        schema:
+          example: 2015-01-20T19:30:22.765+01:00
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: |
+            `200 OK` is returned when the requested VERSION is successfully retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_VERSION'
+            Location:
+              $ref: '#/components/headers/Location_VERSIONED_EHR_STATUS_VERSION'
+        "400":
+          description: |
+            `400 Bad Request` is returned when the request has invalid content such as an invalid `version_at_time` format.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a version of the resource identified by the request parameters (at specified `version_at_time`) does not exist.
+      summary: Get versioned EHR_STATUS version at time
+      tags:
+      - EHR_STATUS
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR_STATUS
+  /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid}:
+    get:
+      description: |
+        Retrieves a VERSION identified by `version_uid` of an EHR_STATUS associated with the EHR identified by `ehr_id`.
+      operationId: versioned_ehr_status_version_get_by_id
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          VERSION identifier taken from VERSION.uid.value.
+        explode: false
+        in: path
+        name: version_uid
+        required: true
+        schema:
+          example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: |
+            `200 OK` is returned when the requested VERSION is successfully retrieved.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when the `version_uid` does not exist.
+      summary: Get versioned EHR_STATUS version by id
+      tags:
+      - EHR_STATUS
+      x-accepts: application/json
+      x-tags:
+      - tag: EHR_STATUS
+  /ehr/{ehr_id}/composition:
+    post:
+      description: |
+        Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`.
+      operationId: composition_create
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          Request header to indicate the preference over response details.
+          The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+        explode: false
+        in: header
+        name: Prefer
+        required: false
+        schema:
+          default: return=minimal
+          enum:
+          - return=representation
+          - return=minimal
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Composition'
+        description: |
+          The COMPOSITION.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Composition'
+          description: "`201 Created` is returned when the COMPOSITION was created.\
+            \ \nContent body is only returned when `Prefer` header has `return=representation`,\
+            \ otherwise only headers are returned.\n"
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_COMPOSITION'
+            Location:
+              $ref: '#/components/headers/Location_COMPOSITION'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: |
+            `400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request could not be read, or could not be converted to a valid COMPOSITION object).
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+        "422":
+          description: |
+            `422 Unprocessable Entity` is returned when the content could be converted to a COMPOSITION, but there are semantic validation errors, such as the underlying template is not known or is not validating the supplied COMPOSITION.
+      summary: Create COMPOSITION
+      tags:
+      - COMPOSITION
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: COMPOSITION
+  /ehr/{ehr_id}/composition/{uid_based_id}:
+    delete:
+      description: |
+        Deletes the COMPOSITION identified by `uid_based_id` and associated with the EHR identified by `ehr_id`.
+
+        The `uid_based_id` MUST be in a form of an OBJECT_VERSION_ID identifier taken from the last (most recent) VERSION.uid.value, representing the `preceding_version_uid` to be deleted.
+      operationId: composition_delete
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          An identifier in a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`).
+        explode: false
+        in: path
+        name: uid_based_id
+        required: true
+        schema:
+          example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |
+            `204 No Content` is returned when COMPOSITION was deleted.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_COMPOSITION'
+            Location:
+              $ref: '#/components/headers/Location_COMPOSITION'
+        "400":
+          description: |
+            `400 Bad Request` is returned when the request URL could not be parsed (i.e. invalid format of request parameters) or when the resource identified by the request parameters is already deleted.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when the `uid_based_id` does not exist.
+        "409":
+          description: |
+            `409 Conflict` is returned when supplied `uid_based_id` doesn't match the latest version.
+            Returns also latest version in the `Location` and `ETag` headers.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_COMPOSITION'
+            Location:
+              $ref: '#/components/headers/Location_COMPOSITION'
+      summary: Delete COMPOSITION
+      tags:
+      - COMPOSITION
+      x-accepts: application/json
+      x-tags:
+      - tag: COMPOSITION
+    get:
+      description: |
+        Retrieves a version of the COMPOSITION identified by `uid_based_id` and associated with the EHR identified by `ehr_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to retrieve a specific known version of the COMPOSITION (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`), whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to retrieve a version from the version container whenever the _version_tree_id_ is unknown or irrelevant (such as when most recent version is requested).
+
+        When the `uid_based_id` has the form of a HIER_OBJECT_ID, if the `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ COMPOSITION version.
+
+        See [Resource identification](overview.html#tag/Resources/Resource-identification) for more details about the identifiers usage and meaning.
+      operationId: composition_get
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          An abstract identifier: it can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        explode: false
+        in: path
+        name: uid_based_id
+        required: true
+        schema:
+          example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          type: string
+        style: simple
+      - description: |
+          A given time in the extended ISO 8601 format.
+        explode: true
+        in: query
+        name: version_at_time
+        required: false
+        schema:
+          example: 2015-01-20T19:30:22.765+01:00
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Composition'
+          description: |
+            `200 OK` is returned when the requested COMPOSITION is successfully retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_COMPOSITION'
+            Location:
+              $ref: '#/components/headers/Location_COMPOSITION'
+        "204":
+          description: |
+            `204 No Content` is returned when the resource identified by the request parameters (at specified `version_at_time`) time has been deleted.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a version of the resource identified by the request parameters (at specified `version_at_time`) does not exist.
+      summary: Get COMPOSITION
+      tags:
+      - COMPOSITION
+      x-accepts: application/json
+      x-tags:
+      - tag: COMPOSITION
+    put:
+      description: "Updates COMPOSITION identified by `uid_based_id` and associated\
+        \ with the EHR identified by `ehr_id`.\n\nThe `uid_based_id` can take only\
+        \ a form of an HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value\
+        \ (i.e. a `versioned_object_uid`).\n\nIf the request body already contains\
+        \ a COMPOSITION.uid.value, it must match the `uid_based_id` in the URL. \n\
+        \nThe existing latest `version_uid` of COMPOSITION resource (i.e. the `preceding_version_uid`)\
+        \ must be specified in the `If-Match` header.\n"
+      operationId: composition_update
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          An identifier in a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        explode: false
+        in: path
+        name: uid_based_id
+        required: true
+        schema:
+          example: 8849182c-82ad-4088-a07f-48ead4180515
+          type: string
+        style: simple
+      - description: "Header to make the request conditional. \nTogether with `ETag`\
+          \ request tag, it helps to prevent simultaneous updates of a resource from\
+          \ overwriting each other (\"mid-air collisions\").\nThe format is always\
+          \ an `version_uid` identifier enclosed by double quotes.\nThe operation\
+          \ will be performed only if the existing latest `version_uid` of the resource\
+          \ (i.e. the `preceding_version_uid`) matches this header's value.\n"
+        explode: false
+        in: header
+        name: If-Match
+        required: true
+        schema:
+          example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"'
+          type: string
+        style: simple
+      - description: |
+          Request header to indicate the preference over response details.
+          The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+        explode: false
+        in: header
+        name: Prefer
+        required: false
+        schema:
+          default: return=minimal
+          enum:
+          - return=representation
+          - return=minimal
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Composition'
+        description: |
+          The new COMPOSITION.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Composition'
+          description: |
+            `200 OK` is returned when the COMPOSITION is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_COMPOSITION'
+            Location:
+              $ref: '#/components/headers/Location_COMPOSITION'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: |
+            `400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request could not be read, or could not be converted to a valid COMPOSITION object).
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when the `uid_based_id` does not exist.
+        "412":
+          description: |
+            `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
+            Returns also latest `version_uid` in the `Location` and `ETag` headers.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_COMPOSITION'
+            Location:
+              $ref: '#/components/headers/Location_COMPOSITION'
+        "422":
+          description: |
+            `422 Unprocessable Entity` is returned when the content could be converted to a COMPOSITION, but there are semantic validation errors, such as the underlying template is not known or is not validating the supplied COMPOSITION.
+      summary: Update COMPOSITION
+      tags:
+      - COMPOSITION
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: COMPOSITION
+  /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}:
+    get:
+      description: |
+        Retrieves a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+      operationId: versioned_composition_get
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value.
+        explode: false
+        in: path
+        name: versioned_object_uid
+        required: true
+        schema:
+          example: 8849182c-82ad-4088-a07f-48ead4180515
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionedComposition'
+          description: |
+            `200 OK` is returned when the requested VERSIONED_COMPOSITION is successfully retrieved.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when the `versioned_object_uid` does not exist.
+      summary: Get versioned COMPOSITION
+      tags:
+      - COMPOSITION
+      x-accepts: application/json
+      x-tags:
+      - tag: COMPOSITION
+  /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history:
+    get:
+      description: |
+        Retrieves revision history of the VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+      operationId: versioned_composition_revision_history
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value.
+        explode: false
+        in: path
+        name: versioned_object_uid
+        required: true
+        schema:
+          example: 8849182c-82ad-4088-a07f-48ead4180515
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevisionHistory'
+          description: |
+            `200 OK` is returned when the requested REVISION_HISTORY is successfully retrieved.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when the `versioned_object_uid` does not exist.
+      summary: Get versioned COMPOSITION revision history
+      tags:
+      - COMPOSITION
+      x-accepts: application/json
+      x-tags:
+      - tag: COMPOSITION
+  /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version:
+    get:
+      description: |
+        Retrieves a VERSION from the VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+
+        If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
+      operationId: versioned_composition_version_get_at_time
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value.
+        explode: false
+        in: path
+        name: versioned_object_uid
+        required: true
+        schema:
+          example: 8849182c-82ad-4088-a07f-48ead4180515
+          type: string
+        style: simple
+      - description: |
+          A given time in the extended ISO 8601 format.
+        explode: true
+        in: query
+        name: version_at_time
+        required: false
+        schema:
+          example: 2015-01-20T19:30:22.765+01:00
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: |
+            `200 OK` is returned when the requested VERSION is successfully retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_VERSION_of_COMPOSITION'
+            Location:
+              $ref: '#/components/headers/Location_VERSIONED_COMPOSITION_VERSION'
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when `versioned_object_uid` does not exist, or when a version of the resource does not exist at the specified `version_at_time`.
+      summary: Get versioned COMPOSITION version at time
+      tags:
+      - COMPOSITION
+      x-accepts: application/json
+      x-tags:
+      - tag: COMPOSITION
+  /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}:
+    get:
+      description: |
+        Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
+      operationId: versioned_composition_version_get_by_id
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value.
+        explode: false
+        in: path
+        name: versioned_object_uid
+        required: true
+        schema:
+          example: 8849182c-82ad-4088-a07f-48ead4180515
+          type: string
+        style: simple
+      - description: |
+          VERSION identifier taken from VERSION.uid.value.
+        explode: false
+        in: path
+        name: version_uid
+        required: true
+        schema:
+          example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: |
+            `200 OK` is returned when the requested VERSION is successfully retrieved.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when `versioned_object_uid` does not exist, or when a VERSION with `version_uid` does not exist.
+      summary: Get versioned COMPOSITION version by id
+      tags:
+      - COMPOSITION
+      x-accepts: application/json
+      x-tags:
+      - tag: COMPOSITION
+  /ehr/{ehr_id}/directory:
+    delete:
+      description: |
+        Deletes directory FOLDER associated with the EHR identified by `ehr_id`.
+
+        The existing latest `version_uid` of directory FOLDER resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
+      operationId: directory_delete
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: "Header to make the request conditional. \nTogether with `ETag`\
+          \ request tag, it helps to prevent simultaneous updates of a resource from\
+          \ overwriting each other (\"mid-air collisions\").\nThe format is always\
+          \ an `version_uid` identifier enclosed by double quotes.\nThe operation\
+          \ will be performed only if the existing latest `version_uid` of the resource\
+          \ (i.e. the `preceding_version_uid`) matches this header's value.\n"
+        explode: false
+        in: header
+        name: If-Match
+        required: true
+        schema:
+          example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"'
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |
+            `204 No Content` is returned when the resource identified by the request parameters has been (logically) deleted.
+        "400":
+          description: |
+            `400 Bad Request` is returned when the request has invalid `ehr_id`.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+        "412":
+          description: |
+            `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
+            Returns also latest `version_uid` in the `Location` and `ETag` headers.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_FOLDER'
+            Location:
+              $ref: '#/components/headers/Location_directory'
+      summary: Delete directory
+      tags:
+      - DIRECTORY
+      x-accepts: application/json
+      x-tags:
+      - tag: DIRECTORY
+    get:
+      description: "Retrieves the version of the directory FOLDER associated with\
+        \ the EHR identified by `ehr_id`. \nIf `version_at_time` is supplied, retrieves\
+        \ the version extant _at specified time_, otherwise retrieves the _latest_\
+        \ directory FOLDER version. \n\nIf `path` is supplied, retrieves from the\
+        \ directory only the sub-FOLDER that is associated with that path.\n"
+      operationId: directory_get_at_time
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          A given time in the extended ISO 8601 format.
+        explode: true
+        in: query
+        name: version_at_time
+        required: false
+        schema:
+          example: 2015-01-20T19:30:22.765+01:00
+          type: string
+        style: form
+      - description: |
+          A path to a sub-folder; consists of slash-separated values of the name attribute of FOLDERs in the directory.
+        explode: true
+        in: query
+        name: path
+        required: false
+        schema:
+          example: episodes/a/b/c
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+          description: |
+            `200 OK` is returned when the FOLDER is successfully retrieved.
+        "204":
+          description: |
+            `204 No Content` is returned when the resource identified by the request parameters (at specified `version_at_time`) time has been deleted.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a directory does not exist at the specified `version_at_time`, or when `path` does not exists within the directory.
+      summary: Get folder in directory version at time
+      tags:
+      - DIRECTORY
+      x-accepts: application/json
+      x-tags:
+      - tag: DIRECTORY
+    post:
+      description: |
+        Creates a new directory FOLDER associated with the EHR identified by `ehr_id`.
+      operationId: directory_create
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          Request header to indicate the preference over response details.
+          The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+        explode: false
+        in: header
+        name: Prefer
+        required: false
+        schema:
+          default: return=minimal
+          enum:
+          - return=representation
+          - return=minimal
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Folder'
+        description: |
+          The directory.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+          description: "`201 Created` is returned when the FOLDER was created. \n\
+            Content body is only returned when `Prefer` header has `return=representation`,\
+            \ otherwise only headers are returned.\n"
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_FOLDER'
+            Location:
+              $ref: '#/components/headers/Location_directory'
+        "400":
+          description: |
+            `400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request could not be read, or could not be converted to a valid FOLDER object).
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+      summary: Create directory
+      tags:
+      - DIRECTORY
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: DIRECTORY
+    put:
+      description: |
+        Updates directory FOLDER associated with the EHR identified by `ehr_id`.
+
+        The existing latest `version_uid` of directory FOLDER resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
+      operationId: directory_update
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: "Header to make the request conditional. \nTogether with `ETag`\
+          \ request tag, it helps to prevent simultaneous updates of a resource from\
+          \ overwriting each other (\"mid-air collisions\").\nThe format is always\
+          \ an `version_uid` identifier enclosed by double quotes.\nThe operation\
+          \ will be performed only if the existing latest `version_uid` of the resource\
+          \ (i.e. the `preceding_version_uid`) matches this header's value.\n"
+        explode: false
+        in: header
+        name: If-Match
+        required: true
+        schema:
+          example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"'
+          type: string
+        style: simple
+      - description: |
+          Request header to indicate the preference over response details.
+          The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+        explode: false
+        in: header
+        name: Prefer
+        required: false
+        schema:
+          default: return=minimal
+          enum:
+          - return=representation
+          - return=minimal
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Folder'
+        description: |
+          The new directory.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+          description: |
+            `200 OK` is returned when directory was successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_FOLDER'
+            Location:
+              $ref: '#/components/headers/Location_directory'
+        "204":
+          description: |
+            `204 No Content` is returned when directory was updated and `Prefer` header is missing or is set to `return=minimal`.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_FOLDER'
+            Location:
+              $ref: '#/components/headers/Location_directory'
+        "400":
+          description: |
+            `400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request could not be read, or could not be converted to a valid FOLDER object).
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+        "412":
+          description: |
+            `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
+            Returns also latest `version_uid` in the `Location` and `ETag` headers.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_FOLDER'
+            Location:
+              $ref: '#/components/headers/Location_directory'
+      summary: Update directory
+      tags:
+      - DIRECTORY
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: DIRECTORY
+  /ehr/{ehr_id}/directory/{version_uid}:
+    get:
+      description: |
+        Retrieves a particular version of the directory FOLDER identified by `version_uid` and associated with the EHR identified by `ehr_id`.
+
+        If `path` is supplied, retrieves from the directory only the sub-FOLDER that is associated with that path.
+      operationId: directory_get_by_version_id
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          VERSION identifier taken from VERSION.uid.value.
+        explode: false
+        in: path
+        name: version_uid
+        required: true
+        schema:
+          example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+          type: string
+        style: simple
+      - description: |
+          A path to a sub-folder; consists of slash-separated values of the name attribute of FOLDERs in the directory.
+        explode: true
+        in: query
+        name: path
+        required: false
+        schema:
+          example: episodes/a/b/c
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+          description: |
+            `200 OK` is returned when the FOLDER is successfully retrieved.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a directory with `version_uid` does not exist, or when `path` does not exist within the directory.
+      summary: Get folder in directory version
+      tags:
+      - DIRECTORY
+      x-accepts: application/json
+      x-tags:
+      - tag: DIRECTORY
+  /ehr/{ehr_id}/contribution:
+    post:
+      description: |
+        We will use the relaxed CONTRIBUTION with the following optional attributes:
+          - `uid`: when provided, it will be accepted in case is not in-use, otherwise error will be returned
+          - `audit.time_committed`: server will always set it
+          - `audit.system_id`: when provided, it will be validated
+      operationId: contribution_create
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          Request header to indicate the preference over response details.
+          The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+        explode: false
+        in: header
+        name: Prefer
+        required: false
+        schema:
+          default: return=minimal
+          enum:
+          - return=representation
+          - return=minimal
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewContribution'
+        description: |
+          The CONTRIBUTION.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contribution'
+          description: "`201 Created` is returned when the CONTRIBUTION was created.\
+            \ \nContent body is only returned when `Prefer` header has `return=representation`,\
+            \ otherwise only headers are returned.\n"
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag_CONTRIBUTION'
+            Location:
+              $ref: '#/components/headers/Location_CONTRIBUTION'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: |
+            `400 Bad Request` is returned when the request URL or body could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request not be converted to a valid CONTRIBUTION object, or the modification type doesn’t match the operation - i.e. first version of a composition with MODIFICATION).
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+        "409":
+          description: |
+            `409 Conflict` is returned when a resource with same identifier(s) already exists.
+      summary: Create CONTRIBUTION
+      tags:
+      - CONTRIBUTION
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: CONTRIBUTION
+  /ehr/{ehr_id}/contribution/{contribution_uid}:
+    get:
+      description: |
+        Retrieves a CONTRIBUTION identified by `contribution_uid` and associated with the EHR identified by `ehr_id`.
+      operationId: contribution_get
+      parameters:
+      - description: |
+          EHR identifier taken from EHR.ehr_id.value.
+        explode: false
+        in: path
+        name: ehr_id
+        required: true
+        schema:
+          example: 7d44b88c-4199-4bad-97dc-d78268e01398
+          type: string
+        style: simple
+      - description: |
+          The CONTRIBUTION uid.
+        explode: false
+        in: path
+        name: contribution_uid
+        required: true
+        schema:
+          example: 0826851c-c4c2-4d61-92b9-410fb8275ff0
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contribution'
+          description: |
+            `200 OK` is returned when the CONTRIBUTION is successfully retrieved.
+        "404":
+          description: |
+            `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a CONTRIBUTION with `contribution_uid` does not exist.
+      summary: Get CONTRIBUTION by id
+      tags:
+      - CONTRIBUTION
+      x-accepts: application/json
+      x-tags:
+      - tag: CONTRIBUTION
+components:
+  headers:
+    ETag_EHR:
+      description: |
+        The `ETag` (i.e. entity tag) response header is the `ehr_id` identifier, enclosed by double quotes.
+      explode: false
+      schema:
+        example: '"7d44b88c-4199-4bad-97dc-d78268e01398"'
+        type: string
+      style: simple
+    Location_EHR:
+      description: |
+        The `Location` response header indicates the URL of the EHR resource.
+      explode: false
+      schema:
+        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398
+        format: url
+        type: string
+      style: simple
+    ETag:
+      description: |
+        The `ETag` (i.e. entity tag) response header is an identifier (e.g. a `version_uid` enclosed by double quotes) for a specific version of a resource.
+      explode: false
+      schema:
+        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"'
+        type: string
+      style: simple
+    Location_EHR_STATUS:
+      description: |
+        The `Location` response header indicates the URL of the EHR_STATUS resource.
+      explode: false
+      schema:
+        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+        format: url
+        type: string
+      style: simple
+    ETag_VERSION:
+      description: |
+        The `ETag` (i.e. entity tag) response header is the VERSION identifier (i.e. the `version_uid`) enclosed by double quotes.
+      explode: false
+      schema:
+        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"'
+        type: string
+      style: simple
+    Location_VERSIONED_EHR_STATUS_VERSION:
+      description: |
+        The `Location` response header indicates the URL of the VERSION resource.
+      explode: false
+      schema:
+        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_ehr_status/version/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1
+        format: url
+        type: string
+      style: simple
+    ETag_COMPOSITION:
+      description: |
+        The `ETag` (i.e. entity tag) response header is an identifier (e.g. a `version_uid` enclosed by double quotes) for a specific version of a resource.
+      explode: false
+      schema:
+        example: '"8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"'
+        type: string
+      style: simple
+    Location_COMPOSITION:
+      description: |
+        The `Location` response header indicates the URL of the COMPOSITION resource.
+      explode: false
+      schema:
+        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        format: url
+        type: string
+      style: simple
+    ETag_VERSION_of_COMPOSITION:
+      description: |
+        The `ETag` (i.e. entity tag) response header is the VERSION identifier (i.e. the `version_uid`) enclosed by double quotes.
+      explode: false
+      schema:
+        example: '"8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"'
+        type: string
+      style: simple
+    Location_VERSIONED_COMPOSITION_VERSION:
+      description: |
+        The `Location` response header indicates the URL of the VERSION resource.
+      explode: false
+      schema:
+        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/versioned_composition/8849182c-82ad-4088-a07f-48ead4180515/version/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        format: url
+        type: string
+      style: simple
+    ETag_FOLDER:
+      description: |
+        The `ETag` (i.e. entity tag) response header is an identifier (e.g. a `version_uid` enclosed by double quotes) for a specific version of a resource.
+      explode: false
+      schema:
+        example: '"8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"'
+        type: string
+      style: simple
+    Location_directory:
+      description: |
+        The `Location` response header indicates the URL of the directory FOLDER resource.
+      explode: false
+      schema:
+        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        format: url
+        type: string
+      style: simple
+    ETag_CONTRIBUTION:
+      description: |
+        The `ETag` (i.e. entity tag) response header is the `contribution_uid` identifier, enclosed by double quotes.
+      explode: false
+      schema:
+        example: '"0826851c-c4c2-4d61-92b9-410fb8275ff0"'
+        type: string
+      style: simple
+    Location_CONTRIBUTION:
+      description: |
+        The `Location` response header indicates the URL of the CONTRIBUTION resource.
+      explode: false
+      schema:
+        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/contribution/0826851c-c4c2-4d61-92b9-410fb8275ff0
+        format: url
+        type: string
+      style: simple
+  parameters:
+    subject_id:
+      description: |
+        The EHR subject id.
+      explode: true
+      in: query
+      name: subject_id
+      required: true
+      schema:
+        example: ins01
+        type: string
+      style: form
+    subject_namespace:
+      description: |
+        The EHR subject id namespace.
+      explode: true
+      in: query
+      name: subject_namespace
+      required: true
+      schema:
+        example: examples
+        type: string
+      style: form
+    Prefer:
+      description: |
+        Request header to indicate the preference over response details.
+        The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+      explode: false
+      in: header
+      name: Prefer
+      required: false
+      schema:
+        default: return=minimal
+        enum:
+        - return=representation
+        - return=minimal
+        type: string
+      style: simple
+    ehr_id:
+      description: |
+        EHR identifier taken from EHR.ehr_id.value.
+      explode: false
+      in: path
+      name: ehr_id
+      required: true
+      schema:
+        example: 7d44b88c-4199-4bad-97dc-d78268e01398
+        type: string
+      style: simple
+    version_uid:
+      description: |
+        VERSION identifier taken from VERSION.uid.value.
+      explode: false
+      in: path
+      name: version_uid
+      required: true
+      schema:
+        example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+        type: string
+      style: simple
+    version_at_time:
+      description: |
+        A given time in the extended ISO 8601 format.
+      explode: true
+      in: query
+      name: version_at_time
+      required: false
+      schema:
+        example: 2015-01-20T19:30:22.765+01:00
+        type: string
+      style: form
+    If-Match:
+      description: "Header to make the request conditional. \nTogether with `ETag`\
+        \ request tag, it helps to prevent simultaneous updates of a resource from\
+        \ overwriting each other (\"mid-air collisions\").\nThe format is always an\
+        \ `version_uid` identifier enclosed by double quotes.\nThe operation will\
+        \ be performed only if the existing latest `version_uid` of the resource (i.e.\
+        \ the `preceding_version_uid`) matches this header's value.\n"
+      explode: false
+      in: header
+      name: If-Match
+      required: true
+      schema:
+        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"'
+        type: string
+      style: simple
+    uid_based_id:
+      description: |
+        An abstract identifier: it can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+      explode: false
+      in: path
+      name: uid_based_id
+      required: true
+      schema:
+        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        type: string
+      style: simple
+    uid_based_id_as_versioned_object_uid:
+      description: |
+        An identifier in a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+      explode: false
+      in: path
+      name: uid_based_id
+      required: true
+      schema:
+        example: 8849182c-82ad-4088-a07f-48ead4180515
+        type: string
+      style: simple
+    uid_based_id_as_version_uid:
+      description: |
+        An identifier in a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`).
+      explode: false
+      in: path
+      name: uid_based_id
+      required: true
+      schema:
+        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        type: string
+      style: simple
+    versioned_object_uid_COMPOSITION:
+      description: |
+        VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value.
+      explode: false
+      in: path
+      name: versioned_object_uid
+      required: true
+      schema:
+        example: 8849182c-82ad-4088-a07f-48ead4180515
+        type: string
+      style: simple
+    version_uid_COMPOSITION:
+      description: |
+        VERSION identifier taken from VERSION.uid.value.
+      explode: false
+      in: path
+      name: version_uid
+      required: true
+      schema:
+        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        type: string
+      style: simple
+    path:
+      description: |
+        A path to a sub-folder; consists of slash-separated values of the name attribute of FOLDERs in the directory.
+      explode: true
+      in: query
+      name: path
+      required: false
+      schema:
+        example: episodes/a/b/c
+        type: string
+      style: form
+    contribution_uid:
+      description: |
+        The CONTRIBUTION uid.
+      explode: false
+      in: path
+      name: contribution_uid
+      required: true
+      schema:
+        example: 0826851c-c4c2-4d61-92b9-410fb8275ff0
+        type: string
+      style: simple
+  responses:
+    "400":
+      description: |
+        `400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content.
+    "409":
+      description: |
+        `409 Conflict` is returned when a resource with same identifier(s) already exists.
+    "200_EHR":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Ehr'
+      description: |
+        `200 OK` is returned when the requested EHR resource is successfully retrieved.
+    "404_EHR_subject":
+      description: |
+        `404 Not Found` is returned when an EHR with supplied subject parameters does not exist.
+    "201_EHR":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Ehr'
+      description: "`201 Created` is returned when the EHR has been successfully created.\
+        \ \nThe new EHR resource is returned in the body when the request's `Prefer`\
+        \ header value is `return=representation`, otherwise only headers are returned.\n"
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_EHR'
+        Location:
+          $ref: '#/components/headers/Location_EHR'
+    "409_EHR":
+      description: |
+        `409 Conflict` Unable to create a new EHR due to a conflict with an already existing EHR with the same subject id, namespace pair, whenever EHR_STATUS is supplied.
+    "404_unknown_ehr_id":
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist.
+    "409_EHR_with_id":
+      description: "`409 Conflict` Unable to create a new EHR due to a conflict with\
+        \ an already existing EHR. \nCan happen when the supplied `ehr_id` is already\
+        \ used by an existing EHR.\n"
+    "200_EHR_STATUS_retrieved":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EhrStatus'
+      description: |
+        `200 OK` is returned when the requested EHR_STATUS is successfully retrieved.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+        Location:
+          $ref: '#/components/headers/Location_EHR_STATUS'
+    "404_unknown_ehr_id_or_version_uid":
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when the `version_uid` does not exist.
+    "400_invalid_version_at_time":
+      description: |
+        `400 Bad Request` is returned when the request has invalid content such as an invalid `version_at_time` format.
+    "404_unknown_ehr_id_or_no_version_at_time":
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a version of the resource identified by the request parameters (at specified `version_at_time`) does not exist.
+    "200_EHR_STATUS_updated":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EhrStatus'
+      description: |
+        `200 OK` is returned when the EHR_STATUS is successfully updated, and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+        Location:
+          $ref: '#/components/headers/Location_EHR_STATUS'
+    "204_EHR_STATUS":
+      description: |
+        `204 No Content` is returned when the `Prefer` header is missing or is set to `return=minimal`.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+        Location:
+          $ref: '#/components/headers/Location_EHR_STATUS'
+    "412_EHR_STATUS":
+      description: |
+        `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
+        Returns also latest `version_uid` in the `Location` and `ETag` headers.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+        Location:
+          $ref: '#/components/headers/Location_EHR_STATUS'
+    "200_VERSIONED_EHR_STATUS":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/VersionedEhrStatus'
+      description: |
+        `200 OK` is returned when the requested VERSIONED_EHR_STATUS is successfully retrieved.
+    "200_REVISION_HISTORY":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RevisionHistory'
+      description: |
+        `200 OK` is returned when the requested REVISION_HISTORY is successfully retrieved.
+    "200_VERSION_at_time":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Version'
+      description: |
+        `200 OK` is returned when the requested VERSION is successfully retrieved.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_VERSION'
+        Location:
+          $ref: '#/components/headers/Location_VERSIONED_EHR_STATUS_VERSION'
+    "200_VERSION":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Version'
+      description: |
+        `200 OK` is returned when the requested VERSION is successfully retrieved.
+    "201_COMPOSITION":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Composition'
+      description: "`201 Created` is returned when the COMPOSITION was created. \n\
+        Content body is only returned when `Prefer` header has `return=representation`,\
+        \ otherwise only headers are returned.\n"
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_COMPOSITION'
+        Location:
+          $ref: '#/components/headers/Location_COMPOSITION'
+    "400_COMPOSITION":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: |
+        `400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request could not be read, or could not be converted to a valid COMPOSITION object).
+    "422_COMPOSITION":
+      description: |
+        `422 Unprocessable Entity` is returned when the content could be converted to a COMPOSITION, but there are semantic validation errors, such as the underlying template is not known or is not validating the supplied COMPOSITION.
+    "200_COMPOSITION_retrieved":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Composition'
+      description: |
+        `200 OK` is returned when the requested COMPOSITION is successfully retrieved.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_COMPOSITION'
+        Location:
+          $ref: '#/components/headers/Location_COMPOSITION'
+    "204_because_deleted_at_time":
+      description: |
+        `204 No Content` is returned when the resource identified by the request parameters (at specified `version_at_time`) time has been deleted.
+    "200_COMPOSITION_updated":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Composition'
+      description: |
+        `200 OK` is returned when the COMPOSITION is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_COMPOSITION'
+        Location:
+          $ref: '#/components/headers/Location_COMPOSITION'
+    "404_unknown_ehr_id_or_uid_based_id":
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when the `uid_based_id` does not exist.
+    "412_COMPOSITION":
+      description: |
+        `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
+        Returns also latest `version_uid` in the `Location` and `ETag` headers.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_COMPOSITION'
+        Location:
+          $ref: '#/components/headers/Location_COMPOSITION'
+    "204_COMPOSITION_deleted":
+      description: |
+        `204 No Content` is returned when COMPOSITION was deleted.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_COMPOSITION'
+        Location:
+          $ref: '#/components/headers/Location_COMPOSITION'
+    "400_already_deleted":
+      description: |
+        `400 Bad Request` is returned when the request URL could not be parsed (i.e. invalid format of request parameters) or when the resource identified by the request parameters is already deleted.
+    "409_COMPOSITION_with_uid_based_id":
+      description: |
+        `409 Conflict` is returned when supplied `uid_based_id` doesn't match the latest version.
+        Returns also latest version in the `Location` and `ETag` headers.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_COMPOSITION'
+        Location:
+          $ref: '#/components/headers/Location_COMPOSITION'
+    "200_VERSIONED_COMPOSITION":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/VersionedComposition'
+      description: |
+        `200 OK` is returned when the requested VERSIONED_COMPOSITION is successfully retrieved.
+    "404_unknown_ehr_id_or_versioned_object_uid":
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when the `versioned_object_uid` does not exist.
+    "200_VERSION_of_COMPOSITION_at_time":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Version'
+      description: |
+        `200 OK` is returned when the requested VERSION is successfully retrieved.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_VERSION_of_COMPOSITION'
+        Location:
+          $ref: '#/components/headers/Location_VERSIONED_COMPOSITION_VERSION'
+    "404_unknown_ehr_id_or_versioned_object_uid_or_no_version_at_time":
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when `versioned_object_uid` does not exist, or when a version of the resource does not exist at the specified `version_at_time`.
+    "404_unknown_ehr_id_or_versioned_object_uid_or_version_uid":
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when `versioned_object_uid` does not exist, or when a VERSION with `version_uid` does not exist.
+    "200_FOLDER_retrieved":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Folder'
+      description: |
+        `200 OK` is returned when the FOLDER is successfully retrieved.
+    "404_directory_unknown_ehr_id_or_no_version_at_time_or_no_path":
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a directory does not exist at the specified `version_at_time`, or when `path` does not exists within the directory.
+    "200_directory_updated":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Folder'
+      description: |
+        `200 OK` is returned when directory was successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_FOLDER'
+        Location:
+          $ref: '#/components/headers/Location_directory'
+    "204_directory_updated":
+      description: |
+        `204 No Content` is returned when directory was updated and `Prefer` header is missing or is set to `return=minimal`.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_FOLDER'
+        Location:
+          $ref: '#/components/headers/Location_directory'
+    "400_FOLDER":
+      description: |
+        `400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request could not be read, or could not be converted to a valid FOLDER object).
+    "412_directory":
+      description: |
+        `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
+        Returns also latest `version_uid` in the `Location` and `ETag` headers.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_FOLDER'
+        Location:
+          $ref: '#/components/headers/Location_directory'
+    "201_directory":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Folder'
+      description: "`201 Created` is returned when the FOLDER was created. \nContent\
+        \ body is only returned when `Prefer` header has `return=representation`,\
+        \ otherwise only headers are returned.\n"
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_FOLDER'
+        Location:
+          $ref: '#/components/headers/Location_directory'
+    "204_because_deleted":
+      description: |
+        `204 No Content` is returned when the resource identified by the request parameters has been (logically) deleted.
+    "400_invalid_ehr_id":
+      description: |
+        `400 Bad Request` is returned when the request has invalid `ehr_id`.
+    "404_directory_unknown_ehr_id_or_no_version_uid_or_no_path":
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a directory with `version_uid` does not exist, or when `path` does not exist within the directory.
+    "201_CONTRIBUTION":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Contribution'
+      description: "`201 Created` is returned when the CONTRIBUTION was created. \n\
+        Content body is only returned when `Prefer` header has `return=representation`,\
+        \ otherwise only headers are returned.\n"
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_CONTRIBUTION'
+        Location:
+          $ref: '#/components/headers/Location_CONTRIBUTION'
+    "400_CONTRIBUTION":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: |
+        `400 Bad Request` is returned when the request URL or body could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request not be converted to a valid CONTRIBUTION object, or the modification type doesn’t match the operation - i.e. first version of a composition with MODIFICATION).
+    "200_CONTRIBUTION":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Contribution'
+      description: |
+        `200 OK` is returned when the CONTRIBUTION is successfully retrieved.
+    "404_CONTRIBUTION":
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a CONTRIBUTION with `contribution_uid` does not exist.
+  schemas:
+    ObjectId:
+      discriminator:
+        mapping:
+          ARCHETYPE_ID: '#/components/schemas/ArchetypeId'
+          TEMPLATE_ID: '#/components/schemas/TemplateId'
+          TERMINOLOGY_ID: '#/components/schemas/TerminologyId'
+          GENERIC_ID: '#/components/schemas/GenericId'
+          HIER_OBJECT_ID: '#/components/schemas/HierObjectId'
+          OBJECT_VERSION_ID: '#/components/schemas/ObjectVersionId'
+        propertyName: _type
+      properties:
+        _type:
+          type: string
+        value:
+          type: string
+      required:
+      - value
+      title: OBJECT_ID
+      type: object
+    UidBasedId:
+      allOf:
+      - $ref: '#/components/schemas/ObjectId'
+      discriminator:
+        mapping:
+          HIER_OBJECT_ID: '#/components/schemas/HierObjectId'
+          OBJECT_VERSION_ID: '#/components/schemas/ObjectVersionId'
+        propertyName: _type
+      properties:
+        _type:
+          default: UID_BASED_ID
+          type: string
+      title: UID_BASED_ID
+      type: object
+      x-discriminator-value: UID_BASED_ID
+    HierObjectId:
+      allOf:
+      - $ref: '#/components/schemas/UidBasedId'
+      example:
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b
+      properties:
+        value:
+          example: 6cb19121-4307-4648-9da0-d62e4d51f19b
+          type: string
+      required:
+      - value
+      title: HIER_OBJECT_ID
+      type: object
+      x-discriminator-value: HIER_OBJECT_ID
+    ArchetypeId:
+      allOf:
+      - $ref: '#/components/schemas/ObjectId'
+      properties:
+        _type:
+          default: ARCHETYPE_ID
+          type: string
+      title: ARCHETYPE_ID
+      type: object
+      x-discriminator-value: ARCHETYPE_ID
+    TemplateId:
+      allOf:
+      - $ref: '#/components/schemas/ObjectId'
+      properties:
+        _type:
+          default: TEMPLATE_ID
+          type: string
+      title: TEMPLATE_ID
+      type: object
+      x-discriminator-value: TEMPLATE_ID
+    TerminologyId:
+      allOf:
+      - $ref: '#/components/schemas/ObjectId'
+      properties:
+        _type:
+          default: TERMINOLOGY_ID
+          type: string
+      title: TERMINOLOGY_ID
+      type: object
+      x-discriminator-value: TERMINOLOGY_ID
+    GenericId:
+      allOf:
+      - $ref: '#/components/schemas/ObjectId'
+      properties:
+        _type:
+          default: GENERIC_ID
+          type: string
+        scheme:
+          type: string
+      required:
+      - scheme
+      title: GENERIC_ID
+      type: object
+      x-discriminator-value: GENERIC_ID
+    ObjectVersionId:
+      allOf:
+      - $ref: '#/components/schemas/UidBasedId'
+      example:
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+      properties:
+        value:
+          example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+          type: string
+      required:
+      - value
+      title: OBJECT_VERSION_ID
+      type: object
+      x-discriminator-value: OBJECT_VERSION_ID
+    ObjectRef:
+      example:
+        id:
+          _type: OBJECT_VERSION_ID
+          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+        namespace: local
+        type: COMPOSITION
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/ObjectId'
+      required:
+      - id
+      - namespace
+      - type
+      title: OBJECT_REF
+      type: object
+    DataValue:
+      discriminator:
+        mapping:
+          DV_TEXT: '#/components/schemas/DvText'
+          DV_CODED_TEXT: '#/components/schemas/DvCodedText'
+          DV_URI: '#/components/schemas/DvUri'
+          DV_EHR_URI: '#/components/schemas/DvEhrUri'
+          DV_MULTIMEDIA: '#/components/schemas/DvMultimedia'
+          DV_PARSABLE: '#/components/schemas/DvParsable'
+          DV_DATE_TIME: '#/components/schemas/DvDateTime'
+          DV_DURATION: '#/components/schemas/DvDuration'
+          DV_INTERVAL: '#/components/schemas/DvInterval'
+          DV_INTERVAL_of_DATE_TIME: '#/components/schemas/DvIntervalOfDateTime'
+          DV_IDENTIFIER: '#/components/schemas/DvIdentifier'
+          DV_BOOLEAN: '#/components/schemas/DvBoolean'
+          DV_QUANTITY: '#/components/schemas/DvQuantity'
+          DV_ORDINAL: '#/components/schemas/DvOrdinal'
+          DV_SCALE: '#/components/schemas/DvScale'
+          DV_COUNT: '#/components/schemas/DvCount'
+          DV_PROPORTION: '#/components/schemas/DvProportion'
+        propertyName: _type
+      properties:
+        _type:
+          type: string
+      title: DATA_VALUE
+      type: object
+    DvDateTime:
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      example:
+        _type: DV_DATE_TIME
+        value: 2017-08-15T10:37:15.422+02:00
+      properties:
+        _type:
+          default: DV_DATE_TIME
+          type: string
+        value:
+          format: date-time
+          type: string
+      required:
+      - value
+      title: DV_DATE_TIME
+      type: object
+      x-discriminator-value: DV_DATE_TIME
+    Ehr:
+      description: An EHR resource
+      example:
+        system_id:
+          value: 9624982A-9F42-41A5-9318-AE13D5F5031F
+        ehr_id:
+          value: 7d44b88c-4199-4bad-97dc-d78268e01398
+        ehr_status:
+          id:
+            _type: OBJECT_VERSION_ID
+            value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          namespace: local
+          type: EHR_STATUS
+        ehr_access:
+          id:
+            _type: OBJECT_VERSION_ID
+            value: 59a8d0ac-140e-4feb-b2d6-af99f8e68af8::openEHRSys.example.com::1
+          namespace: local
+          type: EHR_ACCESS
+        time_created:
+          value: 2015-01-20T19:30:22.765+01:00
+      properties:
+        system_id:
+          $ref: '#/components/schemas/HierObjectId'
+        ehr_id:
+          $ref: '#/components/schemas/HierObjectId'
+        ehr_status:
+          $ref: '#/components/schemas/ObjectRef'
+        ehr_access:
+          $ref: '#/components/schemas/ObjectRef'
+        time_created:
+          $ref: '#/components/schemas/DvDateTime'
+      title: EHR
+      type: object
+    Pathable:
+      discriminator:
+        propertyName: _type
+      properties:
+        _type:
+          type: string
+      title: PATHABLE
+      type: object
+    DvUri:
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      discriminator:
+        mapping:
+          DV_URI: '#/components/schemas/DvUri'
+          DV_EHR_URI: '#/components/schemas/DvEhrUri'
+        propertyName: _type
+      example:
+        _type: DV_URI
+        value: value
+      properties:
+        _type:
+          default: DV_URI
+          type: string
+        value:
+          type: string
+      required:
+      - value
+      title: DV_URI
+      type: object
+      x-discriminator-value: DV_URI
+    DvEhrUri:
+      allOf:
+      - $ref: '#/components/schemas/DvUri'
+      example:
+        _type: DV_EHR_URI
+        value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+      properties:
+        _type:
+          default: DV_EHR_URI
+          type: string
+      title: DV_EHR_URI
+      type: object
+      x-discriminator-value: DV_EHR_URI
+    CodePhrase:
+      example:
+        terminology_id:
+          value: local
+        code_string: at0001
+      properties:
+        terminology_id:
+          $ref: '#/components/schemas/TerminologyId'
+        code_string:
+          type: string
+        preferred_term:
+          type: string
+      required:
+      - code_string
+      - terminology_id
+      title: CODE_PHRASE
+      type: object
+    DvText:
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      discriminator:
+        mapping:
+          DV_TEXT: '#/components/schemas/DvText'
+          DV_CODED_TEXT: '#/components/schemas/DvCodedText'
+        propertyName: _type
+      example:
+        hyperlink:
+          _type: DV_URI
+          value: value
+        _type: DV_TEXT
+        language:
+          terminology_id:
+            value: local
+          code_string: at0001
+        encoding:
+          terminology_id:
+            value: local
+          code_string: at0001
+        value: value
+        formatting: formatting
+      properties:
+        _type:
+          default: DV_TEXT
+          type: string
+        value:
+          type: string
+        hyperlink:
+          $ref: '#/components/schemas/DvUri'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        encoding:
+          $ref: '#/components/schemas/CodePhrase'
+        formatting:
+          type: string
+      required:
+      - value
+      title: DV_TEXT
+      type: object
+      x-discriminator-value: DV_TEXT
+    DvCodedText:
+      allOf:
+      - $ref: '#/components/schemas/DvText'
+      example:
+        value: Coded text value
+        defining_code:
+          terminology_id:
+            value: local
+          code_string: at0001
+      properties:
+        _type:
+          default: DV_CODED_TEXT
+          type: string
+        defining_code:
+          $ref: '#/components/schemas/CodePhrase'
+      required:
+      - defining_code
+      title: DV_CODED_TEXT
+      type: object
+      x-discriminator-value: DV_CODED_TEXT
+    Link:
+      properties:
+        meaning:
+          $ref: '#/components/schemas/DvText'
+        type:
+          $ref: '#/components/schemas/DvText'
+        target:
+          $ref: '#/components/schemas/DvEhrUri'
+      required:
+      - meaning
+      - target
+      - type
+      title: LINK
+      type: object
+    Archetyped:
+      additionalProperties: false
+      example:
+        archetype_id:
+          value: openEHR-EHR-COMPOSITION.encounter.v1
+        template_id:
+          value: Example.v1::c7ec861c-c413-39ff-9965-a198ebf44747
+        rm_version: 1.0.2
+      properties:
+        archetype_id:
+          $ref: '#/components/schemas/ArchetypeId'
+        template_id:
+          $ref: '#/components/schemas/TemplateId'
+        rm_version:
+          type: string
+      required:
+      - archetype_id
+      - rm_version
+      title: ARCHETYPED
+      type: object
+    DvIdentifier:
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      description: |
+        Type for representing identifiers of real-world entities. Typical identifiers include drivers licence number, social security number, veterans affairs number, prescription id, order id, and so on.
+
+        DV_IDENTIFIER is used to represent any identifier of a real thing, issued by some authority or agency.
+      example:
+        id: 16b74749-e6aa-4945-b760-b42bdc07098a
+        type: Patient
+      properties:
+        issuer:
+          type: string
+        assigner:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+      required:
+      - id
+      title: DV_IDENTIFIER
+      type: object
+      x-discriminator-value: DV_IDENTIFIER
+    DvEncapsulated:
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      discriminator:
+        mapping:
+          DV_MULTIMEDIA: '#/components/schemas/DvMultimedia'
+          DV_PARSABLE: '#/components/schemas/DvParsable'
+        propertyName: _type
+      properties:
+        _type:
+          default: DV_ENCAPSULATED
+          type: string
+        charset:
+          $ref: '#/components/schemas/CodePhrase'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+      required:
+      - _type
+      title: DV_ENCAPSULATED
+      type: object
+    DvMultimedia:
+      allOf:
+      - $ref: '#/components/schemas/DvEncapsulated'
+      example:
+        integrity_check: integrity_check
+        thumbnail: null
+        data: data
+        size: 0
+        media_type:
+          terminology_id:
+            value: local
+          code_string: at0001
+        alternate_text: alternate_text
+        compression_algorithm:
+          terminology_id:
+            value: local
+          code_string: at0001
+        _type: DV_MULTIMEDIA
+        integrity_check_algorithm:
+          terminology_id:
+            value: local
+          code_string: at0001
+        uri:
+          _type: DV_URI
+          value: value
+      properties:
+        _type:
+          default: DV_MULTIMEDIA
+          type: string
+        alternate_text:
+          type: string
+        uri:
+          $ref: '#/components/schemas/DvUri'
+        data:
+          type: string
+        media_type:
+          $ref: '#/components/schemas/CodePhrase'
+        compression_algorithm:
+          $ref: '#/components/schemas/CodePhrase'
+        integrity_check:
+          type: string
+        integrity_check_algorithm:
+          $ref: '#/components/schemas/CodePhrase'
+        thumbnail:
+          $ref: '#/components/schemas/DvMultimedia'
+        size:
+          type: integer
+      required:
+      - media_type
+      - size
+      title: DV_MULTIMEDIA
+      type: object
+      x-discriminator-value: DV_MULTIMEDIA
+    DvParsable:
+      allOf:
+      - $ref: '#/components/schemas/DvEncapsulated'
+      properties:
+        _type:
+          default: DV_PARSABLE
+          type: string
+        value:
+          type: string
+        formalism:
+          type: string
+      required:
+      - formalism
+      - value
+      title: DV_PARSABLE
+      type: object
+      x-discriminator-value: DV_PARSABLE
+    PartyRef:
+      description: Identifier for parties in a demographic or identity service.
+      example:
+        id:
+          _type: OBJECT_VERSION_ID
+          value: b52b9408-7048-4ec8-94bd-831fb0727e67::openEHRSys.example.com::1
+        namespace: local
+        type: PERSON
+      properties:
+        namespace:
+          type: string
+        type:
+          pattern: ^PERSON|ORGANISATION|GROUP|AGENT|ROLE|PARTY|ACTOR$
+          type: string
+        id:
+          $ref: '#/components/schemas/ObjectId'
+      required:
+      - id
+      - namespace
+      - type
+      title: PARTY_REF
+      type: object
+    PartyProxy:
+      discriminator:
+        mapping:
+          PARTY_SELF: '#/components/schemas/PartySelf'
+          PARTY_IDENTIFIED: '#/components/schemas/PartyIdentified'
+        propertyName: _type
+      properties:
+        _type:
+          default: PARTY_PROXY
+          type: string
+        external_ref:
+          $ref: '#/components/schemas/PartyRef'
+      required:
+      - _type
+      title: PARTY_PROXY
+      type: object
+    PartyIdentified:
+      allOf:
+      - $ref: '#/components/schemas/PartyProxy'
+      discriminator:
+        mapping:
+          PARTY_IDENTIFIED: '#/components/schemas/PartyIdentified'
+          PARTY_RELATED: '#/components/schemas/PartyRelated'
+        propertyName: _type
+      example:
+        _type: PARTY_IDENTIFIED
+        external_ref:
+          id:
+            _type: GENERIC_ID
+            value: 16b74749-e6aa-4945-b760-b42bdc07098a
+            scheme: pid
+          namespace: openEHRSys.example.com
+          type: PERSON
+        name: A name
+      properties:
+        _type:
+          default: PARTY_IDENTIFIED
+          type: string
+        name:
+          type: string
+        identifiers:
+          items:
+            $ref: '#/components/schemas/DvIdentifier'
+          type: array
+      title: PARTY_IDENTIFIED
+      type: object
+      x-discriminator-value: PARTY_IDENTIFIED
+    PartyRelated:
+      allOf:
+      - $ref: '#/components/schemas/PartyIdentified'
+      properties:
+        _type:
+          default: PARTY_RELATED
+          type: string
+        relationship:
+          $ref: '#/components/schemas/DvCodedText'
+      required:
+      - relationship
+      title: PARTY_RELATED
+      type: object
+      x-discriminator-value: PARTY_RELATED
+    PartySelf:
+      allOf:
+      - $ref: '#/components/schemas/PartyProxy'
+      properties:
+        _type:
+          default: PARTY_SELF
+          type: string
+      title: PARTY_SELF
+      type: object
+      x-discriminator-value: PARTY_SELF
+    Locatable:
+      allOf:
+      - $ref: '#/components/schemas/Pathable'
+      discriminator:
+        mapping:
+          COMPOSITION: '#/components/schemas/Composition'
+          EHR_STATUS: '#/components/schemas/EhrStatus'
+          FOLDER: '#/components/schemas/Folder'
+        propertyName: _type
+      properties:
+        name:
+          $ref: '#/components/schemas/DvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UidBasedId'
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+      required:
+      - archetype_node_id
+      - name
+      title: LOCATABLE
+      type: object
+    DataStructure:
+      allOf:
+      - $ref: '#/components/schemas/Locatable'
+      properties:
+        _type:
+          default: DATE_STRUCTURE
+          type: string
+      title: DATE_STRUCTURE
+      type: object
+      x-discriminator-value: DATE_STRUCTURE
+    ItemStructure:
+      allOf:
+      - $ref: '#/components/schemas/DataStructure'
+      discriminator:
+        mapping:
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
+          ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_TABLE: '#/components/schemas/ItemTable'
+          ITEM_TREE: '#/components/schemas/ItemTree'
+        propertyName: _type
+      properties:
+        _type:
+          type: string
+      title: ITEM_STRUCTURE
+      type: object
+      x-discriminator-value: ITEM_STRUCTURE
+    Item:
+      allOf:
+      - $ref: '#/components/schemas/Locatable'
+      discriminator:
+        mapping:
+          ELEMENT: '#/components/schemas/Element'
+          CLUSTER: '#/components/schemas/Clstr'
+        propertyName: _type
+      properties:
+        _type:
+          type: string
+      title: ITEM
+      type: object
+      x-discriminator-value: ITEM
+    DvInterval:
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      properties:
+        _type:
+          default: DV_INTERVAL
+          type: string
+        lower_unbounded:
+          type: boolean
+        upper_unbounded:
+          type: boolean
+        lower_included:
+          type: boolean
+        upper_included:
+          type: boolean
+      required:
+      - lower_included
+      - lower_unbounded
+      - upper_included
+      - upper_unbounded
+      title: DV_INTERVAL
+      type: object
+      x-discriminator-value: DV_INTERVAL
+    ReferenceRange:
+      properties:
+        meaning:
+          $ref: '#/components/schemas/DvText'
+        range:
+          $ref: '#/components/schemas/DvInterval'
+      required:
+      - meaning
+      - range
+      title: REFERENCE_RANGE
+      type: object
+    DvOrdered:
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      properties:
+        _type:
+          default: DV_ORDERED
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+          type: array
+      title: DV_ORDERED
+      type: object
+      x-discriminator-value: DV_ORDERED
+    DvQuantified:
+      allOf:
+      - $ref: '#/components/schemas/DvOrdered'
+      properties:
+        _type:
+          default: DV_QUANTIFIED
+          type: string
+        magnitude_status:
+          default: =
+          type: string
+      title: DV_QUANTIFIED
+      type: object
+      x-discriminator-value: DV_QUANTIFIED
+    DvAmount:
+      allOf:
+      - $ref: '#/components/schemas/DvQuantified'
+      properties:
+        _type:
+          default: DV_AMOUNT
+          type: string
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+      title: DV_AMOUNT
+      type: object
+      x-discriminator-value: DV_AMOUNT
+    DvDuration:
+      allOf:
+      - $ref: '#/components/schemas/DvAmount'
+      properties:
+        _type:
+          default: DV_DURATION
+          type: string
+      title: DV_DURATION
+      type: object
+      x-discriminator-value: DV_DURATION
+    DvBoolean:
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      properties:
+        _type:
+          default: DV_BOOLEAN
+          type: string
+        value:
+          type: boolean
+      required:
+      - value
+      title: DV_BOOLEAN
+      type: object
+      x-discriminator-value: DV_BOOLEAN
+    DvQuantity:
+      allOf:
+      - $ref: '#/components/schemas/DvAmount'
+      properties:
+        _type:
+          default: DV_QUANTITY
+          type: string
+        magnitude:
+          type: number
+        precision:
+          type: integer
+        units:
+          type: string
+        units_system:
+          type: string
+        units_display_name:
+          type: string
+      required:
+      - magnitude
+      - units
+      title: DV_QUANTITY
+      type: object
+      x-discriminator-value: DV_QUANTITY
+    DvOrdinal:
+      allOf:
+      - $ref: '#/components/schemas/DvOrdered'
+      properties:
+        _type:
+          default: DV_ORDINAL
+          type: string
+        symbol:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          type: integer
+      required:
+      - symbol
+      - value
+      title: DV_ORDINAL
+      type: object
+      x-discriminator-value: DV_ORDINAL
+    DvScale:
+      allOf:
+      - $ref: '#/components/schemas/DvOrdered'
+      properties:
+        _type:
+          default: DV_SCALE
+          type: string
+        symbol:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          type: number
+      required:
+      - symbol
+      - value
+      title: DV_SCALE
+      type: object
+      x-discriminator-value: DV_SCALE
+    DvCount:
+      allOf:
+      - $ref: '#/components/schemas/DvAmount'
+      properties:
+        _type:
+          default: DV_COUNT
+          type: string
+        magnitude:
+          type: integer
+      required:
+      - magnitude
+      title: DV_COUNT
+      type: object
+      x-discriminator-value: DV_COUNT
+    DvProportion:
+      allOf:
+      - $ref: '#/components/schemas/DvAmount'
+      properties:
+        _type:
+          default: DV_PROPORTION
+          type: string
+        numerator:
+          type: number
+        denominator:
+          type: number
+        semantic_type:
+          type: integer
+        precision:
+          type: integer
+      required:
+      - denominator
+      - numerator
+      - semantic_type
+      title: DV_PROPORTION
+      type: object
+      x-discriminator-value: DV_PROPORTION
+    Element:
+      allOf:
+      - $ref: '#/components/schemas/Item'
+      properties:
+        _type:
+          default: ELEMENT
+          type: string
+        null_flavour:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          $ref: '#/components/schemas/DataValue'
+        null_reason:
+          $ref: '#/components/schemas/DvText'
+      title: ELEMENT
+      type: object
+      x-discriminator-value: ELEMENT
+    ItemSingle:
+      allOf:
+      - $ref: '#/components/schemas/ItemStructure'
+      properties:
+        _type:
+          default: ITEM_SINGLE
+          type: string
+        item:
+          $ref: '#/components/schemas/Element'
+      required:
+      - item
+      title: ITEM_SINGLE
+      type: object
+      x-discriminator-value: ITEM_SINGLE
+    ItemList:
+      allOf:
+      - $ref: '#/components/schemas/ItemStructure'
+      properties:
+        _type:
+          default: ITEM_LIST
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Element'
+          type: array
+      title: ITEM_LIST
+      type: object
+      x-discriminator-value: ITEM_LIST
+    Clstr:
+      allOf:
+      - $ref: '#/components/schemas/Item'
+      properties:
+        _type:
+          default: CLUSTER
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Item'
+          type: array
+      required:
+      - items
+      title: CLUSTER
+      type: object
+      x-discriminator-value: CLUSTER
+    ItemTable:
+      allOf:
+      - $ref: '#/components/schemas/ItemStructure'
+      properties:
+        _type:
+          default: ITEM_TABLE
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Clstr'
+          type: array
+      title: ITEM_TABLE
+      type: object
+      x-discriminator-value: ITEM_TABLE
+    ItemTree:
+      allOf:
+      - $ref: '#/components/schemas/ItemStructure'
+      properties:
+        _type:
+          default: ITEM_TREE
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Item'
+          type: array
+      title: ITEM_TREE
+      type: object
+      x-discriminator-value: ITEM_TREE
+    FeederAuditDetails:
+      properties:
+        system_id:
+          type: string
+        location:
+          $ref: '#/components/schemas/PartyIdentified'
+        subject:
+          $ref: '#/components/schemas/PartyProxy'
+        provider:
+          $ref: '#/components/schemas/PartyIdentified'
+        time:
+          $ref: '#/components/schemas/DvDateTime'
+        version_id:
+          type: string
+        other_details:
+          $ref: '#/components/schemas/ItemStructure'
+      required:
+      - system_id
+      title: FEEDER_AUDIT_DETAILS
+      type: object
+    FeederAudit:
+      properties:
+        originating_system_item_ids:
+          items:
+            $ref: '#/components/schemas/DvIdentifier'
+          type: array
+        feeder_system_item_ids:
+          items:
+            $ref: '#/components/schemas/DvIdentifier'
+          type: array
+        original_content:
+          $ref: '#/components/schemas/DvEncapsulated'
+        originating_system_audit:
+          $ref: '#/components/schemas/FeederAuditDetails'
+        feeder_system_audit:
+          $ref: '#/components/schemas/FeederAuditDetails'
+      required:
+      - originating_system_audit
+      title: FEEDER_AUDIT
+      type: object
+    Versionable:
+      allOf:
+      - $ref: '#/components/schemas/Locatable'
+      description: A Versionable resource
+      discriminator:
+        mapping:
+          COMPOSITION: '#/components/schemas/Composition'
+          EHR_STATUS: '#/components/schemas/EhrStatus'
+        propertyName: _type
+      title: Versionable
+      type: object
+    EhrStatus:
+      allOf:
+      - $ref: '#/components/schemas/Versionable'
+      description: An EHR_STATUS resource
+      example:
+        archetype_node_id: openEHR-EHR-EHR_STATUS.generic.v1
+        name:
+          value: EHR status
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        subject:
+          _type: PARTY_SELF
+        is_queryable: true
+        is_modifiable: true
+      properties:
+        _type:
+          default: EHR_STATUS
+          type: string
+        subject:
+          $ref: '#/components/schemas/PartyProxy'
+        is_queryable:
+          default: true
+          type: boolean
+        is_modifiable:
+          default: true
+          type: boolean
+        other_details:
+          $ref: '#/components/schemas/ItemStructure'
+      required:
+      - is_modifiable
+      - is_queryable
+      - subject
+      title: EHR_STATUS
+      type: object
+      x-discriminator-value: EHR_STATUS
+    VersionedObject:
+      discriminator:
+        mapping:
+          VERSIONED_COMPOSITION: '#/components/schemas/VersionedComposition'
+          VERSIONED_EHR_STATUS: '#/components/schemas/VersionedEhrStatus'
+        propertyName: _type
+      properties:
+        _type:
+          type: string
+        uid:
+          $ref: '#/components/schemas/HierObjectId'
+        owner_id:
+          $ref: '#/components/schemas/ObjectRef'
+        time_created:
+          $ref: '#/components/schemas/DvDateTime'
+      required:
+      - owner_id
+      - time_created
+      - uid
+      title: VERSIONED_OBJECT
+      type: object
+    VersionedEhrStatus:
+      allOf:
+      - $ref: '#/components/schemas/VersionedObject'
+      description: A VERSIONED_EHR_STATUS resource
+      example:
+        uid:
+          value: 6cb19121-4307-4648-9da0-d62e4d51f19b
+        owner_id:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 7d44b88c-4199-4bad-97dc-d78268e01398
+          namespace: local
+          type: EHR
+        time_created:
+          value: 2015-01-20T19:30:22.765+01:00
+      properties:
+        _type:
+          default: VERSIONED_EHR_STATUS
+          type: string
+      title: VERSIONED_EHR_STATUS
+      type: object
+      x-discriminator-value: VERSIONED_EHR_STATUS
+    AuditDetails:
+      description: The set of attributes required to document the committal of an
+        information item to a repository.
+      discriminator:
+        mapping:
+          AUDIT_DETAILS: '#/components/schemas/AuditDetails'
+          ATTESTATION: '#/components/schemas/Attestation'
+        propertyName: _type
+      example:
+        system_id: 9624982A-9F42-41A5-9318-AE13D5F5031F
+        committer:
+          _type: PARTY_IDENTIFIED
+          name: A user name
+        time_committed:
+          value: 2017-08-15T10:37:15.422+02:00
+        change_type:
+          value: creation
+          defining_code:
+            terminology_id:
+              value: openehr
+            code_string: "249"
+        description:
+          value: Description text
+      properties:
+        _type:
+          default: AUDIT_DETAILS
+          type: string
+        system_id:
+          type: string
+        time_committed:
+          $ref: '#/components/schemas/DvDateTime'
+        change_type:
+          $ref: '#/components/schemas/DvCodedText'
+        description:
+          $ref: '#/components/schemas/DvText'
+        committer:
+          $ref: '#/components/schemas/PartyProxy'
+      required:
+      - change_type
+      - committer
+      - system_id
+      - time_committed
+      title: AUDIT_DETAILS
+      type: object
+      x-discriminator-value: AUDIT_DETAILS
+    RevisionHistoryItem:
+      description: A REVISION_HISTORY_ITEM resource
+      example:
+        version_id:
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        audits:
+        - system_id: d60e2348-b083-48ce-93b9-916cef1d3a5a
+          time_committed:
+            value: 2015-01-20T19:30:22.765+01:00
+          change_type:
+            value: creation
+            defining_code:
+              terminology_id:
+                value: openehr
+              code_string: "249"
+          description:
+            value: An optional description string
+          committer:
+            _type: PARTY_IDENTIFIED
+            name: A user name
+      properties:
+        version_id:
+          $ref: '#/components/schemas/ObjectVersionId'
+        audits:
+          items:
+            $ref: '#/components/schemas/AuditDetails'
+          type: array
+      required:
+      - audits
+      - version_id
+      title: REVISION_HISTORY_ITEM
+      type: object
+    RevisionHistory:
+      description: A REVISION_HISTORY resource
+      example:
+        items:
+        - version_id:
+            value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          audits:
+          - system_id: d60e2348-b083-48ce-93b9-916cef1d3a5a
+            time_committed:
+              value: 2015-01-20T19:30:22.765+01:00
+            change_type:
+              value: creation
+              defining_code:
+                terminology_id:
+                  value: openehr
+                code_string: "249"
+            description:
+              value: An optional description string
+            committer:
+              _type: PARTY_IDENTIFIED
+              name: A user name
+        - version_id:
+            value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          audits:
+          - system_id: d60e2348-b083-48ce-93b9-916cef1d3a5a
+            time_committed:
+              value: 2015-01-20T19:30:22.765+01:00
+            change_type:
+              value: creation
+              defining_code:
+                terminology_id:
+                  value: openehr
+                code_string: "249"
+            description:
+              value: An optional description string
+            committer:
+              _type: PARTY_IDENTIFIED
+              name: A user name
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/RevisionHistoryItem'
+          type: array
+      required:
+      - items
+      title: REVISION_HISTORY
+      type: object
+    DvIntervalOfDateTime:
+      allOf:
+      - $ref: '#/components/schemas/DvInterval'
+      properties:
+        _type:
+          default: DV_INTERVAL
+          type: string
+        lower:
+          $ref: '#/components/schemas/DvDateTime'
+        upper:
+          $ref: '#/components/schemas/DvDateTime'
+      title: DV_INTERVAL_of_DATE_TIME
+      type: object
+      x-discriminator-value: DV_INTERVAL_of_DATE_TIME
+    Participation:
+      properties:
+        function:
+          $ref: '#/components/schemas/DvText'
+        mode:
+          $ref: '#/components/schemas/DvCodedText'
+        performer:
+          $ref: '#/components/schemas/PartyProxy'
+        time:
+          $ref: '#/components/schemas/DvIntervalOfDateTime'
+      required:
+      - function
+      - performer
+      title: PARTICIPATION
+      type: object
+    EventContext:
+      allOf:
+      - $ref: '#/components/schemas/Pathable'
+      properties:
+        start_time:
+          $ref: '#/components/schemas/DvDateTime'
+        end_time:
+          $ref: '#/components/schemas/DvDateTime'
+        location:
+          type: string
+        setting:
+          $ref: '#/components/schemas/DvCodedText'
+        other_context:
+          $ref: '#/components/schemas/ItemStructure'
+        health_care_facility:
+          $ref: '#/components/schemas/PartyIdentified'
+        participations:
+          items:
+            $ref: '#/components/schemas/Participation'
+          type: array
+      required:
+      - setting
+      - start_time
+      title: EVENT_CONTEXT
+      type: object
+      x-discriminator-value: EVENT_CONTEXT
+    ContentItem:
+      allOf:
+      - $ref: '#/components/schemas/Locatable'
+      discriminator:
+        mapping:
+          ADMIN_ENTRY: '#/components/schemas/AdminEntry'
+          OBSERVATION: '#/components/schemas/Observation'
+          EVALUATION: '#/components/schemas/Evaluation'
+          INSTRUCTION: '#/components/schemas/Instruction'
+          ACTION: '#/components/schemas/Action'
+        propertyName: _type
+      title: CONTENT_ITEM
+      type: object
+    AbstractEntry:
+      allOf:
+      - $ref: '#/components/schemas/ContentItem'
+      discriminator:
+        mapping:
+          ADMIN_ENTRY: '#/components/schemas/AdminEntry'
+          OBSERVATION: '#/components/schemas/Observation'
+          EVALUATION: '#/components/schemas/Evaluation'
+          INSTRUCTION: '#/components/schemas/Instruction'
+          ACTION: '#/components/schemas/Action'
+        propertyName: _type
+      properties:
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        encoding:
+          $ref: '#/components/schemas/CodePhrase'
+        other_participations:
+          items:
+            $ref: '#/components/schemas/Participation'
+          type: array
+        workflow_id:
+          $ref: '#/components/schemas/ObjectRef'
+        subject:
+          $ref: '#/components/schemas/PartyProxy'
+        provider:
+          $ref: '#/components/schemas/PartyProxy'
+      required:
+      - encoding
+      - language
+      - subject
+      title: ENTRY
+      type: object
+    AdminEntry:
+      allOf:
+      - $ref: '#/components/schemas/AbstractEntry'
+      properties:
+        _type:
+          default: ADMIN_ENTRY
+          type: string
+        data:
+          $ref: '#/components/schemas/ItemStructure'
+      required:
+      - data
+      title: ADMIN_ENTRY
+      type: object
+      x-discriminator-value: ADMIN_ENTRY
+    CareEntry:
+      allOf:
+      - $ref: '#/components/schemas/AbstractEntry'
+      discriminator:
+        mapping:
+          OBSERVATION: '#/components/schemas/Observation'
+          EVALUATION: '#/components/schemas/Evaluation'
+          INSTRUCTION: '#/components/schemas/Instruction'
+          ACTION: '#/components/schemas/Action'
+        propertyName: _type
+      properties:
+        protocol:
+          $ref: '#/components/schemas/ItemStructure'
+        guideline_id:
+          $ref: '#/components/schemas/ObjectRef'
+      title: CARE_ENTRY
+      type: object
+    Event:
+      allOf:
+      - $ref: '#/components/schemas/Locatable'
+      properties:
+        _type:
+          default: EVENT
+          type: string
+        time:
+          $ref: '#/components/schemas/DvDateTime'
+        state:
+          $ref: '#/components/schemas/ItemStructure'
+        data:
+          $ref: '#/components/schemas/ItemStructure'
+      required:
+      - data
+      - time
+      title: EVENT
+      type: object
+      x-discriminator-value: EVENT
+    History:
+      allOf:
+      - $ref: '#/components/schemas/Locatable'
+      properties:
+        _type:
+          default: HISTORY
+          type: string
+        origin:
+          $ref: '#/components/schemas/DvDateTime'
+        period:
+          $ref: '#/components/schemas/DvDuration'
+        duration:
+          $ref: '#/components/schemas/DvDuration'
+        summary:
+          $ref: '#/components/schemas/ItemStructure'
+        events:
+          items:
+            $ref: '#/components/schemas/Event'
+          type: array
+      required:
+      - origin
+      title: HISTORY
+      type: object
+      x-discriminator-value: HISTORY
+    Observation:
+      allOf:
+      - $ref: '#/components/schemas/CareEntry'
+      properties:
+        _type:
+          default: OBSERVATION
+          type: string
+        data:
+          $ref: '#/components/schemas/History'
+        state:
+          $ref: '#/components/schemas/History'
+      required:
+      - data
+      title: OBSERVATION
+      type: object
+      x-discriminator-value: OBSERVATION
+    Evaluation:
+      allOf:
+      - $ref: '#/components/schemas/CareEntry'
+      properties:
+        _type:
+          default: EVALUATION
+          type: string
+        data:
+          $ref: '#/components/schemas/ItemStructure'
+      required:
+      - data
+      title: EVALUATION
+      type: object
+      x-discriminator-value: EVALUATION
+    Activity:
+      allOf:
+      - $ref: '#/components/schemas/Locatable'
+      properties:
+        _type:
+          default: ACTIVITY
+          type: string
+        timing:
+          $ref: '#/components/schemas/DvParsable'
+        action_archetype_id:
+          type: string
+        description:
+          $ref: '#/components/schemas/ItemStructure'
+      required:
+      - action_archetype_id
+      - description
+      title: ACTIVITY
+      type: object
+      x-discriminator-value: ACTIVITY
+    Instruction:
+      allOf:
+      - $ref: '#/components/schemas/CareEntry'
+      properties:
+        _type:
+          default: INSTRUCTION
+          type: string
+        narrative:
+          $ref: '#/components/schemas/DvText'
+        expiry_time:
+          $ref: '#/components/schemas/DvDateTime'
+        wf_definition:
+          $ref: '#/components/schemas/DvParsable'
+        activities:
+          items:
+            $ref: '#/components/schemas/Activity'
+          type: array
+      required:
+      - narrative
+      title: INSTRUCTION
+      type: object
+      x-discriminator-value: INSTRUCTION
+    IsmTransition:
+      allOf:
+      - $ref: '#/components/schemas/Pathable'
+      properties:
+        _type:
+          default: ISM_TRANSITION
+          type: string
+        current_state:
+          $ref: '#/components/schemas/DvCodedText'
+        transition:
+          $ref: '#/components/schemas/DvCodedText'
+        careflow_step:
+          $ref: '#/components/schemas/DvCodedText'
+        reason:
+          items:
+            $ref: '#/components/schemas/DvText'
+          type: array
+      required:
+      - current_state
+      title: ISM_TRANSITION
+      type: object
+      x-discriminator-value: ISM_TRANSITION
+    LocatableRef:
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UidBasedId'
+        path:
+          type: string
+      required:
+      - id
+      - namespace
+      - type
+      title: LOCATABLE_REF
+      type: object
+    InstructionDetails:
+      allOf:
+      - $ref: '#/components/schemas/Pathable'
+      properties:
+        _type:
+          default: INSTRUCTION_DETAILS
+          type: string
+        instruction_id:
+          $ref: '#/components/schemas/LocatableRef'
+        activity_id:
+          type: string
+        wf_details:
+          $ref: '#/components/schemas/ItemStructure'
+      required:
+      - activity_id
+      - instruction_id
+      title: INSTRUCTION_DETAILS
+      type: object
+      x-discriminator-value: INSTRUCTION_DETAILS
+    Action:
+      allOf:
+      - $ref: '#/components/schemas/CareEntry'
+      properties:
+        _type:
+          default: ACTION
+          type: string
+        time:
+          $ref: '#/components/schemas/DvDateTime'
+        ism_transition:
+          $ref: '#/components/schemas/IsmTransition'
+        instruction_details:
+          $ref: '#/components/schemas/InstructionDetails'
+        description:
+          $ref: '#/components/schemas/ItemStructure'
+      required:
+      - description
+      - ism_transition
+      - time
+      title: ACTION
+      type: object
+      x-discriminator-value: ACTION
+    Composition:
+      allOf:
+      - $ref: '#/components/schemas/Versionable'
+      description: A COMPOSITION resource
+      example:
+        archetype_node_id: openEHR-EHR-COMPOSITION.encounter.v1
+        name:
+          value: Vital Signs
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        archetype_details:
+          archetype_id:
+            value: openEHR-EHR-COMPOSITION.encounter.v1
+          template_id:
+            value: Example.v1::c7ec861c-c413-39ff-9965-a198ebf44747
+          rm_version: 1.0.2
+        language:
+          terminology_id:
+            value: ISO_639-1
+          code_string: en
+        territory:
+          terminology_id:
+            value: ISO_3166-1
+          code_string: NL
+        category:
+          value: event
+          defining_code:
+            terminology_id:
+              value: openehr
+            code_string: "433"
+        composer:
+          _type: PARTY_IDENTIFIED
+          external_ref:
+            id:
+              _type: GENERIC_ID
+              value: 16b74749-e6aa-4945-b760-b42bdc07098a
+              scheme: pid
+            namespace: openEHRSys.example.com
+            type: PERSON
+          name: A name
+        context:
+          start_time:
+            value: 2014-11-18T09:50:35.000+01:00
+          setting:
+            value: other care
+            defining_code:
+              terminology_id:
+                value: openehr
+              code_string: "238"
+        content: []
+      properties:
+        _type:
+          default: COMPOSITION
+          type: string
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        territory:
+          $ref: '#/components/schemas/CodePhrase'
+        category:
+          $ref: '#/components/schemas/DvCodedText'
+        context:
+          $ref: '#/components/schemas/EventContext'
+        composer:
+          $ref: '#/components/schemas/PartyProxy'
+        content:
+          items:
+            $ref: '#/components/schemas/ContentItem'
+          type: array
+      required:
+      - category
+      - composer
+      - content
+      - context
+      - language
+      - territory
+      title: COMPOSITION
+      type: object
+      x-discriminator-value: COMPOSITION
+    Version:
+      description: A VERSION resource
+      discriminator:
+        mapping:
+          ORIGINAL_VERSION: '#/components/schemas/OriginalVersion'
+          IMPORTED_VERSION: '#/components/schemas/ImportedVersion'
+        propertyName: _type
+      example:
+        contribution:
+          id:
+            _type: OBJECT_VERSION_ID
+            value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+          namespace: local
+          type: COMPOSITION
+        data: null
+        signature: signature
+        _type: _type
+        commit_audit:
+          system_id: 9624982A-9F42-41A5-9318-AE13D5F5031F
+          committer:
+            _type: PARTY_IDENTIFIED
+            name: A user name
+          time_committed:
+            value: 2017-08-15T10:37:15.422+02:00
+          change_type:
+            value: creation
+            defining_code:
+              terminology_id:
+                value: openehr
+              code_string: "249"
+          description:
+            value: Description text
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRef'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Versionable'
+      required:
+      - commit_audit
+      - contribution
+      - data
+      title: VERSION
+      type: object
+    Attestation:
+      allOf:
+      - $ref: '#/components/schemas/AuditDetails'
+      properties:
+        _type:
+          default: ATTESTATION
+          type: string
+        attested_view:
+          $ref: '#/components/schemas/DvMultimedia'
+        proof:
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/DvEhrUri'
+          type: array
+        reason:
+          $ref: '#/components/schemas/DvText'
+        is_pending:
+          type: boolean
+      required:
+      - is_pending
+      - reason
+      title: ATTESTATION
+      type: object
+      x-discriminator-value: ATTESTATION
+    OriginalVersion:
+      allOf:
+      - $ref: '#/components/schemas/Version'
+      properties:
+        _type:
+          default: ORIGINAL_VERSION
+          type: string
+        uid:
+          $ref: '#/components/schemas/ObjectVersionId'
+        preceding_version_uid:
+          $ref: '#/components/schemas/ObjectVersionId'
+        other_input_version_uids:
+          items:
+            $ref: '#/components/schemas/ObjectVersionId'
+          type: array
+        lifecycle_state:
+          $ref: '#/components/schemas/DvCodedText'
+        attestations:
+          items:
+            $ref: '#/components/schemas/Attestation'
+          type: array
+      required:
+      - lifecycle_state
+      - uid
+      title: ORIGINAL_VERSION
+      type: object
+      x-discriminator-value: ORIGINAL_VERSION
+    ImportedVersion:
+      allOf:
+      - $ref: '#/components/schemas/Version'
+      properties:
+        _type:
+          default: IMPORTED_VERSION
+          type: string
+        item:
+          $ref: '#/components/schemas/OriginalVersion'
+      required:
+      - item
+      title: IMPORTED_VERSION
+      type: object
+      x-discriminator-value: IMPORTED_VERSION
+    Error:
+      example:
+        message: Error message
+        validationErrors:
+        - error1
+        - error2
+      properties:
+        message:
+          type: string
+        validationErrors:
+          description: ""
+          items:
+            type: string
+          type: array
+      required:
+      - message
+      - validationErrors
+      title: Error
+      type: object
+    VersionedComposition:
+      allOf:
+      - $ref: '#/components/schemas/VersionedObject'
+      description: A VERSIONED_COMPOSITION resource
+      example:
+        uid:
+          value: 8849182c-82ad-4088-a07f-48ead4180515
+        owner_id:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 7d44b88c-4199-4bad-97dc-d78268e01398
+          namespace: local
+          type: EHR
+        time_created:
+          value: 2015-01-20T19:30:22.765+01:00
+      properties:
+        _type:
+          default: VERSIONED_COMPOSITION
+          type: string
+      title: VERSIONED_COMPOSITION
+      type: object
+      x-discriminator-value: VERSIONED_COMPOSITION
+    Folder:
+      allOf:
+      - $ref: '#/components/schemas/Locatable'
+      description: A FOLDER resource
+      example:
+        archetype_node_id: openEHR-EHR-FOLDER.directory.v1
+        name:
+          value: Directory
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        items: []
+        folders: []
+      properties:
+        _type:
+          default: FOLDER
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/ObjectRef'
+          type: array
+        folders:
+          items:
+            $ref: '#/components/schemas/Folder'
+          type: array
+        details:
+          $ref: '#/components/schemas/ItemStructure'
+      title: FOLDER
+      type: object
+      x-discriminator-value: FOLDER
+    TerminologyCode:
+      example:
+        terminology_id: snomed_ct
+        code_string: "308335008"
+      properties:
+        terminology_id:
+          type: string
+        terminology_version:
+          type: string
+        code_string:
+          type: string
+        uri:
+          format: uri
+          type: string
+      required:
+      - code_string
+      - terminology_id
+      title: TERMINOLOGY_CODE
+      type: object
+    UpdateAudit:
+      description: The set of attributes required to document the committal of an
+        information item to a repository. Used by the server to create an AUDIT_DETAILS
+        object.
+      discriminator:
+        mapping:
+          UPDATE_AUDIT: '#/components/schemas/UpdateAudit'
+          UPDATE_ATTESTATION: '#/components/schemas/UpdateAttestation'
+        propertyName: _type
+      example:
+        change_type:
+          value: creation
+          defining_code:
+            terminology_id: openehr
+            code_string: "249"
+        description: Description text
+        committer:
+          _type: PARTY_IDENTIFIED
+          name: A user name
+      properties:
+        _type:
+          default: UPDATE_AUDIT
+          type: string
+        change_type:
+          $ref: '#/components/schemas/TerminologyCode'
+        description:
+          $ref: '#/components/schemas/DvText'
+        committer:
+          $ref: '#/components/schemas/PartyProxy'
+      required:
+      - change_type
+      - committer
+      title: UPDATE_AUDIT
+      type: object
+      x-discriminator-value: UPDATE_AUDIT
+    UpdateAttestation:
+      allOf:
+      - $ref: '#/components/schemas/UpdateAudit'
+      example:
+        attested_view:
+          integrity_check: integrity_check
+          thumbnail: null
+          data: data
+          size: 0
+          media_type:
+            terminology_id:
+              value: local
+            code_string: at0001
+          alternate_text: alternate_text
+          compression_algorithm:
+            terminology_id:
+              value: local
+            code_string: at0001
+          _type: DV_MULTIMEDIA
+          integrity_check_algorithm:
+            terminology_id:
+              value: local
+            code_string: at0001
+          uri:
+            _type: DV_URI
+            value: value
+        reason:
+          hyperlink:
+            _type: DV_URI
+            value: value
+          _type: DV_TEXT
+          language:
+            terminology_id:
+              value: local
+            code_string: at0001
+          encoding:
+            terminology_id:
+              value: local
+            code_string: at0001
+          value: value
+          formatting: formatting
+        _type: UPDATE_ATTESTATION
+        proof: proof
+        items:
+        - _type: DV_EHR_URI
+          value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+        - _type: DV_EHR_URI
+          value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+        is_pending: true
+      properties:
+        _type:
+          default: UPDATE_ATTESTATION
+          type: string
+        attested_view:
+          $ref: '#/components/schemas/DvMultimedia'
+        proof:
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/DvEhrUri'
+          type: array
+        reason:
+          $ref: '#/components/schemas/DvText'
+        is_pending:
+          type: boolean
+      required:
+      - is_pending
+      - reason
+      title: UPDATE_ATTESTATION
+      type: object
+      x-discriminator-value: UPDATE_ATTESTATION
+    UpdateVersion:
+      example:
+        lifecycle_state:
+          terminology_id: snomed_ct
+          code_string: "308335008"
+        data: null
+        signature: signature
+        attestations:
+        - attested_view:
+            integrity_check: integrity_check
+            thumbnail: null
+            data: data
+            size: 0
+            media_type:
+              terminology_id:
+                value: local
+              code_string: at0001
+            alternate_text: alternate_text
+            compression_algorithm:
+              terminology_id:
+                value: local
+              code_string: at0001
+            _type: DV_MULTIMEDIA
+            integrity_check_algorithm:
+              terminology_id:
+                value: local
+              code_string: at0001
+            uri:
+              _type: DV_URI
+              value: value
+          reason:
+            hyperlink:
+              _type: DV_URI
+              value: value
+            _type: DV_TEXT
+            language:
+              terminology_id:
+                value: local
+              code_string: at0001
+            encoding:
+              terminology_id:
+                value: local
+              code_string: at0001
+            value: value
+            formatting: formatting
+          _type: UPDATE_ATTESTATION
+          proof: proof
+          items:
+          - _type: DV_EHR_URI
+            value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+          - _type: DV_EHR_URI
+            value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+          is_pending: true
+        - attested_view:
+            integrity_check: integrity_check
+            thumbnail: null
+            data: data
+            size: 0
+            media_type:
+              terminology_id:
+                value: local
+              code_string: at0001
+            alternate_text: alternate_text
+            compression_algorithm:
+              terminology_id:
+                value: local
+              code_string: at0001
+            _type: DV_MULTIMEDIA
+            integrity_check_algorithm:
+              terminology_id:
+                value: local
+              code_string: at0001
+            uri:
+              _type: DV_URI
+              value: value
+          reason:
+            hyperlink:
+              _type: DV_URI
+              value: value
+            _type: DV_TEXT
+            language:
+              terminology_id:
+                value: local
+              code_string: at0001
+            encoding:
+              terminology_id:
+                value: local
+              code_string: at0001
+            value: value
+            formatting: formatting
+          _type: UPDATE_ATTESTATION
+          proof: proof
+          items:
+          - _type: DV_EHR_URI
+            value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+          - _type: DV_EHR_URI
+            value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+          is_pending: true
+        preceding_version_uid:
+          value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+        commit_audit:
+          change_type:
+            value: creation
+            defining_code:
+              terminology_id: openehr
+              code_string: "249"
+          description: Description text
+          committer:
+            _type: PARTY_IDENTIFIED
+            name: A user name
+      properties:
+        preceding_version_uid:
+          $ref: '#/components/schemas/ObjectVersionId'
+        signature:
+          type: string
+        lifecycle_state:
+          $ref: '#/components/schemas/TerminologyCode'
+        attestations:
+          items:
+            $ref: '#/components/schemas/UpdateAttestation'
+          type: array
+        data:
+          $ref: '#/components/schemas/Versionable'
+        commit_audit:
+          $ref: '#/components/schemas/UpdateAudit'
+      required:
+      - commit_audit
+      - data
+      - lifecycle_state
+      title: UPDATE_VERSION
+      type: object
+    NewContribution:
+      description: A new (un-committed) CONTRIBUTION resource
+      example:
+        uid:
+          value: 6cb19121-4307-4648-9da0-d62e4d51f19b
+        versions:
+        - lifecycle_state:
+            terminology_id: snomed_ct
+            code_string: "308335008"
+          data: null
+          signature: signature
+          attestations:
+          - attested_view:
+              integrity_check: integrity_check
+              thumbnail: null
+              data: data
+              size: 0
+              media_type:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              alternate_text: alternate_text
+              compression_algorithm:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              _type: DV_MULTIMEDIA
+              integrity_check_algorithm:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              uri:
+                _type: DV_URI
+                value: value
+            reason:
+              hyperlink:
+                _type: DV_URI
+                value: value
+              _type: DV_TEXT
+              language:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              encoding:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              value: value
+              formatting: formatting
+            _type: UPDATE_ATTESTATION
+            proof: proof
+            items:
+            - _type: DV_EHR_URI
+              value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+            - _type: DV_EHR_URI
+              value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+            is_pending: true
+          - attested_view:
+              integrity_check: integrity_check
+              thumbnail: null
+              data: data
+              size: 0
+              media_type:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              alternate_text: alternate_text
+              compression_algorithm:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              _type: DV_MULTIMEDIA
+              integrity_check_algorithm:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              uri:
+                _type: DV_URI
+                value: value
+            reason:
+              hyperlink:
+                _type: DV_URI
+                value: value
+              _type: DV_TEXT
+              language:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              encoding:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              value: value
+              formatting: formatting
+            _type: UPDATE_ATTESTATION
+            proof: proof
+            items:
+            - _type: DV_EHR_URI
+              value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+            - _type: DV_EHR_URI
+              value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+            is_pending: true
+          preceding_version_uid:
+            value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+          commit_audit:
+            change_type:
+              value: creation
+              defining_code:
+                terminology_id: openehr
+                code_string: "249"
+            description: Description text
+            committer:
+              _type: PARTY_IDENTIFIED
+              name: A user name
+        - lifecycle_state:
+            terminology_id: snomed_ct
+            code_string: "308335008"
+          data: null
+          signature: signature
+          attestations:
+          - attested_view:
+              integrity_check: integrity_check
+              thumbnail: null
+              data: data
+              size: 0
+              media_type:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              alternate_text: alternate_text
+              compression_algorithm:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              _type: DV_MULTIMEDIA
+              integrity_check_algorithm:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              uri:
+                _type: DV_URI
+                value: value
+            reason:
+              hyperlink:
+                _type: DV_URI
+                value: value
+              _type: DV_TEXT
+              language:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              encoding:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              value: value
+              formatting: formatting
+            _type: UPDATE_ATTESTATION
+            proof: proof
+            items:
+            - _type: DV_EHR_URI
+              value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+            - _type: DV_EHR_URI
+              value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+            is_pending: true
+          - attested_view:
+              integrity_check: integrity_check
+              thumbnail: null
+              data: data
+              size: 0
+              media_type:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              alternate_text: alternate_text
+              compression_algorithm:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              _type: DV_MULTIMEDIA
+              integrity_check_algorithm:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              uri:
+                _type: DV_URI
+                value: value
+            reason:
+              hyperlink:
+                _type: DV_URI
+                value: value
+              _type: DV_TEXT
+              language:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              encoding:
+                terminology_id:
+                  value: local
+                code_string: at0001
+              value: value
+              formatting: formatting
+            _type: UPDATE_ATTESTATION
+            proof: proof
+            items:
+            - _type: DV_EHR_URI
+              value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+            - _type: DV_EHR_URI
+              value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+            is_pending: true
+          preceding_version_uid:
+            value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+          commit_audit:
+            change_type:
+              value: creation
+              defining_code:
+                terminology_id: openehr
+                code_string: "249"
+            description: Description text
+            committer:
+              _type: PARTY_IDENTIFIED
+              name: A user name
+        audit:
+          change_type:
+            value: creation
+            defining_code:
+              terminology_id: openehr
+              code_string: "249"
+          description: Description text
+          committer:
+            _type: PARTY_IDENTIFIED
+            name: A user name
+      properties:
+        uid:
+          $ref: '#/components/schemas/HierObjectId'
+        versions:
+          items:
+            $ref: '#/components/schemas/UpdateVersion'
+          type: array
+        audit:
+          $ref: '#/components/schemas/UpdateAudit'
+      required:
+      - audit
+      - versions
+      title: NewContribution
+      type: object
+    Contribution:
+      description: A CONTRIBUTION resource
+      example:
+        uid:
+          value: 0826851c-c4c2-4d61-92b9-410fb8275ff0
+        versions:
+        - _type: OBJECT_REF
+          id:
+            _type: OBJECT_VERSION_ID
+            value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+          namespace: local
+          type: COMPOSITION
+        - _type: OBJECT_REF
+          id:
+            _type: OBJECT_VERSION_ID
+            value: abcdefgh-1323-42bc-b7f8-787f3660a0ba::openEHRSys.example.com::1
+          namespace: local
+          type: FOLDER
+        audit:
+          system_id: 9624982A-9F42-41A5-9318-AE13D5F5031F
+          committer:
+            _type: PARTY_IDENTIFIED
+            name: A user name
+          time_committed:
+            value: 2017-08-15T10:37:15.422+02:00
+          change_type:
+            value: creation
+            defining_code:
+              terminology_id:
+                value: openehr
+              code_string: "249"
+          description:
+            value: Description text
+      properties:
+        uid:
+          $ref: '#/components/schemas/HierObjectId'
+        versions:
+          items:
+            $ref: '#/components/schemas/ObjectRef'
+          type: array
+        audit:
+          $ref: '#/components/schemas/AuditDetails'
+      required:
+      - audit
+      - uid
+      - versions
+      title: CONTRIBUTION
+      type: object
+x-tagGroups:
+- name: Resource endpoints
+  tags:
+  - EHR
+  - EHR_STATUS
+  - COMPOSITION
+  - DIRECTORY
+  - CONTRIBUTION
+- name: Resource schemas
+  tags:
+  - EHR_schema
+  - EHR_STATUS_schema
+  - COMPOSITION_schema
+  - DIRECTORY_schema
+  - ITEM_STRUCTURE_schema
+  - CONTRIBUTION_schema

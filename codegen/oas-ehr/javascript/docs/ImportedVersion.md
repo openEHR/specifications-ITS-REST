@@ -1,0 +1,10 @@
+# EhrApi.ImportedVersion
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**_type** | **String** |  | [optional] [default to &#39;IMPORTED_VERSION&#39;]
+**item** | [**OriginalVersion**](OriginalVersion.md) |  | 
+
+
