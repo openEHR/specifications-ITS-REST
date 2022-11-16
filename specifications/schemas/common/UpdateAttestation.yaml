@@ -1,4 +1,4 @@
-title: UpdateAttestation
+title: UPDATE_ATTESTATION
 type: object
 allOf:
   - $ref: ../common/UpdateAudit.yaml
@@ -8,7 +8,7 @@ required:
 properties:
   _type:
     type: string
-    default: UpdateAttestation
+    default: UPDATE_ATTESTATION
   attested_view:
     $ref: ../data_types/DvMultimedia.yaml
   proof:
@@ -21,4 +21,4 @@ properties:
     $ref: ../data_types/UDvText.yaml
   is_pending:
     type: boolean
-x-discriminator-value: UpdateAttestation
+x-discriminator-value: UPDATE_ATTESTATION
