@@ -19,6 +19,7 @@ class Validation extends AbstractWriter {
      */
     protected function slurping(Schema $schema): void {
         if ($schema->allOf) {
+            echo "slurping {$schema->title} ... ";
             /** @var Schema $parentSchema */
             $parentSchema = $schema->allOf[0]->resolve();
             $this->slurping($parentSchema);
@@ -56,6 +57,47 @@ class Validation extends AbstractWriter {
             $this->slurping($schema);
             $this->cleaning($schema);
         }
+        echo "removing ...";
+        $redundant = [
+            'AbstractEntry',
+            'Action',
+            'AdminEntry',
+            'CareEntry',
+            'ContentItem',
+            'DataStructure',
+            'DataValue',
+            'DvAmount',
+            'DvEncapsulated',
+            'DvOrdered',
+            'DvQuantified',
+            'DvText',
+            'DvUri',
+            'Evaluation',
+            'GenericId',
+            'ImportedVersion',
+            'Instruction',
+            'ItemStructure',
+            'Item',
+            'Locatable',
+            'ObjectId',
+            'Observation',
+            'PartyIdentified',
+            'PartyProxy',
+            'PartyRelated',
+            'PartySelf',
+            'Pathable',
+            'UidBasedId',
+            'Version',
+            'Versionable',
+            'VersionedObject',
+        ];
+        $schemas = [];
+        foreach ($this->apiSpecification->components->schemas as $name => $schema) {
+            if (!in_array($name, $redundant)) {
+                $schemas[$name] = $schema;
+            }
+        }
+        $this->apiSpecification->components->schemas = $schemas;
     }
 
 }

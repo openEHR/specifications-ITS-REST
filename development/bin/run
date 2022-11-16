@@ -12,3 +12,4 @@ $inputFile = '/data/'.$argv[1];
 
 (new Writer\Codegen($inputFile))->writeJsonFile();
 (new Writer\Validation($inputFile))->writeJsonFile();
+(new Writer\Html($inputFile))->writeJsonFile();
