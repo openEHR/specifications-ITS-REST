@@ -1033,6 +1033,12 @@ components:
           DV_INTERVAL: '#/components/schemas/DvInterval'
           DV_INTERVAL_of_DATE_TIME: '#/components/schemas/DvIntervalOfDateTime'
           DV_IDENTIFIER: '#/components/schemas/DvIdentifier'
+          DV_BOOLEAN: '#/components/schemas/DvBoolean'
+          DV_QUANTITY: '#/components/schemas/DvQuantity'
+          DV_ORDINAL: '#/components/schemas/DvOrdinal'
+          DV_SCALE: '#/components/schemas/DvScale'
+          DV_COUNT: '#/components/schemas/DvCount'
+          DV_PROPORTION: '#/components/schemas/DvProportion'
     DvDateTime:
       title: DV_DATE_TIME
       required:
@@ -1479,6 +1485,202 @@ components:
           ELEMENT: '#/components/schemas/Element'
           CLUSTER: '#/components/schemas/Clstr'
       x-discriminator-value: ITEM
+    DvInterval:
+      title: DV_INTERVAL
+      required:
+        - lower_unbounded
+        - upper_unbounded
+        - lower_included
+        - upper_included
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DataValue'
+      properties:
+        _type:
+          type: string
+          default: DV_INTERVAL
+        lower_unbounded:
+          type: boolean
+        upper_unbounded:
+          type: boolean
+        lower_included:
+          type: boolean
+        upper_included:
+          type: boolean
+      x-discriminator-value: DV_INTERVAL
+    ReferenceRange:
+      title: REFERENCE_RANGE
+      required:
+        - meaning
+        - range
+      type: object
+      properties:
+        meaning:
+          $ref: '#/components/schemas/DvText'
+        range:
+          $ref: '#/components/schemas/DvInterval'
+    DvOrdered:
+      title: DV_ORDERED
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DataValue'
+      properties:
+        _type:
+          type: string
+          default: DV_ORDERED
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+      x-discriminator-value: DV_ORDERED
+    DvQuantified:
+      title: DV_QUANTIFIED
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DvOrdered'
+      properties:
+        _type:
+          type: string
+          default: DV_QUANTIFIED
+        magnitude_status:
+          type: string
+          default: '='
+      x-discriminator-value: DV_QUANTIFIED
+    DvAmount:
+      title: DV_AMOUNT
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DvQuantified'
+      properties:
+        _type:
+          type: string
+          default: DV_AMOUNT
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+      x-discriminator-value: DV_AMOUNT
+    DvDuration:
+      title: DV_DURATION
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DvAmount'
+      properties:
+        _type:
+          type: string
+          default: DV_DURATION
+      x-discriminator-value: DV_DURATION
+    DvBoolean:
+      title: DV_BOOLEAN
+      required:
+        - value
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DataValue'
+      properties:
+        _type:
+          type: string
+          default: DV_BOOLEAN
+        value:
+          type: boolean
+      x-discriminator-value: DV_BOOLEAN
+    DvQuantity:
+      title: DV_QUANTITY
+      required:
+        - magnitude
+        - units
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DvAmount'
+      properties:
+        _type:
+          type: string
+          default: DV_QUANTITY
+        magnitude:
+          type: number
+        precision:
+          type: integer
+        units:
+          type: string
+        units_system:
+          type: string
+        units_display_name:
+          type: string
+      x-discriminator-value: DV_QUANTITY
+    DvOrdinal:
+      title: DV_ORDINAL
+      required:
+        - symbol
+        - value
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DvOrdered'
+      properties:
+        _type:
+          type: string
+          default: DV_ORDINAL
+        symbol:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          type: integer
+      x-discriminator-value: DV_ORDINAL
+    DvScale:
+      title: DV_SCALE
+      required:
+        - symbol
+        - value
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DvOrdered'
+      properties:
+        _type:
+          type: string
+          default: DV_SCALE
+        symbol:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          type: number
+      x-discriminator-value: DV_SCALE
+    DvCount:
+      title: DV_COUNT
+      required:
+        - magnitude
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DvAmount'
+      properties:
+        _type:
+          type: string
+          default: DV_COUNT
+        magnitude:
+          type: integer
+      x-discriminator-value: DV_COUNT
+    DvProportion:
+      title: DV_PROPORTION
+      required:
+        - numerator
+        - denominator
+        - semantic_type
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/DvAmount'
+      properties:
+        _type:
+          type: string
+          default: DV_PROPORTION
+        numerator:
+          type: number
+        denominator:
+          type: number
+        semantic_type:
+          type: integer
+        precision:
+          type: integer
+      x-discriminator-value: DV_PROPORTION
     Element:
       title: ELEMENT
       type: object
@@ -1491,7 +1693,7 @@ components:
         null_flavour:
           $ref: '#/components/schemas/DvCodedText'
         value:
-          type: object
+          $ref: '#/components/schemas/DataValue'
         null_reason:
           $ref: '#/components/schemas/DvText'
       x-discriminator-value: ELEMENT
@@ -1784,29 +1986,6 @@ components:
           items:
             $ref: '#/components/schemas/RevisionHistoryItem'
       description: A REVISION_HISTORY resource
-    DvInterval:
-      title: DV_INTERVAL
-      required:
-        - lower_unbounded
-        - upper_unbounded
-        - lower_included
-        - upper_included
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DataValue'
-      properties:
-        _type:
-          type: string
-          default: DV_INTERVAL
-        lower_unbounded:
-          type: boolean
-        upper_unbounded:
-          type: boolean
-        lower_included:
-          type: boolean
-        upper_included:
-          type: boolean
-      x-discriminator-value: DV_INTERVAL
     DvIntervalOfDateTime:
       title: DV_INTERVAL_of_DATE_TIME
       type: object
@@ -1938,73 +2117,6 @@ components:
           EVALUATION: '#/components/schemas/Evaluation'
           INSTRUCTION: '#/components/schemas/Instruction'
           ACTION: '#/components/schemas/Action'
-    ReferenceRange:
-      title: REFERENCE_RANGE
-      required:
-        - meaning
-        - range
-      type: object
-      properties:
-        meaning:
-          $ref: '#/components/schemas/DvText'
-        range:
-          $ref: '#/components/schemas/DvInterval'
-    DvOrdered:
-      title: DV_ORDERED
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DataValue'
-      properties:
-        _type:
-          type: string
-          default: DV_ORDERED
-        normal_status:
-          $ref: '#/components/schemas/CodePhrase'
-        normal_range:
-          $ref: '#/components/schemas/DvInterval'
-        other_reference_ranges:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReferenceRange'
-      x-discriminator-value: DV_ORDERED
-    DvQuantified:
-      title: DV_QUANTIFIED
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DvOrdered'
-      properties:
-        _type:
-          type: string
-          default: DV_QUANTIFIED
-        magnitude_status:
-          type: string
-          default: '='
-        accuracy: {}
-      x-discriminator-value: DV_QUANTIFIED
-    DvAmount:
-      title: DV_AMOUNT
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DvQuantified'
-      properties:
-        _type:
-          type: string
-          default: DV_AMOUNT
-        accuracy_is_percent:
-          type: boolean
-        accuracy:
-          type: number
-      x-discriminator-value: DV_AMOUNT
-    DvDuration:
-      title: DV_DURATION
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/DvAmount'
-      properties:
-        _type:
-          type: string
-          default: DV_DURATION
-      x-discriminator-value: DV_DURATION
     Event:
       title: EVENT
       required:

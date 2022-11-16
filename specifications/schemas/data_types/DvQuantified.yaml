@@ -9,5 +9,4 @@ properties:
   magnitude_status:
     type: string
     default: '='
-  accuracy: {}
 x-discriminator-value: DV_QUANTIFIED

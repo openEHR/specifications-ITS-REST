@@ -9,7 +9,7 @@ properties:
   null_flavour:
     $ref: ../data_types/DvCodedText.yaml
   value:
-    type: object
+    $ref: ../data_types/UDataValue.yaml
   null_reason:
     $ref: ../data_types/UDvText.yaml
 x-discriminator-value: ELEMENT
