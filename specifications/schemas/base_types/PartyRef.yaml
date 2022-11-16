@@ -11,14 +11,7 @@ properties:
     default: PARTY_REF
   type:
     type: string
-    enum:
-      - PERSON
-      - ORGANISATION
-      - GROUP
-      - AGENT
-      - ROLE
-      - PARTY
-      - ACTOR
+    pattern: '^PERSON|ORGANISATION|GROUP|AGENT|ROLE|PARTY|ACTOR$'
 x-discriminator-value: PARTY_REF
 example:
   id:
