@@ -1343,7 +1343,18 @@ components:
       x-discriminator-value: DV_CODED_TEXT
     Link:
       title: LINK
+      required:
+        - meaning
+        - type
+        - target
       type: object
+      properties:
+        meaning:
+          $ref: '#/components/schemas/DvText'
+        type:
+          $ref: '#/components/schemas/DvText'
+        target:
+          $ref: '#/components/schemas/DvEhrUri'
     Archetyped:
       title: ARCHETYPED
       required:
@@ -1800,22 +1811,6 @@ components:
           items:
             $ref: '#/components/schemas/RevisionHistoryItem'
       description: A REVISION_HISTORY resource
-    EventContext:
-      title: EVENT_CONTEXT
-      type: object
-    ContentItem:
-      title: CONTENT_ITEM
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Locatable'
-      discriminator:
-        propertyName: _type
-        mapping:
-          ADMIN_ENTRY: '#/components/schemas/AdminEntry'
-          OBSERVATION: '#/components/schemas/Observation'
-          EVALUATION: '#/components/schemas/Evaluation'
-          INSTRUCTION: '#/components/schemas/Instruction'
-          ACTION: '#/components/schemas/Action'
     DvInterval:
       title: DV_INTERVAL
       required:
@@ -1868,6 +1863,45 @@ components:
           $ref: '#/components/schemas/PartyProxy'
         time:
           $ref: '#/components/schemas/DvIntervalOfDateTime'
+    EventContext:
+      title: EVENT_CONTEXT
+      required:
+        - start_time
+        - setting
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Pathable'
+      properties:
+        start_time:
+          $ref: '#/components/schemas/DvDateTime'
+        end_time:
+          $ref: '#/components/schemas/DvDateTime'
+        location:
+          type: string
+        setting:
+          $ref: '#/components/schemas/DvCodedText'
+        other_context:
+          $ref: '#/components/schemas/ItemStructure'
+        health_care_facility:
+          $ref: '#/components/schemas/PartyIdentified'
+        participations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participation'
+      x-discriminator-value: EVENT_CONTEXT
+    ContentItem:
+      title: CONTENT_ITEM
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Locatable'
+      discriminator:
+        propertyName: _type
+        mapping:
+          ADMIN_ENTRY: '#/components/schemas/AdminEntry'
+          OBSERVATION: '#/components/schemas/Observation'
+          EVALUATION: '#/components/schemas/Evaluation'
+          INSTRUCTION: '#/components/schemas/Instruction'
+          ACTION: '#/components/schemas/Action'
     AbstractEntry:
       title: ENTRY
       required:

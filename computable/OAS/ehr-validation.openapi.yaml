@@ -1472,7 +1472,18 @@ components:
           OBJECT_VERSION_ID: '#/components/schemas/UMObjectVersionId'
     Link:
       title: LINK
+      required:
+        - meaning
+        - type
+        - target
       type: object
+      properties:
+        meaning:
+          $ref: '#/components/schemas/UDvText'
+        type:
+          $ref: '#/components/schemas/UDvText'
+        target:
+          $ref: '#/components/schemas/DvEhrUri'
     Archetyped:
       title: ARCHETYPED
       required:
@@ -1964,9 +1975,6 @@ components:
           items:
             $ref: '#/components/schemas/RevisionHistoryItem'
       description: A REVISION_HISTORY resource
-    EventContext:
-      title: EVENT_CONTEXT
-      type: object
     UMDvDateTime:
       title: DV_DATE_TIME
       required:
@@ -2025,6 +2033,30 @@ components:
           $ref: '#/components/schemas/UPartyProxy'
         time:
           $ref: '#/components/schemas/DvIntervalOfDateTime'
+    EventContext:
+      title: EVENT_CONTEXT
+      required:
+        - start_time
+        - setting
+      type: object
+      properties:
+        start_time:
+          $ref: '#/components/schemas/DvDateTime'
+        end_time:
+          $ref: '#/components/schemas/DvDateTime'
+        location:
+          type: string
+        setting:
+          $ref: '#/components/schemas/DvCodedText'
+        other_context:
+          $ref: '#/components/schemas/ItemStructure'
+        health_care_facility:
+          $ref: '#/components/schemas/UPartyIdentified'
+        participations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participation'
+      x-discriminator-value: EVENT_CONTEXT
     UMAdminEntry:
       title: ADMIN_ENTRY
       required:
