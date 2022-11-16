@@ -17,5 +17,5 @@ properties:
   instruction_details:
     $ref: ../ehr/InstructionDetails.yaml
   description:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml
 x-discriminator-value: ACTION

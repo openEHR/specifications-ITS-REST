@@ -15,7 +15,7 @@ properties:
   setting:
     $ref: ../data_types/DvCodedText.yaml
   other_context:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml
   health_care_facility:
     $ref: ../common/UPartyIdentified.yaml
   participations:

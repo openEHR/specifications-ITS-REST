@@ -15,7 +15,7 @@ properties:
   duration:
     $ref: ../data_types/DvDuration.yaml
   summary:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml
   events:
     type: array
     items:

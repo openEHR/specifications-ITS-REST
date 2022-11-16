@@ -14,5 +14,5 @@ properties:
   action_archetype_id:
     type: string
   description:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml
 x-discriminator-value: ACTIVITY

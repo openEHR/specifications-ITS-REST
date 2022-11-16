@@ -861,6 +861,12 @@ tags:
       This is related to [directory](https://specifications.openehr.org/releases/RM/latest/ehr.html#_directory) [FOLDER](https://specifications.openehr.org/releases/RM/latest/common.html#_folder_class).
 
       <SchemaDefinition schemaRef="#/components/schemas/Folder" />
+  - name: ITEM_STRUCTURE_schema
+    x-displayName: ITEM_STRUCTURE
+    description: |
+      This is related to [ITEM_STRUCTURE](https://specifications.openehr.org/releases/RM/latest/data_structures.html#_item_structure_class).
+
+      <SchemaDefinition schemaRef="#/components/schemas/ItemStructure" />
   - name: CONTRIBUTION_schema
     x-displayName: CONTRIBUTION
     description: |
@@ -881,158 +887,9 @@ x-tagGroups:
       - EHR_STATUS_schema
       - COMPOSITION_schema
       - DIRECTORY_schema
+      - ITEM_STRUCTURE_schema
       - CONTRIBUTION_schema
 components:
-  parameters:
-    subject_id:
-      name: subject_id
-      in: query
-      description: |
-        The EHR subject id.
-      required: true
-      style: form
-      explode: true
-      schema:
-        type: string
-        example: ins01
-    subject_namespace:
-      name: subject_namespace
-      in: query
-      description: |
-        The EHR subject id namespace.
-      required: true
-      style: form
-      explode: true
-      schema:
-        type: string
-        example: examples
-    Prefer:
-      name: Prefer
-      in: header
-      description: |
-        Request header to indicate the preference over response details.
-        The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
-      required: false
-      style: simple
-      schema:
-        type: string
-        enum:
-          - return=representation
-          - return=minimal
-        default: return=minimal
-    ehr_id:
-      name: ehr_id
-      in: path
-      description: |
-        EHR identifier taken from EHR.ehr_id.value.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 7d44b88c-4199-4bad-97dc-d78268e01398
-    version_uid:
-      name: version_uid
-      in: path
-      description: |
-        VERSION identifier taken from VERSION.uid.value.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
-    version_at_time:
-      name: version_at_time
-      in: query
-      description: |
-        A given time in the extended ISO 8601 format.
-      style: form
-      explode: true
-      schema:
-        type: string
-        example: '2015-01-20T19:30:22.765+01:00'
-    If-Match:
-      name: If-Match
-      in: header
-      description: |
-        Header to make the request conditional. 
-        Together with `ETag` request tag, it helps to prevent simultaneous updates of a resource from overwriting each other ("mid-air collisions").
-        The format is always an `version_uid` identifier enclosed by double quotes.
-        The operation will be performed only if the existing latest `version_uid` of the resource (i.e. the `preceding_version_uid`) matches this header's value.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"'
-    uid_based_id:
-      name: uid_based_id
-      in: path
-      description: |
-        An abstract identifier: it can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-    uid_based_id_as_versioned_object_uid:
-      name: uid_based_id
-      in: path
-      description: |
-        An identifier in a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 8849182c-82ad-4088-a07f-48ead4180515
-    uid_based_id_as_version_uid:
-      name: uid_based_id
-      in: path
-      description: |
-        An identifier in a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`).
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-    versioned_object_uid_COMPOSITION:
-      name: versioned_object_uid
-      in: path
-      description: |
-        VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 8849182c-82ad-4088-a07f-48ead4180515
-    version_uid_COMPOSITION:
-      name: version_uid
-      in: path
-      description: |
-        VERSION identifier taken from VERSION.uid.value.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-    path:
-      name: path
-      in: query
-      description: |
-        A path to a sub-folder; consists of slash-separated values of the name attribute of FOLDERs in the directory.
-      style: form
-      explode: true
-      schema:
-        type: string
-        example: episodes/a/b/c
-    contribution_uid:
-      name: contribution_uid
-      in: path
-      description: |
-        The CONTRIBUTION uid.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 0826851c-c4c2-4d61-92b9-410fb8275ff0
   schemas:
     ObjectId:
       title: OBJECT_ID
@@ -1560,9 +1417,165 @@ components:
           type: string
           default: PARTY_SELF
       x-discriminator-value: PARTY_SELF
+    Locatable:
+      title: LOCATABLE
+      required:
+        - name
+        - archetype_node_id
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Pathable'
+      properties:
+        name:
+          $ref: '#/components/schemas/DvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+      discriminator:
+        propertyName: _type
+        mapping:
+          COMPOSITION: '#/components/schemas/Composition'
+          EHR_STATUS: '#/components/schemas/EhrStatus'
+          FOLDER: '#/components/schemas/Folder'
+    DataStructure:
+      title: DATE_STRUCTURE
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Locatable'
+      properties:
+        _type:
+          type: string
+          default: DATE_STRUCTURE
+      x-discriminator-value: DATE_STRUCTURE
     ItemStructure:
       title: ITEM_STRUCTURE
       type: object
+      allOf:
+        - $ref: '#/components/schemas/DataStructure'
+      properties:
+        _type:
+          type: string
+      discriminator:
+        propertyName: _type
+        mapping:
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
+          ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_TABLE: '#/components/schemas/ItemTable'
+          ITEM_TREE: '#/components/schemas/ItemTree'
+      x-discriminator-value: ITEM_STRUCTURE
+    Item:
+      title: ITEM
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Locatable'
+      properties:
+        _type:
+          type: string
+      discriminator:
+        propertyName: _type
+        mapping:
+          ELEMENT: '#/components/schemas/Element'
+          CLUSTER: '#/components/schemas/Clstr'
+      x-discriminator-value: ITEM
+    Element:
+      title: ELEMENT
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Item'
+      properties:
+        _type:
+          type: string
+          default: ELEMENT
+        null_flavour:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          type: object
+        null_reason:
+          $ref: '#/components/schemas/DvText'
+      x-discriminator-value: ELEMENT
+    ItemSingle:
+      title: ITEM_SINGLE
+      required:
+        - item
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ItemStructure'
+      properties:
+        _type:
+          type: string
+          default: ITEM_SINGLE
+        item:
+          $ref: '#/components/schemas/Element'
+      x-discriminator-value: ITEM_SINGLE
+    ItemList:
+      title: ITEM_LIST
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ItemStructure'
+      properties:
+        _type:
+          type: string
+          default: ITEM_LIST
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Element'
+      x-discriminator-value: ITEM_LIST
+    Clstr:
+      title: CLUSTER
+      required:
+        - items
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Item'
+      properties:
+        _type:
+          type: string
+          default: CLUSTER
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+      x-discriminator-value: CLUSTER
+    ItemTable:
+      title: ITEM_TABLE
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ItemStructure'
+      properties:
+        _type:
+          type: string
+          default: ITEM_TABLE
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Clstr'
+      x-discriminator-value: ITEM_TABLE
+    ItemTree:
+      title: ITEM_TREE
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ItemStructure'
+      properties:
+        _type:
+          type: string
+          default: ITEM_TREE
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+      x-discriminator-value: ITEM_TREE
     FeederAuditDetails:
       title: FEEDER_AUDIT_DETAILS
       required:
@@ -1603,37 +1616,6 @@ components:
           $ref: '#/components/schemas/FeederAuditDetails'
         feeder_system_audit:
           $ref: '#/components/schemas/FeederAuditDetails'
-    Locatable:
-      title: LOCATABLE
-      required:
-        - name
-        - archetype_node_id
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Pathable'
-      properties:
-        name:
-          $ref: '#/components/schemas/DvText'
-        archetype_node_id:
-          type: string
-          xml:
-            attribute: true
-        uid:
-          $ref: '#/components/schemas/UidBasedId'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        archetype_details:
-          $ref: '#/components/schemas/Archetyped'
-        feeder_audit:
-          $ref: '#/components/schemas/FeederAudit'
-      discriminator:
-        propertyName: _type
-        mapping:
-          COMPOSITION: '#/components/schemas/Composition'
-          EHR_STATUS: '#/components/schemas/EhrStatus'
-          FOLDER: '#/components/schemas/Folder'
     Versionable:
       title: Versionable
       type: object
@@ -2628,6 +2610,156 @@ components:
               code_string: '249'
           description:
             value: Description text
+  parameters:
+    subject_id:
+      name: subject_id
+      in: query
+      description: |
+        The EHR subject id.
+      required: true
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: ins01
+    subject_namespace:
+      name: subject_namespace
+      in: query
+      description: |
+        The EHR subject id namespace.
+      required: true
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: examples
+    Prefer:
+      name: Prefer
+      in: header
+      description: |
+        Request header to indicate the preference over response details.
+        The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+      required: false
+      style: simple
+      schema:
+        type: string
+        enum:
+          - return=representation
+          - return=minimal
+        default: return=minimal
+    ehr_id:
+      name: ehr_id
+      in: path
+      description: |
+        EHR identifier taken from EHR.ehr_id.value.
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: 7d44b88c-4199-4bad-97dc-d78268e01398
+    version_uid:
+      name: version_uid
+      in: path
+      description: |
+        VERSION identifier taken from VERSION.uid.value.
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+    version_at_time:
+      name: version_at_time
+      in: query
+      description: |
+        A given time in the extended ISO 8601 format.
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: '2015-01-20T19:30:22.765+01:00'
+    If-Match:
+      name: If-Match
+      in: header
+      description: |
+        Header to make the request conditional. 
+        Together with `ETag` request tag, it helps to prevent simultaneous updates of a resource from overwriting each other ("mid-air collisions").
+        The format is always an `version_uid` identifier enclosed by double quotes.
+        The operation will be performed only if the existing latest `version_uid` of the resource (i.e. the `preceding_version_uid`) matches this header's value.
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"'
+    uid_based_id:
+      name: uid_based_id
+      in: path
+      description: |
+        An abstract identifier: it can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+    uid_based_id_as_versioned_object_uid:
+      name: uid_based_id
+      in: path
+      description: |
+        An identifier in a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: 8849182c-82ad-4088-a07f-48ead4180515
+    uid_based_id_as_version_uid:
+      name: uid_based_id
+      in: path
+      description: |
+        An identifier in a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`).
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+    versioned_object_uid_COMPOSITION:
+      name: versioned_object_uid
+      in: path
+      description: |
+        VERSIONED_COMPOSITION identifier taken from VERSIONED_COMPOSITION.uid.value.
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: 8849182c-82ad-4088-a07f-48ead4180515
+    version_uid_COMPOSITION:
+      name: version_uid
+      in: path
+      description: |
+        VERSION identifier taken from VERSION.uid.value.
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+    path:
+      name: path
+      in: query
+      description: |
+        A path to a sub-folder; consists of slash-separated values of the name attribute of FOLDERs in the directory.
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: episodes/a/b/c
+    contribution_uid:
+      name: contribution_uid
+      in: path
+      description: |
+        The CONTRIBUTION uid.
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: 0826851c-c4c2-4d61-92b9-410fb8275ff0
   responses:
     '400':
       description: |

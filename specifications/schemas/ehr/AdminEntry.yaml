@@ -9,5 +9,5 @@ properties:
     type: string
     default: ADMIN_ENTRY
   data:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml
 x-discriminator-value: ADMIN_ENTRY

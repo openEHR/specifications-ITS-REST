@@ -12,7 +12,7 @@ properties:
   time:
     $ref: ../data_types/DvDateTime.yaml
   state:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml
   data:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml
 x-discriminator-value: EVENT

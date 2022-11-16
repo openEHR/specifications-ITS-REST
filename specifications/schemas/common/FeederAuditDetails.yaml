@@ -16,4 +16,4 @@ properties:
   version_id:
     type: string
   other_details:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml

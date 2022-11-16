@@ -20,7 +20,7 @@ properties:
     type: boolean
     default: true
   other_details:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml
 x-discriminator-value: EHR_STATUS
 example:
   archetype_node_id: openEHR-EHR-EHR_STATUS.generic.v1

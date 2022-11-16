@@ -14,5 +14,5 @@ properties:
   activity_id:
     type: string
   wf_details:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml
 x-discriminator-value: INSTRUCTION_DETAILS

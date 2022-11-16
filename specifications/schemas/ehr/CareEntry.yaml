@@ -4,7 +4,7 @@ allOf:
   - $ref: ../ehr/AbstractEntry.yaml
 properties:
   protocol:
-    $ref: ../data_structures/ItemStructure.yaml
+    $ref: ../data_structures/UItemStructure.yaml
   guideline_id:
     $ref: ../base_types/ObjectRef.yaml
 x-cg-discriminator:
