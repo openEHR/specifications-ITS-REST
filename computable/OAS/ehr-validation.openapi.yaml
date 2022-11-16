@@ -1040,6 +1040,9 @@ components:
         - value
       type: object
       properties:
+        _type:
+          type: string
+          default: UID_BASED_ID
         value:
           type: string
           format: uuid
@@ -1048,10 +1051,13 @@ components:
     ArchetypeId:
       title: ARCHETYPE_ID
       type: object
-      x-discriminator-value: ARCHETYPE_ID
       properties:
+        _type:
+          type: string
+          default: ARCHETYPE_ID
         value:
           type: string
+      x-discriminator-value: ARCHETYPE_ID
       required:
         - value
     UMArchetypeId:
@@ -1061,20 +1067,23 @@ components:
         - _type
       type: object
       properties:
-        value:
-          type: string
         _type:
           enum:
             - ARCHETYPE_ID
+          type: string
+        value:
           type: string
       x-discriminator-value: ARCHETYPE_ID
     TemplateId:
       title: TEMPLATE_ID
       type: object
-      x-discriminator-value: TEMPLATE_ID
       properties:
+        _type:
+          type: string
+          default: TEMPLATE_ID
         value:
           type: string
+      x-discriminator-value: TEMPLATE_ID
       required:
         - value
     UMTemplateId:
@@ -1084,20 +1093,23 @@ components:
         - _type
       type: object
       properties:
-        value:
-          type: string
         _type:
           enum:
             - TEMPLATE_ID
+          type: string
+        value:
           type: string
       x-discriminator-value: TEMPLATE_ID
     TerminologyId:
       title: TERMINOLOGY_ID
       type: object
-      x-discriminator-value: TERMINOLOGY_ID
       properties:
+        _type:
+          type: string
+          default: TERMINOLOGY_ID
         value:
           type: string
+      x-discriminator-value: TERMINOLOGY_ID
       required:
         - value
     UMTerminologyId:
@@ -1107,11 +1119,11 @@ components:
         - _type
       type: object
       properties:
-        value:
-          type: string
         _type:
           enum:
             - TERMINOLOGY_ID
+          type: string
+        value:
           type: string
       x-discriminator-value: TERMINOLOGY_ID
     UMGenericId:
@@ -1122,13 +1134,13 @@ components:
         - _type
       type: object
       properties:
-        value:
-          type: string
-        scheme:
-          type: string
         _type:
           enum:
             - GENERIC_ID
+          type: string
+        value:
+          type: string
+        scheme:
           type: string
       example:
         _type: GENERIC_ID
@@ -1142,14 +1154,14 @@ components:
         - _type
       type: object
       properties:
-        value:
-          type: string
-          format: uuid
-          example: 6cb19121-4307-4648-9da0-d62e4d51f19b
         _type:
           enum:
             - HIER_OBJECT_ID
           type: string
+        value:
+          type: string
+          format: uuid
+          example: 6cb19121-4307-4648-9da0-d62e4d51f19b
       example:
         _type: HIER_OBJECT_ID
         value: 6cb19121-4307-4648-9da0-d62e4d51f19b
@@ -1160,6 +1172,9 @@ components:
         - value
       type: object
       properties:
+        _type:
+          type: string
+          default: UID_BASED_ID
         value:
           type: string
           example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
@@ -1171,13 +1186,13 @@ components:
         - _type
       type: object
       properties:
-        value:
-          type: string
-          example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
         _type:
           enum:
             - OBJECT_VERSION_ID
           type: string
+        value:
+          type: string
+          example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
       example:
         _type: OBJECT_VERSION_ID
         value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
@@ -1231,9 +1246,8 @@ components:
       type: object
       properties:
         _type:
-          enum:
-            - DV_DATE_TIME
           type: string
+          default: DV_DATE_TIME
         value:
           type: string
           format: date-time
@@ -1635,14 +1649,7 @@ components:
         namespace:
           type: string
         type:
-          enum:
-            - PERSON
-            - ORGANISATION
-            - GROUP
-            - AGENT
-            - ROLE
-            - PARTY
-            - ACTOR
+          pattern: ^PERSON|ORGANISATION|GROUP|AGENT|ROLE|PARTY|ACTOR$
           type: string
         id:
           $ref: '#/components/schemas/UObjectId'
@@ -1849,15 +1856,15 @@ components:
       title: VERSIONED_EHR_STATUS
       type: object
       properties:
+        _type:
+          type: string
+          default: VERSIONED_EHR_STATUS
         uid:
           $ref: '#/components/schemas/HierObjectId'
         owner_id:
           $ref: '#/components/schemas/ObjectRef'
         time_created:
           $ref: '#/components/schemas/DvDateTime'
-        _type:
-          type: string
-          default: VERSIONED_EHR_STATUS
       description: A VERSIONED_EHR_STATUS resource
       example:
         uid:
@@ -1960,6 +1967,24 @@ components:
     EventContext:
       title: EVENT_CONTEXT
       type: object
+    UMDvDateTime:
+      title: DV_DATE_TIME
+      required:
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_DATE_TIME
+          type: string
+        value:
+          type: string
+          format: date-time
+      x-discriminator-value: DV_DATE_TIME
+      example:
+        _type: DV_DATE_TIME
+        value: '2017-08-15T10:37:15.422+02:00'
     DvIntervalOfDateTime:
       title: DV_INTERVAL_of_DATE_TIME
       type: object
@@ -1976,9 +2001,9 @@ components:
         upper_included:
           type: boolean
         lower:
-          $ref: '#/components/schemas/DvDateTime'
+          $ref: '#/components/schemas/UMDvDateTime'
         upper:
-          $ref: '#/components/schemas/DvDateTime'
+          $ref: '#/components/schemas/UMDvDateTime'
       x-discriminator-value: DV_INTERVAL_of_DATE_TIME
       required:
         - lower_unbounded
@@ -2643,6 +2668,9 @@ components:
         - lifecycle_state
       type: object
       properties:
+        _type:
+          type: string
+          default: ORIGINAL_VERSION
         contribution:
           $ref: '#/components/schemas/ObjectRef'
         signature:
@@ -2651,9 +2679,6 @@ components:
           $ref: '#/components/schemas/AuditDetails'
         data:
           $ref: '#/components/schemas/UVersionable'
-        _type:
-          type: string
-          default: ORIGINAL_VERSION
         uid:
           $ref: '#/components/schemas/ObjectVersionId'
         preceding_version_uid:
@@ -2680,6 +2705,10 @@ components:
         - _type
       type: object
       properties:
+        _type:
+          enum:
+            - ORIGINAL_VERSION
+          type: string
         contribution:
           $ref: '#/components/schemas/ObjectRef'
         signature:
@@ -2688,10 +2717,6 @@ components:
           $ref: '#/components/schemas/AuditDetails'
         data:
           $ref: '#/components/schemas/UVersionable'
-        _type:
-          enum:
-            - ORIGINAL_VERSION
-          type: string
         uid:
           $ref: '#/components/schemas/ObjectVersionId'
         preceding_version_uid:
@@ -2717,6 +2742,10 @@ components:
         - _type
       type: object
       properties:
+        _type:
+          enum:
+            - IMPORTED_VERSION
+          type: string
         contribution:
           $ref: '#/components/schemas/ObjectRef'
         signature:
@@ -2725,10 +2754,6 @@ components:
           $ref: '#/components/schemas/AuditDetails'
         data:
           $ref: '#/components/schemas/UVersionable'
-        _type:
-          enum:
-            - IMPORTED_VERSION
-          type: string
         item:
           $ref: '#/components/schemas/OriginalVersion'
       x-discriminator-value: IMPORTED_VERSION
@@ -2765,15 +2790,15 @@ components:
       title: VERSIONED_COMPOSITION
       type: object
       properties:
+        _type:
+          type: string
+          default: VERSIONED_COMPOSITION
         uid:
           $ref: '#/components/schemas/HierObjectId'
         owner_id:
           $ref: '#/components/schemas/ObjectRef'
         time_created:
           $ref: '#/components/schemas/DvDateTime'
-        _type:
-          type: string
-          default: VERSIONED_COMPOSITION
       description: A VERSIONED_COMPOSITION resource
       example:
         uid:
@@ -2864,6 +2889,9 @@ components:
         - committer
       type: object
       properties:
+        _type:
+          type: string
+          default: UPDATE_AUDIT
         change_type:
           $ref: '#/components/schemas/TerminologyCode'
         description:
@@ -2881,8 +2909,9 @@ components:
         committer:
           _type: PARTY_IDENTIFIED
           name: A user name
+      x-discriminator-value: UPDATE_AUDIT
     UpdateAttestation:
-      title: UpdateAttestation
+      title: UPDATE_ATTESTATION
       required:
         - change_type
         - committer
@@ -2890,15 +2919,15 @@ components:
         - is_pending
       type: object
       properties:
+        _type:
+          type: string
+          default: UPDATE_ATTESTATION
         change_type:
           $ref: '#/components/schemas/TerminologyCode'
         description:
           $ref: '#/components/schemas/UDvText'
         committer:
           $ref: '#/components/schemas/UPartyProxy'
-        _type:
-          type: string
-          default: UpdateAttestation
         attested_view:
           $ref: '#/components/schemas/DvMultimedia'
         proof:
@@ -2911,7 +2940,7 @@ components:
           $ref: '#/components/schemas/UDvText'
         is_pending:
           type: boolean
-      x-discriminator-value: UpdateAttestation
+      x-discriminator-value: UPDATE_ATTESTATION
       example:
         change_type:
           value: creation
