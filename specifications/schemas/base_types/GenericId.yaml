@@ -5,6 +5,9 @@ allOf:
 required:
   - scheme
 properties:
+  _type:
+    type: string
+    default: GENERIC_ID
   scheme:
     type: string
 x-discriminator-value: GENERIC_ID

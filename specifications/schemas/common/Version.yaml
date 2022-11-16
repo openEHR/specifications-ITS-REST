@@ -6,6 +6,8 @@ required:
   - commit_audit
   - data
 properties:
+  _type:
+    type: string
   contribution:
     $ref: ../base_types/ObjectRef.yaml
   signature:

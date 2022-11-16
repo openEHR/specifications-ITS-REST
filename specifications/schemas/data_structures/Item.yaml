@@ -5,5 +5,4 @@ allOf:
 properties:
   _type:
     type: string
-    default: COMPOSITION
 x-discriminator-value: ITEM

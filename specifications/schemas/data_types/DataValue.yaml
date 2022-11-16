@@ -1,5 +1,8 @@
 title: DATA_VALUE
 type: object
+properties:
+  _type:
+    type: string
 x-cg-discriminator:
   propertyName: _type
   mapping:

@@ -5,6 +5,8 @@ required:
   - owner_id
   - time_created
 properties:
+  _type:
+    type: string
   uid:
     $ref: ../base_types/HierObjectId.yaml
   owner_id:

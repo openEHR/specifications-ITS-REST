@@ -3,6 +3,8 @@ type: object
 required:
   - value
 properties:
+  _type:
+    type: string
   value:
     type: string
 x-cg-discriminator:
