@@ -1083,9 +1083,6 @@ components:
         - id
       type: object
       properties:
-        _type:
-          type: string
-          default: OBJECT_REF
         namespace:
           type: string
         type:
@@ -1098,7 +1095,6 @@ components:
           value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
         namespace: local
         type: COMPOSITION
-      x-discriminator-value: OBJECT_REF
     DvDateTime:
       title: DV_DATE_TIME
       required:
@@ -1514,9 +1510,6 @@ components:
         - id
       type: object
       properties:
-        _type:
-          type: string
-          default: PARTY_REF
         namespace:
           type: string
         type:
@@ -1531,7 +1524,6 @@ components:
           value: b52b9408-7048-4ec8-94bd-831fb0727e67::openEHRSys.example.com::1
         namespace: local
         type: PERSON
-      x-discriminator-value: PARTY_REF
     UMPartyIdentified:
       title: PARTY_IDENTIFIED
       required:
@@ -2522,9 +2514,6 @@ components:
         - id
       type: object
       properties:
-        _type:
-          type: string
-          default: LOCATABLE_REF
         namespace:
           type: string
         type:
@@ -2533,13 +2522,6 @@ components:
           $ref: '#/components/schemas/UUidBasedId'
         path:
           type: string
-      x-discriminator-value: LOCATABLE_REF
-      example:
-        id:
-          _type: OBJECT_VERSION_ID
-          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
-        namespace: local
-        type: COMPOSITION
     InstructionDetails:
       title: INSTRUCTION_DETAILS
       required:

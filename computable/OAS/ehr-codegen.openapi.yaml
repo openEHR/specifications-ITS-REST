@@ -1001,27 +1001,18 @@ components:
         - id
       type: object
       properties:
-        _type:
-          type: string
-          default: OBJECT_REF
         namespace:
           type: string
         type:
           type: string
         id:
           $ref: '#/components/schemas/ObjectId'
-      discriminator:
-        propertyName: _type
-        mapping:
-          OBJECT_REF: '#/components/schemas/ObjectRef'
-          PARTY_REF: '#/components/schemas/PartyRef'
       example:
         id:
           _type: OBJECT_VERSION_ID
           value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
         namespace: local
         type: COMPOSITION
-      x-discriminator-value: OBJECT_REF
     DataValue:
       title: DATA_VALUE
       type: object
@@ -1327,17 +1318,18 @@ components:
     PartyRef:
       title: PARTY_REF
       required:
+        - namespace
         - type
+        - id
       type: object
-      allOf:
-        - $ref: '#/components/schemas/ObjectRef'
       properties:
-        _type:
+        namespace:
           type: string
-          default: PARTY_REF
         type:
           pattern: ^PERSON|ORGANISATION|GROUP|AGENT|ROLE|PARTY|ACTOR$
           type: string
+        id:
+          $ref: '#/components/schemas/ObjectId'
       description: Identifier for parties in a demographic or identity service.
       example:
         id:
@@ -1345,7 +1337,6 @@ components:
           value: b52b9408-7048-4ec8-94bd-831fb0727e67::openEHRSys.example.com::1
         namespace: local
         type: PERSON
-      x-discriminator-value: PARTY_REF
     PartyProxy:
       title: PARTY_PROXY
       required:
@@ -2153,19 +2144,19 @@ components:
     LocatableRef:
       title: LOCATABLE_REF
       required:
+        - namespace
         - type
+        - id
       type: object
-      allOf:
-        - $ref: '#/components/schemas/ObjectRef'
       properties:
-        _type:
+        namespace:
           type: string
-          default: LOCATABLE_REF
-        path:
+        type:
           type: string
         id:
           $ref: '#/components/schemas/UidBasedId'
-      x-discriminator-value: LOCATABLE_REF
+        path:
+          type: string
     InstructionDetails:
       title: INSTRUCTION_DETAILS
       required:
