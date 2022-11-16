@@ -26,6 +26,13 @@ class Codegen extends AbstractWriter {
      * @return void
      */
     protected function cleaning(Schema $schema): void {
+        if ($schema->properties) {
+            foreach ($schema->properties as $name => $property) {
+                if ($property->format === 'uuid') {
+                    unset($property->format);
+                }
+            }
+        }
     }
 
     /**
