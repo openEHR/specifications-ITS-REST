@@ -29,7 +29,7 @@ case "${1:-}" in
 #      echo Removing old files ...
 #      sudo rm -rfv "codegen/oas-$SPEC"/*
       echo Validating spec ...
-      docker run --rm -v "$(pwd):/local" openapitools/openapi-generator-cli validate -i /local/computable/OAS/"$SPEC"-codegen.openapi.yaml --recommend
+      docker run --rm -u 1000 -v "$(pwd):/local" openapitools/openapi-generator-cli validate -i /local/computable/OAS/"$SPEC"-codegen.openapi.yaml --recommend
       echo Generatic new files ...
       openapi $SPEC php --additional-properties=variableNamingConvention=snake_case
       openapi $SPEC go --additional-properties=generateInterfaces=true --additional-properties=hideGenerationTimestamp=true
@@ -58,18 +58,16 @@ case "${1:-}" in
 #      sudo rm -rfv "codegen/swagger-$SPEC"/*
 		  swagger $SPEC go
 		  swagger $SPEC php
-		  swagger $SPEC php-slim4
 		  swagger $SPEC html2
 		  swagger $SPEC java
 		  swagger $SPEC javascript
-		  swagger $SPEC typescript
+		  swagger $SPEC typescript-fetch
 		  swagger $SPEC typescript-axios
 		  swagger $SPEC typescript-angular
 		  swagger $SPEC swift5
 		  swagger $SPEC python
 		  swagger $SPEC ruby
-		  swagger $SPEC kotlin
-		  swagger $SPEC kotlin-server
+		  swagger $SPEC kotlin-client
 		  swagger $SPEC dart
       ;;
     single)
