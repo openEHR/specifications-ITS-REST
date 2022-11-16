@@ -7,8 +7,7 @@ required:
 properties:
   _type:
     type: string
-    enum:
-      - DV_DATE_TIME
+    default: DV_DATE_TIME
   value:
     type: string
     format: date-time
