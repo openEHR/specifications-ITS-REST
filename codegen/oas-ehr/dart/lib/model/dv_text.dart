@@ -16,9 +16,10 @@ class DvText {
     this.type = 'DV_TEXT',
     required this.value,
     this.hyperlink,
+    this.formatting,
+    this.mappings = const [],
     this.language,
     this.encoding,
-    this.formatting,
   });
 
   String type;
@@ -39,6 +40,16 @@ class DvText {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
+  String? formatting;
+
+  List<TermMapping> mappings;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   CodePhrase? language;
 
   ///
@@ -49,22 +60,15 @@ class DvText {
   ///
   CodePhrase? encoding;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? formatting;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvText &&
      other.type == type &&
      other.value == value &&
      other.hyperlink == hyperlink &&
+     other.formatting == formatting &&
+     other.mappings == mappings &&
      other.language == language &&
-     other.encoding == encoding &&
-     other.formatting == formatting;
+     other.encoding == encoding;
 
   @override
   int get hashCode =>
@@ -72,12 +76,13 @@ class DvText {
     (type.hashCode) +
     (value.hashCode) +
     (hyperlink == null ? 0 : hyperlink!.hashCode) +
+    (formatting == null ? 0 : formatting!.hashCode) +
+    (mappings.hashCode) +
     (language == null ? 0 : language!.hashCode) +
-    (encoding == null ? 0 : encoding!.hashCode) +
-    (formatting == null ? 0 : formatting!.hashCode);
+    (encoding == null ? 0 : encoding!.hashCode);
 
   @override
-  String toString() => 'DvText[type=$type, value=$value, hyperlink=$hyperlink, language=$language, encoding=$encoding, formatting=$formatting]';
+  String toString() => 'DvText[type=$type, value=$value, hyperlink=$hyperlink, formatting=$formatting, mappings=$mappings, language=$language, encoding=$encoding]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -88,6 +93,12 @@ class DvText {
     } else {
       json[r'hyperlink'] = null;
     }
+    if (this.formatting != null) {
+      json[r'formatting'] = this.formatting;
+    } else {
+      json[r'formatting'] = null;
+    }
+      json[r'mappings'] = this.mappings;
     if (this.language != null) {
       json[r'language'] = this.language;
     } else {
@@ -97,11 +108,6 @@ class DvText {
       json[r'encoding'] = this.encoding;
     } else {
       json[r'encoding'] = null;
-    }
-    if (this.formatting != null) {
-      json[r'formatting'] = this.formatting;
-    } else {
-      json[r'formatting'] = null;
     }
     return json;
   }
@@ -128,9 +134,10 @@ class DvText {
         type: mapValueOfType<String>(json, r'_type') ?? 'DV_TEXT',
         value: mapValueOfType<String>(json, r'value')!,
         hyperlink: DvUri.fromJson(json[r'hyperlink']),
+        formatting: mapValueOfType<String>(json, r'formatting'),
+        mappings: TermMapping.listFromJson(json[r'mappings']) ?? const [],
         language: CodePhrase.fromJson(json[r'language']),
         encoding: CodePhrase.fromJson(json[r'encoding']),
-        formatting: mapValueOfType<String>(json, r'formatting'),
       );
     }
     return null;

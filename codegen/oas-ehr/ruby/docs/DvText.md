@@ -7,9 +7,10 @@
 | **_type** | **String** |  | [optional][default to &#39;DV_TEXT&#39;] |
 | **value** | **String** |  |  |
 | **hyperlink** | [**DvUri**](DvUri.md) |  | [optional] |
+| **formatting** | **String** |  | [optional] |
+| **mappings** | [**Array&lt;TermMapping&gt;**](TermMapping.md) |  | [optional] |
 | **language** | [**CodePhrase**](CodePhrase.md) |  | [optional] |
 | **encoding** | [**CodePhrase**](CodePhrase.md) |  | [optional] |
-| **formatting** | **String** |  | [optional] |
 
 ## Example
 
@@ -20,9 +21,10 @@ instance = OpenapiClient::DvText.new(
   _type: null,
   value: null,
   hyperlink: null,
+  formatting: null,
+  mappings: null,
   language: null,
-  encoding: null,
-  formatting: null
+  encoding: null
 )
 ```
 

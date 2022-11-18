@@ -10,7 +10,6 @@ from openapi_client.apis.tags.ehr_schema_api import EHRSchemaApi
 from openapi_client.apis.tags.ehrstatus_schema_api import EHRSTATUSSchemaApi
 from openapi_client.apis.tags.composition_schema_api import COMPOSITIONSchemaApi
 from openapi_client.apis.tags.directory_schema_api import DIRECTORYSchemaApi
-from openapi_client.apis.tags.itemstructure_schema_api import ITEMSTRUCTURESchemaApi
 from openapi_client.apis.tags.contribution_schema_api import CONTRIBUTIONSchemaApi
 
 TagToApi = typing_extensions.TypedDict(
@@ -25,7 +24,6 @@ TagToApi = typing_extensions.TypedDict(
         TagValues.EHR_STATUS_SCHEMA: EHRSTATUSSchemaApi,
         TagValues.COMPOSITION_SCHEMA: COMPOSITIONSchemaApi,
         TagValues.DIRECTORY_SCHEMA: DIRECTORYSchemaApi,
-        TagValues.ITEM_STRUCTURE_SCHEMA: ITEMSTRUCTURESchemaApi,
         TagValues.CONTRIBUTION_SCHEMA: CONTRIBUTIONSchemaApi,
     }
 )
@@ -41,7 +39,6 @@ tag_to_api = TagToApi(
         TagValues.EHR_STATUS_SCHEMA: EHRSTATUSSchemaApi,
         TagValues.COMPOSITION_SCHEMA: COMPOSITIONSchemaApi,
         TagValues.DIRECTORY_SCHEMA: DIRECTORYSchemaApi,
-        TagValues.ITEM_STRUCTURE_SCHEMA: ITEMSTRUCTURESchemaApi,
         TagValues.CONTRIBUTION_SCHEMA: CONTRIBUTIONSchemaApi,
     }
 )

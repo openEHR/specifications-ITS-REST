@@ -31,6 +31,16 @@ void main() {
       // TODO
     });
 
+    // String formatting
+    test('to test the property `formatting`', () async {
+      // TODO
+    });
+
+    // List<TermMapping> mappings (default value: const [])
+    test('to test the property `mappings`', () async {
+      // TODO
+    });
+
     // CodePhrase language
     test('to test the property `language`', () async {
       // TODO
@@ -38,11 +48,6 @@ void main() {
 
     // CodePhrase encoding
     test('to test the property `encoding`', () async {
-      // TODO
-    });
-
-    // String formatting
-    test('to test the property `formatting`', () async {
       // TODO
     });
 

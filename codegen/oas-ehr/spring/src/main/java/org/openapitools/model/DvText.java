@@ -7,11 +7,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import java.util.ArrayList;
+import java.util.List;
 import org.openapitools.model.CodePhrase;
 import org.openapitools.model.DataValue;
 import org.openapitools.model.DvCodedText;
 import org.openapitools.model.DvText;
 import org.openapitools.model.DvUri;
+import org.openapitools.model.TermMapping;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -49,14 +52,18 @@ public class DvText extends DataValue {
   @JsonProperty("hyperlink")
   private DvUri hyperlink;
 
+  @JsonProperty("formatting")
+  private String formatting;
+
+  @JsonProperty("mappings")
+  @Valid
+  private List<TermMapping> mappings = null;
+
   @JsonProperty("language")
   private CodePhrase language;
 
   @JsonProperty("encoding")
   private CodePhrase encoding;
-
-  @JsonProperty("formatting")
-  private String formatting;
 
   public DvText type(String type) {
     this.type = type;
@@ -115,6 +122,52 @@ public class DvText extends DataValue {
     this.hyperlink = hyperlink;
   }
 
+  public DvText formatting(String formatting) {
+    this.formatting = formatting;
+    return this;
+  }
+
+  /**
+   * Get formatting
+   * @return formatting
+  */
+  
+  @Schema(name = "formatting", required = false)
+  public String getFormatting() {
+    return formatting;
+  }
+
+  public void setFormatting(String formatting) {
+    this.formatting = formatting;
+  }
+
+  public DvText mappings(List<TermMapping> mappings) {
+    this.mappings = mappings;
+    return this;
+  }
+
+  public DvText addMappingsItem(TermMapping mappingsItem) {
+    if (this.mappings == null) {
+      this.mappings = new ArrayList<>();
+    }
+    this.mappings.add(mappingsItem);
+    return this;
+  }
+
+  /**
+   * Get mappings
+   * @return mappings
+  */
+  @Valid 
+  @Schema(name = "mappings", required = false)
+  public List<TermMapping> getMappings() {
+    return mappings;
+  }
+
+  public void setMappings(List<TermMapping> mappings) {
+    this.mappings = mappings;
+  }
+
   public DvText language(CodePhrase language) {
     this.language = language;
     return this;
@@ -153,25 +206,6 @@ public class DvText extends DataValue {
     this.encoding = encoding;
   }
 
-  public DvText formatting(String formatting) {
-    this.formatting = formatting;
-    return this;
-  }
-
-  /**
-   * Get formatting
-   * @return formatting
-  */
-  
-  @Schema(name = "formatting", required = false)
-  public String getFormatting() {
-    return formatting;
-  }
-
-  public void setFormatting(String formatting) {
-    this.formatting = formatting;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -184,15 +218,16 @@ public class DvText extends DataValue {
     return Objects.equals(this.type, dvText.type) &&
         Objects.equals(this.value, dvText.value) &&
         Objects.equals(this.hyperlink, dvText.hyperlink) &&
+        Objects.equals(this.formatting, dvText.formatting) &&
+        Objects.equals(this.mappings, dvText.mappings) &&
         Objects.equals(this.language, dvText.language) &&
         Objects.equals(this.encoding, dvText.encoding) &&
-        Objects.equals(this.formatting, dvText.formatting) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, value, hyperlink, language, encoding, formatting, super.hashCode());
+    return Objects.hash(type, value, hyperlink, formatting, mappings, language, encoding, super.hashCode());
   }
 
   @Override
@@ -203,9 +238,10 @@ public class DvText extends DataValue {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    hyperlink: ").append(toIndentedString(hyperlink)).append("\n");
+    sb.append("    formatting: ").append(toIndentedString(formatting)).append("\n");
+    sb.append("    mappings: ").append(toIndentedString(mappings)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    encoding: ").append(toIndentedString(encoding)).append("\n");
-    sb.append("    formatting: ").append(toIndentedString(formatting)).append("\n");
     sb.append("}");
     return sb.toString();
   }

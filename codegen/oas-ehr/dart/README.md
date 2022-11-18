@@ -54,7 +54,7 @@
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
-            Migrate REST API specs to openAPI format</td>
+            Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
         <td>14 Nov 2022</td>
     </tr>
@@ -189,7 +189,7 @@ Related documents include:
 
 ### Status
 
-This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
+This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
 The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
@@ -318,6 +318,7 @@ Class | Method | HTTP request | Description
  - [DvBoolean](doc//DvBoolean.md)
  - [DvCodedText](doc//DvCodedText.md)
  - [DvCount](doc//DvCount.md)
+ - [DvDate](doc//DvDate.md)
  - [DvDateTime](doc//DvDateTime.md)
  - [DvDuration](doc//DvDuration.md)
  - [DvEhrUri](doc//DvEhrUri.md)
@@ -333,7 +334,10 @@ Class | Method | HTTP request | Description
  - [DvQuantified](doc//DvQuantified.md)
  - [DvQuantity](doc//DvQuantity.md)
  - [DvScale](doc//DvScale.md)
+ - [DvState](doc//DvState.md)
+ - [DvTemporal](doc//DvTemporal.md)
  - [DvText](doc//DvText.md)
+ - [DvTime](doc//DvTime.md)
  - [DvUri](doc//DvUri.md)
  - [Ehr](doc//Ehr.md)
  - [EhrStatus](doc//EhrStatus.md)
@@ -378,6 +382,7 @@ Class | Method | HTTP request | Description
  - [RevisionHistory](doc//RevisionHistory.md)
  - [RevisionHistoryItem](doc//RevisionHistoryItem.md)
  - [TemplateId](doc//TemplateId.md)
+ - [TermMapping](doc//TermMapping.md)
  - [TerminologyCode](doc//TerminologyCode.md)
  - [TerminologyId](doc//TerminologyId.md)
  - [UidBasedId](doc//UidBasedId.md)

@@ -54,7 +54,7 @@
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
-            Migrate REST API specs to openAPI format</td>
+            Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
         <td>14 Nov 2022</td>
     </tr>
@@ -189,7 +189,7 @@ Related documents include:
 
 ### Status
 
-This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
+This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
 The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
@@ -450,6 +450,7 @@ Class | Method | HTTP request | Description
  - [DvBoolean](docs/models/DvBoolean.md)
  - [DvCodedText](docs/models/DvCodedText.md)
  - [DvCount](docs/models/DvCount.md)
+ - [DvDate](docs/models/DvDate.md)
  - [DvDateTime](docs/models/DvDateTime.md)
  - [DvDuration](docs/models/DvDuration.md)
  - [DvEhrUri](docs/models/DvEhrUri.md)
@@ -465,7 +466,10 @@ Class | Method | HTTP request | Description
  - [DvQuantified](docs/models/DvQuantified.md)
  - [DvQuantity](docs/models/DvQuantity.md)
  - [DvScale](docs/models/DvScale.md)
+ - [DvState](docs/models/DvState.md)
+ - [DvTemporal](docs/models/DvTemporal.md)
  - [DvText](docs/models/DvText.md)
+ - [DvTime](docs/models/DvTime.md)
  - [DvUri](docs/models/DvUri.md)
  - [Ehr](docs/models/Ehr.md)
  - [EhrStatus](docs/models/EhrStatus.md)
@@ -510,6 +514,7 @@ Class | Method | HTTP request | Description
  - [RevisionHistory](docs/models/RevisionHistory.md)
  - [RevisionHistoryItem](docs/models/RevisionHistoryItem.md)
  - [TemplateId](docs/models/TemplateId.md)
+ - [TermMapping](docs/models/TermMapping.md)
  - [TerminologyCode](docs/models/TerminologyCode.md)
  - [TerminologyId](docs/models/TerminologyId.md)
  - [UidBasedId](docs/models/UidBasedId.md)

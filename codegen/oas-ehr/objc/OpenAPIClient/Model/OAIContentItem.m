@@ -29,6 +29,14 @@
         class = NSClassFromString(@"OAIAdminEntry");
     }
     else
+    if ([discriminatedClassName isEqualToString:@"CARE_ENTRY"]) {
+        class = NSClassFromString(@"OAICareEntry");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"ENTRY"]) {
+        class = NSClassFromString(@"OAIAbstractEntry");
+    }
+    else
     if ([discriminatedClassName isEqualToString:@"EVALUATION"]) {
         class = NSClassFromString(@"OAIEvaluation");
     }

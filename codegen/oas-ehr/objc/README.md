@@ -55,7 +55,7 @@
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
-            Migrate REST API specs to openAPI format</td>
+            Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
         <td>14 Nov 2022</td>
     </tr>
@@ -190,7 +190,7 @@ Related documents include:
 
 ### Status
 
-This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
+This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
 The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
@@ -269,6 +269,7 @@ Import the following:
 #import <OpenAPIClient/OAIDvBoolean.h>
 #import <OpenAPIClient/OAIDvCodedText.h>
 #import <OpenAPIClient/OAIDvCount.h>
+#import <OpenAPIClient/OAIDvDate.h>
 #import <OpenAPIClient/OAIDvDateTime.h>
 #import <OpenAPIClient/OAIDvDuration.h>
 #import <OpenAPIClient/OAIDvEhrUri.h>
@@ -284,7 +285,10 @@ Import the following:
 #import <OpenAPIClient/OAIDvQuantified.h>
 #import <OpenAPIClient/OAIDvQuantity.h>
 #import <OpenAPIClient/OAIDvScale.h>
+#import <OpenAPIClient/OAIDvState.h>
+#import <OpenAPIClient/OAIDvTemporal.h>
 #import <OpenAPIClient/OAIDvText.h>
+#import <OpenAPIClient/OAIDvTime.h>
 #import <OpenAPIClient/OAIDvUri.h>
 #import <OpenAPIClient/OAIEhr.h>
 #import <OpenAPIClient/OAIEhrStatus.h>
@@ -329,6 +333,7 @@ Import the following:
 #import <OpenAPIClient/OAIRevisionHistory.h>
 #import <OpenAPIClient/OAIRevisionHistoryItem.h>
 #import <OpenAPIClient/OAITemplateId.h>
+#import <OpenAPIClient/OAITermMapping.h>
 #import <OpenAPIClient/OAITerminologyCode.h>
 #import <OpenAPIClient/OAITerminologyId.h>
 #import <OpenAPIClient/OAIUidBasedId.h>
@@ -437,6 +442,7 @@ Class | Method | HTTP request | Description
  - [OAIDvBoolean](docs/OAIDvBoolean.md)
  - [OAIDvCodedText](docs/OAIDvCodedText.md)
  - [OAIDvCount](docs/OAIDvCount.md)
+ - [OAIDvDate](docs/OAIDvDate.md)
  - [OAIDvDateTime](docs/OAIDvDateTime.md)
  - [OAIDvDuration](docs/OAIDvDuration.md)
  - [OAIDvEhrUri](docs/OAIDvEhrUri.md)
@@ -452,7 +458,10 @@ Class | Method | HTTP request | Description
  - [OAIDvQuantified](docs/OAIDvQuantified.md)
  - [OAIDvQuantity](docs/OAIDvQuantity.md)
  - [OAIDvScale](docs/OAIDvScale.md)
+ - [OAIDvState](docs/OAIDvState.md)
+ - [OAIDvTemporal](docs/OAIDvTemporal.md)
  - [OAIDvText](docs/OAIDvText.md)
+ - [OAIDvTime](docs/OAIDvTime.md)
  - [OAIDvUri](docs/OAIDvUri.md)
  - [OAIEhr](docs/OAIEhr.md)
  - [OAIEhrStatus](docs/OAIEhrStatus.md)
@@ -497,6 +506,7 @@ Class | Method | HTTP request | Description
  - [OAIRevisionHistory](docs/OAIRevisionHistory.md)
  - [OAIRevisionHistoryItem](docs/OAIRevisionHistoryItem.md)
  - [OAITemplateId](docs/OAITemplateId.md)
+ - [OAITermMapping](docs/OAITermMapping.md)
  - [OAITerminologyCode](docs/OAITerminologyCode.md)
  - [OAITerminologyId](docs/OAITerminologyId.md)
  - [OAIUidBasedId](docs/OAIUidBasedId.md)

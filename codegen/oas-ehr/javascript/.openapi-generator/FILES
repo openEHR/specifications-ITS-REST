@@ -26,6 +26,7 @@ docs/DvAmount.md
 docs/DvBoolean.md
 docs/DvCodedText.md
 docs/DvCount.md
+docs/DvDate.md
 docs/DvDateTime.md
 docs/DvDuration.md
 docs/DvEhrUri.md
@@ -41,7 +42,10 @@ docs/DvProportion.md
 docs/DvQuantified.md
 docs/DvQuantity.md
 docs/DvScale.md
+docs/DvState.md
+docs/DvTemporal.md
 docs/DvText.md
+docs/DvTime.md
 docs/DvUri.md
 docs/EHRApi.md
 docs/EHRSTATUSApi.md
@@ -88,6 +92,7 @@ docs/ReferenceRange.md
 docs/RevisionHistory.md
 docs/RevisionHistoryItem.md
 docs/TemplateId.md
+docs/TermMapping.md
 docs/TerminologyCode.md
 docs/TerminologyId.md
 docs/UidBasedId.md
@@ -129,6 +134,7 @@ src/model/DvAmount.js
 src/model/DvBoolean.js
 src/model/DvCodedText.js
 src/model/DvCount.js
+src/model/DvDate.js
 src/model/DvDateTime.js
 src/model/DvDuration.js
 src/model/DvEhrUri.js
@@ -144,7 +150,10 @@ src/model/DvProportion.js
 src/model/DvQuantified.js
 src/model/DvQuantity.js
 src/model/DvScale.js
+src/model/DvState.js
+src/model/DvTemporal.js
 src/model/DvText.js
+src/model/DvTime.js
 src/model/DvUri.js
 src/model/Ehr.js
 src/model/EhrStatus.js
@@ -189,6 +198,7 @@ src/model/ReferenceRange.js
 src/model/RevisionHistory.js
 src/model/RevisionHistoryItem.js
 src/model/TemplateId.js
+src/model/TermMapping.js
 src/model/TerminologyCode.js
 src/model/TerminologyId.js
 src/model/UidBasedId.js
@@ -225,6 +235,7 @@ test/model/DvAmount.spec.js
 test/model/DvBoolean.spec.js
 test/model/DvCodedText.spec.js
 test/model/DvCount.spec.js
+test/model/DvDate.spec.js
 test/model/DvDateTime.spec.js
 test/model/DvDuration.spec.js
 test/model/DvEhrUri.spec.js
@@ -240,7 +251,10 @@ test/model/DvProportion.spec.js
 test/model/DvQuantified.spec.js
 test/model/DvQuantity.spec.js
 test/model/DvScale.spec.js
+test/model/DvState.spec.js
+test/model/DvTemporal.spec.js
 test/model/DvText.spec.js
+test/model/DvTime.spec.js
 test/model/DvUri.spec.js
 test/model/Ehr.spec.js
 test/model/EhrStatus.spec.js
@@ -285,6 +299,7 @@ test/model/ReferenceRange.spec.js
 test/model/RevisionHistory.spec.js
 test/model/RevisionHistoryItem.spec.js
 test/model/TemplateId.spec.js
+test/model/TermMapping.spec.js
 test/model/TerminologyCode.spec.js
 test/model/TerminologyId.spec.js
 test/model/UidBasedId.spec.js

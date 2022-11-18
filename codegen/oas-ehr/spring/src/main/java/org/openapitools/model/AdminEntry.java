@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openapitools.model.AbstractEntry;
 import org.openapitools.model.Action;
 import org.openapitools.model.AdminEntry;
+import org.openapitools.model.CareEntry;
 import org.openapitools.model.Evaluation;
 import org.openapitools.model.Instruction;
 import org.openapitools.model.ItemStructure;
@@ -37,6 +38,7 @@ import javax.annotation.Generated;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = Action.class, name = "ADMIN_ENTRY"),
   @JsonSubTypes.Type(value = AdminEntry.class, name = "ADMIN_ENTRY"),
+  @JsonSubTypes.Type(value = CareEntry.class, name = "ADMIN_ENTRY"),
   @JsonSubTypes.Type(value = Evaluation.class, name = "ADMIN_ENTRY"),
   @JsonSubTypes.Type(value = Instruction.class, name = "ADMIN_ENTRY"),
   @JsonSubTypes.Type(value = Observation.class, name = "ADMIN_ENTRY")

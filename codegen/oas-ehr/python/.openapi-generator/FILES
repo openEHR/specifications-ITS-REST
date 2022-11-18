@@ -28,6 +28,7 @@ docs/models/DvAmount.md
 docs/models/DvBoolean.md
 docs/models/DvCodedText.md
 docs/models/DvCount.md
+docs/models/DvDate.md
 docs/models/DvDateTime.md
 docs/models/DvDuration.md
 docs/models/DvEhrUri.md
@@ -43,7 +44,10 @@ docs/models/DvProportion.md
 docs/models/DvQuantified.md
 docs/models/DvQuantity.md
 docs/models/DvScale.md
+docs/models/DvState.md
+docs/models/DvTemporal.md
 docs/models/DvText.md
+docs/models/DvTime.md
 docs/models/DvUri.md
 docs/models/Ehr.md
 docs/models/EhrStatus.md
@@ -88,6 +92,7 @@ docs/models/ReferenceRange.md
 docs/models/RevisionHistory.md
 docs/models/RevisionHistoryItem.md
 docs/models/TemplateId.md
+docs/models/TermMapping.md
 docs/models/TerminologyCode.md
 docs/models/TerminologyId.md
 docs/models/UidBasedId.md
@@ -151,6 +156,8 @@ openapi_client/model/dv_coded_text.py
 openapi_client/model/dv_coded_text.pyi
 openapi_client/model/dv_count.py
 openapi_client/model/dv_count.pyi
+openapi_client/model/dv_date.py
+openapi_client/model/dv_date.pyi
 openapi_client/model/dv_date_time.py
 openapi_client/model/dv_date_time.pyi
 openapi_client/model/dv_duration.py
@@ -181,8 +188,14 @@ openapi_client/model/dv_quantity.py
 openapi_client/model/dv_quantity.pyi
 openapi_client/model/dv_scale.py
 openapi_client/model/dv_scale.pyi
+openapi_client/model/dv_state.py
+openapi_client/model/dv_state.pyi
+openapi_client/model/dv_temporal.py
+openapi_client/model/dv_temporal.pyi
 openapi_client/model/dv_text.py
 openapi_client/model/dv_text.pyi
+openapi_client/model/dv_time.py
+openapi_client/model/dv_time.pyi
 openapi_client/model/dv_uri.py
 openapi_client/model/dv_uri.pyi
 openapi_client/model/ehr.py
@@ -271,6 +284,8 @@ openapi_client/model/revision_history_item.py
 openapi_client/model/revision_history_item.pyi
 openapi_client/model/template_id.py
 openapi_client/model/template_id.pyi
+openapi_client/model/term_mapping.py
+openapi_client/model/term_mapping.pyi
 openapi_client/model/terminology_code.py
 openapi_client/model/terminology_code.pyi
 openapi_client/model/terminology_id.py
@@ -322,6 +337,7 @@ test/test_models/test_dv_amount.py
 test/test_models/test_dv_boolean.py
 test/test_models/test_dv_coded_text.py
 test/test_models/test_dv_count.py
+test/test_models/test_dv_date.py
 test/test_models/test_dv_date_time.py
 test/test_models/test_dv_duration.py
 test/test_models/test_dv_ehr_uri.py
@@ -337,7 +353,10 @@ test/test_models/test_dv_proportion.py
 test/test_models/test_dv_quantified.py
 test/test_models/test_dv_quantity.py
 test/test_models/test_dv_scale.py
+test/test_models/test_dv_state.py
+test/test_models/test_dv_temporal.py
 test/test_models/test_dv_text.py
+test/test_models/test_dv_time.py
 test/test_models/test_dv_uri.py
 test/test_models/test_ehr.py
 test/test_models/test_ehr_status.py
@@ -382,6 +401,7 @@ test/test_models/test_reference_range.py
 test/test_models/test_revision_history.py
 test/test_models/test_revision_history_item.py
 test/test_models/test_template_id.py
+test/test_models/test_term_mapping.py
 test/test_models/test_terminology_code.py
 test/test_models/test_terminology_id.py
 test/test_models/test_uid_based_id.py

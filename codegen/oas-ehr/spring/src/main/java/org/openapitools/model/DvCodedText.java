@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openapitools.model.CodePhrase;
 import org.openapitools.model.DvCodedText;
 import org.openapitools.model.DvText;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -91,6 +92,21 @@ public class DvCodedText extends DvText {
     return this;
   }
 
+  public DvCodedText formatting(String formatting) {
+    super.setFormatting(formatting);
+    return this;
+  }
+
+  public DvCodedText mappings(List<TermMapping> mappings) {
+    super.setMappings(mappings);
+    return this;
+  }
+
+  public DvCodedText addMappingsItem(TermMapping mappingsItem) {
+    super.addMappingsItem(mappingsItem);
+    return this;
+  }
+
   public DvCodedText language(CodePhrase language) {
     super.setLanguage(language);
     return this;
@@ -98,11 +114,6 @@ public class DvCodedText extends DvText {
 
   public DvCodedText encoding(CodePhrase encoding) {
     super.setEncoding(encoding);
-    return this;
-  }
-
-  public DvCodedText formatting(String formatting) {
-    super.setFormatting(formatting);
     return this;
   }
 

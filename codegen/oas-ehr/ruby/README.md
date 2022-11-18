@@ -57,7 +57,7 @@ OpenapiClient - the Ruby gem for the EHR API
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
-            Migrate REST API specs to openAPI format</td>
+            Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
         <td>14 Nov 2022</td>
     </tr>
@@ -192,7 +192,7 @@ Related documents include:
 
 ### Status
 
-This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
+This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
 The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
@@ -337,6 +337,7 @@ Class | Method | HTTP request | Description
  - [OpenapiClient::DvBoolean](docs/DvBoolean.md)
  - [OpenapiClient::DvCodedText](docs/DvCodedText.md)
  - [OpenapiClient::DvCount](docs/DvCount.md)
+ - [OpenapiClient::DvDate](docs/DvDate.md)
  - [OpenapiClient::DvDateTime](docs/DvDateTime.md)
  - [OpenapiClient::DvDuration](docs/DvDuration.md)
  - [OpenapiClient::DvEhrUri](docs/DvEhrUri.md)
@@ -352,7 +353,10 @@ Class | Method | HTTP request | Description
  - [OpenapiClient::DvQuantified](docs/DvQuantified.md)
  - [OpenapiClient::DvQuantity](docs/DvQuantity.md)
  - [OpenapiClient::DvScale](docs/DvScale.md)
+ - [OpenapiClient::DvState](docs/DvState.md)
+ - [OpenapiClient::DvTemporal](docs/DvTemporal.md)
  - [OpenapiClient::DvText](docs/DvText.md)
+ - [OpenapiClient::DvTime](docs/DvTime.md)
  - [OpenapiClient::DvUri](docs/DvUri.md)
  - [OpenapiClient::Ehr](docs/Ehr.md)
  - [OpenapiClient::EhrStatus](docs/EhrStatus.md)
@@ -397,6 +401,7 @@ Class | Method | HTTP request | Description
  - [OpenapiClient::RevisionHistory](docs/RevisionHistory.md)
  - [OpenapiClient::RevisionHistoryItem](docs/RevisionHistoryItem.md)
  - [OpenapiClient::TemplateId](docs/TemplateId.md)
+ - [OpenapiClient::TermMapping](docs/TermMapping.md)
  - [OpenapiClient::TerminologyCode](docs/TerminologyCode.md)
  - [OpenapiClient::TerminologyId](docs/TerminologyId.md)
  - [OpenapiClient::UidBasedId](docs/UidBasedId.md)

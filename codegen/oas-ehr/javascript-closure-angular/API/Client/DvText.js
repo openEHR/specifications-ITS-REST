@@ -24,6 +24,18 @@ API.Client.DvText.prototype.value;
 API.Client.DvText.prototype.hyperlink;
 
 /**
+ * @type {!string}
+ * @export
+ */
+API.Client.DvText.prototype.formatting;
+
+/**
+ * @type {!Array<!API.Client.TermMapping>}
+ * @export
+ */
+API.Client.DvText.prototype.mappings;
+
+/**
  * @type {!API.Client.CodePhrase}
  * @export
  */
@@ -34,10 +46,4 @@ API.Client.DvText.prototype.language;
  * @export
  */
 API.Client.DvText.prototype.encoding;
-
-/**
- * @type {!string}
- * @export
- */
-API.Client.DvText.prototype.formatting;
 

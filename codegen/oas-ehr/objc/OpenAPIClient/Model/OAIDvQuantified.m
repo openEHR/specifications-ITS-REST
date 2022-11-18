@@ -13,6 +13,63 @@
   return self;
 }
 
+/**
+ * Maps "discriminator" value to the sub-class name, so that inheritance is supported.
+ */
+- (id)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
+    NSString * discriminatedClassName = [dict valueForKey:@"type"];
+    if(discriminatedClassName == nil ){
+         return [super initWithDictionary:dict error:err];
+    }
+
+    Class class = nil;
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
+        class = NSClassFromString(@"OAIDvAmount");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
+        class = NSClassFromString(@"OAIDvCount");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
+        class = NSClassFromString(@"OAIDvDate");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
+        class = NSClassFromString(@"OAIDvDateTime");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
+        class = NSClassFromString(@"OAIDvDuration");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
+        class = NSClassFromString(@"OAIDvProportion");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
+        class = NSClassFromString(@"OAIDvQuantity");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
+        class = NSClassFromString(@"OAIDvTemporal");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
+        class = NSClassFromString(@"OAIDvTime");
+    }
+    else
+    {
+        class = NSClassFromString([@"OAI" stringByAppendingString:discriminatedClassName]);
+        if(!class) {
+            class = NSClassFromString([@"OAI" stringByAppendingString:[discriminatedClassName capitalizedString]]);
+        }
+    }
+    if([self class ] == class) {
+        return [super initWithDictionary:dict error:err];
+    }
+    return [[class alloc] initWithDictionary:dict error: err];
+}
 
 /**
  * Maps json key to property name.

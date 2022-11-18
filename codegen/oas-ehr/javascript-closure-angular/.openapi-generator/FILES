@@ -22,6 +22,7 @@ API/Client/DvAmount.js
 API/Client/DvBoolean.js
 API/Client/DvCodedText.js
 API/Client/DvCount.js
+API/Client/DvDate.js
 API/Client/DvDateTime.js
 API/Client/DvDuration.js
 API/Client/DvEhrUri.js
@@ -37,7 +38,10 @@ API/Client/DvProportion.js
 API/Client/DvQuantified.js
 API/Client/DvQuantity.js
 API/Client/DvScale.js
+API/Client/DvState.js
+API/Client/DvTemporal.js
 API/Client/DvText.js
+API/Client/DvTime.js
 API/Client/DvUri.js
 API/Client/EHRApi.js
 API/Client/EHRSTATUSApi.js
@@ -84,6 +88,7 @@ API/Client/ReferenceRange.js
 API/Client/RevisionHistory.js
 API/Client/RevisionHistoryItem.js
 API/Client/TemplateId.js
+API/Client/TermMapping.js
 API/Client/TerminologyCode.js
 API/Client/TerminologyId.js
 API/Client/UidBasedId.js

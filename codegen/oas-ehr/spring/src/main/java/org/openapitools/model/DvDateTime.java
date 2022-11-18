@@ -8,25 +8,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.time.OffsetDateTime;
-import org.openapitools.model.DataValue;
-import org.openapitools.model.DvBoolean;
-import org.openapitools.model.DvCodedText;
-import org.openapitools.model.DvCount;
+import org.openapitools.model.DvDate;
 import org.openapitools.model.DvDateTime;
-import org.openapitools.model.DvDuration;
-import org.openapitools.model.DvEhrUri;
-import org.openapitools.model.DvIdentifier;
-import org.openapitools.model.DvInterval;
-import org.openapitools.model.DvIntervalOfDateTime;
-import org.openapitools.model.DvMultimedia;
-import org.openapitools.model.DvOrdinal;
-import org.openapitools.model.DvParsable;
-import org.openapitools.model.DvProportion;
-import org.openapitools.model.DvQuantity;
-import org.openapitools.model.DvScale;
-import org.openapitools.model.DvText;
-import org.openapitools.model.DvUri;
+import org.openapitools.model.DvTemporal;
+import org.openapitools.model.DvTime;
 import org.springframework.format.annotation.DateTimeFormat;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -47,27 +34,13 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = DvBoolean.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvCodedText.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvCount.class, name = "DV_DATE_TIME"),
+  @JsonSubTypes.Type(value = DvDate.class, name = "DV_DATE_TIME"),
   @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvDuration.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvEhrUri.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvIdentifier.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvInterval.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvIntervalOfDateTime.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvMultimedia.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvOrdinal.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvParsable.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvProportion.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvScale.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvText.class, name = "DV_DATE_TIME"),
-  @JsonSubTypes.Type(value = DvUri.class, name = "DV_DATE_TIME")
+  @JsonSubTypes.Type(value = DvTime.class, name = "DV_DATE_TIME")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
-public class DvDateTime extends DataValue {
+public class DvDateTime extends DvTemporal {
 
   @JsonProperty("_type")
   private String type = "DV_DATE_TIME";
@@ -112,6 +85,36 @@ public class DvDateTime extends DataValue {
 
   public void setValue(OffsetDateTime value) {
     this.value = value;
+  }
+
+  public DvDateTime accuracy(DvDuration accuracy) {
+    super.setAccuracy(accuracy);
+    return this;
+  }
+
+  public DvDateTime magnitudeStatus(String magnitudeStatus) {
+    super.setMagnitudeStatus(magnitudeStatus);
+    return this;
+  }
+
+  public DvDateTime normalStatus(CodePhrase normalStatus) {
+    super.setNormalStatus(normalStatus);
+    return this;
+  }
+
+  public DvDateTime normalRange(DvInterval normalRange) {
+    super.setNormalRange(normalRange);
+    return this;
+  }
+
+  public DvDateTime otherReferenceRanges(List<ReferenceRange> otherReferenceRanges) {
+    super.setOtherReferenceRanges(otherReferenceRanges);
+    return this;
+  }
+
+  public DvDateTime addOtherReferenceRangesItem(ReferenceRange otherReferenceRangesItem) {
+    super.addOtherReferenceRangesItem(otherReferenceRangesItem);
+    return this;
   }
 
   @Override

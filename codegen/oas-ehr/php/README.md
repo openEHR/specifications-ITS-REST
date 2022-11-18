@@ -55,7 +55,7 @@
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
-            Migrate REST API specs to openAPI format</td>
+            Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
         <td>14 Nov 2022</td>
     </tr>
@@ -190,7 +190,7 @@ Related documents include:
 
 ### Status
 
-This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
+This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
 The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
@@ -331,6 +331,7 @@ Class | Method | HTTP request | Description
 - [DvBoolean](docs/Model/DvBoolean.md)
 - [DvCodedText](docs/Model/DvCodedText.md)
 - [DvCount](docs/Model/DvCount.md)
+- [DvDate](docs/Model/DvDate.md)
 - [DvDateTime](docs/Model/DvDateTime.md)
 - [DvDuration](docs/Model/DvDuration.md)
 - [DvEhrUri](docs/Model/DvEhrUri.md)
@@ -346,7 +347,10 @@ Class | Method | HTTP request | Description
 - [DvQuantified](docs/Model/DvQuantified.md)
 - [DvQuantity](docs/Model/DvQuantity.md)
 - [DvScale](docs/Model/DvScale.md)
+- [DvState](docs/Model/DvState.md)
+- [DvTemporal](docs/Model/DvTemporal.md)
 - [DvText](docs/Model/DvText.md)
+- [DvTime](docs/Model/DvTime.md)
 - [DvUri](docs/Model/DvUri.md)
 - [Ehr](docs/Model/Ehr.md)
 - [EhrStatus](docs/Model/EhrStatus.md)
@@ -391,6 +395,7 @@ Class | Method | HTTP request | Description
 - [RevisionHistory](docs/Model/RevisionHistory.md)
 - [RevisionHistoryItem](docs/Model/RevisionHistoryItem.md)
 - [TemplateId](docs/Model/TemplateId.md)
+- [TermMapping](docs/Model/TermMapping.md)
 - [TerminologyCode](docs/Model/TerminologyCode.md)
 - [TerminologyId](docs/Model/TerminologyId.md)
 - [UidBasedId](docs/Model/UidBasedId.md)

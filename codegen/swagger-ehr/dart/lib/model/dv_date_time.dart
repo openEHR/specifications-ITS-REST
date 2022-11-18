@@ -4,24 +4,28 @@ class DvDateTime {
   
   String type = "DV_DATE_TIME";
 
+  DvDuration accuracy = null;
+
   DateTime value = null;
 
   DvDateTime();
 
   @override
   String toString() {
-    return 'DvDateTime[type=$type, value=$value, ]';
+    return 'DvDateTime[type=$type, accuracy=$accuracy, value=$value, ]';
   }
 
   DvDateTime.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
     type = json['_type'];
+    accuracy = new DvDuration.fromJson(json['accuracy']);
     value = json['value'] == null ? null : DateTime.parse(json['value']);
   }
 
   Map<String, dynamic> toJson() {
     return {
       '_type': type,
+      'accuracy': accuracy,
       'value': value == null ? '' : value.toUtc().toIso8601String()
      };
   }

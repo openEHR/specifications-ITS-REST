@@ -21,6 +21,10 @@
     }
 
     Class class = nil;
+    if ([discriminatedClassName isEqualToString:@"DV_AMOUNT"]) {
+        class = NSClassFromString(@"OAIDvAmount");
+    }
+    else
     if ([discriminatedClassName isEqualToString:@"DV_BOOLEAN"]) {
         class = NSClassFromString(@"OAIDvBoolean");
     }
@@ -33,6 +37,10 @@
         class = NSClassFromString(@"OAIDvCount");
     }
     else
+    if ([discriminatedClassName isEqualToString:@"DV_DATE"]) {
+        class = NSClassFromString(@"OAIDvDate");
+    }
+    else
     if ([discriminatedClassName isEqualToString:@"DV_DATE_TIME"]) {
         class = NSClassFromString(@"OAIDvDateTime");
     }
@@ -43,6 +51,10 @@
     else
     if ([discriminatedClassName isEqualToString:@"DV_EHR_URI"]) {
         class = NSClassFromString(@"OAIDvEhrUri");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_ENCAPSULATED"]) {
+        class = NSClassFromString(@"OAIDvEncapsulated");
     }
     else
     if ([discriminatedClassName isEqualToString:@"DV_IDENTIFIER"]) {
@@ -61,6 +73,10 @@
         class = NSClassFromString(@"OAIDvMultimedia");
     }
     else
+    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+        class = NSClassFromString(@"OAIDvOrdered");
+    }
+    else
     if ([discriminatedClassName isEqualToString:@"DV_ORDINAL"]) {
         class = NSClassFromString(@"OAIDvOrdinal");
     }
@@ -73,6 +89,10 @@
         class = NSClassFromString(@"OAIDvProportion");
     }
     else
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
+        class = NSClassFromString(@"OAIDvQuantified");
+    }
+    else
     if ([discriminatedClassName isEqualToString:@"DV_QUANTITY"]) {
         class = NSClassFromString(@"OAIDvQuantity");
     }
@@ -81,8 +101,20 @@
         class = NSClassFromString(@"OAIDvScale");
     }
     else
+    if ([discriminatedClassName isEqualToString:@"DV_STATE"]) {
+        class = NSClassFromString(@"OAIDvState");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_TEMPORAL"]) {
+        class = NSClassFromString(@"OAIDvTemporal");
+    }
+    else
     if ([discriminatedClassName isEqualToString:@"DV_TEXT"]) {
         class = NSClassFromString(@"OAIDvText");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"DV_TIME"]) {
+        class = NSClassFromString(@"OAIDvTime");
     }
     else
     if ([discriminatedClassName isEqualToString:@"DV_URI"]) {

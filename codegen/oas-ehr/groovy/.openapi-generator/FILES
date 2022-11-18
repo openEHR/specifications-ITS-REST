@@ -27,6 +27,7 @@ src/main/groovy/org/openapitools/model/DvAmount.groovy
 src/main/groovy/org/openapitools/model/DvBoolean.groovy
 src/main/groovy/org/openapitools/model/DvCodedText.groovy
 src/main/groovy/org/openapitools/model/DvCount.groovy
+src/main/groovy/org/openapitools/model/DvDate.groovy
 src/main/groovy/org/openapitools/model/DvDateTime.groovy
 src/main/groovy/org/openapitools/model/DvDuration.groovy
 src/main/groovy/org/openapitools/model/DvEhrUri.groovy
@@ -42,7 +43,10 @@ src/main/groovy/org/openapitools/model/DvProportion.groovy
 src/main/groovy/org/openapitools/model/DvQuantified.groovy
 src/main/groovy/org/openapitools/model/DvQuantity.groovy
 src/main/groovy/org/openapitools/model/DvScale.groovy
+src/main/groovy/org/openapitools/model/DvState.groovy
+src/main/groovy/org/openapitools/model/DvTemporal.groovy
 src/main/groovy/org/openapitools/model/DvText.groovy
+src/main/groovy/org/openapitools/model/DvTime.groovy
 src/main/groovy/org/openapitools/model/DvUri.groovy
 src/main/groovy/org/openapitools/model/Ehr.groovy
 src/main/groovy/org/openapitools/model/EhrStatus.groovy
@@ -87,6 +91,7 @@ src/main/groovy/org/openapitools/model/ReferenceRange.groovy
 src/main/groovy/org/openapitools/model/RevisionHistory.groovy
 src/main/groovy/org/openapitools/model/RevisionHistoryItem.groovy
 src/main/groovy/org/openapitools/model/TemplateId.groovy
+src/main/groovy/org/openapitools/model/TermMapping.groovy
 src/main/groovy/org/openapitools/model/TerminologyCode.groovy
 src/main/groovy/org/openapitools/model/TerminologyId.groovy
 src/main/groovy/org/openapitools/model/UidBasedId.groovy

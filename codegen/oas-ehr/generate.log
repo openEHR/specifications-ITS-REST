@@ -1,26 +1,17 @@
 Validating spec ...
 Validating spec (/local/computable/OAS/ehr-codegen.openapi.yaml)
 Warnings: 
-	- Unused model: DvQuantity
 	- Unused model: Clstr
-	- Unused model: CareEntry
-	- Unused model: DvProportion
-	- Unused model: DvOrdinal
-	- Unused model: LocatableRef
-	- Unused model: DvQuantified
-	- Unused model: Observation
 	- Unused model: Evaluation
-	- Unused model: DvAmount
 	- Unused model: Element
-	- Unused model: DvDuration
-	- Unused model: DvCount
-	- Unused model: DvScale
+	- Unused model: CareEntry
 	- Unused model: Action
-	- Unused model: ReferenceRange
+	- Unused model: LocatableRef
 	- Unused model: AdminEntry
+	- Unused model: Observation
 	- Unused model: Instruction
 
-[info] Spec has 18 recommendation(s).
+[info] Spec has 9 recommendation(s).
 Generatic new files ...
 [main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
 [main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - Output directory (/local/codegen/oas-ehr/php) does not exist, or is inaccessible. No file (.openapi-generator-ignore) will be evaluated.
@@ -88,6 +79,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/DvCount.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/DvCountTest.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/DvDate.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/DvDateTest.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/DvDateTime.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/DvDateTimeTest.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/DvDateTime.md
@@ -133,9 +127,18 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/DvScale.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/DvScaleTest.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/DvState.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/DvStateTest.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/DvTemporal.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/DvTemporalTest.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/DvText.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/DvTextTest.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/DvTime.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/DvTimeTest.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/DvUri.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/DvUriTest.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/DvUri.md
@@ -268,6 +271,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/TemplateId.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/TemplateIdTest.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/TermMapping.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/TermMappingTest.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/lib/Model/TerminologyCode.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/test/Model/TerminologyCodeTest.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/php/docs/Model/TerminologyCode.md
@@ -382,6 +388,8 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvCodedText.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_dv_count.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_dv_date.go
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_dv_date_time.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvDateTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_dv_duration.go
@@ -412,8 +420,14 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvQuantity.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_dv_scale.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_dv_state.go
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_dv_temporal.go
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_dv_text.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_dv_time.go
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_dv_uri.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DvUri.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_ehr.go
@@ -502,6 +516,8 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/RevisionHistoryItem.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_template_id.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_term_mapping.go
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_terminology_code.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/TerminologyCode.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/model_terminology_id.go
@@ -575,9 +591,18 @@ Generatic new files ...
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable value
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable value
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable hyperlink
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable formatting
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable mappings
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable language
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable encoding
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable formatting
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_status
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_range
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable other_reference_ranges
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable magnitude_status
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy_is_percent
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable magnitude_status
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable _type
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable charset
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable language
@@ -600,10 +625,12 @@ Generatic new files ...
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable links
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_details
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable feeder_audit
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy_is_percent
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
+[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_status
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_range
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable other_reference_ranges
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable magnitude_status
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy_is_percent
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy_is_percent
@@ -611,12 +638,6 @@ Generatic new files ...
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_status
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_range
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable other_reference_ranges
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_status
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_range
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable other_reference_ranges
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy_is_percent
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy_is_percent
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable name
 [main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_node_id
@@ -804,6 +825,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/DvCount.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/DvCountTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/DvDate.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/DvDateTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/DvDateTime.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/DvDateTimeTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/DvDateTime.md
@@ -849,9 +873,18 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/DvScale.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/DvScaleTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/DvState.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/DvStateTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/DvTemporal.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/DvTemporalTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/DvText.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/DvTextTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/DvTime.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/DvTimeTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/DvUri.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/DvUriTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/DvUri.md
@@ -984,6 +1017,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/TemplateId.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/TemplateIdTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/TermMapping.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/TermMappingTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/main/java/org/openapitools/client/model/TerminologyCode.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/src/test/java/org/openapitools/client/model/TerminologyCodeTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/java/docs/TerminologyCode.md
@@ -1196,10 +1232,21 @@ Generatic new files ...
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable otherReferenceRanges
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable value
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable hyperlink
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable formatting
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable mappings
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable language
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable encoding
-[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable formatting
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable accuracyIsPercent
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable accuracy
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable magnitudeStatus
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalStatus
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalRange
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable otherReferenceRanges
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable accuracy
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable magnitudeStatus
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalStatus
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalRange
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable otherReferenceRanges
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable accuracy
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable magnitudeStatus
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalStatus
@@ -1238,6 +1285,15 @@ Generatic new files ...
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalStatus
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalRange
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable otherReferenceRanges
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalStatus
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalRange
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable otherReferenceRanges
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable magnitudeStatus
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalStatus
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalRange
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable otherReferenceRanges
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable accuracy
+[main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable magnitudeStatus
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalStatus
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable normalRange
 [main] INFO  o.o.codegen.languages.SpringCodegen - adding parent variable otherReferenceRanges
@@ -1406,6 +1462,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvBoolean.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvCodedText.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvCount.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvDate.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvDateTime.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvDuration.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvEhrUri.java
@@ -1421,7 +1478,10 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvQuantified.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvQuantity.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvScale.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvState.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvTemporal.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvText.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvTime.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/DvUri.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/Ehr.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/EhrStatus.java
@@ -1466,6 +1526,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/RevisionHistory.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/RevisionHistoryItem.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/TemplateId.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/TermMapping.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/TerminologyCode.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/TerminologyId.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/spring/src/main/java/org/openapitools/model/UidBasedId.java
@@ -1543,6 +1604,8 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvCodedText.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/DvCount.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/DvDate.kt
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/DvDateTime.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvDateTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/DvDuration.kt
@@ -1573,8 +1636,14 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvQuantity.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/DvScale.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/DvState.kt
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/DvTemporal.kt
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/DvText.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/DvTime.kt
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/DvUri.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/DvUri.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/Ehr.kt
@@ -1663,6 +1732,8 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/RevisionHistoryItem.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/TemplateId.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/TermMapping.kt
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/TerminologyCode.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/docs/TerminologyCode.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/kotlin/src/main/kotlin/org/openapitools/client/models/TerminologyId.kt
@@ -1782,6 +1853,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvBoolean.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvCodedText.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvCount.groovy
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvDate.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvDateTime.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvDuration.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvEhrUri.groovy
@@ -1797,7 +1869,10 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvQuantified.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvQuantity.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvScale.groovy
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvState.groovy
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvTemporal.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvText.groovy
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvTime.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/DvUri.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/Ehr.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/EhrStatus.groovy
@@ -1842,6 +1917,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/RevisionHistory.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/RevisionHistoryItem.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/TemplateId.groovy
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/TermMapping.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/TerminologyCode.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/TerminologyId.groovy
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/groovy/src/main/groovy/org/openapitools/model/UidBasedId.groovy
@@ -1913,6 +1989,8 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvCodedText.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/DvCount.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/DvDate.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/DvDateTime.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvDateTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/DvDuration.java
@@ -1943,8 +2021,14 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvQuantity.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/DvScale.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/DvState.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/DvTemporal.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/DvText.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/DvTime.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/DvUri.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/DvUri.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/Ehr.java
@@ -2033,6 +2117,8 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/RevisionHistoryItem.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/TemplateId.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/TermMapping.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/TerminologyCode.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/docs/TerminologyCode.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/android/src/main/java/org/openapitools/client/model/TerminologyId.java
@@ -2162,6 +2248,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/dv_count.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/dv_count_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/dv_date.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/dv_date_test.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/dv_date_time.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/dv_date_time_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/DvDateTime.md
@@ -2207,9 +2296,18 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/dv_scale.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/dv_scale_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/dv_state.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/dv_state_test.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/dv_temporal.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/dv_temporal_test.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/dv_text.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/dv_text_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/dv_time.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/dv_time_test.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/dv_uri.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/dv_uri_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/DvUri.md
@@ -2342,6 +2440,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/template_id.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/template_id_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/term_mapping.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/term_mapping_test.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/lib/model/terminology_code.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/test/terminology_code_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/dart/doc/TerminologyCode.md
@@ -2457,6 +2558,8 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_CODED_TEXT.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/dv_count.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_COUNT.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/dv_date.e
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_DATE.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/dv_date_time.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_DATE_TIME.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/dv_duration.e
@@ -2487,8 +2590,14 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_QUANTITY.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/dv_scale.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_SCALE.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/dv_state.e
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_STATE.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/dv_temporal.e
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_TEMPORAL.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/dv_text.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_TEXT.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/dv_time.e
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_TIME.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/dv_uri.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/DV_URI.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/ehr.e
@@ -2581,6 +2690,8 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/TERMINOLOGY_CODE.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/terminology_id.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/TERMINOLOGY_ID.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/term_mapping.e
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/TERM_MAPPING.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/uid_based_id.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/docs/UID_BASED_ID.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/eiffel/src/domain/update_attestation.e
@@ -2709,6 +2820,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/DvCount.pm
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/DvCountTest.t
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/DvDate.pm
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/DvDateTest.t
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/DvDateTime.pm
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/DvDateTimeTest.t
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/DvDateTime.md
@@ -2754,9 +2868,18 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/DvScale.pm
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/DvScaleTest.t
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/DvState.pm
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/DvStateTest.t
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/DvTemporal.pm
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/DvTemporalTest.t
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/DvText.pm
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/DvTextTest.t
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/DvTime.pm
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/DvTimeTest.t
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/DvUri.pm
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/DvUriTest.t
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/DvUri.md
@@ -2889,6 +3012,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/TemplateId.pm
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/TemplateIdTest.t
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/TermMapping.pm
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/TermMappingTest.t
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/lib/WWW/OpenAPIClient/Object/TerminologyCode.pm
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/t/TerminologyCodeTest.t
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/perl/docs/TerminologyCode.md
@@ -3051,6 +3177,10 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_count.pyi
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_count.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_date.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_date.pyi
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_date.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_date_time.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_date_time.pyi
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_date_time.py
@@ -3111,10 +3241,22 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_scale.pyi
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_scale.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_state.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_state.pyi
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_state.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_temporal.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_temporal.pyi
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_temporal.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_text.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_text.pyi
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_text.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_time.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_time.pyi
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_time.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_uri.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_uri.pyi
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_uri.py
@@ -3291,6 +3433,10 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/template_id.pyi
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_template_id.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/term_mapping.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/term_mapping.pyi
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_term_mapping.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/terminology_code.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/terminology_code.pyi
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_terminology_code.py
@@ -3608,6 +3754,8 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvCodedText.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/DvCount.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/DvDate.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/DvDateTime.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvDateTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/DvDuration.swift
@@ -3638,8 +3786,14 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvQuantity.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/DvScale.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/DvState.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/DvTemporal.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/DvText.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/DvTime.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/DvUri.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/DvUri.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/Ehr.swift
@@ -3739,6 +3893,8 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/RevisionHistoryItem.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/TemplateId.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/TermMapping.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/TerminologyCode.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/docs/TerminologyCode.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Models/TerminologyId.swift
@@ -3884,6 +4040,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvCount.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvCount.m
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAIDvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvDate.h
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvDate.m
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAIDvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvDateTime.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvDateTime.m
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAIDvDateTime.md
@@ -3929,9 +4088,18 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvScale.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvScale.m
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAIDvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvState.h
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvState.m
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAIDvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvTemporal.h
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvTemporal.m
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAIDvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvText.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvText.m
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAIDvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvTime.h
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvTime.m
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAIDvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvUri.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAIDvUri.m
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAIDvUri.md
@@ -4064,6 +4232,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAITemplateId.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAITemplateId.m
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAITemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAITermMapping.h
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAITermMapping.m
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAITermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAITerminologyCode.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/OpenAPIClient/Model/OAITerminologyCode.m
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/objc/docs/OAITerminologyCode.md
@@ -4211,6 +4382,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/dv_count.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/dv_count_spec.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/dv_date.rb
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/dv_date_spec.rb
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/dv_date_time.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/dv_date_time_spec.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/DvDateTime.md
@@ -4256,9 +4430,18 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/dv_scale.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/dv_scale_spec.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/dv_state.rb
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/dv_state_spec.rb
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/dv_temporal.rb
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/dv_temporal_spec.rb
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/dv_text.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/dv_text_spec.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/dv_time.rb
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/dv_time_spec.rb
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/dv_uri.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/dv_uri_spec.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/DvUri.md
@@ -4391,6 +4574,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/template_id.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/template_id_spec.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/term_mapping.rb
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/term_mapping_spec.rb
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/lib/openapi_client/models/terminology_code.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/spec/models/terminology_code_spec.rb
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/ruby/docs/TerminologyCode.md
@@ -4531,6 +4717,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/DvCount.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/DvCount.spec.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/DvDate.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/DvDate.spec.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/DvDate.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/DvDateTime.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/DvDateTime.spec.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/DvDateTime.md
@@ -4576,9 +4765,18 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/DvScale.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/DvScale.spec.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/DvState.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/DvState.spec.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/DvTemporal.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/DvTemporal.spec.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/DvTemporal.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/DvText.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/DvText.spec.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/DvTime.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/DvTime.spec.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/DvTime.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/DvUri.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/DvUri.spec.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/DvUri.md
@@ -4711,6 +4909,9 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/TemplateId.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/TemplateId.spec.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/TermMapping.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/TermMapping.spec.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/TermMapping.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/src/model/TerminologyCode.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/test/model/TerminologyCode.spec.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript/docs/TerminologyCode.md
@@ -4800,6 +5001,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvBoolean.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvCodedText.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvCount.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvDate.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvDateTime.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvDuration.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvEhrUri.js
@@ -4815,7 +5017,10 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvQuantified.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvQuantity.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvScale.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvState.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvTemporal.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvText.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvTime.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/DvUri.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/Ehr.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/EhrStatus.js
@@ -4860,6 +5065,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/RevisionHistory.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/RevisionHistoryItem.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/TemplateId.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/TermMapping.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/TerminologyCode.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/TerminologyId.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/javascript-closure-angular/API/Client/UidBasedId.js
@@ -4922,6 +5128,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvBoolean.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvCodedText.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvCount.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvDate.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvDateTime.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvDuration.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvEhrUri.ts
@@ -4937,7 +5144,10 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvQuantified.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvQuantity.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvScale.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvState.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvTemporal.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvText.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvTime.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/DvUri.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/Ehr.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/EhrStatus.ts
@@ -4992,6 +5202,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/RevisionHistory.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/RevisionHistoryItem.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/TemplateId.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/TermMapping.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/TerminologyCode.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/TerminologyId.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-fetch/models/UidBasedId.ts
@@ -5066,6 +5277,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvBoolean.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvCodedText.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvCount.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvDate.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvDateTime.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvDuration.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvEhrUri.ts
@@ -5081,7 +5293,10 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvQuantified.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvQuantity.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvScale.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvState.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvTemporal.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvText.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvTime.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./dvUri.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./ehr.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./ehrStatus.ts
@@ -5136,6 +5351,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./revisionHistory.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./revisionHistoryItem.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./templateId.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./termMapping.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./terminologyCode.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./terminologyId.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/typescript-node/model/./uidBasedId.ts

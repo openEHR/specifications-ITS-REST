@@ -16,7 +16,7 @@ Key | Input Type | Accessed Type | Description | Notes
 #### allOf
 Class Name | Input Type | Accessed Type | Description | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-[DataValue](DataValue.md) | [**DataValue**](DataValue.md) | [**DataValue**](DataValue.md) |  | 
+[DvTemporal](DvTemporal.md) | [**DvTemporal**](DvTemporal.md) | [**DvTemporal**](DvTemporal.md) |  | 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

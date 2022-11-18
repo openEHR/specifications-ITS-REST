@@ -31,6 +31,7 @@ from openapi_client.model.dv_amount import DvAmount
 from openapi_client.model.dv_boolean import DvBoolean
 from openapi_client.model.dv_coded_text import DvCodedText
 from openapi_client.model.dv_count import DvCount
+from openapi_client.model.dv_date import DvDate
 from openapi_client.model.dv_date_time import DvDateTime
 from openapi_client.model.dv_duration import DvDuration
 from openapi_client.model.dv_ehr_uri import DvEhrUri
@@ -46,7 +47,10 @@ from openapi_client.model.dv_proportion import DvProportion
 from openapi_client.model.dv_quantified import DvQuantified
 from openapi_client.model.dv_quantity import DvQuantity
 from openapi_client.model.dv_scale import DvScale
+from openapi_client.model.dv_state import DvState
+from openapi_client.model.dv_temporal import DvTemporal
 from openapi_client.model.dv_text import DvText
+from openapi_client.model.dv_time import DvTime
 from openapi_client.model.dv_uri import DvUri
 from openapi_client.model.ehr import Ehr
 from openapi_client.model.ehr_status import EhrStatus
@@ -91,6 +95,7 @@ from openapi_client.model.reference_range import ReferenceRange
 from openapi_client.model.revision_history import RevisionHistory
 from openapi_client.model.revision_history_item import RevisionHistoryItem
 from openapi_client.model.template_id import TemplateId
+from openapi_client.model.term_mapping import TermMapping
 from openapi_client.model.terminology_code import TerminologyCode
 from openapi_client.model.terminology_id import TerminologyId
 from openapi_client.model.uid_based_id import UidBasedId

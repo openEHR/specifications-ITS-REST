@@ -20,6 +20,7 @@ import org.openapitools.client.models.DataValue
 import org.openapitools.client.models.DvCodedText
 import org.openapitools.client.models.DvText
 import org.openapitools.client.models.DvUri
+import org.openapitools.client.models.TermMapping
 
 import com.squareup.moshi.Json
 
@@ -38,11 +39,13 @@ interface DvText : DataValue {
     val type: kotlin.String?
     @Json(name = "hyperlink")
     val hyperlink: DvUri?
+    @Json(name = "formatting")
+    val formatting: kotlin.String?
+    @Json(name = "mappings")
+    val mappings: kotlin.collections.List<TermMapping>?
     @Json(name = "language")
     val language: CodePhrase?
     @Json(name = "encoding")
     val encoding: CodePhrase?
-    @Json(name = "formatting")
-    val formatting: kotlin.String?
 }
 

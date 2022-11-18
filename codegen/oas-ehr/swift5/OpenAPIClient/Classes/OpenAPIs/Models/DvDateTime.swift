@@ -12,16 +12,13 @@ import AnyCodable
 
 public struct DvDateTime: Codable, JSONEncodable, Hashable {
 
-    public var type: String? = "DV_DATE_TIME"
     public var value: Date
 
-    public init(type: String? = "DV_DATE_TIME", value: Date) {
-        self.type = type
+    public init(value: Date) {
         self.value = value
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case type = "_type"
         case value
     }
 
@@ -29,7 +26,6 @@ public struct DvDateTime: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
         try container.encode(value, forKey: .value)
     }
 }

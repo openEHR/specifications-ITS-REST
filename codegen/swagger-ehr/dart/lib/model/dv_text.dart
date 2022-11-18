@@ -8,17 +8,19 @@ class DvText {
 
   DvUri hyperlink = null;
 
+  String formatting = null;
+
+  List<TermMapping> mappings = [];
+
   CodePhrase language = null;
 
   CodePhrase encoding = null;
-
-  String formatting = null;
 
   DvText();
 
   @override
   String toString() {
-    return 'DvText[type=$type, value=$value, hyperlink=$hyperlink, language=$language, encoding=$encoding, formatting=$formatting, ]';
+    return 'DvText[type=$type, value=$value, hyperlink=$hyperlink, formatting=$formatting, mappings=$mappings, language=$language, encoding=$encoding, ]';
   }
 
   DvText.fromJson(Map<String, dynamic> json) {
@@ -26,9 +28,10 @@ class DvText {
     type = json['_type'];
     value = json['value'];
     hyperlink = new DvUri.fromJson(json['hyperlink']);
+    formatting = json['formatting'];
+    mappings = TermMapping.listFromJson(json['mappings']);
     language = new CodePhrase.fromJson(json['language']);
     encoding = new CodePhrase.fromJson(json['encoding']);
-    formatting = json['formatting'];
   }
 
   Map<String, dynamic> toJson() {
@@ -36,9 +39,10 @@ class DvText {
       '_type': type,
       'value': value,
       'hyperlink': hyperlink,
+      'formatting': formatting,
+      'mappings': mappings,
       'language': language,
-      'encoding': encoding,
-      'formatting': formatting
+      'encoding': encoding
      };
   }
 

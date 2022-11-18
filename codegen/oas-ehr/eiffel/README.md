@@ -55,7 +55,7 @@
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
-            Migrate REST API specs to openAPI format</td>
+            Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
         <td>14 Nov 2022</td>
     </tr>
@@ -190,7 +190,7 @@ Related documents include:
 
 ### Status
 
-This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
+This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
 The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
@@ -279,6 +279,7 @@ Class | Method | HTTP request | Description
  - [DV_BOOLEAN](docs/DV_BOOLEAN.md)
  - [DV_CODED_TEXT](docs/DV_CODED_TEXT.md)
  - [DV_COUNT](docs/DV_COUNT.md)
+ - [DV_DATE](docs/DV_DATE.md)
  - [DV_DATE_TIME](docs/DV_DATE_TIME.md)
  - [DV_DURATION](docs/DV_DURATION.md)
  - [DV_EHR_URI](docs/DV_EHR_URI.md)
@@ -294,7 +295,10 @@ Class | Method | HTTP request | Description
  - [DV_QUANTIFIED](docs/DV_QUANTIFIED.md)
  - [DV_QUANTITY](docs/DV_QUANTITY.md)
  - [DV_SCALE](docs/DV_SCALE.md)
+ - [DV_STATE](docs/DV_STATE.md)
+ - [DV_TEMPORAL](docs/DV_TEMPORAL.md)
  - [DV_TEXT](docs/DV_TEXT.md)
+ - [DV_TIME](docs/DV_TIME.md)
  - [DV_URI](docs/DV_URI.md)
  - [EHR](docs/EHR.md)
  - [EHR_STATUS](docs/EHR_STATUS.md)
@@ -341,6 +345,7 @@ Class | Method | HTTP request | Description
  - [TEMPLATE_ID](docs/TEMPLATE_ID.md)
  - [TERMINOLOGY_CODE](docs/TERMINOLOGY_CODE.md)
  - [TERMINOLOGY_ID](docs/TERMINOLOGY_ID.md)
+ - [TERM_MAPPING](docs/TERM_MAPPING.md)
  - [UID_BASED_ID](docs/UID_BASED_ID.md)
  - [UPDATE_ATTESTATION](docs/UPDATE_ATTESTATION.md)
  - [UPDATE_AUDIT](docs/UPDATE_AUDIT.md)

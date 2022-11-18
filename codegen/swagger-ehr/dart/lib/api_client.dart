@@ -77,6 +77,8 @@ class ApiClient {
           return new DvCodedText.fromJson(value);
         case 'DvCount':
           return new DvCount.fromJson(value);
+        case 'DvDate':
+          return new DvDate.fromJson(value);
         case 'DvDateTime':
           return new DvDateTime.fromJson(value);
         case 'DvDuration':
@@ -107,8 +109,14 @@ class ApiClient {
           return new DvQuantity.fromJson(value);
         case 'DvScale':
           return new DvScale.fromJson(value);
+        case 'DvState':
+          return new DvState.fromJson(value);
+        case 'DvTemporal':
+          return new DvTemporal.fromJson(value);
         case 'DvText':
           return new DvText.fromJson(value);
+        case 'DvTime':
+          return new DvTime.fromJson(value);
         case 'DvUri':
           return new DvUri.fromJson(value);
         case 'Ehr':
@@ -197,6 +205,8 @@ class ApiClient {
           return new RevisionHistoryItem.fromJson(value);
         case 'TemplateId':
           return new TemplateId.fromJson(value);
+        case 'TermMapping':
+          return new TermMapping.fromJson(value);
         case 'TerminologyCode':
           return new TerminologyCode.fromJson(value);
         case 'TerminologyId':

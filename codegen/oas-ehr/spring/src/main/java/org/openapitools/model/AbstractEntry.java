@@ -44,6 +44,7 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = AdminEntry.class, name = "ADMIN_ENTRY"),
   @JsonSubTypes.Type(value = Action.class, name = "Action"),
   @JsonSubTypes.Type(value = AdminEntry.class, name = "AdminEntry"),
+  @JsonSubTypes.Type(value = CareEntry.class, name = "CARE_ENTRY"),
   @JsonSubTypes.Type(value = CareEntry.class, name = "CareEntry"),
   @JsonSubTypes.Type(value = Evaluation.class, name = "EVALUATION"),
   @JsonSubTypes.Type(value = Evaluation.class, name = "Evaluation"),

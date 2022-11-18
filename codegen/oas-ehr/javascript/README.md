@@ -56,7 +56,7 @@ EhrApi - JavaScript client for ehr_api
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
-            Migrate REST API specs to openAPI format</td>
+            Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
         <td>14 Nov 2022</td>
     </tr>
@@ -191,7 +191,7 @@ Related documents include:
 
 ### Status
 
-This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
+This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
 The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
@@ -382,6 +382,7 @@ Class | Method | HTTP request | Description
  - [EhrApi.DvBoolean](docs/DvBoolean.md)
  - [EhrApi.DvCodedText](docs/DvCodedText.md)
  - [EhrApi.DvCount](docs/DvCount.md)
+ - [EhrApi.DvDate](docs/DvDate.md)
  - [EhrApi.DvDateTime](docs/DvDateTime.md)
  - [EhrApi.DvDuration](docs/DvDuration.md)
  - [EhrApi.DvEhrUri](docs/DvEhrUri.md)
@@ -397,7 +398,10 @@ Class | Method | HTTP request | Description
  - [EhrApi.DvQuantified](docs/DvQuantified.md)
  - [EhrApi.DvQuantity](docs/DvQuantity.md)
  - [EhrApi.DvScale](docs/DvScale.md)
+ - [EhrApi.DvState](docs/DvState.md)
+ - [EhrApi.DvTemporal](docs/DvTemporal.md)
  - [EhrApi.DvText](docs/DvText.md)
+ - [EhrApi.DvTime](docs/DvTime.md)
  - [EhrApi.DvUri](docs/DvUri.md)
  - [EhrApi.Ehr](docs/Ehr.md)
  - [EhrApi.EhrStatus](docs/EhrStatus.md)
@@ -442,6 +446,7 @@ Class | Method | HTTP request | Description
  - [EhrApi.RevisionHistory](docs/RevisionHistory.md)
  - [EhrApi.RevisionHistoryItem](docs/RevisionHistoryItem.md)
  - [EhrApi.TemplateId](docs/TemplateId.md)
+ - [EhrApi.TermMapping](docs/TermMapping.md)
  - [EhrApi.TerminologyCode](docs/TerminologyCode.md)
  - [EhrApi.TerminologyId](docs/TerminologyId.md)
  - [EhrApi.UidBasedId](docs/UidBasedId.md)

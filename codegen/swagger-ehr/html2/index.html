@@ -720,6 +720,7 @@
     "propertyName" : "_type",
     "mapping" : {
       "ADMIN_ENTRY" : "#/components/schemas/AdminEntry",
+      "CARE_ENTRY" : "#/components/schemas/CareEntry",
       "OBSERVATION" : "#/components/schemas/Observation",
       "EVALUATION" : "#/components/schemas/Evaluation",
       "INSTRUCTION" : "#/components/schemas/Instruction",
@@ -1107,7 +1108,9 @@
   "discriminator" : {
     "propertyName" : "_type",
     "mapping" : {
+      "ENTRY" : "#/components/schemas/AbstractEntry",
       "ADMIN_ENTRY" : "#/components/schemas/AdminEntry",
+      "CARE_ENTRY" : "#/components/schemas/CareEntry",
       "OBSERVATION" : "#/components/schemas/Observation",
       "EVALUATION" : "#/components/schemas/Evaluation",
       "INSTRUCTION" : "#/components/schemas/Instruction",
@@ -1207,23 +1210,31 @@
   "discriminator" : {
     "propertyName" : "_type",
     "mapping" : {
-      "DV_TEXT" : "#/components/schemas/DvText",
+      "DV_AMOUNT" : "#/components/schemas/DvAmount",
+      "DV_BOOLEAN" : "#/components/schemas/DvBoolean",
       "DV_CODED_TEXT" : "#/components/schemas/DvCodedText",
-      "DV_URI" : "#/components/schemas/DvUri",
-      "DV_EHR_URI" : "#/components/schemas/DvEhrUri",
-      "DV_MULTIMEDIA" : "#/components/schemas/DvMultimedia",
-      "DV_PARSABLE" : "#/components/schemas/DvParsable",
+      "DV_COUNT" : "#/components/schemas/DvCount",
+      "DV_DATE" : "#/components/schemas/DvDate",
       "DV_DATE_TIME" : "#/components/schemas/DvDateTime",
       "DV_DURATION" : "#/components/schemas/DvDuration",
+      "DV_EHR_URI" : "#/components/schemas/DvEhrUri",
+      "DV_ENCAPSULATED" : "#/components/schemas/DvEncapsulated",
+      "DV_IDENTIFIER" : "#/components/schemas/DvIdentifier",
       "DV_INTERVAL" : "#/components/schemas/DvInterval",
       "DV_INTERVAL_of_DATE_TIME" : "#/components/schemas/DvIntervalOfDateTime",
-      "DV_IDENTIFIER" : "#/components/schemas/DvIdentifier",
-      "DV_BOOLEAN" : "#/components/schemas/DvBoolean",
-      "DV_QUANTITY" : "#/components/schemas/DvQuantity",
+      "DV_MULTIMEDIA" : "#/components/schemas/DvMultimedia",
+      "DV_ORDERED" : "#/components/schemas/DvOrdered",
       "DV_ORDINAL" : "#/components/schemas/DvOrdinal",
+      "DV_PARSABLE" : "#/components/schemas/DvParsable",
+      "DV_PROPORTION" : "#/components/schemas/DvProportion",
+      "DV_QUANTIFIED" : "#/components/schemas/DvQuantified",
+      "DV_QUANTITY" : "#/components/schemas/DvQuantity",
       "DV_SCALE" : "#/components/schemas/DvScale",
-      "DV_COUNT" : "#/components/schemas/DvCount",
-      "DV_PROPORTION" : "#/components/schemas/DvProportion"
+      "DV_STATE" : "#/components/schemas/DvState",
+      "DV_TEMPORAL" : "#/components/schemas/DvTemporal",
+      "DV_TEXT" : "#/components/schemas/DvText",
+      "DV_TIME" : "#/components/schemas/DvTime",
+      "DV_URI" : "#/components/schemas/DvUri"
     }
   }
 };
@@ -1240,6 +1251,15 @@
     },
     "accuracy" : {
       "type" : "number"
+    }
+  },
+  "discriminator" : {
+    "propertyName" : "_type",
+    "mapping" : {
+      "DV_COUNT" : "#/components/schemas/DvCount",
+      "DV_DURATION" : "#/components/schemas/DvDuration",
+      "DV_PROPORTION" : "#/components/schemas/DvProportion",
+      "DV_QUANTITY" : "#/components/schemas/DvQuantity"
     }
   },
   "allOf" : [ {
@@ -1310,6 +1330,29 @@
   } ],
   "x-discriminator-value" : "DV_COUNT"
 };
+            defs["DvDate"] = {
+  "title" : "DV_DATE",
+  "required" : [ "value" ],
+  "type" : "object",
+  "properties" : {
+    "_type" : {
+      "type" : "string",
+      "default" : "DV_DATE"
+    },
+    "value" : {
+      "type" : "string",
+      "format" : "date"
+    }
+  },
+  "example" : {
+    "_type" : "DV_DATE",
+    "value" : "2017-08-15"
+  },
+  "allOf" : [ {
+    "$ref" : "#/components/schemas/DvTemporal"
+  } ],
+  "x-discriminator-value" : "DV_DATE"
+};
             defs["DvDateTime"] = {
   "title" : "DV_DATE_TIME",
   "required" : [ "value" ],
@@ -1329,7 +1372,7 @@
     "value" : "2017-08-15T10:37:15.422+02:00"
   },
   "allOf" : [ {
-    "$ref" : "#/components/schemas/DataValue"
+    "$ref" : "#/components/schemas/DvTemporal"
   } ],
   "x-discriminator-value" : "DV_DATE_TIME"
 };
@@ -1442,6 +1485,13 @@
       "type" : "boolean"
     }
   },
+  "discriminator" : {
+    "propertyName" : "_type",
+    "mapping" : {
+      "DV_INTERVAL" : "#/components/schemas/DvInterval",
+      "DV_INTERVAL_of_DATE_TIME" : "#/components/schemas/DvIntervalOfDateTime"
+    }
+  },
   "allOf" : [ {
     "$ref" : "#/components/schemas/DataValue"
   } ],
@@ -1528,6 +1578,23 @@
       "items" : {
         "$ref" : "#/components/schemas/ReferenceRange"
       }
+    }
+  },
+  "discriminator" : {
+    "propertyName" : "_type",
+    "mapping" : {
+      "DV_AMOUNT" : "#/components/schemas/DvAmount",
+      "DV_COUNT" : "#/components/schemas/DvCount",
+      "DV_DATE" : "#/components/schemas/DvDate",
+      "DV_DATE_TIME" : "#/components/schemas/DvDateTime",
+      "DV_DURATION" : "#/components/schemas/DvDuration",
+      "DV_ORDINAL" : "#/components/schemas/DvOrdinal",
+      "DV_PROPORTION" : "#/components/schemas/DvProportion",
+      "DV_QUANTIFIED" : "#/components/schemas/DvQuantified",
+      "DV_QUANTITY" : "#/components/schemas/DvQuantity",
+      "DV_SCALE" : "#/components/schemas/DvScale",
+      "DV_TEMPORAL" : "#/components/schemas/DvTemporal",
+      "DV_TIME" : "#/components/schemas/DvTime"
     }
   },
   "allOf" : [ {
@@ -1617,6 +1684,20 @@
       "default" : "="
     }
   },
+  "discriminator" : {
+    "propertyName" : "_type",
+    "mapping" : {
+      "DV_AMOUNT" : "#/components/schemas/DvAmount",
+      "DV_COUNT" : "#/components/schemas/DvCount",
+      "DV_DATE" : "#/components/schemas/DvDate",
+      "DV_DATE_TIME" : "#/components/schemas/DvDateTime",
+      "DV_DURATION" : "#/components/schemas/DvDuration",
+      "DV_PROPORTION" : "#/components/schemas/DvProportion",
+      "DV_QUANTITY" : "#/components/schemas/DvQuantity",
+      "DV_TEMPORAL" : "#/components/schemas/DvTemporal",
+      "DV_TIME" : "#/components/schemas/DvTime"
+    }
+  },
   "allOf" : [ {
     "$ref" : "#/components/schemas/DvOrdered"
   } ],
@@ -1673,6 +1754,52 @@
   } ],
   "x-discriminator-value" : "DV_SCALE"
 };
+            defs["DvState"] = {
+  "title" : "DV_STATE",
+  "required" : [ "is_terminal", "value" ],
+  "type" : "object",
+  "properties" : {
+    "_type" : {
+      "type" : "string",
+      "default" : "DV_STATE"
+    },
+    "value" : {
+      "$ref" : "#/components/schemas/DvCodedText"
+    },
+    "is_terminal" : {
+      "type" : "boolean"
+    }
+  },
+  "allOf" : [ {
+    "$ref" : "#/components/schemas/DataValue"
+  } ],
+  "x-discriminator-value" : "DV_STATE"
+};
+            defs["DvTemporal"] = {
+  "title" : "DV_TEMPORAL",
+  "type" : "object",
+  "properties" : {
+    "_type" : {
+      "type" : "string",
+      "default" : "DV_TEMPORAL"
+    },
+    "accuracy" : {
+      "$ref" : "#/components/schemas/DvDuration"
+    }
+  },
+  "discriminator" : {
+    "propertyName" : "_type",
+    "mapping" : {
+      "DV_DATE" : "#/components/schemas/DvDate",
+      "DV_DATE_TIME" : "#/components/schemas/DvDateTime",
+      "DV_DTIME" : "#/components/schemas/DvTime"
+    }
+  },
+  "allOf" : [ {
+    "$ref" : "#/components/schemas/DvQuantified"
+  } ],
+  "x-discriminator-value" : "DV_TEMPORAL"
+};
             defs["DvText"] = {
   "title" : "DV_TEXT",
   "required" : [ "value" ],
@@ -1688,14 +1815,20 @@
     "hyperlink" : {
       "$ref" : "#/components/schemas/DvUri"
     },
+    "formatting" : {
+      "type" : "string"
+    },
+    "mappings" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/TermMapping"
+      }
+    },
     "language" : {
       "$ref" : "#/components/schemas/CodePhrase"
     },
     "encoding" : {
       "$ref" : "#/components/schemas/CodePhrase"
-    },
-    "formatting" : {
-      "type" : "string"
     }
   },
   "discriminator" : {
@@ -1709,6 +1842,29 @@
     "$ref" : "#/components/schemas/DataValue"
   } ],
   "x-discriminator-value" : "DV_TEXT"
+};
+            defs["DvTime"] = {
+  "title" : "DV_TIME",
+  "required" : [ "value" ],
+  "type" : "object",
+  "properties" : {
+    "_type" : {
+      "type" : "string",
+      "default" : "DV_TIME"
+    },
+    "value" : {
+      "type" : "string",
+      "format" : "time"
+    }
+  },
+  "example" : {
+    "_type" : "DV_DATE",
+    "value" : "2017-08-15"
+  },
+  "allOf" : [ {
+    "$ref" : "#/components/schemas/DvTemporal"
+  } ],
+  "x-discriminator-value" : "DV_TIME"
 };
             defs["DvUri"] = {
   "title" : "DV_URI",
@@ -2791,6 +2947,23 @@
   } ],
   "x-discriminator-value" : "TEMPLATE_ID"
 };
+            defs["TermMapping"] = {
+  "title" : "TERM_MAPPING",
+  "required" : [ "match", "target" ],
+  "type" : "object",
+  "properties" : {
+    "match" : {
+      "pattern" : "/^[><=?]$/",
+      "type" : "string"
+    },
+    "purpose" : {
+      "$ref" : "#/components/schemas/DvCodedText"
+    },
+    "target" : {
+      "$ref" : "#/components/schemas/CodePhrase"
+    }
+  }
+};
             defs["TerminologyCode"] = {
   "title" : "TERMINOLOGY_CODE",
   "required" : [ "code_string", "terminology_id" ],
@@ -3254,7 +3427,7 @@
     <tr>
         <td>5.1</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
-            Migrate REST API specs to openAPI format</td>
+            Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
         <td>14 Nov 2022</td>
     </tr>
@@ -3381,7 +3554,7 @@
 <li>The <a href="https://specifications.openehr.org/releases/SM/latest/openehr_platform.html">openEHR Platform Abstract Service Model</a></li>
 </ul>
 <h3>Status</h3>
-<p>This specification is in the <code>STABLE</code> state, and can be downloaded as <a href="https://spec.openapis.org/oas/v3.0.3">OpenAPI specification</a> file (in yaml format) <a href="computable/OAS/ehr-validation.openapi.yaml">for validation</a>, or <a href="computable/OAS/ehr-codegen.openapi.yaml">for code generators</a>.
+<p>This specification is in the <code>STABLE</code> state, and can be downloaded as <a href="https://spec.openapis.org/oas/v3.0.3">OpenAPI specification</a> file (in YAML format) <a href="computable/OAS/ehr-validation.openapi.yaml">for validation</a>, or <a href="computable/OAS/ehr-codegen.openapi.yaml">for code generators</a>.
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.</p>
 <p>The development version of this document can be found at <a href="https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html">https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html</a>.</p>
 <h3>Feedback</h3>
@@ -3786,7 +3959,24 @@ Content body is only returned when &#x60;Prefer&#x60; header has &#x60;return&#x
                                   <div id='responses-compositionCreate-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`201 Created` is returned when the COMPOSITION was created. \nContent body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag_COMPOSITION"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_COMPOSITION"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Composition"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -3848,7 +4038,16 @@ Content body is only returned when &#x60;Prefer&#x60; header has &#x60;return&#x
                                   <div id='responses-compositionCreate-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request could not be read, or could not be converted to a valid COMPOSITION object).\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Error"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -4636,7 +4835,24 @@ except ApiException as e:
                                   <div id='responses-compositionGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested COMPOSITION is successfully retrieved.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag_COMPOSITION"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_COMPOSITION"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Composition"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -5206,7 +5422,24 @@ The response will contain the entire resource when the &#x60;Prefer&#x60; header
                                   <div id='responses-compositionUpdate-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the COMPOSITION is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag_COMPOSITION"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_COMPOSITION"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Composition"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -5268,7 +5501,16 @@ The response will contain the entire resource when the &#x60;Prefer&#x60; header
                                   <div id='responses-compositionUpdate-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`400 Bad Request` is returned when the request URL or body (if provided) could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request could not be read, or could not be converted to a valid COMPOSITION object).\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Error"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -5659,7 +5901,16 @@ except ApiException as e:
                                   <div id='responses-versionedCompositionGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested VERSIONED_COMPOSITION is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/VersionedComposition"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -6006,7 +6257,16 @@ except ApiException as e:
                                   <div id='responses-versionedCompositionRevisionHistory-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested REVISION_HISTORY is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/RevisionHistory"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -6403,7 +6663,24 @@ except ApiException as e:
                                   <div id='responses-versionedCompositionVersionGetAtTime-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested VERSION is successfully retrieved.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag_VERSION_of_COMPOSITION"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_VERSIONED_COMPOSITION_VERSION"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Version"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -6812,7 +7089,16 @@ except ApiException as e:
                                   <div id='responses-versionedCompositionVersionGetById-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested VERSION is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Version"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -7245,7 +7531,24 @@ Content body is only returned when &#x60;Prefer&#x60; header has &#x60;return&#x
                                   <div id='responses-contributionCreate-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`201 Created` is returned when the CONTRIBUTION was created. \nContent body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag_CONTRIBUTION"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_CONTRIBUTION"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Contribution"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -7307,7 +7610,16 @@ Content body is only returned when &#x60;Prefer&#x60; header has &#x60;return&#x
                                   <div id='responses-contributionCreate-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`400 Bad Request` is returned when the request URL or body could not be parsed or has invalid content (e.g. invalid `ehr_id`, or either the body of the request not be converted to a valid CONTRIBUTION object, or the modification type doesn’t match the operation - i.e. first version of a composition with MODIFICATION).\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Error"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -7663,7 +7975,16 @@ except ApiException as e:
                                   <div id='responses-contributionGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the CONTRIBUTION is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Contribution"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -8093,7 +8414,24 @@ Content body is only returned when &#x60;Prefer&#x60; header has &#x60;return&#x
                                   <div id='responses-directoryCreate-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`201 Created` is returned when the FOLDER was created. \nContent body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag_FOLDER"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_directory"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Folder"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -8902,7 +9240,16 @@ except ApiException as e:
                                   <div id='responses-directoryGetAtTime-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the FOLDER is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Folder"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -9305,7 +9652,16 @@ except ApiException as e:
                                   <div id='responses-directoryGetByVersionId-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the FOLDER is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Folder"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -9800,7 +10156,24 @@ The response will contain the entire resource when the &#x60;Prefer&#x60; header
                                   <div id='responses-directoryUpdate-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when directory was successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag_FOLDER"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_directory"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Folder"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -10292,7 +10665,24 @@ The new EHR resource is returned in the body when the request&#x27;s &#x60;Prefe
                                   <div id='responses-ehrCreate-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`201 Created` is returned when the EHR has been successfully created. \nThe new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`, otherwise only headers are returned.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag_EHR"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_EHR"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Ehr"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -10762,7 +11152,24 @@ The new EHR resource is returned in the body when the request&#x27;s &#x60;Prefe
                                   <div id='responses-ehrCreateWithId-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`201 Created` is returned when the EHR has been successfully created. \nThe new EHR resource is returned in the body when the request's `Prefer` header value is `return=representation`, otherwise only headers are returned.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag_EHR"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_EHR"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Ehr"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -11101,7 +11508,16 @@ except ApiException as e:
                                   <div id='responses-ehrGetById-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested EHR resource is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Ehr"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -11451,7 +11867,16 @@ except ApiException as e:
                                   <div id='responses-ehrGetBySubject-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested EHR resource is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Ehr"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -11811,7 +12236,24 @@ except ApiException as e:
                                   <div id='responses-ehrStatusGetAtTime-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested EHR_STATUS is successfully retrieved.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_EHR_STATUS"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/EhrStatus"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -12192,7 +12634,24 @@ except ApiException as e:
                                   <div id='responses-ehrStatusGetByVersionId-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested EHR_STATUS is successfully retrieved.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_EHR_STATUS"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/EhrStatus"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -12711,7 +13170,24 @@ The response will contain the entire resource when the &#x60;Prefer&#x60; header
                                   <div id='responses-ehrStatusUpdate-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the EHR_STATUS is successfully updated, and the updated resource is returned in the body when `Prefer` header value is `return=representation`.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_EHR_STATUS"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/EhrStatus"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -13118,7 +13594,16 @@ except ApiException as e:
                                   <div id='responses-versionedEhrStatusGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested VERSIONED_EHR_STATUS is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/VersionedEhrStatus"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -13425,7 +13910,16 @@ except ApiException as e:
                                   <div id='responses-versionedEhrStatusRevisionHistory-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested REVISION_HISTORY is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/RevisionHistory"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -13782,7 +14276,24 @@ except ApiException as e:
                                   <div id='responses-versionedEhrStatusVersionGetAtTime-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested VERSION is successfully retrieved.\n",
+  "headers" : {
+    "ETag" : {
+      "$ref" : "#/components/headers/ETag_VERSION"
+    },
+    "Location" : {
+      "$ref" : "#/components/headers/Location_VERSIONED_EHR_STATUS_VERSION"
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Version"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -14160,7 +14671,16 @@ except ApiException as e:
                                   <div id='responses-versionedEhrStatusVersionGetById-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "`200 OK` is returned when the requested VERSION is successfully retrieved.\n",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Version"
+      }
+    }
+  }
+};
                                         var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);

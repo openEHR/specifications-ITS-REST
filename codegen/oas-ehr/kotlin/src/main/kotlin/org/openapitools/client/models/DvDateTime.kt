@@ -15,24 +15,10 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.DataValue
-import org.openapitools.client.models.DvBoolean
-import org.openapitools.client.models.DvCodedText
-import org.openapitools.client.models.DvCount
+import org.openapitools.client.models.DvDate
 import org.openapitools.client.models.DvDateTime
-import org.openapitools.client.models.DvDuration
-import org.openapitools.client.models.DvEhrUri
-import org.openapitools.client.models.DvIdentifier
-import org.openapitools.client.models.DvInterval
-import org.openapitools.client.models.DvIntervalOfDateTime
-import org.openapitools.client.models.DvMultimedia
-import org.openapitools.client.models.DvOrdinal
-import org.openapitools.client.models.DvParsable
-import org.openapitools.client.models.DvProportion
-import org.openapitools.client.models.DvQuantity
-import org.openapitools.client.models.DvScale
-import org.openapitools.client.models.DvText
-import org.openapitools.client.models.DvUri
+import org.openapitools.client.models.DvTemporal
+import org.openapitools.client.models.DvTime
 
 import com.squareup.moshi.Json
 
@@ -43,7 +29,7 @@ import com.squareup.moshi.Json
  */
 
 
-interface DvDateTime : DataValue {
+interface DvDateTime : DvTemporal {
 
     @Json(name = "value")
     val `value`: java.time.OffsetDateTime

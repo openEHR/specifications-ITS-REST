@@ -11,6 +11,7 @@ import org.openapitools.model.DvAmount;
 import org.openapitools.model.DvBoolean;
 import org.openapitools.model.DvCodedText;
 import org.openapitools.model.DvCount;
+import org.openapitools.model.DvDate;
 import org.openapitools.model.DvDateTime;
 import org.openapitools.model.DvDuration;
 import org.openapitools.model.DvEhrUri;
@@ -26,7 +27,10 @@ import org.openapitools.model.DvProportion;
 import org.openapitools.model.DvQuantified;
 import org.openapitools.model.DvQuantity;
 import org.openapitools.model.DvScale;
+import org.openapitools.model.DvState;
+import org.openapitools.model.DvTemporal;
 import org.openapitools.model.DvText;
+import org.openapitools.model.DvTime;
 import org.openapitools.model.DvUri;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -52,9 +56,11 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = DvBoolean.class, name = "DV_BOOLEAN"),
   @JsonSubTypes.Type(value = DvCodedText.class, name = "DV_CODED_TEXT"),
   @JsonSubTypes.Type(value = DvCount.class, name = "DV_COUNT"),
+  @JsonSubTypes.Type(value = DvDate.class, name = "DV_DATE"),
   @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_DATE_TIME"),
   @JsonSubTypes.Type(value = DvDuration.class, name = "DV_DURATION"),
   @JsonSubTypes.Type(value = DvEhrUri.class, name = "DV_EHR_URI"),
+  @JsonSubTypes.Type(value = DvEncapsulated.class, name = "DV_ENCAPSULATED"),
   @JsonSubTypes.Type(value = DvIdentifier.class, name = "DV_IDENTIFIER"),
   @JsonSubTypes.Type(value = DvInterval.class, name = "DV_INTERVAL"),
   @JsonSubTypes.Type(value = DvIntervalOfDateTime.class, name = "DV_INTERVAL_of_DATE_TIME"),
@@ -66,12 +72,16 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = DvQuantified.class, name = "DV_QUANTIFIED"),
   @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_QUANTITY"),
   @JsonSubTypes.Type(value = DvScale.class, name = "DV_SCALE"),
+  @JsonSubTypes.Type(value = DvState.class, name = "DV_STATE"),
+  @JsonSubTypes.Type(value = DvTemporal.class, name = "DV_TEMPORAL"),
   @JsonSubTypes.Type(value = DvText.class, name = "DV_TEXT"),
+  @JsonSubTypes.Type(value = DvTime.class, name = "DV_TIME"),
   @JsonSubTypes.Type(value = DvUri.class, name = "DV_URI"),
   @JsonSubTypes.Type(value = DvAmount.class, name = "DvAmount"),
   @JsonSubTypes.Type(value = DvBoolean.class, name = "DvBoolean"),
   @JsonSubTypes.Type(value = DvCodedText.class, name = "DvCodedText"),
   @JsonSubTypes.Type(value = DvCount.class, name = "DvCount"),
+  @JsonSubTypes.Type(value = DvDate.class, name = "DvDate"),
   @JsonSubTypes.Type(value = DvDateTime.class, name = "DvDateTime"),
   @JsonSubTypes.Type(value = DvDuration.class, name = "DvDuration"),
   @JsonSubTypes.Type(value = DvEhrUri.class, name = "DvEhrUri"),
@@ -87,7 +97,10 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = DvQuantified.class, name = "DvQuantified"),
   @JsonSubTypes.Type(value = DvQuantity.class, name = "DvQuantity"),
   @JsonSubTypes.Type(value = DvScale.class, name = "DvScale"),
+  @JsonSubTypes.Type(value = DvState.class, name = "DvState"),
+  @JsonSubTypes.Type(value = DvTemporal.class, name = "DvTemporal"),
   @JsonSubTypes.Type(value = DvText.class, name = "DvText"),
+  @JsonSubTypes.Type(value = DvTime.class, name = "DvTime"),
   @JsonSubTypes.Type(value = DvUri.class, name = "DvUri")
 })
 

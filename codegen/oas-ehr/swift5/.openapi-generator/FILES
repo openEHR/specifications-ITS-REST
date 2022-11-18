@@ -36,6 +36,7 @@ OpenAPIClient/Classes/OpenAPIs/Models/DvAmount.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvBoolean.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvCodedText.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvCount.swift
+OpenAPIClient/Classes/OpenAPIs/Models/DvDate.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvDateTime.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvDuration.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvEhrUri.swift
@@ -51,7 +52,10 @@ OpenAPIClient/Classes/OpenAPIs/Models/DvProportion.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvQuantified.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvQuantity.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvScale.swift
+OpenAPIClient/Classes/OpenAPIs/Models/DvState.swift
+OpenAPIClient/Classes/OpenAPIs/Models/DvTemporal.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvText.swift
+OpenAPIClient/Classes/OpenAPIs/Models/DvTime.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DvUri.swift
 OpenAPIClient/Classes/OpenAPIs/Models/Ehr.swift
 OpenAPIClient/Classes/OpenAPIs/Models/EhrStatus.swift
@@ -96,6 +100,7 @@ OpenAPIClient/Classes/OpenAPIs/Models/ReferenceRange.swift
 OpenAPIClient/Classes/OpenAPIs/Models/RevisionHistory.swift
 OpenAPIClient/Classes/OpenAPIs/Models/RevisionHistoryItem.swift
 OpenAPIClient/Classes/OpenAPIs/Models/TemplateId.swift
+OpenAPIClient/Classes/OpenAPIs/Models/TermMapping.swift
 OpenAPIClient/Classes/OpenAPIs/Models/TerminologyCode.swift
 OpenAPIClient/Classes/OpenAPIs/Models/TerminologyId.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UidBasedId.swift
@@ -135,6 +140,7 @@ docs/DvAmount.md
 docs/DvBoolean.md
 docs/DvCodedText.md
 docs/DvCount.md
+docs/DvDate.md
 docs/DvDateTime.md
 docs/DvDuration.md
 docs/DvEhrUri.md
@@ -150,7 +156,10 @@ docs/DvProportion.md
 docs/DvQuantified.md
 docs/DvQuantity.md
 docs/DvScale.md
+docs/DvState.md
+docs/DvTemporal.md
 docs/DvText.md
+docs/DvTime.md
 docs/DvUri.md
 docs/EHRAPI.md
 docs/EHRSTATUSAPI.md
@@ -197,6 +206,7 @@ docs/ReferenceRange.md
 docs/RevisionHistory.md
 docs/RevisionHistoryItem.md
 docs/TemplateId.md
+docs/TermMapping.md
 docs/TerminologyCode.md
 docs/TerminologyId.md
 docs/UidBasedId.md

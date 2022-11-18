@@ -7,9 +7,10 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** |  | [optional] [default to "DV_TEXT"]
 **Value** | **string** |  | 
 **Hyperlink** | Pointer to [**DvUri**](DvUri.md) |  | [optional] 
+**Formatting** | Pointer to **string** |  | [optional] 
+**Mappings** | Pointer to [**[]TermMapping**](TermMapping.md) |  | [optional] 
 **Language** | Pointer to [**CodePhrase**](CodePhrase.md) |  | [optional] 
 **Encoding** | Pointer to [**CodePhrase**](CodePhrase.md) |  | [optional] 
-**Formatting** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -100,6 +101,56 @@ SetHyperlink sets Hyperlink field to given value.
 
 HasHyperlink returns a boolean if a field has been set.
 
+### GetFormatting
+
+`func (o *DvText) GetFormatting() string`
+
+GetFormatting returns the Formatting field if non-nil, zero value otherwise.
+
+### GetFormattingOk
+
+`func (o *DvText) GetFormattingOk() (*string, bool)`
+
+GetFormattingOk returns a tuple with the Formatting field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFormatting
+
+`func (o *DvText) SetFormatting(v string)`
+
+SetFormatting sets Formatting field to given value.
+
+### HasFormatting
+
+`func (o *DvText) HasFormatting() bool`
+
+HasFormatting returns a boolean if a field has been set.
+
+### GetMappings
+
+`func (o *DvText) GetMappings() []TermMapping`
+
+GetMappings returns the Mappings field if non-nil, zero value otherwise.
+
+### GetMappingsOk
+
+`func (o *DvText) GetMappingsOk() (*[]TermMapping, bool)`
+
+GetMappingsOk returns a tuple with the Mappings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMappings
+
+`func (o *DvText) SetMappings(v []TermMapping)`
+
+SetMappings sets Mappings field to given value.
+
+### HasMappings
+
+`func (o *DvText) HasMappings() bool`
+
+HasMappings returns a boolean if a field has been set.
+
 ### GetLanguage
 
 `func (o *DvText) GetLanguage() CodePhrase`
@@ -149,31 +200,6 @@ SetEncoding sets Encoding field to given value.
 `func (o *DvText) HasEncoding() bool`
 
 HasEncoding returns a boolean if a field has been set.
-
-### GetFormatting
-
-`func (o *DvText) GetFormatting() string`
-
-GetFormatting returns the Formatting field if non-nil, zero value otherwise.
-
-### GetFormattingOk
-
-`func (o *DvText) GetFormattingOk() (*string, bool)`
-
-GetFormattingOk returns a tuple with the Formatting field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFormatting
-
-`func (o *DvText) SetFormatting(v string)`
-
-SetFormatting sets Formatting field to given value.
-
-### HasFormatting
-
-`func (o *DvText) HasFormatting() bool`
-
-HasFormatting returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

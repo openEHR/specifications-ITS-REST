@@ -29,6 +29,7 @@ docs/Model/DvAmount.md
 docs/Model/DvBoolean.md
 docs/Model/DvCodedText.md
 docs/Model/DvCount.md
+docs/Model/DvDate.md
 docs/Model/DvDateTime.md
 docs/Model/DvDuration.md
 docs/Model/DvEhrUri.md
@@ -44,7 +45,10 @@ docs/Model/DvProportion.md
 docs/Model/DvQuantified.md
 docs/Model/DvQuantity.md
 docs/Model/DvScale.md
+docs/Model/DvState.md
+docs/Model/DvTemporal.md
 docs/Model/DvText.md
+docs/Model/DvTime.md
 docs/Model/DvUri.md
 docs/Model/Ehr.md
 docs/Model/EhrStatus.md
@@ -89,6 +93,7 @@ docs/Model/ReferenceRange.md
 docs/Model/RevisionHistory.md
 docs/Model/RevisionHistoryItem.md
 docs/Model/TemplateId.md
+docs/Model/TermMapping.md
 docs/Model/TerminologyCode.md
 docs/Model/TerminologyId.md
 docs/Model/UidBasedId.md
@@ -129,6 +134,7 @@ lib/Model/DvAmount.php
 lib/Model/DvBoolean.php
 lib/Model/DvCodedText.php
 lib/Model/DvCount.php
+lib/Model/DvDate.php
 lib/Model/DvDateTime.php
 lib/Model/DvDuration.php
 lib/Model/DvEhrUri.php
@@ -144,7 +150,10 @@ lib/Model/DvProportion.php
 lib/Model/DvQuantified.php
 lib/Model/DvQuantity.php
 lib/Model/DvScale.php
+lib/Model/DvState.php
+lib/Model/DvTemporal.php
 lib/Model/DvText.php
+lib/Model/DvTime.php
 lib/Model/DvUri.php
 lib/Model/Ehr.php
 lib/Model/EhrStatus.php
@@ -190,6 +199,7 @@ lib/Model/ReferenceRange.php
 lib/Model/RevisionHistory.php
 lib/Model/RevisionHistoryItem.php
 lib/Model/TemplateId.php
+lib/Model/TermMapping.php
 lib/Model/TerminologyCode.php
 lib/Model/TerminologyId.php
 lib/Model/UidBasedId.php
@@ -228,6 +238,7 @@ test/Model/DvAmountTest.php
 test/Model/DvBooleanTest.php
 test/Model/DvCodedTextTest.php
 test/Model/DvCountTest.php
+test/Model/DvDateTest.php
 test/Model/DvDateTimeTest.php
 test/Model/DvDurationTest.php
 test/Model/DvEhrUriTest.php
@@ -243,7 +254,10 @@ test/Model/DvProportionTest.php
 test/Model/DvQuantifiedTest.php
 test/Model/DvQuantityTest.php
 test/Model/DvScaleTest.php
+test/Model/DvStateTest.php
+test/Model/DvTemporalTest.php
 test/Model/DvTextTest.php
+test/Model/DvTimeTest.php
 test/Model/DvUriTest.php
 test/Model/EhrStatusTest.php
 test/Model/EhrTest.php
@@ -288,6 +302,7 @@ test/Model/ReferenceRangeTest.php
 test/Model/RevisionHistoryItemTest.php
 test/Model/RevisionHistoryTest.php
 test/Model/TemplateIdTest.php
+test/Model/TermMappingTest.php
 test/Model/TerminologyCodeTest.php
 test/Model/TerminologyIdTest.php
 test/Model/UidBasedIdTest.php

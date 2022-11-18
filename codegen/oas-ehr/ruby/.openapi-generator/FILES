@@ -30,6 +30,7 @@ docs/DvAmount.md
 docs/DvBoolean.md
 docs/DvCodedText.md
 docs/DvCount.md
+docs/DvDate.md
 docs/DvDateTime.md
 docs/DvDuration.md
 docs/DvEhrUri.md
@@ -45,7 +46,10 @@ docs/DvProportion.md
 docs/DvQuantified.md
 docs/DvQuantity.md
 docs/DvScale.md
+docs/DvState.md
+docs/DvTemporal.md
 docs/DvText.md
+docs/DvTime.md
 docs/DvUri.md
 docs/EHRApi.md
 docs/EHRSTATUSApi.md
@@ -92,6 +96,7 @@ docs/ReferenceRange.md
 docs/RevisionHistory.md
 docs/RevisionHistoryItem.md
 docs/TemplateId.md
+docs/TermMapping.md
 docs/TerminologyCode.md
 docs/TerminologyId.md
 docs/UidBasedId.md
@@ -133,6 +138,7 @@ lib/openapi_client/models/dv_amount.rb
 lib/openapi_client/models/dv_boolean.rb
 lib/openapi_client/models/dv_coded_text.rb
 lib/openapi_client/models/dv_count.rb
+lib/openapi_client/models/dv_date.rb
 lib/openapi_client/models/dv_date_time.rb
 lib/openapi_client/models/dv_duration.rb
 lib/openapi_client/models/dv_ehr_uri.rb
@@ -148,7 +154,10 @@ lib/openapi_client/models/dv_proportion.rb
 lib/openapi_client/models/dv_quantified.rb
 lib/openapi_client/models/dv_quantity.rb
 lib/openapi_client/models/dv_scale.rb
+lib/openapi_client/models/dv_state.rb
+lib/openapi_client/models/dv_temporal.rb
 lib/openapi_client/models/dv_text.rb
+lib/openapi_client/models/dv_time.rb
 lib/openapi_client/models/dv_uri.rb
 lib/openapi_client/models/ehr.rb
 lib/openapi_client/models/ehr_status.rb
@@ -193,6 +202,7 @@ lib/openapi_client/models/reference_range.rb
 lib/openapi_client/models/revision_history.rb
 lib/openapi_client/models/revision_history_item.rb
 lib/openapi_client/models/template_id.rb
+lib/openapi_client/models/term_mapping.rb
 lib/openapi_client/models/terminology_code.rb
 lib/openapi_client/models/terminology_id.rb
 lib/openapi_client/models/uid_based_id.rb
@@ -233,6 +243,7 @@ spec/models/dv_amount_spec.rb
 spec/models/dv_boolean_spec.rb
 spec/models/dv_coded_text_spec.rb
 spec/models/dv_count_spec.rb
+spec/models/dv_date_spec.rb
 spec/models/dv_date_time_spec.rb
 spec/models/dv_duration_spec.rb
 spec/models/dv_ehr_uri_spec.rb
@@ -248,7 +259,10 @@ spec/models/dv_proportion_spec.rb
 spec/models/dv_quantified_spec.rb
 spec/models/dv_quantity_spec.rb
 spec/models/dv_scale_spec.rb
+spec/models/dv_state_spec.rb
+spec/models/dv_temporal_spec.rb
 spec/models/dv_text_spec.rb
+spec/models/dv_time_spec.rb
 spec/models/dv_uri_spec.rb
 spec/models/ehr_spec.rb
 spec/models/ehr_status_spec.rb
@@ -293,6 +307,7 @@ spec/models/reference_range_spec.rb
 spec/models/revision_history_item_spec.rb
 spec/models/revision_history_spec.rb
 spec/models/template_id_spec.rb
+spec/models/term_mapping_spec.rb
 spec/models/terminology_code_spec.rb
 spec/models/terminology_id_spec.rb
 spec/models/uid_based_id_spec.rb

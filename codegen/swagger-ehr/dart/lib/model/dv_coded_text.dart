@@ -8,11 +8,13 @@ class DvCodedText {
 
   DvUri hyperlink = null;
 
+  String formatting = null;
+
+  List<TermMapping> mappings = [];
+
   CodePhrase language = null;
 
   CodePhrase encoding = null;
-
-  String formatting = null;
 
   CodePhrase definingCode = null;
 
@@ -20,7 +22,7 @@ class DvCodedText {
 
   @override
   String toString() {
-    return 'DvCodedText[type=$type, value=$value, hyperlink=$hyperlink, language=$language, encoding=$encoding, formatting=$formatting, definingCode=$definingCode, ]';
+    return 'DvCodedText[type=$type, value=$value, hyperlink=$hyperlink, formatting=$formatting, mappings=$mappings, language=$language, encoding=$encoding, definingCode=$definingCode, ]';
   }
 
   DvCodedText.fromJson(Map<String, dynamic> json) {
@@ -28,9 +30,10 @@ class DvCodedText {
     type = json['_type'];
     value = json['value'];
     hyperlink = new DvUri.fromJson(json['hyperlink']);
+    formatting = json['formatting'];
+    mappings = TermMapping.listFromJson(json['mappings']);
     language = new CodePhrase.fromJson(json['language']);
     encoding = new CodePhrase.fromJson(json['encoding']);
-    formatting = json['formatting'];
     definingCode = new CodePhrase.fromJson(json['defining_code']);
   }
 
@@ -39,9 +42,10 @@ class DvCodedText {
       '_type': type,
       'value': value,
       'hyperlink': hyperlink,
+      'formatting': formatting,
+      'mappings': mappings,
       'language': language,
       'encoding': encoding,
-      'formatting': formatting,
       'defining_code': definingCode
      };
   }

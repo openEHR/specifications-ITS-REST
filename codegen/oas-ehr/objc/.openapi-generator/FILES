@@ -73,6 +73,8 @@ OpenAPIClient/Model/OAIDvCodedText.h
 OpenAPIClient/Model/OAIDvCodedText.m
 OpenAPIClient/Model/OAIDvCount.h
 OpenAPIClient/Model/OAIDvCount.m
+OpenAPIClient/Model/OAIDvDate.h
+OpenAPIClient/Model/OAIDvDate.m
 OpenAPIClient/Model/OAIDvDateTime.h
 OpenAPIClient/Model/OAIDvDateTime.m
 OpenAPIClient/Model/OAIDvDuration.h
@@ -103,8 +105,14 @@ OpenAPIClient/Model/OAIDvQuantity.h
 OpenAPIClient/Model/OAIDvQuantity.m
 OpenAPIClient/Model/OAIDvScale.h
 OpenAPIClient/Model/OAIDvScale.m
+OpenAPIClient/Model/OAIDvState.h
+OpenAPIClient/Model/OAIDvState.m
+OpenAPIClient/Model/OAIDvTemporal.h
+OpenAPIClient/Model/OAIDvTemporal.m
 OpenAPIClient/Model/OAIDvText.h
 OpenAPIClient/Model/OAIDvText.m
+OpenAPIClient/Model/OAIDvTime.h
+OpenAPIClient/Model/OAIDvTime.m
 OpenAPIClient/Model/OAIDvUri.h
 OpenAPIClient/Model/OAIDvUri.m
 OpenAPIClient/Model/OAIEhr.h
@@ -193,6 +201,8 @@ OpenAPIClient/Model/OAIRevisionHistoryItem.h
 OpenAPIClient/Model/OAIRevisionHistoryItem.m
 OpenAPIClient/Model/OAITemplateId.h
 OpenAPIClient/Model/OAITemplateId.m
+OpenAPIClient/Model/OAITermMapping.h
+OpenAPIClient/Model/OAITermMapping.m
 OpenAPIClient/Model/OAITerminologyCode.h
 OpenAPIClient/Model/OAITerminologyCode.m
 OpenAPIClient/Model/OAITerminologyId.h
@@ -239,6 +249,7 @@ docs/OAIDvAmount.md
 docs/OAIDvBoolean.md
 docs/OAIDvCodedText.md
 docs/OAIDvCount.md
+docs/OAIDvDate.md
 docs/OAIDvDateTime.md
 docs/OAIDvDuration.md
 docs/OAIDvEhrUri.md
@@ -254,7 +265,10 @@ docs/OAIDvProportion.md
 docs/OAIDvQuantified.md
 docs/OAIDvQuantity.md
 docs/OAIDvScale.md
+docs/OAIDvState.md
+docs/OAIDvTemporal.md
 docs/OAIDvText.md
+docs/OAIDvTime.md
 docs/OAIDvUri.md
 docs/OAIEHRApi.md
 docs/OAIEHRSTATUSApi.md
@@ -301,6 +315,7 @@ docs/OAIReferenceRange.md
 docs/OAIRevisionHistory.md
 docs/OAIRevisionHistoryItem.md
 docs/OAITemplateId.md
+docs/OAITermMapping.md
 docs/OAITerminologyCode.md
 docs/OAITerminologyId.md
 docs/OAIUidBasedId.md

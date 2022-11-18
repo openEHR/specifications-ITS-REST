@@ -20,6 +20,7 @@ export * from './dvAmount';
 export * from './dvBoolean';
 export * from './dvCodedText';
 export * from './dvCount';
+export * from './dvDate';
 export * from './dvDateTime';
 export * from './dvDuration';
 export * from './dvEhrUri';
@@ -35,7 +36,10 @@ export * from './dvProportion';
 export * from './dvQuantified';
 export * from './dvQuantity';
 export * from './dvScale';
+export * from './dvState';
+export * from './dvTemporal';
 export * from './dvText';
+export * from './dvTime';
 export * from './dvUri';
 export * from './ehr';
 export * from './ehrStatus';
@@ -80,6 +84,7 @@ export * from './referenceRange';
 export * from './revisionHistory';
 export * from './revisionHistoryItem';
 export * from './templateId';
+export * from './termMapping';
 export * from './terminologyCode';
 export * from './terminologyId';
 export * from './uidBasedId';
@@ -125,6 +130,7 @@ import { DvAmount } from './dvAmount';
 import { DvBoolean } from './dvBoolean';
 import { DvCodedText } from './dvCodedText';
 import { DvCount } from './dvCount';
+import { DvDate } from './dvDate';
 import { DvDateTime } from './dvDateTime';
 import { DvDuration } from './dvDuration';
 import { DvEhrUri } from './dvEhrUri';
@@ -140,7 +146,10 @@ import { DvProportion } from './dvProportion';
 import { DvQuantified } from './dvQuantified';
 import { DvQuantity } from './dvQuantity';
 import { DvScale } from './dvScale';
+import { DvState } from './dvState';
+import { DvTemporal } from './dvTemporal';
 import { DvText } from './dvText';
+import { DvTime } from './dvTime';
 import { DvUri } from './dvUri';
 import { Ehr } from './ehr';
 import { EhrStatus } from './ehrStatus';
@@ -185,6 +194,7 @@ import { ReferenceRange } from './referenceRange';
 import { RevisionHistory } from './revisionHistory';
 import { RevisionHistoryItem } from './revisionHistoryItem';
 import { TemplateId } from './templateId';
+import { TermMapping } from './termMapping';
 import { TerminologyCode } from './terminologyCode';
 import { TerminologyId } from './terminologyId';
 import { UidBasedId } from './uidBasedId';
@@ -233,6 +243,7 @@ let typeMap: {[index: string]: any} = {
     "DvBoolean": DvBoolean,
     "DvCodedText": DvCodedText,
     "DvCount": DvCount,
+    "DvDate": DvDate,
     "DvDateTime": DvDateTime,
     "DvDuration": DvDuration,
     "DvEhrUri": DvEhrUri,
@@ -248,7 +259,10 @@ let typeMap: {[index: string]: any} = {
     "DvQuantified": DvQuantified,
     "DvQuantity": DvQuantity,
     "DvScale": DvScale,
+    "DvState": DvState,
+    "DvTemporal": DvTemporal,
     "DvText": DvText,
+    "DvTime": DvTime,
     "DvUri": DvUri,
     "Ehr": Ehr,
     "EhrStatus": EhrStatus,
@@ -293,6 +307,7 @@ let typeMap: {[index: string]: any} = {
     "RevisionHistory": RevisionHistory,
     "RevisionHistoryItem": RevisionHistoryItem,
     "TemplateId": TemplateId,
+    "TermMapping": TermMapping,
     "TerminologyCode": TerminologyCode,
     "TerminologyId": TerminologyId,
     "UidBasedId": UidBasedId,

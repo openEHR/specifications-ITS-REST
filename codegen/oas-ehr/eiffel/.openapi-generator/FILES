@@ -25,6 +25,7 @@ docs/DV_AMOUNT.md
 docs/DV_BOOLEAN.md
 docs/DV_CODED_TEXT.md
 docs/DV_COUNT.md
+docs/DV_DATE.md
 docs/DV_DATE_TIME.md
 docs/DV_DURATION.md
 docs/DV_EHR_URI.md
@@ -40,7 +41,10 @@ docs/DV_PROPORTION.md
 docs/DV_QUANTIFIED.md
 docs/DV_QUANTITY.md
 docs/DV_SCALE.md
+docs/DV_STATE.md
+docs/DV_TEMPORAL.md
 docs/DV_TEXT.md
+docs/DV_TIME.md
 docs/DV_URI.md
 docs/EHR.md
 docs/EHRSTATUS_API.md
@@ -89,6 +93,7 @@ docs/REVISION_HISTORY_ITEM.md
 docs/TEMPLATE_ID.md
 docs/TERMINOLOGY_CODE.md
 docs/TERMINOLOGY_ID.md
+docs/TERM_MAPPING.md
 docs/UID_BASED_ID.md
 docs/UPDATE_ATTESTATION.md
 docs/UPDATE_AUDIT.md
@@ -124,6 +129,7 @@ src/domain/dv_amount.e
 src/domain/dv_boolean.e
 src/domain/dv_coded_text.e
 src/domain/dv_count.e
+src/domain/dv_date.e
 src/domain/dv_date_time.e
 src/domain/dv_duration.e
 src/domain/dv_ehr_uri.e
@@ -139,7 +145,10 @@ src/domain/dv_proportion.e
 src/domain/dv_quantified.e
 src/domain/dv_quantity.e
 src/domain/dv_scale.e
+src/domain/dv_state.e
+src/domain/dv_temporal.e
 src/domain/dv_text.e
+src/domain/dv_time.e
 src/domain/dv_uri.e
 src/domain/ehr.e
 src/domain/ehr_status.e
@@ -184,6 +193,7 @@ src/domain/reference_range.e
 src/domain/revision_history.e
 src/domain/revision_history_item.e
 src/domain/template_id.e
+src/domain/term_mapping.e
 src/domain/terminology_code.e
 src/domain/terminology_id.e
 src/domain/uid_based_id.e

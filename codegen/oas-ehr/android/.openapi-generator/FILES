@@ -25,6 +25,7 @@ docs/DvAmount.md
 docs/DvBoolean.md
 docs/DvCodedText.md
 docs/DvCount.md
+docs/DvDate.md
 docs/DvDateTime.md
 docs/DvDuration.md
 docs/DvEhrUri.md
@@ -40,7 +41,10 @@ docs/DvProportion.md
 docs/DvQuantified.md
 docs/DvQuantity.md
 docs/DvScale.md
+docs/DvState.md
+docs/DvTemporal.md
 docs/DvText.md
+docs/DvTime.md
 docs/DvUri.md
 docs/EHRApi.md
 docs/EHRSTATUSApi.md
@@ -87,6 +91,7 @@ docs/ReferenceRange.md
 docs/RevisionHistory.md
 docs/RevisionHistoryItem.md
 docs/TemplateId.md
+docs/TermMapping.md
 docs/TerminologyCode.md
 docs/TerminologyId.md
 docs/UidBasedId.md
@@ -137,6 +142,7 @@ src/main/java/org/openapitools/client/model/DvAmount.java
 src/main/java/org/openapitools/client/model/DvBoolean.java
 src/main/java/org/openapitools/client/model/DvCodedText.java
 src/main/java/org/openapitools/client/model/DvCount.java
+src/main/java/org/openapitools/client/model/DvDate.java
 src/main/java/org/openapitools/client/model/DvDateTime.java
 src/main/java/org/openapitools/client/model/DvDuration.java
 src/main/java/org/openapitools/client/model/DvEhrUri.java
@@ -152,7 +158,10 @@ src/main/java/org/openapitools/client/model/DvProportion.java
 src/main/java/org/openapitools/client/model/DvQuantified.java
 src/main/java/org/openapitools/client/model/DvQuantity.java
 src/main/java/org/openapitools/client/model/DvScale.java
+src/main/java/org/openapitools/client/model/DvState.java
+src/main/java/org/openapitools/client/model/DvTemporal.java
 src/main/java/org/openapitools/client/model/DvText.java
+src/main/java/org/openapitools/client/model/DvTime.java
 src/main/java/org/openapitools/client/model/DvUri.java
 src/main/java/org/openapitools/client/model/Ehr.java
 src/main/java/org/openapitools/client/model/EhrStatus.java
@@ -197,6 +206,7 @@ src/main/java/org/openapitools/client/model/ReferenceRange.java
 src/main/java/org/openapitools/client/model/RevisionHistory.java
 src/main/java/org/openapitools/client/model/RevisionHistoryItem.java
 src/main/java/org/openapitools/client/model/TemplateId.java
+src/main/java/org/openapitools/client/model/TermMapping.java
 src/main/java/org/openapitools/client/model/TerminologyCode.java
 src/main/java/org/openapitools/client/model/TerminologyId.java
 src/main/java/org/openapitools/client/model/UidBasedId.java

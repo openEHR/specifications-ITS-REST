@@ -26,6 +26,7 @@ doc/DvAmount.md
 doc/DvBoolean.md
 doc/DvCodedText.md
 doc/DvCount.md
+doc/DvDate.md
 doc/DvDateTime.md
 doc/DvDuration.md
 doc/DvEhrUri.md
@@ -41,7 +42,10 @@ doc/DvProportion.md
 doc/DvQuantified.md
 doc/DvQuantity.md
 doc/DvScale.md
+doc/DvState.md
+doc/DvTemporal.md
 doc/DvText.md
+doc/DvTime.md
 doc/DvUri.md
 doc/EHRApi.md
 doc/EHRSTATUSApi.md
@@ -88,6 +92,7 @@ doc/ReferenceRange.md
 doc/RevisionHistory.md
 doc/RevisionHistoryItem.md
 doc/TemplateId.md
+doc/TermMapping.md
 doc/TerminologyCode.md
 doc/TerminologyId.md
 doc/UidBasedId.md
@@ -134,6 +139,7 @@ lib/model/dv_amount.dart
 lib/model/dv_boolean.dart
 lib/model/dv_coded_text.dart
 lib/model/dv_count.dart
+lib/model/dv_date.dart
 lib/model/dv_date_time.dart
 lib/model/dv_duration.dart
 lib/model/dv_ehr_uri.dart
@@ -149,7 +155,10 @@ lib/model/dv_proportion.dart
 lib/model/dv_quantified.dart
 lib/model/dv_quantity.dart
 lib/model/dv_scale.dart
+lib/model/dv_state.dart
+lib/model/dv_temporal.dart
 lib/model/dv_text.dart
+lib/model/dv_time.dart
 lib/model/dv_uri.dart
 lib/model/ehr.dart
 lib/model/ehr_status.dart
@@ -194,6 +203,7 @@ lib/model/reference_range.dart
 lib/model/revision_history.dart
 lib/model/revision_history_item.dart
 lib/model/template_id.dart
+lib/model/term_mapping.dart
 lib/model/terminology_code.dart
 lib/model/terminology_id.dart
 lib/model/uid_based_id.dart
@@ -229,6 +239,7 @@ test/dv_amount_test.dart
 test/dv_boolean_test.dart
 test/dv_coded_text_test.dart
 test/dv_count_test.dart
+test/dv_date_test.dart
 test/dv_date_time_test.dart
 test/dv_duration_test.dart
 test/dv_ehr_uri_test.dart
@@ -244,7 +255,10 @@ test/dv_proportion_test.dart
 test/dv_quantified_test.dart
 test/dv_quantity_test.dart
 test/dv_scale_test.dart
+test/dv_state_test.dart
+test/dv_temporal_test.dart
 test/dv_text_test.dart
+test/dv_time_test.dart
 test/dv_uri_test.dart
 test/ehr_api_test.dart
 test/ehr_status_test.dart
@@ -291,6 +305,7 @@ test/reference_range_test.dart
 test/revision_history_item_test.dart
 test/revision_history_test.dart
 test/template_id_test.dart
+test/term_mapping_test.dart
 test/terminology_code_test.dart
 test/terminology_id_test.dart
 test/uid_based_id_test.dart

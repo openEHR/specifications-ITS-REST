@@ -26,6 +26,7 @@ docs/DvAmount.md
 docs/DvBoolean.md
 docs/DvCodedText.md
 docs/DvCount.md
+docs/DvDate.md
 docs/DvDateTime.md
 docs/DvDuration.md
 docs/DvEhrUri.md
@@ -41,7 +42,10 @@ docs/DvProportion.md
 docs/DvQuantified.md
 docs/DvQuantity.md
 docs/DvScale.md
+docs/DvState.md
+docs/DvTemporal.md
 docs/DvText.md
+docs/DvTime.md
 docs/DvUri.md
 docs/EHRApi.md
 docs/EHRSTATUSApi.md
@@ -88,6 +92,7 @@ docs/ReferenceRange.md
 docs/RevisionHistory.md
 docs/RevisionHistoryItem.md
 docs/TemplateId.md
+docs/TermMapping.md
 docs/TerminologyCode.md
 docs/TerminologyId.md
 docs/UidBasedId.md
@@ -128,6 +133,7 @@ lib/WWW/OpenAPIClient/Object/DvAmount.pm
 lib/WWW/OpenAPIClient/Object/DvBoolean.pm
 lib/WWW/OpenAPIClient/Object/DvCodedText.pm
 lib/WWW/OpenAPIClient/Object/DvCount.pm
+lib/WWW/OpenAPIClient/Object/DvDate.pm
 lib/WWW/OpenAPIClient/Object/DvDateTime.pm
 lib/WWW/OpenAPIClient/Object/DvDuration.pm
 lib/WWW/OpenAPIClient/Object/DvEhrUri.pm
@@ -143,7 +149,10 @@ lib/WWW/OpenAPIClient/Object/DvProportion.pm
 lib/WWW/OpenAPIClient/Object/DvQuantified.pm
 lib/WWW/OpenAPIClient/Object/DvQuantity.pm
 lib/WWW/OpenAPIClient/Object/DvScale.pm
+lib/WWW/OpenAPIClient/Object/DvState.pm
+lib/WWW/OpenAPIClient/Object/DvTemporal.pm
 lib/WWW/OpenAPIClient/Object/DvText.pm
+lib/WWW/OpenAPIClient/Object/DvTime.pm
 lib/WWW/OpenAPIClient/Object/DvUri.pm
 lib/WWW/OpenAPIClient/Object/Ehr.pm
 lib/WWW/OpenAPIClient/Object/EhrStatus.pm
@@ -188,6 +197,7 @@ lib/WWW/OpenAPIClient/Object/ReferenceRange.pm
 lib/WWW/OpenAPIClient/Object/RevisionHistory.pm
 lib/WWW/OpenAPIClient/Object/RevisionHistoryItem.pm
 lib/WWW/OpenAPIClient/Object/TemplateId.pm
+lib/WWW/OpenAPIClient/Object/TermMapping.pm
 lib/WWW/OpenAPIClient/Object/TerminologyCode.pm
 lib/WWW/OpenAPIClient/Object/TerminologyId.pm
 lib/WWW/OpenAPIClient/Object/UidBasedId.pm
@@ -224,6 +234,7 @@ t/DvAmountTest.t
 t/DvBooleanTest.t
 t/DvCodedTextTest.t
 t/DvCountTest.t
+t/DvDateTest.t
 t/DvDateTimeTest.t
 t/DvDurationTest.t
 t/DvEhrUriTest.t
@@ -239,7 +250,10 @@ t/DvProportionTest.t
 t/DvQuantifiedTest.t
 t/DvQuantityTest.t
 t/DvScaleTest.t
+t/DvStateTest.t
+t/DvTemporalTest.t
 t/DvTextTest.t
+t/DvTimeTest.t
 t/DvUriTest.t
 t/EHRApiTest.t
 t/EHRSTATUSApiTest.t
@@ -286,6 +300,7 @@ t/ReferenceRangeTest.t
 t/RevisionHistoryItemTest.t
 t/RevisionHistoryTest.t
 t/TemplateIdTest.t
+t/TermMappingTest.t
 t/TerminologyCodeTest.t
 t/TerminologyIdTest.t
 t/UidBasedIdTest.t

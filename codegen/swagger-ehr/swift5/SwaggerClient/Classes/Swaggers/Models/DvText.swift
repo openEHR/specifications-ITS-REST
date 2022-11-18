@@ -14,26 +14,29 @@ public struct DvText: Codable {
     public var type: String?
     public var value: String
     public var hyperlink: DvUri?
+    public var formatting: String?
+    public var mappings: [TermMapping]?
     public var language: CodePhrase?
     public var encoding: CodePhrase?
-    public var formatting: String?
 
-    public init(type: String? = nil, value: String, hyperlink: DvUri? = nil, language: CodePhrase? = nil, encoding: CodePhrase? = nil, formatting: String? = nil) {
+    public init(type: String? = nil, value: String, hyperlink: DvUri? = nil, formatting: String? = nil, mappings: [TermMapping]? = nil, language: CodePhrase? = nil, encoding: CodePhrase? = nil) {
         self.type = type
         self.value = value
         self.hyperlink = hyperlink
+        self.formatting = formatting
+        self.mappings = mappings
         self.language = language
         self.encoding = encoding
-        self.formatting = formatting
     }
 
     public enum CodingKeys: String, CodingKey { 
         case type = "_type"
         case value
         case hyperlink
+        case formatting
+        case mappings
         case language
         case encoding
-        case formatting
     }
 
 }

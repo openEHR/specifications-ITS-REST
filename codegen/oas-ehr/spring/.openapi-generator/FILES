@@ -28,6 +28,7 @@ src/main/java/org/openapitools/model/DvAmount.java
 src/main/java/org/openapitools/model/DvBoolean.java
 src/main/java/org/openapitools/model/DvCodedText.java
 src/main/java/org/openapitools/model/DvCount.java
+src/main/java/org/openapitools/model/DvDate.java
 src/main/java/org/openapitools/model/DvDateTime.java
 src/main/java/org/openapitools/model/DvDuration.java
 src/main/java/org/openapitools/model/DvEhrUri.java
@@ -43,7 +44,10 @@ src/main/java/org/openapitools/model/DvProportion.java
 src/main/java/org/openapitools/model/DvQuantified.java
 src/main/java/org/openapitools/model/DvQuantity.java
 src/main/java/org/openapitools/model/DvScale.java
+src/main/java/org/openapitools/model/DvState.java
+src/main/java/org/openapitools/model/DvTemporal.java
 src/main/java/org/openapitools/model/DvText.java
+src/main/java/org/openapitools/model/DvTime.java
 src/main/java/org/openapitools/model/DvUri.java
 src/main/java/org/openapitools/model/Ehr.java
 src/main/java/org/openapitools/model/EhrStatus.java
@@ -88,6 +92,7 @@ src/main/java/org/openapitools/model/ReferenceRange.java
 src/main/java/org/openapitools/model/RevisionHistory.java
 src/main/java/org/openapitools/model/RevisionHistoryItem.java
 src/main/java/org/openapitools/model/TemplateId.java
+src/main/java/org/openapitools/model/TermMapping.java
 src/main/java/org/openapitools/model/TerminologyCode.java
 src/main/java/org/openapitools/model/TerminologyId.java
 src/main/java/org/openapitools/model/UidBasedId.java

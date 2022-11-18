@@ -15,26 +15,29 @@ public struct DvText: Codable, JSONEncodable, Hashable {
     public var type: String? = "DV_TEXT"
     public var value: String
     public var hyperlink: DvUri?
+    public var formatting: String?
+    public var mappings: [TermMapping]?
     public var language: CodePhrase?
     public var encoding: CodePhrase?
-    public var formatting: String?
 
-    public init(type: String? = "DV_TEXT", value: String, hyperlink: DvUri? = nil, language: CodePhrase? = nil, encoding: CodePhrase? = nil, formatting: String? = nil) {
+    public init(type: String? = "DV_TEXT", value: String, hyperlink: DvUri? = nil, formatting: String? = nil, mappings: [TermMapping]? = nil, language: CodePhrase? = nil, encoding: CodePhrase? = nil) {
         self.type = type
         self.value = value
         self.hyperlink = hyperlink
+        self.formatting = formatting
+        self.mappings = mappings
         self.language = language
         self.encoding = encoding
-        self.formatting = formatting
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type = "_type"
         case value
         case hyperlink
+        case formatting
+        case mappings
         case language
         case encoding
-        case formatting
     }
 
     // Encodable protocol methods
@@ -44,9 +47,10 @@ public struct DvText: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encode(value, forKey: .value)
         try container.encodeIfPresent(hyperlink, forKey: .hyperlink)
+        try container.encodeIfPresent(formatting, forKey: .formatting)
+        try container.encodeIfPresent(mappings, forKey: .mappings)
         try container.encodeIfPresent(language, forKey: .language)
         try container.encodeIfPresent(encoding, forKey: .encoding)
-        try container.encodeIfPresent(formatting, forKey: .formatting)
     }
 }
 

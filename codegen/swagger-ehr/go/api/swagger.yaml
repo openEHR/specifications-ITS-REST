@@ -57,7 +57,7 @@ info:
         <tr>
             <td>5.1</td>
             <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
-                Migrate REST API specs to openAPI format</td>
+                Migrate REST API specs to OpenAPI Specification</td>
             <td>S Iancu</td>
             <td>14 Nov 2022</td>
         </tr>
@@ -192,7 +192,7 @@ info:
 
     ### Status
 
-    This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
+    This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
     The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
@@ -250,40 +250,53 @@ tags:
     Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
 - name: EHR_schema
   description: |
-    This is related to [EHR](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class).
+    This resource is formally specified in Reference Model as the [EHR](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class) class.
 
     <SchemaDefinition schemaRef="#/components/schemas/Ehr" />
   x-displayName: EHR
 - name: EHR_STATUS_schema
   description: |
-    This is related to [EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_status_class) and [VERSIONED_EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_ehr_status_class).
+    The following resources are formally specified in the Reference Model as [EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_status_class) and [VERSIONED_EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_ehr_status_class) classes.
+    <div class="mb-5"></div>
 
+    The `EHR_STATUS` resource:
     <SchemaDefinition schemaRef="#/components/schemas/EhrStatus" />
+
+    The `VERSIONED_EHR_STATUS` resource:
     <SchemaDefinition schemaRef="#/components/schemas/VersionedEhrStatus" />
   x-displayName: EHR_STATUS
 - name: COMPOSITION_schema
   description: |
-    This is related to [COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class) and [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class).
+    The following resources are formally specified in the Reference Model as [COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class) and [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class) classes.
+    <div class="mb-5"></div>
 
+    The `COMPOSITION` resource:
     <SchemaDefinition schemaRef="#/components/schemas/Composition" />
+
+    The abstract `CONTENT_ITEM` class, used in `COMPOSITION`:
+    <SchemaDefinition schemaRef="#/components/schemas/ContentItem" />
+
+    The abstract `ITEM_STRUCTURE` class, used in `CONTENT_ITEM`:
+    <SchemaDefinition schemaRef="#/components/schemas/ItemStructure" />
+
+    The `VERSIONED_COMPOSITION` resource:
     <SchemaDefinition schemaRef="#/components/schemas/VersionedComposition" />
   x-displayName: COMPOSITION
 - name: DIRECTORY_schema
   description: |
-    This is related to [directory](https://specifications.openehr.org/releases/RM/latest/ehr.html#_directory) [FOLDER](https://specifications.openehr.org/releases/RM/latest/common.html#_folder_class).
+    This resource is formally specified in Reference Model in the [directory](https://specifications.openehr.org/releases/RM/latest/ehr.html#_directory) section, using [FOLDER](https://specifications.openehr.org/releases/RM/latest/common.html#_folder_class) class.
 
     <SchemaDefinition schemaRef="#/components/schemas/Folder" />
   x-displayName: DIRECTORY
-- name: ITEM_STRUCTURE_schema
-  description: |
-    This is related to [ITEM_STRUCTURE](https://specifications.openehr.org/releases/RM/latest/data_structures.html#_item_structure_class).
-
-    <SchemaDefinition schemaRef="#/components/schemas/ItemStructure" />
-  x-displayName: ITEM_STRUCTURE
 - name: CONTRIBUTION_schema
   description: |
-    This is related to [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class).
+    The following resources are formally specified in the Reference Model as the [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) class.
+    <div class="mb-5"></div>
 
+    A new `CONTRIBUTION` to be committed:
+    <SchemaDefinition schemaRef="#/components/schemas/NewContribution" />
+
+    A retrieved `CONTRIBUTION`:
     <SchemaDefinition schemaRef="#/components/schemas/Contribution" />
   x-displayName: CONTRIBUTION
 paths:
@@ -1857,23 +1870,291 @@ components:
       discriminator:
         propertyName: _type
         mapping:
-          DV_TEXT: '#/components/schemas/DvText'
+          DV_AMOUNT: '#/components/schemas/DvAmount'
+          DV_BOOLEAN: '#/components/schemas/DvBoolean'
           DV_CODED_TEXT: '#/components/schemas/DvCodedText'
-          DV_URI: '#/components/schemas/DvUri'
-          DV_EHR_URI: '#/components/schemas/DvEhrUri'
-          DV_MULTIMEDIA: '#/components/schemas/DvMultimedia'
-          DV_PARSABLE: '#/components/schemas/DvParsable'
+          DV_COUNT: '#/components/schemas/DvCount'
+          DV_DATE: '#/components/schemas/DvDate'
           DV_DATE_TIME: '#/components/schemas/DvDateTime'
           DV_DURATION: '#/components/schemas/DvDuration'
+          DV_EHR_URI: '#/components/schemas/DvEhrUri'
+          DV_ENCAPSULATED: '#/components/schemas/DvEncapsulated'
+          DV_IDENTIFIER: '#/components/schemas/DvIdentifier'
           DV_INTERVAL: '#/components/schemas/DvInterval'
           DV_INTERVAL_of_DATE_TIME: '#/components/schemas/DvIntervalOfDateTime'
-          DV_IDENTIFIER: '#/components/schemas/DvIdentifier'
-          DV_BOOLEAN: '#/components/schemas/DvBoolean'
-          DV_QUANTITY: '#/components/schemas/DvQuantity'
+          DV_MULTIMEDIA: '#/components/schemas/DvMultimedia'
+          DV_ORDERED: '#/components/schemas/DvOrdered'
           DV_ORDINAL: '#/components/schemas/DvOrdinal'
-          DV_SCALE: '#/components/schemas/DvScale'
-          DV_COUNT: '#/components/schemas/DvCount'
+          DV_PARSABLE: '#/components/schemas/DvParsable'
           DV_PROPORTION: '#/components/schemas/DvProportion'
+          DV_QUANTIFIED: '#/components/schemas/DvQuantified'
+          DV_QUANTITY: '#/components/schemas/DvQuantity'
+          DV_SCALE: '#/components/schemas/DvScale'
+          DV_STATE: '#/components/schemas/DvState'
+          DV_TEMPORAL: '#/components/schemas/DvTemporal'
+          DV_TEXT: '#/components/schemas/DvText'
+          DV_TIME: '#/components/schemas/DvTime'
+          DV_URI: '#/components/schemas/DvUri'
+    CodePhrase:
+      title: CODE_PHRASE
+      required:
+      - code_string
+      - terminology_id
+      type: object
+      properties:
+        terminology_id:
+          $ref: '#/components/schemas/TerminologyId'
+        code_string:
+          type: string
+        preferred_term:
+          type: string
+      example:
+        terminology_id:
+          value: local
+        code_string: at0001
+    DvInterval:
+      title: DV_INTERVAL
+      required:
+      - lower_included
+      - lower_unbounded
+      - upper_included
+      - upper_unbounded
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_INTERVAL
+        lower_unbounded:
+          type: boolean
+        upper_unbounded:
+          type: boolean
+        lower_included:
+          type: boolean
+        upper_included:
+          type: boolean
+      discriminator:
+        propertyName: Type_
+        mapping:
+          DV_INTERVAL: '#/components/schemas/DvInterval'
+          DV_INTERVAL_of_DATE_TIME: '#/components/schemas/DvIntervalOfDateTime'
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      x-discriminator-value: DV_INTERVAL
+    DvUri:
+      title: DV_URI
+      required:
+      - value
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_URI
+        value:
+          type: string
+      discriminator:
+        propertyName: Type_
+        mapping:
+          DV_URI: '#/components/schemas/DvUri'
+          DV_EHR_URI: '#/components/schemas/DvEhrUri'
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      x-discriminator-value: DV_URI
+    DvEhrUri:
+      title: DV_EHR_URI
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_EHR_URI
+      example:
+        _type: DV_EHR_URI
+        value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
+      allOf:
+      - $ref: '#/components/schemas/DvUri'
+      x-discriminator-value: DV_EHR_URI
+    DvText:
+      title: DV_TEXT
+      required:
+      - value
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_TEXT
+        value:
+          type: string
+        hyperlink:
+          $ref: '#/components/schemas/DvUri'
+        formatting:
+          type: string
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/TermMapping'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        encoding:
+          $ref: '#/components/schemas/CodePhrase'
+      discriminator:
+        propertyName: Type_
+        mapping:
+          DV_TEXT: '#/components/schemas/DvText'
+          DV_CODED_TEXT: '#/components/schemas/DvCodedText'
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      x-discriminator-value: DV_TEXT
+    DvCodedText:
+      title: DV_CODED_TEXT
+      required:
+      - defining_code
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_CODED_TEXT
+        defining_code:
+          $ref: '#/components/schemas/CodePhrase'
+      example:
+        value: Coded text value
+        defining_code:
+          terminology_id:
+            value: local
+          code_string: at0001
+      allOf:
+      - $ref: '#/components/schemas/DvText'
+      x-discriminator-value: DV_CODED_TEXT
+    TermMapping:
+      title: TERM_MAPPING
+      required:
+      - match
+      - target
+      type: object
+      properties:
+        match:
+          pattern: "/^[><=?]$/"
+          type: string
+        purpose:
+          $ref: '#/components/schemas/DvCodedText'
+        target:
+          $ref: '#/components/schemas/CodePhrase'
+    ReferenceRange:
+      title: REFERENCE_RANGE
+      required:
+      - meaning
+      - range
+      type: object
+      properties:
+        meaning:
+          $ref: '#/components/schemas/DvText'
+        range:
+          $ref: '#/components/schemas/DvInterval'
+    DvOrdered:
+      title: DV_ORDERED
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_ORDERED
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+      discriminator:
+        propertyName: Type_
+        mapping:
+          DV_AMOUNT: '#/components/schemas/DvAmount'
+          DV_COUNT: '#/components/schemas/DvCount'
+          DV_DATE: '#/components/schemas/DvDate'
+          DV_DATE_TIME: '#/components/schemas/DvDateTime'
+          DV_DURATION: '#/components/schemas/DvDuration'
+          DV_ORDINAL: '#/components/schemas/DvOrdinal'
+          DV_PROPORTION: '#/components/schemas/DvProportion'
+          DV_QUANTIFIED: '#/components/schemas/DvQuantified'
+          DV_QUANTITY: '#/components/schemas/DvQuantity'
+          DV_SCALE: '#/components/schemas/DvScale'
+          DV_TEMPORAL: '#/components/schemas/DvTemporal'
+          DV_TIME: '#/components/schemas/DvTime'
+      allOf:
+      - $ref: '#/components/schemas/DataValue'
+      x-discriminator-value: DV_ORDERED
+    DvQuantified:
+      title: DV_QUANTIFIED
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_QUANTIFIED
+        magnitude_status:
+          type: string
+          default: =
+      discriminator:
+        propertyName: Type_
+        mapping:
+          DV_AMOUNT: '#/components/schemas/DvAmount'
+          DV_COUNT: '#/components/schemas/DvCount'
+          DV_DATE: '#/components/schemas/DvDate'
+          DV_DATE_TIME: '#/components/schemas/DvDateTime'
+          DV_DURATION: '#/components/schemas/DvDuration'
+          DV_PROPORTION: '#/components/schemas/DvProportion'
+          DV_QUANTITY: '#/components/schemas/DvQuantity'
+          DV_TEMPORAL: '#/components/schemas/DvTemporal'
+          DV_TIME: '#/components/schemas/DvTime'
+      allOf:
+      - $ref: '#/components/schemas/DvOrdered'
+      x-discriminator-value: DV_QUANTIFIED
+    DvAmount:
+      title: DV_AMOUNT
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_AMOUNT
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+      discriminator:
+        propertyName: Type_
+        mapping:
+          DV_COUNT: '#/components/schemas/DvCount'
+          DV_DURATION: '#/components/schemas/DvDuration'
+          DV_PROPORTION: '#/components/schemas/DvProportion'
+          DV_QUANTITY: '#/components/schemas/DvQuantity'
+      allOf:
+      - $ref: '#/components/schemas/DvQuantified'
+      x-discriminator-value: DV_AMOUNT
+    DvDuration:
+      title: DV_DURATION
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_DURATION
+      allOf:
+      - $ref: '#/components/schemas/DvAmount'
+      x-discriminator-value: DV_DURATION
+    DvTemporal:
+      title: DV_TEMPORAL
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_TEMPORAL
+        accuracy:
+          $ref: '#/components/schemas/DvDuration'
+      discriminator:
+        propertyName: Type_
+        mapping:
+          DV_DATE: '#/components/schemas/DvDate'
+          DV_DATE_TIME: '#/components/schemas/DvDateTime'
+          DV_DTIME: '#/components/schemas/DvTime'
+      allOf:
+      - $ref: '#/components/schemas/DvQuantified'
+      x-discriminator-value: DV_TEMPORAL
     DvDateTime:
       title: DV_DATE_TIME
       required:
@@ -1890,7 +2171,7 @@ components:
         _type: DV_DATE_TIME
         value: 2017-08-15T10:37:15.422+02:00
       allOf:
-      - $ref: '#/components/schemas/DataValue'
+      - $ref: '#/components/schemas/DvTemporal'
       x-discriminator-value: DV_DATE_TIME
     Ehr:
       title: EHR
@@ -1934,102 +2215,6 @@ components:
           type: string
       discriminator:
         propertyName: _type
-    DvUri:
-      title: DV_URI
-      required:
-      - value
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_URI
-        value:
-          type: string
-      discriminator:
-        propertyName: Type_
-        mapping:
-          DV_URI: '#/components/schemas/DvUri'
-          DV_EHR_URI: '#/components/schemas/DvEhrUri'
-      allOf:
-      - $ref: '#/components/schemas/DataValue'
-      x-discriminator-value: DV_URI
-    DvEhrUri:
-      title: DV_EHR_URI
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_EHR_URI
-      example:
-        _type: DV_EHR_URI
-        value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
-      allOf:
-      - $ref: '#/components/schemas/DvUri'
-      x-discriminator-value: DV_EHR_URI
-    CodePhrase:
-      title: CODE_PHRASE
-      required:
-      - code_string
-      - terminology_id
-      type: object
-      properties:
-        terminology_id:
-          $ref: '#/components/schemas/TerminologyId'
-        code_string:
-          type: string
-        preferred_term:
-          type: string
-      example:
-        terminology_id:
-          value: local
-        code_string: at0001
-    DvText:
-      title: DV_TEXT
-      required:
-      - value
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_TEXT
-        value:
-          type: string
-        hyperlink:
-          $ref: '#/components/schemas/DvUri'
-        language:
-          $ref: '#/components/schemas/CodePhrase'
-        encoding:
-          $ref: '#/components/schemas/CodePhrase'
-        formatting:
-          type: string
-      discriminator:
-        propertyName: Type_
-        mapping:
-          DV_TEXT: '#/components/schemas/DvText'
-          DV_CODED_TEXT: '#/components/schemas/DvCodedText'
-      allOf:
-      - $ref: '#/components/schemas/DataValue'
-      x-discriminator-value: DV_TEXT
-    DvCodedText:
-      title: DV_CODED_TEXT
-      required:
-      - defining_code
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_CODED_TEXT
-        defining_code:
-          $ref: '#/components/schemas/CodePhrase'
-      example:
-        value: Coded text value
-        defining_code:
-          terminology_id:
-            value: local
-          code_string: at0001
-      allOf:
-      - $ref: '#/components/schemas/DvText'
-      x-discriminator-value: DV_CODED_TEXT
     Link:
       title: LINK
       required:
@@ -2320,95 +2505,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/Locatable'
       x-discriminator-value: ITEM
-    DvInterval:
-      title: DV_INTERVAL
-      required:
-      - lower_included
-      - lower_unbounded
-      - upper_included
-      - upper_unbounded
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_INTERVAL
-        lower_unbounded:
-          type: boolean
-        upper_unbounded:
-          type: boolean
-        lower_included:
-          type: boolean
-        upper_included:
-          type: boolean
-      allOf:
-      - $ref: '#/components/schemas/DataValue'
-      x-discriminator-value: DV_INTERVAL
-    ReferenceRange:
-      title: REFERENCE_RANGE
-      required:
-      - meaning
-      - range
-      type: object
-      properties:
-        meaning:
-          $ref: '#/components/schemas/DvText'
-        range:
-          $ref: '#/components/schemas/DvInterval'
-    DvOrdered:
-      title: DV_ORDERED
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_ORDERED
-        normal_status:
-          $ref: '#/components/schemas/CodePhrase'
-        normal_range:
-          $ref: '#/components/schemas/DvInterval'
-        other_reference_ranges:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReferenceRange'
-      allOf:
-      - $ref: '#/components/schemas/DataValue'
-      x-discriminator-value: DV_ORDERED
-    DvQuantified:
-      title: DV_QUANTIFIED
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_QUANTIFIED
-        magnitude_status:
-          type: string
-          default: =
-      allOf:
-      - $ref: '#/components/schemas/DvOrdered'
-      x-discriminator-value: DV_QUANTIFIED
-    DvAmount:
-      title: DV_AMOUNT
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_AMOUNT
-        accuracy_is_percent:
-          type: boolean
-        accuracy:
-          type: number
-      allOf:
-      - $ref: '#/components/schemas/DvQuantified'
-      x-discriminator-value: DV_AMOUNT
-    DvDuration:
-      title: DV_DURATION
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_DURATION
-      allOf:
-      - $ref: '#/components/schemas/DvAmount'
-      x-discriminator-value: DV_DURATION
     DvBoolean:
       title: DV_BOOLEAN
       required:
@@ -2423,6 +2519,77 @@ components:
       allOf:
       - $ref: '#/components/schemas/DataValue'
       x-discriminator-value: DV_BOOLEAN
+    DvCount:
+      title: DV_COUNT
+      required:
+      - magnitude
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_COUNT
+        magnitude:
+          type: integer
+      allOf:
+      - $ref: '#/components/schemas/DvAmount'
+      x-discriminator-value: DV_COUNT
+    DvDate:
+      title: DV_DATE
+      required:
+      - value
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_DATE
+        value:
+          type: string
+          format: date
+      example:
+        _type: DV_DATE
+        value: 2017-08-15
+      allOf:
+      - $ref: '#/components/schemas/DvTemporal'
+      x-discriminator-value: DV_DATE
+    DvOrdinal:
+      title: DV_ORDINAL
+      required:
+      - symbol
+      - value
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_ORDINAL
+        symbol:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          type: integer
+      allOf:
+      - $ref: '#/components/schemas/DvOrdered'
+      x-discriminator-value: DV_ORDINAL
+    DvProportion:
+      title: DV_PROPORTION
+      required:
+      - denominator
+      - numerator
+      - semantic_type
+      type: object
+      properties:
+        _type:
+          type: string
+          default: DV_PROPORTION
+        numerator:
+          type: number
+        denominator:
+          type: number
+        semantic_type:
+          type: integer
+        precision:
+          type: integer
+      allOf:
+      - $ref: '#/components/schemas/DvAmount'
+      x-discriminator-value: DV_PROPORTION
     DvQuantity:
       title: DV_QUANTITY
       required:
@@ -2446,23 +2613,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/DvAmount'
       x-discriminator-value: DV_QUANTITY
-    DvOrdinal:
-      title: DV_ORDINAL
-      required:
-      - symbol
-      - value
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_ORDINAL
-        symbol:
-          $ref: '#/components/schemas/DvCodedText'
-        value:
-          type: integer
-      allOf:
-      - $ref: '#/components/schemas/DvOrdered'
-      x-discriminator-value: DV_ORDINAL
     DvScale:
       title: DV_SCALE
       required:
@@ -2480,42 +2630,41 @@ components:
       allOf:
       - $ref: '#/components/schemas/DvOrdered'
       x-discriminator-value: DV_SCALE
-    DvCount:
-      title: DV_COUNT
+    DvState:
+      title: DV_STATE
       required:
-      - magnitude
+      - is_terminal
+      - value
       type: object
       properties:
         _type:
           type: string
-          default: DV_COUNT
-        magnitude:
-          type: integer
+          default: DV_STATE
+        value:
+          $ref: '#/components/schemas/DvCodedText'
+        is_terminal:
+          type: boolean
       allOf:
-      - $ref: '#/components/schemas/DvAmount'
-      x-discriminator-value: DV_COUNT
-    DvProportion:
-      title: DV_PROPORTION
+      - $ref: '#/components/schemas/DataValue'
+      x-discriminator-value: DV_STATE
+    DvTime:
+      title: DV_TIME
       required:
-      - denominator
-      - numerator
-      - semantic_type
+      - value
       type: object
       properties:
         _type:
           type: string
-          default: DV_PROPORTION
-        numerator:
-          type: number
-        denominator:
-          type: number
-        semantic_type:
-          type: integer
-        precision:
-          type: integer
+          default: DV_TIME
+        value:
+          type: string
+          format: time
+      example:
+        _type: DV_DATE
+        value: 2017-08-15
       allOf:
-      - $ref: '#/components/schemas/DvAmount'
-      x-discriminator-value: DV_PROPORTION
+      - $ref: '#/components/schemas/DvTemporal'
+      x-discriminator-value: DV_TIME
     Element:
       title: ELEMENT
       type: object
@@ -2919,7 +3068,9 @@ components:
       discriminator:
         propertyName: Type_
         mapping:
+          ENTRY: '#/components/schemas/AbstractEntry'
           ADMIN_ENTRY: '#/components/schemas/AdminEntry'
+          CARE_ENTRY: '#/components/schemas/CareEntry'
           OBSERVATION: '#/components/schemas/Observation'
           EVALUATION: '#/components/schemas/Evaluation'
           INSTRUCTION: '#/components/schemas/Instruction'
@@ -2952,6 +3103,7 @@ components:
         propertyName: Type_
         mapping:
           ADMIN_ENTRY: '#/components/schemas/AdminEntry'
+          CARE_ENTRY: '#/components/schemas/CareEntry'
           OBSERVATION: '#/components/schemas/Observation'
           EVALUATION: '#/components/schemas/Evaluation'
           INSTRUCTION: '#/components/schemas/Instruction'
@@ -4236,5 +4388,4 @@ x-tagGroups:
   - EHR_STATUS_schema
   - COMPOSITION_schema
   - DIRECTORY_schema
-  - ITEM_STRUCTURE_schema
   - CONTRIBUTION_schema

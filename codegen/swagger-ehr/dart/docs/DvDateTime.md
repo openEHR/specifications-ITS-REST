@@ -9,6 +9,7 @@ import 'package:swagger/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** |  | [optional] [default to &quot;DV_DATE_TIME&quot;]
+**accuracy** | [**DvDuration**](DvDuration.md) |  | [optional] [default to null]
 **value** | [**DateTime**](DateTime.md) |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

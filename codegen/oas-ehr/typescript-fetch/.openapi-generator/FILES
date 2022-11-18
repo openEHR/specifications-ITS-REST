@@ -26,6 +26,7 @@ models/DvAmount.ts
 models/DvBoolean.ts
 models/DvCodedText.ts
 models/DvCount.ts
+models/DvDate.ts
 models/DvDateTime.ts
 models/DvDuration.ts
 models/DvEhrUri.ts
@@ -41,7 +42,10 @@ models/DvProportion.ts
 models/DvQuantified.ts
 models/DvQuantity.ts
 models/DvScale.ts
+models/DvState.ts
+models/DvTemporal.ts
 models/DvText.ts
+models/DvTime.ts
 models/DvUri.ts
 models/Ehr.ts
 models/EhrStatus.ts
@@ -86,6 +90,7 @@ models/ReferenceRange.ts
 models/RevisionHistory.ts
 models/RevisionHistoryItem.ts
 models/TemplateId.ts
+models/TermMapping.ts
 models/TerminologyCode.ts
 models/TerminologyId.ts
 models/UidBasedId.ts

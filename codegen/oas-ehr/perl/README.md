@@ -57,7 +57,7 @@ WWW::OpenAPIClient::Role - a Moose role for the EHR API
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
-            Migrate REST API specs to openAPI format</td>
+            Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
         <td>14 Nov 2022</td>
     </tr>
@@ -192,7 +192,7 @@ Related documents include:
 
 ### Status
 
-This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
+This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/ehr-validation.openapi.yaml), or [for code generators](computable/OAS/ehr-codegen.openapi.yaml).
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
 The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
@@ -468,6 +468,7 @@ use WWW::OpenAPIClient::Object::DvAmount;
 use WWW::OpenAPIClient::Object::DvBoolean;
 use WWW::OpenAPIClient::Object::DvCodedText;
 use WWW::OpenAPIClient::Object::DvCount;
+use WWW::OpenAPIClient::Object::DvDate;
 use WWW::OpenAPIClient::Object::DvDateTime;
 use WWW::OpenAPIClient::Object::DvDuration;
 use WWW::OpenAPIClient::Object::DvEhrUri;
@@ -483,7 +484,10 @@ use WWW::OpenAPIClient::Object::DvProportion;
 use WWW::OpenAPIClient::Object::DvQuantified;
 use WWW::OpenAPIClient::Object::DvQuantity;
 use WWW::OpenAPIClient::Object::DvScale;
+use WWW::OpenAPIClient::Object::DvState;
+use WWW::OpenAPIClient::Object::DvTemporal;
 use WWW::OpenAPIClient::Object::DvText;
+use WWW::OpenAPIClient::Object::DvTime;
 use WWW::OpenAPIClient::Object::DvUri;
 use WWW::OpenAPIClient::Object::Ehr;
 use WWW::OpenAPIClient::Object::EhrStatus;
@@ -528,6 +532,7 @@ use WWW::OpenAPIClient::Object::ReferenceRange;
 use WWW::OpenAPIClient::Object::RevisionHistory;
 use WWW::OpenAPIClient::Object::RevisionHistoryItem;
 use WWW::OpenAPIClient::Object::TemplateId;
+use WWW::OpenAPIClient::Object::TermMapping;
 use WWW::OpenAPIClient::Object::TerminologyCode;
 use WWW::OpenAPIClient::Object::TerminologyId;
 use WWW::OpenAPIClient::Object::UidBasedId;
@@ -577,6 +582,7 @@ use WWW::OpenAPIClient::Object::DvAmount;
 use WWW::OpenAPIClient::Object::DvBoolean;
 use WWW::OpenAPIClient::Object::DvCodedText;
 use WWW::OpenAPIClient::Object::DvCount;
+use WWW::OpenAPIClient::Object::DvDate;
 use WWW::OpenAPIClient::Object::DvDateTime;
 use WWW::OpenAPIClient::Object::DvDuration;
 use WWW::OpenAPIClient::Object::DvEhrUri;
@@ -592,7 +598,10 @@ use WWW::OpenAPIClient::Object::DvProportion;
 use WWW::OpenAPIClient::Object::DvQuantified;
 use WWW::OpenAPIClient::Object::DvQuantity;
 use WWW::OpenAPIClient::Object::DvScale;
+use WWW::OpenAPIClient::Object::DvState;
+use WWW::OpenAPIClient::Object::DvTemporal;
 use WWW::OpenAPIClient::Object::DvText;
+use WWW::OpenAPIClient::Object::DvTime;
 use WWW::OpenAPIClient::Object::DvUri;
 use WWW::OpenAPIClient::Object::Ehr;
 use WWW::OpenAPIClient::Object::EhrStatus;
@@ -637,6 +646,7 @@ use WWW::OpenAPIClient::Object::ReferenceRange;
 use WWW::OpenAPIClient::Object::RevisionHistory;
 use WWW::OpenAPIClient::Object::RevisionHistoryItem;
 use WWW::OpenAPIClient::Object::TemplateId;
+use WWW::OpenAPIClient::Object::TermMapping;
 use WWW::OpenAPIClient::Object::TerminologyCode;
 use WWW::OpenAPIClient::Object::TerminologyId;
 use WWW::OpenAPIClient::Object::UidBasedId;
@@ -725,6 +735,7 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::DvBoolean](docs/DvBoolean.md)
  - [WWW::OpenAPIClient::Object::DvCodedText](docs/DvCodedText.md)
  - [WWW::OpenAPIClient::Object::DvCount](docs/DvCount.md)
+ - [WWW::OpenAPIClient::Object::DvDate](docs/DvDate.md)
  - [WWW::OpenAPIClient::Object::DvDateTime](docs/DvDateTime.md)
  - [WWW::OpenAPIClient::Object::DvDuration](docs/DvDuration.md)
  - [WWW::OpenAPIClient::Object::DvEhrUri](docs/DvEhrUri.md)
@@ -740,7 +751,10 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::DvQuantified](docs/DvQuantified.md)
  - [WWW::OpenAPIClient::Object::DvQuantity](docs/DvQuantity.md)
  - [WWW::OpenAPIClient::Object::DvScale](docs/DvScale.md)
+ - [WWW::OpenAPIClient::Object::DvState](docs/DvState.md)
+ - [WWW::OpenAPIClient::Object::DvTemporal](docs/DvTemporal.md)
  - [WWW::OpenAPIClient::Object::DvText](docs/DvText.md)
+ - [WWW::OpenAPIClient::Object::DvTime](docs/DvTime.md)
  - [WWW::OpenAPIClient::Object::DvUri](docs/DvUri.md)
  - [WWW::OpenAPIClient::Object::Ehr](docs/Ehr.md)
  - [WWW::OpenAPIClient::Object::EhrStatus](docs/EhrStatus.md)
@@ -785,6 +799,7 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::RevisionHistory](docs/RevisionHistory.md)
  - [WWW::OpenAPIClient::Object::RevisionHistoryItem](docs/RevisionHistoryItem.md)
  - [WWW::OpenAPIClient::Object::TemplateId](docs/TemplateId.md)
+ - [WWW::OpenAPIClient::Object::TermMapping](docs/TermMapping.md)
  - [WWW::OpenAPIClient::Object::TerminologyCode](docs/TerminologyCode.md)
  - [WWW::OpenAPIClient::Object::TerminologyId](docs/TerminologyId.md)
  - [WWW::OpenAPIClient::Object::UidBasedId](docs/UidBasedId.md)

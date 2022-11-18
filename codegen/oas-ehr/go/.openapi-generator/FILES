@@ -33,6 +33,7 @@ docs/DvAmount.md
 docs/DvBoolean.md
 docs/DvCodedText.md
 docs/DvCount.md
+docs/DvDate.md
 docs/DvDateTime.md
 docs/DvDuration.md
 docs/DvEhrUri.md
@@ -48,7 +49,10 @@ docs/DvProportion.md
 docs/DvQuantified.md
 docs/DvQuantity.md
 docs/DvScale.md
+docs/DvState.md
+docs/DvTemporal.md
 docs/DvText.md
+docs/DvTime.md
 docs/DvUri.md
 docs/EHRApi.md
 docs/EHRSTATUSApi.md
@@ -95,6 +99,7 @@ docs/ReferenceRange.md
 docs/RevisionHistory.md
 docs/RevisionHistoryItem.md
 docs/TemplateId.md
+docs/TermMapping.md
 docs/TerminologyCode.md
 docs/TerminologyId.md
 docs/UidBasedId.md
@@ -129,6 +134,7 @@ model_dv_amount.go
 model_dv_boolean.go
 model_dv_coded_text.go
 model_dv_count.go
+model_dv_date.go
 model_dv_date_time.go
 model_dv_duration.go
 model_dv_ehr_uri.go
@@ -144,7 +150,10 @@ model_dv_proportion.go
 model_dv_quantified.go
 model_dv_quantity.go
 model_dv_scale.go
+model_dv_state.go
+model_dv_temporal.go
 model_dv_text.go
+model_dv_time.go
 model_dv_uri.go
 model_ehr.go
 model_ehr_status.go
@@ -189,6 +198,7 @@ model_reference_range.go
 model_revision_history.go
 model_revision_history_item.go
 model_template_id.go
+model_term_mapping.go
 model_terminology_code.go
 model_terminology_id.go
 model_uid_based_id.go

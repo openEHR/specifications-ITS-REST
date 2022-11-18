@@ -24,6 +24,7 @@ docs/DvAmount.md
 docs/DvBoolean.md
 docs/DvCodedText.md
 docs/DvCount.md
+docs/DvDate.md
 docs/DvDateTime.md
 docs/DvDuration.md
 docs/DvEhrUri.md
@@ -39,7 +40,10 @@ docs/DvProportion.md
 docs/DvQuantified.md
 docs/DvQuantity.md
 docs/DvScale.md
+docs/DvState.md
+docs/DvTemporal.md
 docs/DvText.md
+docs/DvTime.md
 docs/DvUri.md
 docs/EHRApi.md
 docs/EHRSTATUSApi.md
@@ -86,6 +90,7 @@ docs/ReferenceRange.md
 docs/RevisionHistory.md
 docs/RevisionHistoryItem.md
 docs/TemplateId.md
+docs/TermMapping.md
 docs/TerminologyCode.md
 docs/TerminologyId.md
 docs/UidBasedId.md
@@ -144,6 +149,7 @@ src/main/kotlin/org/openapitools/client/models/DvAmount.kt
 src/main/kotlin/org/openapitools/client/models/DvBoolean.kt
 src/main/kotlin/org/openapitools/client/models/DvCodedText.kt
 src/main/kotlin/org/openapitools/client/models/DvCount.kt
+src/main/kotlin/org/openapitools/client/models/DvDate.kt
 src/main/kotlin/org/openapitools/client/models/DvDateTime.kt
 src/main/kotlin/org/openapitools/client/models/DvDuration.kt
 src/main/kotlin/org/openapitools/client/models/DvEhrUri.kt
@@ -159,7 +165,10 @@ src/main/kotlin/org/openapitools/client/models/DvProportion.kt
 src/main/kotlin/org/openapitools/client/models/DvQuantified.kt
 src/main/kotlin/org/openapitools/client/models/DvQuantity.kt
 src/main/kotlin/org/openapitools/client/models/DvScale.kt
+src/main/kotlin/org/openapitools/client/models/DvState.kt
+src/main/kotlin/org/openapitools/client/models/DvTemporal.kt
 src/main/kotlin/org/openapitools/client/models/DvText.kt
+src/main/kotlin/org/openapitools/client/models/DvTime.kt
 src/main/kotlin/org/openapitools/client/models/DvUri.kt
 src/main/kotlin/org/openapitools/client/models/Ehr.kt
 src/main/kotlin/org/openapitools/client/models/EhrStatus.kt
@@ -204,6 +213,7 @@ src/main/kotlin/org/openapitools/client/models/ReferenceRange.kt
 src/main/kotlin/org/openapitools/client/models/RevisionHistory.kt
 src/main/kotlin/org/openapitools/client/models/RevisionHistoryItem.kt
 src/main/kotlin/org/openapitools/client/models/TemplateId.kt
+src/main/kotlin/org/openapitools/client/models/TermMapping.kt
 src/main/kotlin/org/openapitools/client/models/TerminologyCode.kt
 src/main/kotlin/org/openapitools/client/models/TerminologyId.kt
 src/main/kotlin/org/openapitools/client/models/UidBasedId.kt

@@ -11,17 +11,11 @@ import Foundation
 
 public struct DvDateTime: Codable {
 
-    public var type: String?
     public var value: Date
 
-    public init(type: String? = nil, value: Date) {
-        self.type = type
+    public init(value: Date) {
         self.value = value
     }
 
-    public enum CodingKeys: String, CodingKey { 
-        case type = "_type"
-        case value
-    }
 
 }
