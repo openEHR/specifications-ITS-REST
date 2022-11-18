@@ -67,7 +67,7 @@ info:
         <tr>
             <td>5.1</td>
             <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
-                Migrate REST API specs to openAPI format</td>
+                Migrate REST API specs to OpenAPI Specification</td>
             <td>S Iancu</td>
             <td>14 Nov 2022</td>
         </tr>

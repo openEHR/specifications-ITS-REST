@@ -67,7 +67,7 @@ info:
         <tr>
             <td>4.1</td>
             <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
-                Migrate REST API specs to openAPI format</td>
+                Migrate REST API specs to OpenAPI Specification</td>
             <td>S Iancu</td>
             <td>14 Nov 2022</td>
         </tr>
@@ -276,16 +276,17 @@ tags:
       | `uid_based_id`                      | An abstract identifier: it can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`). |
       | `preceding_version_uid`             | The value of a previous VERSION unique identifier, used usually for PUT or DELETE methods (e.g. 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1)                                                                                   |
       | `version_at_time`                   | Time specifier used to retrieve the VERSION at a given time; the value is in the extended ISO 8601 format (e.g. 2015-01-20T19:30:22.765+01:00)                                                                                                     |
-
+      <br>
 
       ### OpenAPI Specification files
 
       This openEHR REST specifications can be downloaded as YAML files in [OpenAPI Specification 3.0](https://spec.openapis.org/oas/v3.0.3) format.
 
       For each API there are two flavours provided: 
-      - a file optimized for code generators, with the file name having the `-codegen.openapi.yaml`; this file can be used with tools like [OpenAPI Generator](https://github.com/openapitools/openapi-generator), or [Swagger codegen](https://github.com/swagger-api/swagger-codegen),
-      - a file optimized for data validation, with the file name having the `-codegen.openapi.yaml`; this file can be used by (mock-)servers or applications to validate openEHR request and response payloads.
-      The main difference between these files (aside of schema model names) is that the codegen flavour is defining and using inheritance in model schemas, with the use of `allOf` property and discriminators (see [Polymorphism](https://spec.openapis.org/oas/v3.0.3#composition-and-inheritance-polymorphism)), whereas the validation variant is flattening all these requirements (each model contains all RM-inherited properties). 
+      - a file optimized for code generators, with the file name having the `-codegen.openapi.yaml` suffix; this file can be used with tools like [OpenAPI Generator](https://github.com/openapitools/openapi-generator), or [Swagger codegen](https://github.com/swagger-api/swagger-codegen),
+      - a file optimized for data validation, with the file name having the `-codegen.openapi.yaml` suffix; this file can be used by (mock-)servers or applications to validate openEHR request and response payloads.
+
+      The main difference between these files (aside of schema model names) is that the codegen flavour is defining and using inheritance in model schemas, with the use of `allOf` property and discriminators, whereas the validation variant is flattening all these requirements (each model contains all RM-inherited properties), and is using `oneOf` property to define union-types. See [Polymorphism](https://spec.openapis.org/oas/v3.0.3#composition-and-inheritance-polymorphism) specification. 
 
       The latest OpenAPI Specification files are available in GitHub at [openEHR/specifications-ITS-REST/computable/OAS](https://github.com/openEHR/specifications-ITS-REST/tree/master/computable/OAS).
   - name: Requests_and_responses
@@ -376,11 +377,10 @@ tags:
 
       ## If-Match and accidental overwrites
 
-      This `If-Match` request header SHOULD be used by the clients to prevent accidental overwrites when multiple user
-      agents might be acting in parallel on the same resource. This is only required by a small set of resources of this specification,
-      as in most of the other cases the `preceding_version_uid` path segment is instead required in order to prevent such accidental overwrites.
-      In case a service receives this header, and the condition evaluates to `false`, it MUST respond with
-      HTTP status code `412 Precondition Failed` and return also latest `version_uid` in the `Location` and `ETag` response headers.
+      The `If-Match` request header SHOULD be used by the clients to prevent accidental overwrites when multiple user
+      agents might be acting in parallel on the same resource. This is only required by a small set of versioned resources of this specification.
+      In case a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method and instead MUST respond with
+      HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `Location` and `ETag` response headers.
 
       Example:
       ```http
@@ -628,7 +628,7 @@ tags:
       When resources representation is serialized as XML, the request payload as well as the result MUST be valid against [published XSDs](https://specifications.openehr.org/releases/ITS-XML/latest).
 
       A client MAY use the header `Content-Type: application/xml` in the requests to specify the XML payload format.
-      If the service cannot process the request payload as XML format is not supported, it MUST respond with HTTP status code`415 Unsupported Media Type`.
+      If the service cannot process the request payload as XML format is not supported, it MUST respond with HTTP status code `415 Unsupported Media Type`.
 
       The client SHOULD use the `Accept: application/xml` request header in order to specify the expected XML response format.
       If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
@@ -729,7 +729,7 @@ tags:
       Current alternative formats might not be supported once they become obsolete or superseded by newer formats.
 
       A client MAY use the header `Content-Type` in the requests to specify the simplified payload format.
-      If the service cannot process the request payload as the simplified format is not supported, it MUST respond with HTTP status code`415 Unsupported Media Type`.
+      If the service cannot process the request payload as the simplified format is not supported, it MUST respond with HTTP status code `415 Unsupported Media Type`.
 
       The client SHOULD use the `Accept` request header in order to specify the expected simplified response format.
       If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
