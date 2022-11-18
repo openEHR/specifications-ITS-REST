@@ -67,7 +67,7 @@ info:
         <tr>
             <td>5.1</td>
             <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
-                Migrate REST API specs to openAPI format</td>
+                Migrate REST API specs to OpenAPI Specification</td>
             <td>S Iancu</td>
             <td>14 Nov 2022</td>
         </tr>
@@ -190,7 +190,7 @@ info:
 
     ### Status
 
-    This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/query-validation.openapi.yaml), or [for code generators](computable/OAS/query-codegen.openapi.yaml).
+    This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/query-validation.openapi.yaml), or [for code generators](computable/OAS/query-codegen.openapi.yaml).
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
     The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/query.html>.
@@ -532,19 +532,18 @@ tags:
     x-displayName: Query Execute
     x-traitTag: true
     description: |
-      The following schemas are also related to [AQL queries](https://specifications.openehr.org/releases/QUERY/latest/AQL.html).
+      The following resources are formally specified in the [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) and in the [Query Service](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_query_service).
+      <div class="mb-5"></div>
 
-      ## Ad-hoc Query Execute schema
-
+      The `AdhocQueryExecute` resource:
       <SchemaDefinition schemaRef="#/components/schemas/AdhocQueryExecute" />
 
-      ## Stored Query Execute schema
-
+      The stored-query execute, known as the `Query` resource:
       <SchemaDefinition schemaRef="#/components/schemas/Query" />
   - name: RESULT_SET_schema
     x-displayName: RESULT_SET
     description: |
-      This is related to [AQL queries](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) and [AQL QUERY Result](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_result_set_class).
+      This resource is formally specified in the Service Model as [Query Result](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_result_set_class).
 
       <SchemaDefinition schemaRef="#/components/schemas/ResultSet" />
 x-tagGroups:

@@ -12,12 +12,16 @@ properties:
     type: string
   hyperlink:
     $ref: ../data_types/UDvUri.yaml
+  formatting:
+    type: string
+  mappings:
+    type: array
+    items:
+      $ref: ../data_types/TermMapping.yaml
   language:
     $ref: ../data_types/CodePhrase.yaml
   encoding:
     $ref: ../data_types/CodePhrase.yaml
-  formatting:
-    type: string
 x-discriminator-value: DV_TEXT
 x-cg-discriminator:
   propertyName: _type

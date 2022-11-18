@@ -129,10 +129,6 @@ tags:
     x-displayName: DIRECTORY
     description:
       $ref: ./tags/DIRECTORY_schema.md
-  - name: ITEM_STRUCTURE_schema
-    x-displayName: ITEM_STRUCTURE
-    description:
-      $ref: ./tags/ITEM_STRUCTURE_schema.md
   - name: CONTRIBUTION_schema
     x-displayName: CONTRIBUTION
     description:
@@ -151,9 +147,10 @@ x-tagGroups:
       - EHR_STATUS_schema
       - COMPOSITION_schema
       - DIRECTORY_schema
-      - ITEM_STRUCTURE_schema
       - CONTRIBUTION_schema
 components:
   schemas:
     UAbstractItemStructure:
       $ref: ./schemas/data_structures/UAbstractItemStructure.yaml
+    UAbstractContentItem:
+      $ref: ./schemas/ehr/UAbstractContentItem.yaml

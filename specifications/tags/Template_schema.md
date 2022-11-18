@@ -1,13 +1,11 @@
-This is related to [AOM and ADL 1.4](https://specifications.openehr.org/releases/AM/latest) Operational Templates (OPTs) and [AOM2](https://specifications.openehr.org/releases/AM/latest/AOM2.html#_templates) templates.
+The following resources are formally specified in the [Archetype Model](https://specifications.openehr.org/releases/AM/latest) as AOM/ADL 1.4 Operational Templates (OPTs) and as [AOM2 templates](https://specifications.openehr.org/releases/AM/latest/AOM2.html#_templates).
+<div class="mb-5"></div>
 
-## AOM/ADL 1.4 OPERATIONAL_TEMPLATE
-
+The AOM/ADL 1.4 `OPERATIONAL_TEMPLATE` resource:
 <SchemaDefinition schemaRef="#/components/schemas/OperationalTemplate" />
 
-## AOM/ADL 2 OPERATIONAL_TEMPLATE
-
+The AOM/ADL 2 `OPERATIONAL_TEMPLATE` resource:
 <SchemaDefinition schemaRef="#/components/schemas/OperationalTemplateV2" />
 
-## Web Template
-
+The `WebTemplate` alternative resource:
 <SchemaDefinition schemaRef="#/components/schemas/WebTemplate" />

@@ -9,7 +9,7 @@
             "title": "REST API Overview",
             "title_short": "Overview",
             "description": "openEHR REST API Overview",
-            "summary": "An overview of various aspects of openEHR REST APIs.",
+            "summary": "The overview of various aspects and requirements of openEHR REST APIs.",
             "micro_summary": "REST API Overview",
             "copyright_year": "2018",
             "spec_status": "STABLE",
@@ -58,6 +58,18 @@
             "copyright_year": "2019",
             "spec_status": "DEVELOPMENT",
             "keywords": "JSON, REST, web template, commit, simplified data, TDS, SDT, ncSDT, simSDT, structSDT"
+        },
+        {
+            "id": "REST_OAS_files",
+            "title": "REST API OpenAPI files",
+            "title_short": "OAS 3.0",
+            "description": "REST API OpenAPI files",
+            "summary": "The openEHR REST API specifications as OpenAPI Specification v3.0 files in YAML format.",
+            "micro_summary": "REST API OpenAPI files",
+            "link": "https://github.com/openEHR/specifications-ITS-REST/tree/master/computable/OAS",
+            "copyright_year": "2022",
+            "spec_status": "TRIAL",
+            "keywords": "REST, API, OAS, Specification, YAML"
         }
     ],
     "expressions": [
@@ -65,7 +77,7 @@
             "id": "REST API src",
             "type": "url",
             "title": "REST API OpenAPI files",
-            "description": "REST API specifications as OpenAPI 3.0.3 files in yaml format.",
+            "description": "REST API specifications as OpenAPI Specification v3.0 files.",
             "link": "https://github.com/openEHR/specifications-ITS-REST/tree/master/computable/OAS"
         }
     ],

@@ -9,7 +9,7 @@ function render() {
     docker run --rm -u 1000 -v "$(pwd):/spec" redocly/openapi-cli bundle computable/OAS/"$1"-codegen.openapi.json --remove-unused-components -o computable/OAS/"$1"-codegen.openapi.yaml
     docker run --rm -u 1000 -v "$(pwd):/spec" redocly/openapi-cli bundle computable/OAS/"$1"-validation.openapi.json -o computable/OAS/"$1"-validation.openapi.yaml
     echo "Generating HTML file..."
-    docker run --rm -u 1000 -v "$(pwd):/spec" redocly/openapi-cli build-docs computable/OAS/"$1"-html.openapi.json --cdn -o docs/"$1".html -t development/redoc-template.html --templateOptions.page_"$1"
+    docker run --rm --env NODE_OPTIONS="--max-old-space-size=4048" -u 1000 -v "$(pwd):/spec" redocly/openapi-cli build-docs computable/OAS/"$1"-html.openapi.json --cdn -o docs/"$1".html -t development/redoc-template.html --templateOptions.page_"$1"
     echo "Removing json files..."
     rm -rfv computable/OAS/*.json
 }

@@ -1,7 +1,7 @@
 title: DV_DATE_TIME
 type: object
 allOf:
-  - $ref: ../data_types/DataValue.yaml
+  - $ref: ../data_types/DvTemporal.yaml
 required:
   - value
 properties:

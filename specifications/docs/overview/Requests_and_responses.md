@@ -83,11 +83,10 @@ Below a list of `code_string` values and their meaning (taken from [openEHR term
 
 ## If-Match and accidental overwrites
 
-This `If-Match` request header SHOULD be used by the clients to prevent accidental overwrites when multiple user
-agents might be acting in parallel on the same resource. This is only required by a small set of resources of this specification,
-as in most of the other cases the `preceding_version_uid` path segment is instead required in order to prevent such accidental overwrites.
-In case a service receives this header, and the condition evaluates to `false`, it MUST respond with
-HTTP status code `412 Precondition Failed` and return also latest `version_uid` in the `Location` and `ETag` response headers.
+The `If-Match` request header SHOULD be used by the clients to prevent accidental overwrites when multiple user
+agents might be acting in parallel on the same resource. This is only required by a small set of versioned resources of this specification.
+In case a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method and instead MUST respond with
+HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `Location` and `ETag` response headers.
 
 Example:
 ```http

@@ -192,7 +192,7 @@ info:
 
     ### Status
 
-    This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in yaml format) [for validation](computable/OAS/definition-validation.openapi.yaml), or [for code generators](computable/OAS/definition-codegen.openapi.yaml).
+    This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/definition-validation.openapi.yaml), or [for code generators](computable/OAS/definition-codegen.openapi.yaml).
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
     The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/definition.html>.
@@ -538,31 +538,27 @@ tags:
   - name: TemplateList_schema
     x-displayName: Template list
     description: |
-      This represents a list of Template meta information associated with uploaded templates.
+      This resource represents the list of `Template` meta-information associated with uploaded templates - see also [Service Model - Definition Package](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_definition_package).
 
       <SchemaDefinition schemaRef="#/components/schemas/TemplateList" />
   - name: Template_schema
     x-displayName: Template
     description: |
-      This is related to [AOM and ADL 1.4](https://specifications.openehr.org/releases/AM/latest) Operational Templates (OPTs) and [AOM2](https://specifications.openehr.org/releases/AM/latest/AOM2.html#_templates) templates.
+      The following resources are formally specified in the [Archetype Model](https://specifications.openehr.org/releases/AM/latest) as AOM/ADL 1.4 Operational Templates (OPTs) and as [AOM2 templates](https://specifications.openehr.org/releases/AM/latest/AOM2.html#_templates).
+      <div class="mb-5"></div>
 
-      ## AOM/ADL 1.4 OPERATIONAL_TEMPLATE
-
+      The AOM/ADL 1.4 `OPERATIONAL_TEMPLATE` resource:
       <SchemaDefinition schemaRef="#/components/schemas/OperationalTemplate" />
 
-      ## AOM/ADL 2 OPERATIONAL_TEMPLATE
-
+      The AOM/ADL 2 `OPERATIONAL_TEMPLATE` resource:
       <SchemaDefinition schemaRef="#/components/schemas/OperationalTemplateV2" />
 
-      ## Web Template
-
+      The `WebTemplate` alternative resource:
       <SchemaDefinition schemaRef="#/components/schemas/WebTemplate" />
   - name: StoredQuery_schema
     x-displayName: Stored Query
     description: |
-      The following schemas are also related to [AQL queries](https://specifications.openehr.org/releases/QUERY/latest/AQL.html).
-
-      ### Stored Query schema
+      This resource represents the definition of a stored Query and is formally specified in the Service Model as [Registered Queries](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_registered_queries).
 
       <SchemaDefinition schemaRef="#/components/schemas/StoredQuery" />
 x-tagGroups:

@@ -1,9 +1,8 @@
-The following schemas are also related to [AQL queries](https://specifications.openehr.org/releases/QUERY/latest/AQL.html).
+The following resources are formally specified in the [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) and in the [Query Service](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_query_service).
+<div class="mb-5"></div>
 
-## Ad-hoc Query Execute schema
-
+The `AdhocQueryExecute` resource:
 <SchemaDefinition schemaRef="#/components/schemas/AdhocQueryExecute" />
 
-## Stored Query Execute schema
-
+The stored-query execute, known as the `Query` resource:
 <SchemaDefinition schemaRef="#/components/schemas/Query" />
