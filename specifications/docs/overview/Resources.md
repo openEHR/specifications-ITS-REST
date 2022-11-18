@@ -67,7 +67,7 @@ These formats and their associated negotiation protocol is described below.
 When resources representation is serialized as XML, the request payload as well as the result MUST be valid against [published XSDs](https://specifications.openehr.org/releases/ITS-XML/latest).
 
 A client MAY use the header `Content-Type: application/xml` in the requests to specify the XML payload format.
-If the service cannot process the request payload as XML format is not supported, it MUST respond with HTTP status code`415 Unsupported Media Type`.
+If the service cannot process the request payload as XML format is not supported, it MUST respond with HTTP status code `415 Unsupported Media Type`.
 
 The client SHOULD use the `Accept: application/xml` request header in order to specify the expected XML response format.
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
@@ -168,7 +168,7 @@ and the [TDD2canonical](https://github.com/openEHR/openEHR-TDD2canonical) projec
 Current alternative formats might not be supported once they become obsolete or superseded by newer formats.
 
 A client MAY use the header `Content-Type` in the requests to specify the simplified payload format.
-If the service cannot process the request payload as the simplified format is not supported, it MUST respond with HTTP status code`415 Unsupported Media Type`.
+If the service cannot process the request payload as the simplified format is not supported, it MUST respond with HTTP status code `415 Unsupported Media Type`.
 
 The client SHOULD use the `Accept` request header in order to specify the expected simplified response format.
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
