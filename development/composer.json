@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OpenEHR\\Specifications\\Tools\\": "src/"
+            "OpenEHR\\Specifications\\Tools\\OpenAPI\\": "src/"
         }
     }
 }

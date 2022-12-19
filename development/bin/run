@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use OpenEHR\Specifications\Tools\Writer;
+use OpenEHR\Specifications\Tools\OpenAPI\Writer;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

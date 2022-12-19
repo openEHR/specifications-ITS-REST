@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenEHR\Specifications\Tools\Writer;
+namespace OpenEHR\Specifications\Tools\OpenAPI\Writer;
 
 use cebe\openapi\Reader;
 use cebe\openapi\ReferenceContext;
