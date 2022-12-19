@@ -48,14 +48,14 @@
     </thead>
     <tbody>
     <tr>
-        <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.0.3 (unreleased)</a></th>
+        <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.0.3</a></th>
     </tr>
     <tr>
         <td>4.1</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
             Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
-        <td>14 Nov 2022</td>
+        <td>19 Dec 2022</td>
     </tr>
     <tr>
         <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.2" target="_blank" rel="noopener">Release-1.0.2</a></th>
