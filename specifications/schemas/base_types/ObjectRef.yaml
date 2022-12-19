@@ -1,4 +1,6 @@
 # Note: This type codegen is failing around collision on property names _type vs type.
+# see: https://github.com/OpenAPITools/openapi-generator/issues/9444
+# see: https://github.com/OpenAPITools/openapi-generator/issues/8291
 # TODO: fix this as soon as redoc and/or openapi generator is able to coop with such names and distinguish the discriminator for real property
 title: OBJECT_REF
 type: object
