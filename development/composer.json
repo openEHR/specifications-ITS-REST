@@ -2,6 +2,7 @@
     "name": "openehr/specifications-tools-openapi",
     "description": "Tools to manage openEHR OpenApi specifications.",
     "type": "project",
+    "license": "Apache-2.0",
     "require": {
         "php": ">=7.4",
         "ext-json": "*",
@@ -14,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OpenEHR\\Specifications\\Tools\\": "src/"
+            "OpenEHR\\Specifications\\Tools\\OpenAPI\\": "src/"
         }
     }
 }

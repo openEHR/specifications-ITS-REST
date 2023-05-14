@@ -19,7 +19,7 @@ info:
         </colgroup>
         <thead>
         <tr>
-            <th colspan="2">© 2003 - 2021 The openEHR Foundation</th>
+            <th colspan="2">© 2018 - 2023 The openEHR Foundation</th>
         </tr>
         </thead>
         <tbody>
@@ -62,14 +62,14 @@ info:
         </thead>
         <tbody>
         <tr>
-            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.0.3 (unreleased)</a></th>
+            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.0.3</a></th>
         </tr>
         <tr>
             <td>4.1</td>
             <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
                 Migrate REST API specs to OpenAPI Specification</td>
             <td>S Iancu</td>
-            <td>14 Nov 2022</td>
+            <td>19 Dec 2022</td>
         </tr>
         <tr>
             <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.2" target="_blank" rel="noopener">Release-1.0.2</a></th>
@@ -230,7 +230,6 @@ info:
     in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [[RFC 2119](https://tools.ietf.org/html/rfc2119)],
     [[RFC 8174](https://tools.ietf.org/html/rfc8174)] when, and only when, they appear in all capitals, as shown here.
 
-security: []
 servers:
   - url: https://{baseUrl}/v1
     description: An example openEHR server URL.
@@ -238,21 +237,7 @@ servers:
       baseUrl:
         default: openEHRSys.example.com
         description: The (example) server base URL prefix providing openEHR services. This may contain server name, port and base path prefix.
-paths:
-  /:
-    options:
-      operationId: options
-      summary: System Options and Conformance
-      description: |
-        The `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a resource, service or with the system, without implying a resource action.
-        Services SHOULD respond to this method with at least appropriate HTTP codes, headers and potentially with a payload revealing more details about themselves.
-
-        Another use-case for this method is related to exposing service capabilities for a conformance manifest.
-      tags:
-        - Options
-      responses:
-        '200':
-          $ref: '#/components/responses/200_options'
+security: []
 tags:
   - name: Glossary_and_conventions
     x-displayName: Glossary and conventions
@@ -284,7 +269,7 @@ tags:
 
       For each API there are two flavours provided: 
       - a file optimized for code generators, with the file name having the `-codegen.openapi.yaml` suffix; this file can be used with tools like [OpenAPI Generator](https://github.com/openapitools/openapi-generator), or [Swagger codegen](https://github.com/swagger-api/swagger-codegen),
-      - a file optimized for data validation, with the file name having the `-codegen.openapi.yaml` suffix; this file can be used by (mock-)servers or applications to validate openEHR request and response payloads.
+      - a file optimized for data validation, with the file name having the `-validation.openapi.yaml` suffix; this file can be used by (mock-)servers or applications to validate openEHR request and response payloads.
 
       The main difference between these files (aside of schema model names) is that the codegen flavour is defining and using inheritance in model schemas, with the use of `allOf` property and discriminators, whereas the validation variant is flattening all these requirements (each model contains all RM-inherited properties), and is using `oneOf` property to define union-types. See [Polymorphism](https://spec.openapis.org/oas/v3.0.3#composition-and-inheritance-polymorphism) specification. 
 
@@ -752,15 +737,21 @@ tags:
       Retrieval or querying those resources SHOULD return date, datetime, or time values in the (original) format provided by underlying backend engine, avoiding any format change.
   - name: Options
     description: Retrieving system options and conformance information.
-x-tagGroups:
-  - name: Docs
-    tags:
-      - Glossary_and_conventions
-      - Requests_and_responses
-      - Resources
-  - name: Endpoints
-    tags:
-      - Options
+paths:
+  /:
+    options:
+      operationId: options
+      summary: System Options and Conformance
+      description: |
+        The `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a resource, service or with the system, without implying a resource action.
+        Services SHOULD respond to this method with at least appropriate HTTP codes, headers and potentially with a payload revealing more details about themselves.
+
+        Another use-case for this method is related to exposing service capabilities for a conformance manifest.
+      tags:
+        - Options
+      responses:
+        '200':
+          $ref: '#/components/responses/200_options'
 components:
   headers:
     Allow:
@@ -809,3 +800,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Options'
+x-tagGroups:
+  - name: Docs
+    tags:
+      - Glossary_and_conventions
+      - Requests_and_responses
+      - Resources
+  - name: Endpoints
+    tags:
+      - Options

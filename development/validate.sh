@@ -2,10 +2,10 @@ cd ..
 
 function validate() {
   echo "Validating specifications/"$1".openapi.yaml with openapi-cli.."
-  docker run --rm -u 1000 -v "$(pwd):/spec" redocly/openapi-cli lint specifications/"$1".openapi.yaml
+  docker run --rm -u 1000 -v "$(pwd):/spec" redocly/cli lint specifications/"$1".openapi.yaml
   echo "Validating computable/OAS/"$1"-(validation|codegen).openapi.yaml with openapi-cli.."
-  docker run --rm -u 1000 -v "$(pwd):/spec" redocly/openapi-cli lint computable/OAS/"$1"-validation.openapi.yaml
-  docker run --rm -u 1000 -v "$(pwd):/spec" redocly/openapi-cli lint computable/OAS/"$1"-codegen.openapi.yaml
+  docker run --rm -u 1000 -v "$(pwd):/spec" redocly/cli lint computable/OAS/"$1"-validation.openapi.yaml
+  docker run --rm -u 1000 -v "$(pwd):/spec" redocly/cli lint computable/OAS/"$1"-codegen.openapi.yaml
   echo "Validating computable/OAS/"$1"-(validation|codegen).openapi.yaml with swagger.."
   docker run --rm -u 1000 -v "$(pwd):/data" swagger-cli validate computable/OAS/"$1"-validation.openapi.yaml
   docker run --rm -u 1000 -v "$(pwd):/data" swagger-cli validate computable/OAS/"$1"-codegen.openapi.yaml

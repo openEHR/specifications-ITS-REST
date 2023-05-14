@@ -96,7 +96,7 @@
         },
         {
             "id": "1.0.3",
-            "date": "",
+            "date": "2022-12-19",
             "jira": {
                 "crs": "SPECITS/versions/12565",
                 "prs": "SPECPR/versions/12566"

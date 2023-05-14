@@ -2,17 +2,18 @@
 
 
 # https://redocly.com/docs/api-reference-docs/configuration/functionality/#featuresopenapi-schema
-features.openapi:
-  showObjectSchemaExamples: false
-  schemaExpansionLevel: 0
-  scrollYOffset: 72
-  nativeScrollbars: true
-  htmlTemplate: development/redoc-template.html
-  hideDownloadButton: true
-  # https://redocly.com/docs/api-reference-docs/configuration/theming/
-  theme:
-    colors:
-      tonalOffset: 0.1
-    sidebar:
-      width: "300px"
-      textColor: "#000000"
+theme:
+  openapi:
+    showObjectSchemaExamples: false
+    schemaExpansionLevel: 0
+    scrollYOffset: 72
+    nativeScrollbars: true
+    htmlTemplate: development/redoc-template.html
+    hideDownloadButton: true
+    # https://redocly.com/docs/api-reference-docs/configuration/theming/
+    theme:
+      colors:
+        tonalOffset: 0.1
+      sidebar:
+        width: "300px"
+        textColor: "#000000"
