@@ -25,16 +25,34 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class RevisionHistory {
 
-  @JsonProperty("items")
   @Valid
-  private List<RevisionHistoryItem> items = new ArrayList<>();
+  private List<@Valid RevisionHistoryItem> items = new ArrayList<>();
 
-  public RevisionHistory items(List<RevisionHistoryItem> items) {
+  /**
+   * Default constructor
+   * @deprecated Use {@link RevisionHistory#RevisionHistory(List<@Valid RevisionHistoryItem>)}
+   */
+  @Deprecated
+  public RevisionHistory() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public RevisionHistory(List<@Valid RevisionHistoryItem> items) {
+    this.items = items;
+  }
+
+  public RevisionHistory items(List<@Valid RevisionHistoryItem> items) {
     this.items = items;
     return this;
   }
 
   public RevisionHistory addItemsItem(RevisionHistoryItem itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
     this.items.add(itemsItem);
     return this;
   }
@@ -44,12 +62,13 @@ public class RevisionHistory {
    * @return items
   */
   @NotNull @Valid 
-  @Schema(name = "items", required = true)
-  public List<RevisionHistoryItem> getItems() {
+  @Schema(name = "items", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("items")
+  public List<@Valid RevisionHistoryItem> getItems() {
     return items;
   }
 
-  public void setItems(List<RevisionHistoryItem> items) {
+  public void setItems(List<@Valid RevisionHistoryItem> items) {
     this.items = items;
   }
 

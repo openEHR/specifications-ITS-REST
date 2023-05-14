@@ -30,21 +30,33 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class IsmTransition extends Pathable {
 
-  @JsonProperty("_type")
   private String type = "ISM_TRANSITION";
 
-  @JsonProperty("current_state")
   private DvCodedText currentState;
 
-  @JsonProperty("transition")
   private DvCodedText transition;
 
-  @JsonProperty("careflow_step")
   private DvCodedText careflowStep;
 
-  @JsonProperty("reason")
   @Valid
-  private List<DvText> reason = null;
+  private List<@Valid DvText> reason;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link IsmTransition#IsmTransition(DvCodedText)}
+   */
+  @Deprecated
+  public IsmTransition() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public IsmTransition(DvCodedText currentState) {
+    super();
+    this.currentState = currentState;
+  }
 
   public IsmTransition type(String type) {
     this.type = type;
@@ -56,7 +68,8 @@ public class IsmTransition extends Pathable {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -75,7 +88,8 @@ public class IsmTransition extends Pathable {
    * @return currentState
   */
   @NotNull @Valid 
-  @Schema(name = "current_state", required = true)
+  @Schema(name = "current_state", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("current_state")
   public DvCodedText getCurrentState() {
     return currentState;
   }
@@ -94,7 +108,8 @@ public class IsmTransition extends Pathable {
    * @return transition
   */
   @Valid 
-  @Schema(name = "transition", required = false)
+  @Schema(name = "transition", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("transition")
   public DvCodedText getTransition() {
     return transition;
   }
@@ -113,7 +128,8 @@ public class IsmTransition extends Pathable {
    * @return careflowStep
   */
   @Valid 
-  @Schema(name = "careflow_step", required = false)
+  @Schema(name = "careflow_step", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("careflow_step")
   public DvCodedText getCareflowStep() {
     return careflowStep;
   }
@@ -122,7 +138,7 @@ public class IsmTransition extends Pathable {
     this.careflowStep = careflowStep;
   }
 
-  public IsmTransition reason(List<DvText> reason) {
+  public IsmTransition reason(List<@Valid DvText> reason) {
     this.reason = reason;
     return this;
   }
@@ -140,12 +156,13 @@ public class IsmTransition extends Pathable {
    * @return reason
   */
   @Valid 
-  @Schema(name = "reason", required = false)
-  public List<DvText> getReason() {
+  @Schema(name = "reason", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("reason")
+  public List<@Valid DvText> getReason() {
     return reason;
   }
 
-  public void setReason(List<DvText> reason) {
+  public void setReason(List<@Valid DvText> reason) {
     this.reason = reason;
   }
 

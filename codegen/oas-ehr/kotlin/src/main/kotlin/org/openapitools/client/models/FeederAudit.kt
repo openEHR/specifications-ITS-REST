@@ -20,6 +20,7 @@ import org.openapitools.client.models.DvIdentifier
 import org.openapitools.client.models.FeederAuditDetails
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

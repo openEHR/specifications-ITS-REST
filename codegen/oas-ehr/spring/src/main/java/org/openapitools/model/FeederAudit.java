@@ -26,24 +26,35 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class FeederAudit {
 
-  @JsonProperty("originating_system_item_ids")
   @Valid
-  private List<DvIdentifier> originatingSystemItemIds = null;
+  private List<@Valid DvIdentifier> originatingSystemItemIds;
 
-  @JsonProperty("feeder_system_item_ids")
   @Valid
-  private List<DvIdentifier> feederSystemItemIds = null;
+  private List<@Valid DvIdentifier> feederSystemItemIds;
 
-  @JsonProperty("original_content")
   private DvEncapsulated originalContent;
 
-  @JsonProperty("originating_system_audit")
   private FeederAuditDetails originatingSystemAudit;
 
-  @JsonProperty("feeder_system_audit")
   private FeederAuditDetails feederSystemAudit;
 
-  public FeederAudit originatingSystemItemIds(List<DvIdentifier> originatingSystemItemIds) {
+  /**
+   * Default constructor
+   * @deprecated Use {@link FeederAudit#FeederAudit(FeederAuditDetails)}
+   */
+  @Deprecated
+  public FeederAudit() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public FeederAudit(FeederAuditDetails originatingSystemAudit) {
+    this.originatingSystemAudit = originatingSystemAudit;
+  }
+
+  public FeederAudit originatingSystemItemIds(List<@Valid DvIdentifier> originatingSystemItemIds) {
     this.originatingSystemItemIds = originatingSystemItemIds;
     return this;
   }
@@ -61,16 +72,17 @@ public class FeederAudit {
    * @return originatingSystemItemIds
   */
   @Valid 
-  @Schema(name = "originating_system_item_ids", required = false)
-  public List<DvIdentifier> getOriginatingSystemItemIds() {
+  @Schema(name = "originating_system_item_ids", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("originating_system_item_ids")
+  public List<@Valid DvIdentifier> getOriginatingSystemItemIds() {
     return originatingSystemItemIds;
   }
 
-  public void setOriginatingSystemItemIds(List<DvIdentifier> originatingSystemItemIds) {
+  public void setOriginatingSystemItemIds(List<@Valid DvIdentifier> originatingSystemItemIds) {
     this.originatingSystemItemIds = originatingSystemItemIds;
   }
 
-  public FeederAudit feederSystemItemIds(List<DvIdentifier> feederSystemItemIds) {
+  public FeederAudit feederSystemItemIds(List<@Valid DvIdentifier> feederSystemItemIds) {
     this.feederSystemItemIds = feederSystemItemIds;
     return this;
   }
@@ -88,12 +100,13 @@ public class FeederAudit {
    * @return feederSystemItemIds
   */
   @Valid 
-  @Schema(name = "feeder_system_item_ids", required = false)
-  public List<DvIdentifier> getFeederSystemItemIds() {
+  @Schema(name = "feeder_system_item_ids", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("feeder_system_item_ids")
+  public List<@Valid DvIdentifier> getFeederSystemItemIds() {
     return feederSystemItemIds;
   }
 
-  public void setFeederSystemItemIds(List<DvIdentifier> feederSystemItemIds) {
+  public void setFeederSystemItemIds(List<@Valid DvIdentifier> feederSystemItemIds) {
     this.feederSystemItemIds = feederSystemItemIds;
   }
 
@@ -107,7 +120,8 @@ public class FeederAudit {
    * @return originalContent
   */
   @Valid 
-  @Schema(name = "original_content", required = false)
+  @Schema(name = "original_content", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("original_content")
   public DvEncapsulated getOriginalContent() {
     return originalContent;
   }
@@ -126,7 +140,8 @@ public class FeederAudit {
    * @return originatingSystemAudit
   */
   @NotNull @Valid 
-  @Schema(name = "originating_system_audit", required = true)
+  @Schema(name = "originating_system_audit", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("originating_system_audit")
   public FeederAuditDetails getOriginatingSystemAudit() {
     return originatingSystemAudit;
   }
@@ -145,7 +160,8 @@ public class FeederAudit {
    * @return feederSystemAudit
   */
   @Valid 
-  @Schema(name = "feeder_system_audit", required = false)
+  @Schema(name = "feeder_system_audit", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("feeder_system_audit")
   public FeederAuditDetails getFeederSystemAudit() {
     return feederSystemAudit;
   }

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**versionedEhrStatusVersionGetById**](EHRSTATUSApi.md#versionedEhrStatusVersionGetById) | **GET** /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid} | Get versioned EHR_STATUS version by id
 
 
-<a name="ehrStatusGetAtTime"></a>
+<a id="ehrStatusGetAtTime"></a>
 # **ehrStatusGetAtTime**
 > EhrStatus ehrStatusGetAtTime(ehrId, versionAtTime)
 
@@ -62,7 +62,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="ehrStatusGetByVersionId"></a>
+<a id="ehrStatusGetByVersionId"></a>
 # **ehrStatusGetByVersionId**
 > EhrStatus ehrStatusGetByVersionId(ehrId, versionUid)
 
@@ -111,7 +111,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="ehrStatusUpdate"></a>
+<a id="ehrStatusUpdate"></a>
 # **ehrStatusUpdate**
 > EhrStatus ehrStatusUpdate(ehrId, ifMatch, ehrStatus, prefer)
 
@@ -164,7 +164,7 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="versionedEhrStatusGet"></a>
+<a id="versionedEhrStatusGet"></a>
 # **versionedEhrStatusGet**
 > VersionedEhrStatus versionedEhrStatusGet(ehrId)
 
@@ -211,7 +211,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="versionedEhrStatusRevisionHistory"></a>
+<a id="versionedEhrStatusRevisionHistory"></a>
 # **versionedEhrStatusRevisionHistory**
 > RevisionHistory versionedEhrStatusRevisionHistory(ehrId)
 
@@ -258,7 +258,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="versionedEhrStatusVersionGetAtTime"></a>
+<a id="versionedEhrStatusVersionGetAtTime"></a>
 # **versionedEhrStatusVersionGetAtTime**
 > Version versionedEhrStatusVersionGetAtTime(ehrId, versionAtTime)
 
@@ -307,7 +307,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="versionedEhrStatusVersionGetById"></a>
+<a id="versionedEhrStatusVersionGetById"></a>
 # **versionedEhrStatusVersionGetById**
 > Version versionedEhrStatusVersionGetById(ehrId, versionUid)
 

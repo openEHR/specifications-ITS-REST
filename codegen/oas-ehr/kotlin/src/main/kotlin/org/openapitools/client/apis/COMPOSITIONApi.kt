@@ -52,7 +52,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
     /**
      * enum for parameter prefer
      */
-     enum class Prefer_compositionCreate(val value: kotlin.String) {
+     enum class PreferCompositionCreate(val value: kotlin.String) {
          @Json(name = "return=representation") representation("return=representation"),
          @Json(name = "return=minimal") minimal("return=minimal")
      }
@@ -72,7 +72,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun compositionCreate(ehrId: kotlin.String, composition: Composition, prefer: Prefer_compositionCreate? = Prefer_compositionCreate.minimal) : Composition {
+    fun compositionCreate(ehrId: kotlin.String, composition: Composition, prefer: PreferCompositionCreate? = PreferCompositionCreate.minimal) : Composition {
         val localVarResponse = compositionCreateWithHttpInfo(ehrId = ehrId, composition = composition, prefer = prefer)
 
         return when (localVarResponse.responseType) {
@@ -102,7 +102,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun compositionCreateWithHttpInfo(ehrId: kotlin.String, composition: Composition, prefer: Prefer_compositionCreate?) : ApiResponse<Composition?> {
+    fun compositionCreateWithHttpInfo(ehrId: kotlin.String, composition: Composition, prefer: PreferCompositionCreate?) : ApiResponse<Composition?> {
         val localVariableConfig = compositionCreateRequestConfig(ehrId = ehrId, composition = composition, prefer = prefer)
 
         return request<Composition, Composition>(
@@ -118,7 +118,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
      * @param prefer Request header to indicate the preference over response details. The response will contain the entire resource when the &#x60;Prefer&#x60; header has a value of &#x60;return&#x3D;representation&#x60;.  (optional, default to return=minimal)
      * @return RequestConfig
      */
-    fun compositionCreateRequestConfig(ehrId: kotlin.String, composition: Composition, prefer: Prefer_compositionCreate?) : RequestConfig<Composition> {
+    fun compositionCreateRequestConfig(ehrId: kotlin.String, composition: Composition, prefer: PreferCompositionCreate?) : RequestConfig<Composition> {
         val localVariableBody = composition
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -131,6 +131,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
             path = "/ehr/{ehr_id}/composition".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -201,6 +202,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
             path = "/ehr/{ehr_id}/composition/{uid_based_id}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"uid_based_id"+"}", encodeURIComponent(uidBasedId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -282,6 +284,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
             path = "/ehr/{ehr_id}/composition/{uid_based_id}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"uid_based_id"+"}", encodeURIComponent(uidBasedId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -289,7 +292,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
     /**
      * enum for parameter prefer
      */
-     enum class Prefer_compositionUpdate(val value: kotlin.String) {
+     enum class PreferCompositionUpdate(val value: kotlin.String) {
          @Json(name = "return=representation") representation("return=representation"),
          @Json(name = "return=minimal") minimal("return=minimal")
      }
@@ -311,7 +314,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun compositionUpdate(ehrId: kotlin.String, uidBasedId: kotlin.String, ifMatch: kotlin.String, composition: Composition, prefer: Prefer_compositionUpdate? = Prefer_compositionUpdate.minimal) : Composition {
+    fun compositionUpdate(ehrId: kotlin.String, uidBasedId: kotlin.String, ifMatch: kotlin.String, composition: Composition, prefer: PreferCompositionUpdate? = PreferCompositionUpdate.minimal) : Composition {
         val localVarResponse = compositionUpdateWithHttpInfo(ehrId = ehrId, uidBasedId = uidBasedId, ifMatch = ifMatch, composition = composition, prefer = prefer)
 
         return when (localVarResponse.responseType) {
@@ -343,7 +346,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun compositionUpdateWithHttpInfo(ehrId: kotlin.String, uidBasedId: kotlin.String, ifMatch: kotlin.String, composition: Composition, prefer: Prefer_compositionUpdate?) : ApiResponse<Composition?> {
+    fun compositionUpdateWithHttpInfo(ehrId: kotlin.String, uidBasedId: kotlin.String, ifMatch: kotlin.String, composition: Composition, prefer: PreferCompositionUpdate?) : ApiResponse<Composition?> {
         val localVariableConfig = compositionUpdateRequestConfig(ehrId = ehrId, uidBasedId = uidBasedId, ifMatch = ifMatch, composition = composition, prefer = prefer)
 
         return request<Composition, Composition>(
@@ -361,7 +364,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
      * @param prefer Request header to indicate the preference over response details. The response will contain the entire resource when the &#x60;Prefer&#x60; header has a value of &#x60;return&#x3D;representation&#x60;.  (optional, default to return=minimal)
      * @return RequestConfig
      */
-    fun compositionUpdateRequestConfig(ehrId: kotlin.String, uidBasedId: kotlin.String, ifMatch: kotlin.String, composition: Composition, prefer: Prefer_compositionUpdate?) : RequestConfig<Composition> {
+    fun compositionUpdateRequestConfig(ehrId: kotlin.String, uidBasedId: kotlin.String, ifMatch: kotlin.String, composition: Composition, prefer: PreferCompositionUpdate?) : RequestConfig<Composition> {
         val localVariableBody = composition
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -375,6 +378,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
             path = "/ehr/{ehr_id}/composition/{uid_based_id}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"uid_based_id"+"}", encodeURIComponent(uidBasedId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -448,6 +452,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
             path = "/ehr/{ehr_id}/versioned_composition/{versioned_object_uid}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"versioned_object_uid"+"}", encodeURIComponent(versionedObjectUid.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -521,6 +526,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
             path = "/ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"versioned_object_uid"+"}", encodeURIComponent(versionedObjectUid.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -602,6 +608,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
             path = "/ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"versioned_object_uid"+"}", encodeURIComponent(versionedObjectUid.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -678,6 +685,7 @@ class COMPOSITIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCl
             path = "/ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"versioned_object_uid"+"}", encodeURIComponent(versionedObjectUid.toString())).replace("{"+"version_uid"+"}", encodeURIComponent(versionUid.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }

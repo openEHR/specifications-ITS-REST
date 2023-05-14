@@ -24,5 +24,5 @@ class History {
     
     ItemStructure summary
     
-    List<Event> events = new ArrayList<>()
+    List<Event> events
 }

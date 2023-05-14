@@ -99,8 +99,8 @@ class FeederAudit {
       }());
 
       return FeederAudit(
-        originatingSystemItemIds: DvIdentifier.listFromJson(json[r'originating_system_item_ids']) ?? const [],
-        feederSystemItemIds: DvIdentifier.listFromJson(json[r'feeder_system_item_ids']) ?? const [],
+        originatingSystemItemIds: DvIdentifier.listFromJson(json[r'originating_system_item_ids']),
+        feederSystemItemIds: DvIdentifier.listFromJson(json[r'feeder_system_item_ids']),
         originalContent: DvEncapsulated.fromJson(json[r'original_content']),
         originatingSystemAudit: FeederAuditDetails.fromJson(json[r'originating_system_audit'])!,
         feederSystemAudit: FeederAuditDetails.fromJson(json[r'feeder_system_audit']),
@@ -109,7 +109,7 @@ class FeederAudit {
     return null;
   }
 
-  static List<FeederAudit>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<FeederAudit> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FeederAudit>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -140,12 +140,10 @@ class FeederAudit {
   static Map<String, List<FeederAudit>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<FeederAudit>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = FeederAudit.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = FeederAudit.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

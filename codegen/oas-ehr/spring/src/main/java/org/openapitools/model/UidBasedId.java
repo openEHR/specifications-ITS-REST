@@ -7,9 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.HierObjectId;
 import org.openapitools.model.ObjectId;
-import org.openapitools.model.ObjectVersionId;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -31,16 +29,29 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = HierObjectId.class, name = "UID_BASED_ID"),
-  @JsonSubTypes.Type(value = HierObjectId.class, name = "UID_BASED_ID"),
-  @JsonSubTypes.Type(value = ObjectVersionId.class, name = "UID_BASED_ID"),
   @JsonSubTypes.Type(value = ObjectVersionId.class, name = "UID_BASED_ID")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class UidBasedId extends ObjectId {
 
-  @JsonProperty("_type")
   private String type = "UID_BASED_ID";
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link UidBasedId#UidBasedId(String)}
+   */
+  @Deprecated
+  public UidBasedId() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public UidBasedId(String value) {
+    super(value);
+  }
 
   public UidBasedId type(String type) {
     this.type = type;
@@ -52,7 +63,8 @@ public class UidBasedId extends ObjectId {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }

@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openapitools.model.DvDateTime;
 import org.openapitools.model.HierObjectId;
 import org.openapitools.model.ObjectRef;
-import org.openapitools.model.VersionedComposition;
-import org.openapitools.model.VersionedEhrStatus;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -33,25 +31,37 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = VersionedComposition.class, name = "VERSIONED_COMPOSITION"),
-  @JsonSubTypes.Type(value = VersionedEhrStatus.class, name = "VERSIONED_EHR_STATUS"),
-  @JsonSubTypes.Type(value = VersionedComposition.class, name = "VersionedComposition"),
-  @JsonSubTypes.Type(value = VersionedEhrStatus.class, name = "VersionedEhrStatus")
+  @JsonSubTypes.Type(value = VersionedEhrStatus.class, name = "VERSIONED_EHR_STATUS")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class VersionedObject {
 
-  @JsonProperty("_type")
   private String type;
 
-  @JsonProperty("uid")
   private HierObjectId uid;
 
-  @JsonProperty("owner_id")
   private ObjectRef ownerId;
 
-  @JsonProperty("time_created")
   private DvDateTime timeCreated;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link VersionedObject#VersionedObject(HierObjectId, ObjectRef, DvDateTime)}
+   */
+  @Deprecated
+  public VersionedObject() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public VersionedObject(HierObjectId uid, ObjectRef ownerId, DvDateTime timeCreated) {
+    this.uid = uid;
+    this.ownerId = ownerId;
+    this.timeCreated = timeCreated;
+  }
 
   public VersionedObject type(String type) {
     this.type = type;
@@ -63,7 +73,8 @@ public class VersionedObject {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -82,7 +93,8 @@ public class VersionedObject {
    * @return uid
   */
   @NotNull @Valid 
-  @Schema(name = "uid", required = true)
+  @Schema(name = "uid", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("uid")
   public HierObjectId getUid() {
     return uid;
   }
@@ -101,7 +113,8 @@ public class VersionedObject {
    * @return ownerId
   */
   @NotNull @Valid 
-  @Schema(name = "owner_id", required = true)
+  @Schema(name = "owner_id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("owner_id")
   public ObjectRef getOwnerId() {
     return ownerId;
   }
@@ -120,7 +133,8 @@ public class VersionedObject {
    * @return timeCreated
   */
   @NotNull @Valid 
-  @Schema(name = "time_created", required = true)
+  @Schema(name = "time_created", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("time_created")
   public DvDateTime getTimeCreated() {
     return timeCreated;
   }

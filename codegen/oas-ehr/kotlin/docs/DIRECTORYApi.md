@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**directoryUpdate**](DIRECTORYApi.md#directoryUpdate) | **PUT** /ehr/{ehr_id}/directory | Update directory
 
 
-<a name="directoryCreate"></a>
+<a id="directoryCreate"></a>
 # **directoryCreate**
 > Folder directoryCreate(ehrId, folder, prefer)
 
@@ -62,7 +62,7 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="directoryDelete"></a>
+<a id="directoryDelete"></a>
 # **directoryDelete**
 > directoryDelete(ehrId, ifMatch)
 
@@ -110,7 +110,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="directoryGetAtTime"></a>
+<a id="directoryGetAtTime"></a>
 # **directoryGetAtTime**
 > Folder directoryGetAtTime(ehrId, versionAtTime, path)
 
@@ -161,7 +161,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="directoryGetByVersionId"></a>
+<a id="directoryGetByVersionId"></a>
 # **directoryGetByVersionId**
 > Folder directoryGetByVersionId(ehrId, versionUid, path)
 
@@ -212,7 +212,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="directoryUpdate"></a>
+<a id="directoryUpdate"></a>
 # **directoryUpdate**
 > Folder directoryUpdate(ehrId, ifMatch, folder, prefer)
 

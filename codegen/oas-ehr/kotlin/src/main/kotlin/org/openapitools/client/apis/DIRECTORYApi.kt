@@ -48,7 +48,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     /**
      * enum for parameter prefer
      */
-     enum class Prefer_directoryCreate(val value: kotlin.String) {
+     enum class PreferDirectoryCreate(val value: kotlin.String) {
          @Json(name = "return=representation") representation("return=representation"),
          @Json(name = "return=minimal") minimal("return=minimal")
      }
@@ -68,7 +68,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun directoryCreate(ehrId: kotlin.String, folder: Folder, prefer: Prefer_directoryCreate? = Prefer_directoryCreate.minimal) : Folder {
+    fun directoryCreate(ehrId: kotlin.String, folder: Folder, prefer: PreferDirectoryCreate? = PreferDirectoryCreate.minimal) : Folder {
         val localVarResponse = directoryCreateWithHttpInfo(ehrId = ehrId, folder = folder, prefer = prefer)
 
         return when (localVarResponse.responseType) {
@@ -98,7 +98,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun directoryCreateWithHttpInfo(ehrId: kotlin.String, folder: Folder, prefer: Prefer_directoryCreate?) : ApiResponse<Folder?> {
+    fun directoryCreateWithHttpInfo(ehrId: kotlin.String, folder: Folder, prefer: PreferDirectoryCreate?) : ApiResponse<Folder?> {
         val localVariableConfig = directoryCreateRequestConfig(ehrId = ehrId, folder = folder, prefer = prefer)
 
         return request<Folder, Folder>(
@@ -114,7 +114,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
      * @param prefer Request header to indicate the preference over response details. The response will contain the entire resource when the &#x60;Prefer&#x60; header has a value of &#x60;return&#x3D;representation&#x60;.  (optional, default to return=minimal)
      * @return RequestConfig
      */
-    fun directoryCreateRequestConfig(ehrId: kotlin.String, folder: Folder, prefer: Prefer_directoryCreate?) : RequestConfig<Folder> {
+    fun directoryCreateRequestConfig(ehrId: kotlin.String, folder: Folder, prefer: PreferDirectoryCreate?) : RequestConfig<Folder> {
         val localVariableBody = folder
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -127,6 +127,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/directory".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -198,6 +199,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/directory".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -282,6 +284,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/directory".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -363,6 +366,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/directory/{version_uid}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"version_uid"+"}", encodeURIComponent(versionUid.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -370,7 +374,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     /**
      * enum for parameter prefer
      */
-     enum class Prefer_directoryUpdate(val value: kotlin.String) {
+     enum class PreferDirectoryUpdate(val value: kotlin.String) {
          @Json(name = "return=representation") representation("return=representation"),
          @Json(name = "return=minimal") minimal("return=minimal")
      }
@@ -391,7 +395,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun directoryUpdate(ehrId: kotlin.String, ifMatch: kotlin.String, folder: Folder, prefer: Prefer_directoryUpdate? = Prefer_directoryUpdate.minimal) : Folder {
+    fun directoryUpdate(ehrId: kotlin.String, ifMatch: kotlin.String, folder: Folder, prefer: PreferDirectoryUpdate? = PreferDirectoryUpdate.minimal) : Folder {
         val localVarResponse = directoryUpdateWithHttpInfo(ehrId = ehrId, ifMatch = ifMatch, folder = folder, prefer = prefer)
 
         return when (localVarResponse.responseType) {
@@ -422,7 +426,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun directoryUpdateWithHttpInfo(ehrId: kotlin.String, ifMatch: kotlin.String, folder: Folder, prefer: Prefer_directoryUpdate?) : ApiResponse<Folder?> {
+    fun directoryUpdateWithHttpInfo(ehrId: kotlin.String, ifMatch: kotlin.String, folder: Folder, prefer: PreferDirectoryUpdate?) : ApiResponse<Folder?> {
         val localVariableConfig = directoryUpdateRequestConfig(ehrId = ehrId, ifMatch = ifMatch, folder = folder, prefer = prefer)
 
         return request<Folder, Folder>(
@@ -439,7 +443,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
      * @param prefer Request header to indicate the preference over response details. The response will contain the entire resource when the &#x60;Prefer&#x60; header has a value of &#x60;return&#x3D;representation&#x60;.  (optional, default to return=minimal)
      * @return RequestConfig
      */
-    fun directoryUpdateRequestConfig(ehrId: kotlin.String, ifMatch: kotlin.String, folder: Folder, prefer: Prefer_directoryUpdate?) : RequestConfig<Folder> {
+    fun directoryUpdateRequestConfig(ehrId: kotlin.String, ifMatch: kotlin.String, folder: Folder, prefer: PreferDirectoryUpdate?) : RequestConfig<Folder> {
         val localVariableBody = folder
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -453,6 +457,7 @@ class DIRECTORYApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/directory".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }

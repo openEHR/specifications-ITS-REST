@@ -106,7 +106,7 @@ class AuditDetails {
     return null;
   }
 
-  static List<AuditDetails>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<AuditDetails> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AuditDetails>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -137,12 +137,10 @@ class AuditDetails {
   static Map<String, List<AuditDetails>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<AuditDetails>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = AuditDetails.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = AuditDetails.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

@@ -22,9 +22,9 @@ class OriginalVersion {
     
     ObjectVersionId precedingVersionUid
     
-    List<ObjectVersionId> otherInputVersionUids = new ArrayList<>()
+    List<ObjectVersionId> otherInputVersionUids
     
     DvCodedText lifecycleState
     
-    List<Attestation> attestations = new ArrayList<>()
+    List<Attestation> attestations
 }

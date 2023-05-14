@@ -16,10 +16,10 @@
 package org.openapitools.client.models
 
 import org.openapitools.client.models.CodePhrase
-import org.openapitools.client.models.DvCodedText
 import org.openapitools.client.models.DvText
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

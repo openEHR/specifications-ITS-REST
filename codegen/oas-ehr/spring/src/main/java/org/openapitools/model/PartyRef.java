@@ -23,14 +23,29 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class PartyRef {
 
-  @JsonProperty("namespace")
   private String namespace;
 
-  @JsonProperty("type")
   private String type;
 
-  @JsonProperty("id")
   private ObjectId id;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link PartyRef#PartyRef(String, String, ObjectId)}
+   */
+  @Deprecated
+  public PartyRef() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public PartyRef(String namespace, String type, ObjectId id) {
+    this.namespace = namespace;
+    this.type = type;
+    this.id = id;
+  }
 
   public PartyRef namespace(String namespace) {
     this.namespace = namespace;
@@ -42,7 +57,8 @@ public class PartyRef {
    * @return namespace
   */
   @NotNull 
-  @Schema(name = "namespace", required = true)
+  @Schema(name = "namespace", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("namespace")
   public String getNamespace() {
     return namespace;
   }
@@ -61,7 +77,8 @@ public class PartyRef {
    * @return type
   */
   @NotNull @Pattern(regexp = "^PERSON|ORGANISATION|GROUP|AGENT|ROLE|PARTY|ACTOR$") 
-  @Schema(name = "type", required = true)
+  @Schema(name = "type", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("type")
   public String getType() {
     return type;
   }
@@ -80,7 +97,8 @@ public class PartyRef {
    * @return id
   */
   @NotNull @Valid 
-  @Schema(name = "id", required = true)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("id")
   public ObjectId getId() {
     return id;
   }

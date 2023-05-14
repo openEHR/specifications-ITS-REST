@@ -84,15 +84,15 @@ class Folder {
 
       return Folder(
         type: mapValueOfType<String>(json, r'_type') ?? 'FOLDER',
-        items: ObjectRef.listFromJson(json[r'items']) ?? const [],
-        folders: Folder.listFromJson(json[r'folders']) ?? const [],
+        items: ObjectRef.listFromJson(json[r'items']),
+        folders: Folder.listFromJson(json[r'folders']),
         details: ItemStructure.fromJson(json[r'details']),
       );
     }
     return null;
   }
 
-  static List<Folder>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Folder> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <Folder>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -123,12 +123,10 @@ class Folder {
   static Map<String, List<Folder>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<Folder>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = Folder.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = Folder.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

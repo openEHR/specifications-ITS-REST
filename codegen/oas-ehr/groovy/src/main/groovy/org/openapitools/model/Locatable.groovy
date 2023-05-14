@@ -21,7 +21,7 @@ class Locatable {
     
     UidBasedId uid
     
-    List<Link> links = new ArrayList<>()
+    List<Link> links
     
     Archetyped archetypeDetails
     

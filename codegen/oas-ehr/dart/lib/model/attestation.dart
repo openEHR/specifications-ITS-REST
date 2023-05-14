@@ -148,7 +148,7 @@ class Attestation {
         type: mapValueOfType<String>(json, r'_type') ?? 'ATTESTATION',
         attestedView: DvMultimedia.fromJson(json[r'attested_view']),
         proof: mapValueOfType<String>(json, r'proof'),
-        items: DvEhrUri.listFromJson(json[r'items']) ?? const [],
+        items: DvEhrUri.listFromJson(json[r'items']),
         reason: DvText.fromJson(json[r'reason'])!,
         isPending: mapValueOfType<bool>(json, r'is_pending')!,
         systemId: mapValueOfType<String>(json, r'system_id')!,
@@ -161,7 +161,7 @@ class Attestation {
     return null;
   }
 
-  static List<Attestation>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Attestation> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <Attestation>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -192,12 +192,10 @@ class Attestation {
   static Map<String, List<Attestation>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<Attestation>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = Attestation.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = Attestation.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

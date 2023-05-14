@@ -7,14 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.Composition;
-import org.openapitools.model.EhrStatus;
-import org.openapitools.model.Folder;
-import org.openapitools.model.ItemList;
-import org.openapitools.model.ItemSingle;
-import org.openapitools.model.ItemStructure;
-import org.openapitools.model.ItemTable;
-import org.openapitools.model.ItemTree;
 import org.openapitools.model.Locatable;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -44,18 +36,12 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = ItemSingle.class, name = "DATE_STRUCTURE"),
   @JsonSubTypes.Type(value = ItemStructure.class, name = "DATE_STRUCTURE"),
   @JsonSubTypes.Type(value = ItemTable.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemTree.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemList.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemSingle.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemStructure.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemTable.class, name = "DATE_STRUCTURE"),
   @JsonSubTypes.Type(value = ItemTree.class, name = "DATE_STRUCTURE")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DataStructure extends Locatable {
 
-  @JsonProperty("_type")
   private String type = "DATE_STRUCTURE";
 
   public DataStructure type(String type) {
@@ -68,7 +54,8 @@ public class DataStructure extends Locatable {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -92,7 +79,7 @@ public class DataStructure extends Locatable {
     return this;
   }
 
-  public DataStructure links(List<Link> links) {
+  public DataStructure links(List<@Valid Link> links) {
     super.setLinks(links);
     return this;
   }

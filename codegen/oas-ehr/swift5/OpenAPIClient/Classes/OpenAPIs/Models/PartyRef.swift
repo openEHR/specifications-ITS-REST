@@ -13,6 +13,7 @@ import AnyCodable
 /** Identifier for parties in a demographic or identity service. */
 public struct PartyRef: Codable, JSONEncodable, Hashable {
 
+    static let typeRule = StringRule(minLength: nil, maxLength: nil, pattern: "/^PERSON|ORGANISATION|GROUP|AGENT|ROLE|PARTY|ACTOR$/")
     public var namespace: String
     public var type: String
     public var id: ObjectId

@@ -12,6 +12,7 @@ import AnyCodable
 
 public struct TermMapping: Codable, JSONEncodable, Hashable {
 
+    static let matchRule = StringRule(minLength: nil, maxLength: nil, pattern: "/^[><=?]$/")
     public var match: String
     public var purpose: DvCodedText?
     public var target: CodePhrase

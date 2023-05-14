@@ -11,7 +11,7 @@ All URIs are relative to *https://openEHRSys.example.com/v1*
 | [**directoryUpdate**](DirectoryApi.md#directoryUpdate) | **PUT** /ehr/{ehr_id}/directory | Update directory |
 
 
-<a name="directoryCreate"></a>
+<a id="directoryCreate"></a>
 # **directoryCreate**
 > Folder directoryCreate(ehrId, folder, prefer)
 
@@ -79,7 +79,7 @@ No authorization required
 | **400** | &#x60;400 Bad Request&#x60; is returned when the request URL or body (if provided) could not be parsed or has invalid content (e.g. invalid &#x60;ehr_id&#x60;, or either the body of the request could not be read, or could not be converted to a valid FOLDER object).  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist.  |  -  |
 
-<a name="directoryDelete"></a>
+<a id="directoryDelete"></a>
 # **directoryDelete**
 > directoryDelete(ehrId, ifMatch)
 
@@ -145,7 +145,7 @@ No authorization required
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist.  |  -  |
 | **412** | &#x60;412 Precondition Failed&#x60; is returned when &#x60;If-Match&#x60; request header doesn&#39;t match the latest version on the service side. Returns also latest &#x60;version_uid&#x60; in the &#x60;Location&#x60; and &#x60;ETag&#x60; headers.  |  * ETag -  <br>  * Location -  <br>  |
 
-<a name="directoryGetAtTime"></a>
+<a id="directoryGetAtTime"></a>
 # **directoryGetAtTime**
 > Folder directoryGetAtTime(ehrId, versionAtTime, path)
 
@@ -213,7 +213,7 @@ No authorization required
 | **204** | &#x60;204 No Content&#x60; is returned when the resource identified by the request parameters (at specified &#x60;version_at_time&#x60;) time has been deleted.  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist, or when a directory does not exist at the specified &#x60;version_at_time&#x60;, or when &#x60;path&#x60; does not exists within the directory.  |  -  |
 
-<a name="directoryGetByVersionId"></a>
+<a id="directoryGetByVersionId"></a>
 # **directoryGetByVersionId**
 > Folder directoryGetByVersionId(ehrId, versionUid, path)
 
@@ -280,7 +280,7 @@ No authorization required
 | **200** | &#x60;200 OK&#x60; is returned when the FOLDER is successfully retrieved.  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist, or when a directory with &#x60;version_uid&#x60; does not exist, or when &#x60;path&#x60; does not exist within the directory.  |  -  |
 
-<a name="directoryUpdate"></a>
+<a id="directoryUpdate"></a>
 # **directoryUpdate**
 > Folder directoryUpdate(ehrId, ifMatch, folder, prefer)
 

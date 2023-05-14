@@ -95,14 +95,14 @@ class PartyIdentified {
       return PartyIdentified(
         type: mapValueOfType<String>(json, r'_type') ?? 'PARTY_IDENTIFIED',
         name: mapValueOfType<String>(json, r'name'),
-        identifiers: DvIdentifier.listFromJson(json[r'identifiers']) ?? const [],
+        identifiers: DvIdentifier.listFromJson(json[r'identifiers']),
         externalRef: PartyRef.fromJson(json[r'external_ref']),
       );
     }
     return null;
   }
 
-  static List<PartyIdentified>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PartyIdentified> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PartyIdentified>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -133,12 +133,10 @@ class PartyIdentified {
   static Map<String, List<PartyIdentified>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PartyIdentified>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = PartyIdentified.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = PartyIdentified.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

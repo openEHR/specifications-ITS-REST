@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 API/Client/AbstractEntry.js
 API/Client/Action.js
 API/Client/Activity.js

@@ -33,27 +33,38 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class EventContext extends Pathable {
 
-  @JsonProperty("start_time")
   private DvDateTime startTime;
 
-  @JsonProperty("end_time")
   private DvDateTime endTime;
 
-  @JsonProperty("location")
   private String location;
 
-  @JsonProperty("setting")
   private DvCodedText setting;
 
-  @JsonProperty("other_context")
   private ItemStructure otherContext;
 
-  @JsonProperty("health_care_facility")
   private PartyIdentified healthCareFacility;
 
-  @JsonProperty("participations")
   @Valid
-  private List<Participation> participations = null;
+  private List<@Valid Participation> participations;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link EventContext#EventContext(DvDateTime, DvCodedText)}
+   */
+  @Deprecated
+  public EventContext() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public EventContext(DvDateTime startTime, DvCodedText setting) {
+    super();
+    this.startTime = startTime;
+    this.setting = setting;
+  }
 
   public EventContext startTime(DvDateTime startTime) {
     this.startTime = startTime;
@@ -65,7 +76,8 @@ public class EventContext extends Pathable {
    * @return startTime
   */
   @NotNull @Valid 
-  @Schema(name = "start_time", required = true)
+  @Schema(name = "start_time", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("start_time")
   public DvDateTime getStartTime() {
     return startTime;
   }
@@ -84,7 +96,8 @@ public class EventContext extends Pathable {
    * @return endTime
   */
   @Valid 
-  @Schema(name = "end_time", required = false)
+  @Schema(name = "end_time", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("end_time")
   public DvDateTime getEndTime() {
     return endTime;
   }
@@ -103,7 +116,8 @@ public class EventContext extends Pathable {
    * @return location
   */
   
-  @Schema(name = "location", required = false)
+  @Schema(name = "location", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("location")
   public String getLocation() {
     return location;
   }
@@ -122,7 +136,8 @@ public class EventContext extends Pathable {
    * @return setting
   */
   @NotNull @Valid 
-  @Schema(name = "setting", required = true)
+  @Schema(name = "setting", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("setting")
   public DvCodedText getSetting() {
     return setting;
   }
@@ -141,7 +156,8 @@ public class EventContext extends Pathable {
    * @return otherContext
   */
   @Valid 
-  @Schema(name = "other_context", required = false)
+  @Schema(name = "other_context", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("other_context")
   public ItemStructure getOtherContext() {
     return otherContext;
   }
@@ -160,7 +176,8 @@ public class EventContext extends Pathable {
    * @return healthCareFacility
   */
   @Valid 
-  @Schema(name = "health_care_facility", required = false)
+  @Schema(name = "health_care_facility", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("health_care_facility")
   public PartyIdentified getHealthCareFacility() {
     return healthCareFacility;
   }
@@ -169,7 +186,7 @@ public class EventContext extends Pathable {
     this.healthCareFacility = healthCareFacility;
   }
 
-  public EventContext participations(List<Participation> participations) {
+  public EventContext participations(List<@Valid Participation> participations) {
     this.participations = participations;
     return this;
   }
@@ -187,12 +204,13 @@ public class EventContext extends Pathable {
    * @return participations
   */
   @Valid 
-  @Schema(name = "participations", required = false)
-  public List<Participation> getParticipations() {
+  @Schema(name = "participations", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("participations")
+  public List<@Valid Participation> getParticipations() {
     return participations;
   }
 
-  public void setParticipations(List<Participation> participations) {
+  public void setParticipations(List<@Valid Participation> participations) {
     this.participations = participations;
   }
 

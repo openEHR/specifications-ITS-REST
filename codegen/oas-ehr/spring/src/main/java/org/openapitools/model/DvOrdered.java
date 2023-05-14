@@ -11,19 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.CodePhrase;
 import org.openapitools.model.DataValue;
-import org.openapitools.model.DvAmount;
-import org.openapitools.model.DvCount;
-import org.openapitools.model.DvDate;
-import org.openapitools.model.DvDateTime;
-import org.openapitools.model.DvDuration;
 import org.openapitools.model.DvInterval;
-import org.openapitools.model.DvOrdinal;
-import org.openapitools.model.DvProportion;
-import org.openapitools.model.DvQuantified;
-import org.openapitools.model.DvQuantity;
-import org.openapitools.model.DvScale;
-import org.openapitools.model.DvTemporal;
-import org.openapitools.model.DvTime;
 import org.openapitools.model.ReferenceRange;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -56,36 +44,20 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_ORDERED"),
   @JsonSubTypes.Type(value = DvScale.class, name = "DV_ORDERED"),
   @JsonSubTypes.Type(value = DvTemporal.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvTime.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvAmount.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvCount.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvDate.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvDuration.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvOrdinal.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvProportion.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvQuantified.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvScale.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvTemporal.class, name = "DV_ORDERED"),
   @JsonSubTypes.Type(value = DvTime.class, name = "DV_ORDERED")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DvOrdered extends DataValue {
 
-  @JsonProperty("_type")
   private String type = "DV_ORDERED";
 
-  @JsonProperty("normal_status")
   private CodePhrase normalStatus;
 
-  @JsonProperty("normal_range")
   private DvInterval normalRange;
 
-  @JsonProperty("other_reference_ranges")
   @Valid
-  private List<ReferenceRange> otherReferenceRanges = null;
+  private List<@Valid ReferenceRange> otherReferenceRanges;
 
   public DvOrdered type(String type) {
     this.type = type;
@@ -97,7 +69,8 @@ public class DvOrdered extends DataValue {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -116,7 +89,8 @@ public class DvOrdered extends DataValue {
    * @return normalStatus
   */
   @Valid 
-  @Schema(name = "normal_status", required = false)
+  @Schema(name = "normal_status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("normal_status")
   public CodePhrase getNormalStatus() {
     return normalStatus;
   }
@@ -135,7 +109,8 @@ public class DvOrdered extends DataValue {
    * @return normalRange
   */
   @Valid 
-  @Schema(name = "normal_range", required = false)
+  @Schema(name = "normal_range", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("normal_range")
   public DvInterval getNormalRange() {
     return normalRange;
   }
@@ -144,7 +119,7 @@ public class DvOrdered extends DataValue {
     this.normalRange = normalRange;
   }
 
-  public DvOrdered otherReferenceRanges(List<ReferenceRange> otherReferenceRanges) {
+  public DvOrdered otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
     this.otherReferenceRanges = otherReferenceRanges;
     return this;
   }
@@ -162,12 +137,13 @@ public class DvOrdered extends DataValue {
    * @return otherReferenceRanges
   */
   @Valid 
-  @Schema(name = "other_reference_ranges", required = false)
-  public List<ReferenceRange> getOtherReferenceRanges() {
+  @Schema(name = "other_reference_ranges", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("other_reference_ranges")
+  public List<@Valid ReferenceRange> getOtherReferenceRanges() {
     return otherReferenceRanges;
   }
 
-  public void setOtherReferenceRanges(List<ReferenceRange> otherReferenceRanges) {
+  public void setOtherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
     this.otherReferenceRanges = otherReferenceRanges;
   }
 

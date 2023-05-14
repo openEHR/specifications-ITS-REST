@@ -134,7 +134,7 @@ class Locatable {
         name: DvText.fromJson(json[r'name'])!,
         archetypeNodeId: mapValueOfType<String>(json, r'archetype_node_id')!,
         uid: UidBasedId.fromJson(json[r'uid']),
-        links: Link.listFromJson(json[r'links']) ?? const [],
+        links: Link.listFromJson(json[r'links']),
         archetypeDetails: Archetyped.fromJson(json[r'archetype_details']),
         feederAudit: FeederAudit.fromJson(json[r'feeder_audit']),
         type: mapValueOfType<String>(json, r'_type'),
@@ -143,7 +143,7 @@ class Locatable {
     return null;
   }
 
-  static List<Locatable>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Locatable> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <Locatable>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -174,12 +174,10 @@ class Locatable {
   static Map<String, List<Locatable>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<Locatable>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = Locatable.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = Locatable.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

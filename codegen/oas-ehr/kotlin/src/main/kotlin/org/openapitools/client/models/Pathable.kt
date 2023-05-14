@@ -15,36 +15,9 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AbstractEntry
-import org.openapitools.client.models.Action
-import org.openapitools.client.models.Activity
-import org.openapitools.client.models.AdminEntry
-import org.openapitools.client.models.CareEntry
-import org.openapitools.client.models.Clstr
-import org.openapitools.client.models.Composition
-import org.openapitools.client.models.ContentItem
-import org.openapitools.client.models.DataStructure
-import org.openapitools.client.models.EhrStatus
-import org.openapitools.client.models.Element
-import org.openapitools.client.models.Evaluation
-import org.openapitools.client.models.Event
-import org.openapitools.client.models.EventContext
-import org.openapitools.client.models.Folder
-import org.openapitools.client.models.History
-import org.openapitools.client.models.Instruction
-import org.openapitools.client.models.InstructionDetails
-import org.openapitools.client.models.IsmTransition
-import org.openapitools.client.models.Item
-import org.openapitools.client.models.ItemList
-import org.openapitools.client.models.ItemSingle
-import org.openapitools.client.models.ItemStructure
-import org.openapitools.client.models.ItemTable
-import org.openapitools.client.models.ItemTree
-import org.openapitools.client.models.Locatable
-import org.openapitools.client.models.Observation
-import org.openapitools.client.models.Versionable
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

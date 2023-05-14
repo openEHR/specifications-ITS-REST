@@ -7,31 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.DvAmount;
-import org.openapitools.model.DvBoolean;
-import org.openapitools.model.DvCodedText;
-import org.openapitools.model.DvCount;
-import org.openapitools.model.DvDate;
-import org.openapitools.model.DvDateTime;
-import org.openapitools.model.DvDuration;
-import org.openapitools.model.DvEhrUri;
-import org.openapitools.model.DvEncapsulated;
-import org.openapitools.model.DvIdentifier;
-import org.openapitools.model.DvInterval;
-import org.openapitools.model.DvIntervalOfDateTime;
-import org.openapitools.model.DvMultimedia;
-import org.openapitools.model.DvOrdered;
-import org.openapitools.model.DvOrdinal;
-import org.openapitools.model.DvParsable;
-import org.openapitools.model.DvProportion;
-import org.openapitools.model.DvQuantified;
-import org.openapitools.model.DvQuantity;
-import org.openapitools.model.DvScale;
-import org.openapitools.model.DvState;
-import org.openapitools.model.DvTemporal;
-import org.openapitools.model.DvText;
-import org.openapitools.model.DvTime;
-import org.openapitools.model.DvUri;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -76,38 +51,12 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = DvTemporal.class, name = "DV_TEMPORAL"),
   @JsonSubTypes.Type(value = DvText.class, name = "DV_TEXT"),
   @JsonSubTypes.Type(value = DvTime.class, name = "DV_TIME"),
-  @JsonSubTypes.Type(value = DvUri.class, name = "DV_URI"),
-  @JsonSubTypes.Type(value = DvAmount.class, name = "DvAmount"),
-  @JsonSubTypes.Type(value = DvBoolean.class, name = "DvBoolean"),
-  @JsonSubTypes.Type(value = DvCodedText.class, name = "DvCodedText"),
-  @JsonSubTypes.Type(value = DvCount.class, name = "DvCount"),
-  @JsonSubTypes.Type(value = DvDate.class, name = "DvDate"),
-  @JsonSubTypes.Type(value = DvDateTime.class, name = "DvDateTime"),
-  @JsonSubTypes.Type(value = DvDuration.class, name = "DvDuration"),
-  @JsonSubTypes.Type(value = DvEhrUri.class, name = "DvEhrUri"),
-  @JsonSubTypes.Type(value = DvEncapsulated.class, name = "DvEncapsulated"),
-  @JsonSubTypes.Type(value = DvIdentifier.class, name = "DvIdentifier"),
-  @JsonSubTypes.Type(value = DvInterval.class, name = "DvInterval"),
-  @JsonSubTypes.Type(value = DvIntervalOfDateTime.class, name = "DvIntervalOfDateTime"),
-  @JsonSubTypes.Type(value = DvMultimedia.class, name = "DvMultimedia"),
-  @JsonSubTypes.Type(value = DvOrdered.class, name = "DvOrdered"),
-  @JsonSubTypes.Type(value = DvOrdinal.class, name = "DvOrdinal"),
-  @JsonSubTypes.Type(value = DvParsable.class, name = "DvParsable"),
-  @JsonSubTypes.Type(value = DvProportion.class, name = "DvProportion"),
-  @JsonSubTypes.Type(value = DvQuantified.class, name = "DvQuantified"),
-  @JsonSubTypes.Type(value = DvQuantity.class, name = "DvQuantity"),
-  @JsonSubTypes.Type(value = DvScale.class, name = "DvScale"),
-  @JsonSubTypes.Type(value = DvState.class, name = "DvState"),
-  @JsonSubTypes.Type(value = DvTemporal.class, name = "DvTemporal"),
-  @JsonSubTypes.Type(value = DvText.class, name = "DvText"),
-  @JsonSubTypes.Type(value = DvTime.class, name = "DvTime"),
-  @JsonSubTypes.Type(value = DvUri.class, name = "DvUri")
+  @JsonSubTypes.Type(value = DvUri.class, name = "DV_URI")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DataValue {
 
-  @JsonProperty("_type")
   private String type;
 
   public DataValue type(String type) {
@@ -120,7 +69,8 @@ public class DataValue {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }

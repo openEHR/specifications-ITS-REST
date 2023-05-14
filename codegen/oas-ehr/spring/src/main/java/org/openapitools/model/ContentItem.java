@@ -7,14 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.AbstractEntry;
-import org.openapitools.model.Action;
-import org.openapitools.model.AdminEntry;
-import org.openapitools.model.CareEntry;
-import org.openapitools.model.Evaluation;
-import org.openapitools.model.Instruction;
 import org.openapitools.model.Locatable;
-import org.openapitools.model.Observation;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -38,18 +31,11 @@ import javax.annotation.Generated;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = Action.class, name = "ACTION"),
   @JsonSubTypes.Type(value = AdminEntry.class, name = "ADMIN_ENTRY"),
-  @JsonSubTypes.Type(value = AbstractEntry.class, name = "AbstractEntry"),
-  @JsonSubTypes.Type(value = Action.class, name = "Action"),
-  @JsonSubTypes.Type(value = AdminEntry.class, name = "AdminEntry"),
   @JsonSubTypes.Type(value = CareEntry.class, name = "CARE_ENTRY"),
-  @JsonSubTypes.Type(value = CareEntry.class, name = "CareEntry"),
   @JsonSubTypes.Type(value = AbstractEntry.class, name = "ENTRY"),
   @JsonSubTypes.Type(value = Evaluation.class, name = "EVALUATION"),
-  @JsonSubTypes.Type(value = Evaluation.class, name = "Evaluation"),
   @JsonSubTypes.Type(value = Instruction.class, name = "INSTRUCTION"),
-  @JsonSubTypes.Type(value = Instruction.class, name = "Instruction"),
-  @JsonSubTypes.Type(value = Observation.class, name = "OBSERVATION"),
-  @JsonSubTypes.Type(value = Observation.class, name = "Observation")
+  @JsonSubTypes.Type(value = Observation.class, name = "OBSERVATION")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -70,7 +56,7 @@ public class ContentItem extends Locatable {
     return this;
   }
 
-  public ContentItem links(List<Link> links) {
+  public ContentItem links(List<@Valid Link> links) {
     super.setLinks(links);
     return this;
   }

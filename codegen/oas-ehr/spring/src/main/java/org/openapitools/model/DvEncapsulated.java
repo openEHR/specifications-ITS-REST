@@ -9,8 +9,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openapitools.model.CodePhrase;
 import org.openapitools.model.DataValue;
-import org.openapitools.model.DvMultimedia;
-import org.openapitools.model.DvParsable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -32,22 +30,34 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = DvMultimedia.class, name = "DV_MULTIMEDIA"),
-  @JsonSubTypes.Type(value = DvParsable.class, name = "DV_PARSABLE"),
-  @JsonSubTypes.Type(value = DvMultimedia.class, name = "DvMultimedia"),
-  @JsonSubTypes.Type(value = DvParsable.class, name = "DvParsable")
+  @JsonSubTypes.Type(value = DvParsable.class, name = "DV_PARSABLE")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DvEncapsulated extends DataValue {
 
-  @JsonProperty("_type")
   private String type = "DV_ENCAPSULATED";
 
-  @JsonProperty("charset")
   private CodePhrase charset;
 
-  @JsonProperty("language")
   private CodePhrase language;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link DvEncapsulated#DvEncapsulated(String)}
+   */
+  @Deprecated
+  public DvEncapsulated() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public DvEncapsulated(String type) {
+    super();
+    this.type = type;
+  }
 
   public DvEncapsulated type(String type) {
     this.type = type;
@@ -59,7 +69,8 @@ public class DvEncapsulated extends DataValue {
    * @return type
   */
   @NotNull 
-  @Schema(name = "_type", required = true)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -78,7 +89,8 @@ public class DvEncapsulated extends DataValue {
    * @return charset
   */
   @Valid 
-  @Schema(name = "charset", required = false)
+  @Schema(name = "charset", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("charset")
   public CodePhrase getCharset() {
     return charset;
   }
@@ -97,7 +109,8 @@ public class DvEncapsulated extends DataValue {
    * @return language
   */
   @Valid 
-  @Schema(name = "language", required = false)
+  @Schema(name = "language", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("language")
   public CodePhrase getLanguage() {
     return language;
   }

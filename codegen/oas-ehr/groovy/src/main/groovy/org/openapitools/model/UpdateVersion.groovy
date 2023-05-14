@@ -20,7 +20,7 @@ class UpdateVersion {
     
     TerminologyCode lifecycleState
     
-    List<UpdateAttestation> attestations = new ArrayList<>()
+    List<UpdateAttestation> attestations
     
     Versionable data
     

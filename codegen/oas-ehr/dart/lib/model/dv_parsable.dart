@@ -75,7 +75,7 @@ class DvParsable {
     return null;
   }
 
-  static List<DvParsable>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<DvParsable> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DvParsable>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -106,12 +106,10 @@ class DvParsable {
   static Map<String, List<DvParsable>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<DvParsable>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = DvParsable.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = DvParsable.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

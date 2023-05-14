@@ -22,17 +22,30 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class TerminologyCode {
 
-  @JsonProperty("terminology_id")
   private String terminologyId;
 
-  @JsonProperty("terminology_version")
   private String terminologyVersion;
 
-  @JsonProperty("code_string")
   private String codeString;
 
-  @JsonProperty("uri")
   private URI uri;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link TerminologyCode#TerminologyCode(String, String)}
+   */
+  @Deprecated
+  public TerminologyCode() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public TerminologyCode(String terminologyId, String codeString) {
+    this.terminologyId = terminologyId;
+    this.codeString = codeString;
+  }
 
   public TerminologyCode terminologyId(String terminologyId) {
     this.terminologyId = terminologyId;
@@ -44,7 +57,8 @@ public class TerminologyCode {
    * @return terminologyId
   */
   @NotNull 
-  @Schema(name = "terminology_id", required = true)
+  @Schema(name = "terminology_id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("terminology_id")
   public String getTerminologyId() {
     return terminologyId;
   }
@@ -63,7 +77,8 @@ public class TerminologyCode {
    * @return terminologyVersion
   */
   
-  @Schema(name = "terminology_version", required = false)
+  @Schema(name = "terminology_version", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("terminology_version")
   public String getTerminologyVersion() {
     return terminologyVersion;
   }
@@ -82,7 +97,8 @@ public class TerminologyCode {
    * @return codeString
   */
   @NotNull 
-  @Schema(name = "code_string", required = true)
+  @Schema(name = "code_string", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("code_string")
   public String getCodeString() {
     return codeString;
   }
@@ -101,7 +117,8 @@ public class TerminologyCode {
    * @return uri
   */
   @Valid 
-  @Schema(name = "uri", required = false)
+  @Schema(name = "uri", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("uri")
   public URI getUri() {
     return uri;
   }

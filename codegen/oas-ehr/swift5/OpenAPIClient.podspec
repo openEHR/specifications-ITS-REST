@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name = 'OpenAPIClient'
-  s.ios.deployment_target = '9.0'
-  s.osx.deployment_target = '10.11'
-  s.tvos.deployment_target = '9.0'
-  s.watchos.deployment_target = '3.0'
+  s.ios.deployment_target = '11.0'
+  s.osx.deployment_target = '10.13'
+  s.tvos.deployment_target = '11.0'
+  s.watchos.deployment_target = '4.0'
   s.version = 'latest'
   s.source = { :git => 'git@github.com:OpenAPITools/openapi-generator.git', :tag => 'vlatest' }
   s.authors = 'OpenAPI Generator'

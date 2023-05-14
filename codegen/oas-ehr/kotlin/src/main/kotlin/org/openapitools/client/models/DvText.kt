@@ -17,12 +17,11 @@ package org.openapitools.client.models
 
 import org.openapitools.client.models.CodePhrase
 import org.openapitools.client.models.DataValue
-import org.openapitools.client.models.DvCodedText
-import org.openapitools.client.models.DvText
 import org.openapitools.client.models.DvUri
 import org.openapitools.client.models.TermMapping
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

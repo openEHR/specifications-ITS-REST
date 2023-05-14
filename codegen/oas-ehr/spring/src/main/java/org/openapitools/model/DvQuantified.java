@@ -7,16 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.DvAmount;
-import org.openapitools.model.DvCount;
-import org.openapitools.model.DvDate;
-import org.openapitools.model.DvDateTime;
-import org.openapitools.model.DvDuration;
 import org.openapitools.model.DvOrdered;
-import org.openapitools.model.DvProportion;
-import org.openapitools.model.DvQuantity;
-import org.openapitools.model.DvTemporal;
-import org.openapitools.model.DvTime;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -46,25 +37,14 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = DvProportion.class, name = "DV_QUANTIFIED"),
   @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_QUANTIFIED"),
   @JsonSubTypes.Type(value = DvTemporal.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvTime.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvAmount.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvCount.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvDate.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvDuration.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvProportion.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvTemporal.class, name = "DV_QUANTIFIED"),
   @JsonSubTypes.Type(value = DvTime.class, name = "DV_QUANTIFIED")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DvQuantified extends DvOrdered {
 
-  @JsonProperty("_type")
   private String type = "DV_QUANTIFIED";
 
-  @JsonProperty("magnitude_status")
   private String magnitudeStatus = "=";
 
   public DvQuantified type(String type) {
@@ -77,7 +57,8 @@ public class DvQuantified extends DvOrdered {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -96,7 +77,8 @@ public class DvQuantified extends DvOrdered {
    * @return magnitudeStatus
   */
   
-  @Schema(name = "magnitude_status", required = false)
+  @Schema(name = "magnitude_status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("magnitude_status")
   public String getMagnitudeStatus() {
     return magnitudeStatus;
   }
@@ -115,7 +97,7 @@ public class DvQuantified extends DvOrdered {
     return this;
   }
 
-  public DvQuantified otherReferenceRanges(List<ReferenceRange> otherReferenceRanges) {
+  public DvQuantified otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
     super.setOtherReferenceRanges(otherReferenceRanges);
     return this;
   }

@@ -132,9 +132,9 @@ class OriginalVersion {
         type: mapValueOfType<String>(json, r'_type') ?? 'ORIGINAL_VERSION',
         uid: ObjectVersionId.fromJson(json[r'uid'])!,
         precedingVersionUid: ObjectVersionId.fromJson(json[r'preceding_version_uid']),
-        otherInputVersionUids: ObjectVersionId.listFromJson(json[r'other_input_version_uids']) ?? const [],
+        otherInputVersionUids: ObjectVersionId.listFromJson(json[r'other_input_version_uids']),
         lifecycleState: DvCodedText.fromJson(json[r'lifecycle_state'])!,
-        attestations: Attestation.listFromJson(json[r'attestations']) ?? const [],
+        attestations: Attestation.listFromJson(json[r'attestations']),
         contribution: ObjectRef.fromJson(json[r'contribution'])!,
         signature: mapValueOfType<String>(json, r'signature'),
         commitAudit: AuditDetails.fromJson(json[r'commit_audit'])!,
@@ -144,7 +144,7 @@ class OriginalVersion {
     return null;
   }
 
-  static List<OriginalVersion>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<OriginalVersion> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <OriginalVersion>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -175,12 +175,10 @@ class OriginalVersion {
   static Map<String, List<OriginalVersion>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<OriginalVersion>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = OriginalVersion.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = OriginalVersion.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

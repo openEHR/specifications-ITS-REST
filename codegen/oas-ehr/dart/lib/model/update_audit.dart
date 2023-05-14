@@ -92,7 +92,7 @@ class UpdateAudit {
     return null;
   }
 
-  static List<UpdateAudit>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UpdateAudit> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UpdateAudit>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -123,12 +123,10 @@ class UpdateAudit {
   static Map<String, List<UpdateAudit>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<UpdateAudit>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = UpdateAudit.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = UpdateAudit.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

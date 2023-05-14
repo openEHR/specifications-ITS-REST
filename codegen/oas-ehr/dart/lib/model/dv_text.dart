@@ -135,7 +135,7 @@ class DvText {
         value: mapValueOfType<String>(json, r'value')!,
         hyperlink: DvUri.fromJson(json[r'hyperlink']),
         formatting: mapValueOfType<String>(json, r'formatting'),
-        mappings: TermMapping.listFromJson(json[r'mappings']) ?? const [],
+        mappings: TermMapping.listFromJson(json[r'mappings']),
         language: CodePhrase.fromJson(json[r'language']),
         encoding: CodePhrase.fromJson(json[r'encoding']),
       );
@@ -143,7 +143,7 @@ class DvText {
     return null;
   }
 
-  static List<DvText>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<DvText> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DvText>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -174,12 +174,10 @@ class DvText {
   static Map<String, List<DvText>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<DvText>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = DvText.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = DvText.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

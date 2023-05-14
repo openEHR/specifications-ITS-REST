@@ -25,17 +25,30 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Participation {
 
-  @JsonProperty("function")
   private DvText function;
 
-  @JsonProperty("mode")
   private DvCodedText mode;
 
-  @JsonProperty("performer")
   private PartyProxy performer;
 
-  @JsonProperty("time")
   private DvIntervalOfDateTime time;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link Participation#Participation(DvText, PartyProxy)}
+   */
+  @Deprecated
+  public Participation() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public Participation(DvText function, PartyProxy performer) {
+    this.function = function;
+    this.performer = performer;
+  }
 
   public Participation function(DvText function) {
     this.function = function;
@@ -47,7 +60,8 @@ public class Participation {
    * @return function
   */
   @NotNull @Valid 
-  @Schema(name = "function", required = true)
+  @Schema(name = "function", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("function")
   public DvText getFunction() {
     return function;
   }
@@ -66,7 +80,8 @@ public class Participation {
    * @return mode
   */
   @Valid 
-  @Schema(name = "mode", required = false)
+  @Schema(name = "mode", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("mode")
   public DvCodedText getMode() {
     return mode;
   }
@@ -85,7 +100,8 @@ public class Participation {
    * @return performer
   */
   @NotNull @Valid 
-  @Schema(name = "performer", required = true)
+  @Schema(name = "performer", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("performer")
   public PartyProxy getPerformer() {
     return performer;
   }
@@ -104,7 +120,8 @@ public class Participation {
    * @return time
   */
   @Valid 
-  @Schema(name = "time", required = false)
+  @Schema(name = "time", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("time")
   public DvIntervalOfDateTime getTime() {
     return time;
   }

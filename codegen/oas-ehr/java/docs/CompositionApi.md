@@ -14,7 +14,7 @@ All URIs are relative to *https://openEHRSys.example.com/v1*
 | [**versionedCompositionVersionGetById**](CompositionApi.md#versionedCompositionVersionGetById) | **GET** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid} | Get versioned COMPOSITION version by id |
 
 
-<a name="compositionCreate"></a>
+<a id="compositionCreate"></a>
 # **compositionCreate**
 > Composition compositionCreate(ehrId, composition, prefer)
 
@@ -83,7 +83,7 @@ No authorization required
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist.  |  -  |
 | **422** | &#x60;422 Unprocessable Entity&#x60; is returned when the content could be converted to a COMPOSITION, but there are semantic validation errors, such as the underlying template is not known or is not validating the supplied COMPOSITION.  |  -  |
 
-<a name="compositionDelete"></a>
+<a id="compositionDelete"></a>
 # **compositionDelete**
 > compositionDelete(ehrId, uidBasedId)
 
@@ -149,7 +149,7 @@ No authorization required
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist, or when the &#x60;uid_based_id&#x60; does not exist.  |  -  |
 | **409** | &#x60;409 Conflict&#x60; is returned when supplied &#x60;uid_based_id&#x60; doesn&#39;t match the latest version. Returns also latest version in the &#x60;Location&#x60; and &#x60;ETag&#x60; headers.  |  * ETag -  <br>  * Location -  <br>  |
 
-<a name="compositionGet"></a>
+<a id="compositionGet"></a>
 # **compositionGet**
 > Composition compositionGet(ehrId, uidBasedId, versionAtTime)
 
@@ -217,7 +217,7 @@ No authorization required
 | **204** | &#x60;204 No Content&#x60; is returned when the resource identified by the request parameters (at specified &#x60;version_at_time&#x60;) time has been deleted.  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist, or when a version of the resource identified by the request parameters (at specified &#x60;version_at_time&#x60;) does not exist.  |  -  |
 
-<a name="compositionUpdate"></a>
+<a id="compositionUpdate"></a>
 # **compositionUpdate**
 > Composition compositionUpdate(ehrId, uidBasedId, ifMatch, composition, prefer)
 
@@ -291,7 +291,7 @@ No authorization required
 | **412** | &#x60;412 Precondition Failed&#x60; is returned when &#x60;If-Match&#x60; request header doesn&#39;t match the latest version on the service side. Returns also latest &#x60;version_uid&#x60; in the &#x60;Location&#x60; and &#x60;ETag&#x60; headers.  |  * ETag -  <br>  * Location -  <br>  |
 | **422** | &#x60;422 Unprocessable Entity&#x60; is returned when the content could be converted to a COMPOSITION, but there are semantic validation errors, such as the underlying template is not known or is not validating the supplied COMPOSITION.  |  -  |
 
-<a name="versionedCompositionGet"></a>
+<a id="versionedCompositionGet"></a>
 # **versionedCompositionGet**
 > VersionedComposition versionedCompositionGet(ehrId, versionedObjectUid)
 
@@ -356,7 +356,7 @@ No authorization required
 | **200** | &#x60;200 OK&#x60; is returned when the requested VERSIONED_COMPOSITION is successfully retrieved.  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist, or when the &#x60;versioned_object_uid&#x60; does not exist.  |  -  |
 
-<a name="versionedCompositionRevisionHistory"></a>
+<a id="versionedCompositionRevisionHistory"></a>
 # **versionedCompositionRevisionHistory**
 > RevisionHistory versionedCompositionRevisionHistory(ehrId, versionedObjectUid)
 
@@ -421,7 +421,7 @@ No authorization required
 | **200** | &#x60;200 OK&#x60; is returned when the requested REVISION_HISTORY is successfully retrieved.  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist, or when the &#x60;versioned_object_uid&#x60; does not exist.  |  -  |
 
-<a name="versionedCompositionVersionGetAtTime"></a>
+<a id="versionedCompositionVersionGetAtTime"></a>
 # **versionedCompositionVersionGetAtTime**
 > Version versionedCompositionVersionGetAtTime(ehrId, versionedObjectUid, versionAtTime)
 
@@ -488,7 +488,7 @@ No authorization required
 | **200** | &#x60;200 OK&#x60; is returned when the requested VERSION is successfully retrieved.  |  * ETag -  <br>  * Location -  <br>  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist, or when &#x60;versioned_object_uid&#x60; does not exist, or when a version of the resource does not exist at the specified &#x60;version_at_time&#x60;.  |  -  |
 
-<a name="versionedCompositionVersionGetById"></a>
+<a id="versionedCompositionVersionGetById"></a>
 # **versionedCompositionVersionGetById**
 > Version versionedCompositionVersionGetById(ehrId, versionedObjectUid, versionUid)
 

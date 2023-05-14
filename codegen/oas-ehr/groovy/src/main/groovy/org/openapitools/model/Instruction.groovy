@@ -22,5 +22,5 @@ class Instruction {
     
     DvParsable wfDefinition
     
-    List<Activity> activities = new ArrayList<>()
+    List<Activity> activities
 }

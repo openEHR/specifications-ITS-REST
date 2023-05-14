@@ -27,5 +27,5 @@ class EventContext {
     
     PartyIdentified healthCareFacility
     
-    List<Participation> participations = new ArrayList<>()
+    List<Participation> participations
 }

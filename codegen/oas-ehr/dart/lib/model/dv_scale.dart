@@ -77,7 +77,7 @@ class DvScale {
     return null;
   }
 
-  static List<DvScale>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<DvScale> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DvScale>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -108,12 +108,10 @@ class DvScale {
   static Map<String, List<DvScale>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<DvScale>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = DvScale.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = DvScale.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

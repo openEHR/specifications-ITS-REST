@@ -7,10 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.PartyIdentified;
 import org.openapitools.model.PartyRef;
-import org.openapitools.model.PartyRelated;
-import org.openapitools.model.PartySelf;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -33,20 +30,31 @@ import javax.annotation.Generated;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = PartyIdentified.class, name = "PARTY_IDENTIFIED"),
   @JsonSubTypes.Type(value = PartyRelated.class, name = "PARTY_RELATED"),
-  @JsonSubTypes.Type(value = PartySelf.class, name = "PARTY_SELF"),
-  @JsonSubTypes.Type(value = PartyIdentified.class, name = "PartyIdentified"),
-  @JsonSubTypes.Type(value = PartyRelated.class, name = "PartyRelated"),
-  @JsonSubTypes.Type(value = PartySelf.class, name = "PartySelf")
+  @JsonSubTypes.Type(value = PartySelf.class, name = "PARTY_SELF")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class PartyProxy {
 
-  @JsonProperty("_type")
   private String type = "PARTY_PROXY";
 
-  @JsonProperty("external_ref")
   private PartyRef externalRef;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link PartyProxy#PartyProxy(String)}
+   */
+  @Deprecated
+  public PartyProxy() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public PartyProxy(String type) {
+    this.type = type;
+  }
 
   public PartyProxy type(String type) {
     this.type = type;
@@ -58,7 +66,8 @@ public class PartyProxy {
    * @return type
   */
   @NotNull 
-  @Schema(name = "_type", required = true)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -77,7 +86,8 @@ public class PartyProxy {
    * @return externalRef
   */
   @Valid 
-  @Schema(name = "external_ref", required = false)
+  @Schema(name = "external_ref", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("external_ref")
   public PartyRef getExternalRef() {
     return externalRef;
   }

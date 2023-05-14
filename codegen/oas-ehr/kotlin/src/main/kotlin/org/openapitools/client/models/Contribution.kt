@@ -20,6 +20,7 @@ import org.openapitools.client.models.HierObjectId
 import org.openapitools.client.models.ObjectRef
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * A CONTRIBUTION resource

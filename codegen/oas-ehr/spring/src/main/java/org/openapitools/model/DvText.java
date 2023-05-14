@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.CodePhrase;
 import org.openapitools.model.DataValue;
-import org.openapitools.model.DvCodedText;
-import org.openapitools.model.DvText;
 import org.openapitools.model.DvUri;
 import org.openapitools.model.TermMapping;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -36,34 +34,43 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = DvCodedText.class, name = "DV_TEXT"),
-  @JsonSubTypes.Type(value = DvText.class, name = "DV_TEXT"),
-  @JsonSubTypes.Type(value = DvCodedText.class, name = "DV_TEXT")
+  @JsonSubTypes.Type(value = DvText.class, name = "DV_TEXT")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DvText extends DataValue {
 
-  @JsonProperty("_type")
   private String type = "DV_TEXT";
 
-  @JsonProperty("value")
   private String value;
 
-  @JsonProperty("hyperlink")
   private DvUri hyperlink;
 
-  @JsonProperty("formatting")
   private String formatting;
 
-  @JsonProperty("mappings")
   @Valid
-  private List<TermMapping> mappings = null;
+  private List<@Valid TermMapping> mappings;
 
-  @JsonProperty("language")
   private CodePhrase language;
 
-  @JsonProperty("encoding")
   private CodePhrase encoding;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link DvText#DvText(String)}
+   */
+  @Deprecated
+  public DvText() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public DvText(String value) {
+    super();
+    this.value = value;
+  }
 
   public DvText type(String type) {
     this.type = type;
@@ -75,7 +82,8 @@ public class DvText extends DataValue {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -94,7 +102,8 @@ public class DvText extends DataValue {
    * @return value
   */
   @NotNull 
-  @Schema(name = "value", required = true)
+  @Schema(name = "value", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("value")
   public String getValue() {
     return value;
   }
@@ -113,7 +122,8 @@ public class DvText extends DataValue {
    * @return hyperlink
   */
   @Valid 
-  @Schema(name = "hyperlink", required = false)
+  @Schema(name = "hyperlink", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("hyperlink")
   public DvUri getHyperlink() {
     return hyperlink;
   }
@@ -132,7 +142,8 @@ public class DvText extends DataValue {
    * @return formatting
   */
   
-  @Schema(name = "formatting", required = false)
+  @Schema(name = "formatting", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("formatting")
   public String getFormatting() {
     return formatting;
   }
@@ -141,7 +152,7 @@ public class DvText extends DataValue {
     this.formatting = formatting;
   }
 
-  public DvText mappings(List<TermMapping> mappings) {
+  public DvText mappings(List<@Valid TermMapping> mappings) {
     this.mappings = mappings;
     return this;
   }
@@ -159,12 +170,13 @@ public class DvText extends DataValue {
    * @return mappings
   */
   @Valid 
-  @Schema(name = "mappings", required = false)
-  public List<TermMapping> getMappings() {
+  @Schema(name = "mappings", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("mappings")
+  public List<@Valid TermMapping> getMappings() {
     return mappings;
   }
 
-  public void setMappings(List<TermMapping> mappings) {
+  public void setMappings(List<@Valid TermMapping> mappings) {
     this.mappings = mappings;
   }
 
@@ -178,7 +190,8 @@ public class DvText extends DataValue {
    * @return language
   */
   @Valid 
-  @Schema(name = "language", required = false)
+  @Schema(name = "language", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("language")
   public CodePhrase getLanguage() {
     return language;
   }
@@ -197,7 +210,8 @@ public class DvText extends DataValue {
    * @return encoding
   */
   @Valid 
-  @Schema(name = "encoding", required = false)
+  @Schema(name = "encoding", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("encoding")
   public CodePhrase getEncoding() {
     return encoding;
   }

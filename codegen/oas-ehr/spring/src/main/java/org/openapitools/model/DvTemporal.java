@@ -7,11 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.DvDate;
-import org.openapitools.model.DvDateTime;
 import org.openapitools.model.DvDuration;
 import org.openapitools.model.DvQuantified;
-import org.openapitools.model.DvTime;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -35,20 +32,14 @@ import javax.annotation.Generated;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = DvDate.class, name = "DV_TEMPORAL"),
   @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_TEMPORAL"),
-  @JsonSubTypes.Type(value = DvTime.class, name = "DV_TEMPORAL"),
-  @JsonSubTypes.Type(value = DvTime.class, name = "DV_TEMPORAL"),
-  @JsonSubTypes.Type(value = DvDate.class, name = "DV_TEMPORAL"),
-  @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_TEMPORAL"),
   @JsonSubTypes.Type(value = DvTime.class, name = "DV_TEMPORAL")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DvTemporal extends DvQuantified {
 
-  @JsonProperty("_type")
   private String type = "DV_TEMPORAL";
 
-  @JsonProperty("accuracy")
   private DvDuration accuracy;
 
   public DvTemporal type(String type) {
@@ -61,7 +52,8 @@ public class DvTemporal extends DvQuantified {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -80,7 +72,8 @@ public class DvTemporal extends DvQuantified {
    * @return accuracy
   */
   @Valid 
-  @Schema(name = "accuracy", required = false)
+  @Schema(name = "accuracy", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("accuracy")
   public DvDuration getAccuracy() {
     return accuracy;
   }
@@ -104,7 +97,7 @@ public class DvTemporal extends DvQuantified {
     return this;
   }
 
-  public DvTemporal otherReferenceRanges(List<ReferenceRange> otherReferenceRanges) {
+  public DvTemporal otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
     super.setOtherReferenceRanges(otherReferenceRanges);
     return this;
   }

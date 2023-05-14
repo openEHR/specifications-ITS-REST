@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -18,15 +17,15 @@ docs/ArchetypeId.md
 docs/Archetyped.md
 docs/Attestation.md
 docs/AuditDetails.md
-docs/COMPOSITIONApi.md
-docs/CONTRIBUTIONApi.md
+docs/COMPOSITIONAPI.md
+docs/CONTRIBUTIONAPI.md
 docs/CareEntry.md
 docs/Clstr.md
 docs/CodePhrase.md
 docs/Composition.md
 docs/ContentItem.md
 docs/Contribution.md
-docs/DIRECTORYApi.md
+docs/DIRECTORYAPI.md
 docs/DataStructure.md
 docs/DataValue.md
 docs/DvAmount.md
@@ -54,8 +53,8 @@ docs/DvTemporal.md
 docs/DvText.md
 docs/DvTime.md
 docs/DvUri.md
-docs/EHRApi.md
-docs/EHRSTATUSApi.md
+docs/EHRAPI.md
+docs/EHRSTATUSAPI.md
 docs/Ehr.md
 docs/EhrStatus.md
 docs/Element.md
@@ -211,9 +210,4 @@ model_versioned_composition.go
 model_versioned_ehr_status.go
 model_versioned_object.go
 response.go
-test/api_composition_test.go
-test/api_contribution_test.go
-test/api_directory_test.go
-test/api_ehr_test.go
-test/api_ehrstatus_test.go
 utils.go

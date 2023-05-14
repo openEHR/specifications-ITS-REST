@@ -7,34 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.AbstractEntry;
-import org.openapitools.model.Action;
-import org.openapitools.model.Activity;
-import org.openapitools.model.AdminEntry;
-import org.openapitools.model.CareEntry;
-import org.openapitools.model.Clstr;
-import org.openapitools.model.Composition;
-import org.openapitools.model.ContentItem;
-import org.openapitools.model.DataStructure;
-import org.openapitools.model.EhrStatus;
-import org.openapitools.model.Element;
-import org.openapitools.model.Evaluation;
-import org.openapitools.model.Event;
-import org.openapitools.model.EventContext;
-import org.openapitools.model.Folder;
-import org.openapitools.model.History;
-import org.openapitools.model.Instruction;
-import org.openapitools.model.InstructionDetails;
-import org.openapitools.model.IsmTransition;
-import org.openapitools.model.Item;
-import org.openapitools.model.ItemList;
-import org.openapitools.model.ItemSingle;
-import org.openapitools.model.ItemStructure;
-import org.openapitools.model.ItemTable;
-import org.openapitools.model.ItemTree;
-import org.openapitools.model.Locatable;
-import org.openapitools.model.Observation;
-import org.openapitools.model.Versionable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -59,31 +31,18 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = Activity.class, name = "ACTIVITY"),
   @JsonSubTypes.Type(value = AdminEntry.class, name = "ADMIN_ENTRY"),
   @JsonSubTypes.Type(value = AbstractEntry.class, name = "AbstractEntry"),
-  @JsonSubTypes.Type(value = Action.class, name = "Action"),
-  @JsonSubTypes.Type(value = Activity.class, name = "Activity"),
-  @JsonSubTypes.Type(value = AdminEntry.class, name = "AdminEntry"),
   @JsonSubTypes.Type(value = Clstr.class, name = "CLUSTER"),
   @JsonSubTypes.Type(value = Composition.class, name = "COMPOSITION"),
   @JsonSubTypes.Type(value = CareEntry.class, name = "CareEntry"),
-  @JsonSubTypes.Type(value = Clstr.class, name = "Clstr"),
-  @JsonSubTypes.Type(value = Composition.class, name = "Composition"),
   @JsonSubTypes.Type(value = ContentItem.class, name = "ContentItem"),
   @JsonSubTypes.Type(value = DataStructure.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = DataStructure.class, name = "DataStructure"),
   @JsonSubTypes.Type(value = EhrStatus.class, name = "EHR_STATUS"),
   @JsonSubTypes.Type(value = Element.class, name = "ELEMENT"),
   @JsonSubTypes.Type(value = Evaluation.class, name = "EVALUATION"),
   @JsonSubTypes.Type(value = Event.class, name = "EVENT"),
   @JsonSubTypes.Type(value = EventContext.class, name = "EVENT_CONTEXT"),
-  @JsonSubTypes.Type(value = EhrStatus.class, name = "EhrStatus"),
-  @JsonSubTypes.Type(value = Element.class, name = "Element"),
-  @JsonSubTypes.Type(value = Evaluation.class, name = "Evaluation"),
-  @JsonSubTypes.Type(value = Event.class, name = "Event"),
-  @JsonSubTypes.Type(value = EventContext.class, name = "EventContext"),
   @JsonSubTypes.Type(value = Folder.class, name = "FOLDER"),
-  @JsonSubTypes.Type(value = Folder.class, name = "Folder"),
   @JsonSubTypes.Type(value = History.class, name = "HISTORY"),
-  @JsonSubTypes.Type(value = History.class, name = "History"),
   @JsonSubTypes.Type(value = Instruction.class, name = "INSTRUCTION"),
   @JsonSubTypes.Type(value = InstructionDetails.class, name = "INSTRUCTION_DETAILS"),
   @JsonSubTypes.Type(value = IsmTransition.class, name = "ISM_TRANSITION"),
@@ -93,25 +52,14 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = ItemStructure.class, name = "ITEM_STRUCTURE"),
   @JsonSubTypes.Type(value = ItemTable.class, name = "ITEM_TABLE"),
   @JsonSubTypes.Type(value = ItemTree.class, name = "ITEM_TREE"),
-  @JsonSubTypes.Type(value = Instruction.class, name = "Instruction"),
-  @JsonSubTypes.Type(value = InstructionDetails.class, name = "InstructionDetails"),
-  @JsonSubTypes.Type(value = IsmTransition.class, name = "IsmTransition"),
-  @JsonSubTypes.Type(value = Item.class, name = "Item"),
-  @JsonSubTypes.Type(value = ItemList.class, name = "ItemList"),
-  @JsonSubTypes.Type(value = ItemSingle.class, name = "ItemSingle"),
-  @JsonSubTypes.Type(value = ItemStructure.class, name = "ItemStructure"),
-  @JsonSubTypes.Type(value = ItemTable.class, name = "ItemTable"),
-  @JsonSubTypes.Type(value = ItemTree.class, name = "ItemTree"),
   @JsonSubTypes.Type(value = Locatable.class, name = "Locatable"),
   @JsonSubTypes.Type(value = Observation.class, name = "OBSERVATION"),
-  @JsonSubTypes.Type(value = Observation.class, name = "Observation"),
   @JsonSubTypes.Type(value = Versionable.class, name = "Versionable")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Pathable {
 
-  @JsonProperty("_type")
   private String type;
 
   public Pathable type(String type) {
@@ -124,7 +72,8 @@ public class Pathable {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }

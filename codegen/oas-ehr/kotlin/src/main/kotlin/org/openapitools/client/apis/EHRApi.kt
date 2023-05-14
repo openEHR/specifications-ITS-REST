@@ -49,7 +49,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
     /**
      * enum for parameter prefer
      */
-     enum class Prefer_ehrCreate(val value: kotlin.String) {
+     enum class PreferEhrCreate(val value: kotlin.String) {
          @Json(name = "return=representation") representation("return=representation"),
          @Json(name = "return=minimal") minimal("return=minimal")
      }
@@ -68,7 +68,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun ehrCreate(prefer: Prefer_ehrCreate? = Prefer_ehrCreate.minimal, ehrStatus: EhrStatus? = null) : Ehr {
+    fun ehrCreate(prefer: PreferEhrCreate? = PreferEhrCreate.minimal, ehrStatus: EhrStatus? = null) : Ehr {
         val localVarResponse = ehrCreateWithHttpInfo(prefer = prefer, ehrStatus = ehrStatus)
 
         return when (localVarResponse.responseType) {
@@ -97,7 +97,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun ehrCreateWithHttpInfo(prefer: Prefer_ehrCreate?, ehrStatus: EhrStatus?) : ApiResponse<Ehr?> {
+    fun ehrCreateWithHttpInfo(prefer: PreferEhrCreate?, ehrStatus: EhrStatus?) : ApiResponse<Ehr?> {
         val localVariableConfig = ehrCreateRequestConfig(prefer = prefer, ehrStatus = ehrStatus)
 
         return request<EhrStatus, Ehr>(
@@ -112,7 +112,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
      * @param ehrStatus An EHR_STATUS resource MAY be also supplied by the client as the request body.  (optional)
      * @return RequestConfig
      */
-    fun ehrCreateRequestConfig(prefer: Prefer_ehrCreate?, ehrStatus: EhrStatus?) : RequestConfig<EhrStatus> {
+    fun ehrCreateRequestConfig(prefer: PreferEhrCreate?, ehrStatus: EhrStatus?) : RequestConfig<EhrStatus> {
         val localVariableBody = ehrStatus
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -125,6 +125,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
             path = "/ehr",
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -132,7 +133,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
     /**
      * enum for parameter prefer
      */
-     enum class Prefer_ehrCreateWithId(val value: kotlin.String) {
+     enum class PreferEhrCreateWithId(val value: kotlin.String) {
          @Json(name = "return=representation") representation("return=representation"),
          @Json(name = "return=minimal") minimal("return=minimal")
      }
@@ -152,7 +153,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun ehrCreateWithId(ehrId: kotlin.String, prefer: Prefer_ehrCreateWithId? = Prefer_ehrCreateWithId.minimal, ehrStatus: EhrStatus? = null) : Ehr {
+    fun ehrCreateWithId(ehrId: kotlin.String, prefer: PreferEhrCreateWithId? = PreferEhrCreateWithId.minimal, ehrStatus: EhrStatus? = null) : Ehr {
         val localVarResponse = ehrCreateWithIdWithHttpInfo(ehrId = ehrId, prefer = prefer, ehrStatus = ehrStatus)
 
         return when (localVarResponse.responseType) {
@@ -182,7 +183,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun ehrCreateWithIdWithHttpInfo(ehrId: kotlin.String, prefer: Prefer_ehrCreateWithId?, ehrStatus: EhrStatus?) : ApiResponse<Ehr?> {
+    fun ehrCreateWithIdWithHttpInfo(ehrId: kotlin.String, prefer: PreferEhrCreateWithId?, ehrStatus: EhrStatus?) : ApiResponse<Ehr?> {
         val localVariableConfig = ehrCreateWithIdRequestConfig(ehrId = ehrId, prefer = prefer, ehrStatus = ehrStatus)
 
         return request<EhrStatus, Ehr>(
@@ -198,7 +199,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
      * @param ehrStatus An EHR_STATUS resource MAY be also supplied by the client as the request body.  (optional)
      * @return RequestConfig
      */
-    fun ehrCreateWithIdRequestConfig(ehrId: kotlin.String, prefer: Prefer_ehrCreateWithId?, ehrStatus: EhrStatus?) : RequestConfig<EhrStatus> {
+    fun ehrCreateWithIdRequestConfig(ehrId: kotlin.String, prefer: PreferEhrCreateWithId?, ehrStatus: EhrStatus?) : RequestConfig<EhrStatus> {
         val localVariableBody = ehrStatus
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -211,6 +212,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
             path = "/ehr/{ehr_id}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -281,6 +283,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
             path = "/ehr/{ehr_id}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -358,6 +361,7 @@ class EHRApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
             path = "/ehr",
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }

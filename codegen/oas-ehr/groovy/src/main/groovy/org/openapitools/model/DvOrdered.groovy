@@ -19,5 +19,5 @@ class DvOrdered {
     
     DvInterval normalRange
     
-    List<ReferenceRange> otherReferenceRanges = new ArrayList<>()
+    List<ReferenceRange> otherReferenceRanges
 }

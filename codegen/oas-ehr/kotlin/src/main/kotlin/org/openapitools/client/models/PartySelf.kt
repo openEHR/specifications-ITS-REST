@@ -15,12 +15,11 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PartyIdentified
 import org.openapitools.client.models.PartyProxy
 import org.openapitools.client.models.PartyRef
-import org.openapitools.client.models.PartySelf
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

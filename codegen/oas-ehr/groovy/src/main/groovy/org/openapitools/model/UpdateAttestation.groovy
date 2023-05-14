@@ -21,7 +21,7 @@ class UpdateAttestation {
     
     String proof
     
-    List<DvEhrUri> items = new ArrayList<>()
+    List<DvEhrUri> items
     
     DvText reason
     

@@ -15,15 +15,9 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ArchetypeId
-import org.openapitools.client.models.GenericId
-import org.openapitools.client.models.HierObjectId
-import org.openapitools.client.models.ObjectVersionId
-import org.openapitools.client.models.TemplateId
-import org.openapitools.client.models.TerminologyId
-import org.openapitools.client.models.UidBasedId
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

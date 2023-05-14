@@ -23,14 +23,28 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class TermMapping {
 
-  @JsonProperty("match")
   private String match;
 
-  @JsonProperty("purpose")
   private DvCodedText purpose;
 
-  @JsonProperty("target")
   private CodePhrase target;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link TermMapping#TermMapping(String, CodePhrase)}
+   */
+  @Deprecated
+  public TermMapping() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public TermMapping(String match, CodePhrase target) {
+    this.match = match;
+    this.target = target;
+  }
 
   public TermMapping match(String match) {
     this.match = match;
@@ -42,7 +56,8 @@ public class TermMapping {
    * @return match
   */
   @NotNull @Pattern(regexp = "/^[><=?]$/") 
-  @Schema(name = "match", required = true)
+  @Schema(name = "match", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("match")
   public String getMatch() {
     return match;
   }
@@ -61,7 +76,8 @@ public class TermMapping {
    * @return purpose
   */
   @Valid 
-  @Schema(name = "purpose", required = false)
+  @Schema(name = "purpose", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("purpose")
   public DvCodedText getPurpose() {
     return purpose;
   }
@@ -80,7 +96,8 @@ public class TermMapping {
    * @return target
   */
   @NotNull @Valid 
-  @Schema(name = "target", required = true)
+  @Schema(name = "target", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("target")
   public CodePhrase getTarget() {
     return target;
   }

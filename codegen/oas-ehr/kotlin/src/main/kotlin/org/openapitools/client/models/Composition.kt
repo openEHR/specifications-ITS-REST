@@ -16,15 +16,14 @@
 package org.openapitools.client.models
 
 import org.openapitools.client.models.CodePhrase
-import org.openapitools.client.models.Composition
 import org.openapitools.client.models.ContentItem
 import org.openapitools.client.models.DvCodedText
-import org.openapitools.client.models.EhrStatus
 import org.openapitools.client.models.EventContext
 import org.openapitools.client.models.PartyProxy
 import org.openapitools.client.models.Versionable
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * A COMPOSITION resource

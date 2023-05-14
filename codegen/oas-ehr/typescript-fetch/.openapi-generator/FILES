@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/COMPOSITIONApi.ts
 apis/CONTRIBUTIONApi.ts
 apis/DIRECTORYApi.ts

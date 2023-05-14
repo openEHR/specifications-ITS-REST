@@ -122,6 +122,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/ehr_status".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -195,6 +196,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/ehr_status/{version_uid}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"version_uid"+"}", encodeURIComponent(versionUid.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -202,7 +204,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     /**
      * enum for parameter prefer
      */
-     enum class Prefer_ehrStatusUpdate(val value: kotlin.String) {
+     enum class PreferEhrStatusUpdate(val value: kotlin.String) {
          @Json(name = "return=representation") representation("return=representation"),
          @Json(name = "return=minimal") minimal("return=minimal")
      }
@@ -223,7 +225,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun ehrStatusUpdate(ehrId: kotlin.String, ifMatch: kotlin.String, ehrStatus: EhrStatus, prefer: Prefer_ehrStatusUpdate? = Prefer_ehrStatusUpdate.minimal) : EhrStatus {
+    fun ehrStatusUpdate(ehrId: kotlin.String, ifMatch: kotlin.String, ehrStatus: EhrStatus, prefer: PreferEhrStatusUpdate? = PreferEhrStatusUpdate.minimal) : EhrStatus {
         val localVarResponse = ehrStatusUpdateWithHttpInfo(ehrId = ehrId, ifMatch = ifMatch, ehrStatus = ehrStatus, prefer = prefer)
 
         return when (localVarResponse.responseType) {
@@ -254,7 +256,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun ehrStatusUpdateWithHttpInfo(ehrId: kotlin.String, ifMatch: kotlin.String, ehrStatus: EhrStatus, prefer: Prefer_ehrStatusUpdate?) : ApiResponse<EhrStatus?> {
+    fun ehrStatusUpdateWithHttpInfo(ehrId: kotlin.String, ifMatch: kotlin.String, ehrStatus: EhrStatus, prefer: PreferEhrStatusUpdate?) : ApiResponse<EhrStatus?> {
         val localVariableConfig = ehrStatusUpdateRequestConfig(ehrId = ehrId, ifMatch = ifMatch, ehrStatus = ehrStatus, prefer = prefer)
 
         return request<EhrStatus, EhrStatus>(
@@ -271,7 +273,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
      * @param prefer Request header to indicate the preference over response details. The response will contain the entire resource when the &#x60;Prefer&#x60; header has a value of &#x60;return&#x3D;representation&#x60;.  (optional, default to return=minimal)
      * @return RequestConfig
      */
-    fun ehrStatusUpdateRequestConfig(ehrId: kotlin.String, ifMatch: kotlin.String, ehrStatus: EhrStatus, prefer: Prefer_ehrStatusUpdate?) : RequestConfig<EhrStatus> {
+    fun ehrStatusUpdateRequestConfig(ehrId: kotlin.String, ifMatch: kotlin.String, ehrStatus: EhrStatus, prefer: PreferEhrStatusUpdate?) : RequestConfig<EhrStatus> {
         val localVariableBody = ehrStatus
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -285,6 +287,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/ehr_status".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -355,6 +358,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/versioned_ehr_status".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -425,6 +429,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/versioned_ehr_status/revision_history".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -503,6 +508,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/versioned_ehr_status/version".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -576,6 +582,7 @@ class EHRSTATUSApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
             path = "/ehr/{ehr_id}/versioned_ehr_status/version/{version_uid}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"version_uid"+"}", encodeURIComponent(versionUid.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }

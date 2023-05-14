@@ -9,15 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.model.Action;
-import org.openapitools.model.AdminEntry;
-import org.openapitools.model.CareEntry;
 import org.openapitools.model.CodePhrase;
 import org.openapitools.model.ContentItem;
-import org.openapitools.model.Evaluation;
-import org.openapitools.model.Instruction;
 import org.openapitools.model.ObjectRef;
-import org.openapitools.model.Observation;
 import org.openapitools.model.Participation;
 import org.openapitools.model.PartyProxy;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -42,39 +36,46 @@ import javax.annotation.Generated;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = Action.class, name = "ACTION"),
   @JsonSubTypes.Type(value = AdminEntry.class, name = "ADMIN_ENTRY"),
-  @JsonSubTypes.Type(value = Action.class, name = "Action"),
-  @JsonSubTypes.Type(value = AdminEntry.class, name = "AdminEntry"),
   @JsonSubTypes.Type(value = CareEntry.class, name = "CARE_ENTRY"),
-  @JsonSubTypes.Type(value = CareEntry.class, name = "CareEntry"),
   @JsonSubTypes.Type(value = Evaluation.class, name = "EVALUATION"),
-  @JsonSubTypes.Type(value = Evaluation.class, name = "Evaluation"),
   @JsonSubTypes.Type(value = Instruction.class, name = "INSTRUCTION"),
-  @JsonSubTypes.Type(value = Instruction.class, name = "Instruction"),
-  @JsonSubTypes.Type(value = Observation.class, name = "OBSERVATION"),
-  @JsonSubTypes.Type(value = Observation.class, name = "Observation")
+  @JsonSubTypes.Type(value = Observation.class, name = "OBSERVATION")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class AbstractEntry extends ContentItem {
 
-  @JsonProperty("language")
   private CodePhrase language;
 
-  @JsonProperty("encoding")
   private CodePhrase encoding;
 
-  @JsonProperty("other_participations")
   @Valid
-  private List<Participation> otherParticipations = null;
+  private List<@Valid Participation> otherParticipations;
 
-  @JsonProperty("workflow_id")
   private ObjectRef workflowId;
 
-  @JsonProperty("subject")
   private PartyProxy subject;
 
-  @JsonProperty("provider")
   private PartyProxy provider;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link AbstractEntry#AbstractEntry(CodePhrase, CodePhrase, PartyProxy)}
+   */
+  @Deprecated
+  public AbstractEntry() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public AbstractEntry(CodePhrase language, CodePhrase encoding, PartyProxy subject) {
+    super(name, archetypeNodeId);
+    this.language = language;
+    this.encoding = encoding;
+    this.subject = subject;
+  }
 
   public AbstractEntry language(CodePhrase language) {
     this.language = language;
@@ -86,7 +87,8 @@ public class AbstractEntry extends ContentItem {
    * @return language
   */
   @NotNull @Valid 
-  @Schema(name = "language", required = true)
+  @Schema(name = "language", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("language")
   public CodePhrase getLanguage() {
     return language;
   }
@@ -105,7 +107,8 @@ public class AbstractEntry extends ContentItem {
    * @return encoding
   */
   @NotNull @Valid 
-  @Schema(name = "encoding", required = true)
+  @Schema(name = "encoding", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("encoding")
   public CodePhrase getEncoding() {
     return encoding;
   }
@@ -114,7 +117,7 @@ public class AbstractEntry extends ContentItem {
     this.encoding = encoding;
   }
 
-  public AbstractEntry otherParticipations(List<Participation> otherParticipations) {
+  public AbstractEntry otherParticipations(List<@Valid Participation> otherParticipations) {
     this.otherParticipations = otherParticipations;
     return this;
   }
@@ -132,12 +135,13 @@ public class AbstractEntry extends ContentItem {
    * @return otherParticipations
   */
   @Valid 
-  @Schema(name = "other_participations", required = false)
-  public List<Participation> getOtherParticipations() {
+  @Schema(name = "other_participations", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("other_participations")
+  public List<@Valid Participation> getOtherParticipations() {
     return otherParticipations;
   }
 
-  public void setOtherParticipations(List<Participation> otherParticipations) {
+  public void setOtherParticipations(List<@Valid Participation> otherParticipations) {
     this.otherParticipations = otherParticipations;
   }
 
@@ -151,7 +155,8 @@ public class AbstractEntry extends ContentItem {
    * @return workflowId
   */
   @Valid 
-  @Schema(name = "workflow_id", required = false)
+  @Schema(name = "workflow_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("workflow_id")
   public ObjectRef getWorkflowId() {
     return workflowId;
   }
@@ -170,7 +175,8 @@ public class AbstractEntry extends ContentItem {
    * @return subject
   */
   @NotNull @Valid 
-  @Schema(name = "subject", required = true)
+  @Schema(name = "subject", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("subject")
   public PartyProxy getSubject() {
     return subject;
   }
@@ -189,7 +195,8 @@ public class AbstractEntry extends ContentItem {
    * @return provider
   */
   @Valid 
-  @Schema(name = "provider", required = false)
+  @Schema(name = "provider", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("provider")
   public PartyProxy getProvider() {
     return provider;
   }
@@ -213,7 +220,7 @@ public class AbstractEntry extends ContentItem {
     return this;
   }
 
-  public AbstractEntry links(List<Link> links) {
+  public AbstractEntry links(List<@Valid Link> links) {
     super.setLinks(links);
     return this;
   }

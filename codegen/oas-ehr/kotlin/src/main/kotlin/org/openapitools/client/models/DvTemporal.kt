@@ -15,13 +15,11 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.DvDate
-import org.openapitools.client.models.DvDateTime
 import org.openapitools.client.models.DvDuration
 import org.openapitools.client.models.DvQuantified
-import org.openapitools.client.models.DvTime
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

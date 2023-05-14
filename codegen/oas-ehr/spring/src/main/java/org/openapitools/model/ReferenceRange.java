@@ -23,11 +23,26 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class ReferenceRange {
 
-  @JsonProperty("meaning")
   private DvText meaning;
 
-  @JsonProperty("range")
   private DvInterval range;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link ReferenceRange#ReferenceRange(DvText, DvInterval)}
+   */
+  @Deprecated
+  public ReferenceRange() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public ReferenceRange(DvText meaning, DvInterval range) {
+    this.meaning = meaning;
+    this.range = range;
+  }
 
   public ReferenceRange meaning(DvText meaning) {
     this.meaning = meaning;
@@ -39,7 +54,8 @@ public class ReferenceRange {
    * @return meaning
   */
   @NotNull @Valid 
-  @Schema(name = "meaning", required = true)
+  @Schema(name = "meaning", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("meaning")
   public DvText getMeaning() {
     return meaning;
   }
@@ -58,7 +74,8 @@ public class ReferenceRange {
    * @return range
   */
   @NotNull @Valid 
-  @Schema(name = "range", required = true)
+  @Schema(name = "range", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("range")
   public DvInterval getRange() {
     return range;
   }

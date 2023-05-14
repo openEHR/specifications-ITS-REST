@@ -18,7 +18,7 @@ class AbstractEntry {
     
     CodePhrase encoding
     
-    List<Participation> otherParticipations = new ArrayList<>()
+    List<Participation> otherParticipations
     
     ObjectRef workflowId
     

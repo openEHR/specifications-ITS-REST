@@ -8,11 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.math.BigDecimal;
-import org.openapitools.model.DvCount;
-import org.openapitools.model.DvDuration;
-import org.openapitools.model.DvProportion;
 import org.openapitools.model.DvQuantified;
-import org.openapitools.model.DvQuantity;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -37,23 +33,16 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = DvCount.class, name = "DV_AMOUNT"),
   @JsonSubTypes.Type(value = DvDuration.class, name = "DV_AMOUNT"),
   @JsonSubTypes.Type(value = DvProportion.class, name = "DV_AMOUNT"),
-  @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_AMOUNT"),
-  @JsonSubTypes.Type(value = DvCount.class, name = "DV_AMOUNT"),
-  @JsonSubTypes.Type(value = DvDuration.class, name = "DV_AMOUNT"),
-  @JsonSubTypes.Type(value = DvProportion.class, name = "DV_AMOUNT"),
   @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_AMOUNT")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DvAmount extends DvQuantified {
 
-  @JsonProperty("_type")
   private String type = "DV_AMOUNT";
 
-  @JsonProperty("accuracy_is_percent")
   private Boolean accuracyIsPercent;
 
-  @JsonProperty("accuracy")
   private BigDecimal accuracy;
 
   public DvAmount type(String type) {
@@ -66,7 +55,8 @@ public class DvAmount extends DvQuantified {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -85,7 +75,8 @@ public class DvAmount extends DvQuantified {
    * @return accuracyIsPercent
   */
   
-  @Schema(name = "accuracy_is_percent", required = false)
+  @Schema(name = "accuracy_is_percent", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("accuracy_is_percent")
   public Boolean getAccuracyIsPercent() {
     return accuracyIsPercent;
   }
@@ -104,7 +95,8 @@ public class DvAmount extends DvQuantified {
    * @return accuracy
   */
   @Valid 
-  @Schema(name = "accuracy", required = false)
+  @Schema(name = "accuracy", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("accuracy")
   public BigDecimal getAccuracy() {
     return accuracy;
   }
@@ -128,7 +120,7 @@ public class DvAmount extends DvQuantified {
     return this;
   }
 
-  public DvAmount otherReferenceRanges(List<ReferenceRange> otherReferenceRanges) {
+  public DvAmount otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
     super.setOtherReferenceRanges(otherReferenceRanges);
     return this;
   }

@@ -8,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openapitools.model.AuditDetails;
-import org.openapitools.model.ImportedVersion;
 import org.openapitools.model.ObjectRef;
-import org.openapitools.model.OriginalVersion;
 import org.openapitools.model.Versionable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -34,28 +32,39 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = ImportedVersion.class, name = "IMPORTED_VERSION"),
-  @JsonSubTypes.Type(value = ImportedVersion.class, name = "ImportedVersion"),
-  @JsonSubTypes.Type(value = OriginalVersion.class, name = "ORIGINAL_VERSION"),
-  @JsonSubTypes.Type(value = OriginalVersion.class, name = "OriginalVersion")
+  @JsonSubTypes.Type(value = OriginalVersion.class, name = "ORIGINAL_VERSION")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Version {
 
-  @JsonProperty("_type")
   private String type;
 
-  @JsonProperty("contribution")
   private ObjectRef contribution;
 
-  @JsonProperty("signature")
   private String signature;
 
-  @JsonProperty("commit_audit")
   private AuditDetails commitAudit;
 
-  @JsonProperty("data")
   private Versionable data;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link Version#Version(ObjectRef, AuditDetails, Versionable)}
+   */
+  @Deprecated
+  public Version() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public Version(ObjectRef contribution, AuditDetails commitAudit, Versionable data) {
+    this.contribution = contribution;
+    this.commitAudit = commitAudit;
+    this.data = data;
+  }
 
   public Version type(String type) {
     this.type = type;
@@ -67,7 +76,8 @@ public class Version {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -86,7 +96,8 @@ public class Version {
    * @return contribution
   */
   @NotNull @Valid 
-  @Schema(name = "contribution", required = true)
+  @Schema(name = "contribution", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("contribution")
   public ObjectRef getContribution() {
     return contribution;
   }
@@ -105,7 +116,8 @@ public class Version {
    * @return signature
   */
   
-  @Schema(name = "signature", required = false)
+  @Schema(name = "signature", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("signature")
   public String getSignature() {
     return signature;
   }
@@ -124,7 +136,8 @@ public class Version {
    * @return commitAudit
   */
   @NotNull @Valid 
-  @Schema(name = "commit_audit", required = true)
+  @Schema(name = "commit_audit", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("commit_audit")
   public AuditDetails getCommitAudit() {
     return commitAudit;
   }
@@ -143,7 +156,8 @@ public class Version {
    * @return data
   */
   @NotNull @Valid 
-  @Schema(name = "data", required = true)
+  @Schema(name = "data", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("data")
   public Versionable getData() {
     return data;
   }

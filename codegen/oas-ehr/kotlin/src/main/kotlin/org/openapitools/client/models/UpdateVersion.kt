@@ -22,6 +22,7 @@ import org.openapitools.client.models.UpdateAudit
 import org.openapitools.client.models.Versionable
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

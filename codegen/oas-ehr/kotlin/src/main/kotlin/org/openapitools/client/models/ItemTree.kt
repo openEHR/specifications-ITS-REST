@@ -16,13 +16,10 @@
 package org.openapitools.client.models
 
 import org.openapitools.client.models.Item
-import org.openapitools.client.models.ItemList
-import org.openapitools.client.models.ItemSingle
 import org.openapitools.client.models.ItemStructure
-import org.openapitools.client.models.ItemTable
-import org.openapitools.client.models.ItemTree
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

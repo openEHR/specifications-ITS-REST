@@ -18,11 +18,10 @@ package org.openapitools.client.models
 import org.openapitools.client.models.DvDateTime
 import org.openapitools.client.models.HierObjectId
 import org.openapitools.client.models.ObjectRef
-import org.openapitools.client.models.VersionedComposition
-import org.openapitools.client.models.VersionedEhrStatus
 import org.openapitools.client.models.VersionedObject
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * A VERSIONED_EHR_STATUS resource

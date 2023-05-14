@@ -8,7 +8,7 @@ All URIs are relative to *https://openEHRSys.example.com/v1*
 | [**contributionGet**](ContributionApi.md#contributionGet) | **GET** /ehr/{ehr_id}/contribution/{contribution_uid} | Get CONTRIBUTION by id |
 
 
-<a name="contributionCreate"></a>
+<a id="contributionCreate"></a>
 # **contributionCreate**
 > Contribution contributionCreate(ehrId, newContribution, prefer)
 
@@ -77,7 +77,7 @@ No authorization required
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist.  |  -  |
 | **409** | &#x60;409 Conflict&#x60; is returned when a resource with same identifier(s) already exists.  |  -  |
 
-<a name="contributionGet"></a>
+<a id="contributionGet"></a>
 # **contributionGet**
 > Contribution contributionGet(ehrId, contributionUid)
 

@@ -23,14 +23,28 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Archetyped {
 
-  @JsonProperty("archetype_id")
   private ArchetypeId archetypeId;
 
-  @JsonProperty("template_id")
   private TemplateId templateId;
 
-  @JsonProperty("rm_version")
   private String rmVersion;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link Archetyped#Archetyped(ArchetypeId, String)}
+   */
+  @Deprecated
+  public Archetyped() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public Archetyped(ArchetypeId archetypeId, String rmVersion) {
+    this.archetypeId = archetypeId;
+    this.rmVersion = rmVersion;
+  }
 
   public Archetyped archetypeId(ArchetypeId archetypeId) {
     this.archetypeId = archetypeId;
@@ -42,7 +56,8 @@ public class Archetyped {
    * @return archetypeId
   */
   @NotNull @Valid 
-  @Schema(name = "archetype_id", required = true)
+  @Schema(name = "archetype_id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("archetype_id")
   public ArchetypeId getArchetypeId() {
     return archetypeId;
   }
@@ -61,7 +76,8 @@ public class Archetyped {
    * @return templateId
   */
   @Valid 
-  @Schema(name = "template_id", required = false)
+  @Schema(name = "template_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("template_id")
   public TemplateId getTemplateId() {
     return templateId;
   }
@@ -80,7 +96,8 @@ public class Archetyped {
    * @return rmVersion
   */
   @NotNull 
-  @Schema(name = "rm_version", required = true)
+  @Schema(name = "rm_version", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("rm_version")
   public String getRmVersion() {
     return rmVersion;
   }

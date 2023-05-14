@@ -50,7 +50,7 @@ class CONTRIBUTIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     /**
      * enum for parameter prefer
      */
-     enum class Prefer_contributionCreate(val value: kotlin.String) {
+     enum class PreferContributionCreate(val value: kotlin.String) {
          @Json(name = "return=representation") representation("return=representation"),
          @Json(name = "return=minimal") minimal("return=minimal")
      }
@@ -70,7 +70,7 @@ class CONTRIBUTIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun contributionCreate(ehrId: kotlin.String, newContribution: NewContribution, prefer: Prefer_contributionCreate? = Prefer_contributionCreate.minimal) : Contribution {
+    fun contributionCreate(ehrId: kotlin.String, newContribution: NewContribution, prefer: PreferContributionCreate? = PreferContributionCreate.minimal) : Contribution {
         val localVarResponse = contributionCreateWithHttpInfo(ehrId = ehrId, newContribution = newContribution, prefer = prefer)
 
         return when (localVarResponse.responseType) {
@@ -100,7 +100,7 @@ class CONTRIBUTIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun contributionCreateWithHttpInfo(ehrId: kotlin.String, newContribution: NewContribution, prefer: Prefer_contributionCreate?) : ApiResponse<Contribution?> {
+    fun contributionCreateWithHttpInfo(ehrId: kotlin.String, newContribution: NewContribution, prefer: PreferContributionCreate?) : ApiResponse<Contribution?> {
         val localVariableConfig = contributionCreateRequestConfig(ehrId = ehrId, newContribution = newContribution, prefer = prefer)
 
         return request<NewContribution, Contribution>(
@@ -116,7 +116,7 @@ class CONTRIBUTIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
      * @param prefer Request header to indicate the preference over response details. The response will contain the entire resource when the &#x60;Prefer&#x60; header has a value of &#x60;return&#x3D;representation&#x60;.  (optional, default to return=minimal)
      * @return RequestConfig
      */
-    fun contributionCreateRequestConfig(ehrId: kotlin.String, newContribution: NewContribution, prefer: Prefer_contributionCreate?) : RequestConfig<NewContribution> {
+    fun contributionCreateRequestConfig(ehrId: kotlin.String, newContribution: NewContribution, prefer: PreferContributionCreate?) : RequestConfig<NewContribution> {
         val localVariableBody = newContribution
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -129,6 +129,7 @@ class CONTRIBUTIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
             path = "/ehr/{ehr_id}/contribution".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }
@@ -202,6 +203,7 @@ class CONTRIBUTIONApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
             path = "/ehr/{ehr_id}/contribution/{contribution_uid}".replace("{"+"ehr_id"+"}", encodeURIComponent(ehrId.toString())).replace("{"+"contribution_uid"+"}", encodeURIComponent(contributionUid.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
+            requiresAuthentication = false,
             body = localVariableBody
         )
     }

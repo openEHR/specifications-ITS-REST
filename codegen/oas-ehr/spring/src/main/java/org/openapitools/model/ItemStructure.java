@@ -8,10 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openapitools.model.DataStructure;
-import org.openapitools.model.ItemList;
-import org.openapitools.model.ItemSingle;
-import org.openapitools.model.ItemTable;
-import org.openapitools.model.ItemTree;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -36,17 +32,12 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = ItemList.class, name = "ITEM_STRUCTURE"),
   @JsonSubTypes.Type(value = ItemSingle.class, name = "ITEM_STRUCTURE"),
   @JsonSubTypes.Type(value = ItemTable.class, name = "ITEM_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemTree.class, name = "ITEM_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemList.class, name = "ITEM_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemSingle.class, name = "ITEM_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemTable.class, name = "ITEM_STRUCTURE"),
   @JsonSubTypes.Type(value = ItemTree.class, name = "ITEM_STRUCTURE")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class ItemStructure extends DataStructure {
 
-  @JsonProperty("_type")
   private String type;
 
   public ItemStructure type(String type) {
@@ -59,7 +50,8 @@ public class ItemStructure extends DataStructure {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -83,7 +75,7 @@ public class ItemStructure extends DataStructure {
     return this;
   }
 
-  public ItemStructure links(List<Link> links) {
+  public ItemStructure links(List<@Valid Link> links) {
     super.setLinks(links);
     return this;
   }

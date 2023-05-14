@@ -19,6 +19,7 @@ import org.openapitools.client.models.DvInterval
 import org.openapitools.client.models.DvText
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

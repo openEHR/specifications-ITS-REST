@@ -120,13 +120,13 @@ class History {
         period: DvDuration.fromJson(json[r'period']),
         duration: DvDuration.fromJson(json[r'duration']),
         summary: ItemStructure.fromJson(json[r'summary']),
-        events: Event.listFromJson(json[r'events']) ?? const [],
+        events: Event.listFromJson(json[r'events']),
       );
     }
     return null;
   }
 
-  static List<History>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<History> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <History>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -157,12 +157,10 @@ class History {
   static Map<String, List<History>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<History>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = History.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = History.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

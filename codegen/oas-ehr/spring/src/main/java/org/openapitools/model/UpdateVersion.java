@@ -28,24 +28,36 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class UpdateVersion {
 
-  @JsonProperty("preceding_version_uid")
   private ObjectVersionId precedingVersionUid;
 
-  @JsonProperty("signature")
   private String signature;
 
-  @JsonProperty("lifecycle_state")
   private TerminologyCode lifecycleState;
 
-  @JsonProperty("attestations")
   @Valid
-  private List<UpdateAttestation> attestations = null;
+  private List<@Valid UpdateAttestation> attestations;
 
-  @JsonProperty("data")
   private Versionable data;
 
-  @JsonProperty("commit_audit")
   private UpdateAudit commitAudit;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link UpdateVersion#UpdateVersion(TerminologyCode, Versionable, UpdateAudit)}
+   */
+  @Deprecated
+  public UpdateVersion() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public UpdateVersion(TerminologyCode lifecycleState, Versionable data, UpdateAudit commitAudit) {
+    this.lifecycleState = lifecycleState;
+    this.data = data;
+    this.commitAudit = commitAudit;
+  }
 
   public UpdateVersion precedingVersionUid(ObjectVersionId precedingVersionUid) {
     this.precedingVersionUid = precedingVersionUid;
@@ -57,7 +69,8 @@ public class UpdateVersion {
    * @return precedingVersionUid
   */
   @Valid 
-  @Schema(name = "preceding_version_uid", required = false)
+  @Schema(name = "preceding_version_uid", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("preceding_version_uid")
   public ObjectVersionId getPrecedingVersionUid() {
     return precedingVersionUid;
   }
@@ -76,7 +89,8 @@ public class UpdateVersion {
    * @return signature
   */
   
-  @Schema(name = "signature", required = false)
+  @Schema(name = "signature", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("signature")
   public String getSignature() {
     return signature;
   }
@@ -95,7 +109,8 @@ public class UpdateVersion {
    * @return lifecycleState
   */
   @NotNull @Valid 
-  @Schema(name = "lifecycle_state", required = true)
+  @Schema(name = "lifecycle_state", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("lifecycle_state")
   public TerminologyCode getLifecycleState() {
     return lifecycleState;
   }
@@ -104,7 +119,7 @@ public class UpdateVersion {
     this.lifecycleState = lifecycleState;
   }
 
-  public UpdateVersion attestations(List<UpdateAttestation> attestations) {
+  public UpdateVersion attestations(List<@Valid UpdateAttestation> attestations) {
     this.attestations = attestations;
     return this;
   }
@@ -122,12 +137,13 @@ public class UpdateVersion {
    * @return attestations
   */
   @Valid 
-  @Schema(name = "attestations", required = false)
-  public List<UpdateAttestation> getAttestations() {
+  @Schema(name = "attestations", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("attestations")
+  public List<@Valid UpdateAttestation> getAttestations() {
     return attestations;
   }
 
-  public void setAttestations(List<UpdateAttestation> attestations) {
+  public void setAttestations(List<@Valid UpdateAttestation> attestations) {
     this.attestations = attestations;
   }
 
@@ -141,7 +157,8 @@ public class UpdateVersion {
    * @return data
   */
   @NotNull @Valid 
-  @Schema(name = "data", required = true)
+  @Schema(name = "data", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("data")
   public Versionable getData() {
     return data;
   }
@@ -160,7 +177,8 @@ public class UpdateVersion {
    * @return commitAudit
   */
   @NotNull @Valid 
-  @Schema(name = "commit_audit", required = true)
+  @Schema(name = "commit_audit", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("commit_audit")
   public UpdateAudit getCommitAudit() {
     return commitAudit;
   }

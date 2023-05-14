@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openapitools.model.DataValue;
-import org.openapitools.model.DvInterval;
-import org.openapitools.model.DvIntervalOfDateTime;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -31,27 +29,41 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = DvInterval.class, name = "DV_INTERVAL"),
-  @JsonSubTypes.Type(value = DvIntervalOfDateTime.class, name = "DV_INTERVAL"),
   @JsonSubTypes.Type(value = DvIntervalOfDateTime.class, name = "DV_INTERVAL")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DvInterval extends DataValue {
 
-  @JsonProperty("_type")
   private String type = "DV_INTERVAL";
 
-  @JsonProperty("lower_unbounded")
   private Boolean lowerUnbounded;
 
-  @JsonProperty("upper_unbounded")
   private Boolean upperUnbounded;
 
-  @JsonProperty("lower_included")
   private Boolean lowerIncluded;
 
-  @JsonProperty("upper_included")
   private Boolean upperIncluded;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link DvInterval#DvInterval(Boolean, Boolean, Boolean, Boolean)}
+   */
+  @Deprecated
+  public DvInterval() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public DvInterval(Boolean lowerUnbounded, Boolean upperUnbounded, Boolean lowerIncluded, Boolean upperIncluded) {
+    super();
+    this.lowerUnbounded = lowerUnbounded;
+    this.upperUnbounded = upperUnbounded;
+    this.lowerIncluded = lowerIncluded;
+    this.upperIncluded = upperIncluded;
+  }
 
   public DvInterval type(String type) {
     this.type = type;
@@ -63,7 +75,8 @@ public class DvInterval extends DataValue {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -82,7 +95,8 @@ public class DvInterval extends DataValue {
    * @return lowerUnbounded
   */
   @NotNull 
-  @Schema(name = "lower_unbounded", required = true)
+  @Schema(name = "lower_unbounded", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("lower_unbounded")
   public Boolean getLowerUnbounded() {
     return lowerUnbounded;
   }
@@ -101,7 +115,8 @@ public class DvInterval extends DataValue {
    * @return upperUnbounded
   */
   @NotNull 
-  @Schema(name = "upper_unbounded", required = true)
+  @Schema(name = "upper_unbounded", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("upper_unbounded")
   public Boolean getUpperUnbounded() {
     return upperUnbounded;
   }
@@ -120,7 +135,8 @@ public class DvInterval extends DataValue {
    * @return lowerIncluded
   */
   @NotNull 
-  @Schema(name = "lower_included", required = true)
+  @Schema(name = "lower_included", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("lower_included")
   public Boolean getLowerIncluded() {
     return lowerIncluded;
   }
@@ -139,7 +155,8 @@ public class DvInterval extends DataValue {
    * @return upperIncluded
   */
   @NotNull 
-  @Schema(name = "upper_included", required = true)
+  @Schema(name = "upper_included", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("upper_included")
   public Boolean getUpperIncluded() {
     return upperIncluded;
   }

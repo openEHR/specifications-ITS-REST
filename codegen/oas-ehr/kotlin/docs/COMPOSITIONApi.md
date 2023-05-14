@@ -14,7 +14,7 @@ Method | HTTP request | Description
 [**versionedCompositionVersionGetById**](COMPOSITIONApi.md#versionedCompositionVersionGetById) | **GET** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid} | Get versioned COMPOSITION version by id
 
 
-<a name="compositionCreate"></a>
+<a id="compositionCreate"></a>
 # **compositionCreate**
 > Composition compositionCreate(ehrId, composition, prefer)
 
@@ -65,7 +65,7 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="compositionDelete"></a>
+<a id="compositionDelete"></a>
 # **compositionDelete**
 > compositionDelete(ehrId, uidBasedId)
 
@@ -113,7 +113,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="compositionGet"></a>
+<a id="compositionGet"></a>
 # **compositionGet**
 > Composition compositionGet(ehrId, uidBasedId, versionAtTime)
 
@@ -164,7 +164,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="compositionUpdate"></a>
+<a id="compositionUpdate"></a>
 # **compositionUpdate**
 > Composition compositionUpdate(ehrId, uidBasedId, ifMatch, composition, prefer)
 
@@ -219,7 +219,7 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="versionedCompositionGet"></a>
+<a id="versionedCompositionGet"></a>
 # **versionedCompositionGet**
 > VersionedComposition versionedCompositionGet(ehrId, versionedObjectUid)
 
@@ -268,7 +268,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="versionedCompositionRevisionHistory"></a>
+<a id="versionedCompositionRevisionHistory"></a>
 # **versionedCompositionRevisionHistory**
 > RevisionHistory versionedCompositionRevisionHistory(ehrId, versionedObjectUid)
 
@@ -317,7 +317,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="versionedCompositionVersionGetAtTime"></a>
+<a id="versionedCompositionVersionGetAtTime"></a>
 # **versionedCompositionVersionGetAtTime**
 > Version versionedCompositionVersionGetAtTime(ehrId, versionedObjectUid, versionAtTime)
 
@@ -368,7 +368,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="versionedCompositionVersionGetById"></a>
+<a id="versionedCompositionVersionGetById"></a>
 # **versionedCompositionVersionGetById**
 > Version versionedCompositionVersionGetById(ehrId, versionedObjectUid, versionUid)
 

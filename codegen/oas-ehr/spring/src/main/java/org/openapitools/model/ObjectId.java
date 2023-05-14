@@ -7,13 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.ArchetypeId;
-import org.openapitools.model.GenericId;
-import org.openapitools.model.HierObjectId;
-import org.openapitools.model.ObjectVersionId;
-import org.openapitools.model.TemplateId;
-import org.openapitools.model.TerminologyId;
-import org.openapitools.model.UidBasedId;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -35,29 +28,36 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = ArchetypeId.class, name = "ARCHETYPE_ID"),
-  @JsonSubTypes.Type(value = ArchetypeId.class, name = "ArchetypeId"),
   @JsonSubTypes.Type(value = GenericId.class, name = "GENERIC_ID"),
-  @JsonSubTypes.Type(value = GenericId.class, name = "GenericId"),
   @JsonSubTypes.Type(value = HierObjectId.class, name = "HIER_OBJECT_ID"),
-  @JsonSubTypes.Type(value = HierObjectId.class, name = "HierObjectId"),
   @JsonSubTypes.Type(value = ObjectVersionId.class, name = "OBJECT_VERSION_ID"),
-  @JsonSubTypes.Type(value = ObjectVersionId.class, name = "ObjectVersionId"),
   @JsonSubTypes.Type(value = TemplateId.class, name = "TEMPLATE_ID"),
   @JsonSubTypes.Type(value = TerminologyId.class, name = "TERMINOLOGY_ID"),
-  @JsonSubTypes.Type(value = TemplateId.class, name = "TemplateId"),
-  @JsonSubTypes.Type(value = TerminologyId.class, name = "TerminologyId"),
-  @JsonSubTypes.Type(value = UidBasedId.class, name = "UID_BASED_ID"),
-  @JsonSubTypes.Type(value = UidBasedId.class, name = "UidBasedId")
+  @JsonSubTypes.Type(value = UidBasedId.class, name = "UID_BASED_ID")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class ObjectId {
 
-  @JsonProperty("_type")
   private String type;
 
-  @JsonProperty("value")
   private String value;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link ObjectId#ObjectId(String)}
+   */
+  @Deprecated
+  public ObjectId() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public ObjectId(String value) {
+    this.value = value;
+  }
 
   public ObjectId type(String type) {
     this.type = type;
@@ -69,7 +69,8 @@ public class ObjectId {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -88,7 +89,8 @@ public class ObjectId {
    * @return value
   */
   @NotNull 
-  @Schema(name = "value", required = true)
+  @Schema(name = "value", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("value")
   public String getValue() {
     return value;
   }

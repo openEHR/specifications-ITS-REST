@@ -27,15 +27,29 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class NewContribution {
 
-  @JsonProperty("uid")
   private HierObjectId uid;
 
-  @JsonProperty("versions")
   @Valid
-  private List<UpdateVersion> versions = new ArrayList<>();
+  private List<@Valid UpdateVersion> versions = new ArrayList<>();
 
-  @JsonProperty("audit")
   private UpdateAudit audit;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link NewContribution#NewContribution(List<@Valid UpdateVersion>, UpdateAudit)}
+   */
+  @Deprecated
+  public NewContribution() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public NewContribution(List<@Valid UpdateVersion> versions, UpdateAudit audit) {
+    this.versions = versions;
+    this.audit = audit;
+  }
 
   public NewContribution uid(HierObjectId uid) {
     this.uid = uid;
@@ -47,7 +61,8 @@ public class NewContribution {
    * @return uid
   */
   @Valid 
-  @Schema(name = "uid", required = false)
+  @Schema(name = "uid", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("uid")
   public HierObjectId getUid() {
     return uid;
   }
@@ -56,12 +71,15 @@ public class NewContribution {
     this.uid = uid;
   }
 
-  public NewContribution versions(List<UpdateVersion> versions) {
+  public NewContribution versions(List<@Valid UpdateVersion> versions) {
     this.versions = versions;
     return this;
   }
 
   public NewContribution addVersionsItem(UpdateVersion versionsItem) {
+    if (this.versions == null) {
+      this.versions = new ArrayList<>();
+    }
     this.versions.add(versionsItem);
     return this;
   }
@@ -71,12 +89,13 @@ public class NewContribution {
    * @return versions
   */
   @NotNull @Valid 
-  @Schema(name = "versions", required = true)
-  public List<UpdateVersion> getVersions() {
+  @Schema(name = "versions", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("versions")
+  public List<@Valid UpdateVersion> getVersions() {
     return versions;
   }
 
-  public void setVersions(List<UpdateVersion> versions) {
+  public void setVersions(List<@Valid UpdateVersion> versions) {
     this.versions = versions;
   }
 
@@ -90,7 +109,8 @@ public class NewContribution {
    * @return audit
   */
   @NotNull @Valid 
-  @Schema(name = "audit", required = true)
+  @Schema(name = "audit", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("audit")
   public UpdateAudit getAudit() {
     return audit;
   }

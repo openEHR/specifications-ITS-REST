@@ -18,10 +18,9 @@ package org.openapitools.client.models
 import org.openapitools.client.models.DvText
 import org.openapitools.client.models.PartyProxy
 import org.openapitools.client.models.TerminologyCode
-import org.openapitools.client.models.UpdateAttestation
-import org.openapitools.client.models.UpdateAudit
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * The set of attributes required to document the committal of an information item to a repository. Used by the server to create an AUDIT_DETAILS object.

@@ -9,36 +9,12 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.model.AbstractEntry;
-import org.openapitools.model.Action;
-import org.openapitools.model.Activity;
-import org.openapitools.model.AdminEntry;
 import org.openapitools.model.Archetyped;
-import org.openapitools.model.CareEntry;
-import org.openapitools.model.Clstr;
-import org.openapitools.model.Composition;
-import org.openapitools.model.ContentItem;
-import org.openapitools.model.DataStructure;
 import org.openapitools.model.DvText;
-import org.openapitools.model.EhrStatus;
-import org.openapitools.model.Element;
-import org.openapitools.model.Evaluation;
-import org.openapitools.model.Event;
 import org.openapitools.model.FeederAudit;
-import org.openapitools.model.Folder;
-import org.openapitools.model.History;
-import org.openapitools.model.Instruction;
-import org.openapitools.model.Item;
-import org.openapitools.model.ItemList;
-import org.openapitools.model.ItemSingle;
-import org.openapitools.model.ItemStructure;
-import org.openapitools.model.ItemTable;
-import org.openapitools.model.ItemTree;
 import org.openapitools.model.Link;
-import org.openapitools.model.Observation;
 import org.openapitools.model.Pathable;
 import org.openapitools.model.UidBasedId;
-import org.openapitools.model.Versionable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -63,29 +39,17 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = Activity.class, name = "ACTIVITY"),
   @JsonSubTypes.Type(value = AdminEntry.class, name = "ADMIN_ENTRY"),
   @JsonSubTypes.Type(value = AbstractEntry.class, name = "AbstractEntry"),
-  @JsonSubTypes.Type(value = Action.class, name = "Action"),
-  @JsonSubTypes.Type(value = Activity.class, name = "Activity"),
-  @JsonSubTypes.Type(value = AdminEntry.class, name = "AdminEntry"),
   @JsonSubTypes.Type(value = Clstr.class, name = "CLUSTER"),
   @JsonSubTypes.Type(value = Composition.class, name = "COMPOSITION"),
   @JsonSubTypes.Type(value = CareEntry.class, name = "CareEntry"),
-  @JsonSubTypes.Type(value = Clstr.class, name = "Clstr"),
-  @JsonSubTypes.Type(value = Composition.class, name = "Composition"),
   @JsonSubTypes.Type(value = ContentItem.class, name = "ContentItem"),
   @JsonSubTypes.Type(value = DataStructure.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = DataStructure.class, name = "DataStructure"),
   @JsonSubTypes.Type(value = EhrStatus.class, name = "EHR_STATUS"),
   @JsonSubTypes.Type(value = Element.class, name = "ELEMENT"),
   @JsonSubTypes.Type(value = Evaluation.class, name = "EVALUATION"),
   @JsonSubTypes.Type(value = Event.class, name = "EVENT"),
-  @JsonSubTypes.Type(value = EhrStatus.class, name = "EhrStatus"),
-  @JsonSubTypes.Type(value = Element.class, name = "Element"),
-  @JsonSubTypes.Type(value = Evaluation.class, name = "Evaluation"),
-  @JsonSubTypes.Type(value = Event.class, name = "Event"),
   @JsonSubTypes.Type(value = Folder.class, name = "FOLDER"),
-  @JsonSubTypes.Type(value = Folder.class, name = "Folder"),
   @JsonSubTypes.Type(value = History.class, name = "HISTORY"),
-  @JsonSubTypes.Type(value = History.class, name = "History"),
   @JsonSubTypes.Type(value = Instruction.class, name = "INSTRUCTION"),
   @JsonSubTypes.Type(value = Item.class, name = "ITEM"),
   @JsonSubTypes.Type(value = ItemList.class, name = "ITEM_LIST"),
@@ -93,39 +57,43 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = ItemStructure.class, name = "ITEM_STRUCTURE"),
   @JsonSubTypes.Type(value = ItemTable.class, name = "ITEM_TABLE"),
   @JsonSubTypes.Type(value = ItemTree.class, name = "ITEM_TREE"),
-  @JsonSubTypes.Type(value = Instruction.class, name = "Instruction"),
-  @JsonSubTypes.Type(value = Item.class, name = "Item"),
-  @JsonSubTypes.Type(value = ItemList.class, name = "ItemList"),
-  @JsonSubTypes.Type(value = ItemSingle.class, name = "ItemSingle"),
-  @JsonSubTypes.Type(value = ItemStructure.class, name = "ItemStructure"),
-  @JsonSubTypes.Type(value = ItemTable.class, name = "ItemTable"),
-  @JsonSubTypes.Type(value = ItemTree.class, name = "ItemTree"),
   @JsonSubTypes.Type(value = Observation.class, name = "OBSERVATION"),
-  @JsonSubTypes.Type(value = Observation.class, name = "Observation"),
   @JsonSubTypes.Type(value = Versionable.class, name = "Versionable")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Locatable extends Pathable {
 
-  @JsonProperty("name")
   private DvText name;
 
-  @JsonProperty("archetype_node_id")
   private String archetypeNodeId;
 
-  @JsonProperty("uid")
   private UidBasedId uid;
 
-  @JsonProperty("links")
   @Valid
-  private List<Link> links = null;
+  private List<@Valid Link> links;
 
-  @JsonProperty("archetype_details")
   private Archetyped archetypeDetails;
 
-  @JsonProperty("feeder_audit")
   private FeederAudit feederAudit;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link Locatable#Locatable(DvText, String)}
+   */
+  @Deprecated
+  public Locatable() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public Locatable(DvText name, String archetypeNodeId) {
+    super();
+    this.name = name;
+    this.archetypeNodeId = archetypeNodeId;
+  }
 
   public Locatable name(DvText name) {
     this.name = name;
@@ -137,7 +105,8 @@ public class Locatable extends Pathable {
    * @return name
   */
   @NotNull @Valid 
-  @Schema(name = "name", required = true)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("name")
   public DvText getName() {
     return name;
   }
@@ -156,7 +125,8 @@ public class Locatable extends Pathable {
    * @return archetypeNodeId
   */
   @NotNull 
-  @Schema(name = "archetype_node_id", required = true)
+  @Schema(name = "archetype_node_id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("archetype_node_id")
   public String getArchetypeNodeId() {
     return archetypeNodeId;
   }
@@ -175,7 +145,8 @@ public class Locatable extends Pathable {
    * @return uid
   */
   @Valid 
-  @Schema(name = "uid", required = false)
+  @Schema(name = "uid", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("uid")
   public UidBasedId getUid() {
     return uid;
   }
@@ -184,7 +155,7 @@ public class Locatable extends Pathable {
     this.uid = uid;
   }
 
-  public Locatable links(List<Link> links) {
+  public Locatable links(List<@Valid Link> links) {
     this.links = links;
     return this;
   }
@@ -202,12 +173,13 @@ public class Locatable extends Pathable {
    * @return links
   */
   @Valid 
-  @Schema(name = "links", required = false)
-  public List<Link> getLinks() {
+  @Schema(name = "links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("links")
+  public List<@Valid Link> getLinks() {
     return links;
   }
 
-  public void setLinks(List<Link> links) {
+  public void setLinks(List<@Valid Link> links) {
     this.links = links;
   }
 
@@ -221,7 +193,8 @@ public class Locatable extends Pathable {
    * @return archetypeDetails
   */
   @Valid 
-  @Schema(name = "archetype_details", required = false)
+  @Schema(name = "archetype_details", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("archetype_details")
   public Archetyped getArchetypeDetails() {
     return archetypeDetails;
   }
@@ -240,7 +213,8 @@ public class Locatable extends Pathable {
    * @return feederAudit
   */
   @Valid 
-  @Schema(name = "feeder_audit", required = false)
+  @Schema(name = "feeder_audit", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("feeder_audit")
   public FeederAudit getFeederAudit() {
     return feederAudit;
   }

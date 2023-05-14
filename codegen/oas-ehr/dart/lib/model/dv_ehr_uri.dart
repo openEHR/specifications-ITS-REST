@@ -61,7 +61,7 @@ class DvEhrUri {
     return null;
   }
 
-  static List<DvEhrUri>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<DvEhrUri> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DvEhrUri>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -92,12 +92,10 @@ class DvEhrUri {
   static Map<String, List<DvEhrUri>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<DvEhrUri>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = DvEhrUri.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = DvEhrUri.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

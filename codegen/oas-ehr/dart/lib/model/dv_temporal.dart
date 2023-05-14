@@ -78,7 +78,7 @@ class DvTemporal {
     return null;
   }
 
-  static List<DvTemporal>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<DvTemporal> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DvTemporal>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -109,12 +109,10 @@ class DvTemporal {
   static Map<String, List<DvTemporal>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<DvTemporal>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = DvTemporal.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = DvTemporal.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

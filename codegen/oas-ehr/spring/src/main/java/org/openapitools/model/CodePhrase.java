@@ -22,14 +22,28 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class CodePhrase {
 
-  @JsonProperty("terminology_id")
   private TerminologyId terminologyId;
 
-  @JsonProperty("code_string")
   private String codeString;
 
-  @JsonProperty("preferred_term")
   private String preferredTerm;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link CodePhrase#CodePhrase(TerminologyId, String)}
+   */
+  @Deprecated
+  public CodePhrase() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public CodePhrase(TerminologyId terminologyId, String codeString) {
+    this.terminologyId = terminologyId;
+    this.codeString = codeString;
+  }
 
   public CodePhrase terminologyId(TerminologyId terminologyId) {
     this.terminologyId = terminologyId;
@@ -41,7 +55,8 @@ public class CodePhrase {
    * @return terminologyId
   */
   @NotNull @Valid 
-  @Schema(name = "terminology_id", required = true)
+  @Schema(name = "terminology_id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("terminology_id")
   public TerminologyId getTerminologyId() {
     return terminologyId;
   }
@@ -60,7 +75,8 @@ public class CodePhrase {
    * @return codeString
   */
   @NotNull 
-  @Schema(name = "code_string", required = true)
+  @Schema(name = "code_string", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("code_string")
   public String getCodeString() {
     return codeString;
   }
@@ -79,7 +95,8 @@ public class CodePhrase {
    * @return preferredTerm
   */
   
-  @Schema(name = "preferred_term", required = false)
+  @Schema(name = "preferred_term", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("preferred_term")
   public String getPreferredTerm() {
     return preferredTerm;
   }

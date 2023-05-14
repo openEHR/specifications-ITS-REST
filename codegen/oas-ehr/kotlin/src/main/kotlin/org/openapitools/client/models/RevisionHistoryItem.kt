@@ -19,6 +19,7 @@ import org.openapitools.client.models.AuditDetails
 import org.openapitools.client.models.ObjectVersionId
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * A REVISION_HISTORY_ITEM resource

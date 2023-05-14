@@ -15,11 +15,10 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Composition
-import org.openapitools.client.models.EhrStatus
 import org.openapitools.client.models.Locatable
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * A Versionable resource

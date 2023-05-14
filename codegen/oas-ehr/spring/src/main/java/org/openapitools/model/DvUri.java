@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openapitools.model.DataValue;
-import org.openapitools.model.DvEhrUri;
-import org.openapitools.model.DvUri;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -31,18 +29,32 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = DvEhrUri.class, name = "DV_URI"),
-  @JsonSubTypes.Type(value = DvUri.class, name = "DV_URI"),
-  @JsonSubTypes.Type(value = DvEhrUri.class, name = "DV_URI")
+  @JsonSubTypes.Type(value = DvUri.class, name = "DV_URI")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DvUri extends DataValue {
 
-  @JsonProperty("_type")
   private String type = "DV_URI";
 
-  @JsonProperty("value")
   private String value;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link DvUri#DvUri(String)}
+   */
+  @Deprecated
+  public DvUri() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public DvUri(String value) {
+    super();
+    this.value = value;
+  }
 
   public DvUri type(String type) {
     this.type = type;
@@ -54,7 +66,8 @@ public class DvUri extends DataValue {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -73,7 +86,8 @@ public class DvUri extends DataValue {
    * @return value
   */
   @NotNull 
-  @Schema(name = "value", required = true)
+  @Schema(name = "value", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("value")
   public String getValue() {
     return value;
   }

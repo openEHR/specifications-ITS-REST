@@ -62,13 +62,13 @@ class ItemList {
 
       return ItemList(
         type: mapValueOfType<String>(json, r'_type') ?? 'ITEM_LIST',
-        items: Element.listFromJson(json[r'items']) ?? const [],
+        items: Element.listFromJson(json[r'items']),
       );
     }
     return null;
   }
 
-  static List<ItemList>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ItemList> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ItemList>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -99,12 +99,10 @@ class ItemList {
   static Map<String, List<ItemList>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<ItemList>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = ItemList.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = ItemList.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

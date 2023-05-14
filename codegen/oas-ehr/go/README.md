@@ -7,7 +7,7 @@
     </colgroup>
     <thead>
     <tr>
-        <th colspan=\"2\">© 2003 - 2022 The openEHR Foundation</th>
+        <th colspan=\"2\">© 2018 - 2023 The openEHR Foundation</th>
     </tr>
     </thead>
     <tbody>
@@ -50,14 +50,14 @@
     </thead>
     <tbody>
     <tr>
-        <th colspan=\"4\"><a href=\"https://specifications.openehr.org/releases/ITS-REST/latest\" target=\"_blank\" rel=\"noopener\">Release-1.0.3 (unreleased)</a></th>
+        <th colspan=\"4\"><a href=\"https://specifications.openehr.org/releases/ITS-REST/latest\" target=\"_blank\" rel=\"noopener\">Release-1.0.3</a></th>
     </tr>
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
             Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
-        <td>14 Nov 2022</td>
+        <td>19 Dec 2022</td>
     </tr>
     <tr>
         <th colspan=\"4\"><a href=\"https://specifications.openehr.org/releases/ITS-REST/Release-1.0.2\" target=\"_blank\" rel=\"noopener\">Release-1.0.2</a></th>
@@ -223,7 +223,6 @@ Install the following dependencies:
 
 ```shell
 go get github.com/stretchr/testify/assert
-go get golang.org/x/oauth2
 go get golang.org/x/net/context
 ```
 
@@ -286,32 +285,32 @@ All URIs are relative to *https://openEHRSys.example.com/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*COMPOSITIONApi* | [**CompositionCreate**](docs/COMPOSITIONApi.md#compositioncreate) | **Post** /ehr/{ehr_id}/composition | Create COMPOSITION
-*COMPOSITIONApi* | [**CompositionDelete**](docs/COMPOSITIONApi.md#compositiondelete) | **Delete** /ehr/{ehr_id}/composition/{uid_based_id} | Delete COMPOSITION
-*COMPOSITIONApi* | [**CompositionGet**](docs/COMPOSITIONApi.md#compositionget) | **Get** /ehr/{ehr_id}/composition/{uid_based_id} | Get COMPOSITION
-*COMPOSITIONApi* | [**CompositionUpdate**](docs/COMPOSITIONApi.md#compositionupdate) | **Put** /ehr/{ehr_id}/composition/{uid_based_id} | Update COMPOSITION
-*COMPOSITIONApi* | [**VersionedCompositionGet**](docs/COMPOSITIONApi.md#versionedcompositionget) | **Get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid} | Get versioned COMPOSITION
-*COMPOSITIONApi* | [**VersionedCompositionRevisionHistory**](docs/COMPOSITIONApi.md#versionedcompositionrevisionhistory) | **Get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history | Get versioned COMPOSITION revision history
-*COMPOSITIONApi* | [**VersionedCompositionVersionGetAtTime**](docs/COMPOSITIONApi.md#versionedcompositionversiongetattime) | **Get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version | Get versioned COMPOSITION version at time
-*COMPOSITIONApi* | [**VersionedCompositionVersionGetById**](docs/COMPOSITIONApi.md#versionedcompositionversiongetbyid) | **Get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid} | Get versioned COMPOSITION version by id
-*CONTRIBUTIONApi* | [**ContributionCreate**](docs/CONTRIBUTIONApi.md#contributioncreate) | **Post** /ehr/{ehr_id}/contribution | Create CONTRIBUTION
-*CONTRIBUTIONApi* | [**ContributionGet**](docs/CONTRIBUTIONApi.md#contributionget) | **Get** /ehr/{ehr_id}/contribution/{contribution_uid} | Get CONTRIBUTION by id
-*DIRECTORYApi* | [**DirectoryCreate**](docs/DIRECTORYApi.md#directorycreate) | **Post** /ehr/{ehr_id}/directory | Create directory
-*DIRECTORYApi* | [**DirectoryDelete**](docs/DIRECTORYApi.md#directorydelete) | **Delete** /ehr/{ehr_id}/directory | Delete directory
-*DIRECTORYApi* | [**DirectoryGetAtTime**](docs/DIRECTORYApi.md#directorygetattime) | **Get** /ehr/{ehr_id}/directory | Get folder in directory version at time
-*DIRECTORYApi* | [**DirectoryGetByVersionId**](docs/DIRECTORYApi.md#directorygetbyversionid) | **Get** /ehr/{ehr_id}/directory/{version_uid} | Get folder in directory version
-*DIRECTORYApi* | [**DirectoryUpdate**](docs/DIRECTORYApi.md#directoryupdate) | **Put** /ehr/{ehr_id}/directory | Update directory
-*EHRApi* | [**EhrCreate**](docs/EHRApi.md#ehrcreate) | **Post** /ehr | Create EHR
-*EHRApi* | [**EhrCreateWithId**](docs/EHRApi.md#ehrcreatewithid) | **Put** /ehr/{ehr_id} | Create EHR with id
-*EHRApi* | [**EhrGetById**](docs/EHRApi.md#ehrgetbyid) | **Get** /ehr/{ehr_id} | Get EHR by id
-*EHRApi* | [**EhrGetBySubject**](docs/EHRApi.md#ehrgetbysubject) | **Get** /ehr | Get EHR by subject id
-*EHRSTATUSApi* | [**EhrStatusGetAtTime**](docs/EHRSTATUSApi.md#ehrstatusgetattime) | **Get** /ehr/{ehr_id}/ehr_status | Get EHR_STATUS at time
-*EHRSTATUSApi* | [**EhrStatusGetByVersionId**](docs/EHRSTATUSApi.md#ehrstatusgetbyversionid) | **Get** /ehr/{ehr_id}/ehr_status/{version_uid} | Get EHR_STATUS by version id
-*EHRSTATUSApi* | [**EhrStatusUpdate**](docs/EHRSTATUSApi.md#ehrstatusupdate) | **Put** /ehr/{ehr_id}/ehr_status | Update EHR_STATUS
-*EHRSTATUSApi* | [**VersionedEhrStatusGet**](docs/EHRSTATUSApi.md#versionedehrstatusget) | **Get** /ehr/{ehr_id}/versioned_ehr_status | Get versioned EHR_STATUS
-*EHRSTATUSApi* | [**VersionedEhrStatusRevisionHistory**](docs/EHRSTATUSApi.md#versionedehrstatusrevisionhistory) | **Get** /ehr/{ehr_id}/versioned_ehr_status/revision_history | Get versioned EHR_STATUS revision history
-*EHRSTATUSApi* | [**VersionedEhrStatusVersionGetAtTime**](docs/EHRSTATUSApi.md#versionedehrstatusversiongetattime) | **Get** /ehr/{ehr_id}/versioned_ehr_status/version | Get versioned EHR_STATUS version at time
-*EHRSTATUSApi* | [**VersionedEhrStatusVersionGetById**](docs/EHRSTATUSApi.md#versionedehrstatusversiongetbyid) | **Get** /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid} | Get versioned EHR_STATUS version by id
+*COMPOSITIONAPI* | [**CompositionCreate**](docs/COMPOSITIONAPI.md#compositioncreate) | **Post** /ehr/{ehr_id}/composition | Create COMPOSITION
+*COMPOSITIONAPI* | [**CompositionDelete**](docs/COMPOSITIONAPI.md#compositiondelete) | **Delete** /ehr/{ehr_id}/composition/{uid_based_id} | Delete COMPOSITION
+*COMPOSITIONAPI* | [**CompositionGet**](docs/COMPOSITIONAPI.md#compositionget) | **Get** /ehr/{ehr_id}/composition/{uid_based_id} | Get COMPOSITION
+*COMPOSITIONAPI* | [**CompositionUpdate**](docs/COMPOSITIONAPI.md#compositionupdate) | **Put** /ehr/{ehr_id}/composition/{uid_based_id} | Update COMPOSITION
+*COMPOSITIONAPI* | [**VersionedCompositionGet**](docs/COMPOSITIONAPI.md#versionedcompositionget) | **Get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid} | Get versioned COMPOSITION
+*COMPOSITIONAPI* | [**VersionedCompositionRevisionHistory**](docs/COMPOSITIONAPI.md#versionedcompositionrevisionhistory) | **Get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history | Get versioned COMPOSITION revision history
+*COMPOSITIONAPI* | [**VersionedCompositionVersionGetAtTime**](docs/COMPOSITIONAPI.md#versionedcompositionversiongetattime) | **Get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version | Get versioned COMPOSITION version at time
+*COMPOSITIONAPI* | [**VersionedCompositionVersionGetById**](docs/COMPOSITIONAPI.md#versionedcompositionversiongetbyid) | **Get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid} | Get versioned COMPOSITION version by id
+*CONTRIBUTIONAPI* | [**ContributionCreate**](docs/CONTRIBUTIONAPI.md#contributioncreate) | **Post** /ehr/{ehr_id}/contribution | Create CONTRIBUTION
+*CONTRIBUTIONAPI* | [**ContributionGet**](docs/CONTRIBUTIONAPI.md#contributionget) | **Get** /ehr/{ehr_id}/contribution/{contribution_uid} | Get CONTRIBUTION by id
+*DIRECTORYAPI* | [**DirectoryCreate**](docs/DIRECTORYAPI.md#directorycreate) | **Post** /ehr/{ehr_id}/directory | Create directory
+*DIRECTORYAPI* | [**DirectoryDelete**](docs/DIRECTORYAPI.md#directorydelete) | **Delete** /ehr/{ehr_id}/directory | Delete directory
+*DIRECTORYAPI* | [**DirectoryGetAtTime**](docs/DIRECTORYAPI.md#directorygetattime) | **Get** /ehr/{ehr_id}/directory | Get folder in directory version at time
+*DIRECTORYAPI* | [**DirectoryGetByVersionId**](docs/DIRECTORYAPI.md#directorygetbyversionid) | **Get** /ehr/{ehr_id}/directory/{version_uid} | Get folder in directory version
+*DIRECTORYAPI* | [**DirectoryUpdate**](docs/DIRECTORYAPI.md#directoryupdate) | **Put** /ehr/{ehr_id}/directory | Update directory
+*EHRAPI* | [**EhrCreate**](docs/EHRAPI.md#ehrcreate) | **Post** /ehr | Create EHR
+*EHRAPI* | [**EhrCreateWithId**](docs/EHRAPI.md#ehrcreatewithid) | **Put** /ehr/{ehr_id} | Create EHR with id
+*EHRAPI* | [**EhrGetById**](docs/EHRAPI.md#ehrgetbyid) | **Get** /ehr/{ehr_id} | Get EHR by id
+*EHRAPI* | [**EhrGetBySubject**](docs/EHRAPI.md#ehrgetbysubject) | **Get** /ehr | Get EHR by subject id
+*EHRSTATUSAPI* | [**EhrStatusGetAtTime**](docs/EHRSTATUSAPI.md#ehrstatusgetattime) | **Get** /ehr/{ehr_id}/ehr_status | Get EHR_STATUS at time
+*EHRSTATUSAPI* | [**EhrStatusGetByVersionId**](docs/EHRSTATUSAPI.md#ehrstatusgetbyversionid) | **Get** /ehr/{ehr_id}/ehr_status/{version_uid} | Get EHR_STATUS by version id
+*EHRSTATUSAPI* | [**EhrStatusUpdate**](docs/EHRSTATUSAPI.md#ehrstatusupdate) | **Put** /ehr/{ehr_id}/ehr_status | Update EHR_STATUS
+*EHRSTATUSAPI* | [**VersionedEhrStatusGet**](docs/EHRSTATUSAPI.md#versionedehrstatusget) | **Get** /ehr/{ehr_id}/versioned_ehr_status | Get versioned EHR_STATUS
+*EHRSTATUSAPI* | [**VersionedEhrStatusRevisionHistory**](docs/EHRSTATUSAPI.md#versionedehrstatusrevisionhistory) | **Get** /ehr/{ehr_id}/versioned_ehr_status/revision_history | Get versioned EHR_STATUS revision history
+*EHRSTATUSAPI* | [**VersionedEhrStatusVersionGetAtTime**](docs/EHRSTATUSAPI.md#versionedehrstatusversiongetattime) | **Get** /ehr/{ehr_id}/versioned_ehr_status/version | Get versioned EHR_STATUS version at time
+*EHRSTATUSAPI* | [**VersionedEhrStatusVersionGetById**](docs/EHRSTATUSAPI.md#versionedehrstatusversiongetbyid) | **Get** /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid} | Get versioned EHR_STATUS version by id
 
 
 ## Documentation For Models
@@ -416,7 +415,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
- Endpoints do not require authorization.
+Endpoints do not require authorization.
 
 
 ## Documentation for Utility Methods

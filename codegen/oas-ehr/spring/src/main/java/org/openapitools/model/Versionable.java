@@ -7,8 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.Composition;
-import org.openapitools.model.EhrStatus;
 import org.openapitools.model.Locatable;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -33,9 +31,7 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = Composition.class, name = "COMPOSITION"),
-  @JsonSubTypes.Type(value = Composition.class, name = "Composition"),
-  @JsonSubTypes.Type(value = EhrStatus.class, name = "EHR_STATUS"),
-  @JsonSubTypes.Type(value = EhrStatus.class, name = "EhrStatus")
+  @JsonSubTypes.Type(value = EhrStatus.class, name = "EHR_STATUS")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -56,7 +52,7 @@ public class Versionable extends Locatable {
     return this;
   }
 
-  public Versionable links(List<Link> links) {
+  public Versionable links(List<@Valid Link> links) {
     super.setLinks(links);
     return this;
   }

@@ -15,19 +15,14 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Action
-import org.openapitools.client.models.AdminEntry
-import org.openapitools.client.models.CareEntry
 import org.openapitools.client.models.CodePhrase
 import org.openapitools.client.models.ContentItem
-import org.openapitools.client.models.Evaluation
-import org.openapitools.client.models.Instruction
 import org.openapitools.client.models.ObjectRef
-import org.openapitools.client.models.Observation
 import org.openapitools.client.models.Participation
 import org.openapitools.client.models.PartyProxy
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

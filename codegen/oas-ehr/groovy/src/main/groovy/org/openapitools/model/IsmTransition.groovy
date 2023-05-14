@@ -20,5 +20,5 @@ class IsmTransition {
     
     DvCodedText careflowStep
     
-    List<DvText> reason = new ArrayList<>()
+    List<DvText> reason
 }

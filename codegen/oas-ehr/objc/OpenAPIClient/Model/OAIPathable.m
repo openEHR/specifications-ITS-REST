@@ -37,18 +37,6 @@
         class = NSClassFromString(@"OAIAbstractEntry");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"Action"]) {
-        class = NSClassFromString(@"OAIAction");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"Activity"]) {
-        class = NSClassFromString(@"OAIActivity");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"AdminEntry"]) {
-        class = NSClassFromString(@"OAIAdminEntry");
-    }
-    else
     if ([discriminatedClassName isEqualToString:@"CLUSTER"]) {
         class = NSClassFromString(@"OAIClstr");
     }
@@ -61,23 +49,11 @@
         class = NSClassFromString(@"OAICareEntry");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"Clstr"]) {
-        class = NSClassFromString(@"OAIClstr");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"Composition"]) {
-        class = NSClassFromString(@"OAIComposition");
-    }
-    else
     if ([discriminatedClassName isEqualToString:@"ContentItem"]) {
         class = NSClassFromString(@"OAIContentItem");
     }
     else
     if ([discriminatedClassName isEqualToString:@"DATE_STRUCTURE"]) {
-        class = NSClassFromString(@"OAIDataStructure");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"DataStructure"]) {
         class = NSClassFromString(@"OAIDataStructure");
     }
     else
@@ -101,39 +77,11 @@
         class = NSClassFromString(@"OAIEventContext");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"EhrStatus"]) {
-        class = NSClassFromString(@"OAIEhrStatus");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"Element"]) {
-        class = NSClassFromString(@"OAIElement");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"Evaluation"]) {
-        class = NSClassFromString(@"OAIEvaluation");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"Event"]) {
-        class = NSClassFromString(@"OAIEvent");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"EventContext"]) {
-        class = NSClassFromString(@"OAIEventContext");
-    }
-    else
     if ([discriminatedClassName isEqualToString:@"FOLDER"]) {
         class = NSClassFromString(@"OAIFolder");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"Folder"]) {
-        class = NSClassFromString(@"OAIFolder");
-    }
-    else
     if ([discriminatedClassName isEqualToString:@"HISTORY"]) {
-        class = NSClassFromString(@"OAIHistory");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"History"]) {
         class = NSClassFromString(@"OAIHistory");
     }
     else
@@ -173,51 +121,11 @@
         class = NSClassFromString(@"OAIItemTree");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"Instruction"]) {
-        class = NSClassFromString(@"OAIInstruction");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"InstructionDetails"]) {
-        class = NSClassFromString(@"OAIInstructionDetails");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"IsmTransition"]) {
-        class = NSClassFromString(@"OAIIsmTransition");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"Item"]) {
-        class = NSClassFromString(@"OAIItem");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"ItemList"]) {
-        class = NSClassFromString(@"OAIItemList");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"ItemSingle"]) {
-        class = NSClassFromString(@"OAIItemSingle");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"ItemStructure"]) {
-        class = NSClassFromString(@"OAIItemStructure");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"ItemTable"]) {
-        class = NSClassFromString(@"OAIItemTable");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"ItemTree"]) {
-        class = NSClassFromString(@"OAIItemTree");
-    }
-    else
     if ([discriminatedClassName isEqualToString:@"Locatable"]) {
         class = NSClassFromString(@"OAILocatable");
     }
     else
     if ([discriminatedClassName isEqualToString:@"OBSERVATION"]) {
-        class = NSClassFromString(@"OAIObservation");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"Observation"]) {
         class = NSClassFromString(@"OAIObservation");
     }
     else

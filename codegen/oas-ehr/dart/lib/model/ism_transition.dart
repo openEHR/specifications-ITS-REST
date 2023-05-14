@@ -103,13 +103,13 @@ class IsmTransition {
         currentState: DvCodedText.fromJson(json[r'current_state'])!,
         transition: DvCodedText.fromJson(json[r'transition']),
         careflowStep: DvCodedText.fromJson(json[r'careflow_step']),
-        reason: DvText.listFromJson(json[r'reason']) ?? const [],
+        reason: DvText.listFromJson(json[r'reason']),
       );
     }
     return null;
   }
 
-  static List<IsmTransition>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<IsmTransition> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <IsmTransition>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -140,12 +140,10 @@ class IsmTransition {
   static Map<String, List<IsmTransition>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<IsmTransition>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = IsmTransition.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = IsmTransition.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

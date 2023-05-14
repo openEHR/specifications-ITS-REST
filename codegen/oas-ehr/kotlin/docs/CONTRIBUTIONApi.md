@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**contributionGet**](CONTRIBUTIONApi.md#contributionGet) | **GET** /ehr/{ehr_id}/contribution/{contribution_uid} | Get CONTRIBUTION by id
 
 
-<a name="contributionCreate"></a>
+<a id="contributionCreate"></a>
 # **contributionCreate**
 > Contribution contributionCreate(ehrId, newContribution, prefer)
 
@@ -59,7 +59,7 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="contributionGet"></a>
+<a id="contributionGet"></a>
 # **contributionGet**
 > Contribution contributionGet(ehrId, contributionUid)
 

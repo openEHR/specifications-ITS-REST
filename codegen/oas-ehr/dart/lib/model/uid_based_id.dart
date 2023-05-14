@@ -68,7 +68,7 @@ class UidBasedId {
     return null;
   }
 
-  static List<UidBasedId>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UidBasedId> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UidBasedId>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -99,12 +99,10 @@ class UidBasedId {
   static Map<String, List<UidBasedId>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<UidBasedId>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = UidBasedId.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = UidBasedId.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

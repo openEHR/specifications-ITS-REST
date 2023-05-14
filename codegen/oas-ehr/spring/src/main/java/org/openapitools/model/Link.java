@@ -23,14 +23,29 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Link {
 
-  @JsonProperty("meaning")
   private DvText meaning;
 
-  @JsonProperty("type")
   private DvText type;
 
-  @JsonProperty("target")
   private DvEhrUri target;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link Link#Link(DvText, DvText, DvEhrUri)}
+   */
+  @Deprecated
+  public Link() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public Link(DvText meaning, DvText type, DvEhrUri target) {
+    this.meaning = meaning;
+    this.type = type;
+    this.target = target;
+  }
 
   public Link meaning(DvText meaning) {
     this.meaning = meaning;
@@ -42,7 +57,8 @@ public class Link {
    * @return meaning
   */
   @NotNull @Valid 
-  @Schema(name = "meaning", required = true)
+  @Schema(name = "meaning", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("meaning")
   public DvText getMeaning() {
     return meaning;
   }
@@ -61,7 +77,8 @@ public class Link {
    * @return type
   */
   @NotNull @Valid 
-  @Schema(name = "type", required = true)
+  @Schema(name = "type", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("type")
   public DvText getType() {
     return type;
   }
@@ -80,7 +97,8 @@ public class Link {
    * @return target
   */
   @NotNull @Valid 
-  @Schema(name = "target", required = true)
+  @Schema(name = "target", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("target")
   public DvEhrUri getTarget() {
     return target;
   }

@@ -19,6 +19,7 @@ import org.openapitools.client.models.ArchetypeId
 import org.openapitools.client.models.TemplateId
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

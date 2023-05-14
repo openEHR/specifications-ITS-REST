@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openapitools.model.DvText;
 import org.openapitools.model.PartyProxy;
 import org.openapitools.model.TerminologyCode;
-import org.openapitools.model.UpdateAttestation;
-import org.openapitools.model.UpdateAudit;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -34,24 +32,36 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = UpdateAttestation.class, name = "UPDATE_AUDIT"),
-  @JsonSubTypes.Type(value = UpdateAudit.class, name = "UPDATE_AUDIT"),
-  @JsonSubTypes.Type(value = UpdateAttestation.class, name = "UPDATE_AUDIT")
+  @JsonSubTypes.Type(value = UpdateAudit.class, name = "UPDATE_AUDIT")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class UpdateAudit {
 
-  @JsonProperty("_type")
   private String type = "UPDATE_AUDIT";
 
-  @JsonProperty("change_type")
   private TerminologyCode changeType;
 
-  @JsonProperty("description")
   private DvText description;
 
-  @JsonProperty("committer")
   private PartyProxy committer;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link UpdateAudit#UpdateAudit(TerminologyCode, PartyProxy)}
+   */
+  @Deprecated
+  public UpdateAudit() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public UpdateAudit(TerminologyCode changeType, PartyProxy committer) {
+    this.changeType = changeType;
+    this.committer = committer;
+  }
 
   public UpdateAudit type(String type) {
     this.type = type;
@@ -63,7 +73,8 @@ public class UpdateAudit {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -82,7 +93,8 @@ public class UpdateAudit {
    * @return changeType
   */
   @NotNull @Valid 
-  @Schema(name = "change_type", required = true)
+  @Schema(name = "change_type", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("change_type")
   public TerminologyCode getChangeType() {
     return changeType;
   }
@@ -101,7 +113,8 @@ public class UpdateAudit {
    * @return description
   */
   @Valid 
-  @Schema(name = "description", required = false)
+  @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("description")
   public DvText getDescription() {
     return description;
   }
@@ -120,7 +133,8 @@ public class UpdateAudit {
    * @return committer
   */
   @NotNull @Valid 
-  @Schema(name = "committer", required = true)
+  @Schema(name = "committer", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("committer")
   public PartyProxy getCommitter() {
     return committer;
   }

@@ -7,8 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.Attestation;
-import org.openapitools.model.AuditDetails;
 import org.openapitools.model.DvCodedText;
 import org.openapitools.model.DvDateTime;
 import org.openapitools.model.DvText;
@@ -35,30 +33,42 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = Attestation.class, name = "AUDIT_DETAILS"),
-  @JsonSubTypes.Type(value = AuditDetails.class, name = "AUDIT_DETAILS"),
-  @JsonSubTypes.Type(value = Attestation.class, name = "AUDIT_DETAILS")
+  @JsonSubTypes.Type(value = AuditDetails.class, name = "AUDIT_DETAILS")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class AuditDetails {
 
-  @JsonProperty("_type")
   private String type = "AUDIT_DETAILS";
 
-  @JsonProperty("system_id")
   private String systemId;
 
-  @JsonProperty("time_committed")
   private DvDateTime timeCommitted;
 
-  @JsonProperty("change_type")
   private DvCodedText changeType;
 
-  @JsonProperty("description")
   private DvText description;
 
-  @JsonProperty("committer")
   private PartyProxy committer;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link AuditDetails#AuditDetails(String, DvDateTime, DvCodedText, PartyProxy)}
+   */
+  @Deprecated
+  public AuditDetails() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public AuditDetails(String systemId, DvDateTime timeCommitted, DvCodedText changeType, PartyProxy committer) {
+    this.systemId = systemId;
+    this.timeCommitted = timeCommitted;
+    this.changeType = changeType;
+    this.committer = committer;
+  }
 
   public AuditDetails type(String type) {
     this.type = type;
@@ -70,7 +80,8 @@ public class AuditDetails {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -89,7 +100,8 @@ public class AuditDetails {
    * @return systemId
   */
   @NotNull 
-  @Schema(name = "system_id", required = true)
+  @Schema(name = "system_id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("system_id")
   public String getSystemId() {
     return systemId;
   }
@@ -108,7 +120,8 @@ public class AuditDetails {
    * @return timeCommitted
   */
   @NotNull @Valid 
-  @Schema(name = "time_committed", required = true)
+  @Schema(name = "time_committed", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("time_committed")
   public DvDateTime getTimeCommitted() {
     return timeCommitted;
   }
@@ -127,7 +140,8 @@ public class AuditDetails {
    * @return changeType
   */
   @NotNull @Valid 
-  @Schema(name = "change_type", required = true)
+  @Schema(name = "change_type", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("change_type")
   public DvCodedText getChangeType() {
     return changeType;
   }
@@ -146,7 +160,8 @@ public class AuditDetails {
    * @return description
   */
   @Valid 
-  @Schema(name = "description", required = false)
+  @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("description")
   public DvText getDescription() {
     return description;
   }
@@ -165,7 +180,8 @@ public class AuditDetails {
    * @return committer
   */
   @NotNull @Valid 
-  @Schema(name = "committer", required = true)
+  @Schema(name = "committer", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("committer")
   public PartyProxy getCommitter() {
     return committer;
   }

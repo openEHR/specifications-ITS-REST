@@ -153,14 +153,14 @@ class EventContext {
         setting: DvCodedText.fromJson(json[r'setting'])!,
         otherContext: ItemStructure.fromJson(json[r'other_context']),
         healthCareFacility: PartyIdentified.fromJson(json[r'health_care_facility']),
-        participations: Participation.listFromJson(json[r'participations']) ?? const [],
+        participations: Participation.listFromJson(json[r'participations']),
         type: mapValueOfType<String>(json, r'_type'),
       );
     }
     return null;
   }
 
-  static List<EventContext>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EventContext> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <EventContext>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -191,12 +191,10 @@ class EventContext {
   static Map<String, List<EventContext>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<EventContext>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = EventContext.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = EventContext.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

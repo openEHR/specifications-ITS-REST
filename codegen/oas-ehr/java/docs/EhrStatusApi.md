@@ -13,7 +13,7 @@ All URIs are relative to *https://openEHRSys.example.com/v1*
 | [**versionedEhrStatusVersionGetById**](EhrStatusApi.md#versionedEhrStatusVersionGetById) | **GET** /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid} | Get versioned EHR_STATUS version by id |
 
 
-<a name="ehrStatusGetAtTime"></a>
+<a id="ehrStatusGetAtTime"></a>
 # **ehrStatusGetAtTime**
 > EhrStatus ehrStatusGetAtTime(ehrId, versionAtTime)
 
@@ -79,7 +79,7 @@ No authorization required
 | **400** | &#x60;400 Bad Request&#x60; is returned when the request has invalid content such as an invalid &#x60;version_at_time&#x60; format.  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist, or when a version of the resource identified by the request parameters (at specified &#x60;version_at_time&#x60;) does not exist.  |  -  |
 
-<a name="ehrStatusGetByVersionId"></a>
+<a id="ehrStatusGetByVersionId"></a>
 # **ehrStatusGetByVersionId**
 > EhrStatus ehrStatusGetByVersionId(ehrId, versionUid)
 
@@ -144,7 +144,7 @@ No authorization required
 | **200** | &#x60;200 OK&#x60; is returned when the requested EHR_STATUS is successfully retrieved.  |  * ETag -  <br>  * Location -  <br>  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist, or when the &#x60;version_uid&#x60; does not exist.  |  -  |
 
-<a name="ehrStatusUpdate"></a>
+<a id="ehrStatusUpdate"></a>
 # **ehrStatusUpdate**
 > EhrStatus ehrStatusUpdate(ehrId, ifMatch, ehrStatus, prefer)
 
@@ -216,7 +216,7 @@ No authorization required
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist.  |  -  |
 | **412** | &#x60;412 Precondition Failed&#x60; is returned when &#x60;If-Match&#x60; request header doesn&#39;t match the latest version on the service side. Returns also latest &#x60;version_uid&#x60; in the &#x60;Location&#x60; and &#x60;ETag&#x60; headers.  |  * ETag -  <br>  * Location -  <br>  |
 
-<a name="versionedEhrStatusGet"></a>
+<a id="versionedEhrStatusGet"></a>
 # **versionedEhrStatusGet**
 > VersionedEhrStatus versionedEhrStatusGet(ehrId)
 
@@ -279,7 +279,7 @@ No authorization required
 | **200** | &#x60;200 OK&#x60; is returned when the requested VERSIONED_EHR_STATUS is successfully retrieved.  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist.  |  -  |
 
-<a name="versionedEhrStatusRevisionHistory"></a>
+<a id="versionedEhrStatusRevisionHistory"></a>
 # **versionedEhrStatusRevisionHistory**
 > RevisionHistory versionedEhrStatusRevisionHistory(ehrId)
 
@@ -342,7 +342,7 @@ No authorization required
 | **200** | &#x60;200 OK&#x60; is returned when the requested REVISION_HISTORY is successfully retrieved.  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist.  |  -  |
 
-<a name="versionedEhrStatusVersionGetAtTime"></a>
+<a id="versionedEhrStatusVersionGetAtTime"></a>
 # **versionedEhrStatusVersionGetAtTime**
 > Version versionedEhrStatusVersionGetAtTime(ehrId, versionAtTime)
 
@@ -408,7 +408,7 @@ No authorization required
 | **400** | &#x60;400 Bad Request&#x60; is returned when the request has invalid content such as an invalid &#x60;version_at_time&#x60; format.  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist, or when a version of the resource identified by the request parameters (at specified &#x60;version_at_time&#x60;) does not exist.  |  -  |
 
-<a name="versionedEhrStatusVersionGetById"></a>
+<a id="versionedEhrStatusVersionGetById"></a>
 # **versionedEhrStatusVersionGetById**
 > Version versionedEhrStatusVersionGetById(ehrId, versionUid)
 

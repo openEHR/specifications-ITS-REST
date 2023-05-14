@@ -15,14 +15,13 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Clstr
 import org.openapitools.client.models.DataValue
 import org.openapitools.client.models.DvCodedText
 import org.openapitools.client.models.DvText
-import org.openapitools.client.models.Element
 import org.openapitools.client.models.Item
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

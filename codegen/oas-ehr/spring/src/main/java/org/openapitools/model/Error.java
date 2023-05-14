@@ -23,12 +23,27 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Error {
 
-  @JsonProperty("message")
   private String message;
 
-  @JsonProperty("validationErrors")
   @Valid
   private List<String> validationErrors = new ArrayList<>();
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link Error#Error(String, List<String>)}
+   */
+  @Deprecated
+  public Error() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public Error(String message, List<String> validationErrors) {
+    this.message = message;
+    this.validationErrors = validationErrors;
+  }
 
   public Error message(String message) {
     this.message = message;
@@ -40,7 +55,8 @@ public class Error {
    * @return message
   */
   @NotNull 
-  @Schema(name = "message", required = true)
+  @Schema(name = "message", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("message")
   public String getMessage() {
     return message;
   }
@@ -55,6 +71,9 @@ public class Error {
   }
 
   public Error addValidationErrorsItem(String validationErrorsItem) {
+    if (this.validationErrors == null) {
+      this.validationErrors = new ArrayList<>();
+    }
     this.validationErrors.add(validationErrorsItem);
     return this;
   }
@@ -64,7 +83,8 @@ public class Error {
    * @return validationErrors
   */
   @NotNull 
-  @Schema(name = "validationErrors", description = "", required = true)
+  @Schema(name = "validationErrors", description = "", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("validationErrors")
   public List<String> getValidationErrors() {
     return validationErrors;
   }

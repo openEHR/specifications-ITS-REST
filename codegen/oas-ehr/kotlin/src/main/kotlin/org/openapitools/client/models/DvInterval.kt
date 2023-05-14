@@ -16,10 +16,9 @@
 package org.openapitools.client.models
 
 import org.openapitools.client.models.DataValue
-import org.openapitools.client.models.DvInterval
-import org.openapitools.client.models.DvIntervalOfDateTime
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

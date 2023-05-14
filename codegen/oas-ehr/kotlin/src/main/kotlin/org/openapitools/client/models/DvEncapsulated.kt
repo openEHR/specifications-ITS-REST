@@ -17,10 +17,9 @@ package org.openapitools.client.models
 
 import org.openapitools.client.models.CodePhrase
 import org.openapitools.client.models.DataValue
-import org.openapitools.client.models.DvMultimedia
-import org.openapitools.client.models.DvParsable
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

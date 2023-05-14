@@ -26,12 +26,27 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class RevisionHistoryItem {
 
-  @JsonProperty("version_id")
   private ObjectVersionId versionId;
 
-  @JsonProperty("audits")
   @Valid
-  private List<AuditDetails> audits = new ArrayList<>();
+  private List<@Valid AuditDetails> audits = new ArrayList<>();
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link RevisionHistoryItem#RevisionHistoryItem(ObjectVersionId, List<@Valid AuditDetails>)}
+   */
+  @Deprecated
+  public RevisionHistoryItem() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public RevisionHistoryItem(ObjectVersionId versionId, List<@Valid AuditDetails> audits) {
+    this.versionId = versionId;
+    this.audits = audits;
+  }
 
   public RevisionHistoryItem versionId(ObjectVersionId versionId) {
     this.versionId = versionId;
@@ -43,7 +58,8 @@ public class RevisionHistoryItem {
    * @return versionId
   */
   @NotNull @Valid 
-  @Schema(name = "version_id", required = true)
+  @Schema(name = "version_id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("version_id")
   public ObjectVersionId getVersionId() {
     return versionId;
   }
@@ -52,12 +68,15 @@ public class RevisionHistoryItem {
     this.versionId = versionId;
   }
 
-  public RevisionHistoryItem audits(List<AuditDetails> audits) {
+  public RevisionHistoryItem audits(List<@Valid AuditDetails> audits) {
     this.audits = audits;
     return this;
   }
 
   public RevisionHistoryItem addAuditsItem(AuditDetails auditsItem) {
+    if (this.audits == null) {
+      this.audits = new ArrayList<>();
+    }
     this.audits.add(auditsItem);
     return this;
   }
@@ -67,12 +86,13 @@ public class RevisionHistoryItem {
    * @return audits
   */
   @NotNull @Valid 
-  @Schema(name = "audits", required = true)
-  public List<AuditDetails> getAudits() {
+  @Schema(name = "audits", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("audits")
+  public List<@Valid AuditDetails> getAudits() {
     return audits;
   }
 
-  public void setAudits(List<AuditDetails> audits) {
+  public void setAudits(List<@Valid AuditDetails> audits) {
     this.audits = audits;
   }
 

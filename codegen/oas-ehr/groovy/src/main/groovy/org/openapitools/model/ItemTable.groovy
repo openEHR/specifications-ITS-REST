@@ -13,5 +13,5 @@ class ItemTable {
     
     String type = "ITEM_TABLE"
     
-    List<Clstr> items = new ArrayList<>()
+    List<Clstr> items
 }

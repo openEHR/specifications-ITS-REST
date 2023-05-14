@@ -10,10 +10,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.DvIdentifier;
-import org.openapitools.model.PartyIdentified;
 import org.openapitools.model.PartyProxy;
 import org.openapitools.model.PartyRef;
-import org.openapitools.model.PartyRelated;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -35,22 +33,18 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = PartyIdentified.class, name = "PARTY_IDENTIFIED"),
-  @JsonSubTypes.Type(value = PartyRelated.class, name = "PARTY_IDENTIFIED"),
   @JsonSubTypes.Type(value = PartyRelated.class, name = "PARTY_IDENTIFIED")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class PartyIdentified extends PartyProxy {
 
-  @JsonProperty("_type")
   private String type = "PARTY_IDENTIFIED";
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("identifiers")
   @Valid
-  private List<DvIdentifier> identifiers = null;
+  private List<@Valid DvIdentifier> identifiers;
 
   public PartyIdentified type(String type) {
     this.type = type;
@@ -62,7 +56,8 @@ public class PartyIdentified extends PartyProxy {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -81,7 +76,8 @@ public class PartyIdentified extends PartyProxy {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -90,7 +86,7 @@ public class PartyIdentified extends PartyProxy {
     this.name = name;
   }
 
-  public PartyIdentified identifiers(List<DvIdentifier> identifiers) {
+  public PartyIdentified identifiers(List<@Valid DvIdentifier> identifiers) {
     this.identifiers = identifiers;
     return this;
   }
@@ -108,12 +104,13 @@ public class PartyIdentified extends PartyProxy {
    * @return identifiers
   */
   @Valid 
-  @Schema(name = "identifiers", required = false)
-  public List<DvIdentifier> getIdentifiers() {
+  @Schema(name = "identifiers", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("identifiers")
+  public List<@Valid DvIdentifier> getIdentifiers() {
     return identifiers;
   }
 
-  public void setIdentifiers(List<DvIdentifier> identifiers) {
+  public void setIdentifiers(List<@Valid DvIdentifier> identifiers) {
     this.identifiers = identifiers;
   }
 

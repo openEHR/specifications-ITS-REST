@@ -63,15 +63,15 @@ class Error {
 
       return Error(
         message: mapValueOfType<String>(json, r'message')!,
-        validationErrors: json[r'validationErrors'] is List
-            ? (json[r'validationErrors'] as List).cast<String>()
+        validationErrors: json[r'validationErrors'] is Iterable
+            ? (json[r'validationErrors'] as Iterable).cast<String>().toList(growable: false)
             : const [],
       );
     }
     return null;
   }
 
-  static List<Error>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Error> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <Error>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -102,12 +102,10 @@ class Error {
   static Map<String, List<Error>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<Error>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = Error.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = Error.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

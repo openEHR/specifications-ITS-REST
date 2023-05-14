@@ -21,7 +21,7 @@ class DvText {
     
     String formatting
     
-    List<TermMapping> mappings = new ArrayList<>()
+    List<TermMapping> mappings
     
     CodePhrase language
     

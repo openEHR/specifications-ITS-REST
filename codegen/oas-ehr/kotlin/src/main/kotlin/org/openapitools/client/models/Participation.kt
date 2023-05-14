@@ -21,6 +21,7 @@ import org.openapitools.client.models.DvText
 import org.openapitools.client.models.PartyProxy
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

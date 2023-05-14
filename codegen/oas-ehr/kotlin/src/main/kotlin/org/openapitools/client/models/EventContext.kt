@@ -23,6 +23,7 @@ import org.openapitools.client.models.PartyIdentified
 import org.openapitools.client.models.Pathable
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

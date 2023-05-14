@@ -13,5 +13,5 @@ class ItemTree {
     
     String type = "ITEM_TREE"
     
-    List<Item> items = new ArrayList<>()
+    List<Item> items
 }

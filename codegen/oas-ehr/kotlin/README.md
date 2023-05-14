@@ -7,7 +7,7 @@
     </colgroup>
     <thead>
     <tr>
-        <th colspan=\"2\">© 2003 - 2022 The openEHR Foundation</th>
+        <th colspan=\"2\">© 2018 - 2023 The openEHR Foundation</th>
     </tr>
     </thead>
     <tbody>
@@ -50,14 +50,14 @@
     </thead>
     <tbody>
     <tr>
-        <th colspan=\"4\"><a href=\"https://specifications.openehr.org/releases/ITS-REST/latest\" target=\"_blank\" rel=\"noopener\">Release-1.0.3 (unreleased)</a></th>
+        <th colspan=\"4\"><a href=\"https://specifications.openehr.org/releases/ITS-REST/latest\" target=\"_blank\" rel=\"noopener\">Release-1.0.3</a></th>
     </tr>
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
             Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
-        <td>14 Nov 2022</td>
+        <td>19 Dec 2022</td>
     </tr>
     <tr>
         <th colspan=\"4\"><a href=\"https://specifications.openehr.org/releases/ITS-REST/Release-1.0.2\" target=\"_blank\" rel=\"noopener\">Release-1.0.2</a></th>
@@ -219,7 +219,7 @@ For more information, please visit [https://specifications.openehr.org/](https:/
 
 ## Requires
 
-* Kotlin 1.6.10
+* Kotlin 1.7.21
 * Gradle 7.5
 
 ## Build
@@ -245,7 +245,7 @@ This runs all tests and packages the library.
 * Some Kotlin and Java types are fully qualified to avoid conflicts with types defined in OpenAPI definitions.
 * Implementation of ApiClient is intended to reduce method counts, specifically to benefit Android targets.
 
-<a name="documentation-for-api-endpoints"></a>
+<a id="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://openEHRSys.example.com/v1*
@@ -280,7 +280,7 @@ Class | Method | HTTP request | Description
 *EHRSTATUSApi* | [**versionedEhrStatusVersionGetById**](docs/EHRSTATUSApi.md#versionedehrstatusversiongetbyid) | **GET** /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid} | Get versioned EHR_STATUS version by id
 
 
-<a name="documentation-for-models"></a>
+<a id="documentation-for-models"></a>
 ## Documentation for Models
 
  - [org.openapitools.client.models.AbstractEntry](docs/AbstractEntry.md)
@@ -381,10 +381,11 @@ Class | Method | HTTP request | Description
  - [org.openapitools.client.models.VersionedObject](docs/VersionedObject.md)
 
 
-<a name="documentation-for-authorization"></a>
+<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
-All endpoints do not require authorization.
+Endpoints do not require authorization.
+
 
 
 ## Author

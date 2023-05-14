@@ -62,13 +62,13 @@ class RevisionHistoryItem {
 
       return RevisionHistoryItem(
         versionId: ObjectVersionId.fromJson(json[r'version_id'])!,
-        audits: AuditDetails.listFromJson(json[r'audits'])!,
+        audits: AuditDetails.listFromJson(json[r'audits']),
       );
     }
     return null;
   }
 
-  static List<RevisionHistoryItem>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<RevisionHistoryItem> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RevisionHistoryItem>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -99,12 +99,10 @@ class RevisionHistoryItem {
   static Map<String, List<RevisionHistoryItem>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<RevisionHistoryItem>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = RevisionHistoryItem.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = RevisionHistoryItem.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

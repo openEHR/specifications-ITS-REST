@@ -25,26 +25,35 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class FeederAuditDetails {
 
-  @JsonProperty("system_id")
   private String systemId;
 
-  @JsonProperty("location")
   private PartyIdentified location;
 
-  @JsonProperty("subject")
   private PartyProxy subject;
 
-  @JsonProperty("provider")
   private PartyIdentified provider;
 
-  @JsonProperty("time")
   private DvDateTime time;
 
-  @JsonProperty("version_id")
   private String versionId;
 
-  @JsonProperty("other_details")
   private ItemStructure otherDetails;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link FeederAuditDetails#FeederAuditDetails(String)}
+   */
+  @Deprecated
+  public FeederAuditDetails() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public FeederAuditDetails(String systemId) {
+    this.systemId = systemId;
+  }
 
   public FeederAuditDetails systemId(String systemId) {
     this.systemId = systemId;
@@ -56,7 +65,8 @@ public class FeederAuditDetails {
    * @return systemId
   */
   @NotNull 
-  @Schema(name = "system_id", required = true)
+  @Schema(name = "system_id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("system_id")
   public String getSystemId() {
     return systemId;
   }
@@ -75,7 +85,8 @@ public class FeederAuditDetails {
    * @return location
   */
   @Valid 
-  @Schema(name = "location", required = false)
+  @Schema(name = "location", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("location")
   public PartyIdentified getLocation() {
     return location;
   }
@@ -94,7 +105,8 @@ public class FeederAuditDetails {
    * @return subject
   */
   @Valid 
-  @Schema(name = "subject", required = false)
+  @Schema(name = "subject", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("subject")
   public PartyProxy getSubject() {
     return subject;
   }
@@ -113,7 +125,8 @@ public class FeederAuditDetails {
    * @return provider
   */
   @Valid 
-  @Schema(name = "provider", required = false)
+  @Schema(name = "provider", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("provider")
   public PartyIdentified getProvider() {
     return provider;
   }
@@ -132,7 +145,8 @@ public class FeederAuditDetails {
    * @return time
   */
   @Valid 
-  @Schema(name = "time", required = false)
+  @Schema(name = "time", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("time")
   public DvDateTime getTime() {
     return time;
   }
@@ -151,7 +165,8 @@ public class FeederAuditDetails {
    * @return versionId
   */
   
-  @Schema(name = "version_id", required = false)
+  @Schema(name = "version_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("version_id")
   public String getVersionId() {
     return versionId;
   }
@@ -170,7 +185,8 @@ public class FeederAuditDetails {
    * @return otherDetails
   */
   @Valid 
-  @Schema(name = "other_details", required = false)
+  @Schema(name = "other_details", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("other_details")
   public ItemStructure getOtherDetails() {
     return otherDetails;
   }

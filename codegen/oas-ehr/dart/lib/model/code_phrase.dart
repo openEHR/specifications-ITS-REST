@@ -85,7 +85,7 @@ class CodePhrase {
     return null;
   }
 
-  static List<CodePhrase>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<CodePhrase> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CodePhrase>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -116,12 +116,10 @@ class CodePhrase {
   static Map<String, List<CodePhrase>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<CodePhrase>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = CodePhrase.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = CodePhrase.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

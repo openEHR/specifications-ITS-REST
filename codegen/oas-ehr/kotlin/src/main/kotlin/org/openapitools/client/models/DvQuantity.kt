@@ -16,12 +16,9 @@
 package org.openapitools.client.models
 
 import org.openapitools.client.models.DvAmount
-import org.openapitools.client.models.DvCount
-import org.openapitools.client.models.DvDuration
-import org.openapitools.client.models.DvProportion
-import org.openapitools.client.models.DvQuantity
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

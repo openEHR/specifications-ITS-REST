@@ -15,9 +15,9 @@ class Folder {
     
     String type = "FOLDER"
     
-    List<ObjectRef> items = new ArrayList<>()
+    List<ObjectRef> items
     
-    List<Folder> folders = new ArrayList<>()
+    List<Folder> folders
     
     ItemStructure details
 }

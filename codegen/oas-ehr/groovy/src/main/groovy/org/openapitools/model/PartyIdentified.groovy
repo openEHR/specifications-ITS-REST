@@ -16,5 +16,5 @@ class PartyIdentified {
     
     String name
     
-    List<DvIdentifier> identifiers = new ArrayList<>()
+    List<DvIdentifier> identifiers
 }

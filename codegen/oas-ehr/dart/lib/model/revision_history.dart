@@ -55,13 +55,13 @@ class RevisionHistory {
       }());
 
       return RevisionHistory(
-        items: RevisionHistoryItem.listFromJson(json[r'items'])!,
+        items: RevisionHistoryItem.listFromJson(json[r'items']),
       );
     }
     return null;
   }
 
-  static List<RevisionHistory>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<RevisionHistory> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RevisionHistory>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -92,12 +92,10 @@ class RevisionHistory {
   static Map<String, List<RevisionHistory>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<RevisionHistory>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = RevisionHistory.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = RevisionHistory.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

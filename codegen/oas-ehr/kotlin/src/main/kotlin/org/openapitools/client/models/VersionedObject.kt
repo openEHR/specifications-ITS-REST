@@ -18,10 +18,9 @@ package org.openapitools.client.models
 import org.openapitools.client.models.DvDateTime
 import org.openapitools.client.models.HierObjectId
 import org.openapitools.client.models.ObjectRef
-import org.openapitools.client.models.VersionedComposition
-import org.openapitools.client.models.VersionedEhrStatus
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

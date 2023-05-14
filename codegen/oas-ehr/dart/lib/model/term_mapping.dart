@@ -85,7 +85,7 @@ class TermMapping {
     return null;
   }
 
-  static List<TermMapping>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TermMapping> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <TermMapping>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -116,12 +116,10 @@ class TermMapping {
   static Map<String, List<TermMapping>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<TermMapping>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = TermMapping.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = TermMapping.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

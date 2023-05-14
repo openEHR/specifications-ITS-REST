@@ -15,13 +15,12 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Composition
-import org.openapitools.client.models.EhrStatus
 import org.openapitools.client.models.ItemStructure
 import org.openapitools.client.models.PartyProxy
 import org.openapitools.client.models.Versionable
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * An EHR_STATUS resource

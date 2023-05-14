@@ -7,8 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.openapitools.model.Clstr;
-import org.openapitools.model.Element;
 import org.openapitools.model.Locatable;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -32,15 +30,12 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = Clstr.class, name = "ITEM"),
-  @JsonSubTypes.Type(value = Clstr.class, name = "ITEM"),
-  @JsonSubTypes.Type(value = Element.class, name = "ITEM"),
   @JsonSubTypes.Type(value = Element.class, name = "ITEM")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Item extends Locatable {
 
-  @JsonProperty("_type")
   private String type;
 
   public Item type(String type) {
@@ -53,7 +48,8 @@ public class Item extends Locatable {
    * @return type
   */
   
-  @Schema(name = "_type", required = false)
+  @Schema(name = "_type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_type")
   public String getType() {
     return type;
   }
@@ -77,7 +73,7 @@ public class Item extends Locatable {
     return this;
   }
 
-  public Item links(List<Link> links) {
+  public Item links(List<@Valid Link> links) {
     super.setLinks(links);
     return this;
   }

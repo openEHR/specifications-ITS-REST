@@ -102,7 +102,7 @@ class TerminologyCode {
     return null;
   }
 
-  static List<TerminologyCode>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TerminologyCode> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <TerminologyCode>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -133,12 +133,10 @@ class TerminologyCode {
   static Map<String, List<TerminologyCode>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<TerminologyCode>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = TerminologyCode.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = TerminologyCode.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

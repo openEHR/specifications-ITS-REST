@@ -15,17 +15,14 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Action
 import org.openapitools.client.models.CareEntry
 import org.openapitools.client.models.DvDateTime
-import org.openapitools.client.models.Evaluation
-import org.openapitools.client.models.Instruction
 import org.openapitools.client.models.InstructionDetails
 import org.openapitools.client.models.IsmTransition
 import org.openapitools.client.models.ItemStructure
-import org.openapitools.client.models.Observation
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * 

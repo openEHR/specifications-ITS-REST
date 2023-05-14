@@ -12,9 +12,9 @@ import org.openapitools.model.FeederAuditDetails;
 @Canonical
 class FeederAudit {
     
-    List<DvIdentifier> originatingSystemItemIds = new ArrayList<>()
+    List<DvIdentifier> originatingSystemItemIds
     
-    List<DvIdentifier> feederSystemItemIds = new ArrayList<>()
+    List<DvIdentifier> feederSystemItemIds
     
     DvEncapsulated originalContent
     

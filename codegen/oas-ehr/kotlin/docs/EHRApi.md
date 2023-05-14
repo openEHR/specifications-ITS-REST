@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**ehrGetBySubject**](EHRApi.md#ehrGetBySubject) | **GET** /ehr | Get EHR by subject id
 
 
-<a name="ehrCreate"></a>
+<a id="ehrCreate"></a>
 # **ehrCreate**
 > Ehr ehrCreate(prefer, ehrStatus)
 
@@ -59,7 +59,7 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="ehrCreateWithId"></a>
+<a id="ehrCreateWithId"></a>
 # **ehrCreateWithId**
 > Ehr ehrCreateWithId(ehrId, prefer, ehrStatus)
 
@@ -110,7 +110,7 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="ehrGetById"></a>
+<a id="ehrGetById"></a>
 # **ehrGetById**
 > Ehr ehrGetById(ehrId)
 
@@ -157,7 +157,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="ehrGetBySubject"></a>
+<a id="ehrGetBySubject"></a>
 # **ehrGetBySubject**
 > Ehr ehrGetBySubject(subjectId, subjectNamespace)
 

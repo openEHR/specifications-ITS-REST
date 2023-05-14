@@ -25,19 +25,14 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Ehr {
 
-  @JsonProperty("system_id")
   private HierObjectId systemId;
 
-  @JsonProperty("ehr_id")
   private HierObjectId ehrId;
 
-  @JsonProperty("ehr_status")
   private ObjectRef ehrStatus;
 
-  @JsonProperty("ehr_access")
   private ObjectRef ehrAccess;
 
-  @JsonProperty("time_created")
   private DvDateTime timeCreated;
 
   public Ehr systemId(HierObjectId systemId) {
@@ -50,7 +45,8 @@ public class Ehr {
    * @return systemId
   */
   @Valid 
-  @Schema(name = "system_id", required = false)
+  @Schema(name = "system_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("system_id")
   public HierObjectId getSystemId() {
     return systemId;
   }
@@ -69,7 +65,8 @@ public class Ehr {
    * @return ehrId
   */
   @Valid 
-  @Schema(name = "ehr_id", required = false)
+  @Schema(name = "ehr_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("ehr_id")
   public HierObjectId getEhrId() {
     return ehrId;
   }
@@ -88,7 +85,8 @@ public class Ehr {
    * @return ehrStatus
   */
   @Valid 
-  @Schema(name = "ehr_status", required = false)
+  @Schema(name = "ehr_status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("ehr_status")
   public ObjectRef getEhrStatus() {
     return ehrStatus;
   }
@@ -107,7 +105,8 @@ public class Ehr {
    * @return ehrAccess
   */
   @Valid 
-  @Schema(name = "ehr_access", required = false)
+  @Schema(name = "ehr_access", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("ehr_access")
   public ObjectRef getEhrAccess() {
     return ehrAccess;
   }
@@ -126,7 +125,8 @@ public class Ehr {
    * @return timeCreated
   */
   @Valid 
-  @Schema(name = "time_created", required = false)
+  @Schema(name = "time_created", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("time_created")
   public DvDateTime getTimeCreated() {
     return timeCreated;
   }

@@ -123,7 +123,7 @@ class AbstractEntry {
       return AbstractEntry(
         language: CodePhrase.fromJson(json[r'language'])!,
         encoding: CodePhrase.fromJson(json[r'encoding'])!,
-        otherParticipations: Participation.listFromJson(json[r'other_participations']) ?? const [],
+        otherParticipations: Participation.listFromJson(json[r'other_participations']),
         workflowId: ObjectRef.fromJson(json[r'workflow_id']),
         subject: PartyProxy.fromJson(json[r'subject'])!,
         provider: PartyProxy.fromJson(json[r'provider']),
@@ -133,7 +133,7 @@ class AbstractEntry {
     return null;
   }
 
-  static List<AbstractEntry>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<AbstractEntry> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AbstractEntry>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -164,12 +164,10 @@ class AbstractEntry {
   static Map<String, List<AbstractEntry>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<AbstractEntry>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = AbstractEntry.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = AbstractEntry.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

@@ -20,6 +20,7 @@ import org.openapitools.client.models.UpdateAudit
 import org.openapitools.client.models.UpdateVersion
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * A new (un-committed) CONTRIBUTION resource

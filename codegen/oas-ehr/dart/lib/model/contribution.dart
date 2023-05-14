@@ -68,14 +68,14 @@ class Contribution {
 
       return Contribution(
         uid: HierObjectId.fromJson(json[r'uid'])!,
-        versions: ObjectRef.listFromJson(json[r'versions'])!,
+        versions: ObjectRef.listFromJson(json[r'versions']),
         audit: AuditDetails.fromJson(json[r'audit'])!,
       );
     }
     return null;
   }
 
-  static List<Contribution>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Contribution> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <Contribution>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -106,12 +106,10 @@ class Contribution {
   static Map<String, List<Contribution>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<Contribution>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = Contribution.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = Contribution.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

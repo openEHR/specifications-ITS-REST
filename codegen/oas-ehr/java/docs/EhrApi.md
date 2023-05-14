@@ -10,7 +10,7 @@ All URIs are relative to *https://openEHRSys.example.com/v1*
 | [**ehrGetBySubject**](EhrApi.md#ehrGetBySubject) | **GET** /ehr | Get EHR by subject id |
 
 
-<a name="ehrCreate"></a>
+<a id="ehrCreate"></a>
 # **ehrCreate**
 > Ehr ehrCreate(prefer, ehrStatus)
 
@@ -76,7 +76,7 @@ No authorization required
 | **400** | &#x60;400 Bad Request&#x60; is returned when the request URL or body (if provided) could not be parsed or has invalid content.  |  -  |
 | **409** | &#x60;409 Conflict&#x60; Unable to create a new EHR due to a conflict with an already existing EHR with the same subject id, namespace pair, whenever EHR_STATUS is supplied.  |  -  |
 
-<a name="ehrCreateWithId"></a>
+<a id="ehrCreateWithId"></a>
 # **ehrCreateWithId**
 > Ehr ehrCreateWithId(ehrId, prefer, ehrStatus)
 
@@ -144,7 +144,7 @@ No authorization required
 | **400** | &#x60;400 Bad Request&#x60; is returned when the request URL or body (if provided) could not be parsed or has invalid content.  |  -  |
 | **409** | &#x60;409 Conflict&#x60; Unable to create a new EHR due to a conflict with an already existing EHR.  Can happen when the supplied &#x60;ehr_id&#x60; is already used by an existing EHR.  |  -  |
 
-<a name="ehrGetById"></a>
+<a id="ehrGetById"></a>
 # **ehrGetById**
 > Ehr ehrGetById(ehrId)
 
@@ -207,7 +207,7 @@ No authorization required
 | **200** | &#x60;200 OK&#x60; is returned when the requested EHR resource is successfully retrieved.  |  -  |
 | **404** | &#x60;404 Not Found&#x60; is returned when an EHR with &#x60;ehr_id&#x60; does not exist.  |  -  |
 
-<a name="ehrGetBySubject"></a>
+<a id="ehrGetBySubject"></a>
 # **ehrGetBySubject**
 > Ehr ehrGetBySubject(subjectId, subjectNamespace)
 

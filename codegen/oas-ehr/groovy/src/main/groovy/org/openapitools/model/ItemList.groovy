@@ -13,5 +13,5 @@ class ItemList {
     
     String type = "ITEM_LIST"
     
-    List<Element> items = new ArrayList<>()
+    List<Element> items
 }

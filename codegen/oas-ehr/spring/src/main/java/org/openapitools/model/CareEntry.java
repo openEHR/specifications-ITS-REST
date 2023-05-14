@@ -8,12 +8,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openapitools.model.AbstractEntry;
-import org.openapitools.model.Action;
-import org.openapitools.model.Evaluation;
-import org.openapitools.model.Instruction;
 import org.openapitools.model.ItemStructure;
 import org.openapitools.model.ObjectRef;
-import org.openapitools.model.Observation;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -36,22 +32,16 @@ import javax.annotation.Generated;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = Action.class, name = "ACTION"),
-  @JsonSubTypes.Type(value = Action.class, name = "Action"),
   @JsonSubTypes.Type(value = Evaluation.class, name = "EVALUATION"),
-  @JsonSubTypes.Type(value = Evaluation.class, name = "Evaluation"),
   @JsonSubTypes.Type(value = Instruction.class, name = "INSTRUCTION"),
-  @JsonSubTypes.Type(value = Instruction.class, name = "Instruction"),
-  @JsonSubTypes.Type(value = Observation.class, name = "OBSERVATION"),
-  @JsonSubTypes.Type(value = Observation.class, name = "Observation")
+  @JsonSubTypes.Type(value = Observation.class, name = "OBSERVATION")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class CareEntry extends AbstractEntry {
 
-  @JsonProperty("protocol")
   private ItemStructure protocol;
 
-  @JsonProperty("guideline_id")
   private ObjectRef guidelineId;
 
   public CareEntry protocol(ItemStructure protocol) {
@@ -64,7 +54,8 @@ public class CareEntry extends AbstractEntry {
    * @return protocol
   */
   @Valid 
-  @Schema(name = "protocol", required = false)
+  @Schema(name = "protocol", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("protocol")
   public ItemStructure getProtocol() {
     return protocol;
   }
@@ -83,7 +74,8 @@ public class CareEntry extends AbstractEntry {
    * @return guidelineId
   */
   @Valid 
-  @Schema(name = "guideline_id", required = false)
+  @Schema(name = "guideline_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("guideline_id")
   public ObjectRef getGuidelineId() {
     return guidelineId;
   }
@@ -102,7 +94,7 @@ public class CareEntry extends AbstractEntry {
     return this;
   }
 
-  public CareEntry otherParticipations(List<Participation> otherParticipations) {
+  public CareEntry otherParticipations(List<@Valid Participation> otherParticipations) {
     super.setOtherParticipations(otherParticipations);
     return this;
   }
@@ -142,7 +134,7 @@ public class CareEntry extends AbstractEntry {
     return this;
   }
 
-  public CareEntry links(List<Link> links) {
+  public CareEntry links(List<@Valid Link> links) {
     super.setLinks(links);
     return this;
   }
