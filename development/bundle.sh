@@ -27,5 +27,6 @@ case "${1:-}" in
       ;;
 		"")
 			echo "Usage: bundle.sh [overview|ehr|query|definition]"
+			echo "   or: bundle.sh all"
 			;;
 	esac
