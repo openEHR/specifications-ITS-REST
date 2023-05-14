@@ -19,7 +19,7 @@ info:
         </colgroup>
         <thead>
         <tr>
-            <th colspan="2">© 2003 - 2021 The openEHR Foundation</th>
+            <th colspan="2">© 2018 - 2023 The openEHR Foundation</th>
         </tr>
         </thead>
         <tbody>
@@ -230,7 +230,6 @@ info:
     in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [[RFC 2119](https://tools.ietf.org/html/rfc2119)],
     [[RFC 8174](https://tools.ietf.org/html/rfc8174)] when, and only when, they appear in all capitals, as shown here.
 
-security: []
 servers:
   - url: https://{baseUrl}/v1
     description: An example openEHR server URL.
@@ -238,21 +237,7 @@ servers:
       baseUrl:
         default: openEHRSys.example.com
         description: The (example) server base URL prefix providing openEHR services. This may contain server name, port and base path prefix.
-paths:
-  /:
-    options:
-      operationId: options
-      summary: System Options and Conformance
-      description: |
-        The `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a resource, service or with the system, without implying a resource action.
-        Services SHOULD respond to this method with at least appropriate HTTP codes, headers and potentially with a payload revealing more details about themselves.
-
-        Another use-case for this method is related to exposing service capabilities for a conformance manifest.
-      tags:
-        - Options
-      responses:
-        '200':
-          $ref: '#/components/responses/200_options'
+security: []
 tags:
   - name: Glossary_and_conventions
     x-displayName: Glossary and conventions
@@ -752,15 +737,21 @@ tags:
       Retrieval or querying those resources SHOULD return date, datetime, or time values in the (original) format provided by underlying backend engine, avoiding any format change.
   - name: Options
     description: Retrieving system options and conformance information.
-x-tagGroups:
-  - name: Docs
-    tags:
-      - Glossary_and_conventions
-      - Requests_and_responses
-      - Resources
-  - name: Endpoints
-    tags:
-      - Options
+paths:
+  /:
+    options:
+      operationId: options
+      summary: System Options and Conformance
+      description: |
+        The `OPTIONS` HTTP method allows a client to determine the options and/or requirements associated with a resource, service or with the system, without implying a resource action.
+        Services SHOULD respond to this method with at least appropriate HTTP codes, headers and potentially with a payload revealing more details about themselves.
+
+        Another use-case for this method is related to exposing service capabilities for a conformance manifest.
+      tags:
+        - Options
+      responses:
+        '200':
+          $ref: '#/components/responses/200_options'
 components:
   headers:
     Allow:
@@ -809,3 +800,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Options'
+x-tagGroups:
+  - name: Docs
+    tags:
+      - Glossary_and_conventions
+      - Requests_and_responses
+      - Resources
+  - name: Endpoints
+    tags:
+      - Options

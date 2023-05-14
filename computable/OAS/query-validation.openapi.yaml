@@ -19,7 +19,7 @@ info:
         </colgroup>
         <thead>
         <tr>
-            <th colspan="2">© 2003 - 2022 The openEHR Foundation</th>
+            <th colspan="2">© 2018 - 2023 The openEHR Foundation</th>
         </tr>
         </thead>
         <tbody>
@@ -207,7 +207,6 @@ info:
 
     tbd.
 
-security: []
 servers:
   - url: https://{baseUrl}/v1
     description: An example openEHR server URL.
@@ -215,168 +214,7 @@ servers:
       baseUrl:
         default: openEHRSys.example.com
         description: The (example) server base URL prefix providing openEHR services. This may contain server name, port and base path prefix.
-paths:
-  /query/aql:
-    get:
-      operationId: query_execute_adhoc_query
-      summary: Execute ad-hoc AQL
-      description: |
-        Execute a given ad-hoc AQL query, supplied by `q` parameter, fetching `fetch` numbers of rows from `offset` and passing `query_parameters` to the underlying query engine.
-
-        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
-      tags:
-        - Query
-      parameters:
-        - $ref: '#/components/parameters/q'
-        - $ref: '#/components/parameters/ehr_id_Query'
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/fetch'
-        - $ref: '#/components/parameters/query_parameters'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_Query'
-        '400':
-          $ref: '#/components/responses/400_Query'
-        '408':
-          $ref: '#/components/responses/408_Query'
-    post:
-      operationId: query_execute_adhoc_query_body
-      summary: Execute ad-hoc AQL (POST)
-      description: |
-        Execute a given ad-hoc AQL query, supplied by `q` attribute, fetching `fetch` numbers of rows from `offset` and passing `query_parameters` to the underlying query engine.
-
-        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
-      tags:
-        - Query
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AdhocQueryExecute'
-        required: true
-      responses:
-        '200':
-          $ref: '#/components/responses/200_Query'
-        '400':
-          $ref: '#/components/responses/400_Query'
-        '408':
-          $ref: '#/components/responses/408_Query'
-  /query/{qualified_query_name}:
-    get:
-      operationId: query_execute_stored_query
-      summary: Execute stored AQL
-      description: |
-        Execute a stored query, identified by the supplied `qualified_query_name` (at latest version), fetching `fetch` numbers of rows from `offset` and passing `query_parameters` to the underlying query engine.
-
-        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
-
-        Queries can be stored or, once stored, their definition can be retrieved using the [definition endpoint](definition.html#tag/Query).
-      tags:
-        - Query
-      parameters:
-        - $ref: '#/components/parameters/qualified_query_name'
-        - $ref: '#/components/parameters/ehr_id_Query'
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/fetch'
-        - $ref: '#/components/parameters/query_parameters'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_Query'
-        '400':
-          $ref: '#/components/responses/400_Query'
-        '404':
-          $ref: '#/components/responses/404_Query'
-        '408':
-          $ref: '#/components/responses/408_Query'
-    post:
-      operationId: query_execute_stored_query_body
-      summary: Execute stored AQL (POST)
-      description: |
-        Execute a stored query, identified by the supplied `qualified_query_name` (at latest version).  
-
-        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
-          
-        Queries can be stored or, once stored, their definition can be retrieved using the [definition endpoint](definition.html#tag/Query).
-      tags:
-        - Query
-      parameters:
-        - $ref: '#/components/parameters/qualified_query_name'
-      requestBody:
-        description: |
-          Specifications for a stored AQL query execution.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Query'
-        required: true
-      responses:
-        '200':
-          $ref: '#/components/responses/200_Query'
-        '400':
-          $ref: '#/components/responses/400_Query'
-        '404':
-          $ref: '#/components/responses/404_Query'
-        '408':
-          $ref: '#/components/responses/408_Query'
-  /query/{qualified_query_name}/{version}:
-    get:
-      operationId: query_execute_stored_query_version
-      summary: Execute stored AQL version
-      description: |
-        Execute a stored query, identified by the supplied `qualified_query_name` (at specified `version`), fetching `fetch` numbers of rows from `offset` and passing `query_parameters` to the underlying query engine.
-
-        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
-
-        Queries can be stored or, once stored, their definition can be retrieved  using the [definition endpoint](definition.html#tag/Query).
-      tags:
-        - Query
-      parameters:
-        - $ref: '#/components/parameters/qualified_query_name'
-        - $ref: '#/components/parameters/version'
-        - $ref: '#/components/parameters/ehr_id_Query'
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/fetch'
-        - $ref: '#/components/parameters/query_parameters'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_Query'
-        '400':
-          $ref: '#/components/responses/400_Query'
-        '404':
-          $ref: '#/components/responses/404_Query_version'
-        '408':
-          $ref: '#/components/responses/408_Query'
-    post:
-      operationId: query_execute_stored_query_version_body
-      summary: Execute stored AQL version (POST)
-      description: |
-        Execute a stored query, identified by the supplied `qualified_query_name` (at specified `version`).  
-
-        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
-          
-        Queries can be stored or, once stored, their definition can be retrieved using the [definition endpoint](definition.html#tag/Query).
-      tags:
-        - Query
-      parameters:
-        - $ref: '#/components/parameters/qualified_query_name'
-        - $ref: '#/components/parameters/version'
-      requestBody:
-        description: |
-          Specifications for a stored AQL query execution.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Query'
-        required: true
-      responses:
-        '200':
-          $ref: '#/components/responses/200_Query'
-        '400':
-          $ref: '#/components/responses/400_Query'
-        '404':
-          $ref: '#/components/responses/404_Query_version'
-        '408':
-          $ref: '#/components/responses/408_Query'
+security: []
 tags:
   - name: Query_types
     x-displayName: Query types
@@ -546,20 +384,168 @@ tags:
       This resource is formally specified in the Service Model as [Query Result](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_result_set_class).
 
       <SchemaDefinition schemaRef="#/components/schemas/ResultSet" />
-x-tagGroups:
-  - name: Docs
-    tags:
-      - Query_types
-      - Qualified_query_name
-      - Request
-      - Response
-  - name: Resource endpoints
-    tags:
-      - Query
-  - name: Resource Schema
-    tags:
-      - Query_schema
-      - RESULT_SET_schema
+paths:
+  /query/aql:
+    get:
+      operationId: query_execute_adhoc_query
+      summary: Execute ad-hoc AQL
+      description: |
+        Execute a given ad-hoc AQL query, supplied by `q` parameter, fetching `fetch` numbers of rows from `offset` and passing `query_parameters` to the underlying query engine.
+
+        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
+      tags:
+        - Query
+      parameters:
+        - $ref: '#/components/parameters/q'
+        - $ref: '#/components/parameters/ehr_id_Query'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/fetch'
+        - $ref: '#/components/parameters/query_parameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_Query'
+        '400':
+          $ref: '#/components/responses/400_Query'
+        '408':
+          $ref: '#/components/responses/408_Query'
+    post:
+      operationId: query_execute_adhoc_query_body
+      summary: Execute ad-hoc AQL (POST)
+      description: |
+        Execute a given ad-hoc AQL query, supplied by `q` attribute, fetching `fetch` numbers of rows from `offset` and passing `query_parameters` to the underlying query engine.
+
+        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
+      tags:
+        - Query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdhocQueryExecute'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200_Query'
+        '400':
+          $ref: '#/components/responses/400_Query'
+        '408':
+          $ref: '#/components/responses/408_Query'
+  /query/{qualified_query_name}:
+    get:
+      operationId: query_execute_stored_query
+      summary: Execute stored AQL
+      description: |
+        Execute a stored query, identified by the supplied `qualified_query_name` (at latest version), fetching `fetch` numbers of rows from `offset` and passing `query_parameters` to the underlying query engine.
+
+        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
+
+        Queries can be stored or, once stored, their definition can be retrieved using the [definition endpoint](definition.html#tag/Query).
+      tags:
+        - Query
+      parameters:
+        - $ref: '#/components/parameters/qualified_query_name'
+        - $ref: '#/components/parameters/ehr_id_Query'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/fetch'
+        - $ref: '#/components/parameters/query_parameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_Query'
+        '400':
+          $ref: '#/components/responses/400_Query'
+        '404':
+          $ref: '#/components/responses/404_Query'
+        '408':
+          $ref: '#/components/responses/408_Query'
+    post:
+      operationId: query_execute_stored_query_body
+      summary: Execute stored AQL (POST)
+      description: |
+        Execute a stored query, identified by the supplied `qualified_query_name` (at latest version).  
+
+        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
+          
+        Queries can be stored or, once stored, their definition can be retrieved using the [definition endpoint](definition.html#tag/Query).
+      tags:
+        - Query
+      parameters:
+        - $ref: '#/components/parameters/qualified_query_name'
+      requestBody:
+        description: |
+          Specifications for a stored AQL query execution.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Query'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200_Query'
+        '400':
+          $ref: '#/components/responses/400_Query'
+        '404':
+          $ref: '#/components/responses/404_Query'
+        '408':
+          $ref: '#/components/responses/408_Query'
+  /query/{qualified_query_name}/{version}:
+    get:
+      operationId: query_execute_stored_query_version
+      summary: Execute stored AQL version
+      description: |
+        Execute a stored query, identified by the supplied `qualified_query_name` (at specified `version`), fetching `fetch` numbers of rows from `offset` and passing `query_parameters` to the underlying query engine.
+
+        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
+
+        Queries can be stored or, once stored, their definition can be retrieved  using the [definition endpoint](definition.html#tag/Query).
+      tags:
+        - Query
+      parameters:
+        - $ref: '#/components/parameters/qualified_query_name'
+        - $ref: '#/components/parameters/version'
+        - $ref: '#/components/parameters/ehr_id_Query'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/fetch'
+        - $ref: '#/components/parameters/query_parameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_Query'
+        '400':
+          $ref: '#/components/responses/400_Query'
+        '404':
+          $ref: '#/components/responses/404_Query_version'
+        '408':
+          $ref: '#/components/responses/408_Query'
+    post:
+      operationId: query_execute_stored_query_version_body
+      summary: Execute stored AQL version (POST)
+      description: |
+        Execute a stored query, identified by the supplied `qualified_query_name` (at specified `version`).  
+
+        See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
+          
+        Queries can be stored or, once stored, their definition can be retrieved using the [definition endpoint](definition.html#tag/Query).
+      tags:
+        - Query
+      parameters:
+        - $ref: '#/components/parameters/qualified_query_name'
+        - $ref: '#/components/parameters/version'
+      requestBody:
+        description: |
+          Specifications for a stored AQL query execution.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Query'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200_Query'
+        '400':
+          $ref: '#/components/responses/400_Query'
+        '404':
+          $ref: '#/components/responses/404_Query_version'
+        '408':
+          $ref: '#/components/responses/408_Query'
 components:
   schemas:
     AQL:
@@ -830,3 +816,17 @@ components:
     404_Query_version:
       description: |
         `404 Not Found` is returned when a stored query with `qualified_query_name` and `version` does not exist.
+x-tagGroups:
+  - name: Docs
+    tags:
+      - Query_types
+      - Qualified_query_name
+      - Request
+      - Response
+  - name: Resource endpoints
+    tags:
+      - Query
+  - name: Resource Schema
+    tags:
+      - Query_schema
+      - RESULT_SET_schema
