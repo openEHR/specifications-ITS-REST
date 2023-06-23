@@ -1,0 +1,5 @@
+:spec_title: SMART App Launch
+:copyright_year: 2023
+:spec_status: DEVELOPMENT
+:keywords: JSON, REST, web template, commit, simplified data, TDS, SDT, ncSDT, simSDT, structSDT
+:description: openEHR SMART App Launch

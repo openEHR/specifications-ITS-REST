@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="description" content="openEHR SMART App Launch">
+<meta name="keywords" content="JSON, REST, web template, commit, simplified data, TDS, SDT, ncSDT, simSDT, structSDT">
+<title>SMART App Launch</title>
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_smart_app_launch">SMART App Launch</a>
+<ul class="sectlevel1">
+<li><a href="#_amendment_record">Amendment Record</a></li>
+<li><a href="#_acknowledgements">Acknowledgements</a>
+<ul class="sectlevel2">
+<li><a href="#_primary_author">Primary Author</a></li>
+<li><a href="#_contributors">Contributors</a></li>
+<li><a href="#_trademarks">Trademarks</a></li>
+</ul>
+</li>
+<li><a href="#_preface">1. Preface</a>
+<ul class="sectlevel2">
+<li><a href="#_purpose">1.1. Purpose</a></li>
+<li><a href="#_status">1.2. Status</a></li>
+<li><a href="#_feedback">1.3. Feedback</a></li>
+<li><a href="#_conformance">1.4. Conformance</a></li>
+</ul>
+</li>
+<li><a href="#_overview">2. Overview</a>
+<ul class="sectlevel2">
+<li><a href="#_requirements">2.1. Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock text-center">
+<div class="content">
+<img src="https://specifications.openehr.org/images/openEHR_logo_RGB.svg" alt="openEHR logo">
+</div>
+</div>
+</div>
+</div>
+<h1 id="_smart_app_launch" class="sect0"><a class="anchor" href="#_smart_app_launch"></a>SMART App Launch</h1>
+<div class="openblock partintro">
+<div class="content">
+<table class="tableblock frame-all grid-all fit-content spread">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="https://www.openehr.org/programs/specification" target="_blank" rel="noopener">openEHR Specification Program</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: ITS-REST latest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: DEVELOPMENT</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revision</strong>: <a href="#latest_issue">[latest_issue]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: JSON, REST, web template, commit, simplified data, TDS, SDT, ncSDT, simSDT, structSDT</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock text-center">
+<div class="content">
+<object type="image/svg+xml" data="openehr_block_diagram.svg" width="60%"><span class="alt">openEHR components</span></object>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2023 - 2023 The openEHR Foundation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="https://www.openehr.org" target="_blank" rel="noopener">The openEHR Foundation</a> is an independent, non-profit foundation, facilitating the sharing of health records by consumers and clinicians via open specifications, clinical models and open platform implementations.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported. <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Support</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://specifications.openehr.org/components/ITS-REST/open_issues" target="_blank" rel="noopener">Problem Reports</a><br>
+ Web: <a href="https://specifications.openehr.org" target="_blank" rel="noopener">specifications.openEHR.org</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_amendment_record"><a class="anchor" href="#_amendment_record"></a>Amendment Record</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 54.5454%;">
+<col style="width: 18.1818%;">
+<col style="width: 18.1819%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Details</th>
+<th class="tableblock halign-left valign-top">Raiser</th>
+<th class="tableblock halign-left valign-top">Completed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release 1.0.3</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release 1.0.2</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.0.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECITS-57" target="_blank" rel="noopener">SPECITS-57</a>. Updating information and links of simplified JSON formats</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E Sundvall,<br>
+S Iancu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 Mar 2021</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release 1.0.1</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.7.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECITS-33" target="_blank" rel="noopener">SPECITS-33</a>. Add Simplified Data Template format specification;<br>
+ Initial writing, adapted from the Marand Better Platform 'Web Templates' specification, EtherCIS documentation and the Ocean Health Systems Template Data Schema.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openEHR SEC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">17 Jul 2019</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_acknowledgements"><a class="anchor" href="#_acknowledgements"></a>Acknowledgements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_primary_author"><a class="anchor" href="#_primary_author"></a>Primary Author</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Sidharth Ramesh; openEHR Foundation Management Board.</p>
+</li>
+<li>
+<p>Sebastian Iancu; Code24</p>
+</li>
+<li>
+<p>Ian McNicoll</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_contributors"><a class="anchor" href="#_contributors"></a>Contributors</h3>
+<div class="paragraph">
+<p>This specification has benefited from formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following for their contributions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Christian Chevalley, Architect, EtherCIS, Thailand</p>
+</li>
+<li>
+<p>Borut Fabjan, Program Manager, Better, Slovenia</p>
+</li>
+<li>
+<p>Bostjan Lah, Senior Architect, Better, Slovenia</p>
+</li>
+<li>
+<p>Ian McNicoll MD, FreshEHR, UK</p>
+</li>
+<li>
+<p>Bjørn Næss, DIPS, Norway</p>
+</li>
+<li>
+<p>Matija Polajnar, Architect, Marand, Slovenia</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A significant part of the design ideas and content of this specification was adapted from:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the Marand 'Web Templates' specification, kindly provided by Better by Marand d.o.o.;</p>
+</li>
+<li>
+<p>the EtherCIS ECISFLAT format by the EtherCIS community;</p>
+</li>
+<li>
+<p>the XSD-based Template Data Schema (TDS) format developed by Ocean Health Systems.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_trademarks"><a class="anchor" href="#_trademarks"></a>Trademarks</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>'openEHR' is a registered trademark of the openEHR Foundation</p>
+</li>
+<li>
+<p>'OMG' and 'UML' are registered trademarks of the Object Management Group</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preface"><a class="anchor" href="#_preface"></a>1. Preface</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
+<div class="paragraph">
+<p>This document describes SMART on openEHR.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_status"><a class="anchor" href="#_status"></a>1.2. Status</h3>
+<div class="paragraph">
+<p>This specification is in the DEVELOPMENT state. The development version of this document can be found at <a href="https://specifications.openehr.org/releases/ITS-REST/latest/simplified_data_template.html" target="_blank" rel="noopener">https://specifications.openehr.org/releases/ITS-REST/latest/simplified_data_template.html</a>.</p>
+</div>
+<div class="paragraph">
+<p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
+</div>
+<div class="paragraph tbd">
+<p><strong>TBD</strong>: (example To Be Determined paragraph)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.3. Feedback</h3>
+<div class="paragraph">
+<p>Feedback may be provided on the <a href="https://discourse.openehr.org/c/specifications/its" target="_blank" rel="noopener">openEHR ITS forum</a>.</p>
+</div>
+<div class="paragraph">
+<p>Issues may be raised on the <a href="https://specifications.openehr.org/components/ITS-REST/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
+</div>
+<div class="paragraph">
+<p>To see changes made due to previously reported issues, see the <a href="https://specifications.openehr.org/components/ITS-REST/history" target="_blank" rel="noopener">ITS-REST component Change Request tracker</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conformance"><a class="anchor" href="#_conformance"></a>1.4. Conformance</h3>
+<div class="paragraph">
+<p>When used with openEHR-REST API, the available calls to be conformance tested are the same as for other openEHR serialisation formats (canonical JSON etc), but with at different representation format (indicated by setting appropriate Content-Type http header).</p>
+</div>
+<div class="paragraph tbd">
+<p><strong>TBD</strong>: Conformance testing and Content-Type will be further described later.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>2. Overview</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_requirements"><a class="anchor" href="#_requirements"></a>2.1. Requirements</h3>
+<div class="paragraph">
+<p>The default serialised data representations for openEHR content are canonical XML, based on the <a href="https://specifications.openehr.org/releases/ITS-XML/latest" target="_blank" rel="noopener">openEHR RM XSDs</a>, canonical JSON, described by the <a href="https://specifications.openehr.org/releases/ITS-JSON/latest" target="_blank" rel="noopener">openEHR JSON schemas</a>, and potentially any other canonical serial format based on the underlying Reference Model (e.g. YAML etc). Here, 'canonical' means any fully-expressed instance data in which:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the containment structure follows that of the RM;</p>
+</li>
+<li>
+<p>all RM mandatory fields are present;</p>
+</li>
+<li>
+<p>all attributes are named as per the RM, and</p>
+</li>
+<li>
+<p>all cardinalities respect the RM.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The canonical formats are routinely used by all openEHR implementations implementing the <a href="https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html" target="_blank" rel="noopener">openEHR REST API specification</a>, and in other ways, e.g. for DB dump/load implementation, ETL and so on. However, creating data instances according to these formats is not always straightforward, particularly for developers with minimal exposure to openEHR, and various alternatives have been used in the past to simplify the job of content creation and committal for application developers. These include TDS/TDD (XSD-based Template Data Schema &amp; Document), and so-called EtherCIS Flat JSON, Marand Flat JSON and Structured JSON.</p>
+</div>
+<div class="paragraph">
+<p>This specification responds to the requirement for a complete representation of all of these serial formats within a common formal framework that will permit further variants in the future as and when needed.</p>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in master.adoc - include::master03-conceptual.adoc[leveloffset=+1]</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-06-23 08:11:46 UTC
+</div>
+</div>
+</body>
+</html>
