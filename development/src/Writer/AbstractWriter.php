@@ -2,9 +2,10 @@
 
 namespace OpenEHR\Specifications\Tools\OpenAPI\Writer;
 
+use cebe\openapi\exceptions\TypeErrorException;
+use cebe\openapi\exceptions\UnresolvableReferenceException;
 use cebe\openapi\Reader;
 use cebe\openapi\ReferenceContext;
-use cebe\openapi\Writer;
 use cebe\openapi\spec\OpenApi;
 use JsonException;
 use RuntimeException;
@@ -88,11 +89,11 @@ abstract class AbstractWriter {
     /**
      * @return void
      * @throws JsonException
-     * @throws \cebe\openapi\exceptions\TypeErrorException
+     * @throws TypeErrorException|UnresolvableReferenceException
      */
     protected function parseSpecification(): void {
         $json = json_encode($this->jsonData, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        $this->apiSpecification = Reader::readFromJson($json, OpenApi::class, false);
+        $this->apiSpecification = Reader::readFromJson($json);
         $context = new ReferenceContext($this->apiSpecification, $this->inputFile);
         $this->apiSpecification->setReferenceContext($context);
     }

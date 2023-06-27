@@ -2,7 +2,9 @@
 
 case "${1:-}" in
   install)
-    docker-compose run --build --rm php composer install
+    docker-compose build php
+    docker-compose run --rm php composer install
+    docker-compose run --rm php composer dump-autoload
     ;;
   composer)
     shift

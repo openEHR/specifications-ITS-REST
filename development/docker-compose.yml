@@ -9,6 +9,5 @@ services:
             - ../docs:/data/docs
             - ../specifications:/data/specifications
             - ../computable:/data/computable
-            - ../codegen:/data/codegen
         tty: true
         user: 1000:1000
