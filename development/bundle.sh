@@ -4,7 +4,7 @@ function render() {
     docker run --rm -u 1000 -v "$(pwd):/spec" redocly/cli bundle specifications/"$1".openapi.yaml -o computable/OAS/"$1".openapi.json
     echo "Creating json files..."
     cd development
-    docker-compose run php /app/bin/run computable/OAS/"$1".openapi.json
+    docker-compose run --rm php /opt/project/bin/generate_all computable/OAS/"$1".openapi.json
     cd ..
     docker run --rm -u 1000 -v "$(pwd):/spec" redocly/cli bundle computable/OAS/"$1"-codegen.openapi.json --remove-unused-components -o computable/OAS/"$1"-codegen.openapi.yaml
     docker run --rm -u 1000 -v "$(pwd):/spec" redocly/cli bundle computable/OAS/"$1"-validation.openapi.json -o computable/OAS/"$1"-validation.openapi.yaml
