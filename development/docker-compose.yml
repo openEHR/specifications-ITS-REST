@@ -6,8 +6,24 @@ services:
             context: .
         volumes:
             - .:/opt/project
-            - ../docs:/data/docs
-            - ../specifications:/data/specifications
             - ../computable:/data/computable
+        tty: true
+        user: 1000:1000
+
+    redocly:
+        image: redocly/cli
+        volumes:
+            - ..:/spec
+        tty: true
+        user: 1000:1000
+        environment:
+            NODE_OPTIONS: "--max-old-space-size=4048"
+
+    swagger-cli:
+        build:
+            dockerfile: swagger-cli.Dockerfile
+            context: .
+        volumes:
+            - ..:/data
         tty: true
         user: 1000:1000
