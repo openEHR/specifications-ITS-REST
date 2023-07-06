@@ -22,7 +22,7 @@ To see changes made due to previously reported issues, see the {component_histor
 
 == Conformance
 
-When used with openEHR-REST API, the available calls to be conformance tested are the same as for other openEHR serialisation formats (canonical JSON etc), but with at different representation format (indicated by setting appropriate Content-Type http header).
+When used with openEHR-REST API, the Authorization and Authentication of applications should be through the SMART protocol.
 
 [.tbd]
-*TBD*: Conformance testing and Content-Type will be further described later. 
+*TBD*: Conformance testing will be further described later.

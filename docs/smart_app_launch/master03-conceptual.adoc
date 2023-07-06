@@ -1,0 +1,14 @@
+= Conceptual Approach
+
+== Background
+
+SMART stands for “Substitutable Medical Applications and Reusable Technologies” and was initially proposed as SMART on FHIR (https://pubmed.ncbi.nlm.nih.gov/26911829/). It provides a good starting point for this specification as it builds on OAuth2 and OIDC which are industry standards for authentication and authorization. This specification aims to be fully backward compatible with SMART on FHIR while making this protocol work for vendors utilizing openEHR, FHIR REST APIs, or both.
+
+== Glossary
+
+* Application - Software developed by the vendor or an external entity designed to work with the CDR and/or Launcher built by the vendor.
+* Vendor - An entity that provides an openEHR CDR and/or Launchers as a service to end users.
+* openEHR CDR - An openEHR Clinical Data Repository that provides a REST API conformant to the openEHR REST API specification.
+* FHIR CDR - A FHIR server that provides an FHIR REST API conformant with the FHIR specification.
+* OAuth2 Server - An authentication server that provides APIs consistent with the OAuth2 specification and will be extended to the SMART protocol that will be described in this document
+* Launcher - Software built by the vendor that serves to launch other applications within the user being a patient or practitioner. This could be the “EHR” that provides other functionality, but could also a separate application.

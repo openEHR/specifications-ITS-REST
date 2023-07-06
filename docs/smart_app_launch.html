@@ -5,10 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<meta name="description" content="openEHR SMART App Launch">
-<meta name="keywords" content="JSON, REST, web template, commit, simplified data, TDS, SDT, ncSDT, simSDT, structSDT">
+<meta name="description" content="openEHR SMART App Launch and Service Discovery Framework">
+<meta name="keywords" content="JSON, REST, SMART, OAuth2, OIDC, Authentication, Authorization">
 <title>SMART App Launch</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -38,6 +39,23 @@
 <li><a href="#_requirements">2.1. Requirements</a></li>
 </ul>
 </li>
+<li><a href="#_conceptual_approach">3. Conceptual Approach</a>
+<ul class="sectlevel2">
+<li><a href="#_background">3.1. Background</a></li>
+<li><a href="#_glossary">3.2. Glossary</a></li>
+</ul>
+</li>
+<li><a href="#_service_discovery">4. Service Discovery</a>
+<ul class="sectlevel2">
+<li><a href="#_background_2">4.1. Background</a></li>
+<li><a href="#_authentication_endpoints">4.2. Authentication endpoints</a></li>
+<li><a href="#_services">4.3. Services</a></li>
+<li><a href="#_capabilities">4.4. Capabilities</a></li>
+</ul>
+</li>
+<li><a href="#_authentication_authorization_and_scopes">5. Authentication, Authorization and Scopes</a></li>
+<li><a href="#_context_selection">6. Context Selection</a></li>
+<li><a href="#_launch_protocol">7. Launch Protocol</a></li>
 </ul>
 </li>
 </ul>
@@ -76,7 +94,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: JSON, REST, web template, commit, simplified data, TDS, SDT, ncSDT, simSDT, structSDT</p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: JSON, REST, SMART, OAuth2, OIDC, Authentication, Authorization</p></td>
 </tr>
 </tbody>
 </table>
@@ -130,31 +148,6 @@
 <th class="tableblock halign-left valign-top">Completed</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release 1.0.3</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release 1.0.2</strong></p></th>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.0.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECITS-57" target="_blank" rel="noopener">SPECITS-57</a>. Updating information and links of simplified JSON formats</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">E Sundvall,<br>
-S Iancu</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 Mar 2021</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release 1.0.1</strong></p></th>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.7.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECITS-33" target="_blank" rel="noopener">SPECITS-33</a>. Add Simplified Data Template format specification;<br>
- Initial writing, adapted from the Marand Better Platform 'Web Templates' specification, EtherCIS documentation and the Ocean Health Systems Template Data Schema.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">openEHR SEC</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">17 Jul 2019</p></td>
-</tr>
-</tbody>
 </table>
 </div>
 </div>
@@ -171,9 +164,6 @@ S Iancu</p></td>
 <li>
 <p>Sebastian Iancu; Code24</p>
 </li>
-<li>
-<p>Ian McNicoll</p>
-</li>
 </ul>
 </div>
 </div>
@@ -185,22 +175,10 @@ S Iancu</p></td>
 <div class="ulist">
 <ul>
 <li>
-<p>Christian Chevalley, Architect, EtherCIS, Thailand</p>
-</li>
-<li>
-<p>Borut Fabjan, Program Manager, Better, Slovenia</p>
-</li>
-<li>
-<p>Bostjan Lah, Senior Architect, Better, Slovenia</p>
-</li>
-<li>
 <p>Ian McNicoll MD, FreshEHR, UK</p>
 </li>
 <li>
-<p>Bjørn Næss, DIPS, Norway</p>
-</li>
-<li>
-<p>Matija Polajnar, Architect, Marand, Slovenia</p>
+<p>Bostjan Lah, Senior Architect, Better, Slovenia</p>
 </li>
 </ul>
 </div>
@@ -210,7 +188,7 @@ S Iancu</p></td>
 <div class="ulist">
 <ul>
 <li>
-<p>the Marand 'Web Templates' specification, kindly provided by Better by Marand d.o.o.;</p>
+<p>the SMART on FHIR protocol described by HL7 FHIR</p>
 </li>
 <li>
 <p>the EtherCIS ECISFLAT format by the EtherCIS community;</p>
@@ -230,6 +208,9 @@ S Iancu</p></td>
 </li>
 <li>
 <p>'OMG' and 'UML' are registered trademarks of the Object Management Group</p>
+</li>
+<li>
+<p>'FHIR' is a registered trademark of the Health Level Seven International</p>
 </li>
 </ul>
 </div>
@@ -272,10 +253,10 @@ S Iancu</p></td>
 <div class="sect2">
 <h3 id="_conformance"><a class="anchor" href="#_conformance"></a>1.4. Conformance</h3>
 <div class="paragraph">
-<p>When used with openEHR-REST API, the available calls to be conformance tested are the same as for other openEHR serialisation formats (canonical JSON etc), but with at different representation format (indicated by setting appropriate Content-Type http header).</p>
+<p>When used with openEHR-REST API, the Authorization and Authentication of applications should be through the SMART protocol.</p>
 </div>
 <div class="paragraph tbd">
-<p><strong>TBD</strong>: Conformance testing and Content-Type will be further described later.</p>
+<p><strong>TBD</strong>: Conformance testing will be further described later.</p>
 </div>
 </div>
 </div>
@@ -286,40 +267,229 @@ S Iancu</p></td>
 <div class="sect2">
 <h3 id="_requirements"><a class="anchor" href="#_requirements"></a>2.1. Requirements</h3>
 <div class="paragraph">
-<p>The default serialised data representations for openEHR content are canonical XML, based on the <a href="https://specifications.openehr.org/releases/ITS-XML/latest" target="_blank" rel="noopener">openEHR RM XSDs</a>, canonical JSON, described by the <a href="https://specifications.openehr.org/releases/ITS-JSON/latest" target="_blank" rel="noopener">openEHR JSON schemas</a>, and potentially any other canonical serial format based on the underlying Reference Model (e.g. YAML etc). Here, 'canonical' means any fully-expressed instance data in which:</p>
+<p>The openEHR Reference Model and REST APIs provide a foundation for interoperable applications. For applications to be truly portable between vendors, there is a requirement for uniform authentication, authorization.</p>
+</div>
+<div class="paragraph">
+<p>Many applications also function in the context of a single EHR (or Patient) or an Episode (or Encounter) and “context selection” and “launches” become essential.</p>
+</div>
+<div class="paragraph">
+<p>The SMART on openEHR specification is meant to provide this framework for:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>the containment structure follows that of the RM;</p>
+<p>Service Discovery</p>
 </li>
 <li>
-<p>all RM mandatory fields are present;</p>
+<p>Authentication and Authorization</p>
 </li>
 <li>
-<p>all attributes are named as per the RM, and</p>
-</li>
-<li>
-<p>all cardinalities respect the RM.</p>
+<p>Launching apps from an EHR "Launcher"</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conceptual_approach"><a class="anchor" href="#_conceptual_approach"></a>3. Conceptual Approach</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_background"><a class="anchor" href="#_background"></a>3.1. Background</h3>
 <div class="paragraph">
-<p>The canonical formats are routinely used by all openEHR implementations implementing the <a href="https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html" target="_blank" rel="noopener">openEHR REST API specification</a>, and in other ways, e.g. for DB dump/load implementation, ETL and so on. However, creating data instances according to these formats is not always straightforward, particularly for developers with minimal exposure to openEHR, and various alternatives have been used in the past to simplify the job of content creation and committal for application developers. These include TDS/TDD (XSD-based Template Data Schema &amp; Document), and so-called EtherCIS Flat JSON, Marand Flat JSON and Structured JSON.</p>
+<p>SMART stands for “Substitutable Medical Applications and Reusable Technologies” and was initially proposed as SMART on FHIR (<a href="https://pubmed.ncbi.nlm.nih.gov/26911829/" class="bare">https://pubmed.ncbi.nlm.nih.gov/26911829/</a>). It provides a good starting point for this specification as it builds on OAuth2 and OIDC which are industry standards for authentication and authorization. This specification aims to be fully backward compatible with SMART on FHIR while making this protocol work for vendors utilizing openEHR, FHIR REST APIs, or both.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_glossary"><a class="anchor" href="#_glossary"></a>3.2. Glossary</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Application - Software developed by the vendor or an external entity designed to work with the CDR and/or Launcher built by the vendor.</p>
+</li>
+<li>
+<p>Vendor - An entity that provides an openEHR CDR and/or Launchers as a service to end users.</p>
+</li>
+<li>
+<p>openEHR CDR - An openEHR Clinical Data Repository that provides a REST API conformant to the openEHR REST API specification.</p>
+</li>
+<li>
+<p>FHIR CDR - A FHIR server that provides an FHIR REST API conformant with the FHIR specification.</p>
+</li>
+<li>
+<p>OAuth2 Server - An authentication server that provides APIs consistent with the OAuth2 specification and will be extended to the SMART protocol that will be described in this document</p>
+</li>
+<li>
+<p>Launcher - Software built by the vendor that serves to launch other applications within the user being a patient or practitioner. This could be the “EHR” that provides other functionality, but could also a separate application.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_service_discovery"><a class="anchor" href="#_service_discovery"></a>4. Service Discovery</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_background_2"><a class="anchor" href="#_background_2"></a>4.1. Background</h3>
+<div class="paragraph">
+<p>The process of authentication and accessing a vendor’s APIs usually has multiple endpoints of interest. Some of these can include the OAuth2’s well-known endpoints like Token and Authentication endpoints. The application may also be interested in other APIs like the openEHR REST API, vendor’s proprietary APIs, DICOMWeb APIs, FHIR APIs to name a few.</p>
 </div>
 <div class="paragraph">
-<p>This specification responds to the requirement for a complete representation of all of these serial formats within a common formal framework that will permit further variants in the future as and when needed.</p>
+<p>The SMART Service Discovery builds on the .well-known/smart-configuration as per SMART on FHIR and enables a vendor to advertise multiple services alongside the well-known OAuth2 endpoints for authentication.</p>
 </div>
 <div class="paragraph">
-<p>Unresolved directive in master.adoc - include::master03-conceptual.adoc[leveloffset=+1]</p>
+<p>Given a vendor’s base URL of <a href="https://ehr.example.com" class="bare">https://ehr.example.com</a>, the SMART Configuration well-known endpoint should be available at <a href="https://ehr.example.com/.well-known/smart-configuration" class="bare">https://ehr.example.com/.well-known/smart-configuration</a>.</p>
 </div>
+<div class="paragraph">
+<p>Note: The vendor can choose to make <a href="https://ehr.example.com" class="bare">https://ehr.example.com</a> the base URL of their FHIR endpoint if they want to maintain backward compatibility for SMART on FHIR application, since these apps assume the vendor’s base URL is always the FHIR server.</p>
+</div>
+<div class="paragraph">
+<p>An example of a response from /.well-known/smart-configuration will look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="json"><span></span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;issuer&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://ehr.example.com&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;jwks_uri&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://ehr.example.com/.well-known/jwks.json&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;authorization_endpoint&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://ehr.example.com/auth/authorize&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;token_endpoint&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://ehr.example.com/auth/token&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;services&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">    </span><span class="tok-nt">&quot;openehr&quot;</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">      </span><span class="tok-nt">&quot;baseUrl&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;https://ehr.example.com/openehr/rest&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">	    </span><span class="tok-nt">&quot;description&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;The openEHR official API baseUrl&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">      </span><span class="tok-nt">&quot;documentation&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://example.com/openehr/docs&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">      </span><span class="tok-nt">&quot;openapi&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://example.com/openehr/openapi.json&quot;</span>
+<span class="tok-w">    </span><span class="tok-p">},</span>
+<span class="tok-w">    </span><span class="tok-nt">&quot;fhir&quot;</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">      </span><span class="tok-nt">&quot;baseUrl&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;https://ehr.example.com/&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">	    </span><span class="tok-nt">&quot;description&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;The FHIR API baseUrl&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">    </span><span class="tok-p">},</span>
+<span class="tok-w">    </span><span class="tok-nt">&quot;org.medblocks.s3&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">      </span><span class="tok-nt">&quot;baseUrl&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;https://s3.example.com/storage&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">      </span><span class="tok-nt">&quot;documentation&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://example.com/s3/docs&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">      </span><span class="tok-nt">&quot;openapi&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://example.com/s3/openapi.json&quot;</span>
+<span class="tok-w">    </span><span class="tok-p">},</span>
+<span class="tok-w">    </span><span class="tok-nt">&quot;nl.code24.demographics&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">      </span><span class="tok-nt">&quot;baseUrl&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;https://demographics.example.com/demographics&quot;</span>
+<span class="tok-w">    </span><span class="tok-p">}</span>
+<span class="tok-w">  </span><span class="tok-p">},</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;token_endpoint_auth_methods_supported&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">[</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;client_secret_basic&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;private_key_jwt&quot;</span>
+<span class="tok-w">  </span><span class="tok-p">],</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;grant_types_supported&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">[</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;authorization_code&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;client_credentials&quot;</span>
+<span class="tok-w">  </span><span class="tok-p">],</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;registration_endpoint&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://ehr.example.com/auth/register&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;scopes_supported&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-s2">&quot;openid&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s2">&quot;profile&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s2">&quot;launch&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s2">&quot;launch/patient&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s2">&quot;patient/*.rs&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s2">&quot;user/*.rs&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s2">&quot;offline_access&quot;</span><span class="tok-p">],</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;response_types_supported&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-s2">&quot;code&quot;</span><span class="tok-p">],</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;management_endpoint&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://ehr.example.com/user/manage&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;introspection_endpoint&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://ehr.example.com/user/introspect&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;revocation_endpoint&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;https://ehr.example.com/user/revoke&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;code_challenge_methods_supported&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-s2">&quot;S256&quot;</span><span class="tok-p">],</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;capabilities&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">[</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;launch-ehr&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;permission-patient&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;permission-v2&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;client-public&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;client-confidential-symmetric&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;context-ehr-patient&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;sso-openid-connect&quot;</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;launch-openehr-ehr&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;openehr-permission-v1&quot;</span>
+<span class="tok-w">	  </span><span class="tok-s2">&quot;launch-base64-json&quot;</span>
+<span class="tok-w">  </span><span class="tok-p">]</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_authentication_endpoints"><a class="anchor" href="#_authentication_endpoints"></a>4.2. Authentication endpoints</h3>
+<div class="paragraph">
+<p>The authorization_endpoint, token_endpoint, registration_endpoint, introspection_endpoint etc. should be exactly the same as in the OAuth2 + OIDC protocol’s .well-known/openid-configuration.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_services"><a class="anchor" href="#_services"></a>4.3. Services</h3>
+<div class="paragraph">
+<p>The "services" section allows the application to discover the APIs of all services that can be used along with a description and documentation. The following are identified as known services:
+* openehr: The base URL of the openEHR REST API
+* fhir: The base URL of the FHIR REST API
+* dicomweb: The base URL of the DICOMWeb REST API</p>
+</div>
+<div class="paragraph">
+<p>If the vendor may decide to add additional services to this list. The key of each service should then follow the inverse domain naming convention using a domain the vendor has control over.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_capabilities"><a class="anchor" href="#_capabilities"></a>4.4. Capabilities</h3>
+<div class="paragraph">
+<p>The capabilities section should include all relevant capabilities as per SMART on FHIR. Alongside, the following capabilities should indicate the ability to launch using openEHR artefacts:
+* "launch-openehr-ehr" - support to select an EHR context within openEHR returned as the "ehr" parameter in a token.
+* "launch-openehr-episode" - support to launch and select an Episode context returned as the "episode" parameter in a token.
+* "openehr-permission-v1" - support for the scope and authorization scheme described below for openEHR REST APIs
+* "launch-base64-json" - support for the "launch" URL parameter being a base64 encoded JSON of the context in case of EHR launch protocol.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_authentication_authorization_and_scopes"><a class="anchor" href="#_authentication_authorization_and_scopes"></a>5. Authentication, Authorization and Scopes</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+under development
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_context_selection"><a class="anchor" href="#_context_selection"></a>6. Context Selection</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+under development
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_launch_protocol"><a class="anchor" href="#_launch_protocol"></a>7. Launch Protocol</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+under development
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-06-23 08:11:46 UTC
+Last updated 2023-07-06 17:49:00 UTC
 </div>
 </div>
 </body>
