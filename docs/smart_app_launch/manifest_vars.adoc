@@ -1,4 +1,4 @@
-:spec_title: SMART App Launch
+:spec_title: SMART on openEHR
 :copyright_year: 2023
 :spec_status: DEVELOPMENT
 :keywords: JSON, REST, SMART, OAuth2, OIDC, Authentication, Authorization

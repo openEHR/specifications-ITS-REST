@@ -20,7 +20,7 @@ include::{ref_dir}/docs/references/reference_definitions.adoc[]
 // ============================================= Asciidoc BODY ===============================================
 //
 
-include::master00-amendment_record.adoc[leveloffset=+1]
+// include::master00-amendment_record.adoc[leveloffset=+1]
 
 //
 // --------------------------------------------- Preface -----------------------------------------------
@@ -30,7 +30,7 @@ include::master00-amendment_record.adoc[leveloffset=+1]
 
 === Primary Author
 
-* Sidharth Ramesh; openEHR Foundation Management Board.
+* Sidharth Ramesh; Medblocks.
 * Sebastian Iancu; Code24
 
 === Contributors
@@ -64,10 +64,9 @@ A significant part of the design ideas and content of this specification was ada
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-overview.adoc[leveloffset=+1]
 include::master03-conceptual.adoc[leveloffset=+1]
-include::master04-service_discovery.adoc[leveloffset=+1]
-include::master05-authentication_authorization_scopes.adoc[leveloffset=+1]
-include::master06-context_selection.adoc[leveloffset=+1]
-include::master07-launch.adoc[leveloffset=+1]
+include::master04-registration.adoc[leveloffset=+1]
+include::master05-service_discovery.adoc[leveloffset=+1]
+include::master06-authentication_authorization_scopes.adoc[leveloffset=+1]
 
 //
 // --------------------------------------------- REFERENCES -----------------------------------------------

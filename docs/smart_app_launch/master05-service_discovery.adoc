@@ -1,0 +1,114 @@
+= Service Discovery
+
+== Background
+
+A CDR vendor usually has multiple endpoints of interest. Some of these can include the OAuth2's `.well-known` endpoints like Token and Authentication endpoints. The application may also be interested in other APIs like the openEHR REST API, vendor's proprietary APIs, DICOMWeb APIs, FHIR APIs to name a few.
+
+The SMART Service Discovery builds on the .well-known/smart-configuration of the SMART on FHIR specification and enables a vendor to advertise multiple services alongside the .well-known OAuth2 endpoints for authentication.
+
+Given a vendor's base URL of https://ehr.example.com, the SMART Configuration endpoint SHOULD be available at https://ehr.example.com/.well-known/smart-configuration.
+
+[NOTE]
+====
+The vendor can choose to make https://ehr.example.com the base URL of their FHIR endpoint if they want to maintain backward compatibility for SMART on FHIR application, since these apps assume the vendor's base URL is always the FHIR server.
+====
+
+An example of a response from /.well-known/smart-configuration will look like this:
+
+[source,json]
+--------
+{
+  "issuer": "https://ehr.example.com",
+  "jwks_uri": "https://ehr.example.com/.well-known/jwks.json",
+  "authorization_endpoint": "https://ehr.example.com/auth/authorize",
+  "token_endpoint": "https://ehr.example.com/auth/token",
+  "services": {
+    "org.openehr.rest" : {
+      "baseUrl":"https://ehr.example.com/openehr/rest",
+	    "description": "The openEHR official API baseUrl",
+      "documentation": "https://example.com/openehr/docs",
+      "openapi": "https://example.com/openehr/openapi.json"
+    },
+    "org.fhir.rest" : { 
+      "baseUrl":"https://ehr.example.com/",
+	    "description": "The FHIR API baseUrl",
+    },
+    "org.medblocks.s3": {
+      "baseUrl":"https://s3.example.com/storage",
+      "documentation": "https://example.com/s3/docs",
+      "openapi": "https://example.com/s3/openapi.json"
+    },
+    "nl.code24.demographics": {
+      "baseUrl":"https://demographics.example.com/demographics"
+    }
+  },
+  "token_endpoint_auth_methods_supported": [
+    "client_secret_basic",
+    "private_key_jwt"
+  ],
+  "grant_types_supported": [
+    "authorization_code",
+    "client_credentials"
+  ],
+  "registration_endpoint": "https://ehr.example.com/auth/register",
+  "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.rs", "user/*.rs", "offline_access"],
+  "response_types_supported": ["code"],
+  "management_endpoint": "https://ehr.example.com/user/manage",
+  "introspection_endpoint": "https://ehr.example.com/user/introspect",
+  "revocation_endpoint": "https://ehr.example.com/user/revoke",
+  "code_challenge_methods_supported": ["S256"],
+  "capabilities": [
+    "launch-ehr",
+    "permission-patient",
+    "permission-v2",
+    "client-public",
+    "client-confidential-symmetric",
+    "context-ehr-patient",
+    "sso-openid-connect"
+    "launch-openehr-ehr",
+    "openehr-permission-v1"
+	  "launch-base64-json"
+  ]
+}
+--------
+
+== Authentication endpoints
+The following should be exactly the same as in the OAuth2 + OIDC protocol's `.well-known/openid-configuration` as per link:https://openid.net/specs/openid-connect-discovery-1_0.html[OpenID Connect Discovery 1.0]:
+
+- `isuer`
+- `jwks_uri`
+- `authorization_endpoint`
+- `token_endpoint`
+- `token_endpoint_auth_methods_supported`
+- `grant_types_supported`
+- `scopes_supported`
+- `response_types_supported`
+- `introspection_endpoint`
+- `revocation_endpoint`
+- `code_challenge_methods_supported`
+
+
+== Services
+The `services` section allows the application to discover the APIs of all services that can be used along with a description and documentation. The following are identified as known services:
+
+* `org.openehr.rest`: The base URL of the openEHR REST API
+* `org.fhir.rest`: The base URL of the FHIR REST API
+* `org.dicomstandard.dicomweb.rest`: The base URL of the DICOMWeb REST API
+* `com.amazon.aws.s3.rest`: The base URL of an AWS S3 compatible REST API
+
+If the vendor may decide to add additional services to this list. The key of each service should then follow the inverse domain naming convention using a domain the vendor has control over. For exmaple, `nl.code24.demographics` is a propritory service that is not part of the openEHR, FHIR or DICOMWeb specifications.
+
+The body of the service should include the following:
+
+* `baseUrl`: [REQUIRED] The base URL of the service
+* `description`: [OPTIONAL] A description of the service
+* `documentation`: [OPTIONAL] A URL to the documentation of the service
+* `openapi`: [OPTIONAL] A URL to the OpenAPI specification of the service
+
+== Capabilities
+The `capabilities` section is an array that should include all relevant capabilities as per SMART. The following additional capabilities should indicate the ability to launch using openEHR artefacts:
+
+* `launch-openehr-ehr` - support to select an EHR context within openEHR returned as the "ehr" parameter in a token.
+* `launch-openehr-episode` - support to launch and select an Episode context returned as the "episode" parameter in a token.
+* `openehr-permission-v1` - support for the scope and authorization scheme described below for openEHR REST APIs
+* `launch-base64-json` - support for the "launch" URL parameter being a base64 encoded JSON of the context.

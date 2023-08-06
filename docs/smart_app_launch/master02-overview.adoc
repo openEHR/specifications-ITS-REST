@@ -1,12 +1,14 @@
 = Overview
 
 == Requirements
-The openEHR Reference Model and REST APIs provide a foundation for interoperable applications. For applications to be truly portable between vendors, there is a requirement for uniform authentication, authorization. 
+The openEHR Reference Model and REST APIs provide a foundation for interoperable applications. For applications to be truly portable between vendors, there is a requirement for uniform authentication and authorization so that apps can be built once and used with multiple vendors.
 
-Many applications also function in the context of a single EHR (or Patient) or an Episode (or Encounter) and “context selection” and “launches” become essential. 
+Many applications also function in the context of a single EHR, an Episode. Selection of this context also become essential. 
 
 The SMART on openEHR specification is meant to provide this framework for:
 
+* Application Registration
 * Service Discovery
 * Authentication and Authorization
-* Launching apps from an EHR "Launcher"
+* Context selection
+* iFrame Embedded Launch

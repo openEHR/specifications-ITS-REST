@@ -1,0 +1,8 @@
+= Application Registration
+
+An Application needs to first regester itself with the CDR that it needs to work with. This process involves the following:
+
+- The Application registers with the CDR by providing the appropriate, ID, OAuth2 Scopes, Launch Contexts, Domains, Redirect URLs etc.
+- The Application obtains credentials like the Client ID, Client Secret from the CDR for authentication and authorization.
+
+While this process could be formalised and automated using protocols like OAuth2 Dynamic Client Registration in the future, the current recommendation is to do this out-of-band in a way that makes sense for the Application Vendor and the CDR Vendor. For example, the CDR vendor could offer a Registration Page that Application Vendors could use to register their applications, and can have an approval and audit mechanism before applications are registered.
