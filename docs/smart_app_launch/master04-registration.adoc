@@ -1,6 +1,6 @@
 = Application Registration
 
-An Application needs to first regester itself with the CDR that it needs to work with. This process involves the following:
+An _Application_ needs to first register itself with the CDR that it needs to work with. This process involves the following:
 
 - The Application registers with the CDR by providing the appropriate, ID, OAuth2 Scopes, Launch Contexts, Domains, Redirect URLs etc.
 - The Application obtains credentials like the Client ID, Client Secret from the CDR for authentication and authorization.
