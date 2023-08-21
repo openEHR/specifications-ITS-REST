@@ -9,6 +9,13 @@ The intended audience includes:
 * Standards bodies producing health informatics standards;
 * Solution vendors.
 
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview^]
+* {openehr_its_rest_releases}[openEHR REST APIs]
+
 == Status
 
 This specification is in the {spec_status} state. The development version of this document can be found at {openehr_smart_app_launch}[{openehr_smart_app_launch}^].
