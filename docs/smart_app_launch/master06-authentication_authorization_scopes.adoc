@@ -1,9 +1,10 @@
 = Authentication, Authorization and Scopes
 
 == Authentication
-The application can authenticate with the CDR using standard {ietf_html}/rfc6749[OAuth2.0 protocol^].
 
-The CDR SHOULD support at least the following basic flows:
+The _Application_ can authenticate with the _CDR_ using standard {ietf_html}/rfc6749[OAuth2.0 protocol^].
+
+The _CDR_ SHOULD support at least the following basic flows:
 
 - {ietf_html}/rfc6749#section-1.3.1[Authorization Code Flow^] with {ietf_html}/rfc7636[PKCE^]
 - {ietf_html}/rfc6749#section-1.3.1[Authorization Code Flow^] with client secret
@@ -12,7 +13,7 @@ The CDR SHOULD support at least the following basic flows:
 
 The supported flows SHOULD be advertised in the `.well-known/smart-configuration` endpoint.
 
-The recommended authentication flow depends on the type of the application. Here we make a distinction between the different kinds of applications based on whether or not it can hold a client secret. The following types of applications are considered:
+The recommended authentication flow depends on the type of the application. Here we make a distinction between the different kinds of applications based on whether it can hold a client secret. The following types of applications are considered:
 
 - **Confidential Clients**: Have the ability to hold a client secret. This includes web applications running on a server and backend applications.
 - **Public Clients**: Do not have the ability to hold a client secret. This includes mobile applications and single page web applications.
@@ -48,8 +49,7 @@ Both Patient facing and Practitioner facing application have special requirement
 1. Standalone launch: The URL of the application is opened directly be the end user. Eg: `https://myapp.com`. The application decides which CDR url to use based on the user's selection.
 2. Embedded EHR launch: The application is embedded within an EHR using an iFrame. Additional parameters are passed to the application to indicate the CDR to use, and the launch context. Eg: `https://myapp.com?launch=123&iss=https://cdr.com`
 
-
-The Authorization Code Flow as defined in OAuth2 is a 2 step process where:
+The Authorization Code Flow as defined in OAuth2 is a 2-step process where:
 
 1. The client first requests an authorization code from the authorization server by redirecting the user to the `authorization_endpoint`.
 2. Exchanges the authorization code for an access token by using the `token_endpoint`
@@ -57,11 +57,12 @@ The Authorization Code Flow as defined in OAuth2 is a 2 step process where:
 The SMART protocol makes the following modifications to the Authorization Code Flow to enhance it for the use case of standalone and embedded launch:
 
 === Context Selection
+
 In the Standalone launch, application can request a CDR for context selection. Most patient and practitioner facing application, along with the initial login and consent page, will also require the CDR to send additional context like the patient ID, Episode ID to the application. This context data can be used to pre-populate the application with the correct data.
 
-The CDR can do this by automatically inferring the context based on the user logged in or `launch` token (in case of Embedded iFrame Launch). The CDR can provide a screen right after the consent page to select the context in case of ambuity.
+The CDR can do this by automatically inferring the context based on the user logged in or `launch` token (in case of Embedded iFrame Launch). The CDR can provide a screen right after the consent page to select the context in case of ambiguity.
 
-The application can request the CDR for openEHR related context selection by passing the following special scopes in the authorization request:
+The _Application_ can request the _CDR_ for openEHR related context selection by passing the following special scopes in the authorization request:
 
 [width="100%",cols="2,2",options="header"]
 |=======================================================================
@@ -85,6 +86,7 @@ The launch scopes and token attributes from SMART on FHIR can also be combined h
 ====
 
 === Embedded iFrame Launch
+
 Most practitioner facing, as well as some patient facing applications will have to be embedded within the user's workflow by using an iFrame. The CDR can automatically select the correct context for the application by passing the `launch` parameter to the application's url. The CDR should also provide the `iss` parameter to indicate the CDR for the application to use.
 
 The application will be opened on a URL like follows: `https://myapp.com?launch=123&iss=https://cdr.com`.
@@ -102,9 +104,8 @@ It is **RECOMMENDED** that the `launch` token be a base64 encoded JSON object co
 
 
 == Scopes for openEHR REST API
-The application can request access to the CDR resources using the OAuth2.0 scopes. 
 
-A complete scope is represented using:
+The _Application_ can request access to the _CDR_ resources using the OAuth2.0 scopes. A complete scope is represented using:
 
 `<compartment>/<resource>.<permission>`
 
@@ -127,7 +128,7 @@ The `<templateId>` in the above definition follows the blob pattern matching del
 - `MyHospital.**` - Matches `MyHospital.Template.v0`, `MyHospital.Template.v2` and `MyHospital.OtherTemplate.v0`
 - `*` - Matches all templates in the system
 
-The <queryName> in the above definition follows the blob pattern matching delimited by “.” a period. For example:
+The `<queryName>` in the above definition follows the blob pattern matching delimited by `.` a period. For example:
 
 - `org.openehr::compositions` - Matches only `org.openehr::compositions`
 - `org.openehr::*` - Matches `org.openehr::compositions` and `org.openehr::bloodpressure`
