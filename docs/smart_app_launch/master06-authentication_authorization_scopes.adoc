@@ -1,14 +1,14 @@
 = Authentication, Authorization and Scopes
 
 == Authentication
-The application can authenticate with the CDR using standard link:https://datatracker.ietf.org/doc/html/rfc6749[OAuth2.0 protocol]. 
+The application can authenticate with the CDR using standard {ietf_html}/rfc6749[OAuth2.0 protocol^].
 
 The CDR SHOULD support at least the following basic flows:
 
-- link:https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1[Authorization Code Flow] with link:https://datatracker.ietf.org/doc/html/rfc7636[PKCE]
-- link:https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1[Authorization Code Flow] with client secret
-- link:https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4[Client Credentials Flow]
-- link:https://datatracker.ietf.org/doc/html/rfc7515[JWS Assertion Flow] (RFC7515)
+- {ietf_html}/rfc6749#section-1.3.1[Authorization Code Flow^] with {ietf_html}/rfc7636[PKCE^]
+- {ietf_html}/rfc6749#section-1.3.1[Authorization Code Flow^] with client secret
+- {ietf_html}/rfc6749#section-1.3.4[Client Credentials Flow^]
+- {ietf_html}/rfc7515[JWS Assertion Flow^] (RFC7515)
 
 The supported flows SHOULD be advertised in the `.well-known/smart-configuration` endpoint.
 
@@ -23,7 +23,7 @@ The distinction can also be made on the basis of the user interaction. The follo
 - **Practitioner facing**: The practitioner is the direct user of this application. Can be opened up within the context of a patient, or episode, but is not mandatory.
 - **Backend**: The application is not directly used by a user, but is used by other applications or services in the background.
 
-It is recommended that Patient and Practitioner facing applications use one of the Authorization Code Flows to obtain necessary user information and context. Condifential clients can use the Authorization Code Flow with PKCE or the Authorization Code Flow with Client Secret. Public clients SHOULD always use the Authorization Code Flow with PKCE. Backend applications SHOULD always use confidential clients and use the JWS Assertion Flow or the Client Credentials Flow.
+It is recommended that Patient and Practitioner facing applications use one of the Authorization Code Flows to obtain necessary user information and context. Confidential clients can use the Authorization Code Flow with PKCE or the Authorization Code Flow with Client Secret. Public clients SHOULD always use the Authorization Code Flow with PKCE. Backend applications SHOULD always use confidential clients and use the JWS Assertion Flow or the Client Credentials Flow.
 
 The following table shows the recommended flow for a few example application.
 
@@ -38,8 +38,8 @@ The following table shows the recommended flow for a few example application.
 
 The following flows are considered legacy and SHOULD NOT be used:
 
-- link:https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.2[Implicit Flow]
-- link:https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.3[Resource Owner Password Credentials]
+- {ietf_html}/rfc6749#section-1.3.2[Implicit Flow^]
+- {ietf_html}/rfc6749#section-1.3.3[Resource Owner Password Credentials^]
 
 == SMART Authorization Flow
 

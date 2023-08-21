@@ -73,7 +73,7 @@ An example of a response from /.well-known/smart-configuration will look like th
 --------
 
 == Authentication endpoints
-The following should be exactly the same as in the OAuth2 + OIDC protocol's `.well-known/openid-configuration` as per link:https://openid.net/specs/openid-connect-discovery-1_0.html[OpenID Connect Discovery 1.0]:
+The following should be exactly the same as in the OAuth2 + OIDC protocol's `.well-known/openid-configuration` as per https://openid.net/specs/openid-connect-discovery-1_0.html[OpenID Connect Discovery 1.0^]:
 
 - `isuer`
 - `jwks_uri`
