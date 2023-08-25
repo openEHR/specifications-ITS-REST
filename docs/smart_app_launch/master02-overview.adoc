@@ -4,18 +4,16 @@
 
 *SMART* stands for “Substitutable Medical Applications and Reusable Technologies”, a healthcare standard through which applications can access clinical information through a data store. It was initially proposed by https://smarthealthit.org/[SMART Health IT^] project and was later on specified as {hl7_fhir}/smart-app-launch/[SMART on FHIR^], a protocol which works on top of {hl7_fhir}[FHIR APIs^]. The specification builds on {ietf_html}/rfc6749[OAuth2^] and https://openid.net/specs/openid-connect-core-1_0.html#Authentication[OIDC Core^] which are industry standards for authentication and authorization, and allows 3rd party apps to seamlessly work with any (FHIR) EHR system that implements the protocol.
 
-The *SMART on openEHR* specification aims to be backward compatible with _SMART on FHIR_ while making this protocol work for vendors utilizing also openEHR REST APIs and more.
-
 == Glossary
 
 [width="100%",cols="2,2",options="header"]
 |=======================================================================
 |Term | Definition
 |Vendor | An entity that provides software to end-users.
-|Application | Software developed by the vendor or an external entity designed to work with the CDR and/or Launcher built by the vendor.
+|Application | Software developed by a vendor designed to work with the CDR and/or Launcher built by the same or another vendor.
 |CDR | A system comprising of an openEHR Clinical Data Repository and a FHIR Server, providing openEHR and FHIR REST APIs.
-|OAuth2 Server | An authentication server that provides APIs consistent with the OAuth2 specification and will be extended to the SMART protocol that will be described in this document
-|Launcher | User facing software built by the CDR vendor that serves to launch other applications within a context of a patient or practitioner. This can be the main “EHR system” or a separate application.
+|OAuth2 Server | An authentication server that provides APIs consistent with the OAuth2 specification and the SMART on openEHR protocol
+|Launcher | User facing software built by the CDR vendor that serves to launch other applications within a context of a Patient or Practitioner. This can be the main EHR system (i.e. a Portal) or a separate application.
 |=======================================================================
 
 == Why SMART on openEHR?
@@ -33,13 +31,16 @@ The SMART specification aims to solve this problem by providing a standard way f
 - The _Application_ needs a way to understand the "context" their app should open in by letting the _CDR_ handle EHR and Episode selection
 - The _Application_ needs a way to embed within the _CDR_'s user interface while maintaining the "context" to provide a seamless user experience
 
-The {openehr_rm}[openEHR Reference Model^] and {openehr_its_rest_releases}[openEHR REST APIs^] provide a foundation for interoperable applications. For applications to be truly portable between systems and vendors, there is a requirement for a uniform _authentication_ and _authorization_.
-Many of such applications also function in the _context_ of a single EHR, and potentially of a single Episode. Selection of this _context_ also becomes essential before lunching.
-
-The *SMART on openEHR* specification is meant to provide a framework for the following aspects:
+The *SMART on openEHR* specification aims to be backward compatible with {hl7_fhir}/smart-app-launch/[SMART on FHIR^] while making this protocol work also with {openehr_its_rest_releases}[openEHR REST APIs^] and more other APIs. It is meant to describe a framework and associated for the following aspects:
 
 * <<_application_registration,Application Registration>>
 * <<_service_discovery,Service Discovery>>
 * <<_authentication_authorization_and_scopes,Authentication and Authorization>>
 * <<_context_selection,Context Selection>>
 * <<_embedded_iframe_launch,Embedded iFrame Launch>>
+
+== Requirements
+
+The {openehr_rm}[openEHR Reference Model^] and openEHR REST APIs provide a foundation for interoperable _Applications_. For such applications to be truly portable between systems and vendors, there is a requirement for a uniform _authentication_ and _authorization_.
+
+Many of such applications also function in the _context_ of a single EHR or Patient, and potentially of a single Episode. Selection of this _context_ also becomes essential before lunching the _Application_.
