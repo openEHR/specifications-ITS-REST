@@ -10,6 +10,6 @@
 |{spec_tickets}/SPECITS-69[SPECITS-69^]. Adding "SMART on openEHR" specifications.
 |S Ramesh, +
 S Iancu
-|[[latest_issue_date]]20 Aug 2023
+|[[latest_issue_date]]26 Aug 2023
 
 |===

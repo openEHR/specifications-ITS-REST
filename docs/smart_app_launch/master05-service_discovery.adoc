@@ -93,8 +93,8 @@ A response from the SMART Configuration endpoint should include besides the {hl7
 
 The service list should minimally include the openEHR REST APIs endpoints specification available on the _CDR_, using the key `org.openehr.rest`. For consistency reason, the list should also include the specification of the FHIR server using the key `org.fhir.rest`:
 
-* `org.openehr.rest`*(required)*: The base URL of the openEHR REST APIs
-* `org.fhir.rest`*(recommended)*: The base URL of the FHIR APIs
+* `org.openehr.rest`: The base URL of the openEHR REST APIs `*(required)*`
+* `org.fhir.rest`: The base URL of the FHIR APIs `*(recommended)*`
 
 The CDR vendor may add additional services to the list, for example:
 
@@ -104,7 +104,7 @@ The CDR vendor may add additional services to the list, for example:
 
 Each service specification should include the following configurations:
 
-* `baseUrl`*(required)*: The base URL of the service
+* `baseUrl`: The base URL of the service `*(required)*`
 * `description`: A short description of the service
 * `documentation`: A URL to the documentation of the service
 * `openapi`: A URL to the OpenAPI specification of the service

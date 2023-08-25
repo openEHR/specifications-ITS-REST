@@ -41,14 +41,14 @@ This specification has benefited from formal and informal input from the openEHR
 * Ian McNicoll MD, FreshEHR, UK
 * Bostjan Lah, Senior Architect, Better, Slovenia
 
-A significant part of the design ideas and content of this specification was adapted from:
+A significant part of the design ideas of this specification was derived from:
 
-* the SMART on FHIR protocol described by HL7 FHIR
+* the SMART on FHIR protocol - SMART App Launch Release 2.1.0, published by HL7® FHIR®
 
 === Trademarks
 
 * 'openEHR' is a registered trademark of the openEHR Foundation
-* 'FHIR' is a registered trademark of the Health Level Seven International (HL7)
+* 'HL7' and 'FHIR' are the registered trademark of the Health Level Seven International
 
 //
 // --------------------------------------------- TOC -----------------------------------------------
