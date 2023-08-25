@@ -6,6 +6,7 @@ This document describes SMART protocol for an openEHR platform.
 
 The intended audience includes:
 
+* EHR systems, CDR or Application vendors;
 * Standards bodies producing health informatics standards;
 * Solution vendors.
 
@@ -15,6 +16,8 @@ Prerequisite documents for reading this document include:
 
 * The {openehr_overview}[openEHR Architecture Overview^]
 * {openehr_its_rest_releases}[openEHR REST APIs]
+* {hl7_fhir}/smart-app-launch/[SMART on FHIR^]
+* {ietf_html}/rfc6749[OAuth2^] and https://openid.net/specs/openid-connect-core-1_0.html#Authentication[OIDC Core^]
 
 == Status
 
