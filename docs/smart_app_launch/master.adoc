@@ -4,6 +4,7 @@
 include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
 include::manifest_vars.adoc[]
 include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
+:oidc_authentication: https://openid.net/specs/openid-connect-core-1_0.html#Authentication
 
 //
 // ============================================ Asciidoc PREAMBLE =============================================
@@ -69,6 +70,12 @@ include::master06-authentication_authorization_scopes.adoc[leveloffset=+1]
 //
 
 :sectnums!:
-//== References
-//
-//bibliography::[]
+
+[bibliography]
+== References
+
+* SMART App Launch - Release 2.1.0 (2021), {hl7_fhir}/smart-app-launch/
+* OAuth2 Framework, {ietf_html}/rfc6749
+* OpenId Connect (OIDC), {oidc_authentication}
+* JSON Web Token (JWT) Assertion, {ietf_html}/rfc7523
+* JSON Web Signature (JWS), {ietf_html}/rfc7515

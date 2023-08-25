@@ -52,7 +52,12 @@
 </li>
 <li><a href="#_authentication_authorization_and_scopes">5. Authentication, Authorization and Scopes</a>
 <ul class="sectlevel2">
-<li><a href="#_authentication">5.1. Authentication</a></li>
+<li><a href="#_authentication">5.1. Authentication</a>
+<ul class="sectlevel3">
+<li><a href="#_available_flows">5.1.1. Available flows</a></li>
+<li><a href="#_application_types">5.1.2. Application types</a></li>
+</ul>
+</li>
 <li><a href="#_smart_authorization_flow">5.2. SMART Authorization Flow</a>
 <ul class="sectlevel3">
 <li><a href="#_context_selection">5.2.1. Context Selection</a></li>
@@ -62,6 +67,7 @@
 <li><a href="#_scopes_for_openehr_rest_api">5.3. Scopes for openEHR REST API</a></li>
 </ul>
 </li>
+<li><a href="#_references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -201,12 +207,12 @@ S Iancu</p></td>
 </ul>
 </div>
 <div class="paragraph">
-<p>A significant part of the design ideas and content of this specification was adapted from:</p>
+<p>A significant part of the design ideas of this specification was derived from:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>the SMART on FHIR protocol described by HL7 FHIR</p>
+<p>the SMART on FHIR protocol - SMART App Launch Release 2.1.0, published by HL7® FHIR®</p>
 </li>
 </ul>
 </div>
@@ -219,7 +225,7 @@ S Iancu</p></td>
 <p>'openEHR' is a registered trademark of the openEHR Foundation</p>
 </li>
 <li>
-<p>'FHIR' is a registered trademark of the Health Level Seven International (HL7)</p>
+<p>'HL7' and 'FHIR' are the registered trademark of the Health Level Seven International</p>
 </li>
 </ul>
 </div>
@@ -239,6 +245,9 @@ S Iancu</p></td>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>EHR systems, CDR or Application vendors;</p>
+</li>
 <li>
 <p>Standards bodies producing health informatics standards;</p>
 </li>
@@ -260,6 +269,12 @@ S Iancu</p></td>
 </li>
 <li>
 <p><a href="https://specifications.openehr.org/releases/ITS-REST/latest">openEHR REST APIs</a></p>
+</li>
+<li>
+<p><a href="https://www.hl7.org/fhir/smart-app-launch/" target="_blank" rel="noopener">SMART on FHIR</a></p>
+</li>
+<li>
+<p><a href="https://tools.ietf.org/html/rfc6749" target="_blank" rel="noopener">OAuth2</a> and <a href="https://openid.net/specs/openid-connect-core-1_0.html#Authentication" target="_blank" rel="noopener">OpenId Connect (OIDC)</a></p>
 </li>
 </ul>
 </div>
@@ -296,7 +311,7 @@ S Iancu</p></td>
 <div class="sect2">
 <h3 id="_background"><a class="anchor" href="#_background"></a>2.1. Background</h3>
 <div class="paragraph">
-<p><strong>SMART</strong> stands for “Substitutable Medical Applications and Reusable Technologies”, a healthcare standard through which applications can access clinical information through a data store. It was initially proposed by <a href="https://smarthealthit.org/" target="_blank" rel="noopener">SMART Health IT</a> project and was later on specified as <a href="https://www.hl7.org/fhir/smart-app-launch/" target="_blank" rel="noopener">SMART on FHIR</a>, a protocol which works on top of <a href="https://www.hl7.org/fhir" target="_blank" rel="noopener">FHIR APIs</a>. The specification builds on <a href="https://tools.ietf.org/html/rfc6749" target="_blank" rel="noopener">OAuth2</a> and <a href="https://openid.net/specs/openid-connect-core-1_0.html#Authentication" target="_blank" rel="noopener">OIDC Core</a> which are industry standards for authentication and authorization, and allows 3rd party apps to seamlessly work with any (FHIR) EHR system that implements the protocol.</p>
+<p><strong>SMART</strong> stands for “Substitutable Medical Applications and Reusable Technologies”, a healthcare standard through which applications can access clinical information through a data store. It was initially proposed by <a href="https://smarthealthit.org/" target="_blank" rel="noopener">SMART Health IT</a> project and was later on specified as <a href="https://www.hl7.org/fhir/smart-app-launch/" target="_blank" rel="noopener">SMART on FHIR</a>, a protocol which works on top of <a href="https://www.hl7.org/fhir" target="_blank" rel="noopener">FHIR APIs</a>. The specification builds on <a href="https://tools.ietf.org/html/rfc6749" target="_blank" rel="noopener">OAuth2</a> and <a href="https://openid.net/specs/openid-connect-core-1_0.html#Authentication" target="_blank" rel="noopener">OpenID Connect (OIDC)</a> which are industry standards for authentication and authorization, and allows 3rd party apps to seamlessly work with any EHR system that implements the protocol.</p>
 </div>
 </div>
 <div class="sect2">
@@ -319,19 +334,23 @@ S Iancu</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Application</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Software developed by a vendor designed to work with the CDR and/or Launcher built by the same or another vendor.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Software developed by a vendor designed to work with the CDR and/or Launcher built by the same or another vendor. This is also known as the "client" in terms of OAuth roles.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CDR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A system comprising of an openEHR Clinical Data Repository and a FHIR Server, providing openEHR and FHIR REST APIs.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A system consisting of an openEHR Clinical Data Repository and a FHIR Server, providing openEHR REST APIs and FHIR APIs. This is sometimes also known or mentioned in the SMART on FHIR as the "EHR system".</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OAuth2 Server</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An authentication server that provides APIs consistent with the OAuth2 specification and the SMART on openEHR protocol</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An authentication and authorization server that provides APIs consistent with the OAuth2 framework specification and the SMART on openEHR protocol.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Launcher</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User facing software built by the CDR vendor that serves to launch other applications within a context of a Patient or Practitioner. This can be the main EHR system (i.e. a Portal) or a separate application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User facing software built by the CDR vendor that serves to launch other applications within a context of a Patient or Practitioner. This can be the main EHR system. (i.e. a Portal) or a separate application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EHR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A (session) context that relates to an <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_package" target="_blank" rel="noopener">openEHR <code>EHR</code> container</a> and the associated Patient. This indicates the subject on which the Application will work. Notice: this should not be confused with what SMART on FHIR uses to name "the system" providing FHIR APIs.</p></td>
 </tr>
 </tbody>
 </table>
@@ -381,7 +400,7 @@ S Iancu</p></td>
 <p><a href="#_service_discovery">Service Discovery</a></p>
 </li>
 <li>
-<p><a href="#_authentication_authorization_and_scopes">Authentication and Authorization</a></p>
+<p><a href="#_authentication_authorization_and_scopes">Authentication, Authorization and Scopes</a></p>
 </li>
 <li>
 <p><a href="#_context_selection">Context Selection</a></p>
@@ -568,10 +587,10 @@ S Iancu</p></td>
 <div class="ulist">
 <ul>
 <li>
-<p><code>org.openehr.rest</code><strong>(required)</strong>: The base URL of the openEHR REST APIs</p>
+<p><code>org.openehr.rest</code>: The base URL of the openEHR REST APIs <code><strong>(required)</strong></code></p>
 </li>
 <li>
-<p><code>org.fhir.rest</code><strong>(recommended)</strong>: The base URL of the FHIR APIs</p>
+<p><code>org.fhir.rest</code>: The base URL of the FHIR APIs <code><strong>(recommended)</strong></code></p>
 </li>
 </ul>
 </div>
@@ -597,7 +616,7 @@ S Iancu</p></td>
 <div class="ulist">
 <ul>
 <li>
-<p><code>baseUrl</code><strong>(required)</strong>: The base URL of the service</p>
+<p><code>baseUrl</code>: The base URL of the service <code><strong>(required)</strong></code></p>
 </li>
 <li>
 <p><code>description</code>: A short description of the service</p>
@@ -653,67 +672,107 @@ S Iancu</p></td>
 <div class="sect1">
 <h2 id="_authentication_authorization_and_scopes"><a class="anchor" href="#_authentication_authorization_and_scopes"></a>5. Authentication, Authorization and Scopes</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>In general <em>authentication</em> is the process of verifying who the end-user is, while the <em>authorization</em> is the process of verifying what specific functionality or data an end-user has access to.
+The SMART profile on the underlying <a href="https://tools.ietf.org/html/rfc6749" target="_blank" rel="noopener">OAuth2.0 framework</a> specifications is designed primarily as a mean of requesting and granting access to resources, focusing mainly on the aspects of the authorization process.</p>
+</div>
+<div class="paragraph">
+<p>The following sections describes these processes in relation with the <strong>SMART on openEHR</strong> protocol.</p>
+</div>
 <div class="sect2">
 <h3 id="_authentication"><a class="anchor" href="#_authentication"></a>5.1. Authentication</h3>
 <div class="paragraph">
-<p>The <em>Application</em> can authenticate with the <em>CDR</em> using standard <a href="https://tools.ietf.org/html/rfc6749" target="_blank" rel="noopener">OAuth2.0 protocol</a>.</p>
+<p>In accordance with SMART protocol, the authentication is often a step of the authorization process. Also, for the end-user identity verification steps of the authentication protocol an external framework should be used, such as <a href="https://openid.net/specs/openid-connect-core-1_0.html#Authentication" target="_blank" rel="noopener">OpenID Connect (OIDC)</a>, but the exact method is beyond the scope of this specification.</p>
 </div>
+<div class="sect3">
+<h4 id="_available_flows"><a class="anchor" href="#_available_flows"></a>5.1.1. Available flows</h4>
 <div class="paragraph">
-<p>The <em>CDR</em> SHOULD support at least the following basic flows:</p>
+<p>The client <em>Application</em> can authenticate with the <em>CDR</em> using the <strong>SMART on openEHR</strong>, based on the following flows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://tools.ietf.org/html/rfc6749#section-1.3.1" target="_blank" rel="noopener">Authorization Code Flow</a> with <a href="https://tools.ietf.org/html/rfc7636" target="_blank" rel="noopener">PKCE</a></p>
+<p><a href="https://tools.ietf.org/html/rfc6749#section-1.3.1" target="_blank" rel="noopener">OAuth2 Authorization Code</a> flow with <a href="https://tools.ietf.org/html/rfc7636" target="_blank" rel="noopener">Proof Key for Code Exchange (PKCE)</a></p>
 </li>
 <li>
-<p><a href="https://tools.ietf.org/html/rfc6749#section-1.3.1" target="_blank" rel="noopener">Authorization Code Flow</a> with client secret</p>
+<p><a href="https://tools.ietf.org/html/rfc6749#section-1.3.1" target="_blank" rel="noopener">OAuth2 Authorization Code</a> flow with <code>client_secret</code></p>
 </li>
 <li>
-<p><a href="https://tools.ietf.org/html/rfc6749#section-1.3.4" target="_blank" rel="noopener">Client Credentials Flow</a></p>
+<p><a href="https://tools.ietf.org/html/rfc6749#section-1.3.4" target="_blank" rel="noopener">OAuth2 Client Credentials</a> flow</p>
 </li>
 <li>
-<p><a href="https://tools.ietf.org/html/rfc7515" target="_blank" rel="noopener">JWS Assertion Flow</a> (RFC7515)</p>
+<p><a href="https://tools.ietf.org/html/rfc7523" target="_blank" rel="noopener">JWT Assertion</a> flow with <a href="https://tools.ietf.org/html/rfc7515" target="_blank" rel="noopener">JSON Web Signature (JWS)</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The supported flows SHOULD be advertised in the <code>.well-known/smart-configuration</code> endpoint.</p>
+<p>The supported authentication flows should be advertised by the <em>CDR</em> in the <code>.well-known/smart-configuration</code> endpoint.</p>
 </div>
 <div class="paragraph">
-<p>The recommended authentication flow depends on the type of the application. Here we make a distinction between the different kinds of applications based on whether it can hold a client secret. The following types of applications are considered:</p>
+<p>SMART protocol distinguish two types of authentication types:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Confidential Clients</strong>: Have the ability to hold a client secret. This includes web applications running on a server and backend applications.</p>
+<p><a href="https://www.hl7.org/fhir/smart-app-launch/client-confidential-asymmetric.html" target="_blank" rel="noopener">Asymmetric authentication</a>:
+this is the SMART preferred authentication method because it avoids sending a shared secret over the wire. It can use one of the <a href="https://tools.ietf.org/html/rfc6749#section-1.3.4" target="_blank" rel="noopener">OAuth2 Client Credentials</a> or <a href="https://tools.ietf.org/html/rfc7523" target="_blank" rel="noopener">JWT Assertion</a> flow</p>
 </li>
 <li>
-<p><strong>Public Clients</strong>: Do not have the ability to hold a client secret. This includes mobile applications and single page web applications.</p>
+<p><a href="https://www.hl7.org/fhir/smart-app-launch/client-confidential-symmetric.html" target="_blank" rel="noopener">Symmetric authentication</a>:
+authenticates a client application using a secret that has been pre-shared between the client and server. It can use the <a href="https://tools.ietf.org/html/rfc6749#section-1.3.1" target="_blank" rel="noopener">OAuth2 Authorization Code</a> flow with <code>client_secret</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The distinction can also be made on the basis of the user interaction. The following types of applications are considered:</p>
+<p>The following flows are considered legacy and should not be used:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Patient facing</strong>: The patient is the direct user of this application, or is opened up by a practitioner within the context of a patient. Can also be opened within the context of an episode, but is optional.</p>
+<p><a href="https://tools.ietf.org/html/rfc6749#section-1.3.2" target="_blank" rel="noopener">Implicit Flow</a></p>
 </li>
 <li>
-<p><strong>Practitioner facing</strong>: The practitioner is the direct user of this application. Can be opened up within the context of a patient, or episode, but is not mandatory.</p>
+<p><a href="https://tools.ietf.org/html/rfc6749#section-1.3.3" target="_blank" rel="noopener">Resource Owner Password Credentials</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_application_types"><a class="anchor" href="#_application_types"></a>5.1.2. Application types</h4>
+<div class="paragraph">
+<p>The recommended authentication flow depends also on the type of the client <em>Application</em>. There is a distinction between applications based on whether they can hold their credentials (e.g. client secrets) or are capable to secure the client authentication using other means. The following types of client applications are <a href="https://www.hl7.org/fhir/smart-app-launch/app-launch.html#support-for-public-and-confidential-apps" target="_blank" rel="noopener">considered by SMART</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Confidential</strong> applications: they have the ability to hold a credentials. This includes web applications running on a trusted server, uses additional technology for higher security and backend applications.</p>
 </li>
 <li>
-<p><strong>Backend</strong>: The application is not directly used by a user, but is used by other applications or services in the background.</p>
+<p><strong>Public</strong> applications: they do not have the ability to hold a client secret. This includes mobile applications and single page web applications.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>It is recommended that Patient and Practitioner facing applications use one of the Authorization Code Flows to obtain necessary user information and context. Confidential clients can use the Authorization Code Flow with PKCE or the Authorization Code Flow with Client Secret. Public clients SHOULD always use the Authorization Code Flow with PKCE. Backend applications SHOULD always use confidential clients and use the JWS Assertion Flow or the Client Credentials Flow.</p>
+<p>The distinction on the client application types can also be made on the basis of the <em>user interaction</em>. The following types are considered:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Patient facing</strong>: The patient is the direct end-user of this application, or is opened up by a practitioner within the context of a single patient. It can also be opened within the context of an episode related to a patient, but is optional.</p>
+</li>
+<li>
+<p><strong>Practitioner facing</strong>: The practitioner is the end-user of this application. It can be optionally opened up within the context of a patient, or episode.</p>
+</li>
+<li>
+<p><strong>Backend service</strong>: The application is not directly used by an end-user, but is used by another applications or services in the background.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The following table shows the recommended flow for a few example application.</p>
+<p>It is recommended that Patient and Practitioner facing applications use one of the Authorization Code Flows to obtain necessary user information and context. Confidential clients can use the Authorization Code Flow with PKCE or the Authorization Code Flow with Client Secret. Public clients should always use the Authorization Code Flow with PKCE. Backend applications should always use confidential clients and use the JWT Assertion Flow with JWS or the Client Credentials Flow.</p>
+</div>
+<div class="paragraph">
+<p>The following table shows the recommended flow for a few example applications:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -733,61 +792,49 @@ S Iancu</p></td>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Single Page Web Application for a Patient Portal</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Patient facing</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Authorization Code Flow with PKCE</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mobile Application for tracking heart rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Patient facing</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Authorization Code Flow with PKCE</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Web Application with Backend for cardiology management</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Confidential client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confidential</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Practitioner facing</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authorization Code Flow with PKCE or Authorization Code Flow with Client Secret</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authorization Code Flow with PKCE or Authorization Code Flow with <code>client_secret</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Realtime alert system for hospital</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Confidential client</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Backend</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">JWS Assertion Flow or Client Credentials Flow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confidential</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backend service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JWT Assertion Flow with JWS or Client Credentials Flow</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>The following flows are considered legacy and SHOULD NOT be used:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://tools.ietf.org/html/rfc6749#section-1.3.2" target="_blank" rel="noopener">Implicit Flow</a></p>
-</li>
-<li>
-<p><a href="https://tools.ietf.org/html/rfc6749#section-1.3.3" target="_blank" rel="noopener">Resource Owner Password Credentials</a></p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_smart_authorization_flow"><a class="anchor" href="#_smart_authorization_flow"></a>5.2. SMART Authorization Flow</h3>
 <div class="paragraph">
-<p>Both Patient facing and Practitioner facing application have special requirements that cannot be fulfilled by standard OAuth2. These applications can be opened in one of two ways:</p>
+<p>Both Patient and Practitioner facing applications have special requirements that cannot be fulfilled only by the standard OAuth2 framework specification. SMART on FHIR <a href="https://www.hl7.org/fhir/smart-app-launch/app-launch.html#smart-authorization&#8212;&#8203;fhir-access-overview" target="_blank" rel="noopener">specifies</a> that applications can be launched in one of two ways:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Standalone launch: The URL of the application is opened directly be the end user. Eg: <code><a href="https://myapp.com" class="bare">https://myapp.com</a></code>. The application decides which CDR url to use based on the user&#8217;s selection.</p>
+<p><strong>Standalone launch</strong>: The URL of the application is opened directly by the end user - e.g. <code>https://myapp.example.com</code>. The application decides which CDR url to use based on the user&#8217;s selection.</p>
 </li>
 <li>
-<p>Embedded EHR launch: The application is embedded within an EHR using an iFrame. Additional parameters are passed to the application to indicate the CDR to use, and the launch context. Eg: <code><a href="https://myapp.com?launch=123&amp;iss=https://cdr.com" class="bare">https://myapp.com?launch=123&amp;iss=https://cdr.com</a></code></p>
+<p><strong>EHR launch</strong>: The application is embedded within an EHR system (portal) using an <code>iFrame</code>. Additional parameters are passed to the application to indicate the CDR to use, and the launch context -  e.g. <code>https://myapp.example.com?launch=123&amp;iss=https://cdr.com</code>. SMART on openEHR names this launch method as <strong>Embedded iFrame Launch</strong> to avoid potential confusion in relation with <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_package" target="_blank" rel="noopener">openEHR <code>EHR</code></a> specification.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>The Authorization Code Flow as defined in OAuth2 is a 2-step process where:</p>
+<p>The Authorization Code Flow as <a href="https://tools.ietf.org/html/rfc6749#section-4.1" target="_blank" rel="noopener">defined in OAuth2 framework</a> is a two-step process where:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -800,18 +847,19 @@ S Iancu</p></td>
 </ol>
 </div>
 <div class="paragraph">
-<p>The SMART protocol makes the following modifications to the Authorization Code Flow to enhance it for the use case of standalone and embedded launch:</p>
+<p>The SMART protocol specifies a few modifications to the Authorization Code Flow to enhance it for the use-case of Standalone and Embedded iFrame launch, which are described in the following sections.</p>
 </div>
 <div class="sect3">
 <h4 id="_context_selection"><a class="anchor" href="#_context_selection"></a>5.2.1. Context Selection</h4>
 <div class="paragraph">
-<p>In the Standalone launch, application can request a CDR for context selection. Most patient and practitioner facing application, along with the initial login and consent page, will also require the CDR to send additional context like the patient ID, Episode ID to the application. This context data can be used to pre-populate the application with the correct data.</p>
+<p>In the <em>Standalone launch</em>, a client <em>Application</em> can request (invoke) a <em>CDR</em> for the context selection. Most Patient and Practitioner facing application, along with the initial login and consent page, will also require the <em>CDR</em> to send additional <strong>context</strong>. This may contain information like the EHR or Patient ID, potentially the Episode ID, and it may be valid for a lifetime of the session.</p>
 </div>
 <div class="paragraph">
-<p>The CDR can do this by automatically inferring the context based on the user logged in or <code>launch</code> token (in case of Embedded iFrame Launch). The CDR can provide a screen right after the consent page to select the context in case of ambiguity.</p>
+<p>This <em>context</em> data can be used to pre-populate the client <em>Application</em> with the correct data.
+The <em>CDR</em> can do this by automatically inferring the <em>context</em> based on the user logged in or <code>launch</code> token (in case of <em>Embedded iFrame Launch</em>). The <em>CDR</em> can provide a screen right after the consent page to select the <em>context</em> in case of ambiguity.</p>
 </div>
 <div class="paragraph">
-<p>The <em>Application</em> can request the <em>CDR</em> for openEHR related context selection by passing the following special scopes in the authorization request:</p>
+<p>The <em>Application</em> can request the <em>CDR</em> for openEHR related context selection by passing the following special <strong>scopes</strong> in the authorization request:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -827,12 +875,12 @@ S Iancu</p></td>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>launch/patient</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When launching outside the EHR, ask for the openEHR EHR ID to be selected.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When launching outside the EHR, ask for the openEHR EHR instance to be selected.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>The context data populated by the EHR is returned in the token response along with the <code>id_token</code> and <code>access_token</code>. The following additional parameters are added to the token response:</p>
+<p>The context data populated by the <em>CDR</em> is returned in the token response along with the <code>id_token</code> and <code>access_token</code>. The following additional parameters are added to the token response:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -848,12 +896,12 @@ S Iancu</p></td>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ehrId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UUID (string) of the openEHR EHR associated with the FHIR Patient resource in the launch.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The UUID of the openEHR EHR instance associated with the (FHIR) Patient resource in the launch.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>The application can make use of these parameters to render the correct information to the user.</p>
+<p>The application can make use of these parameters to render the correct information to the end-user.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -863,7 +911,7 @@ S Iancu</p></td>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The launch scopes and token attributes from SMART on FHIR can also be combined here for backward compatibility. All the parameters covered by SMART on FHIR is not covered here.</p>
+<p>The <a href="https://www.hl7.org/fhir/smart-app-launch/scopes-and-launch-context.html" target="_blank" rel="noopener">launch scopes</a> and token attributes from SMART on FHIR can also be combined here for backward compatibility, but they are not covered by this specification.</p>
 </div>
 </td>
 </tr>
@@ -873,16 +921,16 @@ S Iancu</p></td>
 <div class="sect3">
 <h4 id="_embedded_iframe_launch"><a class="anchor" href="#_embedded_iframe_launch"></a>5.2.2. Embedded iFrame Launch</h4>
 <div class="paragraph">
-<p>Most practitioner facing, as well as some patient facing applications will have to be embedded within the user&#8217;s workflow by using an iFrame. The CDR can automatically select the correct context for the application by passing the <code>launch</code> parameter to the application&#8217;s url. The CDR should also provide the <code>iss</code> parameter to indicate the CDR for the application to use.</p>
+<p>Most Practitioner facing, as well as some Patient facing applications will have to be embedded within the end-user&#8217;s web based front-end by using an <code>iFrame</code>. The <em>CDR</em> can automatically select the correct <em>context</em> for the client <em>Application</em> by passing the <code>launch</code> parameter to the application&#8217;s url. The <em>CDR</em> should also provide the <code>iss</code> parameter to indicate the CDR endpoint for the application to use.</p>
 </div>
 <div class="paragraph">
-<p>The application will be opened on a URL like follows: <code><a href="https://myapp.com?launch=123&amp;iss=https://cdr.com" class="bare">https://myapp.com?launch=123&amp;iss=https://cdr.com</a></code>.</p>
+<p>The application will be launched on a URL like: <code>https://myapp.example.com?launch=123&amp;iss=https://cdr.com</code>.</p>
 </div>
 <div class="paragraph">
-<p>The application can then use the <code>iss</code> parameter to obtain the CDR configuration from the <code>.well-known/smart-configuration</code> endpoint. It then uses the <code>authorization_endpoint</code> to start the Authorization Code Flow. The <code>launch</code> parameter is passed along to the authorization request.</p>
+<p>The application can then use the <code>iss</code> parameter to obtain the <em>CDR</em> configuration from the <code>.well-known/smart-configuration</code> endpoint. It then uses the <code>authorization_endpoint</code> to start the Authorization Code Flow. The <code>launch</code> parameter is passed along to the authorization request.</p>
 </div>
 <div class="paragraph">
-<p>The following scope is also mandatory while passing the <code>launch</code> parameter:</p>
+<p>The following <strong>scope</strong> is also mandatory while passing the <code>launch</code> parameter:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -903,20 +951,20 @@ S Iancu</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p>It is <strong>RECOMMENDED</strong> that the <code>launch</code> token be a base64 encoded JSON object containing the context attributes like: <code>ehrId</code>, along with other attributes for internal purposes. The application can use this information to pre-populate the application without initiating an authorization request if it is already authenticated. This will enable a seamless experience for the user when switching between patients while using the application within an iFrame. This capability can be advertised by adding the <code>launch-base64-json</code> to the <code>capabilities</code> parameter of the <code>/.well-known/smart-configuration</code> response.</p>
+<p>It is recommended that the <code>launch</code> token be a base64 encoded JSON object, containing the <em>context</em> attributes like the <code>ehrId</code>, along with other attributes for internal purposes. The client <em>Application</em> can use this information to pre-populate itself without initiating an authorization request if it is already authenticated. This will enable a seamless experience for the user when switching between patients while using the application within an <code>iFrame</code>. This capability can be advertised by adding the <code>launch-base64-json</code> to the <code>capabilities</code> parameter of the <code>/.well-known/smart-configuration</code> response.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_scopes_for_openehr_rest_api"><a class="anchor" href="#_scopes_for_openehr_rest_api"></a>5.3. Scopes for openEHR REST API</h3>
 <div class="paragraph">
-<p>The <em>Application</em> can request access to the <em>CDR</em> resources using the OAuth2.0 scopes. A complete scope is represented using:</p>
+<p>The <em>Application</em> can request access to the <em>CDR</em> resources using the <a href="https://tools.ietf.org/html/rfc6749#section-3.3" target="_blank" rel="noopener">OAuth2.0 scopes</a>. <a href="https://www.hl7.org/fhir/smart-app-launch/scopes-and-launch-context.html" target="_blank" rel="noopener">SMART defines</a> the scope syntax as follows:</p>
 </div>
 <div class="paragraph">
 <p><code>&lt;compartment&gt;/&lt;resource&gt;.&lt;permission&gt;</code></p>
 </div>
 <div class="paragraph">
-<p>The scopes are based on 3 different compartments:</p>
+<p>The scopes are based on 3 different <em>compartments</em>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -932,7 +980,7 @@ S Iancu</p></td>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following resource expressions are supported:</p>
+<p>For the <a href="https://specifications.openehr.org/releases/ITS-REST/latest">openEHR REST APIs</a> the following <em>resource expressions</em> are supported:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -986,7 +1034,7 @@ S Iancu</p></td>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following permission expressions are supported:</p>
+<p>The following <em>permission</em> expressions are supported:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1008,7 +1056,7 @@ S Iancu</p></td>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following table is a maximal representation of the scopes made possible in different compartment/resource.permission combinations:</p>
+<p>The following table is a maximal representation of the scopes made possible in different <em>compartment</em>, <em>resource</em> and <em>permission</em> combinations:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1052,21 +1100,45 @@ S Iancu</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>user/aql-&lt;queryName&gt;.cruds</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permission to create, read, update, delete and execute AQL with &lt;queryName&gt; on EHR IDs that the logged-in user has access to. If <code>&lt;queryName&gt;</code> is equal to the wildcard *, this scope will allow the ad-hoc query endpoint.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permission to create, read, update, delete and execute AQL with &lt;queryName&gt; on EHR IDs that the logged-in user has access to. If <code>&lt;queryName&gt;</code> is equal to the wildcard <code>*</code>, this scope will allow the ad-hoc query endpoint.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>system/aql-&lt;queryName&gt;.cruds</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permission to create, read, update, delete and execute AQL with <code>&lt;queryName&gt;</code>. If <code>&lt;queryName&gt;</code> is equal to the wildcard *, this scope will allow the ad-hoc query endpoint.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permission to create, read, update, delete and execute AQL with <code>&lt;queryName&gt;</code>. If <code>&lt;queryName&gt;</code> is equal to the wildcard <code>*</code>, this scope will allow the ad-hoc query endpoint.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
+<div class="sectionbody">
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p>SMART App Launch - Release 2.1.0 (2021), <a href="https://www.hl7.org/fhir/smart-app-launch/" class="bare">https://www.hl7.org/fhir/smart-app-launch/</a></p>
+</li>
+<li>
+<p>OAuth2 Framework, <a href="https://tools.ietf.org/html/rfc6749" class="bare">https://tools.ietf.org/html/rfc6749</a></p>
+</li>
+<li>
+<p>OpenId Connect (OIDC), <a href="https://openid.net/specs/openid-connect-core-1_0.html#Authentication" class="bare">https://openid.net/specs/openid-connect-core-1_0.html#Authentication</a></p>
+</li>
+<li>
+<p>JSON Web Token (JWT) Assertion, <a href="https://tools.ietf.org/html/rfc7523" class="bare">https://tools.ietf.org/html/rfc7523</a></p>
+</li>
+<li>
+<p>JSON Web Signature (JWS), <a href="https://tools.ietf.org/html/rfc7515" class="bare">https://tools.ietf.org/html/rfc7515</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-08-21 14:37:30 UTC
+Last updated 2023-08-25 21:27:38 UTC
 </div>
 </div>
 </body>
