@@ -2,7 +2,7 @@
 
 == Background
 
-*SMART* stands for “Substitutable Medical Applications and Reusable Technologies”, a healthcare standard through which applications can access clinical information through a data store. It was initially proposed by https://smarthealthit.org/[SMART Health IT^] project and was later on specified as {hl7_fhir}/smart-app-launch/[SMART on FHIR^], a protocol which works on top of {hl7_fhir}[FHIR APIs^]. The specification builds on {ietf_html}/rfc6749[OAuth2^] and https://openid.net/specs/openid-connect-core-1_0.html#Authentication[OIDC Core^] which are industry standards for authentication and authorization, and allows 3rd party apps to seamlessly work with any (FHIR) EHR system that implements the protocol.
+*SMART* stands for “Substitutable Medical Applications and Reusable Technologies”, a healthcare standard through which applications can access clinical information through a data store. It was initially proposed by https://smarthealthit.org/[SMART Health IT^] project and was later on specified as {hl7_fhir}/smart-app-launch/[SMART on FHIR^], a protocol which works on top of {hl7_fhir}[FHIR APIs^]. The specification builds on {ietf_html}/rfc6749[OAuth2^] and https://openid.net/specs/openid-connect-core-1_0.html#Authentication[OIDC Core^] which are industry standards for authentication and authorization, and allows 3rd party apps to seamlessly work with any EHR system that implements the protocol.
 
 == Glossary
 
@@ -10,10 +10,11 @@
 |=======================================================================
 |Term | Definition
 |Vendor | An entity that provides software to end-users.
-|Application | Software developed by a vendor designed to work with the CDR and/or Launcher built by the same or another vendor.
-|CDR | A system comprising of an openEHR Clinical Data Repository and a FHIR Server, providing openEHR and FHIR REST APIs.
-|OAuth2 Server | An authentication server that provides APIs consistent with the OAuth2 specification and the SMART on openEHR protocol
-|Launcher | User facing software built by the CDR vendor that serves to launch other applications within a context of a Patient or Practitioner. This can be the main EHR system (i.e. a Portal) or a separate application.
+|Application | Software developed by a vendor designed to work with the CDR and/or Launcher built by the same or another vendor. This is also known as the "client" in terms of OAuth roles.
+|CDR | A system consisting of an openEHR Clinical Data Repository and a FHIR Server, providing openEHR REST APIs and FHIR APIs. This is sometimes also known or mentioned in the SMART on FHIR as the "EHR system".
+|OAuth2 Server | An authentication and authorization server that provides APIs consistent with the OAuth2 framework specification and the SMART on openEHR protocol.
+|Launcher | User facing software built by the CDR vendor that serves to launch other applications within a context of a Patient or Practitioner. This can be the main EHR system. (i.e. a Portal) or a separate application.
+|EHR | A (session) context that relates to an openEHR `EHR` container instance and an associated Patient. This indicates the subject on which the Application will work. Notice: this should not be confused with what SMART on FHIR uses to name "the system" providing FHIR APIs.
 |=======================================================================
 
 == Why SMART on openEHR?
@@ -35,7 +36,7 @@ The *SMART on openEHR* specification aims to be backward compatible with {hl7_fh
 
 * <<_application_registration,Application Registration>>
 * <<_service_discovery,Service Discovery>>
-* <<_authentication_authorization_and_scopes,Authentication and Authorization>>
+* <<_authentication_authorization_and_scopes,Authentication, Authorization and Scopes>>
 * <<_context_selection,Context Selection>>
 * <<_embedded_iframe_launch,Embedded iFrame Launch>>
 
