@@ -4,6 +4,7 @@
 include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
 include::manifest_vars.adoc[]
 include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
+:oidc_authentication: https://openid.net/specs/openid-connect-core-1_0.html#Authentication
 
 //
 // ============================================ Asciidoc PREAMBLE =============================================
@@ -20,7 +21,7 @@ include::{ref_dir}/docs/references/reference_definitions.adoc[]
 // ============================================= Asciidoc BODY ===============================================
 //
 
-// include::master00-amendment_record.adoc[leveloffset=+1]
+include::master00-amendment_record.adoc[leveloffset=+1]
 
 //
 // --------------------------------------------- Preface -----------------------------------------------
@@ -31,7 +32,7 @@ include::{ref_dir}/docs/references/reference_definitions.adoc[]
 === Primary Author
 
 * Sidharth Ramesh; Medblocks.
-* Sebastian Iancu; Code24
+* Sebastian Iancu; Architect, Code24, Netherlands
 
 === Contributors
 
@@ -40,17 +41,14 @@ This specification has benefited from formal and informal input from the openEHR
 * Ian McNicoll MD, FreshEHR, UK
 * Bostjan Lah, Senior Architect, Better, Slovenia
 
-A significant part of the design ideas and content of this specification was adapted from:
+A significant part of the design ideas of this specification was derived from:
 
-* the SMART on FHIR protocol described by HL7 FHIR
-* the EtherCIS ECISFLAT format by the EtherCIS community;
-* the XSD-based Template Data Schema (TDS) format developed by Ocean Health Systems.
+* the SMART on FHIR protocol - SMART App Launch Release 2.1.0, published by HL7® FHIR®
 
 === Trademarks
 
 * 'openEHR' is a registered trademark of the openEHR Foundation
-* 'OMG' and 'UML' are registered trademarks of the Object Management Group
-* 'FHIR' is a registered trademark of the Health Level Seven International 
+* 'HL7' and 'FHIR' are the registered trademark of the Health Level Seven International
 
 //
 // --------------------------------------------- TOC -----------------------------------------------
@@ -63,7 +61,6 @@ A significant part of the design ideas and content of this specification was ada
 :sectnums:
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-overview.adoc[leveloffset=+1]
-include::master03-conceptual.adoc[leveloffset=+1]
 include::master04-registration.adoc[leveloffset=+1]
 include::master05-service_discovery.adoc[leveloffset=+1]
 include::master06-authentication_authorization_scopes.adoc[leveloffset=+1]
@@ -73,6 +70,12 @@ include::master06-authentication_authorization_scopes.adoc[leveloffset=+1]
 //
 
 :sectnums!:
-//== References
-//
-//bibliography::[]
+
+[bibliography]
+== References
+
+* SMART App Launch - Release 2.1.0 (2021), {hl7_fhir}/smart-app-launch/
+* OAuth2 Framework, {ietf_html}/rfc6749
+* OpenId Connect (OIDC), {oidc_authentication}
+* JSON Web Token (JWT) Assertion, {ietf_html}/rfc7523
+* JSON Web Signature (JWS), {ietf_html}/rfc7515

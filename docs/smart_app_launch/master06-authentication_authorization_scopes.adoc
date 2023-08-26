@@ -1,120 +1,140 @@
 = Authentication, Authorization and Scopes
 
+In general _authentication_ is the process of verifying who the end-user is, while the _authorization_ is the process of verifying what specific functionality or data an end-user has access to.
+The SMART profile on the underlying {ietf_html}/rfc6749[OAuth2.0 framework^] specifications is designed primarily as a mean of requesting and granting access to resources, focusing mainly on the aspects of the authorization process.
+
+The following sections describes these processes in relation with the *SMART on openEHR* protocol.
+
 == Authentication
-The application can authenticate with the CDR using standard link:https://datatracker.ietf.org/doc/html/rfc6749[OAuth2.0 protocol]. 
 
-The CDR SHOULD support at least the following basic flows:
+In accordance with SMART protocol, the authentication is often a step of the authorization process. Also, for the end-user identity verification steps of the authentication protocol an external framework should be used, such as {oidc_authentication}[OpenID Connect (OIDC)^], but the exact method is beyond the scope of this specification.
 
-- link:https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1[Authorization Code Flow] with link:https://datatracker.ietf.org/doc/html/rfc7636[PKCE]
-- link:https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1[Authorization Code Flow] with client secret
-- link:https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4[Client Credentials Flow]
-- link:https://datatracker.ietf.org/doc/html/rfc7515[JWS Assertion Flow] (RFC7515)
+=== Available flows
 
-The supported flows SHOULD be advertised in the `.well-known/smart-configuration` endpoint.
+The client _Application_ can authenticate with the _CDR_ using the *SMART on openEHR*, based on the following flows:
 
-The recommended authentication flow depends on the type of the application. Here we make a distinction between the different kinds of applications based on whether or not it can hold a client secret. The following types of applications are considered:
+- {ietf_html}/rfc6749#section-1.3.1[OAuth2 Authorization Code^] flow with {ietf_html}/rfc7636[Proof Key for Code Exchange (PKCE)^]
+- {ietf_html}/rfc6749#section-1.3.1[OAuth2 Authorization Code^] flow with `client_secret`
+- {ietf_html}/rfc6749#section-1.3.4[OAuth2 Client Credentials^] flow
+- {ietf_html}/rfc7523[JWT Assertion^] flow with {ietf_html}/rfc7515[JSON Web Signature (JWS)^]
 
-- **Confidential Clients**: Have the ability to hold a client secret. This includes web applications running on a server and backend applications.
-- **Public Clients**: Do not have the ability to hold a client secret. This includes mobile applications and single page web applications.
+The supported authentication flows should be advertised by the _CDR_ in the `.well-known/smart-configuration` endpoint.
 
-The distinction can also be made on the basis of the user interaction. The following types of applications are considered:
+SMART protocol distinguish two types of authentication types:
 
-- **Patient facing**: The patient is the direct user of this application, or is opened up by a practitioner within the context of a patient. Can also be opened within the context of an episode, but is optional.
-- **Practitioner facing**: The practitioner is the direct user of this application. Can be opened up within the context of a patient, or episode, but is not mandatory.
-- **Backend**: The application is not directly used by a user, but is used by other applications or services in the background.
+* {hl7_fhir}/smart-app-launch/client-confidential-asymmetric.html[Asymmetric authentication^]:
+this is the SMART preferred authentication method because it avoids sending a shared secret over the wire. It can use one of the {ietf_html}/rfc6749#section-1.3.4[OAuth2 Client Credentials^] or {ietf_html}/rfc7523[JWT Assertion^] flow
 
-It is recommended that Patient and Practitioner facing applications use one of the Authorization Code Flows to obtain necessary user information and context. Condifential clients can use the Authorization Code Flow with PKCE or the Authorization Code Flow with Client Secret. Public clients SHOULD always use the Authorization Code Flow with PKCE. Backend applications SHOULD always use confidential clients and use the JWS Assertion Flow or the Client Credentials Flow.
+* {hl7_fhir}/smart-app-launch/client-confidential-symmetric.html[Symmetric authentication^]:
+authenticates a client application using a secret that has been pre-shared between the client and server. It can use the {ietf_html}/rfc6749#section-1.3.1[OAuth2 Authorization Code^] flow with `client_secret`
 
-The following table shows the recommended flow for a few example application.
+The following flows are considered legacy and should not be used:
+
+- {ietf_html}/rfc6749#section-1.3.2[Implicit Flow^]
+- {ietf_html}/rfc6749#section-1.3.3[Resource Owner Password Credentials^]
+
+=== Application types
+
+The recommended authentication flow depends also on the type of the client _Application_. There is a distinction between applications based on whether they can hold their credentials (e.g. client secrets) or are capable to secure the client authentication using other means. The following types of client applications are {hl7_fhir}/smart-app-launch/app-launch.html#support-for-public-and-confidential-apps[considered by SMART^]:
+
+- **Confidential** applications: they have the ability to hold a credentials. This includes web applications running on a trusted server, uses additional technology for higher security and backend applications.
+- **Public** applications: they do not have the ability to hold a client secret. This includes mobile applications and single page web applications.
+
+The distinction on the client application types can also be made on the basis of the _user interaction_. The following types are considered:
+
+- **Patient facing**: The patient is the direct end-user of this application, or is opened up by a practitioner within the context of a single patient. It can also be opened within the context of an episode related to a patient, but is optional.
+- **Practitioner facing**: The practitioner is the end-user of this application. It can be optionally opened up within the context of a patient, or episode.
+- **Backend service**: The application is not directly used by an end-user, but is used by another applications or services in the background.
+
+It is recommended that Patient and Practitioner facing applications use one of the Authorization Code Flows to obtain necessary user information and context. Confidential clients can use the Authorization Code Flow with PKCE or the Authorization Code Flow with Client Secret. Public clients should always use the Authorization Code Flow with PKCE. Backend applications should always use confidential clients and use the JWT Assertion Flow with JWS or the Client Credentials Flow.
+
+The following table shows the recommended flow for a few example applications:
 
 [width="100%",cols="2,2,2,2",options="header"]
 |=======================================================================
 | Application Example | Client Type | User interaction type | Recommended Flow
-| Single Page Web Application for a Patient Portal | Public client | Patient facing | Authorization Code Flow with PKCE
-| Mobile Application for tracking heart rate | Public client | Patient facing | Authorization Code Flow with PKCE
-| Web Application with Backend for cardiology management | Confidential client | Practitioner facing | Authorization Code Flow with PKCE or Authorization Code Flow with Client Secret
-| Realtime alert system for hospital | Confidential client | Backend | JWS Assertion Flow or Client Credentials Flow
+| Single Page Web Application for a Patient Portal | Public | Patient facing | Authorization Code Flow with PKCE
+| Mobile Application for tracking heart rate | Public | Patient facing | Authorization Code Flow with PKCE
+| Web Application with Backend for cardiology management | Confidential | Practitioner facing | Authorization Code Flow with PKCE or Authorization Code Flow with `client_secret`
+| Realtime alert system for hospital | Confidential | Backend service | JWT Assertion Flow with JWS or Client Credentials Flow
 |=======================================================================
-
-The following flows are considered legacy and SHOULD NOT be used:
-
-- link:https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.2[Implicit Flow]
-- link:https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.3[Resource Owner Password Credentials]
 
 == SMART Authorization Flow
 
-Both Patient facing and Practitioner facing application have special requirements that cannot be fulfilled by standard OAuth2. These applications can be opened in one of two ways:
+Both Patient and Practitioner facing applications have special requirements that cannot be fulfilled only by the standard OAuth2 framework specification. SMART on FHIR {hl7_fhir}/smart-app-launch/app-launch.html#smart-authorization--fhir-access-overview[specifies^] that applications can be launched in one of two ways:
 
-1. Standalone launch: The URL of the application is opened directly be the end user. Eg: `https://myapp.com`. The application decides which CDR url to use based on the user's selection.
-2. Embedded EHR launch: The application is embedded within an EHR using an iFrame. Additional parameters are passed to the application to indicate the CDR to use, and the launch context. Eg: `https://myapp.com?launch=123&iss=https://cdr.com`
+1. *Standalone launch*: The URL of the application is opened directly by the end user - e.g. `\https://myapp.example.com`. The application decides which CDR url to use based on the user's selection.
+2. *EHR launch*: The application is embedded within an EHR system (portal) using an `iFrame`. Additional parameters are passed to the application to indicate the CDR to use, and the launch context -  e.g. `\https://myapp.example.com?launch=123&iss=https://cdr.com`. SMART on openEHR names this launch method as *Embedded iFrame Launch* to avoid potential confusion in relation with {openehr_rm_ehr}#_ehr_package[openEHR `EHR`^] specification.
 
-
-The Authorization Code Flow as defined in OAuth2 is a 2 step process where:
+The Authorization Code Flow as {ietf_html}/rfc6749#section-4.1[defined in OAuth2 framework^] is a two-step process where:
 
 1. The client first requests an authorization code from the authorization server by redirecting the user to the `authorization_endpoint`.
 2. Exchanges the authorization code for an access token by using the `token_endpoint`
 
-The SMART protocol makes the following modifications to the Authorization Code Flow to enhance it for the use case of standalone and embedded launch:
+The SMART protocol specifies a few modifications to the Authorization Code Flow to enhance it for the use-case of Standalone and Embedded iFrame launch, which are described in the following sections.
 
 === Context Selection
-In the Standalone launch, application can request a CDR for context selection. Most patient and practitioner facing application, along with the initial login and consent page, will also require the CDR to send additional context like the patient ID, Episode ID to the application. This context data can be used to pre-populate the application with the correct data.
 
-The CDR can do this by automatically inferring the context based on the user logged in or `launch` token (in case of Embedded iFrame Launch). The CDR can provide a screen right after the consent page to select the context in case of ambuity.
+In the _Standalone launch_, a client _Application_ can request (invoke) a _CDR_ for the context selection. Most Patient and Practitioner facing application, along with the initial login and consent page, will also require the _CDR_ to send additional *context*. This may contain information like the EHR or Patient ID, potentially the Episode ID, and it may be valid for a lifetime of the session.
 
-The application can request the CDR for openEHR related context selection by passing the following special scopes in the authorization request:
+This _context_ data can be used to pre-populate the client _Application_ with the correct data.
+The _CDR_ can do this by automatically inferring the _context_ based on the user logged in or `launch` token (in case of _Embedded iFrame Launch_). The _CDR_ can provide a screen right after the consent page to select the _context_ in case of ambiguity.
+
+The _Application_ can request the _CDR_ for openEHR related context selection by passing the following special *scopes* in the authorization request:
 
 [width="100%",cols="2,2",options="header"]
 |=======================================================================
 | Scope | Meaning
-| `launch/patient` | When launching outside the EHR, ask for the openEHR EHR ID to be selected.
+| `launch/patient` | When launching outside the EHR, ask for the openEHR EHR instance to be selected.
 |=======================================================================
 
-The context data populated by the EHR is returned in the token response along with the `id_token` and `access_token`. The following additional parameters are added to the token response:
+The context data populated by the _CDR_ is returned in the token response along with the `id_token` and `access_token`. The following additional parameters are added to the token response:
 
 [width="100%",cols="2,2",options="header"]
 |=======================================================================
 | Parameter | Meaning
-| ehrId | UUID (string) of the openEHR EHR associated with the FHIR Patient resource in the launch.
+| ehrId | The UUID of the openEHR EHR instance associated with the (FHIR) Patient resource in the launch.
 |=======================================================================
 
-The application can make use of these parameters to render the correct information to the user.
+The application can make use of these parameters to render the correct information to the end-user.
 
 [NOTE]
 ====
-The launch scopes and token attributes from SMART on FHIR can also be combined here for backward compatibility. All the parameters covered by SMART on FHIR is not covered here.
+The {hl7_fhir}/smart-app-launch/scopes-and-launch-context.html[launch scopes^] and token attributes from SMART on FHIR can also be combined here for backward compatibility, but they are not covered by this specification.
 ====
 
 === Embedded iFrame Launch
-Most practitioner facing, as well as some patient facing applications will have to be embedded within the user's workflow by using an iFrame. The CDR can automatically select the correct context for the application by passing the `launch` parameter to the application's url. The CDR should also provide the `iss` parameter to indicate the CDR for the application to use.
 
-The application will be opened on a URL like follows: `https://myapp.com?launch=123&iss=https://cdr.com`.
+Most Practitioner facing, as well as some Patient facing applications will have to be embedded within the end-user's web based front-end by using an `iFrame`. The _CDR_ can automatically select the correct _context_ for the client _Application_ by passing the `launch` parameter to the application's url. The _CDR_ should also provide the `iss` parameter to indicate the CDR endpoint for the application to use.
 
-The application can then use the `iss` parameter to obtain the CDR configuration from the `.well-known/smart-configuration` endpoint. It then uses the `authorization_endpoint` to start the Authorization Code Flow. The `launch` parameter is passed along to the authorization request.
+The application will be launched on a URL like: `\https://myapp.example.com?launch=123&iss=https://cdr.com`.
 
-The following scope is also mandatory while passing the `launch` parameter:
+The application can then use the `iss` parameter to obtain the _CDR_ configuration from the `.well-known/smart-configuration` endpoint. It then uses the `authorization_endpoint` to start the Authorization Code Flow. The `launch` parameter is passed along to the authorization request.
+
+The following *scope* is also mandatory while passing the `launch` parameter:
+
 [width="100%",cols="2,2",options="header"]
 |=======================================================================
 | Scope | Meaning
 | `launch` | Permission to obtain launch context when app is launched from an EHR using launch parameter. This should be accompanied by an additional `launch` parameter in the authorization request.
 |=======================================================================
 
-It is **RECOMMENDED** that the `launch` token be a base64 encoded JSON object containing the context attributes like: `ehrId`, along with other attributes for internal purposes. The application can use this information to pre-populate the application without initiating an authorization request if it is already authenticated. This will enable a seamless experience for the user when switching between patients while using the application within an iFrame. This capability can be advertised by adding the `launch-base64-json` to the `capabilities` parameter of the `/.well-known/smart-configuration` response.
+It is recommended that the `launch` token be a base64 encoded JSON object, containing the _context_ attributes like the `ehrId`, along with other attributes for internal purposes. The client _Application_ can use this information to pre-populate itself without initiating an authorization request if it is already authenticated. This will enable a seamless experience for the user when switching between patients while using the application within an `iFrame`. This capability can be advertised by adding the `launch-base64-json` to the `capabilities` parameter of the `/.well-known/smart-configuration` response.
 
 
 == Scopes for openEHR REST API
-The application can request access to the CDR resources using the OAuth2.0 scopes. 
 
-A complete scope is represented using:
+The _Application_ can request access to the _CDR_ resources using the {ietf_html}/rfc6749#section-3.3[OAuth2.0 scopes^]. {hl7_fhir}/smart-app-launch/scopes-and-launch-context.html[SMART defines^] the scope syntax as follows:
 
 `<compartment>/<resource>.<permission>`
 
-The scopes are based on 3 different compartments:
+The scopes are based on 3 different _compartments_:
 
 - `patient/*`: These scopes are used when the EHR ID is present in the context. Only access to resources in the compartment of the EHR ID is allowed.
 - `user/*`: These scopes are used when the user is identified by the CDR. It is usually a practitioner or an administrator. Only access to resources that the user would usually have access to is allowed.
 - `system/*`: These scopes are used when the user is not available and the application is a backend confidential application. These scopes are obtained in advance while registering the application and provides unrestricted access to resources in the CDR.
 
-The following resource expressions are supported:
+For the {openehr_its_rest_releases}[openEHR REST APIs] the following _resource expressions_ are supported:
 
 - `template-<templateId>`: Templates which match the <templateId> expression.
 - `composition-<templateId>`: Compositions of the templates which match the <templateId> expression.
@@ -127,14 +147,14 @@ The `<templateId>` in the above definition follows the blob pattern matching del
 - `MyHospital.**` - Matches `MyHospital.Template.v0`, `MyHospital.Template.v2` and `MyHospital.OtherTemplate.v0`
 - `*` - Matches all templates in the system
 
-The <queryName> in the above definition follows the blob pattern matching delimited by “.” a period. For example:
+The `<queryName>` in the above definition follows the blob pattern matching delimited by `.` a period. For example:
 
 - `org.openehr::compositions` - Matches only `org.openehr::compositions`
 - `org.openehr::*` - Matches `org.openehr::compositions` and `org.openehr::bloodpressure`
 - `org.openehr::**` - Matches `org.openehr::compositions`, `org.openehr::bloodpressure`, `org.openehr::bloodpressure.v1`
 - `*` - Matches all queries and ad-hoc queries
 
-The following permission expressions are supported:
+The following _permission_ expressions are supported:
 
 - `c`: The ability to create a resource.
 - `r`: The ability to read a resource.
@@ -142,7 +162,7 @@ The following permission expressions are supported:
 - `d`: The ability to delete a resource.
 - `s`: The ability to search a resource. In case of `aql-<queryName>` scope, this means the ability to execute the query.
 
-The following table is a maximal representation of the scopes made possible in different compartment/resource.permission combinations:
+The following table is a maximal representation of the scopes made possible in different _compartment_, _resource_ and _permission_ combinations:
 
 [width="100%",cols="2,2",options="header"]
 |=======================================================================
@@ -154,6 +174,6 @@ The following table is a maximal representation of the scopes made possible in d
 |`user/template-<templateId>.crud` | Permission to create and read a template with `<templateId>`
 |`system/template-<templateId>.crud` | Permission to create, read, update and delete a template with `<templateId>`
 |`patient/aql-<queryName>.rs` | Permission to read and execute AQL with `<queryName>` on EHR ID of the patient in context.
-|`user/aql-<queryName>.cruds` | Permission to create, read, update, delete and execute AQL with <queryName> on EHR IDs that the logged-in user has access to. If `<queryName>` is equal to the wildcard *, this scope will allow the ad-hoc query endpoint.
-|`system/aql-<queryName>.cruds` | Permission to create, read, update, delete and execute AQL with `<queryName>`. If `<queryName>` is equal to the wildcard *, this scope will allow the ad-hoc query endpoint. 
+|`user/aql-<queryName>.cruds` | Permission to create, read, update, delete and execute AQL with <queryName> on EHR IDs that the logged-in user has access to. If `<queryName>` is equal to the wildcard `*`, this scope will allow the ad-hoc query endpoint.
+|`system/aql-<queryName>.cruds` | Permission to create, read, update, delete and execute AQL with `<queryName>`. If `<queryName>` is equal to the wildcard `*`, this scope will allow the ad-hoc query endpoint.
 |=======================================================================

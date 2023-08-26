@@ -2,11 +2,26 @@
 
 == Purpose
 
-This document describes SMART on openEHR.
+This document describes SMART protocol for an openEHR platform.
+
+The intended audience includes:
+
+* EHR systems, CDR or Application vendors;
+* Standards bodies producing health informatics standards;
+* Solution vendors.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview^]
+* {openehr_its_rest_releases}[openEHR REST APIs]
+* {hl7_fhir}/smart-app-launch/[SMART on FHIR^]
+* {ietf_html}/rfc6749[OAuth2^] and {oidc_authentication}[OpenId Connect (OIDC)^]
 
 == Status
 
-This specification is in the {spec_status} state. The development version of this document can be found at {openehr_simplified_data_template}[{openehr_simplified_data_template}^].
+This specification is in the {spec_status} state. The development version of this document can be found at {openehr_smart_app_launch}[{openehr_smart_app_launch}^].
 
 Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
 [.tbd]
@@ -20,9 +35,3 @@ Issues may be raised on the {component_prs}[specifications Problem Report tracke
 
 To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
 
-== Conformance
-
-When used with openEHR-REST API, the Authorization and Authentication of applications should be through the SMART protocol.
-
-[.tbd]
-*TBD*: Conformance testing will be further described later.
