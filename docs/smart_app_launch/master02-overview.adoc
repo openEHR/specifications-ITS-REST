@@ -17,6 +17,14 @@
 |EHR | A (session) context that relates to an {openehr_rm_ehr}#_ehr_package[openEHR `EHR` container^] and the associated Patient. This indicates the subject on which the Application will work. Notice: this should not be confused with what SMART on FHIR uses to name "the system" providing FHIR APIs.
 |=======================================================================
 
+[NOTE]
+====
+The _SMART on FHIR_ uses the term '_EHR_' and '_EHR system_' to refer to a software system comprising a FHIR Server, Authorization Server and potentially other components, including a _Launcher_.
+OpenEHR on the other hand has specification for an {openehr_rm_ehr}[EHR Information Model^], including a {openehr_rm_ehr}#_root_ehr_object[root `EHR` container^].
+
+In order to avoid any confusion between the meaning of '_EHR_' in the context of SMART, this specification will only use this term in relation with openEHR concepts (i.e. EHR type, EHR ID, etc.), and will use substitutes for FHIR's '_EHR_' concept.
+====
+
 == Why SMART on openEHR?
 
 A popular vision nowadays is considering that a single software vendor cannot provide all the necessary tools and software for a healthcare system while still maintaining a high level of quality and a low cost of ownership. Independent vendors who focus on a specific topic or problem to be solved may have an edge over monolithic "suites" of software that try to do everything.
