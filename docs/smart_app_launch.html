@@ -246,7 +246,7 @@ S Iancu</p></td>
 <div class="ulist">
 <ul>
 <li>
-<p>EHR systems, CDR or Application vendors;</p>
+<p>EHR systems, Platform or Application vendors;</p>
 </li>
 <li>
 <p>Standards bodies producing health informatics standards;</p>
@@ -334,11 +334,11 @@ S Iancu</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Application</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Software developed by a vendor designed to work with the CDR and/or Launcher built by the same or another vendor. This is also known as the "client" in terms of OAuth roles.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Software developed by a vendor designed to work with the Platform and/or Launcher built by the same or another vendor. This is also known as the "client" in terms of OAuth roles.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A system consisting of an openEHR Clinical Data Repository and a FHIR Server, providing openEHR REST APIs and FHIR APIs. This is sometimes also known or mentioned in the SMART on FHIR as the "EHR system".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Platform</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A system consisting of an openEHR Clinical Data Repository (CDR) and a FHIR Server, providing openEHR REST APIs, FHIR APIs and potentially other APIs. This is sometimes also known in the SMART on FHIR as the "EHR system".</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OAuth2 Server</p></td>
@@ -346,7 +346,7 @@ S Iancu</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Launcher</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User facing software built by the CDR vendor that serves to launch other applications within a context of a Patient or Practitioner. This can be the main EHR system. (i.e. a Portal) or a separate application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User-facing software built by the Platform vendor that serves to launch other applications within a context of a Patient or Practitioner. This can be part of the Platform (i.e. a Portal) or a separate application.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EHR</p></td>
@@ -364,7 +364,7 @@ S Iancu</p></td>
 <p>In practice, this requires applications from multiple vendors working together to provide a complete solution, often named "best-of-breed". This is currently done is by long, tedious manual "integration" phase where the vendors work together to make their software work together - a very expensive process and is a major barrier to entry for new vendors.</p>
 </div>
 <div class="paragraph">
-<p>The SMART specification aims to solve this problem by providing a standard way for systems and applications to work together, as it defines a contract between the <em>Application vendor</em> and the <em>CDR vendor</em>. This contract covers the following requirements:</p>
+<p>The SMART specification aims to solve this problem by providing a standard way for systems and applications to work together, as it defines a contract between the <em>Application vendor</em> and the <em>Platform vendor</em>. This contract covers the following requirements:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -372,19 +372,19 @@ S Iancu</p></td>
 <p>The <em>Application</em> should have the ability to be hosted on a domain owned by the <em>Application vendor</em></p>
 </li>
 <li>
-<p>The <em>CDR</em> should have the ability to be hosted on a domain owned by the <em>CDR vendor</em></p>
+<p>The <em>Platform</em> should have the ability to be hosted on a domain owned by the <em>Platform vendor</em></p>
 </li>
 <li>
-<p>The <em>Application</em> needs a way to discovery API services offered by the <em>CDR</em></p>
+<p>The <em>Application</em> needs a way to discovery API services offered by the <em>Platform</em></p>
 </li>
 <li>
-<p>The <em>Application</em> needs a way to authenticate with the <em>CDR</em> to access the APIs offered by the <em>CDR</em></p>
+<p>The <em>Application</em> needs a way to authenticate with the <em>Platform</em> to access the APIs offered by the <em>Platform</em></p>
 </li>
 <li>
-<p>The <em>Application</em> needs a way to understand the "context" their app should open in by letting the <em>CDR</em> handle EHR and Episode selection</p>
+<p>The <em>Application</em> needs a way to understand the "context" their app should open in by letting the <em>Platform</em> handle EHR and Episode selection</p>
 </li>
 <li>
-<p>The <em>Application</em> needs a way to embed within the <em>CDR</em>'s user interface while maintaining the "context" to provide a seamless user experience</p>
+<p>The <em>Application</em> needs a way to embed within the <em>Platform</em>'s user interface while maintaining the "context" to provide a seamless user experience</p>
 </li>
 </ul>
 </div>
@@ -426,20 +426,20 @@ S Iancu</p></td>
 <h2 id="_application_registration"><a class="anchor" href="#_application_registration"></a>3. Application Registration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An <em>Application</em> needs to first register itself with the <em>CDR</em> that it needs to integrate with. This process involves the followings:</p>
+<p>An <em>Application</em> needs to first register itself with the <em>Platform</em> that it needs to integrate with. This process involves the followings:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <em>Application</em> registers with the <em>CDR</em> by providing the appropriate ID, OAuth2 Scopes, Launch Contexts, Domains, Redirect URLs (<code>redirect_uri</code>) etc.</p>
+<p>The <em>Application</em> registers with the <em>Platform</em> by providing the appropriate ID, OAuth2 Scopes, Launch Contexts, Domains, Redirect URLs (<code>redirect_uri</code>) etc.</p>
 </li>
 <li>
-<p>The <em>Application</em> obtains credentials like the <code>client_id</code>, JSON Web Keys or  <code>client_secret</code> from the <em>CDR</em> for authentication and authorization.</p>
+<p>The <em>Application</em> obtains credentials like the <code>client_id</code>, JSON Web Keys or  <code>client_secret</code> from the <em>Platform</em> for authentication and authorization.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>While this process could be formalised and automated using protocols like <a href="https://tools.ietf.org/html/rfc7591" target="_blank" rel="noopener">OAuth2 Dynamic Client Registration Protocol</a> in the future, the current recommendation is to do this out-of-band in a way that makes sense for the Application Vendor and the CDR Vendor. For example, the CDR vendor could offer a Registration Page that Application Vendors could use to register their applications, and can have an approval and audit mechanism before applications are registered.</p>
+<p>While this process could be formalised and automated using protocols like <a href="https://tools.ietf.org/html/rfc7591" target="_blank" rel="noopener">OAuth2 Dynamic Client Registration Protocol</a> in the future, the current recommendation is to do this out-of-band in a way that makes sense for the Application Vendor and the Platform Vendor. For example, the Platform vendor could offer a Registration Page that Application Vendors could use to register their applications, and can have an approval and audit mechanism before applications are registered.</p>
 </div>
 <div class="paragraph">
 <p>For compliance and consistency reason, the <em>Application</em> should also have a valid registration according to <a href="https://www.hl7.org/fhir/smart-app-launch/app-launch.html#register-app-with-ehr" target="_blank" rel="noopener">relevant FHIR specification</a> for this process.</p>
@@ -450,14 +450,19 @@ S Iancu</p></td>
 <h2 id="_service_discovery"><a class="anchor" href="#_service_discovery"></a>4. Service Discovery</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <em>CDR</em> usually has multiple endpoints of interest. Some of these can include the OAuth2&#8217;s <code>.well-known</code> endpoints, like the Token and Authentication endpoints, but also data resource endpoints defined by the openEHR REST APIs, vendor&#8217;s proprietary APIs, DICOMWeb APIs, FHIR APIs to name a few.</p>
+<p>A <em>Platform</em> usually has multiple endpoints of interest. Some of these are the OAuth2&#8217;s <code>.well-known</code> endpoints, like the Token and Authentication endpoints, while others are data resource or service endpoints defined by the openEHR REST APIs, FHIR APIs, DICOMWeb APIs, vendor&#8217;s proprietary APIs to name a few.</p>
 </div>
 <div class="paragraph">
-<p>The SMART Service Discovery builds on the FHIR <a href="https://www.hl7.org/fhir/smart-app-launch/conformance.html#using-well-known" target="_blank" rel="noopener"><code>.well-known/smart-configuration</code>
-</a> and enables a <em>CDR</em> to advertise multiple <a href="#_services">services</a> alongside the OAuth2 <code>.well-known</code> endpoints for <a href="#_authentication_endpoints">authentication</a>.</p>
+<p>The <strong>SMART Service Discovery</strong> builds on the FHIR <a href="https://www.hl7.org/fhir/smart-app-launch/conformance.html#using-well-known" target="_blank" rel="noopener"><code>.well-known/smart-configuration</code></a> and enables a <em>Platform</em> to advertise multiple <a href="#_services">services</a> alongside the OAuth2 <code>.well-known</code> endpoints for <a href="#_authentication_endpoints">authentication</a>.</p>
+</div>
+<div id="smart_service_discovery" class="imageblock text-center text-center">
+<div class="content">
+<img src="smart_app_launch/diagrams/smart_service_discovery.svg" alt="smart service discovery">
+</div>
+<div class="title">Figure 1. SMART Service Discovery</div>
 </div>
 <div class="paragraph">
-<p>Given a vendor&#8217;s base URL of <code>https://ehr.example.com</code>, the SMART Configuration endpoint should be available at <code>https://ehr.example.com/.well-known/smart-configuration</code>.</p>
+<p>Given a vendor&#8217;s base URL of <code>https://ehr.example.com</code>, the SMART configuration endpoint should be available at <code>https://ehr.example.com/.well-known/smart-configuration</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -467,7 +472,7 @@ S Iancu</p></td>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The CDR vendor can choose to make <code>https://ehr.example.com</code> the base URL of their FHIR endpoint if they want to maintain backward compatibility for <em>SMART on FHIR</em> applications, since these apps assume that the base URL is always the FHIR server.</p>
+<p>The Platform vendor can choose to make <code>https://ehr.example.com</code> the base URL of their FHIR endpoint if they want to maintain backward compatibility for <em>SMART on FHIR</em> applications, since these apps assume that the base URL is always the FHIR server.</p>
 </div>
 </td>
 </tr>
@@ -579,10 +584,10 @@ S Iancu</p></td>
 <div class="sect2">
 <h3 id="_services"><a class="anchor" href="#_services"></a>4.2. Services</h3>
 <div class="paragraph">
-<p>A response from the SMART Configuration endpoint should include besides the <a href="https://www.hl7.org/fhir/smart-app-launch/conformance.html#metadata" target="_blank" rel="noopener">FHIR metadata</a> also a hash of all available <code>services</code> on the <em>CDR</em>. The <code>services</code> section allows the application to discover the APIs of all services that can be used along with a description and documentation. The section is represented as a hash, where the key is represented by a reverse domain name of the service (e.g. <code>org.openehr.rest</code>), and the value represents the service endpoints specification.</p>
+<p>A response from the SMART Configuration endpoint should include besides the <a href="https://www.hl7.org/fhir/smart-app-launch/conformance.html#metadata" target="_blank" rel="noopener">FHIR metadata</a> also a hash of all available <code>services</code> on the <em>Platform</em>. The <code>services</code> section allows the application to discover the APIs of all services that can be used along with a description and documentation. The section is represented as a hash, where the key is represented by a reverse domain name of the service (e.g. <code>org.openehr.rest</code>), and the value represents the service endpoints specification.</p>
 </div>
 <div class="paragraph">
-<p>The service list should minimally include the openEHR REST APIs endpoints specification available on the <em>CDR</em>, using the key <code>org.openehr.rest</code>. For consistency reason, the list should also include the specification of the FHIR server using the key <code>org.fhir.rest</code>:</p>
+<p>The service list should minimally include the openEHR REST APIs endpoints specification available on the <em>Platform</em>, using the key <code>org.openehr.rest</code>. For consistency reason, the list should also include the specification of the FHIR server using the key <code>org.fhir.rest</code>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -595,7 +600,7 @@ S Iancu</p></td>
 </ul>
 </div>
 <div class="paragraph">
-<p>The CDR vendor may add additional services to the list, for example:</p>
+<p>The Platform vendor may add additional services to the list, for example:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -687,7 +692,7 @@ The SMART profile on the underlying <a href="https://tools.ietf.org/html/rfc6749
 <div class="sect3">
 <h4 id="_available_flows"><a class="anchor" href="#_available_flows"></a>5.1.1. Available flows</h4>
 <div class="paragraph">
-<p>The client <em>Application</em> can authenticate with the <em>CDR</em> using the <strong>SMART on openEHR</strong>, based on the following flows:</p>
+<p>The client <em>Application</em> can authenticate with the <em>Platform</em> using the <strong>SMART on openEHR</strong>, based on the following flows:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -706,7 +711,7 @@ The SMART profile on the underlying <a href="https://tools.ietf.org/html/rfc6749
 </ul>
 </div>
 <div class="paragraph">
-<p>The supported authentication flows should be advertised by the <em>CDR</em> in the <code>.well-known/smart-configuration</code> endpoint.</p>
+<p>The supported authentication flows should be advertised by the <em>Platform</em> in the <code>.well-known/smart-configuration</code> endpoint.</p>
 </div>
 <div class="paragraph">
 <p>SMART protocol distinguish two types of authentication types:</p>
@@ -826,10 +831,10 @@ authenticates a client application using a secret that has been pre-shared betwe
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Standalone launch</strong>: The URL of the application is opened directly by the end user - e.g. <code>https://myapp.example.com</code>. The application decides which CDR url to use based on the user&#8217;s selection.</p>
+<p><strong>Standalone launch</strong>: The URL of the application is opened directly by the end user - e.g. <code>https://myapp.example.com</code>. The application decides which Platform url to use based on the user&#8217;s selection.</p>
 </li>
 <li>
-<p><strong>EHR launch</strong>: The application is embedded within an EHR system (portal) using an <code>iFrame</code>. Additional parameters are passed to the application to indicate the CDR to use, and the launch context -  e.g. <code>https://myapp.example.com?launch=123&amp;iss=https://cdr.com</code>. SMART on openEHR names this launch method as <strong>Embedded iFrame Launch</strong> to avoid potential confusion in relation with <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_package" target="_blank" rel="noopener">openEHR <code>EHR</code></a> specification.</p>
+<p><strong>EHR launch</strong>: The application is embedded within the Platform&#8217;s main user-interface (i.e. a Portal) using an <code>iFrame</code>. Additional parameters are passed to the application to indicate the Platform to use, and the launch context -  e.g. <code>https://myapp.example.com?launch=123&amp;iss=https://platform.example.com</code>. SMART on openEHR names this launch method as <strong>Embedded iFrame Launch</strong> to avoid potential confusion in relation with <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_package" target="_blank" rel="noopener">openEHR <code>EHR</code></a> specification.</p>
 </li>
 </ol>
 </div>
@@ -842,7 +847,7 @@ authenticates a client application using a secret that has been pre-shared betwe
 <p>The client first requests an authorization code from the authorization server by redirecting the user to the <code>authorization_endpoint</code>.</p>
 </li>
 <li>
-<p>Exchanges the authorization code for an access token by using the <code>token_endpoint</code></p>
+<p>Subsequently, the client exchanges the authorization code for an access token by using the <code>token_endpoint</code>.</p>
 </li>
 </ol>
 </div>
@@ -852,14 +857,20 @@ authenticates a client application using a secret that has been pre-shared betwe
 <div class="sect3">
 <h4 id="_context_selection"><a class="anchor" href="#_context_selection"></a>5.2.1. Context Selection</h4>
 <div class="paragraph">
-<p>In the <em>Standalone launch</em>, a client <em>Application</em> can request (invoke) a <em>CDR</em> for the context selection. Most Patient and Practitioner facing application, along with the initial login and consent page, will also require the <em>CDR</em> to send additional <strong>context</strong>. This may contain information like the EHR or Patient ID, potentially the Episode ID, and it may be valid for a lifetime of the session.</p>
+<p>In the <em>Standalone launch</em>, a client <em>Application</em> can request (invoke) the <em>Platform</em> for the context selection. Most Patient and Practitioner facing application, along with the initial login and consent page, will also require the <em>Platform</em> to send additional <strong>context</strong>. This may contain information like the EHR or Patient ID, potentially the Episode ID, and it may be valid for a lifetime of the session.</p>
+</div>
+<div id="smart_standalone_launch" class="imageblock text-center text-center">
+<div class="content">
+<img src="smart_app_launch/diagrams/smart_standalone_launch.png" alt="smart standalone launch">
+</div>
+<div class="title">Figure 2. Standalone Launch</div>
 </div>
 <div class="paragraph">
 <p>This <em>context</em> data can be used to pre-populate the client <em>Application</em> with the correct data.
-The <em>CDR</em> can do this by automatically inferring the <em>context</em> based on the user logged in or <code>launch</code> token (in case of <em>Embedded iFrame Launch</em>). The <em>CDR</em> can provide a screen right after the consent page to select the <em>context</em> in case of ambiguity.</p>
+The <em>Platform</em> can do this by automatically inferring the <em>context</em> based on the user logged in or <code>launch</code> token (in case of <em>Embedded iFrame Launch</em>). The <em>Platform</em> can provide a screen right after the consent page to select the <em>context</em> in case of ambiguity.</p>
 </div>
 <div class="paragraph">
-<p>The <em>Application</em> can request the <em>CDR</em> for openEHR related context selection by passing the following special <strong>scopes</strong> in the authorization request:</p>
+<p>The <em>Application</em> can request the <em>Platform</em> for openEHR related context selection by passing the following special <strong>scopes</strong> in the authorization request:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -880,7 +891,7 @@ The <em>CDR</em> can do this by automatically inferring the <em>context</em> bas
 </tbody>
 </table>
 <div class="paragraph">
-<p>The context data populated by the <em>CDR</em> is returned in the token response along with the <code>id_token</code> and <code>access_token</code>. The following additional parameters are added to the token response:</p>
+<p>The context data populated by the <em>Platform</em> is returned in the token response along with the <code>id_token</code> and <code>access_token</code>. The following additional parameters are added to the token response:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -921,13 +932,19 @@ The <em>CDR</em> can do this by automatically inferring the <em>context</em> bas
 <div class="sect3">
 <h4 id="_embedded_iframe_launch"><a class="anchor" href="#_embedded_iframe_launch"></a>5.2.2. Embedded iFrame Launch</h4>
 <div class="paragraph">
-<p>Most Practitioner facing, as well as some Patient facing applications will have to be embedded within the end-user&#8217;s web based front-end by using an <code>iFrame</code>. The <em>CDR</em> can automatically select the correct <em>context</em> for the client <em>Application</em> by passing the <code>launch</code> parameter to the application&#8217;s url. The <em>CDR</em> should also provide the <code>iss</code> parameter to indicate the CDR endpoint for the application to use.</p>
+<p>Most Practitioner facing, as well as some Patient facing applications will have to be embedded within the end-user&#8217;s web based front-end by using an <code>iFrame</code>. The <em>Platform</em> can automatically select the correct <em>context</em> for the client <em>Application</em> by passing the <code>launch</code> parameter to the application&#8217;s url. The <em>Platform</em> should also provide the <code>iss</code> parameter to indicate the Platform endpoint for the application to use.</p>
+</div>
+<div id="smart_embedded_iframe_launch" class="imageblock text-center text-center">
+<div class="content">
+<img src="smart_app_launch/diagrams/smart_embedded_iframe_launch.png" alt="smart embedded iframe launch">
+</div>
+<div class="title">Figure 3. Embedded iFrame Launch</div>
 </div>
 <div class="paragraph">
-<p>The application will be launched on a URL like: <code>https://myapp.example.com?launch=123&amp;iss=https://cdr.com</code>.</p>
+<p>The application will be launched on a URL like: <code>https://myapp.example.com?launch=123&amp;iss=https://platform.example.com</code>.</p>
 </div>
 <div class="paragraph">
-<p>The application can then use the <code>iss</code> parameter to obtain the <em>CDR</em> configuration from the <code>.well-known/smart-configuration</code> endpoint. It then uses the <code>authorization_endpoint</code> to start the Authorization Code Flow. The <code>launch</code> parameter is passed along to the authorization request.</p>
+<p>The application can then use the <code>iss</code> parameter to obtain the <em>Platform</em> configuration from the <code>.well-known/smart-configuration</code> endpoint. It then uses the <code>authorization_endpoint</code> to start the Authorization Code Flow. The <code>launch</code> parameter is passed along to the authorization request.</p>
 </div>
 <div class="paragraph">
 <p>The following <strong>scope</strong> is also mandatory while passing the <code>launch</code> parameter:</p>
@@ -958,7 +975,7 @@ The <em>CDR</em> can do this by automatically inferring the <em>context</em> bas
 <div class="sect2">
 <h3 id="_scopes_for_openehr_rest_api"><a class="anchor" href="#_scopes_for_openehr_rest_api"></a>5.3. Scopes for openEHR REST API</h3>
 <div class="paragraph">
-<p>The <em>Application</em> can request access to the <em>CDR</em> resources using the <a href="https://tools.ietf.org/html/rfc6749#section-3.3" target="_blank" rel="noopener">OAuth2.0 scopes</a>. <a href="https://www.hl7.org/fhir/smart-app-launch/scopes-and-launch-context.html" target="_blank" rel="noopener">SMART defines</a> the scope syntax as follows:</p>
+<p>The <em>Application</em> can request access to the <em>Platform</em> resources using the <a href="https://tools.ietf.org/html/rfc6749#section-3.3" target="_blank" rel="noopener">OAuth2.0 scopes</a>. <a href="https://www.hl7.org/fhir/smart-app-launch/scopes-and-launch-context.html" target="_blank" rel="noopener">SMART defines</a> the scope syntax as follows:</p>
 </div>
 <div class="paragraph">
 <p><code>&lt;compartment&gt;/&lt;resource&gt;.&lt;permission&gt;</code></p>
@@ -972,10 +989,10 @@ The <em>CDR</em> can do this by automatically inferring the <em>context</em> bas
 <p><code>patient/*</code>: These scopes are used when the EHR ID is present in the context. Only access to resources in the compartment of the EHR ID is allowed.</p>
 </li>
 <li>
-<p><code>user/*</code>: These scopes are used when the user is identified by the CDR. It is usually a practitioner or an administrator. Only access to resources that the user would usually have access to is allowed.</p>
+<p><code>user/*</code>: These scopes are used when the user is identified by the Platform. It is usually a practitioner or an administrator. Only access to resources that the user would usually have access to is allowed.</p>
 </li>
 <li>
-<p><code>system/*</code>: These scopes are used when the user is not available and the application is a backend confidential application. These scopes are obtained in advance while registering the application and provides unrestricted access to resources in the CDR.</p>
+<p><code>system/*</code>: These scopes are used when the user is not available and the application is a backend confidential application. These scopes are obtained in advance while registering the application and provides (unrestricted) access to resources in the Platform.</p>
 </li>
 </ul>
 </div>
@@ -1138,7 +1155,7 @@ The <em>CDR</em> can do this by automatically inferring the <em>context</em> bas
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-08-25 21:27:38 UTC
+Last updated 2023-08-29 08:24:50 UTC
 </div>
 </div>
 </body>
