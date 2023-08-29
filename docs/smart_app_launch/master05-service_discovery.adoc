@@ -1,8 +1,8 @@
 = Service Discovery
 
-A _CDR_ usually has multiple endpoints of interest. Some of these are the OAuth2's `.well-known` endpoints, like the Token and Authentication endpoints, while others are data resource or service endpoints defined by the openEHR REST APIs, FHIR APIs, DICOMWeb APIs, vendor's proprietary APIs to name a few.
+A _Platform_ usually has multiple endpoints of interest. Some of these are the OAuth2's `.well-known` endpoints, like the Token and Authentication endpoints, while others are data resource or service endpoints defined by the openEHR REST APIs, FHIR APIs, DICOMWeb APIs, vendor's proprietary APIs to name a few.
 
-The *SMART Service Discovery* builds on the FHIR {hl7_fhir}/smart-app-launch/conformance.html#using-well-known[`.well-known/smart-configuration`^] and enables a _CDR_ to advertise multiple <<_services,services>> alongside the OAuth2 `.well-known` endpoints for <<_authentication_endpoints,authentication>>.
+The *SMART Service Discovery* builds on the FHIR {hl7_fhir}/smart-app-launch/conformance.html#using-well-known[`.well-known/smart-configuration`^] and enables a _Platform_ to advertise multiple <<_services,services>> alongside the OAuth2 `.well-known` endpoints for <<_authentication_endpoints,authentication>>.
 
 [.text-center]
 .SMART Service Discovery
@@ -12,7 +12,7 @@ Given a vendor's base URL of `\https://ehr.example.com`, the SMART configuration
 
 [NOTE]
 ====
-The CDR vendor can choose to make `\https://ehr.example.com` the base URL of their FHIR endpoint if they want to maintain backward compatibility for _SMART on FHIR_ applications, since these apps assume that the base URL is always the FHIR server.
+The Platform vendor can choose to make `\https://ehr.example.com` the base URL of their FHIR endpoint if they want to maintain backward compatibility for _SMART on FHIR_ applications, since these apps assume that the base URL is always the FHIR server.
 ====
 
 An example of a response from `/.well-known/smart-configuration` will look like this:
@@ -92,14 +92,14 @@ The following configurations keys should be exactly the same as in the OAuth2 + 
 
 == Services
 
-A response from the SMART Configuration endpoint should include besides the {hl7_fhir}/smart-app-launch/conformance.html#metadata[FHIR metadata^] also a hash of all available `services` on the _CDR_. The `services` section allows the application to discover the APIs of all services that can be used along with a description and documentation. The section is represented as a hash, where the key is represented by a reverse domain name of the service (e.g. `org.openehr.rest`), and the value represents the service endpoints specification.
+A response from the SMART Configuration endpoint should include besides the {hl7_fhir}/smart-app-launch/conformance.html#metadata[FHIR metadata^] also a hash of all available `services` on the _Platform_. The `services` section allows the application to discover the APIs of all services that can be used along with a description and documentation. The section is represented as a hash, where the key is represented by a reverse domain name of the service (e.g. `org.openehr.rest`), and the value represents the service endpoints specification.
 
-The service list should minimally include the openEHR REST APIs endpoints specification available on the _CDR_, using the key `org.openehr.rest`. For consistency reason, the list should also include the specification of the FHIR server using the key `org.fhir.rest`:
+The service list should minimally include the openEHR REST APIs endpoints specification available on the _Platform_, using the key `org.openehr.rest`. For consistency reason, the list should also include the specification of the FHIR server using the key `org.fhir.rest`:
 
 * `org.openehr.rest`: The base URL of the openEHR REST APIs `*(required)*`
 * `org.fhir.rest`: The base URL of the FHIR APIs `*(recommended)*`
 
-The CDR vendor may add additional services to the list, for example:
+The Platform vendor may add additional services to the list, for example:
 
 * `org.dicomstandard.dicomweb.rest`: The base URL of the DICOMWeb REST API
 * `com.amazon.aws.s3.rest`: The base URL of an AWS S3 compatible REST API

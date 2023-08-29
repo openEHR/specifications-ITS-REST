@@ -11,14 +11,14 @@ In accordance with SMART protocol, the authentication is often a step of the aut
 
 === Available flows
 
-The client _Application_ can authenticate with the _CDR_ using the *SMART on openEHR*, based on the following flows:
+The client _Application_ can authenticate with the _Platform_ using the *SMART on openEHR*, based on the following flows:
 
 - {ietf_html}/rfc6749#section-1.3.1[OAuth2 Authorization Code^] flow with {ietf_html}/rfc7636[Proof Key for Code Exchange (PKCE)^]
 - {ietf_html}/rfc6749#section-1.3.1[OAuth2 Authorization Code^] flow with `client_secret`
 - {ietf_html}/rfc6749#section-1.3.4[OAuth2 Client Credentials^] flow
 - {ietf_html}/rfc7523[JWT Assertion^] flow with {ietf_html}/rfc7515[JSON Web Signature (JWS)^]
 
-The supported authentication flows should be advertised by the _CDR_ in the `.well-known/smart-configuration` endpoint.
+The supported authentication flows should be advertised by the _Platform_ in the `.well-known/smart-configuration` endpoint.
 
 SMART protocol distinguish two types of authentication types:
 
@@ -63,8 +63,8 @@ The following table shows the recommended flow for a few example applications:
 
 Both Patient and Practitioner facing applications have special requirements that cannot be fulfilled only by the standard OAuth2 framework specification. SMART on FHIR {hl7_fhir}/smart-app-launch/app-launch.html#smart-authorization--fhir-access-overview[specifies^] that applications can be launched in one of two ways:
 
-1. *Standalone launch*: The URL of the application is opened directly by the end user - e.g. `\https://myapp.example.com`. The application decides which CDR url to use based on the user's selection.
-2. *EHR launch*: The application is embedded within an EHR system (portal) using an `iFrame`. Additional parameters are passed to the application to indicate the CDR to use, and the launch context -  e.g. `\https://myapp.example.com?launch=123&iss=https://cdr.com`. SMART on openEHR names this launch method as *Embedded iFrame Launch* to avoid potential confusion in relation with {openehr_rm_ehr}#_ehr_package[openEHR `EHR`^] specification.
+1. *Standalone launch*: The URL of the application is opened directly by the end user - e.g. `\https://myapp.example.com`. The application decides which Platform url to use based on the user's selection.
+2. *EHR launch*: The application is embedded within the Platform's main user-interface (i.e. a Portal) using an `iFrame`. Additional parameters are passed to the application to indicate the Platform to use, and the launch context -  e.g. `\https://myapp.example.com?launch=123&iss=https://platform.example.com`. SMART on openEHR names this launch method as *Embedded iFrame Launch* to avoid potential confusion in relation with {openehr_rm_ehr}#_ehr_package[openEHR `EHR`^] specification.
 
 The Authorization Code Flow as {ietf_html}/rfc6749#section-4.1[defined in OAuth2 framework^] is a two-step process where:
 
@@ -75,12 +75,12 @@ The SMART protocol specifies a few modifications to the Authorization Code Flow 
 
 === Context Selection
 
-In the _Standalone launch_, a client _Application_ can request (invoke) a _CDR_ for the context selection. Most Patient and Practitioner facing application, along with the initial login and consent page, will also require the _CDR_ to send additional *context*. This may contain information like the EHR or Patient ID, potentially the Episode ID, and it may be valid for a lifetime of the session.
+In the _Standalone launch_, a client _Application_ can request (invoke) a _Platform_ for the context selection. Most Patient and Practitioner facing application, along with the initial login and consent page, will also require the _Platform_ to send additional *context*. This may contain information like the EHR or Patient ID, potentially the Episode ID, and it may be valid for a lifetime of the session.
 
 This _context_ data can be used to pre-populate the client _Application_ with the correct data.
-The _CDR_ can do this by automatically inferring the _context_ based on the user logged in or `launch` token (in case of _Embedded iFrame Launch_). The _CDR_ can provide a screen right after the consent page to select the _context_ in case of ambiguity.
+The _Platform_ can do this by automatically inferring the _context_ based on the user logged in or `launch` token (in case of _Embedded iFrame Launch_). The _Platform_ can provide a screen right after the consent page to select the _context_ in case of ambiguity.
 
-The _Application_ can request the _CDR_ for openEHR related context selection by passing the following special *scopes* in the authorization request:
+The _Application_ can request the _Platform_ for openEHR related context selection by passing the following special *scopes* in the authorization request:
 
 [width="100%",cols="2,2",options="header"]
 |=======================================================================
@@ -88,7 +88,7 @@ The _Application_ can request the _CDR_ for openEHR related context selection by
 | `launch/patient` | When launching outside the EHR, ask for the openEHR EHR instance to be selected.
 |=======================================================================
 
-The context data populated by the _CDR_ is returned in the token response along with the `id_token` and `access_token`. The following additional parameters are added to the token response:
+The context data populated by the _Platform_ is returned in the token response along with the `id_token` and `access_token`. The following additional parameters are added to the token response:
 
 [width="100%",cols="2,2",options="header"]
 |=======================================================================
@@ -105,11 +105,11 @@ The {hl7_fhir}/smart-app-launch/scopes-and-launch-context.html[launch scopes^] a
 
 === Embedded iFrame Launch
 
-Most Practitioner facing, as well as some Patient facing applications will have to be embedded within the end-user's web based front-end by using an `iFrame`. The _CDR_ can automatically select the correct _context_ for the client _Application_ by passing the `launch` parameter to the application's url. The _CDR_ should also provide the `iss` parameter to indicate the CDR endpoint for the application to use.
+Most Practitioner facing, as well as some Patient facing applications will have to be embedded within the end-user's web based front-end by using an `iFrame`. The _Platform_ can automatically select the correct _context_ for the client _Application_ by passing the `launch` parameter to the application's url. The _Platform_ should also provide the `iss` parameter to indicate the Platform endpoint for the application to use.
 
-The application will be launched on a URL like: `\https://myapp.example.com?launch=123&iss=https://cdr.com`.
+The application will be launched on a URL like: `\https://myapp.example.com?launch=123&iss=https://platform.example.com`.
 
-The application can then use the `iss` parameter to obtain the _CDR_ configuration from the `.well-known/smart-configuration` endpoint. It then uses the `authorization_endpoint` to start the Authorization Code Flow. The `launch` parameter is passed along to the authorization request.
+The application can then use the `iss` parameter to obtain the _Platform_ configuration from the `.well-known/smart-configuration` endpoint. It then uses the `authorization_endpoint` to start the Authorization Code Flow. The `launch` parameter is passed along to the authorization request.
 
 The following *scope* is also mandatory while passing the `launch` parameter:
 
@@ -124,15 +124,15 @@ It is recommended that the `launch` token be a base64 encoded JSON object, conta
 
 == Scopes for openEHR REST API
 
-The _Application_ can request access to the _CDR_ resources using the {ietf_html}/rfc6749#section-3.3[OAuth2.0 scopes^]. {hl7_fhir}/smart-app-launch/scopes-and-launch-context.html[SMART defines^] the scope syntax as follows:
+The _Application_ can request access to the _Platform_ resources using the {ietf_html}/rfc6749#section-3.3[OAuth2.0 scopes^]. {hl7_fhir}/smart-app-launch/scopes-and-launch-context.html[SMART defines^] the scope syntax as follows:
 
 `<compartment>/<resource>.<permission>`
 
 The scopes are based on 3 different _compartments_:
 
 - `patient/*`: These scopes are used when the EHR ID is present in the context. Only access to resources in the compartment of the EHR ID is allowed.
-- `user/*`: These scopes are used when the user is identified by the CDR. It is usually a practitioner or an administrator. Only access to resources that the user would usually have access to is allowed.
-- `system/*`: These scopes are used when the user is not available and the application is a backend confidential application. These scopes are obtained in advance while registering the application and provides unrestricted access to resources in the CDR.
+- `user/*`: These scopes are used when the user is identified by the Platform. It is usually a practitioner or an administrator. Only access to resources that the user would usually have access to is allowed.
+- `system/*`: These scopes are used when the user is not available and the application is a backend confidential application. These scopes are obtained in advance while registering the application and provides (unrestricted) access to resources in the Platform.
 
 For the {openehr_its_rest_releases}[openEHR REST APIs] the following _resource expressions_ are supported:
 
