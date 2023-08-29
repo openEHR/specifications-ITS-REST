@@ -318,8 +318,8 @@ S Iancu</p></td>
 <h3 id="_glossary"><a class="anchor" href="#_glossary"></a>2.2. Glossary</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 12.5%;">
+<col style="width: 87.5%;">
 </colgroup>
 <thead>
 <tr>
@@ -338,22 +338,36 @@ S Iancu</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Platform</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A system consisting of an openEHR Clinical Data Repository (CDR) and a FHIR Server, providing openEHR REST APIs, FHIR APIs and potentially other APIs. This is sometimes also known in the SMART on FHIR as the "EHR system".</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OAuth2 Server</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An authentication and authorization server that provides APIs consistent with the OAuth2 framework specification and the SMART on openEHR protocol.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A software system consisting at least of an Authorization Server, an openEHR Clinical Data Repository (CDR) and a FHIR Server, providing openEHR REST APIs, FHIR APIs and potentially other APIs. This is sometimes also known in the <em>SMART on FHIR</em> as the "EHR system". The authentication and authorization server that provides APIs consistent with the OAuth2 framework specification and the SMART on openEHR protocol.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Launcher</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User-facing software built by the Platform vendor that serves to launch other applications within a context of a Patient or Practitioner. This can be part of the Platform (i.e. a Portal) or a separate application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User-facing software, usually built by the Platform vendor, that serves to launch other applications within a context of a Patient or Practitioner. This can be part of the Platform (i.e. a Portal) or a completely separate application.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EHR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A (session) context that relates to an <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_package" target="_blank" rel="noopener">openEHR <code>EHR</code> container</a> and the associated Patient. This indicates the subject on which the Application will work. Notice: this should not be confused with what SMART on FHIR uses to name "the system" providing FHIR APIs.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A (session) context that relates to an <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_package" target="_blank" rel="noopener">openEHR <code>EHR</code> container</a> and the associated Patient, representing the subject on which the Application will work.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <em>SMART on FHIR</em> uses the term '<em>EHR</em>' and '<em>EHR system</em>' to refer to a software system comprising a FHIR Server, Authorization Server and potentially other components, including a <em>Launcher</em>.
+OpenEHR on the other hand has specification for an <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html" target="_blank" rel="noopener">EHR Information Model</a>, including a <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_root_ehr_object" target="_blank" rel="noopener">root <code>EHR</code> container</a>.</p>
+</div>
+<div class="paragraph">
+<p>In order to avoid any confusion between the meaning of '<em>EHR</em>' in the context of SMART, this specification will only use this term in relation with openEHR concepts (i.e. EHR type, EHR ID, etc.), and will use substitutes for FHIR&#8217;s '<em>EHR</em>' concept.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_why_smart_on_openehr"><a class="anchor" href="#_why_smart_on_openehr"></a>2.3. Why SMART on openEHR?</h3>
@@ -781,10 +795,10 @@ authenticates a client application using a secret that has been pre-shared betwe
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 35.7142%;">
+<col style="width: 14.2857%;">
+<col style="width: 21.4285%;">
+<col style="width: 28.5716%;">
 </colgroup>
 <thead>
 <tr>
@@ -834,7 +848,7 @@ authenticates a client application using a secret that has been pre-shared betwe
 <p><strong>Standalone launch</strong>: The URL of the application is opened directly by the end user - e.g. <code>https://myapp.example.com</code>. The application decides which Platform url to use based on the user&#8217;s selection.</p>
 </li>
 <li>
-<p><strong>EHR launch</strong>: The application is embedded within the Platform&#8217;s main user-interface (i.e. a Portal) using an <code>iFrame</code>. Additional parameters are passed to the application to indicate the Platform to use, and the launch context -  e.g. <code>https://myapp.example.com?launch=123&amp;iss=https://platform.example.com</code>. SMART on openEHR names this launch method as <strong>Embedded iFrame Launch</strong> to avoid potential confusion in relation with <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_package" target="_blank" rel="noopener">openEHR <code>EHR</code></a> specification.</p>
+<p><strong>EHR launch</strong>: The application is often embedded within the Platform&#8217;s main user-interface (i.e. a Portal) using an <code>iFrame</code>. Additional parameters are passed to the application to indicate the Platform to use, and the launch context - e.g. <code>https://myapp.example.com?launch=123&amp;iss=https://platform.example.com</code>. SMART on openEHR names this launch method as <strong>Embedded iFrame Launch</strong> to avoid potential confusion in relation with <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_package" target="_blank" rel="noopener">openEHR Reference Model <code>EHR</code></a> specification.</p>
 </li>
 </ol>
 </div>
@@ -857,25 +871,25 @@ authenticates a client application using a secret that has been pre-shared betwe
 <div class="sect3">
 <h4 id="_context_selection"><a class="anchor" href="#_context_selection"></a>5.2.1. Context Selection</h4>
 <div class="paragraph">
-<p>In the <em>Standalone launch</em>, a client <em>Application</em> can request (invoke) the <em>Platform</em> for the context selection. Most Patient and Practitioner facing application, along with the initial login and consent page, will also require the <em>Platform</em> to send additional <strong>context</strong>. This may contain information like the EHR or Patient ID, potentially the Episode ID, and it may be valid for a lifetime of the session.</p>
+<p>In the <em>Standalone launch</em>, a client <em>Application</em> can request (invoke) the <em>Platform</em> for the context selection. Most Patient and Practitioner facing application, along with the initial login and consent page, will also require the <em>Platform</em> to send additional <strong>context</strong>. This may contain information like the openEHR EHR ID or Patient ID, potentially the Episode ID, and it may be valid for a lifetime of the session.</p>
 </div>
 <div id="smart_standalone_launch" class="imageblock text-center text-center">
 <div class="content">
-<img src="smart_app_launch/diagrams/smart_standalone_launch.png" alt="smart standalone launch">
+<img src="smart_app_launch/diagrams/smart_standalone_launch.svg" alt="smart standalone launch">
 </div>
 <div class="title">Figure 2. Standalone Launch</div>
 </div>
 <div class="paragraph">
 <p>This <em>context</em> data can be used to pre-populate the client <em>Application</em> with the correct data.
-The <em>Platform</em> can do this by automatically inferring the <em>context</em> based on the user logged in or <code>launch</code> token (in case of <em>Embedded iFrame Launch</em>). The <em>Platform</em> can provide a screen right after the consent page to select the <em>context</em> in case of ambiguity.</p>
+The <em>Platform</em> can do this by automatically inferring the <em>context</em> based on the logged-in user, or <code>launch</code> token (in case of <em>Embedded iFrame Launch</em>). The <em>Platform</em> can provide a screen right after the consent page to select the <em>context</em> in case of ambiguity.</p>
 </div>
 <div class="paragraph">
 <p>The <em>Application</em> can request the <em>Platform</em> for openEHR related context selection by passing the following special <strong>scopes</strong> in the authorization request:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 40%;">
+<col style="width: 60%;">
 </colgroup>
 <thead>
 <tr>
@@ -895,8 +909,8 @@ The <em>Platform</em> can do this by automatically inferring the <em>context</em
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 40%;">
+<col style="width: 60%;">
 </colgroup>
 <thead>
 <tr>
@@ -936,7 +950,7 @@ The <em>Platform</em> can do this by automatically inferring the <em>context</em
 </div>
 <div id="smart_embedded_iframe_launch" class="imageblock text-center text-center">
 <div class="content">
-<img src="smart_app_launch/diagrams/smart_embedded_iframe_launch.png" alt="smart embedded iframe launch">
+<img src="smart_app_launch/diagrams/smart_embedded_iframe_launch.svg" alt="smart embedded iframe launch">
 </div>
 <div class="title">Figure 3. Embedded iFrame Launch</div>
 </div>
@@ -951,8 +965,8 @@ The <em>Platform</em> can do this by automatically inferring the <em>context</em
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -1077,8 +1091,8 @@ The <em>Platform</em> can do this by automatically inferring the <em>context</em
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
