@@ -50,7 +50,7 @@ It is recommended that Patient and Practitioner facing applications use one of t
 
 The following table shows the recommended flow for a few example applications:
 
-[width="100%",cols="2,2,2,2",options="header"]
+[width="100%",cols="5,2,3,4",options="header"]
 |=======================================================================
 | Application Example | Client Type | User interaction type | Recommended Flow
 | Single Page Web Application for a Patient Portal | Public | Patient facing | Authorization Code Flow with PKCE
@@ -86,7 +86,7 @@ The _Platform_ can do this by automatically inferring the _context_ based on the
 
 The _Application_ can request the _Platform_ for openEHR related context selection by passing the following special *scopes* in the authorization request:
 
-[width="100%",cols="2,2",options="header"]
+[width="100%",cols="2,3",options="header"]
 |=======================================================================
 | Scope | Meaning
 | `launch/patient` | When launching outside the EHR, ask for the openEHR EHR instance to be selected.
@@ -94,7 +94,7 @@ The _Application_ can request the _Platform_ for openEHR related context selecti
 
 The context data populated by the _Platform_ is returned in the token response along with the `id_token` and `access_token`. The following additional parameters are added to the token response:
 
-[width="100%",cols="2,2",options="header"]
+[width="100%",cols="2,3",options="header"]
 |=======================================================================
 | Parameter | Meaning
 | ehrId | The UUID of the openEHR EHR instance associated with the (FHIR) Patient resource in the launch.
@@ -121,7 +121,7 @@ The application can then use the `iss` parameter to obtain the _Platform_ config
 
 The following *scope* is also mandatory while passing the `launch` parameter:
 
-[width="100%",cols="2,2",options="header"]
+[width="100%",cols="1,2",options="header"]
 |=======================================================================
 | Scope | Meaning
 | `launch` | Permission to obtain launch context when app is launched from an EHR using launch parameter. This should be accompanied by an additional `launch` parameter in the authorization request.
@@ -172,7 +172,7 @@ The following _permission_ expressions are supported:
 
 The following table is a maximal representation of the scopes made possible in different _compartment_, _resource_ and _permission_ combinations:
 
-[width="100%",cols="2,2",options="header"]
+[width="100%",cols="1,2",options="header"]
 |=======================================================================
 | Scope | Meaning
 |`patient/composition-<templateId>.crud` | Permission to create, read, update and delete compositions of `<templateId>` that are within the EHR of the patient in context.

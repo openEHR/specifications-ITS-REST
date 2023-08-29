@@ -6,15 +6,14 @@
 
 == Glossary
 
-[width="100%",cols="2,2",options="header"]
+[width="100%",cols="1,7",options="header"]
 |=======================================================================
 |Term | Definition
 |Vendor | An entity that provides software to end-users.
 |Application | Software developed by a vendor designed to work with the Platform and/or Launcher built by the same or another vendor. This is also known as the "client" in terms of OAuth roles.
-|Platform | A system consisting of an openEHR Clinical Data Repository (CDR) and a FHIR Server, providing openEHR REST APIs, FHIR APIs and potentially other APIs. This is sometimes also known in the SMART on FHIR as the "EHR system".
-|OAuth2 Server | An authentication and authorization server that provides APIs consistent with the OAuth2 framework specification and the SMART on openEHR protocol.
-|Launcher | User-facing software built by the Platform vendor that serves to launch other applications within a context of a Patient or Practitioner. This can be part of the Platform (i.e. a Portal) or a separate application.
-|EHR | A (session) context that relates to an {openehr_rm_ehr}#_ehr_package[openEHR `EHR` container^] and the associated Patient. This indicates the subject on which the Application will work. Notice: this should not be confused with what SMART on FHIR uses to name "the system" providing FHIR APIs.
+|Platform | A software system consisting at least of an Authorization Server, an openEHR Clinical Data Repository (CDR) and a FHIR Server, providing openEHR REST APIs, FHIR APIs and potentially other APIs. This is sometimes also known in the _SMART on FHIR_ as the "EHR system". The authentication and authorization server that provides APIs consistent with the OAuth2 framework specification and the SMART on openEHR protocol.
+|Launcher | User-facing software, usually built by the Platform vendor, that serves to launch other applications within a context of a Patient or Practitioner. This can be part of the Platform (i.e. a Portal) or a completely separate application.
+|EHR | A (session) context that relates to an {openehr_rm_ehr}#_ehr_package[openEHR `EHR` container^] and the associated Patient, representing the subject on which the Application will work.
 |=======================================================================
 
 [NOTE]
