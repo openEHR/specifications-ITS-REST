@@ -1,11 +1,10 @@
 = Service Discovery
 
-A _CDR_ usually has multiple endpoints of interest. Some of these can include the OAuth2's `.well-known` endpoints, like the Token and Authentication endpoints, but also data resource endpoints defined by the openEHR REST APIs, vendor's proprietary APIs, DICOMWeb APIs, FHIR APIs to name a few.
+A _CDR_ usually has multiple endpoints of interest. Some of these are the OAuth2's `.well-known` endpoints, like the Token and Authentication endpoints, while others are data resource or service endpoints defined by the openEHR REST APIs, FHIR APIs, DICOMWeb APIs, vendor's proprietary APIs to name a few.
 
-The SMART Service Discovery builds on the FHIR {hl7_fhir}/smart-app-launch/conformance.html#using-well-known[`.well-known/smart-configuration`
-^] and enables a _CDR_ to advertise multiple <<_services,services>> alongside the OAuth2 `.well-known` endpoints for <<_authentication_endpoints,authentication>>.
+The *SMART Service Discovery* builds on the FHIR {hl7_fhir}/smart-app-launch/conformance.html#using-well-known[`.well-known/smart-configuration`^] and enables a _CDR_ to advertise multiple <<_services,services>> alongside the OAuth2 `.well-known` endpoints for <<_authentication_endpoints,authentication>>.
 
-Given a vendor's base URL of `\https://ehr.example.com`, the SMART Configuration endpoint should be available at `\https://ehr.example.com/.well-known/smart-configuration`.
+Given a vendor's base URL of `\https://ehr.example.com`, the SMART configuration endpoint should be available at `\https://ehr.example.com/.well-known/smart-configuration`.
 
 [NOTE]
 ====

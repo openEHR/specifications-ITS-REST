@@ -69,7 +69,7 @@ Both Patient and Practitioner facing applications have special requirements that
 The Authorization Code Flow as {ietf_html}/rfc6749#section-4.1[defined in OAuth2 framework^] is a two-step process where:
 
 1. The client first requests an authorization code from the authorization server by redirecting the user to the `authorization_endpoint`.
-2. Exchanges the authorization code for an access token by using the `token_endpoint`
+2. Subsequently, the client exchanges the authorization code for an access token by using the `token_endpoint`.
 
 The SMART protocol specifies a few modifications to the Authorization Code Flow to enhance it for the use-case of Standalone and Embedded iFrame launch, which are described in the following sections.
 
