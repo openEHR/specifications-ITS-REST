@@ -79,7 +79,7 @@ In the _Standalone launch_, a client _Application_ can request (invoke) the _Pla
 
 [.text-center]
 .Standalone Launch
-image::{diagrams_uri}/smart_standalone_launch.png[id=smart_standalone_launch, align="center"]
+image::{diagrams_uri}/smart_standalone_launch.svg[id=smart_standalone_launch, align="center"]
 
 This _context_ data can be used to pre-populate the client _Application_ with the correct data.
 The _Platform_ can do this by automatically inferring the _context_ based on the user logged in or `launch` token (in case of _Embedded iFrame Launch_). The _Platform_ can provide a screen right after the consent page to select the _context_ in case of ambiguity.
@@ -113,7 +113,7 @@ Most Practitioner facing, as well as some Patient facing applications will have 
 
 [.text-center]
 .Embedded iFrame Launch
-image::{diagrams_uri}/smart_embedded_iframe_launch.png[id=smart_embedded_iframe_launch, align="center"]
+image::{diagrams_uri}/smart_embedded_iframe_launch.svg[id=smart_embedded_iframe_launch, align="center"]
 
 The application will be launched on a URL like: `\https://myapp.example.com?launch=123&iss=https://platform.example.com`.
 
