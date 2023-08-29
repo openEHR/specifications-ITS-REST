@@ -4,6 +4,10 @@ A _CDR_ usually has multiple endpoints of interest. Some of these are the OAuth2
 
 The *SMART Service Discovery* builds on the FHIR {hl7_fhir}/smart-app-launch/conformance.html#using-well-known[`.well-known/smart-configuration`^] and enables a _CDR_ to advertise multiple <<_services,services>> alongside the OAuth2 `.well-known` endpoints for <<_authentication_endpoints,authentication>>.
 
+[.text-center]
+.SMART Service Discovery
+image::{diagrams_uri}/smart_service_discovery.svg[id=smart_service_discovery, align="center"]
+
 Given a vendor's base URL of `\https://ehr.example.com`, the SMART configuration endpoint should be available at `\https://ehr.example.com/.well-known/smart-configuration`.
 
 [NOTE]
