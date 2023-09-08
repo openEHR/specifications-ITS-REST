@@ -1,0 +1,15 @@
+title: ROLE
+type: object
+allOf:
+  - $ref: Party.yaml
+required:
+  - languages
+properties:
+  time_validity:
+    $ref: ../data_types/DvIntervalOfDate.yaml
+  performer:
+    $ref: ../base_types/PartyRef.yaml
+  capabilities:
+    type: array
+    items:
+      $ref: Capability.yaml

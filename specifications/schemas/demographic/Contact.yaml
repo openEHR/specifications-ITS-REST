@@ -1,0 +1,11 @@
+title: CONTACT
+type: object
+allOf:
+  - $ref: ../common/Locatable.yaml
+properties:
+  time_validity:
+    $ref: ../data_types/DvIntervalOfDate.yaml
+  addresses:
+    type: array
+    items:
+      $ref: Address.yaml

@@ -11,7 +11,9 @@ function render() {
     docker-compose run --rm redocly bundle computable/OAS/"$1"-validation.openapi.json -o computable/OAS/"$1"-validation.openapi.yaml
     echo
     echo "Generating HTML file..."
-    docker-compose run --rm redocly build-docs computable/OAS/"$1"-html.openapi.json --cdn -o docs/"$1".html -t development/redoc-template.html --templateOptions.page_"$1"
+    #docker-compose run --rm redocly build-docs computable/OAS/"$1"-html.openapi.json --cdn -o docs/"$1".html -t development/redoc-template.html --templateOptions.page_"$1"
+    #redocly doesn't have a --cdn option
+    docker-compose run --rm redocly build-docs computable/OAS/"$1"-html.openapi.json -o docs/"$1".html -t development/redoc-template.html --templateOptions.page_"$1"
     echo
     echo "Removing json files..."
     rm -rfv ../computable/OAS/*.json
@@ -19,7 +21,7 @@ function render() {
 
 
 case "${1:-}" in
-		overview|ehr|query|definition)
+		overview|ehr|query|definition|demographic)
 		  render "$@"
       ;;
 		all)
@@ -27,9 +29,10 @@ case "${1:-}" in
 		  render ehr
 		  render query
 		  render definition
+      render demographic
       ;;
 		"")
-			echo "Usage: bundle.sh [overview|ehr|query|definition]"
+			echo "Usage: bundle.sh [overview|ehr|query|definition|demographic]"
 			echo "   or: bundle.sh all"
 			;;
 	esac

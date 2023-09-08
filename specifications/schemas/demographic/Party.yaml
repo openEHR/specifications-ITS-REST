@@ -1,0 +1,24 @@
+title: PARTY
+type: object
+allOf:
+  - $ref: ../common/Locatable.yaml
+properties:
+  details:
+    # FIXME: I don't know which item structure schema to use, there are 3 options
+    $ref: ../data_structures/UItemStructure.yaml
+  identities:
+    type: array
+    items:
+      $ref: PartyIdentity.yaml
+  contacts:
+    type: array
+    items:
+      $ref: Contact.yaml
+x-cg-discriminator:
+  propertyName: _type
+  mapping:
+    #ROLE is not allowed on purpose, for the API it's embedded in the ACTOR payload
+    PERSON: '#/components/schemas/Actor'
+    ORGANISATION: '#/components/schemas/Actor'
+    GROUP: '#/components/schemas/Actor'
+    AGENT: '#/components/schemas/Actor'
