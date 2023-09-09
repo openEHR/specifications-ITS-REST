@@ -74,8 +74,9 @@ include::master06-authentication_authorization_scopes.adoc[leveloffset=+1]
 [bibliography]
 == References
 
-* SMART App Launch - Release 2.1.0 (2021), {hl7_fhir}/smart-app-launch/
+* SMART App Launch - Release 2.1.0 (2021), {hl7_fhir}/smart-app-launch
 * OAuth2 Framework, {ietf_html}/rfc6749
 * OpenId Connect (OIDC), {oidc_authentication}
 * JSON Web Token (JWT) Assertion, {ietf_html}/rfc7523
 * JSON Web Signature (JWS), {ietf_html}/rfc7515
+* Best Practices in Authorization for SMART on FHIR EHRs, https://docs.smarthealthit.org/authorization/best-practices
