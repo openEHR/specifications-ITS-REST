@@ -63,7 +63,7 @@ The following table shows the recommended flow for a few example applications:
 
 Both Patient and Practitioner facing applications have special requirements that cannot be fulfilled only by the standard OAuth2 framework specification. SMART on FHIR {hl7_fhir}/smart-app-launch/app-launch.html#smart-authorization--fhir-access-overview[specifies^] that applications can be launched in one of two ways:
 
-1. *Standalone launch*: The URL of the application is opened directly by the end user - e.g. `\https://myapp.example.com`. The application decides which Platform url to use based on the user's selection.
+1. *Standalone launch*: The URL of the application is opened directly by the end-user - e.g. `\https://myapp.example.com`. The application decides which Platform url to use based on the user's selection.
 2. *EHR launch*: The application is often embedded within the Platform's main user-interface (i.e. a Portal) using an `iFrame`. Additional parameters are passed to the application to indicate the Platform to use, and the launch context - e.g. `\https://myapp.example.com?launch=123&iss=https://platform.example.com`. SMART on openEHR names this launch method as *Embedded iFrame Launch* to avoid potential confusion in relation with {openehr_rm_ehr}#_ehr_package[openEHR Reference Model `EHR`^] specification.
 
 The Authorization Code Flow as {ietf_html}/rfc6749#section-4.1[defined in OAuth2 framework^] is a two-step process where:
