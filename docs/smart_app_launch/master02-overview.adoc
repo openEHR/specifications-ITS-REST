@@ -10,6 +10,7 @@
 |=======================================================================
 |Term | Definition
 |Vendor | An entity that provides software to end-users.
+|User | This is the real person or software agent who is using the Application to perform some function. This is often referred to as the "end-user".
 |Application | A software application developed by a vendor, designed to work with the Platform and/or Launcher built by the same or another vendor. This is also known as the "client" in terms of OAuth roles, and often referred to as the "SMART App" by _SMART on FHIR_ specification.
 |Platform | A software system consisting at least of an Authorization Server, an openEHR Clinical Data Repository (CDR) and a FHIR Server, providing openEHR REST APIs, FHIR APIs and potentially other APIs. This is sometimes also known in the _SMART on FHIR_ specification as the "EHR system". The authentication and authorization server that provides APIs consistent with the OAuth2 framework specification and the SMART on openEHR protocol.
 |Launcher | User-facing software, usually built by the Platform vendor, that serves to launch other Applications within a context of a Patient or Practitioner. The Launcher can be part of the Platform (i.e. a Portal) or a completely separate application.
