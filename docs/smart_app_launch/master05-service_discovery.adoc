@@ -67,7 +67,7 @@ Responses for `/.well-known/smart-configuration` requests should be always retur
     "client-confidential-symmetric",
     "context-ehr-patient",
     "sso-openid-connect",
-    "launch-openehr-ehr",
+    "context-openehr-ehr",
     "openehr-permission-v1",
 	"launch-base64-json"
   ]
@@ -132,7 +132,7 @@ As an example, the openEHR REST APIs endpoints may be described as:
 
 The `capabilities` section is an array that should include all relevant SMART capabilities. Besides {hl7_fhir}/smart-app-launch/conformance.html#capabilities[FHIR capabilities^], the following additional values should be used in order to indicate the ability to launch an application using openEHR artefacts:
 
-* `launch-openehr-ehr` - support to select an EHR context within openEHR returned as the `ehr` parameter in a token.
-* `launch-openehr-episode` - support to launch and select an Episode context returned as the `episode` parameter in a token.
-* `openehr-permission-v1` - support for the scope and authorization scheme described below for openEHR REST APIs
+* `context-openehr-ehr` - support for EHR-level launch context (requested by `launch/patient` scope, conveyed via `ehrId` token parameter).
+* `context-openehr-episode` - support for Episode-level launch context (requested by `launch/episode` scope, conveyed via `episodeId` token parameter). This capability is deemed experimental.
+* `openehr-permission-v1` - support for the scope and authorization scheme for openEHR REST APIs as described <<_scopes_for_openehr_rest_api,below>>
 * `launch-base64-json` - support for the `launch` URL parameter being a base64 encoded JSON of the context.

@@ -61,10 +61,10 @@ The following table shows the recommended flow for a few example applications:
 
 == SMART Authorization Flow
 
-Both Patient and Practitioner facing applications have special requirements that cannot be fulfilled only by the standard OAuth2 framework specification. SMART on FHIR {hl7_fhir}/smart-app-launch/app-launch.html#smart-authorization--fhir-access-overview[specifies^] that applications can be launched in one of two ways:
+Both Patient and Practitioner facing applications have special requirements that cannot be fulfilled only by the standard OAuth2 framework specification. SMART on FHIR {hl7_fhir}/smart-app-launch/app-launch.html#smart-authorization--fhir-access-overview[specifies^] that depending on the session context, applications can be launched in two ways:
 
-1. *Standalone launch*: The URL of the application is opened directly by the end-user - e.g. `\https://myapp.example.com`. The application decides which Platform url to use based on the user's selection.
-2. *EHR launch*: The application is often embedded within the Platform's main user-interface (i.e. a Portal) using an `iFrame`. Additional parameters are passed to the application to indicate the Platform to use, and the launch context - e.g. `\https://myapp.example.com?launch=123&iss=https://platform.example.com`. SMART on openEHR names this launch method as *Embedded iFrame Launch* to avoid potential confusion in relation with {openehr_rm_ehr}#_ehr_package[openEHR Reference Model `EHR`^] specification.
+1. *Standalone launch*: The Application is opened directly by the end-user, launched outside the end-user session context on the Platform - e.g. by launching the app at `\https://myapp.example.com`. The application decides which Platform to use based on the user's selection.
+2. *EHR launch*: The Application is often embedded within the Platform's main user-interface (i.e. a Portal) using an `iFrame`. Additional parameters `launch` and `iss` are passed to the Application to indicate the Platform to use, and the launch context - e.g. `\https://myapp.example.com?launch=123&iss=https://platform.example.com`. This launch method is also referred to as *Embedded iFrame Launch* to avoid potential confusion in relation with {openehr_rm_ehr}#_ehr_package[openEHR Reference Model `EHR`^] specification.
 
 The Authorization Code Flow as {ietf_html}/rfc6749#section-4.1[defined in OAuth2 framework^] is a two-step process where:
 
@@ -75,29 +75,31 @@ The SMART protocol specifies a few modifications to the Authorization Code Flow 
 
 === Context Selection
 
-In the _Standalone launch_, a client _Application_ can request (invoke) the _Platform_ for the context selection. Most Patient and Practitioner facing application, along with the initial login and consent page, will also require the _Platform_ to send additional *context*. This may contain information like the openEHR EHR ID or Patient ID, potentially the Episode ID, and it may be valid for a lifetime of the session.
+In the _Standalone launch_, a client _Application_ can request (invoke) the _Platform_ for the context selection, if relevant `context-\*` prefixed capabilities are available on the _Platform_. Most Patient and Practitioner facing application will also require during authorization process the _Platform_ to determine and send additional **context** data. This may contain information like the openEHR EHR ID or Patient ID, potentially the Episode ID, and it may be valid for a lifetime of the end-user session.
 
 [.text-center]
 .Standalone Launch
 image::{diagrams_uri}/smart_standalone_launch.svg[id=smart_standalone_launch, align="center"]
 
 This _context_ data can be used to pre-populate the client _Application_ with the correct data.
-The _Platform_ can do this by automatically inferring the _context_ based on the logged-in user, or `launch` token (in case of _Embedded iFrame Launch_). The _Platform_ can provide a screen right after the consent page to select the _context_ in case of ambiguity.
+The _Platform_ can do this by automatically inferring the _context_ based on the logged-in user, or can provide a screen right after the consent page to select the _context_ in case of ambiguity.
 
 The _Application_ can request the _Platform_ for openEHR related context selection by passing the following special *scopes* in the authorization request:
 
 [width="100%",cols="2,3",options="header"]
 |=======================================================================
 | Scope | Meaning
-| `launch/patient` | When launching outside the EHR, ask for the openEHR EHR instance to be selected.
+| `launch/patient` | Need patient context at launch time (FHIR Patient resource and openEHR EHR). When launching outside the EHR, ask for the openEHR EHR instance to be selected.
+| `launch/episode` | Need episode context at launch time (this is experimental, the semantic and the resource is to be determined).
 |=======================================================================
 
-The context data populated by the _Platform_ is returned in the token response along with the `id_token` and `access_token`. The following additional parameters are added to the token response:
+The context data populated by the _Platform_ is returned in the token response along with the `id_token` and `access_token`. The following additional parameters (besides those {hl7_fhir}/smart-app-launch/scopes-and-launch-context.html#launch-context-arrives-with-your-access_token[described by FHIR^]) are added to the token response:
 
 [width="100%",cols="2,3",options="header"]
 |=======================================================================
 | Parameter | Meaning
-| ehrId | The UUID of the openEHR EHR instance associated with the (FHIR) Patient resource in the launch.
+| ehrId | The ID of the openEHR EHR instance associated with the FHIR Patient resource selected in the launch.
+| episodeId | The ID of the Episode selected in the launch (this is experimental, the semantic and the resource is to be determined).
 |=======================================================================
 
 The application can make use of these parameters to render the correct information to the end-user.
@@ -109,13 +111,14 @@ The {hl7_fhir}/smart-app-launch/scopes-and-launch-context.html[launch scopes^] a
 
 === Embedded iFrame Launch
 
-Most Practitioner facing, as well as some Patient facing applications will have to be embedded within the end-user's web based front-end by using an `iFrame`. The _Platform_ can automatically select the correct _context_ for the client _Application_ by passing the `launch` parameter to the application's url. The _Platform_ should also provide the `iss` parameter to indicate the Platform endpoint for the application to use.
+Most Practitioner facing, as well as some Patient facing applications will have to be embedded within the end-user's web based front-end (i.e. a Portal) by using an `iFrame`.
+
+The _Platform_ can automatically communicate the correct _context_ for the client _Application_ by passing the `launch` parameter to the application's url. The _Platform_ should also provide the `iss` parameter to indicate its endpoint for the application to use (which for FHIR SMART apps compatibility reasons represents also the FHIR server endpoint).
+As an example, an application can be launched by a URL like: `\https://myapp.example.com?launch=123&iss=https://platform.example.com`.
 
 [.text-center]
 .Embedded iFrame Launch
 image::{diagrams_uri}/smart_embedded_iframe_launch.svg[id=smart_embedded_iframe_launch, align="center"]
-
-The application will be launched on a URL like: `\https://myapp.example.com?launch=123&iss=https://platform.example.com`.
 
 The application can then use the `iss` parameter to obtain the _Platform_ configuration from the `.well-known/smart-configuration` endpoint. It then uses the `authorization_endpoint` to start the Authorization Code Flow. The `launch` parameter is passed along to the authorization request.
 
@@ -124,10 +127,10 @@ The following *scope* is also mandatory while passing the `launch` parameter:
 [width="100%",cols="1,2",options="header"]
 |=======================================================================
 | Scope | Meaning
-| `launch` | Permission to obtain launch context when app is launched from an EHR using launch parameter. This should be accompanied by an additional `launch` parameter in the authorization request.
+| `launch` | Permission to obtain launch context when Application is launched from an EHR (Embedded iFrame Launch). This should be accompanied by an additional `launch` parameter in the authorization request.
 |=======================================================================
 
-It is recommended that the `launch` token be a base64 encoded JSON object, containing the _context_ attributes like the `ehrId`, along with other attributes for internal purposes. The client _Application_ can use this information to pre-populate itself without initiating an authorization request if it is already authenticated. This will enable a seamless experience for the user when switching between patients while using the application within an `iFrame`. This capability can be advertised by adding the `launch-base64-json` to the `capabilities` parameter of the `/.well-known/smart-configuration` response.
+It is recommended that the `launch` token be a base64 encoded JSON object, containing the _context_ attributes like the `ehrId`, along with other attributes. The client _Application_ can use this information to pre-populate itself without initiating an authorization request if it is already authenticated. This will enable a seamless experience for the user when switching between patients while using the application within an `iFrame`. This capability can be advertised by adding the `launch-base64-json` _capability_ in the `/.well-known/smart-configuration` response.
 
 
 == Scopes for openEHR REST API
