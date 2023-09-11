@@ -11,7 +11,7 @@ function render() {
     docker-compose run --rm redocly bundle computable/OAS/"$1"-validation.openapi.json -o computable/OAS/"$1"-validation.openapi.yaml
     echo
     echo "Generating HTML file..."
-    docker-compose run --rm redocly build-docs computable/OAS/"$1"-html.openapi.json --cdn -o docs/"$1".html -t development/redoc-template.html --templateOptions.page_"$1"
+    docker-compose run --rm redocly build-docs computable/OAS/"$1"-html.openapi.json -o docs/"$1".html -t development/redoc-template.html --templateOptions.page_"$1"
     echo
     echo "Removing json files..."
     rm -rfv ../computable/OAS/*.json
