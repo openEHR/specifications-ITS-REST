@@ -10,8 +10,8 @@
 |=======================================================================
 |Term | Definition
 |Vendor | An entity that provides software to end-users.
-|User | This is the real person or software agent who is using the Application to perform some function. This is often referred to as the "end-user".
-|Application | A software application developed by a vendor, designed to work with the Platform and/or Launcher built by the same or another vendor. This is also known as the "client" in terms of OAuth roles, and often referred to as the "SMART App" by _SMART on FHIR_ specification.
+|User | This is the real person who is using the Application to perform some function. This is often referred to as the "end-user".
+|Application | A software application developed by a vendor, designed to work with the Platform and/or Launcher built by the same or different vendor. This is also known as the "client" in terms of OAuth roles, and often referred to as the "SMART App" by _SMART on FHIR_ specification.
 |Platform | A software system consisting at least of an Authorization Server, an openEHR Clinical Data Repository (CDR) and a FHIR Server, providing openEHR REST APIs, FHIR APIs and potentially other APIs. This is sometimes also known in the _SMART on FHIR_ specification as the "EHR system". The authentication and authorization server that provides APIs consistent with the OAuth2 framework specification and the SMART on openEHR protocol.
 |Launcher | User-facing software, usually built by the Platform vendor, that serves to launch other Applications within a context of a Patient or Practitioner. The Launcher can be part of the Platform (i.e. a Portal) or a completely separate application.
 |EHR | A (session) context that relates to an {openehr_rm_ehr}#_ehr_package[openEHR `EHR` container^] and the associated Patient, representing the subject on which the Application will work.
@@ -50,6 +50,6 @@ The *SMART on openEHR* specification aims to maintain compatibility with {hl7_fh
 
 == Requirements
 
-The {openehr_rm}[openEHR Reference Model^] and openEHR REST APIs provide a foundation for interoperable _Applications_. For such applications to be truly portable between systems and vendors, there is a requirement for a uniform _authentication_ and _authorization_ process.
+The {openehr_rm}[openEHR Reference Model^] and {openehr_ehr_rest_api}[openEHR REST API specification^] provide a foundation for interoperable _Applications_. For such applications to be truly portable between systems and vendors, there is a requirement for a uniform _authentication_ and _authorization_ process.
 
 Many of such applications also function in the _context_ of a single EHR or Patient, and potentially of a single Episode. Selection of this _context_ also becomes essential before lunching the _Application_.
