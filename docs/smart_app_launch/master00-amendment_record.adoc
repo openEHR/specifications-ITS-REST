@@ -1,0 +1,15 @@
+= Amendment Record
+
+[cols="1,6,2,2", options="header"]
+|===
+|Issue|Details|Raiser|Completed
+
+4+^h|*ITS_REST Release (unreleased)*
+
+|[[latest_issue]]1.0.0
+|{spec_tickets}/SPECITS-69[SPECITS-69^]. Adding "SMART on openEHR" specifications.
+|S Ramesh, +
+S Iancu
+|[[latest_issue_date]]09 Sep 2023
+
+|===
