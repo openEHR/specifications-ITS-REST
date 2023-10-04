@@ -71,6 +71,17 @@
             "keywords": "JSON, REST, web template, commit, simplified data, TDS, SDT, ncSDT, simSDT, structSDT"
         },
         {
+            "id": "smart_app_launch",
+            "title": "SMART on openEHR (SMART)",
+            "title_short": "SMART",
+            "description": "openEHR SMART App Launch and Service Discovery Framework (SMART)",
+            "summary": "openEHR SMART App Launch and Service Discovery Framework.",
+            "micro_summary": "SMART on openEHR",
+            "copyright_year": "2023",
+            "spec_status": "DEVELOPMENT",
+            "keywords": "JSON, REST, SMART, OAuth2, OIDC, Authentication, Authorization, Application, App"
+        },
+        {
             "id": "REST_OAS_files",
             "title": "REST API OpenAPI files",
             "title_short": "OAS 3.0",
