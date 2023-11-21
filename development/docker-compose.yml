@@ -5,17 +5,25 @@ services:
             dockerfile: php.Dockerfile
             context: .
         volumes:
-            - .:/app
-            - ../docs:/data/docs
-            - ../specifications:/data/specifications
+            - .:/opt/project
             - ../computable:/data/computable
-            - ../codegen:/data/codegen
+        tty: true
+        user: 1000:1000
+
+    redocly:
+        image: redocly/cli
+        volumes:
+            - ..:/spec
+        tty: true
+        user: 1000:1000
         environment:
-            - TZ=UTC
-            - TIMEZONE=UTC
-            - IN_DOCKER=docker
-            - PHP_XDEBUG_ENABLED=1
-            - XDEBUG_CONFIG="remote_host=host.docker.internal"
-            - PHP_IDE_CONFIG="serverName=Docker"
+            NODE_OPTIONS: "--max-old-space-size=4048"
+
+    swagger-cli:
+        build:
+            dockerfile: swagger-cli.Dockerfile
+            context: .
+        volumes:
+            - ..:/data
         tty: true
         user: 1000:1000

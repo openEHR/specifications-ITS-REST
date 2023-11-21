@@ -1,0 +1,31 @@
+= REST development tool
+
+This tool will parse OAS source files located on /specifications folders and will generate:
+* for validation /computable/OAS/*-validation.openapi.yaml,
+* for code generators /computable/OAS/*-codegen.openapi.yaml,
+
+== Usage
+
+First you will need to change directory to `development`.
+Docker-compose will be used to create a container with PHP code that will perform all necessary tasks.
+The sequence of commands should normally be:
+```
+cd development
+docker-compose run --rm php composer install
+./bundle.sh all       # to build all OAS files
+./bundle.sh overview  # to build only the overview OAS files
+```
+
+An alternative is to use the provided wrapper bash script. To get the help on this command you will need to execute:
+```
+./run
+```
+
+You can also use:
+* `./generate.sh` to generate code according to predefined configurations
+* `./validate.sh` to validate OAS build files
+* `./watch.sh` to watch a rendered OAS file while developing it
+
+== Output
+
+Files are generated in `computable/OAS/` directory.

@@ -1,0 +1,82 @@
+//
+// ============================================ Asciidoc HEADER =============================================
+//
+include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
+include::manifest_vars.adoc[]
+include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
+:oidc_authentication: https://openid.net/specs/openid-connect-core-1_0.html#Authentication
+
+//
+// ============================================ Asciidoc PREAMBLE =============================================
+//
+
+image::{openehr_logo}["openEHR logo",align="center"]
+
+= {spec_title}
+
+include::{ref_dir}/docs/boilerplate/full_front_block.adoc[]
+include::{ref_dir}/docs/references/reference_definitions.adoc[]
+
+//
+// ============================================= Asciidoc BODY ===============================================
+//
+
+include::master00-amendment_record.adoc[leveloffset=+1]
+
+//
+// --------------------------------------------- Preface -----------------------------------------------
+//
+
+== Acknowledgements
+
+=== Primary Author
+
+* Sidharth Ramesh; Medblocks.
+* Sebastian Iancu; Architect, Code24, Netherlands
+
+=== Contributors
+
+This specification has benefited from formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following for their contributions.
+
+* Ian McNicoll MD, FreshEHR, UK
+* Bostjan Lah, Senior Architect, Better, Slovenia
+
+A significant part of the design ideas of this specification was derived from:
+
+* the SMART on FHIR protocol - SMART App Launch Release 2.1.0, published by HL7® FHIR®
+
+=== Trademarks
+
+* 'openEHR' is a registered trademark of the openEHR Foundation
+* 'HL7' and 'FHIR' are the registered trademark of the Health Level Seven International
+
+//
+// --------------------------------------------- TOC -----------------------------------------------
+//
+//toc::[left]
+
+//
+// --------------------------------------------- CHAPTERS -----------------------------------------------
+//
+:sectnums:
+include::master01-preface.adoc[leveloffset=+1]
+include::master02-overview.adoc[leveloffset=+1]
+include::master04-registration.adoc[leveloffset=+1]
+include::master05-service_discovery.adoc[leveloffset=+1]
+include::master06-authentication_authorization_scopes.adoc[leveloffset=+1]
+
+//
+// --------------------------------------------- REFERENCES -----------------------------------------------
+//
+
+:sectnums!:
+
+[bibliography]
+== References
+
+* SMART App Launch - Release 2.1.0 (2021), {hl7_fhir}/smart-app-launch
+* OAuth2 Framework, {ietf_html}/rfc6749
+* OpenId Connect (OIDC), {oidc_authentication}
+* JSON Web Token (JWT) Assertion, {ietf_html}/rfc7523
+* JSON Web Signature (JWS), {ietf_html}/rfc7515
+* Best Practices in Authorization for SMART on FHIR EHRs, https://docs.smarthealthit.org/authorization/best-practices

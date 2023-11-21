@@ -15,7 +15,7 @@ class Validation extends AbstractWriter {
     /**
      * @param Schema $schema
      * @return void
-     * @throws \cebe\openapi\exceptions\UnresolvableReferenceException
+     * @throws UnresolvableReferenceException
      */
     protected function slurping(Schema $schema): void {
         if ($schema->allOf) {
@@ -53,7 +53,7 @@ class Validation extends AbstractWriter {
      */
     protected function run(): void {
         echo "slurping() ...";
-        foreach ($this->apiSpecification->components->schemas as $name => $schema) {
+        foreach ($this->apiSpecification->components->schemas as $schema) {
             $this->slurping($schema);
             $this->cleaning($schema);
         }
@@ -102,7 +102,7 @@ class Validation extends AbstractWriter {
         ];
         $schemas = [];
         foreach ($this->apiSpecification->components->schemas as $name => $schema) {
-            if (!in_array($name, $redundant)) {
+            if (!in_array($name, $redundant, true)) {
                 $schemas[$name] = $schema;
             }
         }

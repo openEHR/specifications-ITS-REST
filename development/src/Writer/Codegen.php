@@ -16,7 +16,7 @@ class Codegen extends AbstractWriter {
      */
     protected function prepareInput(): void {
         echo "prepareInput() ...";
-        $this->input = str_replace(["x-cg-discriminator"], ["discriminator"], $this->input, $count);
+        $this->input = str_replace(["x-cg-discriminator"], ["discriminator"], $this->input);
         $this->input = preg_replace('#\\/schemas\\/U((?:Dv|Party|Version|Object|Uid|Content|Item|DataValue)[a-zA-Z]*)#', '\\/schemas\\/$1', $this->input);
         $this->input = preg_replace('#\\/schemas\\/UM(DvDateTime)#', '\\/schemas\\/$1', $this->input);
     }
@@ -27,8 +27,8 @@ class Codegen extends AbstractWriter {
      */
     protected function cleaning(Schema $schema): void {
         if ($schema->properties) {
-            foreach ($schema->properties as $name => $property) {
-                if ($property->format === 'uuid') {
+            foreach ( $schema->properties as $property) {
+                if (isset($property->format) && $property->format === 'uuid') {
                     unset($property->format);
                 }
             }

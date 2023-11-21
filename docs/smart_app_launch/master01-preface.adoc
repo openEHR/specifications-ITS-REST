@@ -1,0 +1,37 @@
+= Preface
+
+== Purpose
+
+This document describes SMART protocol for an openEHR platform.
+
+The intended audience includes:
+
+* EHR systems, Platform or Application vendors;
+* Standards bodies producing health informatics standards;
+* Solution vendors.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview^]
+* {openehr_its_rest_releases}[openEHR REST APIs]
+* {hl7_fhir}/smart-app-launch/[SMART on FHIR^]
+* {ietf_html}/rfc6749[OAuth2^] and {oidc_authentication}[OpenId Connect (OIDC)^]
+
+== Status
+
+This specification is in the {spec_status} state. The development version of this document can be found at {openehr_smart_app_launch}[{openehr_smart_app_launch}^].
+
+Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
+[.tbd]
+*TBD*: (example To Be Determined paragraph)
+
+== Feedback
+
+Feedback may be provided on the {openehr_technical_list}/its[openEHR ITS forum^].
+
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
+
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
+
