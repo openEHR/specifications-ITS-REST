@@ -8,8 +8,8 @@ properties:
   identities:
     type: array
     items:
-      $ref: PartyIdentity.yaml
+      $ref: ../demographic/PartyIdentity.yaml
   contacts:
     type: array
     items:
-      $ref: Contact.yaml
+      $ref: ../demographic/Contact.yaml

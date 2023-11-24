@@ -1,7 +1,7 @@
 title: ROLE
 type: object
 allOf:
-  - $ref: Party.yaml
+  - $ref: ../demographic/Party.yaml
 required:
   - languages
 properties:
@@ -12,4 +12,4 @@ properties:
   capabilities:
     type: array
     items:
-      $ref: Capability.yaml
+      $ref: ../demographic/Capability.yaml

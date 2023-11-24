@@ -1,7 +1,7 @@
 title: ACTOR
 type: object
 allOf:
-  - $ref: Party.yaml
+  - $ref: ../demographic/Party.yaml
 required:
   - languages
 properties:
@@ -12,4 +12,4 @@ properties:
   roles:
     type: array
     items:
-      $ref: Role.yaml
+      $ref: ../base_types/PartyRef.yaml

@@ -8,4 +8,4 @@ properties:
   addresses:
     type: array
     items:
-      $ref: Address.yaml
+      $ref: ../demographic/Address.yaml
