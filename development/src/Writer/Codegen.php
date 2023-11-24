@@ -3,6 +3,7 @@
 namespace OpenEHR\Specifications\Tools\OpenAPI\Writer;
 
 use cebe\openapi\spec\Schema;
+use cebe\openapi\spec\Discriminator;
 
 class Codegen extends AbstractWriter {
 
@@ -27,10 +28,26 @@ class Codegen extends AbstractWriter {
      */
     protected function cleaning(Schema $schema): void {
         if ($schema->properties) {
-            foreach ( $schema->properties as $property) {
+            foreach ($schema->properties as $property) {
                 if (isset($property->format) && $property->format === 'uuid') {
                     unset($property->format);
                 }
+            }
+        }
+        if ($schema->allOf) {
+            /** @var Schema $parentSchema */
+            $parentSchema = $schema->allOf[0]->resolve();
+            if (count($schema->allOf) > 1) {
+                echo "\n WARNING: $schema->title have more children under [allOf].\n";
+            }
+            if (!isset($parentSchema->discriminator)) {
+                $parentSchema->discriminator = new Discriminator(['propertyName' => '_type']);
+            }
+            if (!isset($parentSchema->discriminator->mapping[$schema->title])) {
+                $mapping = $parentSchema->discriminator->mapping ?? [];
+                $mapping[$schema->title] = static::getSchemaRef($schema->title);
+                echo "(added $schema->title mapping in $parentSchema->title) ";
+                $parentSchema->discriminator->mapping = $mapping;
             }
         }
     }
