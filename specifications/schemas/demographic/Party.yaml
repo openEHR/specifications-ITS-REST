@@ -1,7 +1,7 @@
 title: PARTY
 type: object
 allOf:
-  - $ref: ../common/Locatable.yaml
+  - $ref: ../common/Versionable.yaml
 properties:
   details:
     $ref: ../data_structures/UItemStructure.yaml
