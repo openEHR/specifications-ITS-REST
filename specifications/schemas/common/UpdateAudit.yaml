@@ -15,11 +15,6 @@ properties:
   committer:
     $ref: ../common/UPartyProxy.yaml
 x-discriminator-value: UPDATE_AUDIT
-x-cg-discriminator:
-  propertyName: _type
-  mapping:
-    UPDATE_AUDIT: '#/components/schemas/UpdateAudit'
-    UPDATE_ATTESTATION: '#/components/schemas/UpdateAttestation'
 example:
   change_type:
     value: creation

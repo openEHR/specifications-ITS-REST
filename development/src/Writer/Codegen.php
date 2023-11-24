@@ -17,7 +17,6 @@ class Codegen extends AbstractWriter {
      */
     protected function prepareInput(): void {
         echo "prepareInput() ...";
-        $this->input = str_replace(["x-cg-discriminator"], ["discriminator"], $this->input);
         $this->input = preg_replace('#\\/schemas\\/U((?:Dv|Party|Version|Object|Uid|Content|Item|DataValue)[a-zA-Z]*)#', '\\/schemas\\/$1', $this->input);
         $this->input = preg_replace('#\\/schemas\\/UM(DvDateTime)#', '\\/schemas\\/$1', $this->input);
     }
@@ -34,6 +33,10 @@ class Codegen extends AbstractWriter {
                 }
             }
         }
+        $this->populateDiscriminator($schema->title, $schema);
+    }
+
+    protected function populateDiscriminator(string $mappingKey, Schema $schema): void {
         if ($schema->allOf) {
             /** @var Schema $parentSchema */
             $parentSchema = $schema->allOf[0]->resolve();
@@ -43,14 +46,29 @@ class Codegen extends AbstractWriter {
             if (!isset($parentSchema->discriminator)) {
                 $parentSchema->discriminator = new Discriminator(['propertyName' => '_type']);
             }
-            if (!isset($parentSchema->discriminator->mapping[$schema->title])) {
+            if (!isset($parentSchema->discriminator->mapping[$mappingKey])) {
                 $mapping = $parentSchema->discriminator->mapping ?? [];
-                $mapping[$schema->title] = static::getSchemaRef($schema->title);
-                echo "(added $schema->title mapping in $parentSchema->title) ";
+                $mapping[$mappingKey] = static::getSchemaRef($mappingKey);
+                ksort($mapping);
+                echo "(added $mappingKey mapping in $parentSchema->title) ";
                 $parentSchema->discriminator->mapping = $mapping;
             }
+            // add it also to all ancestors, not only to first parent
+            // this is needed to solve some issues with json-parsers and from() factories in generated code
+            $this->populateDiscriminator($mappingKey, $parentSchema);
         }
     }
+
+    /**
+     * AuditDetails
+     * PartyIdentified
+     * UpdateAudit
+     * DvUri
+     * DvText
+     * DvInterval
+     * **ObjectRef
+     **/
+
 
     /**
      * @return void
