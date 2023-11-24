@@ -4,5 +4,4 @@ allOf:
   - $ref: ../common/Locatable.yaml
 properties:
   details:
-    # FIXME: I don't know which item structure schema to use, there are 3 options
     $ref: ../data_structures/UItemStructure.yaml

@@ -6,7 +6,6 @@ tags:
   - ACTOR
 parameters:
   - $ref: ../parameters/header/Prefer.yaml
-  # FIXME: missing header openEHR-AUDIT_DETAILS.committer
 requestBody:
   description: |
     The ACTOR.
