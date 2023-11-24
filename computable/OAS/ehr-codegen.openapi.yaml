@@ -902,11 +902,12 @@ components:
         propertyName: _type
         mapping:
           ARCHETYPE_ID: '#/components/schemas/ArchetypeId'
-          TEMPLATE_ID: '#/components/schemas/TemplateId'
-          TERMINOLOGY_ID: '#/components/schemas/TerminologyId'
           GENERIC_ID: '#/components/schemas/GenericId'
           HIER_OBJECT_ID: '#/components/schemas/HierObjectId'
           OBJECT_VERSION_ID: '#/components/schemas/ObjectVersionId'
+          TEMPLATE_ID: '#/components/schemas/TemplateId'
+          TERMINOLOGY_ID: '#/components/schemas/TerminologyId'
+          UID_BASED_ID: '#/components/schemas/UidBasedId'
     UidBasedId:
       title: UID_BASED_ID
       type: object
@@ -916,12 +917,12 @@ components:
         _type:
           type: string
           default: UID_BASED_ID
+      x-discriminator-value: UID_BASED_ID
       discriminator:
         propertyName: _type
         mapping:
           HIER_OBJECT_ID: '#/components/schemas/HierObjectId'
           OBJECT_VERSION_ID: '#/components/schemas/ObjectVersionId'
-      x-discriminator-value: UID_BASED_ID
     HierObjectId:
       title: HIER_OBJECT_ID
       required:
@@ -1083,12 +1084,11 @@ components:
           type: boolean
         upper_included:
           type: boolean
+      x-discriminator-value: DV_INTERVAL
       discriminator:
         propertyName: _type
         mapping:
-          DV_INTERVAL: '#/components/schemas/DvInterval'
           DV_INTERVAL_of_DATE_TIME: '#/components/schemas/DvIntervalOfDateTime'
-      x-discriminator-value: DV_INTERVAL
     DvUri:
       title: DV_URI
       required:
@@ -1102,12 +1102,11 @@ components:
           default: DV_URI
         value:
           type: string
+      x-discriminator-value: DV_URI
       discriminator:
         propertyName: _type
         mapping:
-          DV_URI: '#/components/schemas/DvUri'
           DV_EHR_URI: '#/components/schemas/DvEhrUri'
-      x-discriminator-value: DV_URI
     DvEhrUri:
       title: DV_EHR_URI
       type: object
@@ -1146,12 +1145,11 @@ components:
           $ref: '#/components/schemas/CodePhrase'
         encoding:
           $ref: '#/components/schemas/CodePhrase'
+      x-discriminator-value: DV_TEXT
       discriminator:
         propertyName: _type
         mapping:
-          DV_TEXT: '#/components/schemas/DvText'
           DV_CODED_TEXT: '#/components/schemas/DvCodedText'
-      x-discriminator-value: DV_TEXT
     DvCodedText:
       title: DV_CODED_TEXT
       required:
@@ -1214,6 +1212,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReferenceRange'
+      x-discriminator-value: DV_ORDERED
       discriminator:
         propertyName: _type
         mapping:
@@ -1229,7 +1228,6 @@ components:
           DV_SCALE: '#/components/schemas/DvScale'
           DV_TEMPORAL: '#/components/schemas/DvTemporal'
           DV_TIME: '#/components/schemas/DvTime'
-      x-discriminator-value: DV_ORDERED
     DvQuantified:
       title: DV_QUANTIFIED
       type: object
@@ -1242,6 +1240,7 @@ components:
         magnitude_status:
           type: string
           default: '='
+      x-discriminator-value: DV_QUANTIFIED
       discriminator:
         propertyName: _type
         mapping:
@@ -1254,7 +1253,6 @@ components:
           DV_QUANTITY: '#/components/schemas/DvQuantity'
           DV_TEMPORAL: '#/components/schemas/DvTemporal'
           DV_TIME: '#/components/schemas/DvTime'
-      x-discriminator-value: DV_QUANTIFIED
     DvAmount:
       title: DV_AMOUNT
       type: object
@@ -1268,6 +1266,7 @@ components:
           type: boolean
         accuracy:
           type: number
+      x-discriminator-value: DV_AMOUNT
       discriminator:
         propertyName: _type
         mapping:
@@ -1275,7 +1274,6 @@ components:
           DV_DURATION: '#/components/schemas/DvDuration'
           DV_PROPORTION: '#/components/schemas/DvProportion'
           DV_QUANTITY: '#/components/schemas/DvQuantity'
-      x-discriminator-value: DV_AMOUNT
     DvDuration:
       title: DV_DURATION
       type: object
@@ -1297,13 +1295,13 @@ components:
           default: DV_TEMPORAL
         accuracy:
           $ref: '#/components/schemas/DvDuration'
+      x-discriminator-value: DV_TEMPORAL
       discriminator:
         propertyName: _type
         mapping:
           DV_DATE: '#/components/schemas/DvDate'
           DV_DATE_TIME: '#/components/schemas/DvDateTime'
-          DV_DTIME: '#/components/schemas/DvTime'
-      x-discriminator-value: DV_TEMPORAL
+          DV_TIME: '#/components/schemas/DvTime'
     DvDateTime:
       title: DV_DATE_TIME
       required:
@@ -1364,6 +1362,35 @@ components:
           type: string
       discriminator:
         propertyName: _type
+        mapping:
+          ACTION: '#/components/schemas/Action'
+          ACTIVITY: '#/components/schemas/Activity'
+          ADMIN_ENTRY: '#/components/schemas/AdminEntry'
+          CARE_ENTRY: '#/components/schemas/CareEntry'
+          CLUSTER: '#/components/schemas/Clstr'
+          COMPOSITION: '#/components/schemas/Composition'
+          CONTENT_ITEM: '#/components/schemas/ContentItem'
+          DATA_STRUCTURE: '#/components/schemas/DataStructure'
+          EHR_STATUS: '#/components/schemas/EhrStatus'
+          ELEMENT: '#/components/schemas/Element'
+          ENTRY: '#/components/schemas/AbstractEntry'
+          EVALUATION: '#/components/schemas/Evaluation'
+          EVENT: '#/components/schemas/Event'
+          EVENT_CONTEXT: '#/components/schemas/EventContext'
+          FOLDER: '#/components/schemas/Folder'
+          HISTORY: '#/components/schemas/History'
+          INSTRUCTION: '#/components/schemas/Instruction'
+          INSTRUCTION_DETAILS: '#/components/schemas/InstructionDetails'
+          ISM_TRANSITION: '#/components/schemas/IsmTransition'
+          ITEM: '#/components/schemas/Item'
+          ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
+          ITEM_STRUCTURE: '#/components/schemas/ItemStructure'
+          ITEM_TABLE: '#/components/schemas/ItemTable'
+          ITEM_TREE: '#/components/schemas/ItemTree'
+          LOCATABLE: '#/components/schemas/Locatable'
+          OBSERVATION: '#/components/schemas/Observation'
+          Versionable: '#/components/schemas/Versionable'
     Link:
       title: LINK
       required:
@@ -1526,8 +1553,9 @@ components:
       discriminator:
         propertyName: _type
         mapping:
-          PARTY_SELF: '#/components/schemas/PartySelf'
           PARTY_IDENTIFIED: '#/components/schemas/PartyIdentified'
+          PARTY_RELATED: '#/components/schemas/PartyRelated'
+          PARTY_SELF: '#/components/schemas/PartySelf'
     PartyIdentified:
       title: PARTY_IDENTIFIED
       type: object
@@ -1543,11 +1571,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DvIdentifier'
-      discriminator:
-        propertyName: _type
-        mapping:
-          PARTY_IDENTIFIED: '#/components/schemas/PartyIdentified'
-          PARTY_RELATED: '#/components/schemas/PartyRelated'
       example:
         _type: PARTY_IDENTIFIED
         external_ref:
@@ -1559,6 +1582,10 @@ components:
           type: PERSON
         name: A name
       x-discriminator-value: PARTY_IDENTIFIED
+      discriminator:
+        propertyName: _type
+        mapping:
+          PARTY_RELATED: '#/components/schemas/PartyRelated'
     PartyRelated:
       title: PARTY_RELATED
       required:
@@ -1611,19 +1638,48 @@ components:
       discriminator:
         propertyName: _type
         mapping:
+          ACTION: '#/components/schemas/Action'
+          ACTIVITY: '#/components/schemas/Activity'
+          ADMIN_ENTRY: '#/components/schemas/AdminEntry'
+          CARE_ENTRY: '#/components/schemas/CareEntry'
+          CLUSTER: '#/components/schemas/Clstr'
           COMPOSITION: '#/components/schemas/Composition'
+          CONTENT_ITEM: '#/components/schemas/ContentItem'
+          DATA_STRUCTURE: '#/components/schemas/DataStructure'
           EHR_STATUS: '#/components/schemas/EhrStatus'
+          ELEMENT: '#/components/schemas/Element'
+          ENTRY: '#/components/schemas/AbstractEntry'
+          EVALUATION: '#/components/schemas/Evaluation'
+          EVENT: '#/components/schemas/Event'
           FOLDER: '#/components/schemas/Folder'
+          HISTORY: '#/components/schemas/History'
+          INSTRUCTION: '#/components/schemas/Instruction'
+          ITEM: '#/components/schemas/Item'
+          ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
+          ITEM_STRUCTURE: '#/components/schemas/ItemStructure'
+          ITEM_TABLE: '#/components/schemas/ItemTable'
+          ITEM_TREE: '#/components/schemas/ItemTree'
+          OBSERVATION: '#/components/schemas/Observation'
+          Versionable: '#/components/schemas/Versionable'
     DataStructure:
-      title: DATE_STRUCTURE
+      title: DATA_STRUCTURE
       type: object
       allOf:
         - $ref: '#/components/schemas/Locatable'
       properties:
         _type:
           type: string
-          default: DATE_STRUCTURE
-      x-discriminator-value: DATE_STRUCTURE
+          default: DATA_STRUCTURE
+      x-discriminator-value: DATA_STRUCTURE
+      discriminator:
+        propertyName: _type
+        mapping:
+          ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
+          ITEM_STRUCTURE: '#/components/schemas/ItemStructure'
+          ITEM_TABLE: '#/components/schemas/ItemTable'
+          ITEM_TREE: '#/components/schemas/ItemTree'
     ItemStructure:
       title: ITEM_STRUCTURE
       type: object
@@ -1632,14 +1688,14 @@ components:
       properties:
         _type:
           type: string
+      x-discriminator-value: ITEM_STRUCTURE
       discriminator:
         propertyName: _type
         mapping:
-          ITEM_SINGLE: '#/components/schemas/ItemSingle'
           ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
           ITEM_TABLE: '#/components/schemas/ItemTable'
           ITEM_TREE: '#/components/schemas/ItemTree'
-      x-discriminator-value: ITEM_STRUCTURE
     Item:
       title: ITEM
       type: object
@@ -1648,12 +1704,12 @@ components:
       properties:
         _type:
           type: string
+      x-discriminator-value: ITEM
       discriminator:
         propertyName: _type
         mapping:
-          ELEMENT: '#/components/schemas/Element'
           CLUSTER: '#/components/schemas/Clstr'
-      x-discriminator-value: ITEM
+          ELEMENT: '#/components/schemas/Element'
     DvBoolean:
       title: DV_BOOLEAN
       required:
@@ -2055,11 +2111,6 @@ components:
         committer:
           $ref: '#/components/schemas/PartyProxy'
       description: The set of attributes required to document the committal of an information item to a repository.
-      discriminator:
-        propertyName: _type
-        mapping:
-          AUDIT_DETAILS: '#/components/schemas/AuditDetails'
-          ATTESTATION: '#/components/schemas/Attestation'
       example:
         system_id: 9624982A-9F42-41A5-9318-AE13D5F5031F
         committer:
@@ -2076,6 +2127,10 @@ components:
         description:
           value: Description text
       x-discriminator-value: AUDIT_DETAILS
+      discriminator:
+        propertyName: _type
+        mapping:
+          ATTESTATION: '#/components/schemas/Attestation'
     RevisionHistoryItem:
       title: REVISION_HISTORY_ITEM
       required:
@@ -2182,13 +2237,13 @@ components:
       discriminator:
         propertyName: _type
         mapping:
-          ENTRY: '#/components/schemas/AbstractEntry'
+          ACTION: '#/components/schemas/Action'
           ADMIN_ENTRY: '#/components/schemas/AdminEntry'
           CARE_ENTRY: '#/components/schemas/CareEntry'
-          OBSERVATION: '#/components/schemas/Observation'
+          ENTRY: '#/components/schemas/AbstractEntry'
           EVALUATION: '#/components/schemas/Evaluation'
           INSTRUCTION: '#/components/schemas/Instruction'
-          ACTION: '#/components/schemas/Action'
+          OBSERVATION: '#/components/schemas/Observation'
     AbstractEntry:
       title: ENTRY
       required:
@@ -2216,12 +2271,12 @@ components:
       discriminator:
         propertyName: _type
         mapping:
+          ACTION: '#/components/schemas/Action'
           ADMIN_ENTRY: '#/components/schemas/AdminEntry'
           CARE_ENTRY: '#/components/schemas/CareEntry'
-          OBSERVATION: '#/components/schemas/Observation'
           EVALUATION: '#/components/schemas/Evaluation'
           INSTRUCTION: '#/components/schemas/Instruction'
-          ACTION: '#/components/schemas/Action'
+          OBSERVATION: '#/components/schemas/Observation'
     AdminEntry:
       title: ADMIN_ENTRY
       required:
@@ -2249,10 +2304,10 @@ components:
       discriminator:
         propertyName: _type
         mapping:
-          OBSERVATION: '#/components/schemas/Observation'
+          ACTION: '#/components/schemas/Action'
           EVALUATION: '#/components/schemas/Evaluation'
           INSTRUCTION: '#/components/schemas/Instruction'
-          ACTION: '#/components/schemas/Action'
+          OBSERVATION: '#/components/schemas/Observation'
     Event:
       title: EVENT
       required:
@@ -2547,8 +2602,8 @@ components:
       discriminator:
         propertyName: _type
         mapping:
-          ORIGINAL_VERSION: '#/components/schemas/OriginalVersion'
           IMPORTED_VERSION: '#/components/schemas/ImportedVersion'
+          ORIGINAL_VERSION: '#/components/schemas/OriginalVersion'
     Attestation:
       title: ATTESTATION
       required:
@@ -2722,11 +2777,6 @@ components:
         committer:
           $ref: '#/components/schemas/PartyProxy'
       description: The set of attributes required to document the committal of an information item to a repository. Used by the server to create an AUDIT_DETAILS object.
-      discriminator:
-        propertyName: _type
-        mapping:
-          UPDATE_AUDIT: '#/components/schemas/UpdateAudit'
-          UPDATE_ATTESTATION: '#/components/schemas/UpdateAttestation'
       example:
         change_type:
           value: creation
@@ -2738,6 +2788,10 @@ components:
           _type: PARTY_IDENTIFIED
           name: A user name
       x-discriminator-value: UPDATE_AUDIT
+      discriminator:
+        propertyName: _type
+        mapping:
+          UPDATE_ATTESTATION: '#/components/schemas/UpdateAttestation'
     UpdateAttestation:
       title: UPDATE_ATTESTATION
       required:

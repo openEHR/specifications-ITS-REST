@@ -23,8 +23,3 @@ properties:
   encoding:
     $ref: ../data_types/CodePhrase.yaml
 x-discriminator-value: DV_TEXT
-x-cg-discriminator:
-  propertyName: _type
-  mapping:
-    DV_TEXT: '#/components/schemas/DvText'
-    DV_CODED_TEXT: '#/components/schemas/DvCodedText'

@@ -130,4 +130,18 @@ abstract class AbstractWriter {
         }
     }
 
+    /**
+     * @param string $schemaTitle
+     * @return string
+     */
+    public static function getSchemaRef(string $schemaTitle): string {
+        $schemaName = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', strtolower($schemaTitle)))));
+        $schemaName = match ($schemaName) {
+            'Entry' => 'AbstractEntry',
+            'Cluster' => 'Clstr',
+            default => $schemaName
+        };
+        return '#/components/schemas/' . $schemaName;
+    }
+
 }
