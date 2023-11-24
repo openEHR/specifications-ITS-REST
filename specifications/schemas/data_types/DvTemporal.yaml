@@ -14,4 +14,4 @@ x-cg-discriminator:
   mapping:
     DV_DATE: '#/components/schemas/DvDate'
     DV_DATE_TIME: '#/components/schemas/DvDateTime'
-    DV_DTIME: '#/components/schemas/DvTime'
+    DV_TIME: '#/components/schemas/DvTime'
