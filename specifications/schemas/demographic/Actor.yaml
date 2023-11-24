@@ -1,0 +1,16 @@
+title: ACTOR
+type: object
+allOf:
+  - $ref: Party.yaml
+required:
+  - languages
+properties:
+  languages:
+    type: array
+    items:
+      $ref: ../data_types/UDvText.yaml
+  roles:
+    #for the API roles are embedded in the actor
+    type: array
+    items:
+      $ref: Role.yaml

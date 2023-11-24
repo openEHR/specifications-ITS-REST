@@ -1,0 +1,24 @@
+operationId: actor_create
+summary: Create ACTOR
+description: |
+  Creates the first version of a new ACTOR.
+tags:
+  - ACTOR
+parameters:
+  - $ref: ../parameters/header/Prefer.yaml
+  # FIXME: missing header openEHR-AUDIT_DETAILS.committer
+requestBody:
+  description: |
+    The ACTOR.
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/demographic/Actor.yaml
+  required: true
+# responses:
+#   '201':
+#     $ref: ../responses/201_ACTOR.yaml
+#   '400':
+#     $ref: ../responses/400_ACTOR.yaml
+#   '422':
+#     $ref: ../responses/422_ACTOR.yaml
