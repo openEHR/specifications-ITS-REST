@@ -42,9 +42,6 @@ class Validation extends AbstractWriter {
         if (isset($schema->{'x-cg-allOf'})) {
             unset($schema->{'x-cg-allOf'});
         }
-        if (isset($schema->{'x-cg-discriminator'})) {
-            unset($schema->{'x-cg-discriminator'});
-        }
     }
 
     /**

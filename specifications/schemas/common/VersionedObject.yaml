@@ -13,8 +13,3 @@ properties:
     $ref: ../base_types/ObjectRef.yaml
   time_created:
     $ref: ../data_types/DvDateTime.yaml
-x-cg-discriminator:
-  propertyName: _type
-  mapping:
-    VERSIONED_COMPOSITION: '#/components/schemas/VersionedComposition'
-    VERSIONED_EHR_STATUS: '#/components/schemas/VersionedEhrStatus'
