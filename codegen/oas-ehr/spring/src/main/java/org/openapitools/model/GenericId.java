@@ -30,11 +30,6 @@ public class GenericId extends ObjectId {
 
   private String scheme;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link GenericId#GenericId(String, String)}
-   */
-  @Deprecated
   public GenericId() {
     super();
   }
@@ -87,11 +82,11 @@ public class GenericId extends ObjectId {
     this.scheme = scheme;
   }
 
+
   public GenericId value(String value) {
-    super.setValue(value);
+    super.value(value);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

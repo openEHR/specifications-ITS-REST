@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import org.openapitools.client.model.DvDateTime;
 import org.openapitools.client.model.ItemStructure;
 import org.openapitools.client.model.PartyIdentified;
@@ -46,7 +46,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -88,7 +87,6 @@ public class FeederAuditDetails {
   }
 
   public FeederAuditDetails systemId(String systemId) {
-    
     this.systemId = systemId;
     return this;
   }
@@ -102,14 +100,12 @@ public class FeederAuditDetails {
     return systemId;
   }
 
-
   public void setSystemId(String systemId) {
     this.systemId = systemId;
   }
 
 
   public FeederAuditDetails location(PartyIdentified location) {
-    
     this.location = location;
     return this;
   }
@@ -123,14 +119,12 @@ public class FeederAuditDetails {
     return location;
   }
 
-
   public void setLocation(PartyIdentified location) {
     this.location = location;
   }
 
 
   public FeederAuditDetails subject(PartyProxy subject) {
-    
     this.subject = subject;
     return this;
   }
@@ -144,14 +138,12 @@ public class FeederAuditDetails {
     return subject;
   }
 
-
   public void setSubject(PartyProxy subject) {
     this.subject = subject;
   }
 
 
   public FeederAuditDetails provider(PartyIdentified provider) {
-    
     this.provider = provider;
     return this;
   }
@@ -165,14 +157,12 @@ public class FeederAuditDetails {
     return provider;
   }
 
-
   public void setProvider(PartyIdentified provider) {
     this.provider = provider;
   }
 
 
   public FeederAuditDetails time(DvDateTime time) {
-    
     this.time = time;
     return this;
   }
@@ -186,14 +176,12 @@ public class FeederAuditDetails {
     return time;
   }
 
-
   public void setTime(DvDateTime time) {
     this.time = time;
   }
 
 
   public FeederAuditDetails versionId(String versionId) {
-    
     this.versionId = versionId;
     return this;
   }
@@ -207,14 +195,12 @@ public class FeederAuditDetails {
     return versionId;
   }
 
-
   public void setVersionId(String versionId) {
     this.versionId = versionId;
   }
 
 
   public FeederAuditDetails otherDetails(ItemStructure otherDetails) {
-    
     this.otherDetails = otherDetails;
     return this;
   }
@@ -227,7 +213,6 @@ public class FeederAuditDetails {
   public ItemStructure getOtherDetails() {
     return otherDetails;
   }
-
 
   public void setOtherDetails(ItemStructure otherDetails) {
     this.otherDetails = otherDetails;
@@ -305,57 +290,58 @@ public class FeederAuditDetails {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to FeederAuditDetails
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to FeederAuditDetails
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!FeederAuditDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!FeederAuditDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in FeederAuditDetails is not found in the empty JSON string", FeederAuditDetails.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!FeederAuditDetails.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FeederAuditDetails` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FeederAuditDetails` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : FeederAuditDetails.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("system_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `system_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("system_id").toString()));
       }
       // validate the optional field `location`
       if (jsonObj.get("location") != null && !jsonObj.get("location").isJsonNull()) {
-        PartyIdentified.validateJsonObject(jsonObj.getAsJsonObject("location"));
+        PartyIdentified.validateJsonElement(jsonObj.get("location"));
       }
       // validate the optional field `subject`
       if (jsonObj.get("subject") != null && !jsonObj.get("subject").isJsonNull()) {
-        PartyProxy.validateJsonObject(jsonObj.getAsJsonObject("subject"));
+        PartyProxy.validateJsonElement(jsonObj.get("subject"));
       }
       // validate the optional field `provider`
       if (jsonObj.get("provider") != null && !jsonObj.get("provider").isJsonNull()) {
-        PartyIdentified.validateJsonObject(jsonObj.getAsJsonObject("provider"));
+        PartyIdentified.validateJsonElement(jsonObj.get("provider"));
       }
       // validate the optional field `time`
       if (jsonObj.get("time") != null && !jsonObj.get("time").isJsonNull()) {
-        DvDateTime.validateJsonObject(jsonObj.getAsJsonObject("time"));
+        DvDateTime.validateJsonElement(jsonObj.get("time"));
       }
       if ((jsonObj.get("version_id") != null && !jsonObj.get("version_id").isJsonNull()) && !jsonObj.get("version_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `version_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version_id").toString()));
       }
       // validate the optional field `other_details`
       if (jsonObj.get("other_details") != null && !jsonObj.get("other_details").isJsonNull()) {
-        ItemStructure.validateJsonObject(jsonObj.getAsJsonObject("other_details"));
+        ItemStructure.validateJsonElement(jsonObj.get("other_details"));
       }
   }
 
@@ -379,9 +365,9 @@ public class FeederAuditDetails {
 
            @Override
            public FeederAuditDetails read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

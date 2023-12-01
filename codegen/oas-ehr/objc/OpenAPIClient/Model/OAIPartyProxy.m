@@ -26,6 +26,10 @@
         class = NSClassFromString(@"OAIPartyIdentified");
     }
     else
+    if ([discriminatedClassName isEqualToString:@"PARTY_RELATED"]) {
+        class = NSClassFromString(@"OAIPartyRelated");
+    }
+    else
     if ([discriminatedClassName isEqualToString:@"PARTY_SELF"]) {
         class = NSClassFromString(@"OAIPartySelf");
     }

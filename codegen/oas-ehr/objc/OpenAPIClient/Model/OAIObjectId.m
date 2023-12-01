@@ -45,6 +45,10 @@
         class = NSClassFromString(@"OAITerminologyId");
     }
     else
+    if ([discriminatedClassName isEqualToString:@"UID_BASED_ID"]) {
+        class = NSClassFromString(@"OAIUidBasedId");
+    }
+    else
     {
         class = NSClassFromString([@"OAI" stringByAppendingString:discriminatedClassName]);
         if(!class) {

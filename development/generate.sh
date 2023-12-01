@@ -27,7 +27,7 @@ case "${1:-}" in
     openapi $SPEC php --additional-properties=variableNamingConvention=snake_case
     openapi $SPEC go --additional-properties=generateInterfaces=true --additional-properties=hideGenerationTimestamp=true
     openapi $SPEC csharp --additional-properties=modelPropertyNaming=original --additional-properties=packageGuid=\{EBAF4DA1-1138-473F-A929-851AD455A4CB\}
-    openapi $SPEC csharp-netcore --additional-properties=modelPropertyNaming=original --additional-properties=packageGuid=\{59797C0A-78DF-462F-BE14-F8116B1E54D1\} --additional-properties=hideGenerationTimestamp=true
+    #openapi $SPEC csharp-netcore --additional-properties=modelPropertyNaming=original --additional-properties=packageGuid=\{59797C0A-78DF-462F-BE14-F8116B1E54D1\} --additional-properties=hideGenerationTimestamp=true
     openapi $SPEC java --additional-properties=hideGenerationTimestamp=true --additional-properties=legacyDiscriminatorBehavior=false
     openapi $SPEC spring --additional-properties=hideGenerationTimestamp=true
     openapi $SPEC kotlin --additional-properties=enumPropertyNaming=original --additional-properties=legacyDiscriminatorBehavior=false

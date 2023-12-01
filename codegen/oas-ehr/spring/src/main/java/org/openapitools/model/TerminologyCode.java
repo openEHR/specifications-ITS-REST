@@ -30,11 +30,6 @@ public class TerminologyCode {
 
   private URI uri;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link TerminologyCode#TerminologyCode(String, String)}
-   */
-  @Deprecated
   public TerminologyCode() {
     super();
   }

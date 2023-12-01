@@ -23,7 +23,7 @@ import {
 import {
      HierObjectIdFromJSONTyped,
      ObjectVersionIdFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -57,10 +57,10 @@ export function UidBasedIdFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'HIER_OBJECT_ID') {
+        if (json['_type'] === 'HIER_OBJECT_ID') {
             return HierObjectIdFromJSONTyped(json, true);
         }
-        if (json['type'] === 'OBJECT_VERSION_ID') {
+        if (json['_type'] === 'OBJECT_VERSION_ID') {
             return ObjectVersionIdFromJSONTyped(json, true);
         }
     }

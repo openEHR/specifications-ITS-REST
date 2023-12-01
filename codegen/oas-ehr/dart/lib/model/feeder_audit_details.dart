@@ -74,13 +74,13 @@ class FeederAuditDetails {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is FeederAuditDetails &&
-     other.systemId == systemId &&
-     other.location == location &&
-     other.subject == subject &&
-     other.provider == provider &&
-     other.time == time &&
-     other.versionId == versionId &&
-     other.otherDetails == otherDetails;
+    other.systemId == systemId &&
+    other.location == location &&
+    other.subject == subject &&
+    other.provider == provider &&
+    other.time == time &&
+    other.versionId == versionId &&
+    other.otherDetails == otherDetails;
 
   @override
   int get hashCode =>

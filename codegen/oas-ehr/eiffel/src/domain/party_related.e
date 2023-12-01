@@ -18,6 +18,9 @@ inherit
 
 
   PARTY_IDENTIFIED
+      rename
+          output as out_PartyIdentified
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_partyidentified)
+        Result.append(out_PartyIdentified)
         Result.append("%Nclass PARTY_RELATED%N")
         if attached relationship as l_relationship then
           Result.append ("%Nrelationship:")

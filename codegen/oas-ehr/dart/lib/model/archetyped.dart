@@ -32,9 +32,9 @@ class Archetyped {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Archetyped &&
-     other.archetypeId == archetypeId &&
-     other.templateId == templateId &&
-     other.rmVersion == rmVersion;
+    other.archetypeId == archetypeId &&
+    other.templateId == templateId &&
+    other.rmVersion == rmVersion;
 
   @override
   int get hashCode =>

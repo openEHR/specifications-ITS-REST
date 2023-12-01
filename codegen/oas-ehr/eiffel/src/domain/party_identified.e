@@ -18,6 +18,9 @@ inherit
 
 
   PARTY_PROXY
+      rename
+          output as out_PartyProxy
+      end
 
 feature --Access
 
@@ -51,7 +54,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_partyproxy)
+        Result.append(out_PartyProxy)
         Result.append("%Nclass PARTY_IDENTIFIED%N")
         if attached name as l_name then
           Result.append ("%Nname:")

@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the TerminologyId type satisfies the MappedNullable interface at compile time
@@ -20,8 +21,11 @@ var _ MappedNullable = &TerminologyId{}
 
 // TerminologyId struct for TerminologyId
 type TerminologyId struct {
+	ObjectId
 	Type *string `json:"_type,omitempty"`
 }
+
+type _TerminologyId TerminologyId
 
 // NewTerminologyId instantiates a new TerminologyId object
 // This constructor will assign default values to properties that have it defined,
@@ -87,10 +91,53 @@ func (o TerminologyId) MarshalJSON() ([]byte, error) {
 
 func (o TerminologyId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedObjectId, errObjectId := json.Marshal(o.ObjectId)
+	if errObjectId != nil {
+		return map[string]interface{}{}, errObjectId
+	}
+	errObjectId = json.Unmarshal([]byte(serializedObjectId), &toSerialize)
+	if errObjectId != nil {
+		return map[string]interface{}{}, errObjectId
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	return toSerialize, nil
+}
+
+func (o *TerminologyId) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTerminologyId := _TerminologyId{}
+
+	err = json.Unmarshal(bytes, &varTerminologyId)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TerminologyId(varTerminologyId)
+
+	return err
 }
 
 type NullableTerminologyId struct {

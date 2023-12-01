@@ -38,9 +38,9 @@ class DvIntervalOfDateTime {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvIntervalOfDateTime &&
-     other.type == type &&
-     other.lower == lower &&
-     other.upper == upper;
+    other.type == type &&
+    other.lower == lower &&
+    other.upper == upper;
 
   @override
   int get hashCode =>

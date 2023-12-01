@@ -29,8 +29,8 @@ class DvTemporal {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvTemporal &&
-     other.type == type &&
-     other.accuracy == accuracy;
+    other.type == type &&
+    other.accuracy == accuracy;
 
   @override
   int get hashCode =>

@@ -37,11 +37,6 @@ public class Activity extends Locatable {
 
   private ItemStructure description;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Activity#Activity(String, ItemStructure)}
-   */
-  @Deprecated
   public Activity() {
     super();
   }
@@ -135,23 +130,24 @@ public class Activity extends Locatable {
     this.description = description;
   }
 
+
   public Activity name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public Activity archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public Activity uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public Activity links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -161,15 +157,14 @@ public class Activity extends Locatable {
   }
 
   public Activity archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public Activity feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

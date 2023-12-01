@@ -40,11 +40,6 @@ public class EhrStatus extends Versionable {
 
   private ItemStructure otherDetails;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link EhrStatus#EhrStatus(PartyProxy, Boolean, Boolean)}
-   */
-  @Deprecated
   public EhrStatus() {
     super();
   }
@@ -53,7 +48,7 @@ public class EhrStatus extends Versionable {
    * Constructor with only required parameters
    */
   public EhrStatus(PartyProxy subject, Boolean isQueryable, Boolean isModifiable) {
-    super(name, archetypeNodeId);
+    super();
     this.subject = subject;
     this.isQueryable = isQueryable;
     this.isModifiable = isModifiable;
@@ -159,23 +154,24 @@ public class EhrStatus extends Versionable {
     this.otherDetails = otherDetails;
   }
 
+
   public EhrStatus name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public EhrStatus archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public EhrStatus uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public EhrStatus links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -185,15 +181,14 @@ public class EhrStatus extends Versionable {
   }
 
   public EhrStatus archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public EhrStatus feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

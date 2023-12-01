@@ -20,6 +20,14 @@ import {
     LocatableToJSON,
 } from './Locatable';
 
+import {
+     ItemListFromJSONTyped,
+     ItemSingleFromJSONTyped,
+     ItemStructureFromJSONTyped,
+     ItemTableFromJSONTyped,
+     ItemTreeFromJSONTyped
+} from './index';
+
 /**
  * 
  * @export
@@ -50,6 +58,23 @@ export function DataStructureFromJSON(json: any): DataStructure {
 export function DataStructureFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataStructure {
     if ((json === undefined) || (json === null)) {
         return json;
+    }
+    if (!ignoreDiscriminator) {
+        if (json['_type'] === 'ITEM_LIST') {
+            return ItemListFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ITEM_SINGLE') {
+            return ItemSingleFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ITEM_STRUCTURE') {
+            return ItemStructureFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ITEM_TABLE') {
+            return ItemTableFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ITEM_TREE') {
+            return ItemTreeFromJSONTyped(json, true);
+        }
     }
     return {
         ...LocatableFromJSONTyped(json, ignoreDiscriminator),

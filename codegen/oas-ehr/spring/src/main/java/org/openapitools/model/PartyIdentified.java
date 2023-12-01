@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.DvIdentifier;
 import org.openapitools.model.PartyProxy;
@@ -32,8 +33,7 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = PartyIdentified.class, name = "PARTY_IDENTIFIED"),
-  @JsonSubTypes.Type(value = PartyRelated.class, name = "PARTY_IDENTIFIED")
+  @JsonSubTypes.Type(value = PartyRelated.class, name = "PARTY_RELATED")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -114,11 +114,11 @@ public class PartyIdentified extends PartyProxy {
     this.identifiers = identifiers;
   }
 
+
   public PartyIdentified externalRef(PartyRef externalRef) {
-    super.setExternalRef(externalRef);
+    super.externalRef(externalRef);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

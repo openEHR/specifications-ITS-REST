@@ -22,8 +22,9 @@ import {
 
 import {
      PartyIdentifiedFromJSONTyped,
+     PartyRelatedFromJSONTyped,
      PartySelfFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -64,10 +65,13 @@ export function PartyProxyFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'PARTY_IDENTIFIED') {
+        if (json['_type'] === 'PARTY_IDENTIFIED') {
             return PartyIdentifiedFromJSONTyped(json, true);
         }
-        if (json['type'] === 'PARTY_SELF') {
+        if (json['_type'] === 'PARTY_RELATED') {
+            return PartyRelatedFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'PARTY_SELF') {
             return PartySelfFromJSONTyped(json, true);
         }
     }

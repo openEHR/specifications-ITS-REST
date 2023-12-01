@@ -30,9 +30,9 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = DvDate.class, name = "DV_TEMPORAL"),
-  @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_TEMPORAL"),
-  @JsonSubTypes.Type(value = DvTime.class, name = "DV_TEMPORAL")
+  @JsonSubTypes.Type(value = DvDate.class, name = "DV_DATE"),
+  @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_DATE_TIME"),
+  @JsonSubTypes.Type(value = DvTime.class, name = "DV_TIME")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -82,23 +82,24 @@ public class DvTemporal extends DvQuantified {
     this.accuracy = accuracy;
   }
 
+
   public DvTemporal magnitudeStatus(String magnitudeStatus) {
-    super.setMagnitudeStatus(magnitudeStatus);
+    super.magnitudeStatus(magnitudeStatus);
     return this;
   }
 
   public DvTemporal normalStatus(CodePhrase normalStatus) {
-    super.setNormalStatus(normalStatus);
+    super.normalStatus(normalStatus);
     return this;
   }
 
   public DvTemporal normalRange(DvInterval normalRange) {
-    super.setNormalRange(normalRange);
+    super.normalRange(normalRange);
     return this;
   }
 
   public DvTemporal otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
-    super.setOtherReferenceRanges(otherReferenceRanges);
+    super.otherReferenceRanges(otherReferenceRanges);
     return this;
   }
 
@@ -106,7 +107,6 @@ public class DvTemporal extends DvQuantified {
     super.addOtherReferenceRangesItem(otherReferenceRangesItem);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -32,11 +32,6 @@ public class DvCodedText extends DvText {
 
   private CodePhrase definingCode;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvCodedText#DvCodedText(CodePhrase)}
-   */
-  @Deprecated
   public DvCodedText() {
     super();
   }
@@ -89,23 +84,24 @@ public class DvCodedText extends DvText {
     this.definingCode = definingCode;
   }
 
+
   public DvCodedText value(String value) {
-    super.setValue(value);
+    super.value(value);
     return this;
   }
 
   public DvCodedText hyperlink(DvUri hyperlink) {
-    super.setHyperlink(hyperlink);
+    super.hyperlink(hyperlink);
     return this;
   }
 
   public DvCodedText formatting(String formatting) {
-    super.setFormatting(formatting);
+    super.formatting(formatting);
     return this;
   }
 
   public DvCodedText mappings(List<@Valid TermMapping> mappings) {
-    super.setMappings(mappings);
+    super.mappings(mappings);
     return this;
   }
 
@@ -115,15 +111,14 @@ public class DvCodedText extends DvText {
   }
 
   public DvCodedText language(CodePhrase language) {
-    super.setLanguage(language);
+    super.language(language);
     return this;
   }
 
   public DvCodedText encoding(CodePhrase encoding) {
-    super.setEncoding(encoding);
+    super.encoding(encoding);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

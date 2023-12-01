@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpdateVersion type satisfies the MappedNullable interface at compile time
@@ -27,6 +28,8 @@ type UpdateVersion struct {
 	Data Versionable `json:"data"`
 	CommitAudit UpdateAudit `json:"commit_audit"`
 }
+
+type _UpdateVersion UpdateVersion
 
 // NewUpdateVersion instantiates a new UpdateVersion object
 // This constructor will assign default values to properties that have it defined,
@@ -239,6 +242,43 @@ func (o UpdateVersion) ToMap() (map[string]interface{}, error) {
 	toSerialize["data"] = o.Data
 	toSerialize["commit_audit"] = o.CommitAudit
 	return toSerialize, nil
+}
+
+func (o *UpdateVersion) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"lifecycle_state",
+		"data",
+		"commit_audit",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateVersion := _UpdateVersion{}
+
+	err = json.Unmarshal(bytes, &varUpdateVersion)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateVersion(varUpdateVersion)
+
+	return err
 }
 
 type NullableUpdateVersion struct {

@@ -18,6 +18,9 @@ inherit
 
 
   PATHABLE
+      rename
+          output as out_Pathable
+      end
 
 feature --Access
 
@@ -71,7 +74,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_pathable)
+        Result.append(out_Pathable)
         Result.append("%Nclass ISM_TRANSITION%N")
         if attached current_state as l_current_state then
           Result.append ("%Ncurrent_state:")

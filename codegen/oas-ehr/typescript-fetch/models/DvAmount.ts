@@ -25,7 +25,7 @@ import {
      DvDurationFromJSONTyped,
      DvProportionFromJSONTyped,
      DvQuantityFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -71,16 +71,16 @@ export function DvAmountFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'DV_COUNT') {
+        if (json['_type'] === 'DV_COUNT') {
             return DvCountFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_DURATION') {
+        if (json['_type'] === 'DV_DURATION') {
             return DvDurationFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_PROPORTION') {
+        if (json['_type'] === 'DV_PROPORTION') {
             return DvProportionFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_QUANTITY') {
+        if (json['_type'] === 'DV_QUANTITY') {
             return DvQuantityFromJSONTyped(json, true);
         }
     }

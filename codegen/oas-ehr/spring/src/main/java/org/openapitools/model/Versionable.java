@@ -37,23 +37,24 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class Versionable extends Locatable {
 
+
   public Versionable name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public Versionable archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public Versionable uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public Versionable links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -63,20 +64,19 @@ public class Versionable extends Locatable {
   }
 
   public Versionable archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public Versionable feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
 
   public Versionable type(String type) {
-    super.setType(type);
+    super.type(type);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

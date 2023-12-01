@@ -18,6 +18,9 @@ inherit
 
 
   VERSION
+      rename
+          output as out_Version
+      end
 
 feature --Access
 
@@ -81,7 +84,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_version)
+        Result.append(out_Version)
         Result.append("%Nclass ORIGINAL_VERSION%N")
         if attached uid as l_uid then
           Result.append ("%Nuid:")

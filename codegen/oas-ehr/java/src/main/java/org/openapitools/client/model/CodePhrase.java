@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import org.openapitools.client.model.TerminologyId;
 
 import com.google.gson.Gson;
@@ -43,7 +43,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -69,7 +68,6 @@ public class CodePhrase {
   }
 
   public CodePhrase terminologyId(TerminologyId terminologyId) {
-    
     this.terminologyId = terminologyId;
     return this;
   }
@@ -83,14 +81,12 @@ public class CodePhrase {
     return terminologyId;
   }
 
-
   public void setTerminologyId(TerminologyId terminologyId) {
     this.terminologyId = terminologyId;
   }
 
 
   public CodePhrase codeString(String codeString) {
-    
     this.codeString = codeString;
     return this;
   }
@@ -104,14 +100,12 @@ public class CodePhrase {
     return codeString;
   }
 
-
   public void setCodeString(String codeString) {
     this.codeString = codeString;
   }
 
 
   public CodePhrase preferredTerm(String preferredTerm) {
-    
     this.preferredTerm = preferredTerm;
     return this;
   }
@@ -124,7 +118,6 @@ public class CodePhrase {
   public String getPreferredTerm() {
     return preferredTerm;
   }
-
 
   public void setPreferredTerm(String preferredTerm) {
     this.preferredTerm = preferredTerm;
@@ -191,34 +184,35 @@ public class CodePhrase {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CodePhrase
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to CodePhrase
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CodePhrase.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CodePhrase.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CodePhrase is not found in the empty JSON string", CodePhrase.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CodePhrase.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CodePhrase` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CodePhrase` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CodePhrase.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `terminology_id`
-      TerminologyId.validateJsonObject(jsonObj.getAsJsonObject("terminology_id"));
+      TerminologyId.validateJsonElement(jsonObj.get("terminology_id"));
       if (!jsonObj.get("code_string").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `code_string` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code_string").toString()));
       }
@@ -247,9 +241,9 @@ public class CodePhrase {
 
            @Override
            public CodePhrase read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

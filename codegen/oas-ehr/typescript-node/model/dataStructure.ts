@@ -14,9 +14,9 @@ import { RequestFile } from './models';
 import { Locatable } from './locatable';
 
 export class DataStructure extends Locatable {
-    '_type'?: string = 'DATE_STRUCTURE';
+    '_type'?: string = 'DATA_STRUCTURE';
 
-    static discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = "_type";
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

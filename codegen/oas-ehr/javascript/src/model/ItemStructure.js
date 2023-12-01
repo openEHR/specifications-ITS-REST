@@ -87,9 +87,9 @@ ItemStructure.prototype['_type'] = undefined;
 // Implement DataStructure interface:
 /**
  * @member {String} _type
- * @default 'DATE_STRUCTURE'
+ * @default 'DATA_STRUCTURE'
  */
-DataStructure.prototype['_type'] = 'DATE_STRUCTURE';
+DataStructure.prototype['_type'] = 'DATA_STRUCTURE';
 
 
 

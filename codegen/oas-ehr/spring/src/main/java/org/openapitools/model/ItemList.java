@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.Element;
 import org.openapitools.model.ItemStructure;
@@ -82,23 +83,24 @@ public class ItemList extends ItemStructure {
     this.items = items;
   }
 
+
   public ItemList name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public ItemList archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public ItemList uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public ItemList links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -108,15 +110,14 @@ public class ItemList extends ItemStructure {
   }
 
   public ItemList archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public ItemList feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

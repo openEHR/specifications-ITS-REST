@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,7 +42,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -61,7 +60,6 @@ public class Pathable {
   }
 
   public Pathable type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -74,7 +72,6 @@ public class Pathable {
   public String getType() {
     return type;
   }
-
 
   public void setType(String type) {
     this.type = type;
@@ -133,105 +130,105 @@ public class Pathable {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to Pathable
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to Pathable
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!Pathable.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Pathable.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Pathable is not found in the empty JSON string", Pathable.openapiRequiredFields.toString()));
         }
       }
 
-      String discriminatorValue = jsonObj.get("_type").getAsString();
+      String discriminatorValue = jsonElement.getAsJsonObject().get("_type").getAsString();
       switch (discriminatorValue) {
         case "ACTION":
-          Action.validateJsonObject(jsonObj);
+          Action.validateJsonElement(jsonElement);
           break;
         case "ACTIVITY":
-          Activity.validateJsonObject(jsonObj);
+          Activity.validateJsonElement(jsonElement);
           break;
         case "ADMIN_ENTRY":
-          AdminEntry.validateJsonObject(jsonObj);
+          AdminEntry.validateJsonElement(jsonElement);
           break;
-        case "AbstractEntry":
-          AbstractEntry.validateJsonObject(jsonObj);
+        case "CARE_ENTRY":
+          CareEntry.validateJsonElement(jsonElement);
           break;
         case "CLUSTER":
-          Clstr.validateJsonObject(jsonObj);
+          Clstr.validateJsonElement(jsonElement);
           break;
         case "COMPOSITION":
-          Composition.validateJsonObject(jsonObj);
+          Composition.validateJsonElement(jsonElement);
           break;
-        case "CareEntry":
-          CareEntry.validateJsonObject(jsonObj);
+        case "CONTENT_ITEM":
+          ContentItem.validateJsonElement(jsonElement);
           break;
-        case "ContentItem":
-          ContentItem.validateJsonObject(jsonObj);
-          break;
-        case "DATE_STRUCTURE":
-          DataStructure.validateJsonObject(jsonObj);
+        case "DATA_STRUCTURE":
+          DataStructure.validateJsonElement(jsonElement);
           break;
         case "EHR_STATUS":
-          EhrStatus.validateJsonObject(jsonObj);
+          EhrStatus.validateJsonElement(jsonElement);
           break;
         case "ELEMENT":
-          Element.validateJsonObject(jsonObj);
+          Element.validateJsonElement(jsonElement);
+          break;
+        case "ENTRY":
+          AbstractEntry.validateJsonElement(jsonElement);
           break;
         case "EVALUATION":
-          Evaluation.validateJsonObject(jsonObj);
+          Evaluation.validateJsonElement(jsonElement);
           break;
         case "EVENT":
-          Event.validateJsonObject(jsonObj);
+          Event.validateJsonElement(jsonElement);
           break;
         case "EVENT_CONTEXT":
-          EventContext.validateJsonObject(jsonObj);
+          EventContext.validateJsonElement(jsonElement);
           break;
         case "FOLDER":
-          Folder.validateJsonObject(jsonObj);
+          Folder.validateJsonElement(jsonElement);
           break;
         case "HISTORY":
-          History.validateJsonObject(jsonObj);
+          History.validateJsonElement(jsonElement);
           break;
         case "INSTRUCTION":
-          Instruction.validateJsonObject(jsonObj);
+          Instruction.validateJsonElement(jsonElement);
           break;
         case "INSTRUCTION_DETAILS":
-          InstructionDetails.validateJsonObject(jsonObj);
+          InstructionDetails.validateJsonElement(jsonElement);
           break;
         case "ISM_TRANSITION":
-          IsmTransition.validateJsonObject(jsonObj);
+          IsmTransition.validateJsonElement(jsonElement);
           break;
         case "ITEM":
-          Item.validateJsonObject(jsonObj);
+          Item.validateJsonElement(jsonElement);
           break;
         case "ITEM_LIST":
-          ItemList.validateJsonObject(jsonObj);
+          ItemList.validateJsonElement(jsonElement);
           break;
         case "ITEM_SINGLE":
-          ItemSingle.validateJsonObject(jsonObj);
+          ItemSingle.validateJsonElement(jsonElement);
           break;
         case "ITEM_STRUCTURE":
-          ItemStructure.validateJsonObject(jsonObj);
+          ItemStructure.validateJsonElement(jsonElement);
           break;
         case "ITEM_TABLE":
-          ItemTable.validateJsonObject(jsonObj);
+          ItemTable.validateJsonElement(jsonElement);
           break;
         case "ITEM_TREE":
-          ItemTree.validateJsonObject(jsonObj);
+          ItemTree.validateJsonElement(jsonElement);
           break;
-        case "Locatable":
-          Locatable.validateJsonObject(jsonObj);
+        case "LOCATABLE":
+          Locatable.validateJsonElement(jsonElement);
           break;
         case "OBSERVATION":
-          Observation.validateJsonObject(jsonObj);
+          Observation.validateJsonElement(jsonElement);
           break;
         case "Versionable":
-          Versionable.validateJsonObject(jsonObj);
+          Versionable.validateJsonElement(jsonElement);
           break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `_type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

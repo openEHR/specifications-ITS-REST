@@ -43,11 +43,6 @@ public class ObjectId {
 
   private String value;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link ObjectId#ObjectId(String)}
-   */
-  @Deprecated
   public ObjectId() {
     super();
   }

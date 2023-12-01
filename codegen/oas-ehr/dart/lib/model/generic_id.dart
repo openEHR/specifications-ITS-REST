@@ -26,9 +26,9 @@ class GenericId {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GenericId &&
-     other.type == type &&
-     other.scheme == scheme &&
-     other.value == value;
+    other.type == type &&
+    other.scheme == scheme &&
+    other.value == value;
 
   @override
   int get hashCode =>

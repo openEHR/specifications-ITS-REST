@@ -18,6 +18,9 @@ inherit
 
 
   DV_TEMPORAL
+      rename
+          output as out_DvTemporal
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_dvtemporal)
+        Result.append(out_DvTemporal)
         Result.append("%Nclass DV_DATE%N")
         if attached value as l_value then
           Result.append ("%Nvalue:")

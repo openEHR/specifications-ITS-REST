@@ -29,7 +29,7 @@ import {
 import {
      DvMultimediaFromJSONTyped,
      DvParsableFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -76,10 +76,10 @@ export function DvEncapsulatedFromJSONTyped(json: any, ignoreDiscriminator: bool
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'DV_MULTIMEDIA') {
+        if (json['_type'] === 'DV_MULTIMEDIA') {
             return DvMultimediaFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_PARSABLE') {
+        if (json['_type'] === 'DV_PARSABLE') {
             return DvParsableFromJSONTyped(json, true);
         }
     }

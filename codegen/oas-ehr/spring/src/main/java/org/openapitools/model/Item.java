@@ -29,8 +29,8 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = Clstr.class, name = "ITEM"),
-  @JsonSubTypes.Type(value = Element.class, name = "ITEM")
+  @JsonSubTypes.Type(value = Clstr.class, name = "CLUSTER"),
+  @JsonSubTypes.Type(value = Element.class, name = "ELEMENT")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -58,23 +58,24 @@ public class Item extends Locatable {
     this.type = type;
   }
 
+
   public Item name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public Item archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public Item uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public Item links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -84,15 +85,14 @@ public class Item extends Locatable {
   }
 
   public Item archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public Item feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

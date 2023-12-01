@@ -29,11 +29,6 @@ public class Archetyped {
 
   private String rmVersion;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Archetyped#Archetyped(ArchetypeId, String)}
-   */
-  @Deprecated
   public Archetyped() {
     super();
   }

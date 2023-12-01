@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PartyProxy type satisfies the MappedNullable interface at compile time
@@ -23,6 +24,8 @@ type PartyProxy struct {
 	Type string `json:"_type"`
 	ExternalRef *PartyRef `json:"external_ref,omitempty"`
 }
+
+type _PartyProxy PartyProxy
 
 // NewPartyProxy instantiates a new PartyProxy object
 // This constructor will assign default values to properties that have it defined,
@@ -115,6 +118,41 @@ func (o PartyProxy) ToMap() (map[string]interface{}, error) {
 		toSerialize["external_ref"] = o.ExternalRef
 	}
 	return toSerialize, nil
+}
+
+func (o *PartyProxy) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPartyProxy := _PartyProxy{}
+
+	err = json.Unmarshal(bytes, &varPartyProxy)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartyProxy(varPartyProxy)
+
+	return err
 }
 
 type NullablePartyProxy struct {

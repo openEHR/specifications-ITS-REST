@@ -45,11 +45,6 @@ public class VersionedObject {
 
   private DvDateTime timeCreated;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link VersionedObject#VersionedObject(HierObjectId, ObjectRef, DvDateTime)}
-   */
-  @Deprecated
   public VersionedObject() {
     super();
   }

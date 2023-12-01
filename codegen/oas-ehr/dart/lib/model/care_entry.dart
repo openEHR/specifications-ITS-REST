@@ -44,9 +44,9 @@ class CareEntry {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CareEntry &&
-     other.protocol == protocol &&
-     other.guidelineId == guidelineId &&
-     other.type == type;
+    other.protocol == protocol &&
+    other.guidelineId == guidelineId &&
+    other.type == type;
 
   @override
   int get hashCode =>

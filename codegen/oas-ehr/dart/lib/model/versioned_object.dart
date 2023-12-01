@@ -35,10 +35,10 @@ class VersionedObject {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is VersionedObject &&
-     other.type == type &&
-     other.uid == uid &&
-     other.ownerId == ownerId &&
-     other.timeCreated == timeCreated;
+    other.type == type &&
+    other.uid == uid &&
+    other.ownerId == ownerId &&
+    other.timeCreated == timeCreated;
 
   @override
   int get hashCode =>

@@ -19,7 +19,7 @@ import type {
   RevisionHistory,
   Version,
   VersionedEhrStatus,
-} from '../models';
+} from '../models/index';
 import {
     EhrStatusFromJSON,
     EhrStatusToJSON,
@@ -29,7 +29,7 @@ import {
     VersionToJSON,
     VersionedEhrStatusFromJSON,
     VersionedEhrStatusToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface EhrStatusGetAtTimeRequest {
     ehr_id: string;

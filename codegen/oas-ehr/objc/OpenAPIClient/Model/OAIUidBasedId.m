@@ -22,11 +22,11 @@
     }
 
     Class class = nil;
-    if ([discriminatedClassName isEqualToString:@"UID_BASED_ID"]) {
+    if ([discriminatedClassName isEqualToString:@"HIER_OBJECT_ID"]) {
         class = NSClassFromString(@"OAIHierObjectId");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"UID_BASED_ID"]) {
+    if ([discriminatedClassName isEqualToString:@"OBJECT_VERSION_ID"]) {
         class = NSClassFromString(@"OAIObjectVersionId");
     }
     else

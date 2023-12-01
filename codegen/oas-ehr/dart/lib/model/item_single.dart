@@ -23,8 +23,8 @@ class ItemSingle {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ItemSingle &&
-     other.type == type &&
-     other.item == item;
+    other.type == type &&
+    other.item == item;
 
   @override
   int get hashCode =>

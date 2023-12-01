@@ -20,7 +20,7 @@ class DvEhrUri {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvEhrUri &&
-     other.type == type;
+    other.type == type;
 
   @override
   int get hashCode =>

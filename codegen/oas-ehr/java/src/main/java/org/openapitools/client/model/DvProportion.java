@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import org.openapitools.client.model.DvAmount;
 
 import com.google.gson.Gson;
@@ -44,7 +44,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -79,7 +78,6 @@ public class DvProportion extends DvAmount {
   }
 
   public DvProportion type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -93,14 +91,12 @@ public class DvProportion extends DvAmount {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public DvProportion numerator(BigDecimal numerator) {
-    
     this.numerator = numerator;
     return this;
   }
@@ -114,14 +110,12 @@ public class DvProportion extends DvAmount {
     return numerator;
   }
 
-
   public void setNumerator(BigDecimal numerator) {
     this.numerator = numerator;
   }
 
 
   public DvProportion denominator(BigDecimal denominator) {
-    
     this.denominator = denominator;
     return this;
   }
@@ -135,14 +129,12 @@ public class DvProportion extends DvAmount {
     return denominator;
   }
 
-
   public void setDenominator(BigDecimal denominator) {
     this.denominator = denominator;
   }
 
 
   public DvProportion semanticType(Integer semanticType) {
-    
     this.semanticType = semanticType;
     return this;
   }
@@ -156,14 +148,12 @@ public class DvProportion extends DvAmount {
     return semanticType;
   }
 
-
   public void setSemanticType(Integer semanticType) {
     this.semanticType = semanticType;
   }
 
 
   public DvProportion precision(Integer precision) {
-    
     this.precision = precision;
     return this;
   }
@@ -176,7 +166,6 @@ public class DvProportion extends DvAmount {
   public Integer getPrecision() {
     return precision;
   }
-
 
   public void setPrecision(Integer precision) {
     this.precision = precision;
@@ -248,30 +237,30 @@ public class DvProportion extends DvAmount {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to DvProportion
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to DvProportion
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!DvProportion.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DvProportion.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in DvProportion is not found in the empty JSON string", DvProportion.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!DvProportion.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DvProportion` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DvProportion` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : DvProportion.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }
@@ -296,9 +285,9 @@ public class DvProportion extends DvAmount {
 
            @Override
            public DvProportion read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

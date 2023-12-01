@@ -41,10 +41,10 @@ class Participation {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Participation &&
-     other.function_ == function_ &&
-     other.mode == mode &&
-     other.performer == performer &&
-     other.time == time;
+    other.function_ == function_ &&
+    other.mode == mode &&
+    other.performer == performer &&
+    other.time == time;
 
   @override
   int get hashCode =>

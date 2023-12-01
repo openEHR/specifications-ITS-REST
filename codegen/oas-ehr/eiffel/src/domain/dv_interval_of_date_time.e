@@ -18,6 +18,9 @@ inherit
 
 
   DV_INTERVAL
+      rename
+          output as out_DvInterval
+      end
 
 feature --Access
 
@@ -51,7 +54,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_dvinterval)
+        Result.append(out_DvInterval)
         Result.append("%Nclass DV_INTERVAL_OF_DATE_TIME%N")
         if attached lower as l_lower then
           Result.append ("%Nlower:")

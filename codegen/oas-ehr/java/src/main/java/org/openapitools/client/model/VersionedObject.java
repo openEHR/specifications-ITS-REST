@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import org.openapitools.client.model.DvDateTime;
 import org.openapitools.client.model.HierObjectId;
 import org.openapitools.client.model.ObjectRef;
@@ -45,7 +45,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -76,7 +75,6 @@ public class VersionedObject {
   }
 
   public VersionedObject type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -90,14 +88,12 @@ public class VersionedObject {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public VersionedObject uid(HierObjectId uid) {
-    
     this.uid = uid;
     return this;
   }
@@ -111,14 +107,12 @@ public class VersionedObject {
     return uid;
   }
 
-
   public void setUid(HierObjectId uid) {
     this.uid = uid;
   }
 
 
   public VersionedObject ownerId(ObjectRef ownerId) {
-    
     this.ownerId = ownerId;
     return this;
   }
@@ -132,14 +126,12 @@ public class VersionedObject {
     return ownerId;
   }
 
-
   public void setOwnerId(ObjectRef ownerId) {
     this.ownerId = ownerId;
   }
 
 
   public VersionedObject timeCreated(DvDateTime timeCreated) {
-    
     this.timeCreated = timeCreated;
     return this;
   }
@@ -152,7 +144,6 @@ public class VersionedObject {
   public DvDateTime getTimeCreated() {
     return timeCreated;
   }
-
 
   public void setTimeCreated(DvDateTime timeCreated) {
     this.timeCreated = timeCreated;
@@ -223,27 +214,27 @@ public class VersionedObject {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to VersionedObject
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to VersionedObject
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!VersionedObject.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!VersionedObject.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in VersionedObject is not found in the empty JSON string", VersionedObject.openapiRequiredFields.toString()));
         }
       }
 
-      String discriminatorValue = jsonObj.get("_type").getAsString();
+      String discriminatorValue = jsonElement.getAsJsonObject().get("_type").getAsString();
       switch (discriminatorValue) {
         case "VERSIONED_COMPOSITION":
-          VersionedComposition.validateJsonObject(jsonObj);
+          VersionedComposition.validateJsonElement(jsonElement);
           break;
         case "VERSIONED_EHR_STATUS":
-          VersionedEhrStatus.validateJsonObject(jsonObj);
+          VersionedEhrStatus.validateJsonElement(jsonElement);
           break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `_type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

@@ -27,11 +27,6 @@ public class ReferenceRange {
 
   private DvInterval range;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link ReferenceRange#ReferenceRange(DvText, DvInterval)}
-   */
-  @Deprecated
   public ReferenceRange() {
     super();
   }

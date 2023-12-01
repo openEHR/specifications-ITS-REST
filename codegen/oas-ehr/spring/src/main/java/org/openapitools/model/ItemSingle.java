@@ -32,11 +32,6 @@ public class ItemSingle extends ItemStructure {
 
   private Element item;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link ItemSingle#ItemSingle(Element)}
-   */
-  @Deprecated
   public ItemSingle() {
     super();
   }
@@ -45,7 +40,7 @@ public class ItemSingle extends ItemStructure {
    * Constructor with only required parameters
    */
   public ItemSingle(Element item) {
-    super(name, archetypeNodeId);
+    super();
     this.item = item;
   }
 
@@ -89,23 +84,24 @@ public class ItemSingle extends ItemStructure {
     this.item = item;
   }
 
+
   public ItemSingle name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public ItemSingle archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public ItemSingle uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public ItemSingle links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -115,15 +111,14 @@ public class ItemSingle extends ItemStructure {
   }
 
   public ItemSingle archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public ItemSingle feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

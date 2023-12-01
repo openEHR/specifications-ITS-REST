@@ -18,6 +18,9 @@ inherit
 
 
   PATHABLE
+      rename
+          output as out_Pathable
+      end
 
 feature --Access
 
@@ -91,7 +94,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_pathable)
+        Result.append(out_Pathable)
         Result.append("%Nclass LOCATABLE%N")
         if attached name as l_name then
           Result.append ("%Nname:")

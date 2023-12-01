@@ -18,6 +18,9 @@ inherit
 
 
   ITEM
+      rename
+          output as out_Item
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_item)
+        Result.append(out_Item)
         Result.append("%Nclass CLSTR%N")
         if attached items as l_items then
           across l_items as ic loop

@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.DvEncapsulated;
 import org.openapitools.model.DvIdentifier;
@@ -38,11 +39,6 @@ public class FeederAudit {
 
   private FeederAuditDetails feederSystemAudit;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link FeederAudit#FeederAudit(FeederAuditDetails)}
-   */
-  @Deprecated
   public FeederAudit() {
     super();
   }

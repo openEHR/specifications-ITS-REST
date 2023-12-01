@@ -1,7 +1,7 @@
 /*
 EHR API
 
-Testing DIRECTORYApiService
+Testing DIRECTORYAPIService
 
 */
 
@@ -17,18 +17,18 @@ import (
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
-func Test_openapi_DIRECTORYApiService(t *testing.T) {
+func Test_openapi_DIRECTORYAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test DIRECTORYApiService DirectoryCreate", func(t *testing.T) {
+	t.Run("Test DIRECTORYAPIService DirectoryCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.DIRECTORYApi.DirectoryCreate(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.DIRECTORYAPI.DirectoryCreate(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,13 +36,26 @@ func Test_openapi_DIRECTORYApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DIRECTORYApiService DirectoryDelete", func(t *testing.T) {
+	t.Run("Test DIRECTORYAPIService DirectoryDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.DIRECTORYApi.DirectoryDelete(context.Background(), ehrId).Execute()
+		httpRes, err := apiClient.DIRECTORYAPI.DirectoryDelete(context.Background(), ehrId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DIRECTORYAPIService DirectoryGetAtTime", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var ehrId string
+
+		resp, httpRes, err := apiClient.DIRECTORYAPI.DirectoryGetAtTime(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,28 +63,14 @@ func Test_openapi_DIRECTORYApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DIRECTORYApiService DirectoryGetAtTime", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var ehrId string
-
-		resp, httpRes, err := apiClient.DIRECTORYApi.DirectoryGetAtTime(context.Background(), ehrId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test DIRECTORYApiService DirectoryGetByVersionId", func(t *testing.T) {
+	t.Run("Test DIRECTORYAPIService DirectoryGetByVersionId", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 		var versionUid string
 
-		resp, httpRes, err := apiClient.DIRECTORYApi.DirectoryGetByVersionId(context.Background(), ehrId, versionUid).Execute()
+		resp, httpRes, err := apiClient.DIRECTORYAPI.DirectoryGetByVersionId(context.Background(), ehrId, versionUid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -79,13 +78,13 @@ func Test_openapi_DIRECTORYApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DIRECTORYApiService DirectoryUpdate", func(t *testing.T) {
+	t.Run("Test DIRECTORYAPIService DirectoryUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.DIRECTORYApi.DirectoryUpdate(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.DIRECTORYAPI.DirectoryUpdate(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

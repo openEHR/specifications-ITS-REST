@@ -22,51 +22,51 @@
     }
 
     Class class = nil;
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_AMOUNT"]) {
         class = NSClassFromString(@"OAIDvAmount");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_COUNT"]) {
         class = NSClassFromString(@"OAIDvCount");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_DATE"]) {
         class = NSClassFromString(@"OAIDvDate");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_DATE_TIME"]) {
         class = NSClassFromString(@"OAIDvDateTime");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_DURATION"]) {
         class = NSClassFromString(@"OAIDvDuration");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_ORDINAL"]) {
         class = NSClassFromString(@"OAIDvOrdinal");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_PROPORTION"]) {
         class = NSClassFromString(@"OAIDvProportion");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTIFIED"]) {
         class = NSClassFromString(@"OAIDvQuantified");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_QUANTITY"]) {
         class = NSClassFromString(@"OAIDvQuantity");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_SCALE"]) {
         class = NSClassFromString(@"OAIDvScale");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_TEMPORAL"]) {
         class = NSClassFromString(@"OAIDvTemporal");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_ORDERED"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_TIME"]) {
         class = NSClassFromString(@"OAIDvTime");
     }
     else

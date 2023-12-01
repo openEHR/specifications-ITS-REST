@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import org.openapitools.client.model.ObjectId;
 
 import com.google.gson.Gson;
@@ -43,7 +43,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -62,7 +61,6 @@ public class UidBasedId extends ObjectId {
   }
 
   public UidBasedId type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -75,7 +73,6 @@ public class UidBasedId extends ObjectId {
   public String getType() {
     return type;
   }
-
 
   public void setType(String type) {
     this.type = type;
@@ -138,27 +135,27 @@ public class UidBasedId extends ObjectId {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UidBasedId
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to UidBasedId
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UidBasedId.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UidBasedId.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UidBasedId is not found in the empty JSON string", UidBasedId.openapiRequiredFields.toString()));
         }
       }
 
-      String discriminatorValue = jsonObj.get("_type").getAsString();
+      String discriminatorValue = jsonElement.getAsJsonObject().get("_type").getAsString();
       switch (discriminatorValue) {
         case "HIER_OBJECT_ID":
-          HierObjectId.validateJsonObject(jsonObj);
+          HierObjectId.validateJsonElement(jsonElement);
           break;
         case "OBJECT_VERSION_ID":
-          ObjectVersionId.validateJsonObject(jsonObj);
+          ObjectVersionId.validateJsonElement(jsonElement);
           break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `_type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

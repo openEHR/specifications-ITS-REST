@@ -23,8 +23,8 @@ class DvCodedText {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvCodedText &&
-     other.type == type &&
-     other.definingCode == definingCode;
+    other.type == type &&
+    other.definingCode == definingCode;
 
   @override
   int get hashCode =>

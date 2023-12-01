@@ -51,10 +51,31 @@ import {
 } from './UidBasedId';
 
 import {
+     ActionFromJSONTyped,
+     ActivityFromJSONTyped,
+     AdminEntryFromJSONTyped,
+     CareEntryFromJSONTyped,
+     ClstrFromJSONTyped,
      CompositionFromJSONTyped,
+     ContentItemFromJSONTyped,
+     DataStructureFromJSONTyped,
      EhrStatusFromJSONTyped,
-     FolderFromJSONTyped
-} from './';
+     ElementFromJSONTyped,
+     AbstractEntryFromJSONTyped,
+     EvaluationFromJSONTyped,
+     EventFromJSONTyped,
+     FolderFromJSONTyped,
+     HistoryFromJSONTyped,
+     InstructionFromJSONTyped,
+     ItemFromJSONTyped,
+     ItemListFromJSONTyped,
+     ItemSingleFromJSONTyped,
+     ItemStructureFromJSONTyped,
+     ItemTableFromJSONTyped,
+     ItemTreeFromJSONTyped,
+     ObservationFromJSONTyped,
+     VersionableFromJSONTyped
+} from './index';
 
 /**
  * 
@@ -120,14 +141,77 @@ export function LocatableFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'COMPOSITION') {
+        if (json['_type'] === 'ACTION') {
+            return ActionFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ACTIVITY') {
+            return ActivityFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ADMIN_ENTRY') {
+            return AdminEntryFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'CARE_ENTRY') {
+            return CareEntryFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'CLUSTER') {
+            return ClstrFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'COMPOSITION') {
             return CompositionFromJSONTyped(json, true);
         }
-        if (json['type'] === 'EHR_STATUS') {
+        if (json['_type'] === 'CONTENT_ITEM') {
+            return ContentItemFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'DATA_STRUCTURE') {
+            return DataStructureFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'EHR_STATUS') {
             return EhrStatusFromJSONTyped(json, true);
         }
-        if (json['type'] === 'FOLDER') {
+        if (json['_type'] === 'ELEMENT') {
+            return ElementFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ENTRY') {
+            return AbstractEntryFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'EVALUATION') {
+            return EvaluationFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'EVENT') {
+            return EventFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'FOLDER') {
             return FolderFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'HISTORY') {
+            return HistoryFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'INSTRUCTION') {
+            return InstructionFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ITEM') {
+            return ItemFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ITEM_LIST') {
+            return ItemListFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ITEM_SINGLE') {
+            return ItemSingleFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ITEM_STRUCTURE') {
+            return ItemStructureFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ITEM_TABLE') {
+            return ItemTableFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'ITEM_TREE') {
+            return ItemTreeFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'OBSERVATION') {
+            return ObservationFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'Versionable') {
+            return VersionableFromJSONTyped(json, true);
         }
     }
     return {

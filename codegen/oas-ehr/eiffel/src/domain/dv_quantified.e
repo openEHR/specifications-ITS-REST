@@ -18,6 +18,9 @@ inherit
 
 
   DV_ORDERED
+      rename
+          output as out_DvOrdered
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_dvordered)
+        Result.append(out_DvOrdered)
         Result.append("%Nclass DV_QUANTIFIED%N")
         if attached magnitude_status as l_magnitude_status then
           Result.append ("%Nmagnitude_status:")

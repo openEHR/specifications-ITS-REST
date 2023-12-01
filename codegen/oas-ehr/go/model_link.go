@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Link type satisfies the MappedNullable interface at compile time
@@ -24,6 +25,8 @@ type Link struct {
 	Type DvText `json:"type"`
 	Target DvEhrUri `json:"target"`
 }
+
+type _Link Link
 
 // NewLink instantiates a new Link object
 // This constructor will assign default values to properties that have it defined,
@@ -131,6 +134,43 @@ func (o Link) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["target"] = o.Target
 	return toSerialize, nil
+}
+
+func (o *Link) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"meaning",
+		"type",
+		"target",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varLink := _Link{}
+
+	err = json.Unmarshal(bytes, &varLink)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Link(varLink)
+
+	return err
 }
 
 type NullableLink struct {

@@ -21,19 +21,19 @@
     }
 
     Class class = nil;
-    if ([discriminatedClassName isEqualToString:@"ITEM_STRUCTURE"]) {
+    if ([discriminatedClassName isEqualToString:@"ITEM_LIST"]) {
         class = NSClassFromString(@"OAIItemList");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"ITEM_STRUCTURE"]) {
+    if ([discriminatedClassName isEqualToString:@"ITEM_SINGLE"]) {
         class = NSClassFromString(@"OAIItemSingle");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"ITEM_STRUCTURE"]) {
+    if ([discriminatedClassName isEqualToString:@"ITEM_TABLE"]) {
         class = NSClassFromString(@"OAIItemTable");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"ITEM_STRUCTURE"]) {
+    if ([discriminatedClassName isEqualToString:@"ITEM_TREE"]) {
         class = NSClassFromString(@"OAIItemTree");
     }
     else

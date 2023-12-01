@@ -18,6 +18,9 @@ inherit
 
 
   DV_URI
+      rename
+          output as out_DvUri
+      end
 
 feature --Access
 
@@ -31,7 +34,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_dvuri)
+        Result.append(out_DvUri)
         Result.append("%Nclass DV_EHR_URI%N")
       end
 end

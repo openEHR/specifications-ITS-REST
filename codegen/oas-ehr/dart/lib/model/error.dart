@@ -24,8 +24,8 @@ class Error {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Error &&
-     other.message == message &&
-     other.validationErrors == validationErrors;
+    other.message == message &&
+    _deepEquality.equals(other.validationErrors, validationErrors);
 
   @override
   int get hashCode =>

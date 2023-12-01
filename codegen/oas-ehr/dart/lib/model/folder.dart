@@ -35,10 +35,10 @@ class Folder {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Folder &&
-     other.type == type &&
-     other.items == items &&
-     other.folders == folders &&
-     other.details == details;
+    other.type == type &&
+    _deepEquality.equals(other.items, items) &&
+    _deepEquality.equals(other.folders, folders) &&
+    other.details == details;
 
   @override
   int get hashCode =>

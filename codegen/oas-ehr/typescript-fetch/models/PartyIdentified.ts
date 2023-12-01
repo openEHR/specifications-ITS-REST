@@ -33,9 +33,8 @@ import {
 } from './PartyRef';
 
 import {
-     PartyIdentifiedFromJSONTyped,
      PartyRelatedFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -81,10 +80,7 @@ export function PartyIdentifiedFromJSONTyped(json: any, ignoreDiscriminator: boo
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'PARTY_IDENTIFIED') {
-            return PartyIdentifiedFromJSONTyped(json, true);
-        }
-        if (json['type'] === 'PARTY_RELATED') {
+        if (json['_type'] === 'PARTY_RELATED') {
             return PartyRelatedFromJSONTyped(json, true);
         }
     }

@@ -29,20 +29,17 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = Composition.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = EhrStatus.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = Folder.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemList.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemSingle.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemStructure.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemTable.class, name = "DATE_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemTree.class, name = "DATE_STRUCTURE")
+  @JsonSubTypes.Type(value = ItemList.class, name = "ITEM_LIST"),
+  @JsonSubTypes.Type(value = ItemSingle.class, name = "ITEM_SINGLE"),
+  @JsonSubTypes.Type(value = ItemStructure.class, name = "ITEM_STRUCTURE"),
+  @JsonSubTypes.Type(value = ItemTable.class, name = "ITEM_TABLE"),
+  @JsonSubTypes.Type(value = ItemTree.class, name = "ITEM_TREE")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class DataStructure extends Locatable {
 
-  private String type = "DATE_STRUCTURE";
+  private String type = "DATA_STRUCTURE";
 
   public DataStructure type(String type) {
     this.type = type;
@@ -64,23 +61,24 @@ public class DataStructure extends Locatable {
     this.type = type;
   }
 
+
   public DataStructure name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public DataStructure archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public DataStructure uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public DataStructure links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -90,15 +88,14 @@ public class DataStructure extends Locatable {
   }
 
   public DataStructure archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public DataStructure feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

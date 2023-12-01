@@ -49,11 +49,6 @@ public class DvMultimedia extends DvEncapsulated {
 
   private Integer size;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvMultimedia#DvMultimedia(CodePhrase, Integer)}
-   */
-  @Deprecated
   public DvMultimedia() {
     super();
   }
@@ -62,7 +57,7 @@ public class DvMultimedia extends DvEncapsulated {
    * Constructor with only required parameters
    */
   public DvMultimedia(CodePhrase mediaType, Integer size) {
-    super();
+    super(type);
     this.mediaType = mediaType;
     this.size = size;
   }
@@ -267,16 +262,16 @@ public class DvMultimedia extends DvEncapsulated {
     this.size = size;
   }
 
+
   public DvMultimedia charset(CodePhrase charset) {
-    super.setCharset(charset);
+    super.charset(charset);
     return this;
   }
 
   public DvMultimedia language(CodePhrase language) {
-    super.setLanguage(language);
+    super.language(language);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

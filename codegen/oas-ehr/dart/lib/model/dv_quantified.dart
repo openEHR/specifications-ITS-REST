@@ -23,8 +23,8 @@ class DvQuantified {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvQuantified &&
-     other.type == type &&
-     other.magnitudeStatus == magnitudeStatus;
+    other.type == type &&
+    other.magnitudeStatus == magnitudeStatus;
 
   @override
   int get hashCode =>

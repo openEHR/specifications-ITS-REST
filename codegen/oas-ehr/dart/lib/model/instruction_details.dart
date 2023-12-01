@@ -35,10 +35,10 @@ class InstructionDetails {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InstructionDetails &&
-     other.type == type &&
-     other.instructionId == instructionId &&
-     other.activityId == activityId &&
-     other.wfDetails == wfDetails;
+    other.type == type &&
+    other.instructionId == instructionId &&
+    other.activityId == activityId &&
+    other.wfDetails == wfDetails;
 
   @override
   int get hashCode =>

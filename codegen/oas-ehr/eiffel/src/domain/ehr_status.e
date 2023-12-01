@@ -18,6 +18,9 @@ inherit
 
 
   VERSIONABLE
+      rename
+          output as out_Versionable
+      end
 
 feature --Access
 
@@ -71,7 +74,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_versionable)
+        Result.append(out_Versionable)
         Result.append("%Nclass EHR_STATUS%N")
         if attached subject as l_subject then
           Result.append ("%Nsubject:")

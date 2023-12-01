@@ -22,15 +22,15 @@
     }
 
     Class class = nil;
-    if ([discriminatedClassName isEqualToString:@"DV_TEMPORAL"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_DATE"]) {
         class = NSClassFromString(@"OAIDvDate");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_TEMPORAL"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_DATE_TIME"]) {
         class = NSClassFromString(@"OAIDvDateTime");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DV_TEMPORAL"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_TIME"]) {
         class = NSClassFromString(@"OAIDvTime");
     }
     else

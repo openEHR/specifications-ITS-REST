@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.RevisionHistoryItem;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -28,11 +29,6 @@ public class RevisionHistory {
   @Valid
   private List<@Valid RevisionHistoryItem> items = new ArrayList<>();
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link RevisionHistory#RevisionHistory(List<@Valid RevisionHistoryItem>)}
-   */
-  @Deprecated
   public RevisionHistory() {
     super();
   }

@@ -21,9 +21,8 @@ import {
 } from './DataValue';
 
 import {
-     DvEhrUriFromJSONTyped,
-     DvUriFromJSONTyped
-} from './';
+     DvEhrUriFromJSONTyped
+} from './index';
 
 /**
  * 
@@ -64,11 +63,8 @@ export function DvUriFromJSONTyped(json: any, ignoreDiscriminator: boolean): DvU
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'DV_EHR_URI') {
+        if (json['_type'] === 'DV_EHR_URI') {
             return DvEhrUriFromJSONTyped(json, true);
-        }
-        if (json['type'] === 'DV_URI') {
-            return DvUriFromJSONTyped(json, true);
         }
     }
     return {

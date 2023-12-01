@@ -29,8 +29,8 @@ class PartySelf {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PartySelf &&
-     other.type == type &&
-     other.externalRef == externalRef;
+    other.type == type &&
+    other.externalRef == externalRef;
 
   @override
   int get hashCode =>

@@ -32,11 +32,6 @@ public class VersionedEhrStatus extends VersionedObject {
 
   private String type = "VERSIONED_EHR_STATUS";
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link VersionedEhrStatus#VersionedEhrStatus(HierObjectId, ObjectRef, DvDateTime)}
-   */
-  @Deprecated
   public VersionedEhrStatus() {
     super();
   }
@@ -68,21 +63,21 @@ public class VersionedEhrStatus extends VersionedObject {
     this.type = type;
   }
 
+
   public VersionedEhrStatus uid(HierObjectId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public VersionedEhrStatus ownerId(ObjectRef ownerId) {
-    super.setOwnerId(ownerId);
+    super.ownerId(ownerId);
     return this;
   }
 
   public VersionedEhrStatus timeCreated(DvDateTime timeCreated) {
-    super.setTimeCreated(timeCreated);
+    super.timeCreated(timeCreated);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

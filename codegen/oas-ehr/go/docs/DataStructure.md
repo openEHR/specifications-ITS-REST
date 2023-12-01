@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] [default to "DATE_STRUCTURE"]
+**Type** | Pointer to **string** |  | [optional] [default to "DATA_STRUCTURE"]
 
 ## Methods
 

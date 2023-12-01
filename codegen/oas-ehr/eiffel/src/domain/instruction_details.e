@@ -18,6 +18,9 @@ inherit
 
 
   PATHABLE
+      rename
+          output as out_Pathable
+      end
 
 feature --Access
 
@@ -61,7 +64,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_pathable)
+        Result.append(out_Pathable)
         Result.append("%Nclass INSTRUCTION_DETAILS%N")
         if attached instruction_id as l_instruction_id then
           Result.append ("%Ninstruction_id:")

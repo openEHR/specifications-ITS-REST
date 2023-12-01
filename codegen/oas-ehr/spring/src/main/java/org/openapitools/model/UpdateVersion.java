@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.ObjectVersionId;
 import org.openapitools.model.TerminologyCode;
@@ -41,11 +42,6 @@ public class UpdateVersion {
 
   private UpdateAudit commitAudit;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link UpdateVersion#UpdateVersion(TerminologyCode, Versionable, UpdateAudit)}
-   */
-  @Deprecated
   public UpdateVersion() {
     super();
   }

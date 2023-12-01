@@ -20,6 +20,7 @@ var _ MappedNullable = &DvEhrUri{}
 
 // DvEhrUri struct for DvEhrUri
 type DvEhrUri struct {
+	DvUri
 	Type *string `json:"_type,omitempty"`
 }
 
@@ -86,6 +87,14 @@ func (o DvEhrUri) MarshalJSON() ([]byte, error) {
 
 func (o DvEhrUri) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDvUri, errDvUri := json.Marshal(o.DvUri)
+	if errDvUri != nil {
+		return map[string]interface{}{}, errDvUri
+	}
+	errDvUri = json.Unmarshal([]byte(serializedDvUri), &toSerialize)
+	if errDvUri != nil {
+		return map[string]interface{}{}, errDvUri
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

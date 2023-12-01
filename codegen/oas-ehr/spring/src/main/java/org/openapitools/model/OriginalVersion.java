@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.Attestation;
 import org.openapitools.model.AuditDetails;
@@ -48,11 +49,6 @@ public class OriginalVersion extends Version {
   @Valid
   private List<@Valid Attestation> attestations;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link OriginalVersion#OriginalVersion(ObjectVersionId, DvCodedText, ObjectRef, AuditDetails, Versionable)}
-   */
-  @Deprecated
   public OriginalVersion() {
     super();
   }
@@ -202,26 +198,26 @@ public class OriginalVersion extends Version {
     this.attestations = attestations;
   }
 
+
   public OriginalVersion contribution(ObjectRef contribution) {
-    super.setContribution(contribution);
+    super.contribution(contribution);
     return this;
   }
 
   public OriginalVersion signature(String signature) {
-    super.setSignature(signature);
+    super.signature(signature);
     return this;
   }
 
   public OriginalVersion commitAudit(AuditDetails commitAudit) {
-    super.setCommitAudit(commitAudit);
+    super.commitAudit(commitAudit);
     return this;
   }
 
   public OriginalVersion data(Versionable data) {
-    super.setData(data);
+    super.data(data);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

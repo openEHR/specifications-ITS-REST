@@ -41,12 +41,12 @@ class ImportedVersion {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ImportedVersion &&
-     other.type == type &&
-     other.item == item &&
-     other.contribution == contribution &&
-     other.signature == signature &&
-     other.commitAudit == commitAudit &&
-     other.data == data;
+    other.type == type &&
+    other.item == item &&
+    other.contribution == contribution &&
+    other.signature == signature &&
+    other.commitAudit == commitAudit &&
+    other.data == data;
 
   @override
   int get hashCode =>

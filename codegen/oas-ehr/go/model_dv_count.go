@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DvCount type satisfies the MappedNullable interface at compile time
@@ -20,9 +21,12 @@ var _ MappedNullable = &DvCount{}
 
 // DvCount struct for DvCount
 type DvCount struct {
+	DvAmount
 	Type *string `json:"_type,omitempty"`
 	Magnitude int32 `json:"magnitude"`
 }
+
+type _DvCount DvCount
 
 // NewDvCount instantiates a new DvCount object
 // This constructor will assign default values to properties that have it defined,
@@ -111,11 +115,54 @@ func (o DvCount) MarshalJSON() ([]byte, error) {
 
 func (o DvCount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDvAmount, errDvAmount := json.Marshal(o.DvAmount)
+	if errDvAmount != nil {
+		return map[string]interface{}{}, errDvAmount
+	}
+	errDvAmount = json.Unmarshal([]byte(serializedDvAmount), &toSerialize)
+	if errDvAmount != nil {
+		return map[string]interface{}{}, errDvAmount
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	toSerialize["magnitude"] = o.Magnitude
 	return toSerialize, nil
+}
+
+func (o *DvCount) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"magnitude",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDvCount := _DvCount{}
+
+	err = json.Unmarshal(bytes, &varDvCount)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DvCount(varDvCount)
+
+	return err
 }
 
 type NullableDvCount struct {

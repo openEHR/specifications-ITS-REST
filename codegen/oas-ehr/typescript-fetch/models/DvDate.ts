@@ -75,7 +75,7 @@ export function DvDateToJSON(value?: DvDate | null): any {
     return {
         ...DvTemporalToJSON(value),
         '_type': value.type,
-        'value': (value.value.toISOString().substr(0,10)),
+        'value': (value.value.toISOString().substring(0,10)),
     };
 }
 

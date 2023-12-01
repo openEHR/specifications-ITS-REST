@@ -38,11 +38,11 @@ class Action {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Action &&
-     other.type == type &&
-     other.time == time &&
-     other.ismTransition == ismTransition &&
-     other.instructionDetails == instructionDetails &&
-     other.description == description;
+    other.type == type &&
+    other.time == time &&
+    other.ismTransition == ismTransition &&
+    other.instructionDetails == instructionDetails &&
+    other.description == description;
 
   @override
   int get hashCode =>

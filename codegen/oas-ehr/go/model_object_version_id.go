@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ObjectVersionId type satisfies the MappedNullable interface at compile time
@@ -20,8 +21,11 @@ var _ MappedNullable = &ObjectVersionId{}
 
 // ObjectVersionId struct for ObjectVersionId
 type ObjectVersionId struct {
+	UidBasedId
 	Value string `json:"value"`
 }
+
+type _ObjectVersionId ObjectVersionId
 
 // NewObjectVersionId instantiates a new ObjectVersionId object
 // This constructor will assign default values to properties that have it defined,
@@ -75,8 +79,51 @@ func (o ObjectVersionId) MarshalJSON() ([]byte, error) {
 
 func (o ObjectVersionId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedUidBasedId, errUidBasedId := json.Marshal(o.UidBasedId)
+	if errUidBasedId != nil {
+		return map[string]interface{}{}, errUidBasedId
+	}
+	errUidBasedId = json.Unmarshal([]byte(serializedUidBasedId), &toSerialize)
+	if errUidBasedId != nil {
+		return map[string]interface{}{}, errUidBasedId
+	}
 	toSerialize["value"] = o.Value
 	return toSerialize, nil
+}
+
+func (o *ObjectVersionId) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varObjectVersionId := _ObjectVersionId{}
+
+	err = json.Unmarshal(bytes, &varObjectVersionId)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ObjectVersionId(varObjectVersionId)
+
+	return err
 }
 
 type NullableObjectVersionId struct {

@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DvParsable type satisfies the MappedNullable interface at compile time
@@ -20,10 +21,13 @@ var _ MappedNullable = &DvParsable{}
 
 // DvParsable struct for DvParsable
 type DvParsable struct {
+	DvEncapsulated
 	Type *string `json:"_type,omitempty"`
 	Value string `json:"value"`
 	Formalism string `json:"formalism"`
 }
+
+type _DvParsable DvParsable
 
 // NewDvParsable instantiates a new DvParsable object
 // This constructor will assign default values to properties that have it defined,
@@ -136,12 +140,56 @@ func (o DvParsable) MarshalJSON() ([]byte, error) {
 
 func (o DvParsable) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDvEncapsulated, errDvEncapsulated := json.Marshal(o.DvEncapsulated)
+	if errDvEncapsulated != nil {
+		return map[string]interface{}{}, errDvEncapsulated
+	}
+	errDvEncapsulated = json.Unmarshal([]byte(serializedDvEncapsulated), &toSerialize)
+	if errDvEncapsulated != nil {
+		return map[string]interface{}{}, errDvEncapsulated
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	toSerialize["value"] = o.Value
 	toSerialize["formalism"] = o.Formalism
 	return toSerialize, nil
+}
+
+func (o *DvParsable) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"value",
+		"formalism",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDvParsable := _DvParsable{}
+
+	err = json.Unmarshal(bytes, &varDvParsable)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DvParsable(varDvParsable)
+
+	return err
 }
 
 type NullableDvParsable struct {

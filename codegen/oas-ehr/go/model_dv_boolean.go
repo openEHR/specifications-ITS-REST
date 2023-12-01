@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DvBoolean type satisfies the MappedNullable interface at compile time
@@ -20,9 +21,12 @@ var _ MappedNullable = &DvBoolean{}
 
 // DvBoolean struct for DvBoolean
 type DvBoolean struct {
+	DataValue
 	Type *string `json:"_type,omitempty"`
 	Value bool `json:"value"`
 }
+
+type _DvBoolean DvBoolean
 
 // NewDvBoolean instantiates a new DvBoolean object
 // This constructor will assign default values to properties that have it defined,
@@ -111,11 +115,54 @@ func (o DvBoolean) MarshalJSON() ([]byte, error) {
 
 func (o DvBoolean) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDataValue, errDataValue := json.Marshal(o.DataValue)
+	if errDataValue != nil {
+		return map[string]interface{}{}, errDataValue
+	}
+	errDataValue = json.Unmarshal([]byte(serializedDataValue), &toSerialize)
+	if errDataValue != nil {
+		return map[string]interface{}{}, errDataValue
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	toSerialize["value"] = o.Value
 	return toSerialize, nil
+}
+
+func (o *DvBoolean) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDvBoolean := _DvBoolean{}
+
+	err = json.Unmarshal(bytes, &varDvBoolean)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DvBoolean(varDvBoolean)
+
+	return err
 }
 
 type NullableDvBoolean struct {

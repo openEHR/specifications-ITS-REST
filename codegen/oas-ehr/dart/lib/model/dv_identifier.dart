@@ -56,11 +56,11 @@ class DvIdentifier {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvIdentifier &&
-     other.issuer == issuer &&
-     other.assigner == assigner &&
-     other.id == id &&
-     other.type == type &&
-     other.type == type;
+    other.issuer == issuer &&
+    other.assigner == assigner &&
+    other.id == id &&
+    other.type == type &&
+    other.type == type;
 
   @override
   int get hashCode =>

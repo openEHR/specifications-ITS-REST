@@ -32,11 +32,6 @@ public class Evaluation extends CareEntry {
 
   private ItemStructure data;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Evaluation#Evaluation(ItemStructure)}
-   */
-  @Deprecated
   public Evaluation() {
     super();
   }
@@ -45,7 +40,7 @@ public class Evaluation extends CareEntry {
    * Constructor with only required parameters
    */
   public Evaluation(ItemStructure data) {
-    super(language, encoding, subject, name, archetypeNodeId);
+    super();
     this.data = data;
   }
 
@@ -89,28 +84,29 @@ public class Evaluation extends CareEntry {
     this.data = data;
   }
 
+
   public Evaluation protocol(ItemStructure protocol) {
-    super.setProtocol(protocol);
+    super.protocol(protocol);
     return this;
   }
 
   public Evaluation guidelineId(ObjectRef guidelineId) {
-    super.setGuidelineId(guidelineId);
+    super.guidelineId(guidelineId);
     return this;
   }
 
   public Evaluation language(CodePhrase language) {
-    super.setLanguage(language);
+    super.language(language);
     return this;
   }
 
   public Evaluation encoding(CodePhrase encoding) {
-    super.setEncoding(encoding);
+    super.encoding(encoding);
     return this;
   }
 
   public Evaluation otherParticipations(List<@Valid Participation> otherParticipations) {
-    super.setOtherParticipations(otherParticipations);
+    super.otherParticipations(otherParticipations);
     return this;
   }
 
@@ -120,37 +116,37 @@ public class Evaluation extends CareEntry {
   }
 
   public Evaluation workflowId(ObjectRef workflowId) {
-    super.setWorkflowId(workflowId);
+    super.workflowId(workflowId);
     return this;
   }
 
   public Evaluation subject(PartyProxy subject) {
-    super.setSubject(subject);
+    super.subject(subject);
     return this;
   }
 
   public Evaluation provider(PartyProxy provider) {
-    super.setProvider(provider);
+    super.provider(provider);
     return this;
   }
 
   public Evaluation name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public Evaluation archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public Evaluation uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public Evaluation links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -160,15 +156,14 @@ public class Evaluation extends CareEntry {
   }
 
   public Evaluation archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public Evaluation feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

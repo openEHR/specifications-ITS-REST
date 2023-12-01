@@ -53,12 +53,12 @@ class DvQuantity {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvQuantity &&
-     other.type == type &&
-     other.magnitude == magnitude &&
-     other.precision == precision &&
-     other.units == units &&
-     other.unitsSystem == unitsSystem &&
-     other.unitsDisplayName == unitsDisplayName;
+    other.type == type &&
+    other.magnitude == magnitude &&
+    other.precision == precision &&
+    other.units == units &&
+    other.unitsSystem == unitsSystem &&
+    other.unitsDisplayName == unitsDisplayName;
 
   @override
   int get hashCode =>
@@ -116,9 +116,7 @@ class DvQuantity {
 
       return DvQuantity(
         type: mapValueOfType<String>(json, r'_type') ?? 'DV_QUANTITY',
-        magnitude: json[r'magnitude'] == null
-            ? null
-            : num.parse(json[r'magnitude'].toString()),
+        magnitude: num.parse('${json[r'magnitude']}'),
         precision: mapValueOfType<int>(json, r'precision'),
         units: mapValueOfType<String>(json, r'units')!,
         unitsSystem: mapValueOfType<String>(json, r'units_system'),

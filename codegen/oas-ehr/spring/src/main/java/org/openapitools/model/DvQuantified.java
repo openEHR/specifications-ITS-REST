@@ -29,15 +29,15 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = DvAmount.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvCount.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvDate.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvDuration.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvProportion.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvTemporal.class, name = "DV_QUANTIFIED"),
-  @JsonSubTypes.Type(value = DvTime.class, name = "DV_QUANTIFIED")
+  @JsonSubTypes.Type(value = DvAmount.class, name = "DV_AMOUNT"),
+  @JsonSubTypes.Type(value = DvCount.class, name = "DV_COUNT"),
+  @JsonSubTypes.Type(value = DvDate.class, name = "DV_DATE"),
+  @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_DATE_TIME"),
+  @JsonSubTypes.Type(value = DvDuration.class, name = "DV_DURATION"),
+  @JsonSubTypes.Type(value = DvProportion.class, name = "DV_PROPORTION"),
+  @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_QUANTITY"),
+  @JsonSubTypes.Type(value = DvTemporal.class, name = "DV_TEMPORAL"),
+  @JsonSubTypes.Type(value = DvTime.class, name = "DV_TIME")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -87,18 +87,19 @@ public class DvQuantified extends DvOrdered {
     this.magnitudeStatus = magnitudeStatus;
   }
 
+
   public DvQuantified normalStatus(CodePhrase normalStatus) {
-    super.setNormalStatus(normalStatus);
+    super.normalStatus(normalStatus);
     return this;
   }
 
   public DvQuantified normalRange(DvInterval normalRange) {
-    super.setNormalRange(normalRange);
+    super.normalRange(normalRange);
     return this;
   }
 
   public DvQuantified otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
-    super.setOtherReferenceRanges(otherReferenceRanges);
+    super.otherReferenceRanges(otherReferenceRanges);
     return this;
   }
 
@@ -106,7 +107,6 @@ public class DvQuantified extends DvOrdered {
     super.addOtherReferenceRangesItem(otherReferenceRangesItem);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -17,13 +17,13 @@ import * as runtime from '../runtime';
 import type {
   Ehr,
   EhrStatus,
-} from '../models';
+} from '../models/index';
 import {
     EhrFromJSON,
     EhrToJSON,
     EhrStatusFromJSON,
     EhrStatusToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface EhrCreateRequest {
     Prefer?: EhrCreatePreferEnum;

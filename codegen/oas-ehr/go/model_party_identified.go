@@ -20,6 +20,7 @@ var _ MappedNullable = &PartyIdentified{}
 
 // PartyIdentified struct for PartyIdentified
 type PartyIdentified struct {
+	PartyProxy
 	Type *string `json:"_type,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Identifiers []DvIdentifier `json:"identifiers,omitempty"`
@@ -152,6 +153,14 @@ func (o PartyIdentified) MarshalJSON() ([]byte, error) {
 
 func (o PartyIdentified) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedPartyProxy, errPartyProxy := json.Marshal(o.PartyProxy)
+	if errPartyProxy != nil {
+		return map[string]interface{}{}, errPartyProxy
+	}
+	errPartyProxy = json.Unmarshal([]byte(serializedPartyProxy), &toSerialize)
+	if errPartyProxy != nil {
+		return map[string]interface{}{}, errPartyProxy
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

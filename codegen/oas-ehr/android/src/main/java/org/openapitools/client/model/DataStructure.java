@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName;
 public class DataStructure extends Locatable {
   
   @SerializedName("_type")
-  private String type = DATE_STRUCTURE;
+  private String type = DATA_STRUCTURE;
 
   /**
    **/

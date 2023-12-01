@@ -1,7 +1,7 @@
 /*
 EHR API
 
-Testing EHRApiService
+Testing EHRAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
-func Test_openapi_EHRApiService(t *testing.T) {
+func Test_openapi_EHRAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test EHRApiService EhrCreate", func(t *testing.T) {
+	t.Run("Test EHRAPIService EhrCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.EHRApi.EhrCreate(context.Background()).Execute()
+		resp, httpRes, err := apiClient.EHRAPI.EhrCreate(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,13 +34,13 @@ func Test_openapi_EHRApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test EHRApiService EhrCreateWithId", func(t *testing.T) {
+	t.Run("Test EHRAPIService EhrCreateWithId", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.EHRApi.EhrCreateWithId(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.EHRAPI.EhrCreateWithId(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -48,13 +48,13 @@ func Test_openapi_EHRApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test EHRApiService EhrGetById", func(t *testing.T) {
+	t.Run("Test EHRAPIService EhrGetById", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.EHRApi.EhrGetById(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.EHRAPI.EhrGetById(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -62,11 +62,11 @@ func Test_openapi_EHRApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test EHRApiService EhrGetBySubject", func(t *testing.T) {
+	t.Run("Test EHRAPIService EhrGetBySubject", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.EHRApi.EhrGetBySubject(context.Background()).Execute()
+		resp, httpRes, err := apiClient.EHRAPI.EhrGetBySubject(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

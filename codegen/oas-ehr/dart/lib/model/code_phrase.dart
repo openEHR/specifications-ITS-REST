@@ -32,9 +32,9 @@ class CodePhrase {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CodePhrase &&
-     other.terminologyId == terminologyId &&
-     other.codeString == codeString &&
-     other.preferredTerm == preferredTerm;
+    other.terminologyId == terminologyId &&
+    other.codeString == codeString &&
+    other.preferredTerm == preferredTerm;
 
   @override
   int get hashCode =>

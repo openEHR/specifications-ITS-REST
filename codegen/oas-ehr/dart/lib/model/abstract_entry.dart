@@ -56,13 +56,13 @@ class AbstractEntry {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is AbstractEntry &&
-     other.language == language &&
-     other.encoding == encoding &&
-     other.otherParticipations == otherParticipations &&
-     other.workflowId == workflowId &&
-     other.subject == subject &&
-     other.provider == provider &&
-     other.type == type;
+    other.language == language &&
+    other.encoding == encoding &&
+    _deepEquality.equals(other.otherParticipations, otherParticipations) &&
+    other.workflowId == workflowId &&
+    other.subject == subject &&
+    other.provider == provider &&
+    other.type == type;
 
   @override
   int get hashCode =>

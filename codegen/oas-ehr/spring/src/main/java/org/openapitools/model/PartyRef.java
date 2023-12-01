@@ -29,11 +29,6 @@ public class PartyRef {
 
   private ObjectId id;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link PartyRef#PartyRef(String, String, ObjectId)}
-   */
-  @Deprecated
   public PartyRef() {
     super();
   }

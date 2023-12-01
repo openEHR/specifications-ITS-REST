@@ -34,11 +34,6 @@ public class DvDate extends DvTemporal {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate value;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvDate#DvDate(LocalDate)}
-   */
-  @Deprecated
   public DvDate() {
     super();
   }
@@ -91,28 +86,29 @@ public class DvDate extends DvTemporal {
     this.value = value;
   }
 
+
   public DvDate accuracy(DvDuration accuracy) {
-    super.setAccuracy(accuracy);
+    super.accuracy(accuracy);
     return this;
   }
 
   public DvDate magnitudeStatus(String magnitudeStatus) {
-    super.setMagnitudeStatus(magnitudeStatus);
+    super.magnitudeStatus(magnitudeStatus);
     return this;
   }
 
   public DvDate normalStatus(CodePhrase normalStatus) {
-    super.setNormalStatus(normalStatus);
+    super.normalStatus(normalStatus);
     return this;
   }
 
   public DvDate normalRange(DvInterval normalRange) {
-    super.setNormalRange(normalRange);
+    super.normalRange(normalRange);
     return this;
   }
 
   public DvDate otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
-    super.setOtherReferenceRanges(otherReferenceRanges);
+    super.otherReferenceRanges(otherReferenceRanges);
     return this;
   }
 
@@ -120,7 +116,6 @@ public class DvDate extends DvTemporal {
     super.addOtherReferenceRangesItem(otherReferenceRangesItem);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

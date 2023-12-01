@@ -48,11 +48,11 @@ public class DvEhrUri extends DvUri {
     this.type = type;
   }
 
+
   public DvEhrUri value(String value) {
-    super.setValue(value);
+    super.value(value);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

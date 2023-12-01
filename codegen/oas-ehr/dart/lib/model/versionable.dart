@@ -26,7 +26,7 @@ class Versionable {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Versionable &&
-     other.type == type;
+    other.type == type;
 
   @override
   int get hashCode =>

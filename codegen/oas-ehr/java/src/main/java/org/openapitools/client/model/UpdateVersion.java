@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.client.model.ObjectVersionId;
 import org.openapitools.client.model.TerminologyCode;
@@ -49,7 +49,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -87,7 +86,6 @@ public class UpdateVersion {
   }
 
   public UpdateVersion precedingVersionUid(ObjectVersionId precedingVersionUid) {
-    
     this.precedingVersionUid = precedingVersionUid;
     return this;
   }
@@ -101,14 +99,12 @@ public class UpdateVersion {
     return precedingVersionUid;
   }
 
-
   public void setPrecedingVersionUid(ObjectVersionId precedingVersionUid) {
     this.precedingVersionUid = precedingVersionUid;
   }
 
 
   public UpdateVersion signature(String signature) {
-    
     this.signature = signature;
     return this;
   }
@@ -122,14 +118,12 @@ public class UpdateVersion {
     return signature;
   }
 
-
   public void setSignature(String signature) {
     this.signature = signature;
   }
 
 
   public UpdateVersion lifecycleState(TerminologyCode lifecycleState) {
-    
     this.lifecycleState = lifecycleState;
     return this;
   }
@@ -143,14 +137,12 @@ public class UpdateVersion {
     return lifecycleState;
   }
 
-
   public void setLifecycleState(TerminologyCode lifecycleState) {
     this.lifecycleState = lifecycleState;
   }
 
 
   public UpdateVersion attestations(List<UpdateAttestation> attestations) {
-    
     this.attestations = attestations;
     return this;
   }
@@ -172,14 +164,12 @@ public class UpdateVersion {
     return attestations;
   }
 
-
   public void setAttestations(List<UpdateAttestation> attestations) {
     this.attestations = attestations;
   }
 
 
   public UpdateVersion data(Versionable data) {
-    
     this.data = data;
     return this;
   }
@@ -193,14 +183,12 @@ public class UpdateVersion {
     return data;
   }
 
-
   public void setData(Versionable data) {
     this.data = data;
   }
 
 
   public UpdateVersion commitAudit(UpdateAudit commitAudit) {
-    
     this.commitAudit = commitAudit;
     return this;
   }
@@ -213,7 +201,6 @@ public class UpdateVersion {
   public UpdateAudit getCommitAudit() {
     return commitAudit;
   }
-
 
   public void setCommitAudit(UpdateAudit commitAudit) {
     this.commitAudit = commitAudit;
@@ -290,41 +277,42 @@ public class UpdateVersion {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UpdateVersion
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to UpdateVersion
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UpdateVersion.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdateVersion.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateVersion is not found in the empty JSON string", UpdateVersion.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!UpdateVersion.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateVersion` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateVersion` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : UpdateVersion.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `preceding_version_uid`
       if (jsonObj.get("preceding_version_uid") != null && !jsonObj.get("preceding_version_uid").isJsonNull()) {
-        ObjectVersionId.validateJsonObject(jsonObj.getAsJsonObject("preceding_version_uid"));
+        ObjectVersionId.validateJsonElement(jsonObj.get("preceding_version_uid"));
       }
       if ((jsonObj.get("signature") != null && !jsonObj.get("signature").isJsonNull()) && !jsonObj.get("signature").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `signature` to be a primitive type in the JSON string but got `%s`", jsonObj.get("signature").toString()));
       }
       // validate the required field `lifecycle_state`
-      TerminologyCode.validateJsonObject(jsonObj.getAsJsonObject("lifecycle_state"));
+      TerminologyCode.validateJsonElement(jsonObj.get("lifecycle_state"));
       if (jsonObj.get("attestations") != null && !jsonObj.get("attestations").isJsonNull()) {
         JsonArray jsonArrayattestations = jsonObj.getAsJsonArray("attestations");
         if (jsonArrayattestations != null) {
@@ -335,14 +323,14 @@ public class UpdateVersion {
 
           // validate the optional field `attestations` (array)
           for (int i = 0; i < jsonArrayattestations.size(); i++) {
-            UpdateAttestation.validateJsonObject(jsonArrayattestations.get(i).getAsJsonObject());
+            UpdateAttestation.validateJsonElement(jsonArrayattestations.get(i));
           };
         }
       }
       // validate the required field `data`
-      Versionable.validateJsonObject(jsonObj.getAsJsonObject("data"));
+      Versionable.validateJsonElement(jsonObj.get("data"));
       // validate the required field `commit_audit`
-      UpdateAudit.validateJsonObject(jsonObj.getAsJsonObject("commit_audit"));
+      UpdateAudit.validateJsonElement(jsonObj.get("commit_audit"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -365,9 +353,9 @@ public class UpdateVersion {
 
            @Override
            public UpdateVersion read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

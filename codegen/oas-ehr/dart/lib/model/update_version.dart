@@ -47,12 +47,12 @@ class UpdateVersion {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UpdateVersion &&
-     other.precedingVersionUid == precedingVersionUid &&
-     other.signature == signature &&
-     other.lifecycleState == lifecycleState &&
-     other.attestations == attestations &&
-     other.data == data &&
-     other.commitAudit == commitAudit;
+    other.precedingVersionUid == precedingVersionUid &&
+    other.signature == signature &&
+    other.lifecycleState == lifecycleState &&
+    _deepEquality.equals(other.attestations, attestations) &&
+    other.data == data &&
+    other.commitAudit == commitAudit;
 
   @override
   int get hashCode =>

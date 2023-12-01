@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.DvCodedText;
 import org.openapitools.model.DvText;
@@ -41,11 +42,6 @@ public class IsmTransition extends Pathable {
   @Valid
   private List<@Valid DvText> reason;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link IsmTransition#IsmTransition(DvCodedText)}
-   */
-  @Deprecated
   public IsmTransition() {
     super();
   }

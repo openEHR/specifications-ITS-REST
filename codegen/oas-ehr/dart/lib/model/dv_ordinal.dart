@@ -26,9 +26,9 @@ class DvOrdinal {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvOrdinal &&
-     other.type == type &&
-     other.symbol == symbol &&
-     other.value == value;
+    other.type == type &&
+    other.symbol == symbol &&
+    other.value == value;
 
   @override
   int get hashCode =>

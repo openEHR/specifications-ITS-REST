@@ -28,8 +28,8 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = HierObjectId.class, name = "UID_BASED_ID"),
-  @JsonSubTypes.Type(value = ObjectVersionId.class, name = "UID_BASED_ID")
+  @JsonSubTypes.Type(value = HierObjectId.class, name = "HIER_OBJECT_ID"),
+  @JsonSubTypes.Type(value = ObjectVersionId.class, name = "OBJECT_VERSION_ID")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -37,11 +37,6 @@ public class UidBasedId extends ObjectId {
 
   private String type = "UID_BASED_ID";
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link UidBasedId#UidBasedId(String)}
-   */
-  @Deprecated
   public UidBasedId() {
     super();
   }
@@ -73,11 +68,11 @@ public class UidBasedId extends ObjectId {
     this.type = type;
   }
 
+
   public UidBasedId value(String value) {
-    super.setValue(value);
+    super.value(value);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

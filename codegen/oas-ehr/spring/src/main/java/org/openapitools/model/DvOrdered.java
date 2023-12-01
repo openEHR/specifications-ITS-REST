@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CodePhrase;
 import org.openapitools.model.DataValue;
@@ -33,18 +34,18 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = DvAmount.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvCount.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvDate.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvDuration.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvOrdinal.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvProportion.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvQuantified.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvScale.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvTemporal.class, name = "DV_ORDERED"),
-  @JsonSubTypes.Type(value = DvTime.class, name = "DV_ORDERED")
+  @JsonSubTypes.Type(value = DvAmount.class, name = "DV_AMOUNT"),
+  @JsonSubTypes.Type(value = DvCount.class, name = "DV_COUNT"),
+  @JsonSubTypes.Type(value = DvDate.class, name = "DV_DATE"),
+  @JsonSubTypes.Type(value = DvDateTime.class, name = "DV_DATE_TIME"),
+  @JsonSubTypes.Type(value = DvDuration.class, name = "DV_DURATION"),
+  @JsonSubTypes.Type(value = DvOrdinal.class, name = "DV_ORDINAL"),
+  @JsonSubTypes.Type(value = DvProportion.class, name = "DV_PROPORTION"),
+  @JsonSubTypes.Type(value = DvQuantified.class, name = "DV_QUANTIFIED"),
+  @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_QUANTITY"),
+  @JsonSubTypes.Type(value = DvScale.class, name = "DV_SCALE"),
+  @JsonSubTypes.Type(value = DvTemporal.class, name = "DV_TEMPORAL"),
+  @JsonSubTypes.Type(value = DvTime.class, name = "DV_TIME")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")

@@ -30,11 +30,6 @@ public class LocatableRef {
 
   private String path;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link LocatableRef#LocatableRef(String, String, UidBasedId)}
-   */
-  @Deprecated
   public LocatableRef() {
     super();
   }

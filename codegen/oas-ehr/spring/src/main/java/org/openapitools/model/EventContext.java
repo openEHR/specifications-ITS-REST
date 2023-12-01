@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.DvCodedText;
 import org.openapitools.model.DvDateTime;
@@ -48,11 +49,6 @@ public class EventContext extends Pathable {
   @Valid
   private List<@Valid Participation> participations;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link EventContext#EventContext(DvDateTime, DvCodedText)}
-   */
-  @Deprecated
   public EventContext() {
     super();
   }
@@ -214,11 +210,11 @@ public class EventContext extends Pathable {
     this.participations = participations;
   }
 
+
   public EventContext type(String type) {
-    super.setType(type);
+    super.type(type);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

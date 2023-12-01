@@ -35,11 +35,6 @@ public class DvScale extends DvOrdered {
 
   private BigDecimal value;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvScale#DvScale(DvCodedText, BigDecimal)}
-   */
-  @Deprecated
   public DvScale() {
     super();
   }
@@ -113,18 +108,19 @@ public class DvScale extends DvOrdered {
     this.value = value;
   }
 
+
   public DvScale normalStatus(CodePhrase normalStatus) {
-    super.setNormalStatus(normalStatus);
+    super.normalStatus(normalStatus);
     return this;
   }
 
   public DvScale normalRange(DvInterval normalRange) {
-    super.setNormalRange(normalRange);
+    super.normalRange(normalRange);
     return this;
   }
 
   public DvScale otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
-    super.setOtherReferenceRanges(otherReferenceRanges);
+    super.otherReferenceRanges(otherReferenceRanges);
     return this;
   }
 
@@ -132,7 +128,6 @@ public class DvScale extends DvOrdered {
     super.addOtherReferenceRangesItem(otherReferenceRangesItem);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

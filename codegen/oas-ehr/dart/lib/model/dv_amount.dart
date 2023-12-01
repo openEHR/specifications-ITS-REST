@@ -38,9 +38,9 @@ class DvAmount {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvAmount &&
-     other.type == type &&
-     other.accuracyIsPercent == accuracyIsPercent &&
-     other.accuracy == accuracy;
+    other.type == type &&
+    other.accuracyIsPercent == accuracyIsPercent &&
+    other.accuracy == accuracy;
 
   @override
   int get hashCode =>
@@ -89,9 +89,7 @@ class DvAmount {
       return DvAmount(
         type: mapValueOfType<String>(json, r'_type') ?? 'DV_AMOUNT',
         accuracyIsPercent: mapValueOfType<bool>(json, r'accuracy_is_percent'),
-        accuracy: json[r'accuracy'] == null
-            ? null
-            : num.parse(json[r'accuracy'].toString()),
+        accuracy: num.parse('${json[r'accuracy']}'),
       );
     }
     return null;

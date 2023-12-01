@@ -20,6 +20,7 @@ var _ MappedNullable = &Element{}
 
 // Element struct for Element
 type Element struct {
+	Item
 	Type *string `json:"_type,omitempty"`
 	NullFlavour *DvCodedText `json:"null_flavour,omitempty"`
 	Value *DataValue `json:"value,omitempty"`
@@ -185,6 +186,14 @@ func (o Element) MarshalJSON() ([]byte, error) {
 
 func (o Element) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedItem, errItem := json.Marshal(o.Item)
+	if errItem != nil {
+		return map[string]interface{}{}, errItem
+	}
+	errItem = json.Unmarshal([]byte(serializedItem), &toSerialize)
+	if errItem != nil {
+		return map[string]interface{}{}, errItem
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

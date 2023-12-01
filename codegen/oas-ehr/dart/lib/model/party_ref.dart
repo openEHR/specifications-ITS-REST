@@ -26,9 +26,9 @@ class PartyRef {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PartyRef &&
-     other.namespace == namespace &&
-     other.type == type &&
-     other.id == id;
+    other.namespace == namespace &&
+    other.type == type &&
+    other.id == id;
 
   @override
   int get hashCode =>

@@ -37,7 +37,7 @@ import {
      EvaluationFromJSONTyped,
      InstructionFromJSONTyped,
      ObservationFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -77,16 +77,16 @@ export function CareEntryFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'ACTION') {
+        if (json['_type'] === 'ACTION') {
             return ActionFromJSONTyped(json, true);
         }
-        if (json['type'] === 'EVALUATION') {
+        if (json['_type'] === 'EVALUATION') {
             return EvaluationFromJSONTyped(json, true);
         }
-        if (json['type'] === 'INSTRUCTION') {
+        if (json['_type'] === 'INSTRUCTION') {
             return InstructionFromJSONTyped(json, true);
         }
-        if (json['type'] === 'OBSERVATION') {
+        if (json['_type'] === 'OBSERVATION') {
             return ObservationFromJSONTyped(json, true);
         }
     }

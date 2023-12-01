@@ -32,8 +32,7 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = Attestation.class, name = "AUDIT_DETAILS"),
-  @JsonSubTypes.Type(value = AuditDetails.class, name = "AUDIT_DETAILS")
+  @JsonSubTypes.Type(value = Attestation.class, name = "ATTESTATION")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -51,11 +50,6 @@ public class AuditDetails {
 
   private PartyProxy committer;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link AuditDetails#AuditDetails(String, DvDateTime, DvCodedText, PartyProxy)}
-   */
-  @Deprecated
   public AuditDetails() {
     super();
   }

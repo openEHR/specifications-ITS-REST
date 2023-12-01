@@ -123,7 +123,6 @@ public class JSON {
                     public Class<? extends org.openapitools.client.model.AuditDetails> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("ATTESTATION", org.openapitools.client.model.Attestation.class);
-                        classByDiscriminatorValue.put("AUDIT_DETAILS", org.openapitools.client.model.AuditDetails.class);
                         classByDiscriminatorValue.put("AuditDetails", org.openapitools.client.model.AuditDetails.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "_type"));
@@ -180,9 +179,6 @@ public class JSON {
                     @Override
                     public Class<? extends org.openapitools.client.model.DataStructure> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("COMPOSITION", org.openapitools.client.model.Composition.class);
-                        classByDiscriminatorValue.put("EHR_STATUS", org.openapitools.client.model.EhrStatus.class);
-                        classByDiscriminatorValue.put("FOLDER", org.openapitools.client.model.Folder.class);
                         classByDiscriminatorValue.put("ITEM_LIST", org.openapitools.client.model.ItemList.class);
                         classByDiscriminatorValue.put("ITEM_SINGLE", org.openapitools.client.model.ItemSingle.class);
                         classByDiscriminatorValue.put("ITEM_STRUCTURE", org.openapitools.client.model.ItemStructure.class);
@@ -327,7 +323,6 @@ public class JSON {
                     @Override
                     public Class<? extends org.openapitools.client.model.DvInterval> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("DV_INTERVAL", org.openapitools.client.model.DvInterval.class);
                         classByDiscriminatorValue.put("DV_INTERVAL_of_DATE_TIME", org.openapitools.client.model.DvIntervalOfDateTime.class);
                         classByDiscriminatorValue.put("DvInterval", org.openapitools.client.model.DvInterval.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
@@ -451,7 +446,7 @@ public class JSON {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("DV_DATE", org.openapitools.client.model.DvDate.class);
                         classByDiscriminatorValue.put("DV_DATE_TIME", org.openapitools.client.model.DvDateTime.class);
-                        classByDiscriminatorValue.put("DV_DTIME", org.openapitools.client.model.DvTime.class);
+                        classByDiscriminatorValue.put("DV_TIME", org.openapitools.client.model.DvTime.class);
                         classByDiscriminatorValue.put("DvTemporal", org.openapitools.client.model.DvTemporal.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "_type"));
@@ -462,7 +457,6 @@ public class JSON {
                     public Class<? extends org.openapitools.client.model.DvText> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("DV_CODED_TEXT", org.openapitools.client.model.DvCodedText.class);
-                        classByDiscriminatorValue.put("DV_TEXT", org.openapitools.client.model.DvText.class);
                         classByDiscriminatorValue.put("DvText", org.openapitools.client.model.DvText.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "_type"));
@@ -482,7 +476,6 @@ public class JSON {
                     public Class<? extends org.openapitools.client.model.DvUri> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("DV_EHR_URI", org.openapitools.client.model.DvEhrUri.class);
-                        classByDiscriminatorValue.put("DV_URI", org.openapitools.client.model.DvUri.class);
                         classByDiscriminatorValue.put("DvUri", org.openapitools.client.model.DvUri.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "_type"));
@@ -672,14 +665,14 @@ public class JSON {
                         classByDiscriminatorValue.put("ACTION", org.openapitools.client.model.Action.class);
                         classByDiscriminatorValue.put("ACTIVITY", org.openapitools.client.model.Activity.class);
                         classByDiscriminatorValue.put("ADMIN_ENTRY", org.openapitools.client.model.AdminEntry.class);
-                        classByDiscriminatorValue.put("AbstractEntry", org.openapitools.client.model.AbstractEntry.class);
+                        classByDiscriminatorValue.put("CARE_ENTRY", org.openapitools.client.model.CareEntry.class);
                         classByDiscriminatorValue.put("CLUSTER", org.openapitools.client.model.Clstr.class);
                         classByDiscriminatorValue.put("COMPOSITION", org.openapitools.client.model.Composition.class);
-                        classByDiscriminatorValue.put("CareEntry", org.openapitools.client.model.CareEntry.class);
-                        classByDiscriminatorValue.put("ContentItem", org.openapitools.client.model.ContentItem.class);
-                        classByDiscriminatorValue.put("DATE_STRUCTURE", org.openapitools.client.model.DataStructure.class);
+                        classByDiscriminatorValue.put("CONTENT_ITEM", org.openapitools.client.model.ContentItem.class);
+                        classByDiscriminatorValue.put("DATA_STRUCTURE", org.openapitools.client.model.DataStructure.class);
                         classByDiscriminatorValue.put("EHR_STATUS", org.openapitools.client.model.EhrStatus.class);
                         classByDiscriminatorValue.put("ELEMENT", org.openapitools.client.model.Element.class);
+                        classByDiscriminatorValue.put("ENTRY", org.openapitools.client.model.AbstractEntry.class);
                         classByDiscriminatorValue.put("EVALUATION", org.openapitools.client.model.Evaluation.class);
                         classByDiscriminatorValue.put("EVENT", org.openapitools.client.model.Event.class);
                         classByDiscriminatorValue.put("FOLDER", org.openapitools.client.model.Folder.class);
@@ -745,7 +738,6 @@ public class JSON {
                     @Override
                     public Class<? extends org.openapitools.client.model.PartyIdentified> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("PARTY_IDENTIFIED", org.openapitools.client.model.PartyIdentified.class);
                         classByDiscriminatorValue.put("PARTY_RELATED", org.openapitools.client.model.PartyRelated.class);
                         classByDiscriminatorValue.put("PartyIdentified", org.openapitools.client.model.PartyIdentified.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
@@ -789,14 +781,14 @@ public class JSON {
                         classByDiscriminatorValue.put("ACTION", org.openapitools.client.model.Action.class);
                         classByDiscriminatorValue.put("ACTIVITY", org.openapitools.client.model.Activity.class);
                         classByDiscriminatorValue.put("ADMIN_ENTRY", org.openapitools.client.model.AdminEntry.class);
-                        classByDiscriminatorValue.put("AbstractEntry", org.openapitools.client.model.AbstractEntry.class);
+                        classByDiscriminatorValue.put("CARE_ENTRY", org.openapitools.client.model.CareEntry.class);
                         classByDiscriminatorValue.put("CLUSTER", org.openapitools.client.model.Clstr.class);
                         classByDiscriminatorValue.put("COMPOSITION", org.openapitools.client.model.Composition.class);
-                        classByDiscriminatorValue.put("CareEntry", org.openapitools.client.model.CareEntry.class);
-                        classByDiscriminatorValue.put("ContentItem", org.openapitools.client.model.ContentItem.class);
-                        classByDiscriminatorValue.put("DATE_STRUCTURE", org.openapitools.client.model.DataStructure.class);
+                        classByDiscriminatorValue.put("CONTENT_ITEM", org.openapitools.client.model.ContentItem.class);
+                        classByDiscriminatorValue.put("DATA_STRUCTURE", org.openapitools.client.model.DataStructure.class);
                         classByDiscriminatorValue.put("EHR_STATUS", org.openapitools.client.model.EhrStatus.class);
                         classByDiscriminatorValue.put("ELEMENT", org.openapitools.client.model.Element.class);
+                        classByDiscriminatorValue.put("ENTRY", org.openapitools.client.model.AbstractEntry.class);
                         classByDiscriminatorValue.put("EVALUATION", org.openapitools.client.model.Evaluation.class);
                         classByDiscriminatorValue.put("EVENT", org.openapitools.client.model.Event.class);
                         classByDiscriminatorValue.put("EVENT_CONTEXT", org.openapitools.client.model.EventContext.class);
@@ -811,7 +803,7 @@ public class JSON {
                         classByDiscriminatorValue.put("ITEM_STRUCTURE", org.openapitools.client.model.ItemStructure.class);
                         classByDiscriminatorValue.put("ITEM_TABLE", org.openapitools.client.model.ItemTable.class);
                         classByDiscriminatorValue.put("ITEM_TREE", org.openapitools.client.model.ItemTree.class);
-                        classByDiscriminatorValue.put("Locatable", org.openapitools.client.model.Locatable.class);
+                        classByDiscriminatorValue.put("LOCATABLE", org.openapitools.client.model.Locatable.class);
                         classByDiscriminatorValue.put("OBSERVATION", org.openapitools.client.model.Observation.class);
                         classByDiscriminatorValue.put("Versionable", org.openapitools.client.model.Versionable.class);
                         classByDiscriminatorValue.put("Pathable", org.openapitools.client.model.Pathable.class);
@@ -862,7 +854,6 @@ public class JSON {
                     public Class<? extends org.openapitools.client.model.UpdateAudit> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("UPDATE_ATTESTATION", org.openapitools.client.model.UpdateAttestation.class);
-                        classByDiscriminatorValue.put("UPDATE_AUDIT", org.openapitools.client.model.UpdateAudit.class);
                         classByDiscriminatorValue.put("UpdateAudit", org.openapitools.client.model.UpdateAudit.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "_type"));

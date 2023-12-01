@@ -84,18 +84,19 @@ public class CareEntry extends AbstractEntry {
     this.guidelineId = guidelineId;
   }
 
+
   public CareEntry language(CodePhrase language) {
-    super.setLanguage(language);
+    super.language(language);
     return this;
   }
 
   public CareEntry encoding(CodePhrase encoding) {
-    super.setEncoding(encoding);
+    super.encoding(encoding);
     return this;
   }
 
   public CareEntry otherParticipations(List<@Valid Participation> otherParticipations) {
-    super.setOtherParticipations(otherParticipations);
+    super.otherParticipations(otherParticipations);
     return this;
   }
 
@@ -105,37 +106,37 @@ public class CareEntry extends AbstractEntry {
   }
 
   public CareEntry workflowId(ObjectRef workflowId) {
-    super.setWorkflowId(workflowId);
+    super.workflowId(workflowId);
     return this;
   }
 
   public CareEntry subject(PartyProxy subject) {
-    super.setSubject(subject);
+    super.subject(subject);
     return this;
   }
 
   public CareEntry provider(PartyProxy provider) {
-    super.setProvider(provider);
+    super.provider(provider);
     return this;
   }
 
   public CareEntry name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public CareEntry archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public CareEntry uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public CareEntry links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -145,20 +146,19 @@ public class CareEntry extends AbstractEntry {
   }
 
   public CareEntry archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public CareEntry feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
 
   public CareEntry type(String type) {
-    super.setType(type);
+    super.type(type);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

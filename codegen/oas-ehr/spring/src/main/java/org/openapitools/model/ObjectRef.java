@@ -28,11 +28,6 @@ public class ObjectRef {
 
   private ObjectId id;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link ObjectRef#ObjectRef(String, String, ObjectId)}
-   */
-  @Deprecated
   public ObjectRef() {
     super();
   }

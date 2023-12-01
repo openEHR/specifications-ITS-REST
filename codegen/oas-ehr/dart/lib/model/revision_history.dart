@@ -20,7 +20,7 @@ class RevisionHistory {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is RevisionHistory &&
-     other.items == items;
+    _deepEquality.equals(other.items, items);
 
   @override
   int get hashCode =>

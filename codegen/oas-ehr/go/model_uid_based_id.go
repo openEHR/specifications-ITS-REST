@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UidBasedId type satisfies the MappedNullable interface at compile time
@@ -20,8 +21,11 @@ var _ MappedNullable = &UidBasedId{}
 
 // UidBasedId struct for UidBasedId
 type UidBasedId struct {
+	ObjectId
 	Type *string `json:"_type,omitempty"`
 }
+
+type _UidBasedId UidBasedId
 
 // NewUidBasedId instantiates a new UidBasedId object
 // This constructor will assign default values to properties that have it defined,
@@ -87,10 +91,53 @@ func (o UidBasedId) MarshalJSON() ([]byte, error) {
 
 func (o UidBasedId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedObjectId, errObjectId := json.Marshal(o.ObjectId)
+	if errObjectId != nil {
+		return map[string]interface{}{}, errObjectId
+	}
+	errObjectId = json.Unmarshal([]byte(serializedObjectId), &toSerialize)
+	if errObjectId != nil {
+		return map[string]interface{}{}, errObjectId
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	return toSerialize, nil
+}
+
+func (o *UidBasedId) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUidBasedId := _UidBasedId{}
+
+	err = json.Unmarshal(bytes, &varUidBasedId)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UidBasedId(varUidBasedId)
+
+	return err
 }
 
 type NullableUidBasedId struct {

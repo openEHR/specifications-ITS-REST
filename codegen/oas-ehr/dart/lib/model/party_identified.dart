@@ -41,10 +41,10 @@ class PartyIdentified {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PartyIdentified &&
-     other.type == type &&
-     other.name == name &&
-     other.identifiers == identifiers &&
-     other.externalRef == externalRef;
+    other.type == type &&
+    other.name == name &&
+    _deepEquality.equals(other.identifiers, identifiers) &&
+    other.externalRef == externalRef;
 
   @override
   int get hashCode =>

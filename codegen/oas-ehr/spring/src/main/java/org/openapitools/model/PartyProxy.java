@@ -40,11 +40,6 @@ public class PartyProxy {
 
   private PartyRef externalRef;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link PartyProxy#PartyProxy(String)}
-   */
-  @Deprecated
   public PartyProxy() {
     super();
   }

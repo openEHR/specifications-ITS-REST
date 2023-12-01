@@ -26,9 +26,9 @@ class DvParsable {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvParsable &&
-     other.type == type &&
-     other.value == value &&
-     other.formalism == formalism;
+    other.type == type &&
+    other.value == value &&
+    other.formalism == formalism;
 
   @override
   int get hashCode =>

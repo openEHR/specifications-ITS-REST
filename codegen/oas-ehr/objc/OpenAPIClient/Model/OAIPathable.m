@@ -33,8 +33,8 @@
         class = NSClassFromString(@"OAIAdminEntry");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"AbstractEntry"]) {
-        class = NSClassFromString(@"OAIAbstractEntry");
+    if ([discriminatedClassName isEqualToString:@"CARE_ENTRY"]) {
+        class = NSClassFromString(@"OAICareEntry");
     }
     else
     if ([discriminatedClassName isEqualToString:@"CLUSTER"]) {
@@ -45,15 +45,11 @@
         class = NSClassFromString(@"OAIComposition");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"CareEntry"]) {
-        class = NSClassFromString(@"OAICareEntry");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"ContentItem"]) {
+    if ([discriminatedClassName isEqualToString:@"CONTENT_ITEM"]) {
         class = NSClassFromString(@"OAIContentItem");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"DATE_STRUCTURE"]) {
+    if ([discriminatedClassName isEqualToString:@"DATA_STRUCTURE"]) {
         class = NSClassFromString(@"OAIDataStructure");
     }
     else
@@ -63,6 +59,10 @@
     else
     if ([discriminatedClassName isEqualToString:@"ELEMENT"]) {
         class = NSClassFromString(@"OAIElement");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"ENTRY"]) {
+        class = NSClassFromString(@"OAIAbstractEntry");
     }
     else
     if ([discriminatedClassName isEqualToString:@"EVALUATION"]) {
@@ -121,7 +121,7 @@
         class = NSClassFromString(@"OAIItemTree");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"Locatable"]) {
+    if ([discriminatedClassName isEqualToString:@"LOCATABLE"]) {
         class = NSClassFromString(@"OAILocatable");
     }
     else

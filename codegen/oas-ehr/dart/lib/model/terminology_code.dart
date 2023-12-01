@@ -41,10 +41,10 @@ class TerminologyCode {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is TerminologyCode &&
-     other.terminologyId == terminologyId &&
-     other.terminologyVersion == terminologyVersion &&
-     other.codeString == codeString &&
-     other.uri == uri;
+    other.terminologyId == terminologyId &&
+    other.terminologyVersion == terminologyVersion &&
+    other.codeString == codeString &&
+    other.uri == uri;
 
   @override
   int get hashCode =>

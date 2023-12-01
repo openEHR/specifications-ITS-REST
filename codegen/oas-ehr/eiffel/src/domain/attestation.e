@@ -18,6 +18,9 @@ inherit
 
 
   AUDIT_DETAILS
+      rename
+          output as out_AuditDetails
+      end
 
 feature --Access
 
@@ -81,7 +84,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_auditdetails)
+        Result.append(out_AuditDetails)
         Result.append("%Nclass ATTESTATION%N")
         if attached attested_view as l_attested_view then
           Result.append ("%Nattested_view:")

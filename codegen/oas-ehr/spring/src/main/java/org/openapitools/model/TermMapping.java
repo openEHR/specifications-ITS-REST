@@ -29,11 +29,6 @@ public class TermMapping {
 
   private CodePhrase target;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link TermMapping#TermMapping(String, CodePhrase)}
-   */
-  @Deprecated
   public TermMapping() {
     super();
   }

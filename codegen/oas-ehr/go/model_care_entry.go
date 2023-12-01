@@ -20,6 +20,7 @@ var _ MappedNullable = &CareEntry{}
 
 // CareEntry struct for CareEntry
 type CareEntry struct {
+	AbstractEntry
 	Protocol *ItemStructure `json:"protocol,omitempty"`
 	GuidelineId *ObjectRef `json:"guideline_id,omitempty"`
 }
@@ -115,6 +116,14 @@ func (o CareEntry) MarshalJSON() ([]byte, error) {
 
 func (o CareEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedAbstractEntry, errAbstractEntry := json.Marshal(o.AbstractEntry)
+	if errAbstractEntry != nil {
+		return map[string]interface{}{}, errAbstractEntry
+	}
+	errAbstractEntry = json.Unmarshal([]byte(serializedAbstractEntry), &toSerialize)
+	if errAbstractEntry != nil {
+		return map[string]interface{}{}, errAbstractEntry
+	}
 	if !IsNil(o.Protocol) {
 		toSerialize["protocol"] = o.Protocol
 	}

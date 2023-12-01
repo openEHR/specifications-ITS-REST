@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Attestation type satisfies the MappedNullable interface at compile time
@@ -20,6 +21,7 @@ var _ MappedNullable = &Attestation{}
 
 // Attestation struct for Attestation
 type Attestation struct {
+	AuditDetails
 	Type *string `json:"_type,omitempty"`
 	AttestedView *DvMultimedia `json:"attested_view,omitempty"`
 	Proof *string `json:"proof,omitempty"`
@@ -27,6 +29,8 @@ type Attestation struct {
 	Reason DvText `json:"reason"`
 	IsPending bool `json:"is_pending"`
 }
+
+type _Attestation Attestation
 
 // NewAttestation instantiates a new Attestation object
 // This constructor will assign default values to properties that have it defined,
@@ -239,6 +243,14 @@ func (o Attestation) MarshalJSON() ([]byte, error) {
 
 func (o Attestation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedAuditDetails, errAuditDetails := json.Marshal(o.AuditDetails)
+	if errAuditDetails != nil {
+		return map[string]interface{}{}, errAuditDetails
+	}
+	errAuditDetails = json.Unmarshal([]byte(serializedAuditDetails), &toSerialize)
+	if errAuditDetails != nil {
+		return map[string]interface{}{}, errAuditDetails
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -254,6 +266,46 @@ func (o Attestation) ToMap() (map[string]interface{}, error) {
 	toSerialize["reason"] = o.Reason
 	toSerialize["is_pending"] = o.IsPending
 	return toSerialize, nil
+}
+
+func (o *Attestation) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"reason",
+		"is_pending",
+		"system_id",
+		"time_committed",
+		"change_type",
+		"committer",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAttestation := _Attestation{}
+
+	err = json.Unmarshal(bytes, &varAttestation)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Attestation(varAttestation)
+
+	return err
 }
 
 type NullableAttestation struct {

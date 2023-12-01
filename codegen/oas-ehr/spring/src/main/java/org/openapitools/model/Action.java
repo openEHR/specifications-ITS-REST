@@ -41,11 +41,6 @@ public class Action extends CareEntry {
 
   private ItemStructure description;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Action#Action(DvDateTime, IsmTransition, ItemStructure)}
-   */
-  @Deprecated
   public Action() {
     super();
   }
@@ -54,7 +49,7 @@ public class Action extends CareEntry {
    * Constructor with only required parameters
    */
   public Action(DvDateTime time, IsmTransition ismTransition, ItemStructure description) {
-    super(language, encoding, subject, name, archetypeNodeId);
+    super();
     this.time = time;
     this.ismTransition = ismTransition;
     this.description = description;
@@ -160,28 +155,29 @@ public class Action extends CareEntry {
     this.description = description;
   }
 
+
   public Action protocol(ItemStructure protocol) {
-    super.setProtocol(protocol);
+    super.protocol(protocol);
     return this;
   }
 
   public Action guidelineId(ObjectRef guidelineId) {
-    super.setGuidelineId(guidelineId);
+    super.guidelineId(guidelineId);
     return this;
   }
 
   public Action language(CodePhrase language) {
-    super.setLanguage(language);
+    super.language(language);
     return this;
   }
 
   public Action encoding(CodePhrase encoding) {
-    super.setEncoding(encoding);
+    super.encoding(encoding);
     return this;
   }
 
   public Action otherParticipations(List<@Valid Participation> otherParticipations) {
-    super.setOtherParticipations(otherParticipations);
+    super.otherParticipations(otherParticipations);
     return this;
   }
 
@@ -191,37 +187,37 @@ public class Action extends CareEntry {
   }
 
   public Action workflowId(ObjectRef workflowId) {
-    super.setWorkflowId(workflowId);
+    super.workflowId(workflowId);
     return this;
   }
 
   public Action subject(PartyProxy subject) {
-    super.setSubject(subject);
+    super.subject(subject);
     return this;
   }
 
   public Action provider(PartyProxy provider) {
-    super.setProvider(provider);
+    super.provider(provider);
     return this;
   }
 
   public Action name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public Action archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public Action uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public Action links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -231,15 +227,14 @@ public class Action extends CareEntry {
   }
 
   public Action archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public Action feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -44,11 +44,11 @@ class IsmTransition {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is IsmTransition &&
-     other.type == type &&
-     other.currentState == currentState &&
-     other.transition == transition &&
-     other.careflowStep == careflowStep &&
-     other.reason == reason;
+    other.type == type &&
+    other.currentState == currentState &&
+    other.transition == transition &&
+    other.careflowStep == careflowStep &&
+    _deepEquality.equals(other.reason, reason);
 
   @override
   int get hashCode =>

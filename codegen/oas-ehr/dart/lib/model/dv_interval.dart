@@ -32,11 +32,11 @@ class DvInterval {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvInterval &&
-     other.type == type &&
-     other.lowerUnbounded == lowerUnbounded &&
-     other.upperUnbounded == upperUnbounded &&
-     other.lowerIncluded == lowerIncluded &&
-     other.upperIncluded == upperIncluded;
+    other.type == type &&
+    other.lowerUnbounded == lowerUnbounded &&
+    other.upperUnbounded == upperUnbounded &&
+    other.lowerIncluded == lowerIncluded &&
+    other.upperIncluded == upperIncluded;
 
   @override
   int get hashCode =>

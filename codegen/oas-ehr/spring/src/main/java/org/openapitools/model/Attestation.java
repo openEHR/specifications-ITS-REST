@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.AuditDetails;
 import org.openapitools.model.DvCodedText;
@@ -47,11 +48,6 @@ public class Attestation extends AuditDetails {
 
   private Boolean isPending;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Attestation#Attestation(DvText, Boolean, String, DvDateTime, DvCodedText, PartyProxy)}
-   */
-  @Deprecated
   public Attestation() {
     super();
   }
@@ -193,31 +189,31 @@ public class Attestation extends AuditDetails {
     this.isPending = isPending;
   }
 
+
   public Attestation systemId(String systemId) {
-    super.setSystemId(systemId);
+    super.systemId(systemId);
     return this;
   }
 
   public Attestation timeCommitted(DvDateTime timeCommitted) {
-    super.setTimeCommitted(timeCommitted);
+    super.timeCommitted(timeCommitted);
     return this;
   }
 
   public Attestation changeType(DvCodedText changeType) {
-    super.setChangeType(changeType);
+    super.changeType(changeType);
     return this;
   }
 
   public Attestation description(DvText description) {
-    super.setDescription(description);
+    super.description(description);
     return this;
   }
 
   public Attestation committer(PartyProxy committer) {
-    super.setCommitter(committer);
+    super.committer(committer);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

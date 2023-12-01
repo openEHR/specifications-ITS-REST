@@ -18,6 +18,9 @@ inherit
 
 
   DV_QUANTIFIED
+      rename
+          output as out_DvQuantified
+      end
 
 feature --Access
 
@@ -51,7 +54,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_dvquantified)
+        Result.append(out_DvQuantified)
         Result.append("%Nclass DV_AMOUNT%N")
         if attached accuracy_is_percent as l_accuracy_is_percent then
           Result.append ("%Naccuracy_is_percent:")

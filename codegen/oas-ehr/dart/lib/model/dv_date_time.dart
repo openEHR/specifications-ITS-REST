@@ -23,8 +23,8 @@ class DvDateTime {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvDateTime &&
-     other.type == type &&
-     other.value == value;
+    other.type == type &&
+    other.value == value;
 
   @override
   int get hashCode =>
@@ -62,7 +62,7 @@ class DvDateTime {
 
       return DvDateTime(
         type: mapValueOfType<String>(json, r'_type') ?? 'DV_DATE_TIME',
-        value: mapDateTime(json, r'value', '')!,
+        value: mapDateTime(json, r'value', r'')!,
       );
     }
     return null;

@@ -18,6 +18,9 @@ inherit
 
 
   OBJECT_ID
+      rename
+          output as out_ObjectId
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_objectid)
+        Result.append(out_ObjectId)
         Result.append("%Nclass GENERIC_ID%N")
         if attached scheme as l_scheme then
           Result.append ("%Nscheme:")

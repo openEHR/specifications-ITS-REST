@@ -93,26 +93,26 @@ public class DvIntervalOfDateTime extends DvInterval {
     this.upper = upper;
   }
 
+
   public DvIntervalOfDateTime lowerUnbounded(Boolean lowerUnbounded) {
-    super.setLowerUnbounded(lowerUnbounded);
+    super.lowerUnbounded(lowerUnbounded);
     return this;
   }
 
   public DvIntervalOfDateTime upperUnbounded(Boolean upperUnbounded) {
-    super.setUpperUnbounded(upperUnbounded);
+    super.upperUnbounded(upperUnbounded);
     return this;
   }
 
   public DvIntervalOfDateTime lowerIncluded(Boolean lowerIncluded) {
-    super.setLowerIncluded(lowerIncluded);
+    super.lowerIncluded(lowerIncluded);
     return this;
   }
 
   public DvIntervalOfDateTime upperIncluded(Boolean upperIncluded) {
-    super.setUpperIncluded(upperIncluded);
+    super.upperIncluded(upperIncluded);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

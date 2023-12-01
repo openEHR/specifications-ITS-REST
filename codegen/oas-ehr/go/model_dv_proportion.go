@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DvProportion type satisfies the MappedNullable interface at compile time
@@ -20,12 +21,15 @@ var _ MappedNullable = &DvProportion{}
 
 // DvProportion struct for DvProportion
 type DvProportion struct {
+	DvAmount
 	Type *string `json:"_type,omitempty"`
 	Numerator float32 `json:"numerator"`
 	Denominator float32 `json:"denominator"`
 	SemanticType int32 `json:"semantic_type"`
 	Precision *int32 `json:"precision,omitempty"`
 }
+
+type _DvProportion DvProportion
 
 // NewDvProportion instantiates a new DvProportion object
 // This constructor will assign default values to properties that have it defined,
@@ -194,6 +198,14 @@ func (o DvProportion) MarshalJSON() ([]byte, error) {
 
 func (o DvProportion) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDvAmount, errDvAmount := json.Marshal(o.DvAmount)
+	if errDvAmount != nil {
+		return map[string]interface{}{}, errDvAmount
+	}
+	errDvAmount = json.Unmarshal([]byte(serializedDvAmount), &toSerialize)
+	if errDvAmount != nil {
+		return map[string]interface{}{}, errDvAmount
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -204,6 +216,43 @@ func (o DvProportion) ToMap() (map[string]interface{}, error) {
 		toSerialize["precision"] = o.Precision
 	}
 	return toSerialize, nil
+}
+
+func (o *DvProportion) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"numerator",
+		"denominator",
+		"semantic_type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDvProportion := _DvProportion{}
+
+	err = json.Unmarshal(bytes, &varDvProportion)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DvProportion(varDvProportion)
+
+	return err
 }
 
 type NullableDvProportion struct {

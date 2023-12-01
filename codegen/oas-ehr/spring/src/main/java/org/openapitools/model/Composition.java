@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CodePhrase;
 import org.openapitools.model.ContentItem;
@@ -49,11 +50,6 @@ public class Composition extends Versionable {
   @Valid
   private List<@Valid ContentItem> content = new ArrayList<>();
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Composition#Composition(CodePhrase, CodePhrase, DvCodedText, EventContext, PartyProxy, List<@Valid ContentItem>)}
-   */
-  @Deprecated
   public Composition() {
     super();
   }
@@ -62,7 +58,7 @@ public class Composition extends Versionable {
    * Constructor with only required parameters
    */
   public Composition(CodePhrase language, CodePhrase territory, DvCodedText category, EventContext context, PartyProxy composer, List<@Valid ContentItem> content) {
-    super(name, archetypeNodeId);
+    super();
     this.language = language;
     this.territory = territory;
     this.category = category;
@@ -219,23 +215,24 @@ public class Composition extends Versionable {
     this.content = content;
   }
 
+
   public Composition name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public Composition archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public Composition uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public Composition links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -245,15 +242,14 @@ public class Composition extends Versionable {
   }
 
   public Composition archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public Composition feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

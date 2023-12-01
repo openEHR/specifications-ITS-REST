@@ -20,6 +20,7 @@ var _ MappedNullable = &PartySelf{}
 
 // PartySelf struct for PartySelf
 type PartySelf struct {
+	PartyProxy
 	Type *string `json:"_type,omitempty"`
 }
 
@@ -86,6 +87,14 @@ func (o PartySelf) MarshalJSON() ([]byte, error) {
 
 func (o PartySelf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedPartyProxy, errPartyProxy := json.Marshal(o.PartyProxy)
+	if errPartyProxy != nil {
+		return map[string]interface{}{}, errPartyProxy
+	}
+	errPartyProxy = json.Unmarshal([]byte(serializedPartyProxy), &toSerialize)
+	if errPartyProxy != nil {
+		return map[string]interface{}{}, errPartyProxy
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

@@ -39,11 +39,6 @@ public class FeederAuditDetails {
 
   private ItemStructure otherDetails;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link FeederAuditDetails#FeederAuditDetails(String)}
-   */
-  @Deprecated
   public FeederAuditDetails() {
     super();
   }

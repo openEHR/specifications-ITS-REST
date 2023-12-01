@@ -20,6 +20,7 @@ var _ MappedNullable = &DvQuantified{}
 
 // DvQuantified struct for DvQuantified
 type DvQuantified struct {
+	DvOrdered
 	Type *string `json:"_type,omitempty"`
 	MagnitudeStatus *string `json:"magnitude_status,omitempty"`
 }
@@ -121,6 +122,14 @@ func (o DvQuantified) MarshalJSON() ([]byte, error) {
 
 func (o DvQuantified) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDvOrdered, errDvOrdered := json.Marshal(o.DvOrdered)
+	if errDvOrdered != nil {
+		return map[string]interface{}{}, errDvOrdered
+	}
+	errDvOrdered = json.Unmarshal([]byte(serializedDvOrdered), &toSerialize)
+	if errDvOrdered != nil {
+		return map[string]interface{}{}, errDvOrdered
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

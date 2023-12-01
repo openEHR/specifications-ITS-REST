@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Evaluation type satisfies the MappedNullable interface at compile time
@@ -20,9 +21,12 @@ var _ MappedNullable = &Evaluation{}
 
 // Evaluation struct for Evaluation
 type Evaluation struct {
+	CareEntry
 	Type *string `json:"_type,omitempty"`
 	Data ItemStructure `json:"data"`
 }
+
+type _Evaluation Evaluation
 
 // NewEvaluation instantiates a new Evaluation object
 // This constructor will assign default values to properties that have it defined,
@@ -111,11 +115,54 @@ func (o Evaluation) MarshalJSON() ([]byte, error) {
 
 func (o Evaluation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCareEntry, errCareEntry := json.Marshal(o.CareEntry)
+	if errCareEntry != nil {
+		return map[string]interface{}{}, errCareEntry
+	}
+	errCareEntry = json.Unmarshal([]byte(serializedCareEntry), &toSerialize)
+	if errCareEntry != nil {
+		return map[string]interface{}{}, errCareEntry
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	toSerialize["data"] = o.Data
 	return toSerialize, nil
+}
+
+func (o *Evaluation) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"data",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEvaluation := _Evaluation{}
+
+	err = json.Unmarshal(bytes, &varEvaluation)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Evaluation(varEvaluation)
+
+	return err
 }
 
 type NullableEvaluation struct {

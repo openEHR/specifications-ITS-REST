@@ -36,11 +36,6 @@ public class InstructionDetails extends Pathable {
 
   private ItemStructure wfDetails;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link InstructionDetails#InstructionDetails(LocatableRef, String)}
-   */
-  @Deprecated
   public InstructionDetails() {
     super();
   }

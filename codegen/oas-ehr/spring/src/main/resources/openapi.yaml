@@ -2439,11 +2439,12 @@ components:
       discriminator:
         mapping:
           ARCHETYPE_ID: '#/components/schemas/ArchetypeId'
-          TEMPLATE_ID: '#/components/schemas/TemplateId'
-          TERMINOLOGY_ID: '#/components/schemas/TerminologyId'
           GENERIC_ID: '#/components/schemas/GenericId'
           HIER_OBJECT_ID: '#/components/schemas/HierObjectId'
           OBJECT_VERSION_ID: '#/components/schemas/ObjectVersionId'
+          TEMPLATE_ID: '#/components/schemas/TemplateId'
+          TERMINOLOGY_ID: '#/components/schemas/TerminologyId'
+          UID_BASED_ID: '#/components/schemas/UidBasedId'
         propertyName: _type
       properties:
         _type:
@@ -2617,7 +2618,6 @@ components:
       - $ref: '#/components/schemas/DataValue'
       discriminator:
         mapping:
-          DV_INTERVAL: '#/components/schemas/DvInterval'
           DV_INTERVAL_of_DATE_TIME: '#/components/schemas/DvIntervalOfDateTime'
         propertyName: _type
       properties:
@@ -2645,7 +2645,6 @@ components:
       - $ref: '#/components/schemas/DataValue'
       discriminator:
         mapping:
-          DV_URI: '#/components/schemas/DvUri'
           DV_EHR_URI: '#/components/schemas/DvEhrUri'
         propertyName: _type
       example:
@@ -2680,7 +2679,6 @@ components:
       - $ref: '#/components/schemas/DataValue'
       discriminator:
         mapping:
-          DV_TEXT: '#/components/schemas/DvText'
           DV_CODED_TEXT: '#/components/schemas/DvCodedText'
         propertyName: _type
       example:
@@ -2897,7 +2895,7 @@ components:
         mapping:
           DV_DATE: '#/components/schemas/DvDate'
           DV_DATE_TIME: '#/components/schemas/DvDateTime'
-          DV_DTIME: '#/components/schemas/DvTime'
+          DV_TIME: '#/components/schemas/DvTime'
         propertyName: _type
       properties:
         _type:
@@ -2962,6 +2960,35 @@ components:
       type: object
     Pathable:
       discriminator:
+        mapping:
+          ACTION: '#/components/schemas/Action'
+          ACTIVITY: '#/components/schemas/Activity'
+          ADMIN_ENTRY: '#/components/schemas/AdminEntry'
+          CARE_ENTRY: '#/components/schemas/CareEntry'
+          CLUSTER: '#/components/schemas/Clstr'
+          COMPOSITION: '#/components/schemas/Composition'
+          CONTENT_ITEM: '#/components/schemas/ContentItem'
+          DATA_STRUCTURE: '#/components/schemas/DataStructure'
+          EHR_STATUS: '#/components/schemas/EhrStatus'
+          ELEMENT: '#/components/schemas/Element'
+          ENTRY: '#/components/schemas/AbstractEntry'
+          EVALUATION: '#/components/schemas/Evaluation'
+          EVENT: '#/components/schemas/Event'
+          EVENT_CONTEXT: '#/components/schemas/EventContext'
+          FOLDER: '#/components/schemas/Folder'
+          HISTORY: '#/components/schemas/History'
+          INSTRUCTION: '#/components/schemas/Instruction'
+          INSTRUCTION_DETAILS: '#/components/schemas/InstructionDetails'
+          ISM_TRANSITION: '#/components/schemas/IsmTransition'
+          ITEM: '#/components/schemas/Item'
+          ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
+          ITEM_STRUCTURE: '#/components/schemas/ItemStructure'
+          ITEM_TABLE: '#/components/schemas/ItemTable'
+          ITEM_TREE: '#/components/schemas/ItemTree'
+          LOCATABLE: '#/components/schemas/Locatable'
+          OBSERVATION: '#/components/schemas/Observation'
+          Versionable: '#/components/schemas/Versionable'
         propertyName: _type
       properties:
         _type:
@@ -3141,8 +3168,9 @@ components:
     PartyProxy:
       discriminator:
         mapping:
-          PARTY_SELF: '#/components/schemas/PartySelf'
           PARTY_IDENTIFIED: '#/components/schemas/PartyIdentified'
+          PARTY_RELATED: '#/components/schemas/PartyRelated'
+          PARTY_SELF: '#/components/schemas/PartySelf'
         propertyName: _type
       properties:
         _type:
@@ -3159,7 +3187,6 @@ components:
       - $ref: '#/components/schemas/PartyProxy'
       discriminator:
         mapping:
-          PARTY_IDENTIFIED: '#/components/schemas/PartyIdentified'
           PARTY_RELATED: '#/components/schemas/PartyRelated'
         propertyName: _type
       example:
@@ -3214,9 +3241,30 @@ components:
       - $ref: '#/components/schemas/Pathable'
       discriminator:
         mapping:
+          ACTION: '#/components/schemas/Action'
+          ACTIVITY: '#/components/schemas/Activity'
+          ADMIN_ENTRY: '#/components/schemas/AdminEntry'
+          CARE_ENTRY: '#/components/schemas/CareEntry'
+          CLUSTER: '#/components/schemas/Clstr'
           COMPOSITION: '#/components/schemas/Composition'
+          CONTENT_ITEM: '#/components/schemas/ContentItem'
+          DATA_STRUCTURE: '#/components/schemas/DataStructure'
           EHR_STATUS: '#/components/schemas/EhrStatus'
+          ELEMENT: '#/components/schemas/Element'
+          ENTRY: '#/components/schemas/AbstractEntry'
+          EVALUATION: '#/components/schemas/Evaluation'
+          EVENT: '#/components/schemas/Event'
           FOLDER: '#/components/schemas/Folder'
+          HISTORY: '#/components/schemas/History'
+          INSTRUCTION: '#/components/schemas/Instruction'
+          ITEM: '#/components/schemas/Item'
+          ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
+          ITEM_STRUCTURE: '#/components/schemas/ItemStructure'
+          ITEM_TABLE: '#/components/schemas/ItemTable'
+          ITEM_TREE: '#/components/schemas/ItemTree'
+          OBSERVATION: '#/components/schemas/Observation'
+          Versionable: '#/components/schemas/Versionable'
         propertyName: _type
       properties:
         name:
@@ -3243,20 +3291,28 @@ components:
     DataStructure:
       allOf:
       - $ref: '#/components/schemas/Locatable'
+      discriminator:
+        mapping:
+          ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
+          ITEM_STRUCTURE: '#/components/schemas/ItemStructure'
+          ITEM_TABLE: '#/components/schemas/ItemTable'
+          ITEM_TREE: '#/components/schemas/ItemTree'
+        propertyName: _type
       properties:
         _type:
-          default: DATE_STRUCTURE
+          default: DATA_STRUCTURE
           type: string
-      title: DATE_STRUCTURE
+      title: DATA_STRUCTURE
       type: object
-      x-discriminator-value: DATE_STRUCTURE
+      x-discriminator-value: DATA_STRUCTURE
     ItemStructure:
       allOf:
       - $ref: '#/components/schemas/DataStructure'
       discriminator:
         mapping:
-          ITEM_SINGLE: '#/components/schemas/ItemSingle'
           ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
           ITEM_TABLE: '#/components/schemas/ItemTable'
           ITEM_TREE: '#/components/schemas/ItemTree'
         propertyName: _type
@@ -3271,8 +3327,8 @@ components:
       - $ref: '#/components/schemas/Locatable'
       discriminator:
         mapping:
-          ELEMENT: '#/components/schemas/Element'
           CLUSTER: '#/components/schemas/Clstr'
+          ELEMENT: '#/components/schemas/Element'
         propertyName: _type
       properties:
         _type:
@@ -3663,7 +3719,6 @@ components:
         information item to a repository.
       discriminator:
         mapping:
-          AUDIT_DETAILS: '#/components/schemas/AuditDetails'
           ATTESTATION: '#/components/schemas/Attestation'
         propertyName: _type
       example:
@@ -3842,13 +3897,13 @@ components:
       - $ref: '#/components/schemas/Locatable'
       discriminator:
         mapping:
-          ENTRY: '#/components/schemas/AbstractEntry'
+          ACTION: '#/components/schemas/Action'
           ADMIN_ENTRY: '#/components/schemas/AdminEntry'
           CARE_ENTRY: '#/components/schemas/CareEntry'
-          OBSERVATION: '#/components/schemas/Observation'
+          ENTRY: '#/components/schemas/AbstractEntry'
           EVALUATION: '#/components/schemas/Evaluation'
           INSTRUCTION: '#/components/schemas/Instruction'
-          ACTION: '#/components/schemas/Action'
+          OBSERVATION: '#/components/schemas/Observation'
         propertyName: _type
       title: CONTENT_ITEM
       type: object
@@ -3857,12 +3912,12 @@ components:
       - $ref: '#/components/schemas/ContentItem'
       discriminator:
         mapping:
+          ACTION: '#/components/schemas/Action'
           ADMIN_ENTRY: '#/components/schemas/AdminEntry'
           CARE_ENTRY: '#/components/schemas/CareEntry'
-          OBSERVATION: '#/components/schemas/Observation'
           EVALUATION: '#/components/schemas/Evaluation'
           INSTRUCTION: '#/components/schemas/Instruction'
-          ACTION: '#/components/schemas/Action'
+          OBSERVATION: '#/components/schemas/Observation'
         propertyName: _type
       properties:
         language:
@@ -3904,10 +3959,10 @@ components:
       - $ref: '#/components/schemas/AbstractEntry'
       discriminator:
         mapping:
-          OBSERVATION: '#/components/schemas/Observation'
+          ACTION: '#/components/schemas/Action'
           EVALUATION: '#/components/schemas/Evaluation'
           INSTRUCTION: '#/components/schemas/Instruction'
-          ACTION: '#/components/schemas/Action'
+          OBSERVATION: '#/components/schemas/Observation'
         propertyName: _type
       properties:
         protocol:
@@ -4192,8 +4247,8 @@ components:
       description: A VERSION resource
       discriminator:
         mapping:
-          ORIGINAL_VERSION: '#/components/schemas/OriginalVersion'
           IMPORTED_VERSION: '#/components/schemas/ImportedVersion'
+          ORIGINAL_VERSION: '#/components/schemas/OriginalVersion'
         propertyName: _type
       example:
         contribution:
@@ -4399,7 +4454,6 @@ components:
         object.
       discriminator:
         mapping:
-          UPDATE_AUDIT: '#/components/schemas/UpdateAudit'
           UPDATE_ATTESTATION: '#/components/schemas/UpdateAttestation'
         propertyName: _type
       example:

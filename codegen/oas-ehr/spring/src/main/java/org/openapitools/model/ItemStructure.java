@@ -29,10 +29,10 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = ItemList.class, name = "ITEM_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemSingle.class, name = "ITEM_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemTable.class, name = "ITEM_STRUCTURE"),
-  @JsonSubTypes.Type(value = ItemTree.class, name = "ITEM_STRUCTURE")
+  @JsonSubTypes.Type(value = ItemList.class, name = "ITEM_LIST"),
+  @JsonSubTypes.Type(value = ItemSingle.class, name = "ITEM_SINGLE"),
+  @JsonSubTypes.Type(value = ItemTable.class, name = "ITEM_TABLE"),
+  @JsonSubTypes.Type(value = ItemTree.class, name = "ITEM_TREE")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -60,23 +60,24 @@ public class ItemStructure extends DataStructure {
     this.type = type;
   }
 
+
   public ItemStructure name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public ItemStructure archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public ItemStructure uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public ItemStructure links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -86,15 +87,14 @@ public class ItemStructure extends DataStructure {
   }
 
   public ItemStructure archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public ItemStructure feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

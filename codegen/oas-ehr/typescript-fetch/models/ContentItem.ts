@@ -28,7 +28,7 @@ import {
      EvaluationFromJSONTyped,
      InstructionFromJSONTyped,
      ObservationFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 

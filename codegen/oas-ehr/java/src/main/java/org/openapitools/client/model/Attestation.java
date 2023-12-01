@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.client.model.AuditDetails;
 import org.openapitools.client.model.DvCodedText;
@@ -51,7 +51,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -90,7 +89,6 @@ public class Attestation extends AuditDetails {
   }
 
   public Attestation type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -104,14 +102,12 @@ public class Attestation extends AuditDetails {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public Attestation attestedView(DvMultimedia attestedView) {
-    
     this.attestedView = attestedView;
     return this;
   }
@@ -125,14 +121,12 @@ public class Attestation extends AuditDetails {
     return attestedView;
   }
 
-
   public void setAttestedView(DvMultimedia attestedView) {
     this.attestedView = attestedView;
   }
 
 
   public Attestation proof(String proof) {
-    
     this.proof = proof;
     return this;
   }
@@ -146,14 +140,12 @@ public class Attestation extends AuditDetails {
     return proof;
   }
 
-
   public void setProof(String proof) {
     this.proof = proof;
   }
 
 
   public Attestation items(List<DvEhrUri> items) {
-    
     this.items = items;
     return this;
   }
@@ -175,14 +167,12 @@ public class Attestation extends AuditDetails {
     return items;
   }
 
-
   public void setItems(List<DvEhrUri> items) {
     this.items = items;
   }
 
 
   public Attestation reason(DvText reason) {
-    
     this.reason = reason;
     return this;
   }
@@ -196,14 +186,12 @@ public class Attestation extends AuditDetails {
     return reason;
   }
 
-
   public void setReason(DvText reason) {
     this.reason = reason;
   }
 
 
   public Attestation isPending(Boolean isPending) {
-    
     this.isPending = isPending;
     return this;
   }
@@ -216,7 +204,6 @@ public class Attestation extends AuditDetails {
   public Boolean getIsPending() {
     return isPending;
   }
-
 
   public void setIsPending(Boolean isPending) {
     this.isPending = isPending;
@@ -298,30 +285,30 @@ public class Attestation extends AuditDetails {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to Attestation
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to Attestation
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!Attestation.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Attestation.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Attestation is not found in the empty JSON string", Attestation.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!Attestation.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Attestation` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Attestation` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : Attestation.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }
@@ -346,9 +333,9 @@ public class Attestation extends AuditDetails {
 
            @Override
            public Attestation read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.AuditDetails;
 import org.openapitools.model.HierObjectId;
@@ -34,11 +35,6 @@ public class Contribution {
 
   private AuditDetails audit;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Contribution#Contribution(HierObjectId, List<@Valid ObjectRef>, AuditDetails)}
-   */
-  @Deprecated
   public Contribution() {
     super();
   }

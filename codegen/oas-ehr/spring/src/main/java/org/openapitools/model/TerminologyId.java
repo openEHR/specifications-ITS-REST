@@ -28,11 +28,6 @@ public class TerminologyId extends ObjectId {
 
   private String type = "TERMINOLOGY_ID";
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link TerminologyId#TerminologyId(String)}
-   */
-  @Deprecated
   public TerminologyId() {
     super();
   }
@@ -64,11 +59,11 @@ public class TerminologyId extends ObjectId {
     this.type = type;
   }
 
+
   public TerminologyId value(String value) {
-    super.setValue(value);
+    super.value(value);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

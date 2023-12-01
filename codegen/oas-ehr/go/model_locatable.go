@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Locatable type satisfies the MappedNullable interface at compile time
@@ -20,6 +21,7 @@ var _ MappedNullable = &Locatable{}
 
 // Locatable struct for Locatable
 type Locatable struct {
+	Pathable
 	Name DvText `json:"name"`
 	ArchetypeNodeId string `json:"archetype_node_id"`
 	Uid *UidBasedId `json:"uid,omitempty"`
@@ -27,6 +29,8 @@ type Locatable struct {
 	ArchetypeDetails *Archetyped `json:"archetype_details,omitempty"`
 	FeederAudit *FeederAudit `json:"feeder_audit,omitempty"`
 }
+
+type _Locatable Locatable
 
 // NewLocatable instantiates a new Locatable object
 // This constructor will assign default values to properties that have it defined,
@@ -231,6 +235,14 @@ func (o Locatable) MarshalJSON() ([]byte, error) {
 
 func (o Locatable) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedPathable, errPathable := json.Marshal(o.Pathable)
+	if errPathable != nil {
+		return map[string]interface{}{}, errPathable
+	}
+	errPathable = json.Unmarshal([]byte(serializedPathable), &toSerialize)
+	if errPathable != nil {
+		return map[string]interface{}{}, errPathable
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["archetype_node_id"] = o.ArchetypeNodeId
 	if !IsNil(o.Uid) {
@@ -246,6 +258,42 @@ func (o Locatable) ToMap() (map[string]interface{}, error) {
 		toSerialize["feeder_audit"] = o.FeederAudit
 	}
 	return toSerialize, nil
+}
+
+func (o *Locatable) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"archetype_node_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varLocatable := _Locatable{}
+
+	err = json.Unmarshal(bytes, &varLocatable)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Locatable(varLocatable)
+
+	return err
 }
 
 type NullableLocatable struct {

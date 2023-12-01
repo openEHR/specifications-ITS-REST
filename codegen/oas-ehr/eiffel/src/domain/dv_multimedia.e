@@ -18,6 +18,9 @@ inherit
 
 
   DV_ENCAPSULATED
+      rename
+          output as out_DvEncapsulated
+      end
 
 feature --Access
 
@@ -121,7 +124,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_dvencapsulated)
+        Result.append(out_DvEncapsulated)
         Result.append("%Nclass DV_MULTIMEDIA%N")
         if attached alternate_text as l_alternate_text then
           Result.append ("%Nalternate_text:")

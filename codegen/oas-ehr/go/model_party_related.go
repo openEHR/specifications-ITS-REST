@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PartyRelated type satisfies the MappedNullable interface at compile time
@@ -20,9 +21,12 @@ var _ MappedNullable = &PartyRelated{}
 
 // PartyRelated struct for PartyRelated
 type PartyRelated struct {
+	PartyIdentified
 	Type *string `json:"_type,omitempty"`
 	Relationship DvCodedText `json:"relationship"`
 }
+
+type _PartyRelated PartyRelated
 
 // NewPartyRelated instantiates a new PartyRelated object
 // This constructor will assign default values to properties that have it defined,
@@ -111,11 +115,54 @@ func (o PartyRelated) MarshalJSON() ([]byte, error) {
 
 func (o PartyRelated) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedPartyIdentified, errPartyIdentified := json.Marshal(o.PartyIdentified)
+	if errPartyIdentified != nil {
+		return map[string]interface{}{}, errPartyIdentified
+	}
+	errPartyIdentified = json.Unmarshal([]byte(serializedPartyIdentified), &toSerialize)
+	if errPartyIdentified != nil {
+		return map[string]interface{}{}, errPartyIdentified
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	toSerialize["relationship"] = o.Relationship
 	return toSerialize, nil
+}
+
+func (o *PartyRelated) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"relationship",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPartyRelated := _PartyRelated{}
+
+	err = json.Unmarshal(bytes, &varPartyRelated)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartyRelated(varPartyRelated)
+
+	return err
 }
 
 type NullablePartyRelated struct {

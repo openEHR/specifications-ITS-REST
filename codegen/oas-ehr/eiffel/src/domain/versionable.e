@@ -31,7 +31,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_locatable)
+        Result.append(out_Locatable)
         Result.append("%Nclass VERSIONABLE%N")
       end
 end

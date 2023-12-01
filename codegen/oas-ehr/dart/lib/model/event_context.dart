@@ -71,14 +71,14 @@ class EventContext {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is EventContext &&
-     other.startTime == startTime &&
-     other.endTime == endTime &&
-     other.location == location &&
-     other.setting == setting &&
-     other.otherContext == otherContext &&
-     other.healthCareFacility == healthCareFacility &&
-     other.participations == participations &&
-     other.type == type;
+    other.startTime == startTime &&
+    other.endTime == endTime &&
+    other.location == location &&
+    other.setting == setting &&
+    other.otherContext == otherContext &&
+    other.healthCareFacility == healthCareFacility &&
+    _deepEquality.equals(other.participations, participations) &&
+    other.type == type;
 
   @override
   int get hashCode =>

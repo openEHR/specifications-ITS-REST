@@ -28,11 +28,6 @@ public class CodePhrase {
 
   private String preferredTerm;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link CodePhrase#CodePhrase(TerminologyId, String)}
-   */
-  @Deprecated
   public CodePhrase() {
     super();
   }

@@ -20,6 +20,7 @@ var _ MappedNullable = &DvOrdered{}
 
 // DvOrdered struct for DvOrdered
 type DvOrdered struct {
+	DataValue
 	Type *string `json:"_type,omitempty"`
 	NormalStatus *CodePhrase `json:"normal_status,omitempty"`
 	NormalRange *DvInterval `json:"normal_range,omitempty"`
@@ -185,6 +186,14 @@ func (o DvOrdered) MarshalJSON() ([]byte, error) {
 
 func (o DvOrdered) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDataValue, errDataValue := json.Marshal(o.DataValue)
+	if errDataValue != nil {
+		return map[string]interface{}{}, errDataValue
+	}
+	errDataValue = json.Unmarshal([]byte(serializedDataValue), &toSerialize)
+	if errDataValue != nil {
+		return map[string]interface{}{}, errDataValue
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

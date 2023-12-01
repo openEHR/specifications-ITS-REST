@@ -53,12 +53,12 @@ class History {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is History &&
-     other.type == type &&
-     other.origin == origin &&
-     other.period == period &&
-     other.duration == duration &&
-     other.summary == summary &&
-     other.events == events;
+    other.type == type &&
+    other.origin == origin &&
+    other.period == period &&
+    other.duration == duration &&
+    other.summary == summary &&
+    _deepEquality.equals(other.events, events);
 
   @override
   int get hashCode =>

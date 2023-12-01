@@ -26,7 +26,7 @@ class Pathable {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Pathable &&
-     other.type == type;
+    other.type == type;
 
   @override
   int get hashCode =>

@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the FeederAudit type satisfies the MappedNullable interface at compile time
@@ -26,6 +27,8 @@ type FeederAudit struct {
 	OriginatingSystemAudit FeederAuditDetails `json:"originating_system_audit"`
 	FeederSystemAudit *FeederAuditDetails `json:"feeder_system_audit,omitempty"`
 }
+
+type _FeederAudit FeederAudit
 
 // NewFeederAudit instantiates a new FeederAudit object
 // This constructor will assign default values to properties that have it defined,
@@ -221,6 +224,41 @@ func (o FeederAudit) ToMap() (map[string]interface{}, error) {
 		toSerialize["feeder_system_audit"] = o.FeederSystemAudit
 	}
 	return toSerialize, nil
+}
+
+func (o *FeederAudit) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"originating_system_audit",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFeederAudit := _FeederAudit{}
+
+	err = json.Unmarshal(bytes, &varFeederAudit)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FeederAudit(varFeederAudit)
+
+	return err
 }
 
 type NullableFeederAudit struct {

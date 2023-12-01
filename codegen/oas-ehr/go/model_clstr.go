@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Clstr type satisfies the MappedNullable interface at compile time
@@ -20,9 +21,12 @@ var _ MappedNullable = &Clstr{}
 
 // Clstr struct for Clstr
 type Clstr struct {
+	Item
 	Type *string `json:"_type,omitempty"`
 	Items []Item `json:"items"`
 }
+
+type _Clstr Clstr
 
 // NewClstr instantiates a new Clstr object
 // This constructor will assign default values to properties that have it defined,
@@ -111,11 +115,54 @@ func (o Clstr) MarshalJSON() ([]byte, error) {
 
 func (o Clstr) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedItem, errItem := json.Marshal(o.Item)
+	if errItem != nil {
+		return map[string]interface{}{}, errItem
+	}
+	errItem = json.Unmarshal([]byte(serializedItem), &toSerialize)
+	if errItem != nil {
+		return map[string]interface{}{}, errItem
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	toSerialize["items"] = o.Items
 	return toSerialize, nil
+}
+
+func (o *Clstr) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"items",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varClstr := _Clstr{}
+
+	err = json.Unmarshal(bytes, &varClstr)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Clstr(varClstr)
+
+	return err
 }
 
 type NullableClstr struct {

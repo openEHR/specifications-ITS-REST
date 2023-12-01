@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import org.openapitools.client.model.AbstractEntry;
 import org.openapitools.client.model.ItemStructure;
 import org.openapitools.client.model.ObjectRef;
@@ -45,7 +45,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -68,7 +67,6 @@ public class CareEntry extends AbstractEntry {
   }
 
   public CareEntry protocol(ItemStructure protocol) {
-    
     this.protocol = protocol;
     return this;
   }
@@ -82,14 +80,12 @@ public class CareEntry extends AbstractEntry {
     return protocol;
   }
 
-
   public void setProtocol(ItemStructure protocol) {
     this.protocol = protocol;
   }
 
 
   public CareEntry guidelineId(ObjectRef guidelineId) {
-    
     this.guidelineId = guidelineId;
     return this;
   }
@@ -102,7 +98,6 @@ public class CareEntry extends AbstractEntry {
   public ObjectRef getGuidelineId() {
     return guidelineId;
   }
-
 
   public void setGuidelineId(ObjectRef guidelineId) {
     this.guidelineId = guidelineId;
@@ -165,33 +160,33 @@ public class CareEntry extends AbstractEntry {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CareEntry
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to CareEntry
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CareEntry.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CareEntry.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CareEntry is not found in the empty JSON string", CareEntry.openapiRequiredFields.toString()));
         }
       }
 
-      String discriminatorValue = jsonObj.get("_type").getAsString();
+      String discriminatorValue = jsonElement.getAsJsonObject().get("_type").getAsString();
       switch (discriminatorValue) {
         case "ACTION":
-          Action.validateJsonObject(jsonObj);
+          Action.validateJsonElement(jsonElement);
           break;
         case "EVALUATION":
-          Evaluation.validateJsonObject(jsonObj);
+          Evaluation.validateJsonElement(jsonElement);
           break;
         case "INSTRUCTION":
-          Instruction.validateJsonObject(jsonObj);
+          Instruction.validateJsonElement(jsonElement);
           break;
         case "OBSERVATION":
-          Observation.validateJsonObject(jsonObj);
+          Observation.validateJsonElement(jsonElement);
           break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `_type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

@@ -19,7 +19,7 @@ import type {
   RevisionHistory,
   Version,
   VersionedComposition,
-} from '../models';
+} from '../models/index';
 import {
     CompositionFromJSON,
     CompositionToJSON,
@@ -29,7 +29,7 @@ import {
     VersionToJSON,
     VersionedCompositionFromJSON,
     VersionedCompositionToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface CompositionCreateRequest {
     ehr_id: string;

@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the VersionedEhrStatus type satisfies the MappedNullable interface at compile time
@@ -20,8 +21,11 @@ var _ MappedNullable = &VersionedEhrStatus{}
 
 // VersionedEhrStatus A VERSIONED_EHR_STATUS resource
 type VersionedEhrStatus struct {
+	VersionedObject
 	Type *string `json:"_type,omitempty"`
 }
+
+type _VersionedEhrStatus VersionedEhrStatus
 
 // NewVersionedEhrStatus instantiates a new VersionedEhrStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -89,10 +93,55 @@ func (o VersionedEhrStatus) MarshalJSON() ([]byte, error) {
 
 func (o VersionedEhrStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedVersionedObject, errVersionedObject := json.Marshal(o.VersionedObject)
+	if errVersionedObject != nil {
+		return map[string]interface{}{}, errVersionedObject
+	}
+	errVersionedObject = json.Unmarshal([]byte(serializedVersionedObject), &toSerialize)
+	if errVersionedObject != nil {
+		return map[string]interface{}{}, errVersionedObject
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	return toSerialize, nil
+}
+
+func (o *VersionedEhrStatus) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"uid",
+		"owner_id",
+		"time_created",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVersionedEhrStatus := _VersionedEhrStatus{}
+
+	err = json.Unmarshal(bytes, &varVersionedEhrStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VersionedEhrStatus(varVersionedEhrStatus)
+
+	return err
 }
 
 type NullableVersionedEhrStatus struct {

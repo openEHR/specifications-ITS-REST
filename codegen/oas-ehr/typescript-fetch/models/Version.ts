@@ -35,7 +35,7 @@ import {
 import {
      ImportedVersionFromJSONTyped,
      OriginalVersionFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * A VERSION resource
@@ -96,10 +96,10 @@ export function VersionFromJSONTyped(json: any, ignoreDiscriminator: boolean): V
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'IMPORTED_VERSION') {
+        if (json['_type'] === 'IMPORTED_VERSION') {
             return ImportedVersionFromJSONTyped(json, true);
         }
-        if (json['type'] === 'ORIGINAL_VERSION') {
+        if (json['_type'] === 'ORIGINAL_VERSION') {
             return OriginalVersionFromJSONTyped(json, true);
         }
     }

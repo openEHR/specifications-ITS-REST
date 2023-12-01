@@ -5,6 +5,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 open class OpenAPIClientAPI {
     public static var basePath = "https://openEHRSys.example.com/v1"
     public static var customHeaders: [String: String] = [:]

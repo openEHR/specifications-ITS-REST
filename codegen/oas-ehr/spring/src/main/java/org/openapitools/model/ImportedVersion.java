@@ -34,11 +34,6 @@ public class ImportedVersion extends Version {
 
   private OriginalVersion item;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link ImportedVersion#ImportedVersion(OriginalVersion, ObjectRef, AuditDetails, Versionable)}
-   */
-  @Deprecated
   public ImportedVersion() {
     super();
   }
@@ -91,26 +86,26 @@ public class ImportedVersion extends Version {
     this.item = item;
   }
 
+
   public ImportedVersion contribution(ObjectRef contribution) {
-    super.setContribution(contribution);
+    super.contribution(contribution);
     return this;
   }
 
   public ImportedVersion signature(String signature) {
-    super.setSignature(signature);
+    super.signature(signature);
     return this;
   }
 
   public ImportedVersion commitAudit(AuditDetails commitAudit) {
-    super.setCommitAudit(commitAudit);
+    super.commitAudit(commitAudit);
     return this;
   }
 
   public ImportedVersion data(Versionable data) {
-    super.setData(data);
+    super.data(data);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

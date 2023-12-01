@@ -1,7 +1,7 @@
 /*
 EHR API
 
-Testing EHRSTATUSApiService
+Testing EHRSTATUSAPIService
 
 */
 
@@ -17,18 +17,18 @@ import (
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
-func Test_openapi_EHRSTATUSApiService(t *testing.T) {
+func Test_openapi_EHRSTATUSAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test EHRSTATUSApiService EhrStatusGetAtTime", func(t *testing.T) {
+	t.Run("Test EHRSTATUSAPIService EhrStatusGetAtTime", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.EHRSTATUSApi.EhrStatusGetAtTime(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.EHRSTATUSAPI.EhrStatusGetAtTime(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,14 +36,14 @@ func Test_openapi_EHRSTATUSApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test EHRSTATUSApiService EhrStatusGetByVersionId", func(t *testing.T) {
+	t.Run("Test EHRSTATUSAPIService EhrStatusGetByVersionId", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 		var versionUid string
 
-		resp, httpRes, err := apiClient.EHRSTATUSApi.EhrStatusGetByVersionId(context.Background(), ehrId, versionUid).Execute()
+		resp, httpRes, err := apiClient.EHRSTATUSAPI.EhrStatusGetByVersionId(context.Background(), ehrId, versionUid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -51,13 +51,13 @@ func Test_openapi_EHRSTATUSApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test EHRSTATUSApiService EhrStatusUpdate", func(t *testing.T) {
+	t.Run("Test EHRSTATUSAPIService EhrStatusUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.EHRSTATUSApi.EhrStatusUpdate(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.EHRSTATUSAPI.EhrStatusUpdate(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -65,13 +65,13 @@ func Test_openapi_EHRSTATUSApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test EHRSTATUSApiService VersionedEhrStatusGet", func(t *testing.T) {
+	t.Run("Test EHRSTATUSAPIService VersionedEhrStatusGet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.EHRSTATUSApi.VersionedEhrStatusGet(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.EHRSTATUSAPI.VersionedEhrStatusGet(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -79,13 +79,13 @@ func Test_openapi_EHRSTATUSApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test EHRSTATUSApiService VersionedEhrStatusRevisionHistory", func(t *testing.T) {
+	t.Run("Test EHRSTATUSAPIService VersionedEhrStatusRevisionHistory", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.EHRSTATUSApi.VersionedEhrStatusRevisionHistory(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.EHRSTATUSAPI.VersionedEhrStatusRevisionHistory(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -93,13 +93,13 @@ func Test_openapi_EHRSTATUSApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test EHRSTATUSApiService VersionedEhrStatusVersionGetAtTime", func(t *testing.T) {
+	t.Run("Test EHRSTATUSAPIService VersionedEhrStatusVersionGetAtTime", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.EHRSTATUSApi.VersionedEhrStatusVersionGetAtTime(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.EHRSTATUSAPI.VersionedEhrStatusVersionGetAtTime(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -107,14 +107,14 @@ func Test_openapi_EHRSTATUSApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test EHRSTATUSApiService VersionedEhrStatusVersionGetById", func(t *testing.T) {
+	t.Run("Test EHRSTATUSAPIService VersionedEhrStatusVersionGetById", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 		var versionUid string
 
-		resp, httpRes, err := apiClient.EHRSTATUSApi.VersionedEhrStatusVersionGetById(context.Background(), ehrId, versionUid).Execute()
+		resp, httpRes, err := apiClient.EHRSTATUSAPI.VersionedEhrStatusVersionGetById(context.Background(), ehrId, versionUid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

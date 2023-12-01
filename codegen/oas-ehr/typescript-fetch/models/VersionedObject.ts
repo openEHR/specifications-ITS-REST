@@ -35,7 +35,7 @@ import {
 import {
      VersionedCompositionFromJSONTyped,
      VersionedEhrStatusFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -90,10 +90,10 @@ export function VersionedObjectFromJSONTyped(json: any, ignoreDiscriminator: boo
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'VERSIONED_COMPOSITION') {
+        if (json['_type'] === 'VERSIONED_COMPOSITION') {
             return VersionedCompositionFromJSONTyped(json, true);
         }
-        if (json['type'] === 'VERSIONED_EHR_STATUS') {
+        if (json['_type'] === 'VERSIONED_EHR_STATUS') {
             return VersionedEhrStatusFromJSONTyped(json, true);
         }
     }

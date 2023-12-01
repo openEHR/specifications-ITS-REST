@@ -38,11 +38,11 @@ class EhrStatus {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is EhrStatus &&
-     other.type == type &&
-     other.subject == subject &&
-     other.isQueryable == isQueryable &&
-     other.isModifiable == isModifiable &&
-     other.otherDetails == otherDetails;
+    other.type == type &&
+    other.subject == subject &&
+    other.isQueryable == isQueryable &&
+    other.isModifiable == isModifiable &&
+    other.otherDetails == otherDetails;
 
   @override
   int get hashCode =>

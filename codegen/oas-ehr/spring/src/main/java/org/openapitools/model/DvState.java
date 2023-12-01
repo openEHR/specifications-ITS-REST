@@ -33,11 +33,6 @@ public class DvState extends DataValue {
 
   private Boolean isTerminal;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvState#DvState(DvCodedText, Boolean)}
-   */
-  @Deprecated
   public DvState() {
     super();
   }

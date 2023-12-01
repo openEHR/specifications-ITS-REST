@@ -20,6 +20,7 @@ var _ MappedNullable = &DvAmount{}
 
 // DvAmount struct for DvAmount
 type DvAmount struct {
+	DvQuantified
 	Type *string `json:"_type,omitempty"`
 	AccuracyIsPercent *bool `json:"accuracy_is_percent,omitempty"`
 	Accuracy *float32 `json:"accuracy,omitempty"`
@@ -152,6 +153,14 @@ func (o DvAmount) MarshalJSON() ([]byte, error) {
 
 func (o DvAmount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDvQuantified, errDvQuantified := json.Marshal(o.DvQuantified)
+	if errDvQuantified != nil {
+		return map[string]interface{}{}, errDvQuantified
+	}
+	errDvQuantified = json.Unmarshal([]byte(serializedDvQuantified), &toSerialize)
+	if errDvQuantified != nil {
+		return map[string]interface{}{}, errDvQuantified
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

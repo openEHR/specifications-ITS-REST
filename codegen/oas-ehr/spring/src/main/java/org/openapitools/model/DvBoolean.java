@@ -30,11 +30,6 @@ public class DvBoolean extends DataValue {
 
   private Boolean value;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvBoolean#DvBoolean(Boolean)}
-   */
-  @Deprecated
   public DvBoolean() {
     super();
   }

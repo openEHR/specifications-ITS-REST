@@ -23,7 +23,7 @@ import {
 import {
      CompositionFromJSONTyped,
      EhrStatusFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * A Versionable resource

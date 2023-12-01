@@ -39,9 +39,8 @@ import {
 } from './PartyProxy';
 
 import {
-     AttestationFromJSONTyped,
-     AuditDetailsFromJSONTyped
-} from './';
+     AttestationFromJSONTyped
+} from './index';
 
 /**
  * The set of attributes required to document the committal of an information item to a repository.
@@ -109,11 +108,8 @@ export function AuditDetailsFromJSONTyped(json: any, ignoreDiscriminator: boolea
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'ATTESTATION') {
+        if (json['_type'] === 'ATTESTATION') {
             return AttestationFromJSONTyped(json, true);
-        }
-        if (json['type'] === 'AUDIT_DETAILS') {
-            return AuditDetailsFromJSONTyped(json, true);
         }
     }
     return {

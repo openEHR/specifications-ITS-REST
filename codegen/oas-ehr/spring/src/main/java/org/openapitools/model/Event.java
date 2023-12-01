@@ -37,11 +37,6 @@ public class Event extends Locatable {
 
   private ItemStructure data;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Event#Event(DvDateTime, ItemStructure)}
-   */
-  @Deprecated
   public Event() {
     super();
   }
@@ -135,23 +130,24 @@ public class Event extends Locatable {
     this.data = data;
   }
 
+
   public Event name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public Event archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public Event uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public Event links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -161,15 +157,14 @@ public class Event extends Locatable {
   }
 
   public Event archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public Event feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

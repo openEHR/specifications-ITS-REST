@@ -48,11 +48,6 @@ public class Version {
 
   private Versionable data;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Version#Version(ObjectRef, AuditDetails, Versionable)}
-   */
-  @Deprecated
   public Version() {
     super();
   }

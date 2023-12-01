@@ -23,8 +23,8 @@ class ItemTree {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ItemTree &&
-     other.type == type &&
-     other.items == items;
+    other.type == type &&
+    _deepEquality.equals(other.items, items);
 
   @override
   int get hashCode =>

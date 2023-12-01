@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ImportedVersion type satisfies the MappedNullable interface at compile time
@@ -20,9 +21,12 @@ var _ MappedNullable = &ImportedVersion{}
 
 // ImportedVersion struct for ImportedVersion
 type ImportedVersion struct {
+	Version
 	Type *string `json:"_type,omitempty"`
 	Item OriginalVersion `json:"item"`
 }
+
+type _ImportedVersion ImportedVersion
 
 // NewImportedVersion instantiates a new ImportedVersion object
 // This constructor will assign default values to properties that have it defined,
@@ -114,11 +118,57 @@ func (o ImportedVersion) MarshalJSON() ([]byte, error) {
 
 func (o ImportedVersion) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedVersion, errVersion := json.Marshal(o.Version)
+	if errVersion != nil {
+		return map[string]interface{}{}, errVersion
+	}
+	errVersion = json.Unmarshal([]byte(serializedVersion), &toSerialize)
+	if errVersion != nil {
+		return map[string]interface{}{}, errVersion
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	toSerialize["item"] = o.Item
 	return toSerialize, nil
+}
+
+func (o *ImportedVersion) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"item",
+		"contribution",
+		"commit_audit",
+		"data",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varImportedVersion := _ImportedVersion{}
+
+	err = json.Unmarshal(bytes, &varImportedVersion)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ImportedVersion(varImportedVersion)
+
+	return err
 }
 
 type NullableImportedVersion struct {

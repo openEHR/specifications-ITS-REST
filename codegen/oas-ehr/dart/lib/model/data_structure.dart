@@ -13,14 +13,14 @@ part of openapi.api;
 class DataStructure {
   /// Returns a new [DataStructure] instance.
   DataStructure({
-    this.type = 'DATE_STRUCTURE',
+    this.type = 'DATA_STRUCTURE',
   });
 
   String type;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DataStructure &&
-     other.type == type;
+    other.type == type;
 
   @override
   int get hashCode =>
@@ -55,7 +55,7 @@ class DataStructure {
       }());
 
       return DataStructure(
-        type: mapValueOfType<String>(json, r'_type') ?? 'DATE_STRUCTURE',
+        type: mapValueOfType<String>(json, r'_type') ?? 'DATA_STRUCTURE',
       );
     }
     return null;

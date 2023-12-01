@@ -22,12 +22,8 @@
     }
 
     Class class = nil;
-    if ([discriminatedClassName isEqualToString:@"DV_URI"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_EHR_URI"]) {
         class = NSClassFromString(@"OAIDvEhrUri");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"DV_URI"]) {
-        class = NSClassFromString(@"OAIDvUri");
     }
     else
     {

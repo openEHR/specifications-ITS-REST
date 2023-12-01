@@ -39,7 +39,7 @@ import {
      DvTextFromJSONTyped,
      DvTimeFromJSONTyped,
      DvUriFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -73,79 +73,79 @@ export function DataValueFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'DV_AMOUNT') {
+        if (json['_type'] === 'DV_AMOUNT') {
             return DvAmountFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_BOOLEAN') {
+        if (json['_type'] === 'DV_BOOLEAN') {
             return DvBooleanFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_CODED_TEXT') {
+        if (json['_type'] === 'DV_CODED_TEXT') {
             return DvCodedTextFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_COUNT') {
+        if (json['_type'] === 'DV_COUNT') {
             return DvCountFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_DATE') {
+        if (json['_type'] === 'DV_DATE') {
             return DvDateFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_DATE_TIME') {
+        if (json['_type'] === 'DV_DATE_TIME') {
             return DvDateTimeFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_DURATION') {
+        if (json['_type'] === 'DV_DURATION') {
             return DvDurationFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_EHR_URI') {
+        if (json['_type'] === 'DV_EHR_URI') {
             return DvEhrUriFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_ENCAPSULATED') {
+        if (json['_type'] === 'DV_ENCAPSULATED') {
             return DvEncapsulatedFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_IDENTIFIER') {
+        if (json['_type'] === 'DV_IDENTIFIER') {
             return DvIdentifierFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_INTERVAL') {
+        if (json['_type'] === 'DV_INTERVAL') {
             return DvIntervalFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_INTERVAL_of_DATE_TIME') {
+        if (json['_type'] === 'DV_INTERVAL_of_DATE_TIME') {
             return DvIntervalOfDateTimeFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_MULTIMEDIA') {
+        if (json['_type'] === 'DV_MULTIMEDIA') {
             return DvMultimediaFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_ORDERED') {
+        if (json['_type'] === 'DV_ORDERED') {
             return DvOrderedFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_ORDINAL') {
+        if (json['_type'] === 'DV_ORDINAL') {
             return DvOrdinalFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_PARSABLE') {
+        if (json['_type'] === 'DV_PARSABLE') {
             return DvParsableFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_PROPORTION') {
+        if (json['_type'] === 'DV_PROPORTION') {
             return DvProportionFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_QUANTIFIED') {
+        if (json['_type'] === 'DV_QUANTIFIED') {
             return DvQuantifiedFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_QUANTITY') {
+        if (json['_type'] === 'DV_QUANTITY') {
             return DvQuantityFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_SCALE') {
+        if (json['_type'] === 'DV_SCALE') {
             return DvScaleFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_STATE') {
+        if (json['_type'] === 'DV_STATE') {
             return DvStateFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_TEMPORAL') {
+        if (json['_type'] === 'DV_TEMPORAL') {
             return DvTemporalFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_TEXT') {
+        if (json['_type'] === 'DV_TEXT') {
             return DvTextFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_TIME') {
+        if (json['_type'] === 'DV_TIME') {
             return DvTimeFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_URI') {
+        if (json['_type'] === 'DV_URI') {
             return DvUriFromJSONTyped(json, true);
         }
     }

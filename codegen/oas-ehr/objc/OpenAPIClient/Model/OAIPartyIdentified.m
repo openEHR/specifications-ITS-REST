@@ -22,11 +22,7 @@
     }
 
     Class class = nil;
-    if ([discriminatedClassName isEqualToString:@"PARTY_IDENTIFIED"]) {
-        class = NSClassFromString(@"OAIPartyIdentified");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"PARTY_IDENTIFIED"]) {
+    if ([discriminatedClassName isEqualToString:@"PARTY_RELATED"]) {
         class = NSClassFromString(@"OAIPartyRelated");
     }
     else

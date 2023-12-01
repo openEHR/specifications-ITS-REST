@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DvQuantity type satisfies the MappedNullable interface at compile time
@@ -20,6 +21,7 @@ var _ MappedNullable = &DvQuantity{}
 
 // DvQuantity struct for DvQuantity
 type DvQuantity struct {
+	DvAmount
 	Type *string `json:"_type,omitempty"`
 	Magnitude float32 `json:"magnitude"`
 	Precision *int32 `json:"precision,omitempty"`
@@ -27,6 +29,8 @@ type DvQuantity struct {
 	UnitsSystem *string `json:"units_system,omitempty"`
 	UnitsDisplayName *string `json:"units_display_name,omitempty"`
 }
+
+type _DvQuantity DvQuantity
 
 // NewDvQuantity instantiates a new DvQuantity object
 // This constructor will assign default values to properties that have it defined,
@@ -235,6 +239,14 @@ func (o DvQuantity) MarshalJSON() ([]byte, error) {
 
 func (o DvQuantity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDvAmount, errDvAmount := json.Marshal(o.DvAmount)
+	if errDvAmount != nil {
+		return map[string]interface{}{}, errDvAmount
+	}
+	errDvAmount = json.Unmarshal([]byte(serializedDvAmount), &toSerialize)
+	if errDvAmount != nil {
+		return map[string]interface{}{}, errDvAmount
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -250,6 +262,42 @@ func (o DvQuantity) ToMap() (map[string]interface{}, error) {
 		toSerialize["units_display_name"] = o.UnitsDisplayName
 	}
 	return toSerialize, nil
+}
+
+func (o *DvQuantity) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"magnitude",
+		"units",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDvQuantity := _DvQuantity{}
+
+	err = json.Unmarshal(bytes, &varDvQuantity)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DvQuantity(varDvQuantity)
+
+	return err
 }
 
 type NullableDvQuantity struct {

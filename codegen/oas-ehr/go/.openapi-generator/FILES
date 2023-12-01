@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -210,4 +211,9 @@ model_versioned_composition.go
 model_versioned_ehr_status.go
 model_versioned_object.go
 response.go
+test/api_composition_test.go
+test/api_contribution_test.go
+test/api_directory_test.go
+test/api_ehr_test.go
+test/api_ehrstatus_test.go
 utils.go

@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **_type** | **String** |  | [optional][default to &#39;DATE_STRUCTURE&#39;] |
+| **_type** | **String** |  | [optional][default to &#39;DATA_STRUCTURE&#39;] |
 
 ## Example
 

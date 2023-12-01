@@ -6,7 +6,7 @@
     </colgroup>
     <thead>
     <tr>
-        <th colspan=\"2\">© 2003 - 2022 The openEHR Foundation</th>
+        <th colspan=\"2\">© 2018 - 2023 The openEHR Foundation</th>
     </tr>
     </thead>
     <tbody>
@@ -49,14 +49,14 @@
     </thead>
     <tbody>
     <tr>
-        <th colspan=\"4\"><a href=\"https://specifications.openehr.org/releases/ITS-REST/latest\" target=\"_blank\" rel=\"noopener\">Release-1.0.3 (unreleased)</a></th>
+        <th colspan=\"4\"><a href=\"https://specifications.openehr.org/releases/ITS-REST/latest\" target=\"_blank\" rel=\"noopener\">Release-1.0.3</a></th>
     </tr>
     <tr>
         <td>5.1</td>
         <td><a href=\"https://specifications.openehr.org/tickets/SPECITS-66\" target=\"_blank\" rel=\"noopener\">SPECITS-66</a>:
             Migrate REST API specs to OpenAPI Specification</td>
         <td>S Iancu</td>
-        <td>14 Nov 2022</td>
+        <td>19 Dec 2022</td>
     </tr>
     <tr>
         <th colspan=\"4\"><a href=\"https://specifications.openehr.org/releases/ITS-REST/Release-1.0.2\" target=\"_blank\" rel=\"noopener\">Release-1.0.2</a></th>
@@ -217,98 +217,7 @@ For more information, please visit [https://specifications.openehr.org/](https:/
 
 ## Requirements.
 
-Python &gt;&#x3D;3.7
-
-## Migration from other generators like python and python-legacy
-
-### Changes
-1. This generator uses spec case for all (object) property names and parameter names.
-    - So if the spec has a property name like camelCase, it will use camelCase rather than camel_case
-    - So you will need to update how you input and read properties to use spec case
-2. Endpoint parameters are stored in dictionaries to prevent collisions (explanation below)
-    - So you will need to update how you pass data in to endpoints
-3. Endpoint responses now include the original response, the deserialized response body, and (todo)the deserialized headers
-    - So you will need to update your code to use response.body to access deserialized data
-4. All validated data is instantiated in an instance that subclasses all validated Schema classes and Decimal/str/list/tuple/frozendict/NoneClass/BoolClass/bytes/io.FileIO
-    - This means that you can use isinstance to check if a payload validated against a schema class
-    - This means that no data will be of type None/True/False
-        - ingested None will subclass NoneClass
-        - ingested True will subclass BoolClass
-        - ingested False will subclass BoolClass
-        - So if you need to check is True/False/None, instead use instance.is_true_oapg()/.is_false_oapg()/.is_none_oapg()
-5. All validated class instances are immutable except for ones based on io.File
-    - This is because if properties were changed after validation, that validation would no longer apply
-    - So no changing values or property values after a class has been instantiated
-6. String + Number types with formats
-    - String type data is stored as a string and if you need to access types based on its format like date,
-    date-time, uuid, number etc then you will need to use accessor functions on the instance
-    - type string + format: See .as_date_oapg, .as_datetime_oapg, .as_decimal_oapg, .as_uuid_oapg
-    - type number + format: See .as_float_oapg, .as_int_oapg
-    - this was done because openapi/json-schema defines constraints. string data may be type string with no format
-    keyword in one schema, and include a format constraint in another schema
-    - So if you need to access a string format based type, use as_date_oapg/as_datetime_oapg/as_decimal_oapg/as_uuid_oapg
-    - So if you need to access a number format based type, use as_int_oapg/as_float_oapg
-7. Property access on AnyType(type unset) or object(dict) schemas
-    - Only required keys with valid python names are properties like .someProp and have type hints
-    - All optional keys may not exist, so properties are not defined for them
-    - One can access optional values with dict_instance['optionalProp'] and KeyError will be raised if it does not exist
-    - Use get_item_oapg if you need a way to always get a value whether or not the key exists
-        - If the key does not exist, schemas.unset is returned from calling dict_instance.get_item_oapg('optionalProp')
-        - All required and optional keys have type hints for this method, and @typing.overload is used
-        - A type hint is also generated for additionalProperties accessed using this method
-    - So you will need to update you code to use some_instance['optionalProp'] to access optional property
-    and additionalProperty values
-8. The location of the api classes has changed
-    - Api classes are located in your_package.apis.tags.some_api
-    - This change was made to eliminate redundant code generation
-    - Legacy generators generated the same endpoint twice if it had > 1 tag on it
-    - This generator defines an endpoint in one class, then inherits that class to generate
-      apis by tags and by paths
-    - This change reduces code and allows quicker run time if you use the path apis
-        - path apis are at your_package.apis.paths.some_path
-    - Those apis will only load their needed models, which is less to load than all of the resources needed in a tag api
-    - So you will need to update your import paths to the api classes
-
-### Why are Oapg and _oapg used in class and method names?
-Classes can have arbitrarily named properties set on them
-Endpoints can have arbitrary operationId method names set
-For those reasons, I use the prefix Oapg and _oapg to greatly reduce the likelihood of collisions
-on protected + public classes/methods.
-oapg stands for OpenApi Python Generator.
-
-### Object property spec case
-This was done because when payloads are ingested, they can be validated against N number of schemas.
-If the input signature used a different property name then that has mutated the payload.
-So SchemaA and SchemaB must both see the camelCase spec named variable.
-Also it is possible to send in two properties, named camelCase and camel_case in the same payload.
-That use case should be support so spec case is used.
-
-### Parameter spec case
-Parameters can be included in different locations including:
-- query
-- path
-- header
-- cookie
-
-Any of those parameters could use the same parameter names, so if every parameter
-was included as an endpoint parameter in a function signature, they would collide.
-For that reason, each of those inputs have been separated out into separate typed dictionaries:
-- query_params
-- path_params
-- header_params
-- cookie_params
-
-So when updating your code, you will need to pass endpoint parameters in using those
-dictionaries.
-
-### Endpoint responses
-Endpoint responses have been enriched to now include more information.
-Any response reom an endpoint will now include the following properties:
-response: urllib3.HTTPResponse
-body: typing.Union[Unset, Schema]
-headers: typing.Union[Unset, TODO]
-Note: response header deserialization has not yet been added
-
+Python 3.7+
 
 ## Installation & Usage
 ### pip install
@@ -339,6 +248,10 @@ Then import the package:
 import openapi_client
 ```
 
+### Tests
+
+Execute `pytest` to run the tests.
+
 ## Getting Started
 
 Please follow the [installation procedure](#installation--usage) and then run the following:
@@ -347,13 +260,9 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 import time
 import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
-from openapi_client.apis.tags import composition_api
-from openapi_client.model.composition import Composition
-from openapi_client.model.error import Error
-from openapi_client.model.revision_history import RevisionHistory
-from openapi_client.model.version import Version
-from openapi_client.model.versioned_composition import VersionedComposition
+
 # Defining the host is optional and defaults to https://openEHRSys.example.com/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -361,38 +270,23 @@ configuration = openapi_client.Configuration(
 )
 
 
+
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = composition_api.COMPOSITIONApi(api_client)
-    ehr_id = "7d44b88c-4199-4bad-97dc-d78268e01398" # str | EHR identifier taken from EHR.ehr_id.value. 
-composition = Composition() # Composition | The COMPOSITION. 
-prefer = "return=minimal" # str | Request header to indicate the preference over response details. The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.  (optional) (default to CodegenParameter{isFormParam=false, isQueryParam=false, isPathParam=false, isHeaderParam=true, isCookieParam=false, isBodyParam=false, isContainer=false, isCollectionFormatMulti=false, isPrimitiveType=true, isModel=false, isExplode=false, baseName='Prefer', paramName='prefer', dataType='str', datatypeWithEnum='PreferEnum', dataFormat='null', collectionFormat='null', description='Request header to indicate the preference over response details. The response will contain the entire resource when the `Prefer` header has a value of `return=representation`. ', unescapedDescription='Request header to indicate the preference over response details.
-The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
-', baseType='null', defaultValue='"return=minimal"', enumDefaultValue='"return=minimal"', enumName='PreferEnum', style='SIMPLE', deepObject='false', allowEmptyValue='false', example='"return=minimal"', jsonSchema='{
-  "name" : "Prefer",
-  "in" : "header",
-  "description" : "Request header to indicate the preference over response details.\nThe response will contain the entire resource when the `Prefer` header has a value of `return=representation`.\n",
-  "required" : false,
-  "style" : "simple",
-  "explode" : false,
-  "schema" : {
-    "type" : "string",
-    "default" : "return=minimal",
-    "enum" : [ "return=representation", "return=minimal" ]
-  }
-}', isString=true, isNumeric=false, isInteger=false, isShort=false, isLong=false, isUnboundedInteger=false, isNumber=false, isFloat=false, isDouble=false, isDecimal=false, isByteArray=false, isBinary=false, isBoolean=false, isDate=false, isDateTime=false, isUuid=false, isUri=false, isEmail=false, isFreeFormObject=false, isAnyType=false, isArray=false, isMap=false, isFile=false, isEnum=true, _enum=[return=representation, return=minimal], allowableValues={values=[return=representation, return=minimal], enumVars=[{name=REPRESENTATION, isString=true, value="return=representation"}, {name=MINIMAL, isString=true, value="return=minimal"}]}, items=null, mostInnerItems=null, additionalProperties=null, vars=[], requiredVars=[], vendorExtensions={}, hasValidation=false, maxProperties=null, minProperties=null, isNullable=false, isDeprecated=false, required=false, maximum='null', exclusiveMaximum=false, minimum='null', exclusiveMinimum=false, maxLength=null, minLength=null, pattern='null', maxItems=null, minItems=null, uniqueItems=false, uniqueItemsBoolean=null, contentType=null, multipleOf=null, isNull=false, getAdditionalPropertiesIsAnyType=false, getHasVars=false, getHasRequired=false, getHasDiscriminatorWithNonEmptyMapping=false, composedSchemas=null, hasMultipleTypes=false, schema=CodegenProperty{openApiType='string', baseName='PreferSchema', complexType='null', getter='getPrefer', setter='setPrefer', description='null', dataType='str', datatypeWithEnum='PreferEnum', dataFormat='null', name='prefer', min='null', max='null', defaultValue='"return=minimal"', defaultValueWithParam=' = data.Prefer;', baseType='str', containerType='null', title='null', unescapedDescription='null', maxLength=null, minLength=null, pattern='null', example='"return=minimal"', jsonSchema='{
-  "type" : "string",
-  "default" : "return=minimal",
-  "enum" : [ "return=representation", "return=minimal" ]
-}', minimum='null', maximum='null', exclusiveMinimum=false, exclusiveMaximum=false, required=false, deprecated=false, hasMoreNonReadOnly=false, isPrimitiveType=true, isModel=false, isContainer=false, isString=true, isNumeric=false, isInteger=false, isShort=false, isLong=false, isUnboundedInteger=false, isNumber=false, isFloat=false, isDouble=false, isDecimal=false, isByteArray=false, isBinary=false, isFile=false, isBoolean=false, isDate=false, isDateTime=false, isUuid=false, isUri=false, isEmail=false, isFreeFormObject=false, isArray=false, isMap=false, isEnum=true, isInnerEnum=true, isEnumRef=true, isAnyType=false, isReadOnly=false, isWriteOnly=false, isNullable=false, isSelfReference=false, isCircularReference=false, isDiscriminator=false, _enum=[return=representation, return=minimal], allowableValues={enumVars=[{name=REPRESENTATION, isString=true, value="return=representation"}, {name=MINIMAL, isString=true, value="return=minimal"}], values=[return=representation, return=minimal]}, items=null, additionalProperties=null, vars=[], requiredVars=[], mostInnerItems=null, vendorExtensions={}, hasValidation=false, isInherited=false, discriminatorValue='null', nameInCamelCase='Prefer', nameInSnakeCase='null', enumName='PreferEnum', maxItems=null, minItems=null, maxProperties=null, minProperties=null, uniqueItems=false, uniqueItemsBoolean=null, multipleOf=null, isXmlAttribute=false, xmlPrefix='null', xmlName='null', xmlNamespace='null', isXmlWrapped=false, isNull=false, getAdditionalPropertiesIsAnyType=false, getHasVars=false, getHasRequired=false, getHasDiscriminatorWithNonEmptyMapping=false, composedSchemas=null, hasMultipleTypes=false, requiredVarsMap=null, ref=null, schemaIsFromAdditionalProperties=false, isBooleanSchemaTrue=false, isBooleanSchemaFalse=false, format=null, dependentRequired=null, contains=null}, content=null, requiredVarsMap=null, ref=null, schemaIsFromAdditionalProperties=false})
+    api_instance = openapi_client.COMPOSITIONApi(api_client)
+    ehr_id = '7d44b88c-4199-4bad-97dc-d78268e01398' # str | EHR identifier taken from EHR.ehr_id.value. 
+    composition = openapi_client.Composition() # Composition | The COMPOSITION. 
+    prefer = 'return=minimal' # str | Request header to indicate the preference over response details. The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.  (optional) (default to 'return=minimal')
 
     try:
         # Create COMPOSITION
-        api_response = api_instance.composition_create(ehr_idcompositionprefer=prefer)
+        api_response = api_instance.composition_create(ehr_id, composition, prefer=prefer)
+        print("The response of COMPOSITIONApi->composition_create:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling COMPOSITIONApi->composition_create: %s\n" % e)
+
 ```
 
 ## Documentation for API Endpoints
@@ -401,159 +295,142 @@ All URIs are relative to *https://openEHRSys.example.com/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*COMPOSITIONApi* | [**composition_create**](docs/apis/tags/COMPOSITIONApi.md#composition_create) | **post** /ehr/{ehr_id}/composition | Create COMPOSITION
-*COMPOSITIONApi* | [**composition_delete**](docs/apis/tags/COMPOSITIONApi.md#composition_delete) | **delete** /ehr/{ehr_id}/composition/{uid_based_id} | Delete COMPOSITION
-*COMPOSITIONApi* | [**composition_get**](docs/apis/tags/COMPOSITIONApi.md#composition_get) | **get** /ehr/{ehr_id}/composition/{uid_based_id} | Get COMPOSITION
-*COMPOSITIONApi* | [**composition_update**](docs/apis/tags/COMPOSITIONApi.md#composition_update) | **put** /ehr/{ehr_id}/composition/{uid_based_id} | Update COMPOSITION
-*COMPOSITIONApi* | [**versioned_composition_get**](docs/apis/tags/COMPOSITIONApi.md#versioned_composition_get) | **get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid} | Get versioned COMPOSITION
-*COMPOSITIONApi* | [**versioned_composition_revision_history**](docs/apis/tags/COMPOSITIONApi.md#versioned_composition_revision_history) | **get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history | Get versioned COMPOSITION revision history
-*COMPOSITIONApi* | [**versioned_composition_version_get_at_time**](docs/apis/tags/COMPOSITIONApi.md#versioned_composition_version_get_at_time) | **get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version | Get versioned COMPOSITION version at time
-*COMPOSITIONApi* | [**versioned_composition_version_get_by_id**](docs/apis/tags/COMPOSITIONApi.md#versioned_composition_version_get_by_id) | **get** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid} | Get versioned COMPOSITION version by id
-*CONTRIBUTIONApi* | [**contribution_create**](docs/apis/tags/CONTRIBUTIONApi.md#contribution_create) | **post** /ehr/{ehr_id}/contribution | Create CONTRIBUTION
-*CONTRIBUTIONApi* | [**contribution_get**](docs/apis/tags/CONTRIBUTIONApi.md#contribution_get) | **get** /ehr/{ehr_id}/contribution/{contribution_uid} | Get CONTRIBUTION by id
-*DIRECTORYApi* | [**directory_create**](docs/apis/tags/DIRECTORYApi.md#directory_create) | **post** /ehr/{ehr_id}/directory | Create directory
-*DIRECTORYApi* | [**directory_delete**](docs/apis/tags/DIRECTORYApi.md#directory_delete) | **delete** /ehr/{ehr_id}/directory | Delete directory
-*DIRECTORYApi* | [**directory_get_at_time**](docs/apis/tags/DIRECTORYApi.md#directory_get_at_time) | **get** /ehr/{ehr_id}/directory | Get folder in directory version at time
-*DIRECTORYApi* | [**directory_get_by_version_id**](docs/apis/tags/DIRECTORYApi.md#directory_get_by_version_id) | **get** /ehr/{ehr_id}/directory/{version_uid} | Get folder in directory version
-*DIRECTORYApi* | [**directory_update**](docs/apis/tags/DIRECTORYApi.md#directory_update) | **put** /ehr/{ehr_id}/directory | Update directory
-*EHRApi* | [**ehr_create**](docs/apis/tags/EHRApi.md#ehr_create) | **post** /ehr | Create EHR
-*EHRApi* | [**ehr_create_with_id**](docs/apis/tags/EHRApi.md#ehr_create_with_id) | **put** /ehr/{ehr_id} | Create EHR with id
-*EHRApi* | [**ehr_get_by_id**](docs/apis/tags/EHRApi.md#ehr_get_by_id) | **get** /ehr/{ehr_id} | Get EHR by id
-*EHRApi* | [**ehr_get_by_subject**](docs/apis/tags/EHRApi.md#ehr_get_by_subject) | **get** /ehr | Get EHR by subject id
-*EHRSTATUSApi* | [**ehr_status_get_at_time**](docs/apis/tags/EHRSTATUSApi.md#ehr_status_get_at_time) | **get** /ehr/{ehr_id}/ehr_status | Get EHR_STATUS at time
-*EHRSTATUSApi* | [**ehr_status_get_by_version_id**](docs/apis/tags/EHRSTATUSApi.md#ehr_status_get_by_version_id) | **get** /ehr/{ehr_id}/ehr_status/{version_uid} | Get EHR_STATUS by version id
-*EHRSTATUSApi* | [**ehr_status_update**](docs/apis/tags/EHRSTATUSApi.md#ehr_status_update) | **put** /ehr/{ehr_id}/ehr_status | Update EHR_STATUS
-*EHRSTATUSApi* | [**versioned_ehr_status_get**](docs/apis/tags/EHRSTATUSApi.md#versioned_ehr_status_get) | **get** /ehr/{ehr_id}/versioned_ehr_status | Get versioned EHR_STATUS
-*EHRSTATUSApi* | [**versioned_ehr_status_revision_history**](docs/apis/tags/EHRSTATUSApi.md#versioned_ehr_status_revision_history) | **get** /ehr/{ehr_id}/versioned_ehr_status/revision_history | Get versioned EHR_STATUS revision history
-*EHRSTATUSApi* | [**versioned_ehr_status_version_get_at_time**](docs/apis/tags/EHRSTATUSApi.md#versioned_ehr_status_version_get_at_time) | **get** /ehr/{ehr_id}/versioned_ehr_status/version | Get versioned EHR_STATUS version at time
-*EHRSTATUSApi* | [**versioned_ehr_status_version_get_by_id**](docs/apis/tags/EHRSTATUSApi.md#versioned_ehr_status_version_get_by_id) | **get** /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid} | Get versioned EHR_STATUS version by id
+*COMPOSITIONApi* | [**composition_create**](docs/COMPOSITIONApi.md#composition_create) | **POST** /ehr/{ehr_id}/composition | Create COMPOSITION
+*COMPOSITIONApi* | [**composition_delete**](docs/COMPOSITIONApi.md#composition_delete) | **DELETE** /ehr/{ehr_id}/composition/{uid_based_id} | Delete COMPOSITION
+*COMPOSITIONApi* | [**composition_get**](docs/COMPOSITIONApi.md#composition_get) | **GET** /ehr/{ehr_id}/composition/{uid_based_id} | Get COMPOSITION
+*COMPOSITIONApi* | [**composition_update**](docs/COMPOSITIONApi.md#composition_update) | **PUT** /ehr/{ehr_id}/composition/{uid_based_id} | Update COMPOSITION
+*COMPOSITIONApi* | [**versioned_composition_get**](docs/COMPOSITIONApi.md#versioned_composition_get) | **GET** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid} | Get versioned COMPOSITION
+*COMPOSITIONApi* | [**versioned_composition_revision_history**](docs/COMPOSITIONApi.md#versioned_composition_revision_history) | **GET** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/revision_history | Get versioned COMPOSITION revision history
+*COMPOSITIONApi* | [**versioned_composition_version_get_at_time**](docs/COMPOSITIONApi.md#versioned_composition_version_get_at_time) | **GET** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version | Get versioned COMPOSITION version at time
+*COMPOSITIONApi* | [**versioned_composition_version_get_by_id**](docs/COMPOSITIONApi.md#versioned_composition_version_get_by_id) | **GET** /ehr/{ehr_id}/versioned_composition/{versioned_object_uid}/version/{version_uid} | Get versioned COMPOSITION version by id
+*CONTRIBUTIONApi* | [**contribution_create**](docs/CONTRIBUTIONApi.md#contribution_create) | **POST** /ehr/{ehr_id}/contribution | Create CONTRIBUTION
+*CONTRIBUTIONApi* | [**contribution_get**](docs/CONTRIBUTIONApi.md#contribution_get) | **GET** /ehr/{ehr_id}/contribution/{contribution_uid} | Get CONTRIBUTION by id
+*DIRECTORYApi* | [**directory_create**](docs/DIRECTORYApi.md#directory_create) | **POST** /ehr/{ehr_id}/directory | Create directory
+*DIRECTORYApi* | [**directory_delete**](docs/DIRECTORYApi.md#directory_delete) | **DELETE** /ehr/{ehr_id}/directory | Delete directory
+*DIRECTORYApi* | [**directory_get_at_time**](docs/DIRECTORYApi.md#directory_get_at_time) | **GET** /ehr/{ehr_id}/directory | Get folder in directory version at time
+*DIRECTORYApi* | [**directory_get_by_version_id**](docs/DIRECTORYApi.md#directory_get_by_version_id) | **GET** /ehr/{ehr_id}/directory/{version_uid} | Get folder in directory version
+*DIRECTORYApi* | [**directory_update**](docs/DIRECTORYApi.md#directory_update) | **PUT** /ehr/{ehr_id}/directory | Update directory
+*EHRApi* | [**ehr_create**](docs/EHRApi.md#ehr_create) | **POST** /ehr | Create EHR
+*EHRApi* | [**ehr_create_with_id**](docs/EHRApi.md#ehr_create_with_id) | **PUT** /ehr/{ehr_id} | Create EHR with id
+*EHRApi* | [**ehr_get_by_id**](docs/EHRApi.md#ehr_get_by_id) | **GET** /ehr/{ehr_id} | Get EHR by id
+*EHRApi* | [**ehr_get_by_subject**](docs/EHRApi.md#ehr_get_by_subject) | **GET** /ehr | Get EHR by subject id
+*EHRSTATUSApi* | [**ehr_status_get_at_time**](docs/EHRSTATUSApi.md#ehr_status_get_at_time) | **GET** /ehr/{ehr_id}/ehr_status | Get EHR_STATUS at time
+*EHRSTATUSApi* | [**ehr_status_get_by_version_id**](docs/EHRSTATUSApi.md#ehr_status_get_by_version_id) | **GET** /ehr/{ehr_id}/ehr_status/{version_uid} | Get EHR_STATUS by version id
+*EHRSTATUSApi* | [**ehr_status_update**](docs/EHRSTATUSApi.md#ehr_status_update) | **PUT** /ehr/{ehr_id}/ehr_status | Update EHR_STATUS
+*EHRSTATUSApi* | [**versioned_ehr_status_get**](docs/EHRSTATUSApi.md#versioned_ehr_status_get) | **GET** /ehr/{ehr_id}/versioned_ehr_status | Get versioned EHR_STATUS
+*EHRSTATUSApi* | [**versioned_ehr_status_revision_history**](docs/EHRSTATUSApi.md#versioned_ehr_status_revision_history) | **GET** /ehr/{ehr_id}/versioned_ehr_status/revision_history | Get versioned EHR_STATUS revision history
+*EHRSTATUSApi* | [**versioned_ehr_status_version_get_at_time**](docs/EHRSTATUSApi.md#versioned_ehr_status_version_get_at_time) | **GET** /ehr/{ehr_id}/versioned_ehr_status/version | Get versioned EHR_STATUS version at time
+*EHRSTATUSApi* | [**versioned_ehr_status_version_get_by_id**](docs/EHRSTATUSApi.md#versioned_ehr_status_version_get_by_id) | **GET** /ehr/{ehr_id}/versioned_ehr_status/version/{version_uid} | Get versioned EHR_STATUS version by id
+
 
 ## Documentation For Models
 
- - [AbstractEntry](docs/models/AbstractEntry.md)
- - [Action](docs/models/Action.md)
- - [Activity](docs/models/Activity.md)
- - [AdminEntry](docs/models/AdminEntry.md)
- - [ArchetypeId](docs/models/ArchetypeId.md)
- - [Archetyped](docs/models/Archetyped.md)
- - [Attestation](docs/models/Attestation.md)
- - [AuditDetails](docs/models/AuditDetails.md)
- - [CareEntry](docs/models/CareEntry.md)
- - [Clstr](docs/models/Clstr.md)
- - [CodePhrase](docs/models/CodePhrase.md)
- - [Composition](docs/models/Composition.md)
- - [ContentItem](docs/models/ContentItem.md)
- - [Contribution](docs/models/Contribution.md)
- - [DataStructure](docs/models/DataStructure.md)
- - [DataValue](docs/models/DataValue.md)
- - [DvAmount](docs/models/DvAmount.md)
- - [DvBoolean](docs/models/DvBoolean.md)
- - [DvCodedText](docs/models/DvCodedText.md)
- - [DvCount](docs/models/DvCount.md)
- - [DvDate](docs/models/DvDate.md)
- - [DvDateTime](docs/models/DvDateTime.md)
- - [DvDuration](docs/models/DvDuration.md)
- - [DvEhrUri](docs/models/DvEhrUri.md)
- - [DvEncapsulated](docs/models/DvEncapsulated.md)
- - [DvIdentifier](docs/models/DvIdentifier.md)
- - [DvInterval](docs/models/DvInterval.md)
- - [DvIntervalOfDateTime](docs/models/DvIntervalOfDateTime.md)
- - [DvMultimedia](docs/models/DvMultimedia.md)
- - [DvOrdered](docs/models/DvOrdered.md)
- - [DvOrdinal](docs/models/DvOrdinal.md)
- - [DvParsable](docs/models/DvParsable.md)
- - [DvProportion](docs/models/DvProportion.md)
- - [DvQuantified](docs/models/DvQuantified.md)
- - [DvQuantity](docs/models/DvQuantity.md)
- - [DvScale](docs/models/DvScale.md)
- - [DvState](docs/models/DvState.md)
- - [DvTemporal](docs/models/DvTemporal.md)
- - [DvText](docs/models/DvText.md)
- - [DvTime](docs/models/DvTime.md)
- - [DvUri](docs/models/DvUri.md)
- - [Ehr](docs/models/Ehr.md)
- - [EhrStatus](docs/models/EhrStatus.md)
- - [Element](docs/models/Element.md)
- - [Error](docs/models/Error.md)
- - [Evaluation](docs/models/Evaluation.md)
- - [Event](docs/models/Event.md)
- - [EventContext](docs/models/EventContext.md)
- - [FeederAudit](docs/models/FeederAudit.md)
- - [FeederAuditDetails](docs/models/FeederAuditDetails.md)
- - [Folder](docs/models/Folder.md)
- - [GenericId](docs/models/GenericId.md)
- - [HierObjectId](docs/models/HierObjectId.md)
- - [History](docs/models/History.md)
- - [ImportedVersion](docs/models/ImportedVersion.md)
- - [Instruction](docs/models/Instruction.md)
- - [InstructionDetails](docs/models/InstructionDetails.md)
- - [IsmTransition](docs/models/IsmTransition.md)
- - [Item](docs/models/Item.md)
- - [ItemList](docs/models/ItemList.md)
- - [ItemSingle](docs/models/ItemSingle.md)
- - [ItemStructure](docs/models/ItemStructure.md)
- - [ItemTable](docs/models/ItemTable.md)
- - [ItemTree](docs/models/ItemTree.md)
- - [Link](docs/models/Link.md)
- - [Locatable](docs/models/Locatable.md)
- - [LocatableRef](docs/models/LocatableRef.md)
- - [NewContribution](docs/models/NewContribution.md)
- - [ObjectId](docs/models/ObjectId.md)
- - [ObjectRef](docs/models/ObjectRef.md)
- - [ObjectVersionId](docs/models/ObjectVersionId.md)
- - [Observation](docs/models/Observation.md)
- - [OriginalVersion](docs/models/OriginalVersion.md)
- - [Participation](docs/models/Participation.md)
- - [PartyIdentified](docs/models/PartyIdentified.md)
- - [PartyProxy](docs/models/PartyProxy.md)
- - [PartyRef](docs/models/PartyRef.md)
- - [PartyRelated](docs/models/PartyRelated.md)
- - [PartySelf](docs/models/PartySelf.md)
- - [Pathable](docs/models/Pathable.md)
- - [ReferenceRange](docs/models/ReferenceRange.md)
- - [RevisionHistory](docs/models/RevisionHistory.md)
- - [RevisionHistoryItem](docs/models/RevisionHistoryItem.md)
- - [TemplateId](docs/models/TemplateId.md)
- - [TermMapping](docs/models/TermMapping.md)
- - [TerminologyCode](docs/models/TerminologyCode.md)
- - [TerminologyId](docs/models/TerminologyId.md)
- - [UidBasedId](docs/models/UidBasedId.md)
- - [UpdateAttestation](docs/models/UpdateAttestation.md)
- - [UpdateAudit](docs/models/UpdateAudit.md)
- - [UpdateVersion](docs/models/UpdateVersion.md)
- - [Version](docs/models/Version.md)
- - [Versionable](docs/models/Versionable.md)
- - [VersionedComposition](docs/models/VersionedComposition.md)
- - [VersionedEhrStatus](docs/models/VersionedEhrStatus.md)
- - [VersionedObject](docs/models/VersionedObject.md)
+ - [AbstractEntry](docs/AbstractEntry.md)
+ - [Action](docs/Action.md)
+ - [Activity](docs/Activity.md)
+ - [AdminEntry](docs/AdminEntry.md)
+ - [ArchetypeId](docs/ArchetypeId.md)
+ - [Archetyped](docs/Archetyped.md)
+ - [Attestation](docs/Attestation.md)
+ - [AuditDetails](docs/AuditDetails.md)
+ - [CareEntry](docs/CareEntry.md)
+ - [Clstr](docs/Clstr.md)
+ - [CodePhrase](docs/CodePhrase.md)
+ - [Composition](docs/Composition.md)
+ - [ContentItem](docs/ContentItem.md)
+ - [Contribution](docs/Contribution.md)
+ - [DataStructure](docs/DataStructure.md)
+ - [DataValue](docs/DataValue.md)
+ - [DvAmount](docs/DvAmount.md)
+ - [DvBoolean](docs/DvBoolean.md)
+ - [DvCodedText](docs/DvCodedText.md)
+ - [DvCount](docs/DvCount.md)
+ - [DvDate](docs/DvDate.md)
+ - [DvDateTime](docs/DvDateTime.md)
+ - [DvDuration](docs/DvDuration.md)
+ - [DvEhrUri](docs/DvEhrUri.md)
+ - [DvEncapsulated](docs/DvEncapsulated.md)
+ - [DvIdentifier](docs/DvIdentifier.md)
+ - [DvInterval](docs/DvInterval.md)
+ - [DvIntervalOfDateTime](docs/DvIntervalOfDateTime.md)
+ - [DvMultimedia](docs/DvMultimedia.md)
+ - [DvOrdered](docs/DvOrdered.md)
+ - [DvOrdinal](docs/DvOrdinal.md)
+ - [DvParsable](docs/DvParsable.md)
+ - [DvProportion](docs/DvProportion.md)
+ - [DvQuantified](docs/DvQuantified.md)
+ - [DvQuantity](docs/DvQuantity.md)
+ - [DvScale](docs/DvScale.md)
+ - [DvState](docs/DvState.md)
+ - [DvTemporal](docs/DvTemporal.md)
+ - [DvText](docs/DvText.md)
+ - [DvTime](docs/DvTime.md)
+ - [DvUri](docs/DvUri.md)
+ - [Ehr](docs/Ehr.md)
+ - [EhrStatus](docs/EhrStatus.md)
+ - [Element](docs/Element.md)
+ - [Error](docs/Error.md)
+ - [Evaluation](docs/Evaluation.md)
+ - [Event](docs/Event.md)
+ - [EventContext](docs/EventContext.md)
+ - [FeederAudit](docs/FeederAudit.md)
+ - [FeederAuditDetails](docs/FeederAuditDetails.md)
+ - [Folder](docs/Folder.md)
+ - [GenericId](docs/GenericId.md)
+ - [HierObjectId](docs/HierObjectId.md)
+ - [History](docs/History.md)
+ - [ImportedVersion](docs/ImportedVersion.md)
+ - [Instruction](docs/Instruction.md)
+ - [InstructionDetails](docs/InstructionDetails.md)
+ - [IsmTransition](docs/IsmTransition.md)
+ - [Item](docs/Item.md)
+ - [ItemList](docs/ItemList.md)
+ - [ItemSingle](docs/ItemSingle.md)
+ - [ItemStructure](docs/ItemStructure.md)
+ - [ItemTable](docs/ItemTable.md)
+ - [ItemTree](docs/ItemTree.md)
+ - [Link](docs/Link.md)
+ - [Locatable](docs/Locatable.md)
+ - [LocatableRef](docs/LocatableRef.md)
+ - [NewContribution](docs/NewContribution.md)
+ - [ObjectId](docs/ObjectId.md)
+ - [ObjectRef](docs/ObjectRef.md)
+ - [ObjectVersionId](docs/ObjectVersionId.md)
+ - [Observation](docs/Observation.md)
+ - [OriginalVersion](docs/OriginalVersion.md)
+ - [Participation](docs/Participation.md)
+ - [PartyIdentified](docs/PartyIdentified.md)
+ - [PartyProxy](docs/PartyProxy.md)
+ - [PartyRef](docs/PartyRef.md)
+ - [PartyRelated](docs/PartyRelated.md)
+ - [PartySelf](docs/PartySelf.md)
+ - [Pathable](docs/Pathable.md)
+ - [ReferenceRange](docs/ReferenceRange.md)
+ - [RevisionHistory](docs/RevisionHistory.md)
+ - [RevisionHistoryItem](docs/RevisionHistoryItem.md)
+ - [TemplateId](docs/TemplateId.md)
+ - [TermMapping](docs/TermMapping.md)
+ - [TerminologyCode](docs/TerminologyCode.md)
+ - [TerminologyId](docs/TerminologyId.md)
+ - [UidBasedId](docs/UidBasedId.md)
+ - [UpdateAttestation](docs/UpdateAttestation.md)
+ - [UpdateAudit](docs/UpdateAudit.md)
+ - [UpdateVersion](docs/UpdateVersion.md)
+ - [Version](docs/Version.md)
+ - [Versionable](docs/Versionable.md)
+ - [VersionedComposition](docs/VersionedComposition.md)
+ - [VersionedEhrStatus](docs/VersionedEhrStatus.md)
+ - [VersionedObject](docs/VersionedObject.md)
 
+
+<a id="documentation-for-authorization"></a>
 ## Documentation For Authorization
 
- All endpoints do not require authorization.
+Endpoints do not require authorization.
+
 
 ## Author
 
 info@openehr.org
-info@openehr.org
-info@openehr.org
-info@openehr.org
-info@openehr.org
 
-## Notes for Large OpenAPI documents
-If the OpenAPI document is large, imports in openapi_client.apis and openapi_client.models may fail with a
-RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:
 
-Solution 1:
-Use specific imports for apis and models like:
-- `from openapi_client.apis.default_api import DefaultApi`
-- `from openapi_client.model.pet import Pet`
-
-Solution 1:
-Before importing the package, adjust the maximum recursion limit as shown below:
-```
-import sys
-sys.setrecursionlimit(1500)
-import openapi_client
-from openapi_client.apis import *
-from openapi_client.models import *
-```

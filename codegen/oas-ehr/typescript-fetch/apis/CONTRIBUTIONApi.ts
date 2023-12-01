@@ -17,13 +17,13 @@ import * as runtime from '../runtime';
 import type {
   Contribution,
   NewContribution,
-} from '../models';
+} from '../models/index';
 import {
     ContributionFromJSON,
     ContributionToJSON,
     NewContributionFromJSON,
     NewContributionToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface ContributionCreateRequest {
     ehr_id: string;

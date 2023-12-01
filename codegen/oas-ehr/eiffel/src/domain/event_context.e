@@ -18,6 +18,9 @@ inherit
 
 
   PATHABLE
+      rename
+          output as out_Pathable
+      end
 
 feature --Access
 
@@ -101,7 +104,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_pathable)
+        Result.append(out_Pathable)
         Result.append("%Nclass EVENT_CONTEXT%N")
         if attached start_time as l_start_time then
           Result.append ("%Nstart_time:")

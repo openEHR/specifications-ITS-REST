@@ -542,19 +542,19 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/VersionedObject.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/api_composition.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/test/api_composition_test.go
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/COMPOSITIONApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/COMPOSITIONAPI.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/api_contribution.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/test/api_contribution_test.go
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/CONTRIBUTIONApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/CONTRIBUTIONAPI.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/api_directory.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/test/api_directory_test.go
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DIRECTORYApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/DIRECTORYAPI.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/api_ehr.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/test/api_ehr_test.go
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/EHRApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/EHRAPI.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/api_ehrstatus.go
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/test/api_ehrstatus_test.go
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/EHRSTATUSApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/docs/EHRSTATUSAPI.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/api/openapi.yaml
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/README.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/go/git_push.sh
@@ -580,147 +580,6 @@ Generatic new files ...
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'csharp' is considered stable.
 [main] INFO  o.o.c.l.AbstractCSharpCodegen - Environment variable CSHARP_POST_PROCESS_FILE not defined so the C# code may not be properly formatted by uncrustify (0.66 or later) or other code formatter. To define it, try `export CSHARP_POST_PROCESS_FILE="/usr/local/bin/uncrustify --no-backup" && export UNCRUSTIFY_CONFIG=/path/to/uncrustify-rules.cfg` (Linux/Mac). Note: replace /path/to with the location of uncrustify-rules.cfg
 [main] INFO  o.o.c.l.AbstractCSharpCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
-[main] INFO  o.o.c.languages.CSharpClientCodegen - Generating code for .NET Framework v4.5
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable value
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable _type
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable value
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable value
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable value
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable value
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable _type
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable value
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable value
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable hyperlink
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable formatting
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable mappings
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable language
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable encoding
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_status
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_range
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable other_reference_ranges
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable magnitude_status
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy_is_percent
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable magnitude_status
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable _type
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable charset
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable language
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable charset
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable language
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable external_ref
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable name
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable identifiers
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable external_ref
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable _type
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable name
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_node_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable uid
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable links
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_details
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable feeder_audit
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable name
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_node_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable uid
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable links
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_details
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable feeder_audit
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy_is_percent
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_status
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_range
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable other_reference_ranges
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy_is_percent
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy_is_percent
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_status
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable normal_range
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable other_reference_ranges
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable accuracy
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable name
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_node_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable uid
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable links
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_details
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable feeder_audit
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable uid
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable owner_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable time_created
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable lower_unbounded
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable upper_unbounded
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable lower_included
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable upper_included
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable _type
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable name
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_node_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable uid
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable links
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_details
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable feeder_audit
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable language
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable encoding
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable other_participations
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable workflow_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable subject
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable provider
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable language
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable encoding
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable other_participations
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable workflow_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable subject
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable provider
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable name
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_node_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable uid
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable links
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_details
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable feeder_audit
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable name
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_node_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable uid
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable links
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_details
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable feeder_audit
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable protocol
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable guideline_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable protocol
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable guideline_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable name
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_node_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable uid
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable links
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_details
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable feeder_audit
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable protocol
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable guideline_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable protocol
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable guideline_id
-[main] WARN  o.o.c.l.AbstractCSharpCodegen - Version (reserved word) cannot be used as model name. Renamed to ModelVersion
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable system_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable time_committed
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable change_type
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable description
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable committer
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable uid
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable owner_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable time_created
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable name
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_node_id
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable uid
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable links
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable archetype_details
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable feeder_audit
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable change_type
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable description
-[main] INFO  o.o.c.languages.CSharpClientCodegen - adding parent variable committer
-[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
-[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - Output directory (/local/codegen/oas-ehr/csharp-netcore) does not exist, or is inaccessible. No file (.openapi-generator-ignore) will be evaluated.
-[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: csharp-netcore (client)
-[main] INFO  o.o.codegen.DefaultGenerator - Generator 'csharp-netcore' is considered stable.
-[main] INFO  o.o.c.l.AbstractCSharpCodegen - Environment variable CSHARP_POST_PROCESS_FILE not defined so the C# code may not be properly formatted by uncrustify (0.66 or later) or other code formatter. To define it, try `export CSHARP_POST_PROCESS_FILE="/usr/local/bin/uncrustify --no-backup" && export UNCRUSTIFY_CONFIG=/path/to/uncrustify-rules.cfg` (Linux/Mac). Note: replace /path/to with the location of uncrustify-rules.cfg
-[main] INFO  o.o.c.l.AbstractCSharpCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
 [main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
 [main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
 [main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
@@ -731,7 +590,7 @@ Generatic new files ...
 [main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
 [main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
 [main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
-[main] INFO  o.o.c.languages.CSharpClientCodegen - Generating code for .NET Framework netstandard2.0
+[main] INFO  o.o.c.languages.CSharpClientCodegen - Generating code for .NET Framework net8.0
 [main] WARN  o.o.c.l.AbstractCSharpCodegen - Version (reserved word) cannot be used as model name. Renamed to ModelVersion
 [main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
 [main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - Output directory (/local/codegen/oas-ehr/java) does not exist, or is inaccessible. No file (.openapi-generator-ignore) will be evaluated.
@@ -3091,576 +2950,311 @@ Generatic new files ...
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'python' is considered stable.
 [main] INFO  o.o.c.l.AbstractPythonCodegen - Environment variable PYTHON_POST_PROCESS_FILE not defined so the Python code may not be properly formatted. To define it, try 'export PYTHON_POST_PROCESS_FILE="/usr/local/bin/yapf -i"' (Linux/Mac)
 [main] INFO  o.o.c.l.AbstractPythonCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
-[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - Output directory (/local/codegen/oas-ehr/python) does not exist, or is inaccessible. No file (.openapi-generator-ignore) will be evaluated.
 [main] INFO  o.o.c.languages.PythonClientCodegen - Environment variable PYTHON_POST_PROCESS_FILE not defined so the Python code may not be properly formatted. To define it, try 'export PYTHON_POST_PROCESS_FILE="/usr/local/bin/yapf -i"' (Linux/Mac)
 [main] INFO  o.o.c.languages.PythonClientCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
-[main] INFO  o.o.c.languages.PythonClientCodegen - generateAliasAsModel is hard coded to true in this generator. Alias models will only be generated if they contain validations or enums
-[main] WARN  o.o.codegen.DefaultCodegen - Unknown type found in the schema: object. To map it, please use the schema mapping option (e.g. --schema-mappings in CLI)
-[main] WARN  o.o.codegen.DefaultCodegen - Unknown type found in the schema: object. To map it, please use the schema mapping option (e.g. --schema-mappings in CLI)
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/abstract_entry.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/abstract_entry.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_abstract_entry.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/AbstractEntry.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/action.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/action.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_action.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Action.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/activity.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/activity.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_activity.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Activity.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/admin_entry.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/admin_entry.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_admin_entry.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/AdminEntry.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/archetype_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/archetype_id.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_archetype_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ArchetypeId.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/archetyped.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/archetyped.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_archetyped.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Archetyped.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/attestation.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/attestation.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_attestation.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Attestation.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/audit_details.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/audit_details.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_audit_details.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/AuditDetails.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/care_entry.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/care_entry.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_care_entry.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/CareEntry.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/clstr.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/clstr.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_clstr.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Clstr.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/code_phrase.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/code_phrase.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_code_phrase.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/CodePhrase.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/composition.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/composition.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_composition.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Composition.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/content_item.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/content_item.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_content_item.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ContentItem.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/contribution.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/contribution.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_contribution.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Contribution.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/data_structure.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/data_structure.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_data_structure.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DataStructure.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/data_value.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/data_value.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_data_value.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DataValue.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_amount.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_amount.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_amount.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvAmount.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_boolean.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_boolean.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_boolean.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvBoolean.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_coded_text.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_coded_text.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_coded_text.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvCodedText.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_count.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_count.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_count.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvCount.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_date.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_date.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_date.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvDate.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_date_time.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_date_time.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_date_time.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvDateTime.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_duration.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_duration.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_duration.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvDuration.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_ehr_uri.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_ehr_uri.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_ehr_uri.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvEhrUri.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_encapsulated.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_encapsulated.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_encapsulated.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvEncapsulated.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_identifier.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_identifier.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_identifier.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvIdentifier.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_interval.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_interval.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_interval.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvInterval.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_interval_of_date_time.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_interval_of_date_time.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_interval_of_date_time.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvIntervalOfDateTime.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_multimedia.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_multimedia.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_multimedia.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvMultimedia.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_ordered.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_ordered.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_ordered.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvOrdered.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_ordinal.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_ordinal.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_ordinal.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvOrdinal.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_parsable.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_parsable.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_parsable.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvParsable.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_proportion.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_proportion.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_proportion.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvProportion.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_quantified.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_quantified.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_quantified.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvQuantified.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_quantity.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_quantity.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_quantity.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvQuantity.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_scale.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_scale.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_scale.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvScale.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_state.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_state.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_state.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvState.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_temporal.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_temporal.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_temporal.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvTemporal.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_text.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_text.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_text.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvText.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_time.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_time.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_time.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvTime.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_uri.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/dv_uri.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_dv_uri.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/DvUri.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/ehr.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/ehr.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_ehr.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Ehr.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/ehr_status.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/ehr_status.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_ehr_status.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/EhrStatus.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/element.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/element.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_element.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Element.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/error.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/error.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_error.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Error.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/evaluation.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/evaluation.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_evaluation.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Evaluation.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/event.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/event.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_event.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Event.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/event_context.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/event_context.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_event_context.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/EventContext.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/feeder_audit.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/feeder_audit.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_feeder_audit.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/FeederAudit.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/feeder_audit_details.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/feeder_audit_details.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_feeder_audit_details.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/FeederAuditDetails.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/folder.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/folder.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_folder.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Folder.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/generic_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/generic_id.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_generic_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/GenericId.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/hier_object_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/hier_object_id.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_hier_object_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/HierObjectId.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/history.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/history.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_history.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/History.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/imported_version.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/imported_version.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_imported_version.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ImportedVersion.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/instruction.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/instruction.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_instruction.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Instruction.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/instruction_details.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/instruction_details.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_instruction_details.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/InstructionDetails.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/ism_transition.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/ism_transition.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_ism_transition.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/IsmTransition.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_item.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Item.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item_list.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item_list.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_item_list.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ItemList.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item_single.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item_single.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_item_single.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ItemSingle.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item_structure.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item_structure.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_item_structure.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ItemStructure.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item_table.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item_table.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_item_table.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ItemTable.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item_tree.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/item_tree.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_item_tree.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ItemTree.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/link.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/link.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_link.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Link.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/locatable.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/locatable.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_locatable.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Locatable.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/locatable_ref.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/locatable_ref.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_locatable_ref.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/LocatableRef.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/new_contribution.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/new_contribution.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_new_contribution.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/NewContribution.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/object_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/object_id.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_object_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ObjectId.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/object_ref.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/object_ref.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_object_ref.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ObjectRef.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/object_version_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/object_version_id.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_object_version_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ObjectVersionId.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/observation.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/observation.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_observation.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Observation.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/original_version.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/original_version.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_original_version.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/OriginalVersion.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/participation.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/participation.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_participation.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Participation.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/party_identified.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/party_identified.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_party_identified.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/PartyIdentified.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/party_proxy.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/party_proxy.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_party_proxy.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/PartyProxy.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/party_ref.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/party_ref.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_party_ref.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/PartyRef.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/party_related.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/party_related.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_party_related.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/PartyRelated.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/party_self.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/party_self.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_party_self.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/PartySelf.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/pathable.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/pathable.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_pathable.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Pathable.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/reference_range.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/reference_range.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_reference_range.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/ReferenceRange.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/revision_history.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/revision_history.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_revision_history.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/RevisionHistory.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/revision_history_item.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/revision_history_item.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_revision_history_item.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/RevisionHistoryItem.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/template_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/template_id.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_template_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/TemplateId.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/term_mapping.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/term_mapping.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_term_mapping.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/TermMapping.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/terminology_code.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/terminology_code.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_terminology_code.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/TerminologyCode.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/terminology_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/terminology_id.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_terminology_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/TerminologyId.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/uid_based_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/uid_based_id.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_uid_based_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/UidBasedId.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/update_attestation.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/update_attestation.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_update_attestation.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/UpdateAttestation.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/update_audit.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/update_audit.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_update_audit.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/UpdateAudit.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/update_version.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/update_version.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_update_version.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/UpdateVersion.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/version.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/version.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_version.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Version.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/versionable.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/versionable.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_versionable.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/Versionable.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/versioned_composition.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/versioned_composition.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_versioned_composition.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/VersionedComposition.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/versioned_ehr_status.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/versioned_ehr_status.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_versioned_ehr_status.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/VersionedEhrStatus.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/versioned_object.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/versioned_object.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/test_versioned_object.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/models/VersionedObject.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_composition/post.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_composition/post.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_composition_uid_based_id/delete.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_composition_uid_based_id/delete.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_composition_uid_based_id/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_composition_uid_based_id/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_composition_uid_based_id/put.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_composition_uid_based_id/put.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_revision_history/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_revision_history/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_version/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_version/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_version_version_uid/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_version_version_uid/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_composition/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_version/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_composition_uid_based_id/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_revision_history/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_version_version_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tag_to_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/path_to_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tags/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_composition.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_version.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_composition_uid_based_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_versioned_composition_versioned_object_uid.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_revision_history.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_versioned_composition_versioned_object_uid_version_version_uid.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_composition/test_post.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_composition/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_composition_uid_based_id/test_delete.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_composition_uid_based_id/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_composition_uid_based_id/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_composition_uid_based_id/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_composition_uid_based_id/test_put.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_composition_uid_based_id/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_composition_versioned_object_uid/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_composition_versioned_object_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_composition_versioned_object_uid_revision_history/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_composition_versioned_object_uid_revision_history/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_composition_versioned_object_uid_version/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_composition_versioned_object_uid_version/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_composition_versioned_object_uid_version_version_uid/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_composition_versioned_object_uid_version_version_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tags/composition_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/apis/tags/COMPOSITIONApi.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_contribution/post.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_contribution/post.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_contribution_contribution_uid/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_contribution_contribution_uid/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_contribution_contribution_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_contribution/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tag_to_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/path_to_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tags/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_contribution_contribution_uid.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_contribution.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_contribution/test_post.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_contribution/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_contribution_contribution_uid/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_contribution_contribution_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tags/contribution_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/apis/tags/CONTRIBUTIONApi.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory/post.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory/post.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory/delete.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory/delete.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory_version_uid/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory_version_uid/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory/put.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory/put.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory_version_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_directory/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tag_to_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/path_to_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tags/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_directory_version_uid.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_directory.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_directory/test_post.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_directory/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_directory/test_delete.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_directory/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_directory/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_directory/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_directory_version_uid/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_directory_version_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_directory/test_put.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_directory/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tags/directory_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/apis/tags/DIRECTORYApi.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr/post.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr/post.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id/put.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id/put.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tag_to_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/path_to_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tags/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr/test_post.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id/test_put.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tags/ehr_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/apis/tags/EHRApi.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_ehr_status/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_ehr_status/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_ehr_status_version_uid/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_ehr_status_version_uid/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_ehr_status/put.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_ehr_status/put.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status_revision_history/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status_revision_history/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status_version/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status_version/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status_version_version_uid/get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status_version_version_uid/get.pyi
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status_version_version_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status_version/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_ehr_status_version_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_ehr_status/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/paths/ehr_ehr_id_versioned_ehr_status_revision_history/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tag_to_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/path_to_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tags/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_versioned_ehr_status_version_version_uid.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_versioned_ehr_status.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_versioned_ehr_status_version.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_ehr_status_version_uid.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_ehr_status.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/paths/ehr_ehr_id_versioned_ehr_status_revision_history.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_ehr_status/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_ehr_status/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_ehr_status_version_uid/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_ehr_status_version_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_ehr_status/test_put.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_ehr_status/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_ehr_status/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_ehr_status/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_ehr_status_revision_history/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_ehr_status_revision_history/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_ehr_status_version/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_ehr_status_version/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_ehr_status_version_version_uid/test_get.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/test_ehr_ehr_id_versioned_ehr_status_version_version_uid/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_paths/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/tags/ehrstatus_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/apis/tags/EHRSTATUSApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/abstract_entry.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_abstract_entry.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/AbstractEntry.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/action.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_action.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Action.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/activity.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_activity.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Activity.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/admin_entry.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_admin_entry.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/AdminEntry.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/archetype_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_archetype_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ArchetypeId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/archetyped.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_archetyped.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Archetyped.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/attestation.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_attestation.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Attestation.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/audit_details.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_audit_details.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/AuditDetails.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/care_entry.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_care_entry.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/CareEntry.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/clstr.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_clstr.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Clstr.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/code_phrase.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_code_phrase.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/CodePhrase.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/composition.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_composition.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Composition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/content_item.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_content_item.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ContentItem.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/contribution.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_contribution.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Contribution.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/data_structure.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_data_structure.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DataStructure.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/data_value.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_data_value.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DataValue.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_amount.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_amount.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvAmount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_boolean.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_boolean.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvBoolean.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_coded_text.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_coded_text.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvCodedText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_count.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_count.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvCount.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_date.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_date.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvDate.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_date_time.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_date_time.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvDateTime.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_duration.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_duration.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvDuration.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_ehr_uri.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_ehr_uri.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvEhrUri.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_encapsulated.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_encapsulated.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvEncapsulated.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_identifier.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_identifier.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvIdentifier.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_interval.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_interval.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvInterval.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_interval_of_date_time.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_interval_of_date_time.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvIntervalOfDateTime.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_multimedia.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_multimedia.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvMultimedia.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_ordered.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_ordered.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvOrdered.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_ordinal.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_ordinal.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvOrdinal.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_parsable.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_parsable.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvParsable.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_proportion.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_proportion.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvProportion.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_quantified.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_quantified.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvQuantified.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_quantity.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_quantity.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvQuantity.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_scale.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_scale.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvScale.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_state.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_state.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_temporal.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_temporal.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvTemporal.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_text.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_text.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvText.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_time.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_time.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvTime.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/dv_uri.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_dv_uri.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DvUri.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/ehr.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_ehr.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Ehr.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/ehr_status.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_ehr_status.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/EhrStatus.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/element.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_element.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Element.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/error.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_error.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Error.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/evaluation.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_evaluation.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Evaluation.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/event.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_event.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Event.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/event_context.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_event_context.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/EventContext.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/feeder_audit.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_feeder_audit.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/FeederAudit.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/feeder_audit_details.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_feeder_audit_details.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/FeederAuditDetails.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/folder.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_folder.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Folder.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/generic_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_generic_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/GenericId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/hier_object_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_hier_object_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/HierObjectId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/history.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_history.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/History.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/imported_version.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_imported_version.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ImportedVersion.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/instruction.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_instruction.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Instruction.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/instruction_details.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_instruction_details.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/InstructionDetails.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/ism_transition.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_ism_transition.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/IsmTransition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/item.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_item.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Item.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/item_list.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_item_list.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ItemList.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/item_single.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_item_single.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ItemSingle.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/item_structure.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_item_structure.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ItemStructure.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/item_table.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_item_table.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ItemTable.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/item_tree.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_item_tree.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ItemTree.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/link.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_link.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Link.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/locatable.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_locatable.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Locatable.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/locatable_ref.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_locatable_ref.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/LocatableRef.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/new_contribution.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_new_contribution.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/NewContribution.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/object_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_object_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ObjectId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/object_ref.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_object_ref.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ObjectRef.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/object_version_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_object_version_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ObjectVersionId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/observation.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_observation.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Observation.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/original_version.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_original_version.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/OriginalVersion.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/participation.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_participation.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Participation.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/party_identified.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_party_identified.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/PartyIdentified.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/party_proxy.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_party_proxy.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/PartyProxy.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/party_ref.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_party_ref.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/PartyRef.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/party_related.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_party_related.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/PartyRelated.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/party_self.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_party_self.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/PartySelf.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/pathable.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_pathable.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Pathable.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/reference_range.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_reference_range.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/ReferenceRange.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/revision_history.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_revision_history.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/RevisionHistory.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/revision_history_item.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_revision_history_item.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/RevisionHistoryItem.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/template_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_template_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/TemplateId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/term_mapping.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_term_mapping.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/TermMapping.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/terminology_code.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_terminology_code.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/TerminologyCode.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/terminology_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_terminology_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/TerminologyId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/uid_based_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_uid_based_id.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/UidBasedId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/update_attestation.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_update_attestation.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/UpdateAttestation.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/update_audit.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_update_audit.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/UpdateAudit.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/update_version.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_update_version.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/UpdateVersion.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/version.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_version.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Version.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/versionable.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_versionable.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/Versionable.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/versioned_composition.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_versioned_composition.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/VersionedComposition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/versioned_ehr_status.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_versioned_ehr_status.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/VersionedEhrStatus.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/versioned_object.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_versioned_object.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/VersionedObject.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/api/composition_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_composition_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/COMPOSITIONApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/api/contribution_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_contribution_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/CONTRIBUTIONApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/api/directory_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_directory_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/DIRECTORYApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/api/ehr_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_ehr_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/EHRApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/api/ehrstatus_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_ehrstatus_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/docs/EHRSTATUSApi.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/README.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/tox.ini
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test-requirements.txt
@@ -3669,19 +3263,20 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/git_push.sh
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/.gitignore
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/.travis.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/.github/workflows/python.yml
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/.gitlab-ci.yml
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/setup.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/pyproject.toml
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/py.typed
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/configuration.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/__init__.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/__init__.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/api/__init__.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/exceptions.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/test/test_models/__init__.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/api_client.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/api_response.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/rest.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/schemas.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/models/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/model/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/openapi_client/apis/__init__.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/.openapi-generator-ignore
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/.openapi-generator/VERSION
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/python/.openapi-generator/FILES
@@ -3689,9 +3284,6 @@ Generatic new files ...
 # Thanks for using OpenAPI Generator.                                          #
 # Please consider donation to help us maintain this project 🙏                 #
 # https://opencollective.com/openapi_generator/donate                          #
-#                                                                              #
-# This generator was written by Justin Black (https://github.com/spacether)    #
-# Please support his work directly via https://github.com/sponsors/spacether 🙏#
 ################################################################################
 [main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
 [main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - Output directory (/local/codegen/oas-ehr/swift5) does not exist, or is inaccessible. No file (.openapi-generator-ignore) will be evaluated.
@@ -3700,6 +3292,15 @@ Generatic new files ...
 [main] INFO  o.o.c.languages.Swift5ClientCodegen - Environment variable SWIFT_POST_PROCESS_FILE not defined so the Swift code may not be properly formatted. To define it, try 'export SWIFT_POST_PROCESS_FILE=/usr/local/bin/swiftformat' (Linux/Mac)
 [main] INFO  o.o.c.languages.Swift5ClientCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
 [main] WARN  o.o.codegen.DefaultCodegen - The value (generator's option) must be either boolean or string. Default to `false`.
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - Error (reserved word) cannot be used as model name. Renamed to ModelError
@@ -3961,6 +3562,7 @@ Generatic new files ...
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Extensions.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/OpenISO8601DateFormatter.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/APIs.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/OpenAPIClient/Classes/OpenAPIs/Validation.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/.gitignore
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/README.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /local/codegen/oas-ehr/swift5/.swiftformat
@@ -5096,6 +4698,16 @@ Generatic new files ...
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'typescript-fetch' is considered stable.
 [main] INFO  o.o.c.l.AbstractTypeScriptClientCodegen - Hint: Environment variable 'TS_POST_PROCESS_FILE' (optional) not defined. E.g. to format the source code, please try 'export TS_POST_PROCESS_FILE="/usr/local/bin/prettier --write"' (Linux/Mac)
 [main] INFO  o.o.c.l.AbstractTypeScriptClientCodegen - Note: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] WARN  o.o.codegen.DefaultCodegen - The value (generator's option) must be either boolean or string. Default to `false`.
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
 [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
 [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
 [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
@@ -5245,6 +4857,16 @@ Generatic new files ...
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'typescript-node' is considered stable.
 [main] INFO  o.o.c.l.AbstractTypeScriptClientCodegen - Hint: Environment variable 'TS_POST_PROCESS_FILE' (optional) not defined. E.g. to format the source code, please try 'export TS_POST_PROCESS_FILE="/usr/local/bin/prettier --write"' (Linux/Mac)
 [main] INFO  o.o.c.l.AbstractTypeScriptClientCodegen - Note: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] WARN  o.o.codegen.DefaultCodegen - The value (generator's option) must be either boolean or string. Default to `false`.
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+[main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
 [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
 [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
 [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError

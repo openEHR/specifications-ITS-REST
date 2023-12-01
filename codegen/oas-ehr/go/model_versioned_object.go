@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the VersionedObject type satisfies the MappedNullable interface at compile time
@@ -25,6 +26,8 @@ type VersionedObject struct {
 	OwnerId ObjectRef `json:"owner_id"`
 	TimeCreated DvDateTime `json:"time_created"`
 }
+
+type _VersionedObject VersionedObject
 
 // NewVersionedObject instantiates a new VersionedObject object
 // This constructor will assign default values to properties that have it defined,
@@ -167,6 +170,43 @@ func (o VersionedObject) ToMap() (map[string]interface{}, error) {
 	toSerialize["owner_id"] = o.OwnerId
 	toSerialize["time_created"] = o.TimeCreated
 	return toSerialize, nil
+}
+
+func (o *VersionedObject) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"uid",
+		"owner_id",
+		"time_created",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVersionedObject := _VersionedObject{}
+
+	err = json.Unmarshal(bytes, &varVersionedObject)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VersionedObject(varVersionedObject)
+
+	return err
 }
 
 type NullableVersionedObject struct {

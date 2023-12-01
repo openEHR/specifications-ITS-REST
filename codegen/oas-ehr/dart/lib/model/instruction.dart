@@ -44,11 +44,11 @@ class Instruction {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Instruction &&
-     other.type == type &&
-     other.narrative == narrative &&
-     other.expiryTime == expiryTime &&
-     other.wfDefinition == wfDefinition &&
-     other.activities == activities;
+    other.type == type &&
+    other.narrative == narrative &&
+    other.expiryTime == expiryTime &&
+    other.wfDefinition == wfDefinition &&
+    _deepEquality.equals(other.activities, activities);
 
   @override
   int get hashCode =>

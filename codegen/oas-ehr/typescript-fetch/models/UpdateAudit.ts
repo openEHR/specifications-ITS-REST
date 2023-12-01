@@ -33,9 +33,8 @@ import {
 } from './TerminologyCode';
 
 import {
-     UpdateAttestationFromJSONTyped,
-     UpdateAuditFromJSONTyped
-} from './';
+     UpdateAttestationFromJSONTyped
+} from './index';
 
 /**
  * The set of attributes required to document the committal of an information item to a repository. Used by the server to create an AUDIT_DETAILS object.
@@ -89,11 +88,8 @@ export function UpdateAuditFromJSONTyped(json: any, ignoreDiscriminator: boolean
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'UPDATE_ATTESTATION') {
+        if (json['_type'] === 'UPDATE_ATTESTATION') {
             return UpdateAttestationFromJSONTyped(json, true);
-        }
-        if (json['type'] === 'UPDATE_AUDIT') {
-            return UpdateAuditFromJSONTyped(json, true);
         }
     }
     return {

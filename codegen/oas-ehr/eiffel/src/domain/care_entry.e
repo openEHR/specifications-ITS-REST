@@ -18,6 +18,9 @@ inherit
 
 
   ABSTRACT_ENTRY
+      rename
+          output as out_AbstractEntry
+      end
 
 feature --Access
 
@@ -51,7 +54,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_abstractentry)
+        Result.append(out_AbstractEntry)
         Result.append("%Nclass CARE_ENTRY%N")
         if attached protocol as l_protocol then
           Result.append ("%Nprotocol:")

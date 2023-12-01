@@ -32,11 +32,6 @@ public class DvCount extends DvAmount {
 
   private Integer magnitude;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvCount#DvCount(Integer)}
-   */
-  @Deprecated
   public DvCount() {
     super();
   }
@@ -89,33 +84,34 @@ public class DvCount extends DvAmount {
     this.magnitude = magnitude;
   }
 
+
   public DvCount accuracyIsPercent(Boolean accuracyIsPercent) {
-    super.setAccuracyIsPercent(accuracyIsPercent);
+    super.accuracyIsPercent(accuracyIsPercent);
     return this;
   }
 
   public DvCount accuracy(BigDecimal accuracy) {
-    super.setAccuracy(accuracy);
+    super.accuracy(accuracy);
     return this;
   }
 
   public DvCount magnitudeStatus(String magnitudeStatus) {
-    super.setMagnitudeStatus(magnitudeStatus);
+    super.magnitudeStatus(magnitudeStatus);
     return this;
   }
 
   public DvCount normalStatus(CodePhrase normalStatus) {
-    super.setNormalStatus(normalStatus);
+    super.normalStatus(normalStatus);
     return this;
   }
 
   public DvCount normalRange(DvInterval normalRange) {
-    super.setNormalRange(normalRange);
+    super.normalRange(normalRange);
     return this;
   }
 
   public DvCount otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
-    super.setOtherReferenceRanges(otherReferenceRanges);
+    super.otherReferenceRanges(otherReferenceRanges);
     return this;
   }
 
@@ -123,7 +119,6 @@ public class DvCount extends DvAmount {
     super.addOtherReferenceRangesItem(otherReferenceRangesItem);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

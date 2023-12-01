@@ -38,13 +38,13 @@ class Composition {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Composition &&
-     other.type == type &&
-     other.language == language &&
-     other.territory == territory &&
-     other.category == category &&
-     other.context == context &&
-     other.composer == composer &&
-     other.content == content;
+    other.type == type &&
+    other.language == language &&
+    other.territory == territory &&
+    other.category == category &&
+    other.context == context &&
+    other.composer == composer &&
+    _deepEquality.equals(other.content, content);
 
   @override
   int get hashCode =>

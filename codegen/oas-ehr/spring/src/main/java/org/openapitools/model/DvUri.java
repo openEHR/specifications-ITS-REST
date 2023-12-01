@@ -28,8 +28,7 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = DvEhrUri.class, name = "DV_URI"),
-  @JsonSubTypes.Type(value = DvUri.class, name = "DV_URI")
+  @JsonSubTypes.Type(value = DvEhrUri.class, name = "DV_EHR_URI")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -39,11 +38,6 @@ public class DvUri extends DataValue {
 
   private String value;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvUri#DvUri(String)}
-   */
-  @Deprecated
   public DvUri() {
     super();
   }

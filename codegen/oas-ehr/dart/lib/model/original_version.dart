@@ -59,16 +59,16 @@ class OriginalVersion {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is OriginalVersion &&
-     other.type == type &&
-     other.uid == uid &&
-     other.precedingVersionUid == precedingVersionUid &&
-     other.otherInputVersionUids == otherInputVersionUids &&
-     other.lifecycleState == lifecycleState &&
-     other.attestations == attestations &&
-     other.contribution == contribution &&
-     other.signature == signature &&
-     other.commitAudit == commitAudit &&
-     other.data == data;
+    other.type == type &&
+    other.uid == uid &&
+    other.precedingVersionUid == precedingVersionUid &&
+    _deepEquality.equals(other.otherInputVersionUids, otherInputVersionUids) &&
+    other.lifecycleState == lifecycleState &&
+    _deepEquality.equals(other.attestations, attestations) &&
+    other.contribution == contribution &&
+    other.signature == signature &&
+    other.commitAudit == commitAudit &&
+    other.data == data;
 
   @override
   int get hashCode =>

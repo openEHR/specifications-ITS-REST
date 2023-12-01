@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Activity type satisfies the MappedNullable interface at compile time
@@ -20,11 +21,14 @@ var _ MappedNullable = &Activity{}
 
 // Activity struct for Activity
 type Activity struct {
+	Locatable
 	Type *string `json:"_type,omitempty"`
 	Timing *DvParsable `json:"timing,omitempty"`
 	ActionArchetypeId string `json:"action_archetype_id"`
 	Description ItemStructure `json:"description"`
 }
+
+type _Activity Activity
 
 // NewActivity instantiates a new Activity object
 // This constructor will assign default values to properties that have it defined,
@@ -169,6 +173,14 @@ func (o Activity) MarshalJSON() ([]byte, error) {
 
 func (o Activity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedLocatable, errLocatable := json.Marshal(o.Locatable)
+	if errLocatable != nil {
+		return map[string]interface{}{}, errLocatable
+	}
+	errLocatable = json.Unmarshal([]byte(serializedLocatable), &toSerialize)
+	if errLocatable != nil {
+		return map[string]interface{}{}, errLocatable
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -178,6 +190,42 @@ func (o Activity) ToMap() (map[string]interface{}, error) {
 	toSerialize["action_archetype_id"] = o.ActionArchetypeId
 	toSerialize["description"] = o.Description
 	return toSerialize, nil
+}
+
+func (o *Activity) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"action_archetype_id",
+		"description",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varActivity := _Activity{}
+
+	err = json.Unmarshal(bytes, &varActivity)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Activity(varActivity)
+
+	return err
 }
 
 type NullableActivity struct {

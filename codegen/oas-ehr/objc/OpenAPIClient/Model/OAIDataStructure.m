@@ -6,12 +6,53 @@
   self = [super init];
   if (self) {
     // initialize property's default value, if any
-    self.type = @"DATE_STRUCTURE";
+    self.type = @"DATA_STRUCTURE";
     
   }
   return self;
 }
 
+/**
+ * Maps "discriminator" value to the sub-class name, so that inheritance is supported.
+ */
+- (id)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
+    NSString * discriminatedClassName = [dict valueForKey:@"type"];
+    if(discriminatedClassName == nil ){
+         return [super initWithDictionary:dict error:err];
+    }
+
+    Class class = nil;
+    if ([discriminatedClassName isEqualToString:@"ITEM_LIST"]) {
+        class = NSClassFromString(@"OAIItemList");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"ITEM_SINGLE"]) {
+        class = NSClassFromString(@"OAIItemSingle");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"ITEM_STRUCTURE"]) {
+        class = NSClassFromString(@"OAIItemStructure");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"ITEM_TABLE"]) {
+        class = NSClassFromString(@"OAIItemTable");
+    }
+    else
+    if ([discriminatedClassName isEqualToString:@"ITEM_TREE"]) {
+        class = NSClassFromString(@"OAIItemTree");
+    }
+    else
+    {
+        class = NSClassFromString([@"OAI" stringByAppendingString:discriminatedClassName]);
+        if(!class) {
+            class = NSClassFromString([@"OAI" stringByAppendingString:[discriminatedClassName capitalizedString]]);
+        }
+    }
+    if([self class ] == class) {
+        return [super initWithDictionary:dict error:err];
+    }
+    return [[class alloc] initWithDictionary:dict error: err];
+}
 
 /**
  * Maps json key to property name.

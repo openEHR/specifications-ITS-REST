@@ -35,10 +35,10 @@ class LocatableRef {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is LocatableRef &&
-     other.namespace == namespace &&
-     other.type == type &&
-     other.id == id &&
-     other.path == path;
+    other.namespace == namespace &&
+    other.type == type &&
+    other.id == id &&
+    other.path == path;
 
   @override
   int get hashCode =>

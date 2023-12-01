@@ -28,8 +28,7 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = DvInterval.class, name = "DV_INTERVAL"),
-  @JsonSubTypes.Type(value = DvIntervalOfDateTime.class, name = "DV_INTERVAL")
+  @JsonSubTypes.Type(value = DvIntervalOfDateTime.class, name = "DV_INTERVAL_of_DATE_TIME")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -45,11 +44,6 @@ public class DvInterval extends DataValue {
 
   private Boolean upperIncluded;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvInterval#DvInterval(Boolean, Boolean, Boolean, Boolean)}
-   */
-  @Deprecated
   public DvInterval() {
     super();
   }

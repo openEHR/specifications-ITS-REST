@@ -34,11 +34,6 @@ public class Observation extends CareEntry {
 
   private History state;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Observation#Observation(History)}
-   */
-  @Deprecated
   public Observation() {
     super();
   }
@@ -47,7 +42,7 @@ public class Observation extends CareEntry {
    * Constructor with only required parameters
    */
   public Observation(History data) {
-    super(language, encoding, subject, name, archetypeNodeId);
+    super();
     this.data = data;
   }
 
@@ -111,28 +106,29 @@ public class Observation extends CareEntry {
     this.state = state;
   }
 
+
   public Observation protocol(ItemStructure protocol) {
-    super.setProtocol(protocol);
+    super.protocol(protocol);
     return this;
   }
 
   public Observation guidelineId(ObjectRef guidelineId) {
-    super.setGuidelineId(guidelineId);
+    super.guidelineId(guidelineId);
     return this;
   }
 
   public Observation language(CodePhrase language) {
-    super.setLanguage(language);
+    super.language(language);
     return this;
   }
 
   public Observation encoding(CodePhrase encoding) {
-    super.setEncoding(encoding);
+    super.encoding(encoding);
     return this;
   }
 
   public Observation otherParticipations(List<@Valid Participation> otherParticipations) {
-    super.setOtherParticipations(otherParticipations);
+    super.otherParticipations(otherParticipations);
     return this;
   }
 
@@ -142,37 +138,37 @@ public class Observation extends CareEntry {
   }
 
   public Observation workflowId(ObjectRef workflowId) {
-    super.setWorkflowId(workflowId);
+    super.workflowId(workflowId);
     return this;
   }
 
   public Observation subject(PartyProxy subject) {
-    super.setSubject(subject);
+    super.subject(subject);
     return this;
   }
 
   public Observation provider(PartyProxy provider) {
-    super.setProvider(provider);
+    super.provider(provider);
     return this;
   }
 
   public Observation name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public Observation archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public Observation uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public Observation links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -182,15 +178,14 @@ public class Observation extends CareEntry {
   }
 
   public Observation archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public Observation feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

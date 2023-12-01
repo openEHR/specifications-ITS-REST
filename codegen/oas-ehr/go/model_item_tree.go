@@ -20,6 +20,7 @@ var _ MappedNullable = &ItemTree{}
 
 // ItemTree struct for ItemTree
 type ItemTree struct {
+	ItemStructure
 	Type *string `json:"_type,omitempty"`
 	Items []Item `json:"items,omitempty"`
 }
@@ -119,6 +120,14 @@ func (o ItemTree) MarshalJSON() ([]byte, error) {
 
 func (o ItemTree) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedItemStructure, errItemStructure := json.Marshal(o.ItemStructure)
+	if errItemStructure != nil {
+		return map[string]interface{}{}, errItemStructure
+	}
+	errItemStructure = json.Unmarshal([]byte(serializedItemStructure), &toSerialize)
+	if errItemStructure != nil {
+		return map[string]interface{}{}, errItemStructure
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

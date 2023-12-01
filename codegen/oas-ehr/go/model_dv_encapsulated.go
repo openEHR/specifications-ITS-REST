@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DvEncapsulated type satisfies the MappedNullable interface at compile time
@@ -20,10 +21,13 @@ var _ MappedNullable = &DvEncapsulated{}
 
 // DvEncapsulated struct for DvEncapsulated
 type DvEncapsulated struct {
+	DataValue
 	Type string `json:"_type"`
 	Charset *CodePhrase `json:"charset,omitempty"`
 	Language *CodePhrase `json:"language,omitempty"`
 }
+
+type _DvEncapsulated DvEncapsulated
 
 // NewDvEncapsulated instantiates a new DvEncapsulated object
 // This constructor will assign default values to properties that have it defined,
@@ -143,6 +147,14 @@ func (o DvEncapsulated) MarshalJSON() ([]byte, error) {
 
 func (o DvEncapsulated) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDataValue, errDataValue := json.Marshal(o.DataValue)
+	if errDataValue != nil {
+		return map[string]interface{}{}, errDataValue
+	}
+	errDataValue = json.Unmarshal([]byte(serializedDataValue), &toSerialize)
+	if errDataValue != nil {
+		return map[string]interface{}{}, errDataValue
+	}
 	toSerialize["_type"] = o.Type
 	if !IsNil(o.Charset) {
 		toSerialize["charset"] = o.Charset
@@ -151,6 +163,41 @@ func (o DvEncapsulated) ToMap() (map[string]interface{}, error) {
 		toSerialize["language"] = o.Language
 	}
 	return toSerialize, nil
+}
+
+func (o *DvEncapsulated) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDvEncapsulated := _DvEncapsulated{}
+
+	err = json.Unmarshal(bytes, &varDvEncapsulated)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DvEncapsulated(varDvEncapsulated)
+
+	return err
 }
 
 type NullableDvEncapsulated struct {

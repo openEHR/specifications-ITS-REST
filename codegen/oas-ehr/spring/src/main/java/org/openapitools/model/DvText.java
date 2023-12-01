@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CodePhrase;
 import org.openapitools.model.DataValue;
@@ -33,8 +34,7 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = DvCodedText.class, name = "DV_TEXT"),
-  @JsonSubTypes.Type(value = DvText.class, name = "DV_TEXT")
+  @JsonSubTypes.Type(value = DvCodedText.class, name = "DV_CODED_TEXT")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -55,11 +55,6 @@ public class DvText extends DataValue {
 
   private CodePhrase encoding;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvText#DvText(String)}
-   */
-  @Deprecated
   public DvText() {
     super();
   }

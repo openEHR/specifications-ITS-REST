@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Event type satisfies the MappedNullable interface at compile time
@@ -20,11 +21,14 @@ var _ MappedNullable = &Event{}
 
 // Event struct for Event
 type Event struct {
+	Locatable
 	Type *string `json:"_type,omitempty"`
 	Time DvDateTime `json:"time"`
 	State *ItemStructure `json:"state,omitempty"`
 	Data ItemStructure `json:"data"`
 }
+
+type _Event Event
 
 // NewEvent instantiates a new Event object
 // This constructor will assign default values to properties that have it defined,
@@ -169,6 +173,14 @@ func (o Event) MarshalJSON() ([]byte, error) {
 
 func (o Event) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedLocatable, errLocatable := json.Marshal(o.Locatable)
+	if errLocatable != nil {
+		return map[string]interface{}{}, errLocatable
+	}
+	errLocatable = json.Unmarshal([]byte(serializedLocatable), &toSerialize)
+	if errLocatable != nil {
+		return map[string]interface{}{}, errLocatable
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -178,6 +190,42 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["data"] = o.Data
 	return toSerialize, nil
+}
+
+func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"time",
+		"data",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEvent := _Event{}
+
+	err = json.Unmarshal(bytes, &varEvent)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Event(varEvent)
+
+	return err
 }
 
 type NullableEvent struct {

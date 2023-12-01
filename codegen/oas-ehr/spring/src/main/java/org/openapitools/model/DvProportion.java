@@ -38,11 +38,6 @@ public class DvProportion extends DvAmount {
 
   private Integer precision;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvProportion#DvProportion(BigDecimal, BigDecimal, Integer)}
-   */
-  @Deprecated
   public DvProportion() {
     super();
   }
@@ -157,33 +152,34 @@ public class DvProportion extends DvAmount {
     this.precision = precision;
   }
 
+
   public DvProportion accuracyIsPercent(Boolean accuracyIsPercent) {
-    super.setAccuracyIsPercent(accuracyIsPercent);
+    super.accuracyIsPercent(accuracyIsPercent);
     return this;
   }
 
   public DvProportion accuracy(BigDecimal accuracy) {
-    super.setAccuracy(accuracy);
+    super.accuracy(accuracy);
     return this;
   }
 
   public DvProportion magnitudeStatus(String magnitudeStatus) {
-    super.setMagnitudeStatus(magnitudeStatus);
+    super.magnitudeStatus(magnitudeStatus);
     return this;
   }
 
   public DvProportion normalStatus(CodePhrase normalStatus) {
-    super.setNormalStatus(normalStatus);
+    super.normalStatus(normalStatus);
     return this;
   }
 
   public DvProportion normalRange(DvInterval normalRange) {
-    super.setNormalRange(normalRange);
+    super.normalRange(normalRange);
     return this;
   }
 
   public DvProportion otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
-    super.setOtherReferenceRanges(otherReferenceRanges);
+    super.otherReferenceRanges(otherReferenceRanges);
     return this;
   }
 
@@ -191,7 +187,6 @@ public class DvProportion extends DvAmount {
     super.addOtherReferenceRangesItem(otherReferenceRangesItem);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

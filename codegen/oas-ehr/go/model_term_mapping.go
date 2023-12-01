@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the TermMapping type satisfies the MappedNullable interface at compile time
@@ -24,6 +25,8 @@ type TermMapping struct {
 	Purpose *DvCodedText `json:"purpose,omitempty"`
 	Target CodePhrase `json:"target"`
 }
+
+type _TermMapping TermMapping
 
 // NewTermMapping instantiates a new TermMapping object
 // This constructor will assign default values to properties that have it defined,
@@ -140,6 +143,42 @@ func (o TermMapping) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["target"] = o.Target
 	return toSerialize, nil
+}
+
+func (o *TermMapping) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"match",
+		"target",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTermMapping := _TermMapping{}
+
+	err = json.Unmarshal(bytes, &varTermMapping)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TermMapping(varTermMapping)
+
+	return err
 }
 
 type NullableTermMapping struct {

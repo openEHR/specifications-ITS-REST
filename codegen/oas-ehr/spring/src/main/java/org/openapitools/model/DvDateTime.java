@@ -34,11 +34,6 @@ public class DvDateTime extends DvTemporal {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime value;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvDateTime#DvDateTime(OffsetDateTime)}
-   */
-  @Deprecated
   public DvDateTime() {
     super();
   }
@@ -91,28 +86,29 @@ public class DvDateTime extends DvTemporal {
     this.value = value;
   }
 
+
   public DvDateTime accuracy(DvDuration accuracy) {
-    super.setAccuracy(accuracy);
+    super.accuracy(accuracy);
     return this;
   }
 
   public DvDateTime magnitudeStatus(String magnitudeStatus) {
-    super.setMagnitudeStatus(magnitudeStatus);
+    super.magnitudeStatus(magnitudeStatus);
     return this;
   }
 
   public DvDateTime normalStatus(CodePhrase normalStatus) {
-    super.setNormalStatus(normalStatus);
+    super.normalStatus(normalStatus);
     return this;
   }
 
   public DvDateTime normalRange(DvInterval normalRange) {
-    super.setNormalRange(normalRange);
+    super.normalRange(normalRange);
     return this;
   }
 
   public DvDateTime otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
-    super.setOtherReferenceRanges(otherReferenceRanges);
+    super.otherReferenceRanges(otherReferenceRanges);
     return this;
   }
 
@@ -120,7 +116,6 @@ public class DvDateTime extends DvTemporal {
     super.addOtherReferenceRangesItem(otherReferenceRangesItem);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

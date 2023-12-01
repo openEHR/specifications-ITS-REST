@@ -18,6 +18,9 @@ inherit
 
 
   LOCATABLE
+      rename
+          output as out_Locatable
+      end
 
 feature --Access
 
@@ -31,7 +34,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_locatable)
+        Result.append(out_Locatable)
         Result.append("%Nclass DATA_STRUCTURE%N")
       end
 end

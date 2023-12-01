@@ -29,8 +29,8 @@ class PartyProxy {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PartyProxy &&
-     other.type == type &&
-     other.externalRef == externalRef;
+    other.type == type &&
+    other.externalRef == externalRef;
 
   @override
   int get hashCode =>

@@ -30,7 +30,7 @@ import {
      DvDateFromJSONTyped,
      DvDateTimeFromJSONTyped,
      DvTimeFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -70,13 +70,13 @@ export function DvTemporalFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'DV_DATE') {
+        if (json['_type'] === 'DV_DATE') {
             return DvDateFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_DATE_TIME') {
+        if (json['_type'] === 'DV_DATE_TIME') {
             return DvDateTimeFromJSONTyped(json, true);
         }
-        if (json['type'] === 'DV_DTIME') {
+        if (json['_type'] === 'DV_TIME') {
             return DvTimeFromJSONTyped(json, true);
         }
     }

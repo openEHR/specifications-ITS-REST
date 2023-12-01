@@ -18,6 +18,9 @@ inherit
 
 
   CARE_ENTRY
+      rename
+          output as out_CareEntry
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_careentry)
+        Result.append(out_CareEntry)
         Result.append("%Nclass EVALUATION%N")
         if attached data as l_data then
           Result.append ("%Ndata:")

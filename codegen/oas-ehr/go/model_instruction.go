@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Instruction type satisfies the MappedNullable interface at compile time
@@ -20,12 +21,15 @@ var _ MappedNullable = &Instruction{}
 
 // Instruction struct for Instruction
 type Instruction struct {
+	CareEntry
 	Type *string `json:"_type,omitempty"`
 	Narrative DvText `json:"narrative"`
 	ExpiryTime *DvDateTime `json:"expiry_time,omitempty"`
 	WfDefinition *DvParsable `json:"wf_definition,omitempty"`
 	Activities []Activity `json:"activities,omitempty"`
 }
+
+type _Instruction Instruction
 
 // NewInstruction instantiates a new Instruction object
 // This constructor will assign default values to properties that have it defined,
@@ -210,6 +214,14 @@ func (o Instruction) MarshalJSON() ([]byte, error) {
 
 func (o Instruction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCareEntry, errCareEntry := json.Marshal(o.CareEntry)
+	if errCareEntry != nil {
+		return map[string]interface{}{}, errCareEntry
+	}
+	errCareEntry = json.Unmarshal([]byte(serializedCareEntry), &toSerialize)
+	if errCareEntry != nil {
+		return map[string]interface{}{}, errCareEntry
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -224,6 +236,41 @@ func (o Instruction) ToMap() (map[string]interface{}, error) {
 		toSerialize["activities"] = o.Activities
 	}
 	return toSerialize, nil
+}
+
+func (o *Instruction) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"narrative",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInstruction := _Instruction{}
+
+	err = json.Unmarshal(bytes, &varInstruction)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Instruction(varInstruction)
+
+	return err
 }
 
 type NullableInstruction struct {

@@ -39,9 +39,8 @@ import {
 } from './TermMapping';
 
 import {
-     DvCodedTextFromJSONTyped,
-     DvTextFromJSONTyped
-} from './';
+     DvCodedTextFromJSONTyped
+} from './index';
 
 /**
  * 
@@ -112,11 +111,8 @@ export function DvTextFromJSONTyped(json: any, ignoreDiscriminator: boolean): Dv
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'DV_CODED_TEXT') {
+        if (json['_type'] === 'DV_CODED_TEXT') {
             return DvCodedTextFromJSONTyped(json, true);
-        }
-        if (json['type'] === 'DV_TEXT') {
-            return DvTextFromJSONTyped(json, true);
         }
     }
     return {

@@ -32,9 +32,9 @@ class TermMapping {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is TermMapping &&
-     other.match == match &&
-     other.purpose == purpose &&
-     other.target == target;
+    other.match == match &&
+    other.purpose == purpose &&
+    other.target == target;
 
   @override
   int get hashCode =>

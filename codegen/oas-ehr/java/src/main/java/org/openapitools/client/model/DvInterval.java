@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import org.openapitools.client.model.DataValue;
 
 import com.google.gson.Gson;
@@ -43,7 +43,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -78,7 +77,6 @@ public class DvInterval extends DataValue {
   }
 
   public DvInterval type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -92,14 +90,12 @@ public class DvInterval extends DataValue {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public DvInterval lowerUnbounded(Boolean lowerUnbounded) {
-    
     this.lowerUnbounded = lowerUnbounded;
     return this;
   }
@@ -113,14 +109,12 @@ public class DvInterval extends DataValue {
     return lowerUnbounded;
   }
 
-
   public void setLowerUnbounded(Boolean lowerUnbounded) {
     this.lowerUnbounded = lowerUnbounded;
   }
 
 
   public DvInterval upperUnbounded(Boolean upperUnbounded) {
-    
     this.upperUnbounded = upperUnbounded;
     return this;
   }
@@ -134,14 +128,12 @@ public class DvInterval extends DataValue {
     return upperUnbounded;
   }
 
-
   public void setUpperUnbounded(Boolean upperUnbounded) {
     this.upperUnbounded = upperUnbounded;
   }
 
 
   public DvInterval lowerIncluded(Boolean lowerIncluded) {
-    
     this.lowerIncluded = lowerIncluded;
     return this;
   }
@@ -155,14 +147,12 @@ public class DvInterval extends DataValue {
     return lowerIncluded;
   }
 
-
   public void setLowerIncluded(Boolean lowerIncluded) {
     this.lowerIncluded = lowerIncluded;
   }
 
 
   public DvInterval upperIncluded(Boolean upperIncluded) {
-    
     this.upperIncluded = upperIncluded;
     return this;
   }
@@ -175,7 +165,6 @@ public class DvInterval extends DataValue {
   public Boolean getUpperIncluded() {
     return upperIncluded;
   }
-
 
   public void setUpperIncluded(Boolean upperIncluded) {
     this.upperIncluded = upperIncluded;
@@ -248,27 +237,24 @@ public class DvInterval extends DataValue {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to DvInterval
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to DvInterval
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!DvInterval.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DvInterval.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in DvInterval is not found in the empty JSON string", DvInterval.openapiRequiredFields.toString()));
         }
       }
 
-      String discriminatorValue = jsonObj.get("_type").getAsString();
+      String discriminatorValue = jsonElement.getAsJsonObject().get("_type").getAsString();
       switch (discriminatorValue) {
-        case "DV_INTERVAL":
-          DvInterval.validateJsonObject(jsonObj);
-          break;
         case "DV_INTERVAL_of_DATE_TIME":
-          DvIntervalOfDateTime.validateJsonObject(jsonObj);
+          DvIntervalOfDateTime.validateJsonElement(jsonElement);
           break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `_type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

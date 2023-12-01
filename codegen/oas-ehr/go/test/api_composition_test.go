@@ -1,7 +1,7 @@
 /*
 EHR API
 
-Testing COMPOSITIONApiService
+Testing COMPOSITIONAPIService
 
 */
 
@@ -17,18 +17,18 @@ import (
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
-func Test_openapi_COMPOSITIONApiService(t *testing.T) {
+func Test_openapi_COMPOSITIONAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test COMPOSITIONApiService CompositionCreate", func(t *testing.T) {
+	t.Run("Test COMPOSITIONAPIService CompositionCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.COMPOSITIONApi.CompositionCreate(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.COMPOSITIONAPI.CompositionCreate(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,44 +36,28 @@ func Test_openapi_COMPOSITIONApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test COMPOSITIONApiService CompositionDelete", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var ehrId string
-		var uidBasedId string
-
-		resp, httpRes, err := apiClient.COMPOSITIONApi.CompositionDelete(context.Background(), ehrId, uidBasedId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test COMPOSITIONApiService CompositionGet", func(t *testing.T) {
+	t.Run("Test COMPOSITIONAPIService CompositionDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 		var uidBasedId string
 
-		resp, httpRes, err := apiClient.COMPOSITIONApi.CompositionGet(context.Background(), ehrId, uidBasedId).Execute()
+		httpRes, err := apiClient.COMPOSITIONAPI.CompositionDelete(context.Background(), ehrId, uidBasedId).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test COMPOSITIONApiService CompositionUpdate", func(t *testing.T) {
+	t.Run("Test COMPOSITIONAPIService CompositionGet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 		var uidBasedId string
 
-		resp, httpRes, err := apiClient.COMPOSITIONApi.CompositionUpdate(context.Background(), ehrId, uidBasedId).Execute()
+		resp, httpRes, err := apiClient.COMPOSITIONAPI.CompositionGet(context.Background(), ehrId, uidBasedId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -81,14 +65,29 @@ func Test_openapi_COMPOSITIONApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test COMPOSITIONApiService VersionedCompositionGet", func(t *testing.T) {
+	t.Run("Test COMPOSITIONAPIService CompositionUpdate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var ehrId string
+		var uidBasedId string
+
+		resp, httpRes, err := apiClient.COMPOSITIONAPI.CompositionUpdate(context.Background(), ehrId, uidBasedId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test COMPOSITIONAPIService VersionedCompositionGet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 		var versionedObjectUid string
 
-		resp, httpRes, err := apiClient.COMPOSITIONApi.VersionedCompositionGet(context.Background(), ehrId, versionedObjectUid).Execute()
+		resp, httpRes, err := apiClient.COMPOSITIONAPI.VersionedCompositionGet(context.Background(), ehrId, versionedObjectUid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -96,14 +95,14 @@ func Test_openapi_COMPOSITIONApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test COMPOSITIONApiService VersionedCompositionRevisionHistory", func(t *testing.T) {
+	t.Run("Test COMPOSITIONAPIService VersionedCompositionRevisionHistory", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 		var versionedObjectUid string
 
-		resp, httpRes, err := apiClient.COMPOSITIONApi.VersionedCompositionRevisionHistory(context.Background(), ehrId, versionedObjectUid).Execute()
+		resp, httpRes, err := apiClient.COMPOSITIONAPI.VersionedCompositionRevisionHistory(context.Background(), ehrId, versionedObjectUid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -111,14 +110,14 @@ func Test_openapi_COMPOSITIONApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test COMPOSITIONApiService VersionedCompositionVersionGetAtTime", func(t *testing.T) {
+	t.Run("Test COMPOSITIONAPIService VersionedCompositionVersionGetAtTime", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 		var versionedObjectUid string
 
-		resp, httpRes, err := apiClient.COMPOSITIONApi.VersionedCompositionVersionGetAtTime(context.Background(), ehrId, versionedObjectUid).Execute()
+		resp, httpRes, err := apiClient.COMPOSITIONAPI.VersionedCompositionVersionGetAtTime(context.Background(), ehrId, versionedObjectUid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -126,7 +125,7 @@ func Test_openapi_COMPOSITIONApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test COMPOSITIONApiService VersionedCompositionVersionGetById", func(t *testing.T) {
+	t.Run("Test COMPOSITIONAPIService VersionedCompositionVersionGetById", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -134,7 +133,7 @@ func Test_openapi_COMPOSITIONApiService(t *testing.T) {
 		var versionedObjectUid string
 		var versionUid string
 
-		resp, httpRes, err := apiClient.COMPOSITIONApi.VersionedCompositionVersionGetById(context.Background(), ehrId, versionedObjectUid, versionUid).Execute()
+		resp, httpRes, err := apiClient.COMPOSITIONAPI.VersionedCompositionVersionGetById(context.Background(), ehrId, versionedObjectUid, versionUid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

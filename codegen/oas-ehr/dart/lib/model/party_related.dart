@@ -32,9 +32,9 @@ class PartyRelated {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PartyRelated &&
-     other.type == type &&
-     other.relationship == relationship &&
-     other.externalRef == externalRef;
+    other.type == type &&
+    other.relationship == relationship &&
+    other.externalRef == externalRef;
 
   @override
   int get hashCode =>

@@ -26,9 +26,9 @@ class DvScale {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvScale &&
-     other.type == type &&
-     other.symbol == symbol &&
-     other.value == value;
+    other.type == type &&
+    other.symbol == symbol &&
+    other.value == value;
 
   @override
   int get hashCode =>
@@ -69,9 +69,7 @@ class DvScale {
       return DvScale(
         type: mapValueOfType<String>(json, r'_type') ?? 'DV_SCALE',
         symbol: DvCodedText.fromJson(json[r'symbol'])!,
-        value: json[r'value'] == null
-            ? null
-            : num.parse(json[r'value'].toString()),
+        value: num.parse('${json[r'value']}'),
       );
     }
     return null;

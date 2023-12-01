@@ -18,6 +18,9 @@ inherit
 
 
   CONTENT_ITEM
+      rename
+          output as out_ContentItem
+      end
 
 feature --Access
 
@@ -91,7 +94,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_contentitem)
+        Result.append(out_ContentItem)
         Result.append("%Nclass ABSTRACT_ENTRY%N")
         if attached language as l_language then
           Result.append ("%Nlanguage:")

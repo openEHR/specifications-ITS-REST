@@ -18,6 +18,9 @@ inherit
 
 
   DATA_STRUCTURE
+      rename
+          output as out_DataStructure
+      end
 
 feature --Access
 
@@ -31,7 +34,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_datastructure)
+        Result.append(out_DataStructure)
         Result.append("%Nclass ITEM_STRUCTURE%N")
       end
 end

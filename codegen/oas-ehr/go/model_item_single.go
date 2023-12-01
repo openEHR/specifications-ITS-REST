@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ItemSingle type satisfies the MappedNullable interface at compile time
@@ -20,9 +21,12 @@ var _ MappedNullable = &ItemSingle{}
 
 // ItemSingle struct for ItemSingle
 type ItemSingle struct {
+	ItemStructure
 	Type *string `json:"_type,omitempty"`
 	Item Element `json:"item"`
 }
+
+type _ItemSingle ItemSingle
 
 // NewItemSingle instantiates a new ItemSingle object
 // This constructor will assign default values to properties that have it defined,
@@ -111,11 +115,54 @@ func (o ItemSingle) MarshalJSON() ([]byte, error) {
 
 func (o ItemSingle) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedItemStructure, errItemStructure := json.Marshal(o.ItemStructure)
+	if errItemStructure != nil {
+		return map[string]interface{}{}, errItemStructure
+	}
+	errItemStructure = json.Unmarshal([]byte(serializedItemStructure), &toSerialize)
+	if errItemStructure != nil {
+		return map[string]interface{}{}, errItemStructure
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	toSerialize["item"] = o.Item
 	return toSerialize, nil
+}
+
+func (o *ItemSingle) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"item",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varItemSingle := _ItemSingle{}
+
+	err = json.Unmarshal(bytes, &varItemSingle)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ItemSingle(varItemSingle)
+
+	return err
 }
 
 type NullableItemSingle struct {

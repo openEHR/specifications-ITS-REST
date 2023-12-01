@@ -19,8 +19,9 @@ import {
      HierObjectIdFromJSONTyped,
      ObjectVersionIdFromJSONTyped,
      TemplateIdFromJSONTyped,
-     TerminologyIdFromJSONTyped
-} from './';
+     TerminologyIdFromJSONTyped,
+     UidBasedIdFromJSONTyped
+} from './index';
 
 /**
  * 
@@ -61,23 +62,26 @@ export function ObjectIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'ARCHETYPE_ID') {
+        if (json['_type'] === 'ARCHETYPE_ID') {
             return ArchetypeIdFromJSONTyped(json, true);
         }
-        if (json['type'] === 'GENERIC_ID') {
+        if (json['_type'] === 'GENERIC_ID') {
             return GenericIdFromJSONTyped(json, true);
         }
-        if (json['type'] === 'HIER_OBJECT_ID') {
+        if (json['_type'] === 'HIER_OBJECT_ID') {
             return HierObjectIdFromJSONTyped(json, true);
         }
-        if (json['type'] === 'OBJECT_VERSION_ID') {
+        if (json['_type'] === 'OBJECT_VERSION_ID') {
             return ObjectVersionIdFromJSONTyped(json, true);
         }
-        if (json['type'] === 'TEMPLATE_ID') {
+        if (json['_type'] === 'TEMPLATE_ID') {
             return TemplateIdFromJSONTyped(json, true);
         }
-        if (json['type'] === 'TERMINOLOGY_ID') {
+        if (json['_type'] === 'TERMINOLOGY_ID') {
             return TerminologyIdFromJSONTyped(json, true);
+        }
+        if (json['_type'] === 'UID_BASED_ID') {
+            return UidBasedIdFromJSONTyped(json, true);
         }
     }
     return {

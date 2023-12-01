@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DvDate type satisfies the MappedNullable interface at compile time
@@ -20,9 +21,12 @@ var _ MappedNullable = &DvDate{}
 
 // DvDate struct for DvDate
 type DvDate struct {
+	DvTemporal
 	Type *string `json:"_type,omitempty"`
 	Value string `json:"value"`
 }
+
+type _DvDate DvDate
 
 // NewDvDate instantiates a new DvDate object
 // This constructor will assign default values to properties that have it defined,
@@ -111,11 +115,54 @@ func (o DvDate) MarshalJSON() ([]byte, error) {
 
 func (o DvDate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDvTemporal, errDvTemporal := json.Marshal(o.DvTemporal)
+	if errDvTemporal != nil {
+		return map[string]interface{}{}, errDvTemporal
+	}
+	errDvTemporal = json.Unmarshal([]byte(serializedDvTemporal), &toSerialize)
+	if errDvTemporal != nil {
+		return map[string]interface{}{}, errDvTemporal
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	toSerialize["value"] = o.Value
 	return toSerialize, nil
+}
+
+func (o *DvDate) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDvDate := _DvDate{}
+
+	err = json.Unmarshal(bytes, &varDvDate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DvDate(varDvDate)
+
+	return err
 }
 
 type NullableDvDate struct {

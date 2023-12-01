@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.client.model.CodePhrase;
 import org.openapitools.client.model.ContentItem;
@@ -49,7 +49,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -88,7 +87,6 @@ public class AbstractEntry extends ContentItem {
   }
 
   public AbstractEntry language(CodePhrase language) {
-    
     this.language = language;
     return this;
   }
@@ -102,14 +100,12 @@ public class AbstractEntry extends ContentItem {
     return language;
   }
 
-
   public void setLanguage(CodePhrase language) {
     this.language = language;
   }
 
 
   public AbstractEntry encoding(CodePhrase encoding) {
-    
     this.encoding = encoding;
     return this;
   }
@@ -123,14 +119,12 @@ public class AbstractEntry extends ContentItem {
     return encoding;
   }
 
-
   public void setEncoding(CodePhrase encoding) {
     this.encoding = encoding;
   }
 
 
   public AbstractEntry otherParticipations(List<Participation> otherParticipations) {
-    
     this.otherParticipations = otherParticipations;
     return this;
   }
@@ -152,14 +146,12 @@ public class AbstractEntry extends ContentItem {
     return otherParticipations;
   }
 
-
   public void setOtherParticipations(List<Participation> otherParticipations) {
     this.otherParticipations = otherParticipations;
   }
 
 
   public AbstractEntry workflowId(ObjectRef workflowId) {
-    
     this.workflowId = workflowId;
     return this;
   }
@@ -173,14 +165,12 @@ public class AbstractEntry extends ContentItem {
     return workflowId;
   }
 
-
   public void setWorkflowId(ObjectRef workflowId) {
     this.workflowId = workflowId;
   }
 
 
   public AbstractEntry subject(PartyProxy subject) {
-    
     this.subject = subject;
     return this;
   }
@@ -194,14 +184,12 @@ public class AbstractEntry extends ContentItem {
     return subject;
   }
 
-
   public void setSubject(PartyProxy subject) {
     this.subject = subject;
   }
 
 
   public AbstractEntry provider(PartyProxy provider) {
-    
     this.provider = provider;
     return this;
   }
@@ -214,7 +202,6 @@ public class AbstractEntry extends ContentItem {
   public PartyProxy getProvider() {
     return provider;
   }
-
 
   public void setProvider(PartyProxy provider) {
     this.provider = provider;
@@ -288,39 +275,39 @@ public class AbstractEntry extends ContentItem {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to AbstractEntry
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to AbstractEntry
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!AbstractEntry.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AbstractEntry.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AbstractEntry is not found in the empty JSON string", AbstractEntry.openapiRequiredFields.toString()));
         }
       }
 
-      String discriminatorValue = jsonObj.get("_type").getAsString();
+      String discriminatorValue = jsonElement.getAsJsonObject().get("_type").getAsString();
       switch (discriminatorValue) {
         case "ACTION":
-          Action.validateJsonObject(jsonObj);
+          Action.validateJsonElement(jsonElement);
           break;
         case "ADMIN_ENTRY":
-          AdminEntry.validateJsonObject(jsonObj);
+          AdminEntry.validateJsonElement(jsonElement);
           break;
         case "CARE_ENTRY":
-          CareEntry.validateJsonObject(jsonObj);
+          CareEntry.validateJsonElement(jsonElement);
           break;
         case "EVALUATION":
-          Evaluation.validateJsonObject(jsonObj);
+          Evaluation.validateJsonElement(jsonElement);
           break;
         case "INSTRUCTION":
-          Instruction.validateJsonObject(jsonObj);
+          Instruction.validateJsonElement(jsonElement);
           break;
         case "OBSERVATION":
-          Observation.validateJsonObject(jsonObj);
+          Observation.validateJsonElement(jsonElement);
           break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `_type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

@@ -18,6 +18,9 @@ inherit
 
 
   VERSION
+      rename
+          output as out_Version
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_version)
+        Result.append(out_Version)
         Result.append("%Nclass IMPORTED_VERSION%N")
         if attached item as l_item then
           Result.append ("%Nitem:")

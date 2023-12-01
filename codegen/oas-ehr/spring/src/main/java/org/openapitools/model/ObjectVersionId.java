@@ -28,11 +28,6 @@ public class ObjectVersionId extends UidBasedId {
 
   private String value;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link ObjectVersionId#ObjectVersionId(String)}
-   */
-  @Deprecated
   public ObjectVersionId() {
     super();
   }
@@ -41,7 +36,7 @@ public class ObjectVersionId extends UidBasedId {
    * Constructor with only required parameters
    */
   public ObjectVersionId(String value) {
-    super();
+    super(value);
     this.value = value;
   }
 
@@ -65,11 +60,11 @@ public class ObjectVersionId extends UidBasedId {
     this.value = value;
   }
 
+
   public ObjectVersionId type(String type) {
-    super.setType(type);
+    super.type(type);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

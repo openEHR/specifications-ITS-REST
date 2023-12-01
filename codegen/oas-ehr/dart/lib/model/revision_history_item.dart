@@ -23,8 +23,8 @@ class RevisionHistoryItem {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is RevisionHistoryItem &&
-     other.versionId == versionId &&
-     other.audits == audits;
+    other.versionId == versionId &&
+    _deepEquality.equals(other.audits, audits);
 
   @override
   int get hashCode =>

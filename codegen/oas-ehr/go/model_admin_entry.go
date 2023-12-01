@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AdminEntry type satisfies the MappedNullable interface at compile time
@@ -20,9 +21,12 @@ var _ MappedNullable = &AdminEntry{}
 
 // AdminEntry struct for AdminEntry
 type AdminEntry struct {
+	AbstractEntry
 	Type *string `json:"_type,omitempty"`
 	Data ItemStructure `json:"data"`
 }
+
+type _AdminEntry AdminEntry
 
 // NewAdminEntry instantiates a new AdminEntry object
 // This constructor will assign default values to properties that have it defined,
@@ -111,11 +115,54 @@ func (o AdminEntry) MarshalJSON() ([]byte, error) {
 
 func (o AdminEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedAbstractEntry, errAbstractEntry := json.Marshal(o.AbstractEntry)
+	if errAbstractEntry != nil {
+		return map[string]interface{}{}, errAbstractEntry
+	}
+	errAbstractEntry = json.Unmarshal([]byte(serializedAbstractEntry), &toSerialize)
+	if errAbstractEntry != nil {
+		return map[string]interface{}{}, errAbstractEntry
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
 	toSerialize["data"] = o.Data
 	return toSerialize, nil
+}
+
+func (o *AdminEntry) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"data",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAdminEntry := _AdminEntry{}
+
+	err = json.Unmarshal(bytes, &varAdminEntry)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AdminEntry(varAdminEntry)
+
+	return err
 }
 
 type NullableAdminEntry struct {

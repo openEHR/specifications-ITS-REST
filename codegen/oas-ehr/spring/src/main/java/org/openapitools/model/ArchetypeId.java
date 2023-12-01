@@ -28,11 +28,6 @@ public class ArchetypeId extends ObjectId {
 
   private String type = "ARCHETYPE_ID";
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link ArchetypeId#ArchetypeId(String)}
-   */
-  @Deprecated
   public ArchetypeId() {
     super();
   }
@@ -64,11 +59,11 @@ public class ArchetypeId extends ObjectId {
     this.type = type;
   }
 
+
   public ArchetypeId value(String value) {
-    super.setValue(value);
+    super.value(value);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

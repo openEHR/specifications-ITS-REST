@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,7 +42,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -61,7 +60,6 @@ public class DataValue {
   }
 
   public DataValue type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -74,7 +72,6 @@ public class DataValue {
   public String getType() {
     return type;
   }
-
 
   public void setType(String type) {
     this.type = type;
@@ -133,96 +130,96 @@ public class DataValue {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to DataValue
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to DataValue
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!DataValue.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DataValue.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in DataValue is not found in the empty JSON string", DataValue.openapiRequiredFields.toString()));
         }
       }
 
-      String discriminatorValue = jsonObj.get("_type").getAsString();
+      String discriminatorValue = jsonElement.getAsJsonObject().get("_type").getAsString();
       switch (discriminatorValue) {
         case "DV_AMOUNT":
-          DvAmount.validateJsonObject(jsonObj);
+          DvAmount.validateJsonElement(jsonElement);
           break;
         case "DV_BOOLEAN":
-          DvBoolean.validateJsonObject(jsonObj);
+          DvBoolean.validateJsonElement(jsonElement);
           break;
         case "DV_CODED_TEXT":
-          DvCodedText.validateJsonObject(jsonObj);
+          DvCodedText.validateJsonElement(jsonElement);
           break;
         case "DV_COUNT":
-          DvCount.validateJsonObject(jsonObj);
+          DvCount.validateJsonElement(jsonElement);
           break;
         case "DV_DATE":
-          DvDate.validateJsonObject(jsonObj);
+          DvDate.validateJsonElement(jsonElement);
           break;
         case "DV_DATE_TIME":
-          DvDateTime.validateJsonObject(jsonObj);
+          DvDateTime.validateJsonElement(jsonElement);
           break;
         case "DV_DURATION":
-          DvDuration.validateJsonObject(jsonObj);
+          DvDuration.validateJsonElement(jsonElement);
           break;
         case "DV_EHR_URI":
-          DvEhrUri.validateJsonObject(jsonObj);
+          DvEhrUri.validateJsonElement(jsonElement);
           break;
         case "DV_ENCAPSULATED":
-          DvEncapsulated.validateJsonObject(jsonObj);
+          DvEncapsulated.validateJsonElement(jsonElement);
           break;
         case "DV_IDENTIFIER":
-          DvIdentifier.validateJsonObject(jsonObj);
+          DvIdentifier.validateJsonElement(jsonElement);
           break;
         case "DV_INTERVAL":
-          DvInterval.validateJsonObject(jsonObj);
+          DvInterval.validateJsonElement(jsonElement);
           break;
         case "DV_INTERVAL_of_DATE_TIME":
-          DvIntervalOfDateTime.validateJsonObject(jsonObj);
+          DvIntervalOfDateTime.validateJsonElement(jsonElement);
           break;
         case "DV_MULTIMEDIA":
-          DvMultimedia.validateJsonObject(jsonObj);
+          DvMultimedia.validateJsonElement(jsonElement);
           break;
         case "DV_ORDERED":
-          DvOrdered.validateJsonObject(jsonObj);
+          DvOrdered.validateJsonElement(jsonElement);
           break;
         case "DV_ORDINAL":
-          DvOrdinal.validateJsonObject(jsonObj);
+          DvOrdinal.validateJsonElement(jsonElement);
           break;
         case "DV_PARSABLE":
-          DvParsable.validateJsonObject(jsonObj);
+          DvParsable.validateJsonElement(jsonElement);
           break;
         case "DV_PROPORTION":
-          DvProportion.validateJsonObject(jsonObj);
+          DvProportion.validateJsonElement(jsonElement);
           break;
         case "DV_QUANTIFIED":
-          DvQuantified.validateJsonObject(jsonObj);
+          DvQuantified.validateJsonElement(jsonElement);
           break;
         case "DV_QUANTITY":
-          DvQuantity.validateJsonObject(jsonObj);
+          DvQuantity.validateJsonElement(jsonElement);
           break;
         case "DV_SCALE":
-          DvScale.validateJsonObject(jsonObj);
+          DvScale.validateJsonElement(jsonElement);
           break;
         case "DV_STATE":
-          DvState.validateJsonObject(jsonObj);
+          DvState.validateJsonElement(jsonElement);
           break;
         case "DV_TEMPORAL":
-          DvTemporal.validateJsonObject(jsonObj);
+          DvTemporal.validateJsonElement(jsonElement);
           break;
         case "DV_TEXT":
-          DvText.validateJsonObject(jsonObj);
+          DvText.validateJsonElement(jsonElement);
           break;
         case "DV_TIME":
-          DvTime.validateJsonObject(jsonObj);
+          DvTime.validateJsonElement(jsonElement);
           break;
         case "DV_URI":
-          DvUri.validateJsonObject(jsonObj);
+          DvUri.validateJsonElement(jsonElement);
           break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `_type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CodePhrase;
 import org.openapitools.model.ContentItem;
@@ -58,11 +59,6 @@ public class AbstractEntry extends ContentItem {
 
   private PartyProxy provider;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link AbstractEntry#AbstractEntry(CodePhrase, CodePhrase, PartyProxy)}
-   */
-  @Deprecated
   public AbstractEntry() {
     super();
   }
@@ -71,7 +67,7 @@ public class AbstractEntry extends ContentItem {
    * Constructor with only required parameters
    */
   public AbstractEntry(CodePhrase language, CodePhrase encoding, PartyProxy subject) {
-    super(name, archetypeNodeId);
+    super();
     this.language = language;
     this.encoding = encoding;
     this.subject = subject;
@@ -205,23 +201,24 @@ public class AbstractEntry extends ContentItem {
     this.provider = provider;
   }
 
+
   public AbstractEntry name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public AbstractEntry archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public AbstractEntry uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public AbstractEntry links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -231,20 +228,19 @@ public class AbstractEntry extends ContentItem {
   }
 
   public AbstractEntry archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public AbstractEntry feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
 
   public AbstractEntry type(String type) {
-    super.setType(type);
+    super.type(type);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -38,9 +38,9 @@ class DvEncapsulated {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvEncapsulated &&
-     other.type == type &&
-     other.charset == charset &&
-     other.language == language;
+    other.type == type &&
+    other.charset == charset &&
+    other.language == language;
 
   @override
   int get hashCode =>

@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import org.openapitools.client.model.DvDateTime;
 import org.openapitools.client.model.HierObjectId;
 import org.openapitools.client.model.ObjectRef;
@@ -45,7 +45,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -79,7 +78,6 @@ public class Ehr {
   }
 
   public Ehr systemId(HierObjectId systemId) {
-    
     this.systemId = systemId;
     return this;
   }
@@ -93,14 +91,12 @@ public class Ehr {
     return systemId;
   }
 
-
   public void setSystemId(HierObjectId systemId) {
     this.systemId = systemId;
   }
 
 
   public Ehr ehrId(HierObjectId ehrId) {
-    
     this.ehrId = ehrId;
     return this;
   }
@@ -114,14 +110,12 @@ public class Ehr {
     return ehrId;
   }
 
-
   public void setEhrId(HierObjectId ehrId) {
     this.ehrId = ehrId;
   }
 
 
   public Ehr ehrStatus(ObjectRef ehrStatus) {
-    
     this.ehrStatus = ehrStatus;
     return this;
   }
@@ -135,14 +129,12 @@ public class Ehr {
     return ehrStatus;
   }
 
-
   public void setEhrStatus(ObjectRef ehrStatus) {
     this.ehrStatus = ehrStatus;
   }
 
 
   public Ehr ehrAccess(ObjectRef ehrAccess) {
-    
     this.ehrAccess = ehrAccess;
     return this;
   }
@@ -156,14 +148,12 @@ public class Ehr {
     return ehrAccess;
   }
 
-
   public void setEhrAccess(ObjectRef ehrAccess) {
     this.ehrAccess = ehrAccess;
   }
 
 
   public Ehr timeCreated(DvDateTime timeCreated) {
-    
     this.timeCreated = timeCreated;
     return this;
   }
@@ -176,7 +166,6 @@ public class Ehr {
   public DvDateTime getTimeCreated() {
     return timeCreated;
   }
-
 
   public void setTimeCreated(DvDateTime timeCreated) {
     this.timeCreated = timeCreated;
@@ -247,44 +236,45 @@ public class Ehr {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to Ehr
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to Ehr
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!Ehr.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Ehr.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Ehr is not found in the empty JSON string", Ehr.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!Ehr.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Ehr` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Ehr` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `system_id`
       if (jsonObj.get("system_id") != null && !jsonObj.get("system_id").isJsonNull()) {
-        HierObjectId.validateJsonObject(jsonObj.getAsJsonObject("system_id"));
+        HierObjectId.validateJsonElement(jsonObj.get("system_id"));
       }
       // validate the optional field `ehr_id`
       if (jsonObj.get("ehr_id") != null && !jsonObj.get("ehr_id").isJsonNull()) {
-        HierObjectId.validateJsonObject(jsonObj.getAsJsonObject("ehr_id"));
+        HierObjectId.validateJsonElement(jsonObj.get("ehr_id"));
       }
       // validate the optional field `ehr_status`
       if (jsonObj.get("ehr_status") != null && !jsonObj.get("ehr_status").isJsonNull()) {
-        ObjectRef.validateJsonObject(jsonObj.getAsJsonObject("ehr_status"));
+        ObjectRef.validateJsonElement(jsonObj.get("ehr_status"));
       }
       // validate the optional field `ehr_access`
       if (jsonObj.get("ehr_access") != null && !jsonObj.get("ehr_access").isJsonNull()) {
-        ObjectRef.validateJsonObject(jsonObj.getAsJsonObject("ehr_access"));
+        ObjectRef.validateJsonElement(jsonObj.get("ehr_access"));
       }
       // validate the optional field `time_created`
       if (jsonObj.get("time_created") != null && !jsonObj.get("time_created").isJsonNull()) {
-        DvDateTime.validateJsonObject(jsonObj.getAsJsonObject("time_created"));
+        DvDateTime.validateJsonElement(jsonObj.get("time_created"));
       }
   }
 
@@ -308,9 +298,9 @@ public class Ehr {
 
            @Override
            public Ehr read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

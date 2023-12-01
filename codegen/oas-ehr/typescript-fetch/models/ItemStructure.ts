@@ -25,7 +25,7 @@ import {
      ItemSingleFromJSONTyped,
      ItemTableFromJSONTyped,
      ItemTreeFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -59,16 +59,16 @@ export function ItemStructureFromJSONTyped(json: any, ignoreDiscriminator: boole
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'ITEM_LIST') {
+        if (json['_type'] === 'ITEM_LIST') {
             return ItemListFromJSONTyped(json, true);
         }
-        if (json['type'] === 'ITEM_SINGLE') {
+        if (json['_type'] === 'ITEM_SINGLE') {
             return ItemSingleFromJSONTyped(json, true);
         }
-        if (json['type'] === 'ITEM_TABLE') {
+        if (json['_type'] === 'ITEM_TABLE') {
             return ItemTableFromJSONTyped(json, true);
         }
-        if (json['type'] === 'ITEM_TREE') {
+        if (json['_type'] === 'ITEM_TREE') {
             return ItemTreeFromJSONTyped(json, true);
         }
     }

@@ -62,11 +62,11 @@ class Ehr {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Ehr &&
-     other.systemId == systemId &&
-     other.ehrId == ehrId &&
-     other.ehrStatus == ehrStatus &&
-     other.ehrAccess == ehrAccess &&
-     other.timeCreated == timeCreated;
+    other.systemId == systemId &&
+    other.ehrId == ehrId &&
+    other.ehrStatus == ehrStatus &&
+    other.ehrAccess == ehrAccess &&
+    other.timeCreated == timeCreated;
 
   @override
   int get hashCode =>

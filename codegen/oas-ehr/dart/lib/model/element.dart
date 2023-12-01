@@ -47,10 +47,10 @@ class Element {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Element &&
-     other.type == type &&
-     other.nullFlavour == nullFlavour &&
-     other.value == value &&
-     other.nullReason == nullReason;
+    other.type == type &&
+    other.nullFlavour == nullFlavour &&
+    other.value == value &&
+    other.nullReason == nullReason;
 
   @override
   int get hashCode =>

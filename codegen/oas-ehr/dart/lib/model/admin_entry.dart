@@ -23,8 +23,8 @@ class AdminEntry {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is AdminEntry &&
-     other.type == type &&
-     other.data == data;
+    other.type == type &&
+    other.data == data;
 
   @override
   int get hashCode =>

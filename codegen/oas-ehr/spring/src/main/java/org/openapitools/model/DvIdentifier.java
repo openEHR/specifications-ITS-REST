@@ -35,11 +35,6 @@ public class DvIdentifier extends DataValue {
 
   private String type;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvIdentifier#DvIdentifier(String)}
-   */
-  @Deprecated
   public DvIdentifier() {
     super();
   }

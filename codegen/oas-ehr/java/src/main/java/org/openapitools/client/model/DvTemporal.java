@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import org.openapitools.client.model.DvDuration;
 import org.openapitools.client.model.DvQuantified;
 
@@ -44,7 +44,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -67,7 +66,6 @@ public class DvTemporal extends DvQuantified {
   }
 
   public DvTemporal type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -81,14 +79,12 @@ public class DvTemporal extends DvQuantified {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public DvTemporal accuracy(DvDuration accuracy) {
-    
     this.accuracy = accuracy;
     return this;
   }
@@ -101,7 +97,6 @@ public class DvTemporal extends DvQuantified {
   public DvDuration getAccuracy() {
     return accuracy;
   }
-
 
   public void setAccuracy(DvDuration accuracy) {
     this.accuracy = accuracy;
@@ -164,30 +159,30 @@ public class DvTemporal extends DvQuantified {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to DvTemporal
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to DvTemporal
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!DvTemporal.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DvTemporal.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in DvTemporal is not found in the empty JSON string", DvTemporal.openapiRequiredFields.toString()));
         }
       }
 
-      String discriminatorValue = jsonObj.get("_type").getAsString();
+      String discriminatorValue = jsonElement.getAsJsonObject().get("_type").getAsString();
       switch (discriminatorValue) {
         case "DV_DATE":
-          DvDate.validateJsonObject(jsonObj);
+          DvDate.validateJsonElement(jsonElement);
           break;
         case "DV_DATE_TIME":
-          DvDateTime.validateJsonObject(jsonObj);
+          DvDateTime.validateJsonElement(jsonElement);
           break;
-        case "DV_DTIME":
-          DvTime.validateJsonObject(jsonObj);
+        case "DV_TIME":
+          DvTime.validateJsonElement(jsonElement);
           break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `_type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

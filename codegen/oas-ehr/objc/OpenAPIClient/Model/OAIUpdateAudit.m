@@ -22,12 +22,8 @@
     }
 
     Class class = nil;
-    if ([discriminatedClassName isEqualToString:@"UPDATE_AUDIT"]) {
+    if ([discriminatedClassName isEqualToString:@"UPDATE_ATTESTATION"]) {
         class = NSClassFromString(@"OAIUpdateAttestation");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"UPDATE_AUDIT"]) {
-        class = NSClassFromString(@"OAIUpdateAudit");
     }
     else
     {

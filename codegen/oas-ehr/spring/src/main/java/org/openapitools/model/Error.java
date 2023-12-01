@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -28,11 +29,6 @@ public class Error {
   @Valid
   private List<String> validationErrors = new ArrayList<>();
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Error#Error(String, List<String>)}
-   */
-  @Deprecated
   public Error() {
     super();
   }

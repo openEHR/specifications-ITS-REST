@@ -41,10 +41,10 @@ class DvOrdered {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvOrdered &&
-     other.type == type &&
-     other.normalStatus == normalStatus &&
-     other.normalRange == normalRange &&
-     other.otherReferenceRanges == otherReferenceRanges;
+    other.type == type &&
+    other.normalStatus == normalStatus &&
+    other.normalRange == normalRange &&
+    _deepEquality.equals(other.otherReferenceRanges, otherReferenceRanges);
 
   @override
   int get hashCode =>

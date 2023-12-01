@@ -23,8 +23,8 @@ class ReferenceRange {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ReferenceRange &&
-     other.meaning == meaning &&
-     other.range == range;
+    other.meaning == meaning &&
+    other.range == range;
 
   @override
   int get hashCode =>

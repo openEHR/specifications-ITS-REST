@@ -23,7 +23,7 @@ import {
 import {
      ClstrFromJSONTyped,
      ElementFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -57,10 +57,10 @@ export function ItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): Item
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'CLUSTER') {
+        if (json['_type'] === 'CLUSTER') {
             return ClstrFromJSONTyped(json, true);
         }
-        if (json['type'] === 'ELEMENT') {
+        if (json['_type'] === 'ELEMENT') {
             return ElementFromJSONTyped(json, true);
         }
     }

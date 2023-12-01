@@ -62,13 +62,13 @@ class Locatable {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Locatable &&
-     other.name == name &&
-     other.archetypeNodeId == archetypeNodeId &&
-     other.uid == uid &&
-     other.links == links &&
-     other.archetypeDetails == archetypeDetails &&
-     other.feederAudit == feederAudit &&
-     other.type == type;
+    other.name == name &&
+    other.archetypeNodeId == archetypeNodeId &&
+    other.uid == uid &&
+    _deepEquality.equals(other.links, links) &&
+    other.archetypeDetails == archetypeDetails &&
+    other.feederAudit == feederAudit &&
+    other.type == type;
 
   @override
   int get hashCode =>

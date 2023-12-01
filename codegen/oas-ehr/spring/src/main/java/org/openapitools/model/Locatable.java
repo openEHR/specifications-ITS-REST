@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.Archetyped;
 import org.openapitools.model.DvText;
@@ -38,14 +39,14 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = Action.class, name = "ACTION"),
   @JsonSubTypes.Type(value = Activity.class, name = "ACTIVITY"),
   @JsonSubTypes.Type(value = AdminEntry.class, name = "ADMIN_ENTRY"),
-  @JsonSubTypes.Type(value = AbstractEntry.class, name = "AbstractEntry"),
+  @JsonSubTypes.Type(value = CareEntry.class, name = "CARE_ENTRY"),
   @JsonSubTypes.Type(value = Clstr.class, name = "CLUSTER"),
   @JsonSubTypes.Type(value = Composition.class, name = "COMPOSITION"),
-  @JsonSubTypes.Type(value = CareEntry.class, name = "CareEntry"),
-  @JsonSubTypes.Type(value = ContentItem.class, name = "ContentItem"),
-  @JsonSubTypes.Type(value = DataStructure.class, name = "DATE_STRUCTURE"),
+  @JsonSubTypes.Type(value = ContentItem.class, name = "CONTENT_ITEM"),
+  @JsonSubTypes.Type(value = DataStructure.class, name = "DATA_STRUCTURE"),
   @JsonSubTypes.Type(value = EhrStatus.class, name = "EHR_STATUS"),
   @JsonSubTypes.Type(value = Element.class, name = "ELEMENT"),
+  @JsonSubTypes.Type(value = AbstractEntry.class, name = "ENTRY"),
   @JsonSubTypes.Type(value = Evaluation.class, name = "EVALUATION"),
   @JsonSubTypes.Type(value = Event.class, name = "EVENT"),
   @JsonSubTypes.Type(value = Folder.class, name = "FOLDER"),
@@ -77,11 +78,6 @@ public class Locatable extends Pathable {
 
   private FeederAudit feederAudit;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Locatable#Locatable(DvText, String)}
-   */
-  @Deprecated
   public Locatable() {
     super();
   }
@@ -223,11 +219,11 @@ public class Locatable extends Pathable {
     this.feederAudit = feederAudit;
   }
 
+
   public Locatable type(String type) {
-    super.setType(type);
+    super.type(type);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

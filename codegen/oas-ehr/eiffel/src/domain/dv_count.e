@@ -18,6 +18,9 @@ inherit
 
 
   DV_AMOUNT
+      rename
+          output as out_DvAmount
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_dvamount)
+        Result.append(out_DvAmount)
         Result.append("%Nclass DV_COUNT%N")
         if attached magnitude as l_magnitude then
           Result.append ("%Nmagnitude:")

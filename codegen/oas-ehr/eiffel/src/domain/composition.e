@@ -18,6 +18,9 @@ inherit
 
 
   VERSIONABLE
+      rename
+          output as out_Versionable
+      end
 
 feature --Access
 
@@ -91,7 +94,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_versionable)
+        Result.append(out_Versionable)
         Result.append("%Nclass COMPOSITION%N")
         if attached language as l_language then
           Result.append ("%Nlanguage:")

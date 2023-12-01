@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the EhrStatus type satisfies the MappedNullable interface at compile time
@@ -20,12 +21,15 @@ var _ MappedNullable = &EhrStatus{}
 
 // EhrStatus An EHR_STATUS resource
 type EhrStatus struct {
+	Versionable
 	Type *string `json:"_type,omitempty"`
 	Subject PartyProxy `json:"subject"`
 	IsQueryable bool `json:"is_queryable"`
 	IsModifiable bool `json:"is_modifiable"`
 	OtherDetails *ItemStructure `json:"other_details,omitempty"`
 }
+
+type _EhrStatus EhrStatus
 
 // NewEhrStatus instantiates a new EhrStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -198,6 +202,14 @@ func (o EhrStatus) MarshalJSON() ([]byte, error) {
 
 func (o EhrStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedVersionable, errVersionable := json.Marshal(o.Versionable)
+	if errVersionable != nil {
+		return map[string]interface{}{}, errVersionable
+	}
+	errVersionable = json.Unmarshal([]byte(serializedVersionable), &toSerialize)
+	if errVersionable != nil {
+		return map[string]interface{}{}, errVersionable
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -208,6 +220,43 @@ func (o EhrStatus) ToMap() (map[string]interface{}, error) {
 		toSerialize["other_details"] = o.OtherDetails
 	}
 	return toSerialize, nil
+}
+
+func (o *EhrStatus) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"subject",
+		"is_queryable",
+		"is_modifiable",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEhrStatus := _EhrStatus{}
+
+	err = json.Unmarshal(bytes, &varEhrStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EhrStatus(varEhrStatus)
+
+	return err
 }
 
 type NullableEhrStatus struct {

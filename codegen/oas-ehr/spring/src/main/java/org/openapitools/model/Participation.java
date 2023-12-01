@@ -33,11 +33,6 @@ public class Participation {
 
   private DvIntervalOfDateTime time;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Participation#Participation(DvText, PartyProxy)}
-   */
-  @Deprecated
   public Participation() {
     super();
   }

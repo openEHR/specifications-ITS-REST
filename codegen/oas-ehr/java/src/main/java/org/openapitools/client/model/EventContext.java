@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.client.model.DvCodedText;
 import org.openapitools.client.model.DvDateTime;
@@ -50,7 +50,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -93,7 +92,6 @@ public class EventContext extends Pathable {
   }
 
   public EventContext startTime(DvDateTime startTime) {
-    
     this.startTime = startTime;
     return this;
   }
@@ -107,14 +105,12 @@ public class EventContext extends Pathable {
     return startTime;
   }
 
-
   public void setStartTime(DvDateTime startTime) {
     this.startTime = startTime;
   }
 
 
   public EventContext endTime(DvDateTime endTime) {
-    
     this.endTime = endTime;
     return this;
   }
@@ -128,14 +124,12 @@ public class EventContext extends Pathable {
     return endTime;
   }
 
-
   public void setEndTime(DvDateTime endTime) {
     this.endTime = endTime;
   }
 
 
   public EventContext location(String location) {
-    
     this.location = location;
     return this;
   }
@@ -149,14 +143,12 @@ public class EventContext extends Pathable {
     return location;
   }
 
-
   public void setLocation(String location) {
     this.location = location;
   }
 
 
   public EventContext setting(DvCodedText setting) {
-    
     this.setting = setting;
     return this;
   }
@@ -170,14 +162,12 @@ public class EventContext extends Pathable {
     return setting;
   }
 
-
   public void setSetting(DvCodedText setting) {
     this.setting = setting;
   }
 
 
   public EventContext otherContext(ItemStructure otherContext) {
-    
     this.otherContext = otherContext;
     return this;
   }
@@ -191,14 +181,12 @@ public class EventContext extends Pathable {
     return otherContext;
   }
 
-
   public void setOtherContext(ItemStructure otherContext) {
     this.otherContext = otherContext;
   }
 
 
   public EventContext healthCareFacility(PartyIdentified healthCareFacility) {
-    
     this.healthCareFacility = healthCareFacility;
     return this;
   }
@@ -212,14 +200,12 @@ public class EventContext extends Pathable {
     return healthCareFacility;
   }
 
-
   public void setHealthCareFacility(PartyIdentified healthCareFacility) {
     this.healthCareFacility = healthCareFacility;
   }
 
 
   public EventContext participations(List<Participation> participations) {
-    
     this.participations = participations;
     return this;
   }
@@ -240,7 +226,6 @@ public class EventContext extends Pathable {
   public List<Participation> getParticipations() {
     return participations;
   }
-
 
   public void setParticipations(List<Participation> participations) {
     this.participations = participations;
@@ -315,30 +300,30 @@ public class EventContext extends Pathable {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to EventContext
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to EventContext
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!EventContext.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!EventContext.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventContext is not found in the empty JSON string", EventContext.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!EventContext.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventContext` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventContext` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : EventContext.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }
@@ -363,9 +348,9 @@ public class EventContext extends Pathable {
 
            @Override
            public EventContext read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

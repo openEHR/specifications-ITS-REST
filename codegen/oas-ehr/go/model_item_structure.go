@@ -20,6 +20,7 @@ var _ MappedNullable = &ItemStructure{}
 
 // ItemStructure struct for ItemStructure
 type ItemStructure struct {
+	DataStructure
 	Type *string `json:"_type,omitempty"`
 }
 
@@ -82,6 +83,14 @@ func (o ItemStructure) MarshalJSON() ([]byte, error) {
 
 func (o ItemStructure) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDataStructure, errDataStructure := json.Marshal(o.DataStructure)
+	if errDataStructure != nil {
+		return map[string]interface{}{}, errDataStructure
+	}
+	errDataStructure = json.Unmarshal([]byte(serializedDataStructure), &toSerialize)
+	if errDataStructure != nil {
+		return map[string]interface{}{}, errDataStructure
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

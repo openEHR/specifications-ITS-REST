@@ -30,10 +30,10 @@ import javax.annotation.Generated;
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type", visible = true)
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = DvCount.class, name = "DV_AMOUNT"),
-  @JsonSubTypes.Type(value = DvDuration.class, name = "DV_AMOUNT"),
-  @JsonSubTypes.Type(value = DvProportion.class, name = "DV_AMOUNT"),
-  @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_AMOUNT")
+  @JsonSubTypes.Type(value = DvCount.class, name = "DV_COUNT"),
+  @JsonSubTypes.Type(value = DvDuration.class, name = "DV_DURATION"),
+  @JsonSubTypes.Type(value = DvProportion.class, name = "DV_PROPORTION"),
+  @JsonSubTypes.Type(value = DvQuantity.class, name = "DV_QUANTITY")
 })
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
@@ -105,23 +105,24 @@ public class DvAmount extends DvQuantified {
     this.accuracy = accuracy;
   }
 
+
   public DvAmount magnitudeStatus(String magnitudeStatus) {
-    super.setMagnitudeStatus(magnitudeStatus);
+    super.magnitudeStatus(magnitudeStatus);
     return this;
   }
 
   public DvAmount normalStatus(CodePhrase normalStatus) {
-    super.setNormalStatus(normalStatus);
+    super.normalStatus(normalStatus);
     return this;
   }
 
   public DvAmount normalRange(DvInterval normalRange) {
-    super.setNormalRange(normalRange);
+    super.normalRange(normalRange);
     return this;
   }
 
   public DvAmount otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
-    super.setOtherReferenceRanges(otherReferenceRanges);
+    super.otherReferenceRanges(otherReferenceRanges);
     return this;
   }
 
@@ -129,7 +130,6 @@ public class DvAmount extends DvQuantified {
     super.addOtherReferenceRangesItem(otherReferenceRangesItem);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

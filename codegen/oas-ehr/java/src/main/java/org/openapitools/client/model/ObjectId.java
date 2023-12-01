@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,7 +42,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -65,7 +64,6 @@ public class ObjectId {
   }
 
   public ObjectId type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -79,14 +77,12 @@ public class ObjectId {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public ObjectId value(String value) {
-    
     this.value = value;
     return this;
   }
@@ -99,7 +95,6 @@ public class ObjectId {
   public String getValue() {
     return value;
   }
-
 
   public void setValue(String value) {
     this.value = value;
@@ -162,42 +157,42 @@ public class ObjectId {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to ObjectId
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ObjectId
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!ObjectId.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ObjectId.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ObjectId is not found in the empty JSON string", ObjectId.openapiRequiredFields.toString()));
         }
       }
 
-      String discriminatorValue = jsonObj.get("_type").getAsString();
+      String discriminatorValue = jsonElement.getAsJsonObject().get("_type").getAsString();
       switch (discriminatorValue) {
         case "ARCHETYPE_ID":
-          ArchetypeId.validateJsonObject(jsonObj);
+          ArchetypeId.validateJsonElement(jsonElement);
           break;
         case "GENERIC_ID":
-          GenericId.validateJsonObject(jsonObj);
+          GenericId.validateJsonElement(jsonElement);
           break;
         case "HIER_OBJECT_ID":
-          HierObjectId.validateJsonObject(jsonObj);
+          HierObjectId.validateJsonElement(jsonElement);
           break;
         case "OBJECT_VERSION_ID":
-          ObjectVersionId.validateJsonObject(jsonObj);
+          ObjectVersionId.validateJsonElement(jsonElement);
           break;
         case "TEMPLATE_ID":
-          TemplateId.validateJsonObject(jsonObj);
+          TemplateId.validateJsonElement(jsonElement);
           break;
         case "TERMINOLOGY_ID":
-          TerminologyId.validateJsonObject(jsonObj);
+          TerminologyId.validateJsonElement(jsonElement);
           break;
         case "UID_BASED_ID":
-          UidBasedId.validateJsonObject(jsonObj);
+          UidBasedId.validateJsonElement(jsonElement);
           break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `_type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

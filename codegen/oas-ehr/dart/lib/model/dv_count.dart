@@ -23,8 +23,8 @@ class DvCount {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvCount &&
-     other.type == type &&
-     other.magnitude == magnitude;
+    other.type == type &&
+    other.magnitude == magnitude;
 
   @override
   int get hashCode =>

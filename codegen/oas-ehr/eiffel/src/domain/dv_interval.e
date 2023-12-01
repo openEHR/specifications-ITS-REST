@@ -18,6 +18,9 @@ inherit
 
 
   DATA_VALUE
+      rename
+          output as out_DataValue
+      end
 
 feature --Access
 
@@ -71,7 +74,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_datavalue)
+        Result.append(out_DataValue)
         Result.append("%Nclass DV_INTERVAL%N")
         if attached lower_unbounded as l_lower_unbounded then
           Result.append ("%Nlower_unbounded:")

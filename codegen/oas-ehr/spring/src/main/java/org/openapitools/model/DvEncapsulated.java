@@ -42,11 +42,6 @@ public class DvEncapsulated extends DataValue {
 
   private CodePhrase language;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvEncapsulated#DvEncapsulated(String)}
-   */
-  @Deprecated
   public DvEncapsulated() {
     super();
   }

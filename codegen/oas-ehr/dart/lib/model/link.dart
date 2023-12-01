@@ -26,9 +26,9 @@ class Link {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Link &&
-     other.meaning == meaning &&
-     other.type == type &&
-     other.target == target;
+    other.meaning == meaning &&
+    other.type == type &&
+    other.target == target;
 
   @override
   int get hashCode =>

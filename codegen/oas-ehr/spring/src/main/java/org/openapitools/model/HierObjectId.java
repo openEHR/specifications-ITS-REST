@@ -28,11 +28,6 @@ public class HierObjectId extends UidBasedId {
 
   private String value;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link HierObjectId#HierObjectId(String)}
-   */
-  @Deprecated
   public HierObjectId() {
     super();
   }
@@ -41,7 +36,7 @@ public class HierObjectId extends UidBasedId {
    * Constructor with only required parameters
    */
   public HierObjectId(String value) {
-    super();
+    super(value);
     this.value = value;
   }
 
@@ -65,11 +60,11 @@ public class HierObjectId extends UidBasedId {
     this.value = value;
   }
 
+
   public HierObjectId type(String type) {
-    super.setType(type);
+    super.type(type);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -31,11 +31,6 @@ public class DvTime extends DvTemporal {
 
   private String value;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvTime#DvTime(String)}
-   */
-  @Deprecated
   public DvTime() {
     super();
   }
@@ -88,28 +83,29 @@ public class DvTime extends DvTemporal {
     this.value = value;
   }
 
+
   public DvTime accuracy(DvDuration accuracy) {
-    super.setAccuracy(accuracy);
+    super.accuracy(accuracy);
     return this;
   }
 
   public DvTime magnitudeStatus(String magnitudeStatus) {
-    super.setMagnitudeStatus(magnitudeStatus);
+    super.magnitudeStatus(magnitudeStatus);
     return this;
   }
 
   public DvTime normalStatus(CodePhrase normalStatus) {
-    super.setNormalStatus(normalStatus);
+    super.normalStatus(normalStatus);
     return this;
   }
 
   public DvTime normalRange(DvInterval normalRange) {
-    super.setNormalRange(normalRange);
+    super.normalRange(normalRange);
     return this;
   }
 
   public DvTime otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
-    super.setOtherReferenceRanges(otherReferenceRanges);
+    super.otherReferenceRanges(otherReferenceRanges);
     return this;
   }
 
@@ -117,7 +113,6 @@ public class DvTime extends DvTemporal {
     super.addOtherReferenceRangesItem(otherReferenceRangesItem);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

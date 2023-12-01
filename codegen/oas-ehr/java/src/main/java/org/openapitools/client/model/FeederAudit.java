@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.client.model.DvEncapsulated;
 import org.openapitools.client.model.DvIdentifier;
@@ -47,7 +47,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -81,7 +80,6 @@ public class FeederAudit {
   }
 
   public FeederAudit originatingSystemItemIds(List<DvIdentifier> originatingSystemItemIds) {
-    
     this.originatingSystemItemIds = originatingSystemItemIds;
     return this;
   }
@@ -103,14 +101,12 @@ public class FeederAudit {
     return originatingSystemItemIds;
   }
 
-
   public void setOriginatingSystemItemIds(List<DvIdentifier> originatingSystemItemIds) {
     this.originatingSystemItemIds = originatingSystemItemIds;
   }
 
 
   public FeederAudit feederSystemItemIds(List<DvIdentifier> feederSystemItemIds) {
-    
     this.feederSystemItemIds = feederSystemItemIds;
     return this;
   }
@@ -132,14 +128,12 @@ public class FeederAudit {
     return feederSystemItemIds;
   }
 
-
   public void setFeederSystemItemIds(List<DvIdentifier> feederSystemItemIds) {
     this.feederSystemItemIds = feederSystemItemIds;
   }
 
 
   public FeederAudit originalContent(DvEncapsulated originalContent) {
-    
     this.originalContent = originalContent;
     return this;
   }
@@ -153,14 +147,12 @@ public class FeederAudit {
     return originalContent;
   }
 
-
   public void setOriginalContent(DvEncapsulated originalContent) {
     this.originalContent = originalContent;
   }
 
 
   public FeederAudit originatingSystemAudit(FeederAuditDetails originatingSystemAudit) {
-    
     this.originatingSystemAudit = originatingSystemAudit;
     return this;
   }
@@ -174,14 +166,12 @@ public class FeederAudit {
     return originatingSystemAudit;
   }
 
-
   public void setOriginatingSystemAudit(FeederAuditDetails originatingSystemAudit) {
     this.originatingSystemAudit = originatingSystemAudit;
   }
 
 
   public FeederAudit feederSystemAudit(FeederAuditDetails feederSystemAudit) {
-    
     this.feederSystemAudit = feederSystemAudit;
     return this;
   }
@@ -194,7 +184,6 @@ public class FeederAudit {
   public FeederAuditDetails getFeederSystemAudit() {
     return feederSystemAudit;
   }
-
 
   public void setFeederSystemAudit(FeederAuditDetails feederSystemAudit) {
     this.feederSystemAudit = feederSystemAudit;
@@ -266,32 +255,33 @@ public class FeederAudit {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to FeederAudit
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to FeederAudit
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!FeederAudit.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!FeederAudit.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in FeederAudit is not found in the empty JSON string", FeederAudit.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!FeederAudit.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FeederAudit` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FeederAudit` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : FeederAudit.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("originating_system_item_ids") != null && !jsonObj.get("originating_system_item_ids").isJsonNull()) {
         JsonArray jsonArrayoriginatingSystemItemIds = jsonObj.getAsJsonArray("originating_system_item_ids");
         if (jsonArrayoriginatingSystemItemIds != null) {
@@ -302,7 +292,7 @@ public class FeederAudit {
 
           // validate the optional field `originating_system_item_ids` (array)
           for (int i = 0; i < jsonArrayoriginatingSystemItemIds.size(); i++) {
-            DvIdentifier.validateJsonObject(jsonArrayoriginatingSystemItemIds.get(i).getAsJsonObject());
+            DvIdentifier.validateJsonElement(jsonArrayoriginatingSystemItemIds.get(i));
           };
         }
       }
@@ -316,19 +306,19 @@ public class FeederAudit {
 
           // validate the optional field `feeder_system_item_ids` (array)
           for (int i = 0; i < jsonArrayfeederSystemItemIds.size(); i++) {
-            DvIdentifier.validateJsonObject(jsonArrayfeederSystemItemIds.get(i).getAsJsonObject());
+            DvIdentifier.validateJsonElement(jsonArrayfeederSystemItemIds.get(i));
           };
         }
       }
       // validate the optional field `original_content`
       if (jsonObj.get("original_content") != null && !jsonObj.get("original_content").isJsonNull()) {
-        DvEncapsulated.validateJsonObject(jsonObj.getAsJsonObject("original_content"));
+        DvEncapsulated.validateJsonElement(jsonObj.get("original_content"));
       }
       // validate the required field `originating_system_audit`
-      FeederAuditDetails.validateJsonObject(jsonObj.getAsJsonObject("originating_system_audit"));
+      FeederAuditDetails.validateJsonElement(jsonObj.get("originating_system_audit"));
       // validate the optional field `feeder_system_audit`
       if (jsonObj.get("feeder_system_audit") != null && !jsonObj.get("feeder_system_audit").isJsonNull()) {
-        FeederAuditDetails.validateJsonObject(jsonObj.getAsJsonObject("feeder_system_audit"));
+        FeederAuditDetails.validateJsonElement(jsonObj.get("feeder_system_audit"));
       }
   }
 
@@ -352,9 +342,9 @@ public class FeederAudit {
 
            @Override
            public FeederAudit read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

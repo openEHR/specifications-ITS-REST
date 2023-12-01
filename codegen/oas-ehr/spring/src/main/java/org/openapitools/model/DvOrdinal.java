@@ -34,11 +34,6 @@ public class DvOrdinal extends DvOrdered {
 
   private Integer value;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvOrdinal#DvOrdinal(DvCodedText, Integer)}
-   */
-  @Deprecated
   public DvOrdinal() {
     super();
   }
@@ -112,18 +107,19 @@ public class DvOrdinal extends DvOrdered {
     this.value = value;
   }
 
+
   public DvOrdinal normalStatus(CodePhrase normalStatus) {
-    super.setNormalStatus(normalStatus);
+    super.normalStatus(normalStatus);
     return this;
   }
 
   public DvOrdinal normalRange(DvInterval normalRange) {
-    super.setNormalRange(normalRange);
+    super.normalRange(normalRange);
     return this;
   }
 
   public DvOrdinal otherReferenceRanges(List<@Valid ReferenceRange> otherReferenceRanges) {
-    super.setOtherReferenceRanges(otherReferenceRanges);
+    super.otherReferenceRanges(otherReferenceRanges);
     return this;
   }
 
@@ -131,7 +127,6 @@ public class DvOrdinal extends DvOrdered {
     super.addOtherReferenceRangesItem(otherReferenceRangesItem);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

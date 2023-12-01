@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the EventContext type satisfies the MappedNullable interface at compile time
@@ -20,6 +21,7 @@ var _ MappedNullable = &EventContext{}
 
 // EventContext struct for EventContext
 type EventContext struct {
+	Pathable
 	StartTime DvDateTime `json:"start_time"`
 	EndTime *DvDateTime `json:"end_time,omitempty"`
 	Location *string `json:"location,omitempty"`
@@ -28,6 +30,8 @@ type EventContext struct {
 	HealthCareFacility *PartyIdentified `json:"health_care_facility,omitempty"`
 	Participations []Participation `json:"participations,omitempty"`
 }
+
+type _EventContext EventContext
 
 // NewEventContext instantiates a new EventContext object
 // This constructor will assign default values to properties that have it defined,
@@ -264,6 +268,14 @@ func (o EventContext) MarshalJSON() ([]byte, error) {
 
 func (o EventContext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedPathable, errPathable := json.Marshal(o.Pathable)
+	if errPathable != nil {
+		return map[string]interface{}{}, errPathable
+	}
+	errPathable = json.Unmarshal([]byte(serializedPathable), &toSerialize)
+	if errPathable != nil {
+		return map[string]interface{}{}, errPathable
+	}
 	toSerialize["start_time"] = o.StartTime
 	if !IsNil(o.EndTime) {
 		toSerialize["end_time"] = o.EndTime
@@ -282,6 +294,42 @@ func (o EventContext) ToMap() (map[string]interface{}, error) {
 		toSerialize["participations"] = o.Participations
 	}
 	return toSerialize, nil
+}
+
+func (o *EventContext) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"start_time",
+		"setting",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEventContext := _EventContext{}
+
+	err = json.Unmarshal(bytes, &varEventContext)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EventContext(varEventContext)
+
+	return err
 }
 
 type NullableEventContext struct {

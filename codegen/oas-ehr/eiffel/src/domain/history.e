@@ -18,6 +18,9 @@ inherit
 
 
   LOCATABLE
+      rename
+          output as out_Locatable
+      end
 
 feature --Access
 
@@ -81,7 +84,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_locatable)
+        Result.append(out_Locatable)
         Result.append("%Nclass HISTORY%N")
         if attached origin as l_origin then
           Result.append ("%Norigin:")

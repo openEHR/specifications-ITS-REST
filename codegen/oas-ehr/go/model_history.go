@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the History type satisfies the MappedNullable interface at compile time
@@ -20,6 +21,7 @@ var _ MappedNullable = &History{}
 
 // History struct for History
 type History struct {
+	Locatable
 	Type *string `json:"_type,omitempty"`
 	Origin DvDateTime `json:"origin"`
 	Period *DvDuration `json:"period,omitempty"`
@@ -27,6 +29,8 @@ type History struct {
 	Summary *ItemStructure `json:"summary,omitempty"`
 	Events []Event `json:"events,omitempty"`
 }
+
+type _History History
 
 // NewHistory instantiates a new History object
 // This constructor will assign default values to properties that have it defined,
@@ -243,6 +247,14 @@ func (o History) MarshalJSON() ([]byte, error) {
 
 func (o History) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedLocatable, errLocatable := json.Marshal(o.Locatable)
+	if errLocatable != nil {
+		return map[string]interface{}{}, errLocatable
+	}
+	errLocatable = json.Unmarshal([]byte(serializedLocatable), &toSerialize)
+	if errLocatable != nil {
+		return map[string]interface{}{}, errLocatable
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -260,6 +272,41 @@ func (o History) ToMap() (map[string]interface{}, error) {
 		toSerialize["events"] = o.Events
 	}
 	return toSerialize, nil
+}
+
+func (o *History) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"origin",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varHistory := _History{}
+
+	err = json.Unmarshal(bytes, &varHistory)
+
+	if err != nil {
+		return err
+	}
+
+	*o = History(varHistory)
+
+	return err
 }
 
 type NullableHistory struct {

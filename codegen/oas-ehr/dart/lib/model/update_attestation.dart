@@ -62,15 +62,15 @@ class UpdateAttestation {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UpdateAttestation &&
-     other.type == type &&
-     other.attestedView == attestedView &&
-     other.proof == proof &&
-     other.items == items &&
-     other.reason == reason &&
-     other.isPending == isPending &&
-     other.changeType == changeType &&
-     other.description == description &&
-     other.committer == committer;
+    other.type == type &&
+    other.attestedView == attestedView &&
+    other.proof == proof &&
+    _deepEquality.equals(other.items, items) &&
+    other.reason == reason &&
+    other.isPending == isPending &&
+    other.changeType == changeType &&
+    other.description == description &&
+    other.committer == committer;
 
   @override
   int get hashCode =>

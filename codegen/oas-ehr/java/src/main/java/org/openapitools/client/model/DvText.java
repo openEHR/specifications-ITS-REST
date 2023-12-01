@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.client.model.CodePhrase;
 import org.openapitools.client.model.DataValue;
@@ -48,7 +48,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -91,7 +90,6 @@ public class DvText extends DataValue {
   }
 
   public DvText type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -105,14 +103,12 @@ public class DvText extends DataValue {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public DvText value(String value) {
-    
     this.value = value;
     return this;
   }
@@ -126,14 +122,12 @@ public class DvText extends DataValue {
     return value;
   }
 
-
   public void setValue(String value) {
     this.value = value;
   }
 
 
   public DvText hyperlink(DvUri hyperlink) {
-    
     this.hyperlink = hyperlink;
     return this;
   }
@@ -147,14 +141,12 @@ public class DvText extends DataValue {
     return hyperlink;
   }
 
-
   public void setHyperlink(DvUri hyperlink) {
     this.hyperlink = hyperlink;
   }
 
 
   public DvText formatting(String formatting) {
-    
     this.formatting = formatting;
     return this;
   }
@@ -168,14 +160,12 @@ public class DvText extends DataValue {
     return formatting;
   }
 
-
   public void setFormatting(String formatting) {
     this.formatting = formatting;
   }
 
 
   public DvText mappings(List<TermMapping> mappings) {
-    
     this.mappings = mappings;
     return this;
   }
@@ -197,14 +187,12 @@ public class DvText extends DataValue {
     return mappings;
   }
 
-
   public void setMappings(List<TermMapping> mappings) {
     this.mappings = mappings;
   }
 
 
   public DvText language(CodePhrase language) {
-    
     this.language = language;
     return this;
   }
@@ -218,14 +206,12 @@ public class DvText extends DataValue {
     return language;
   }
 
-
   public void setLanguage(CodePhrase language) {
     this.language = language;
   }
 
 
   public DvText encoding(CodePhrase encoding) {
-    
     this.encoding = encoding;
     return this;
   }
@@ -238,7 +224,6 @@ public class DvText extends DataValue {
   public CodePhrase getEncoding() {
     return encoding;
   }
-
 
   public void setEncoding(CodePhrase encoding) {
     this.encoding = encoding;
@@ -312,27 +297,24 @@ public class DvText extends DataValue {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to DvText
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to DvText
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!DvText.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DvText.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in DvText is not found in the empty JSON string", DvText.openapiRequiredFields.toString()));
         }
       }
 
-      String discriminatorValue = jsonObj.get("_type").getAsString();
+      String discriminatorValue = jsonElement.getAsJsonObject().get("_type").getAsString();
       switch (discriminatorValue) {
         case "DV_CODED_TEXT":
-          DvCodedText.validateJsonObject(jsonObj);
+          DvCodedText.validateJsonElement(jsonElement);
           break;
-        case "DV_TEXT":
-          DvText.validateJsonObject(jsonObj);
-          break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `_type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

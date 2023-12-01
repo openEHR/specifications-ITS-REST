@@ -20,6 +20,7 @@ var _ MappedNullable = &DataStructure{}
 
 // DataStructure struct for DataStructure
 type DataStructure struct {
+	Locatable
 	Type *string `json:"_type,omitempty"`
 }
 
@@ -29,7 +30,7 @@ type DataStructure struct {
 // will change when the set of required properties is changed
 func NewDataStructure() *DataStructure {
 	this := DataStructure{}
-	var type_ string = "DATE_STRUCTURE"
+	var type_ string = "DATA_STRUCTURE"
 	this.Type = &type_
 	return &this
 }
@@ -39,7 +40,7 @@ func NewDataStructure() *DataStructure {
 // but it doesn't guarantee that properties required by API are set
 func NewDataStructureWithDefaults() *DataStructure {
 	this := DataStructure{}
-	var type_ string = "DATE_STRUCTURE"
+	var type_ string = "DATA_STRUCTURE"
 	this.Type = &type_
 	return &this
 }
@@ -86,6 +87,14 @@ func (o DataStructure) MarshalJSON() ([]byte, error) {
 
 func (o DataStructure) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedLocatable, errLocatable := json.Marshal(o.Locatable)
+	if errLocatable != nil {
+		return map[string]interface{}{}, errLocatable
+	}
+	errLocatable = json.Unmarshal([]byte(serializedLocatable), &toSerialize)
+	if errLocatable != nil {
+		return map[string]interface{}{}, errLocatable
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

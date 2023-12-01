@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Action type satisfies the MappedNullable interface at compile time
@@ -20,12 +21,15 @@ var _ MappedNullable = &Action{}
 
 // Action struct for Action
 type Action struct {
+	CareEntry
 	Type *string `json:"_type,omitempty"`
 	Time DvDateTime `json:"time"`
 	IsmTransition IsmTransition `json:"ism_transition"`
 	InstructionDetails *InstructionDetails `json:"instruction_details,omitempty"`
 	Description ItemStructure `json:"description"`
 }
+
+type _Action Action
 
 // NewAction instantiates a new Action object
 // This constructor will assign default values to properties that have it defined,
@@ -194,6 +198,14 @@ func (o Action) MarshalJSON() ([]byte, error) {
 
 func (o Action) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCareEntry, errCareEntry := json.Marshal(o.CareEntry)
+	if errCareEntry != nil {
+		return map[string]interface{}{}, errCareEntry
+	}
+	errCareEntry = json.Unmarshal([]byte(serializedCareEntry), &toSerialize)
+	if errCareEntry != nil {
+		return map[string]interface{}{}, errCareEntry
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -204,6 +216,43 @@ func (o Action) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["description"] = o.Description
 	return toSerialize, nil
+}
+
+func (o *Action) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"time",
+		"ism_transition",
+		"description",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAction := _Action{}
+
+	err = json.Unmarshal(bytes, &varAction)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Action(varAction)
+
+	return err
 }
 
 type NullableAction struct {

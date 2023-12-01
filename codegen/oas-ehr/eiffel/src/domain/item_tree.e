@@ -18,6 +18,9 @@ inherit
 
 
   ITEM_STRUCTURE
+      rename
+          output as out_ItemStructure
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_itemstructure)
+        Result.append(out_ItemStructure)
         Result.append("%Nclass ITEM_TREE%N")
         if attached items as l_items then
           across l_items as ic loop

@@ -44,11 +44,11 @@ class FeederAudit {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is FeederAudit &&
-     other.originatingSystemItemIds == originatingSystemItemIds &&
-     other.feederSystemItemIds == feederSystemItemIds &&
-     other.originalContent == originalContent &&
-     other.originatingSystemAudit == originatingSystemAudit &&
-     other.feederSystemAudit == feederSystemAudit;
+    _deepEquality.equals(other.originatingSystemItemIds, originatingSystemItemIds) &&
+    _deepEquality.equals(other.feederSystemItemIds, feederSystemItemIds) &&
+    other.originalContent == originalContent &&
+    other.originatingSystemAudit == originatingSystemAudit &&
+    other.feederSystemAudit == feederSystemAudit;
 
   @override
   int get hashCode =>

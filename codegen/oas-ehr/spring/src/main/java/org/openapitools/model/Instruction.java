@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.Activity;
 import org.openapitools.model.CareEntry;
@@ -43,11 +44,6 @@ public class Instruction extends CareEntry {
   @Valid
   private List<@Valid Activity> activities;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Instruction#Instruction(DvText)}
-   */
-  @Deprecated
   public Instruction() {
     super();
   }
@@ -56,7 +52,7 @@ public class Instruction extends CareEntry {
    * Constructor with only required parameters
    */
   public Instruction(DvText narrative) {
-    super(language, encoding, subject, name, archetypeNodeId);
+    super();
     this.narrative = narrative;
   }
 
@@ -168,28 +164,29 @@ public class Instruction extends CareEntry {
     this.activities = activities;
   }
 
+
   public Instruction protocol(ItemStructure protocol) {
-    super.setProtocol(protocol);
+    super.protocol(protocol);
     return this;
   }
 
   public Instruction guidelineId(ObjectRef guidelineId) {
-    super.setGuidelineId(guidelineId);
+    super.guidelineId(guidelineId);
     return this;
   }
 
   public Instruction language(CodePhrase language) {
-    super.setLanguage(language);
+    super.language(language);
     return this;
   }
 
   public Instruction encoding(CodePhrase encoding) {
-    super.setEncoding(encoding);
+    super.encoding(encoding);
     return this;
   }
 
   public Instruction otherParticipations(List<@Valid Participation> otherParticipations) {
-    super.setOtherParticipations(otherParticipations);
+    super.otherParticipations(otherParticipations);
     return this;
   }
 
@@ -199,37 +196,37 @@ public class Instruction extends CareEntry {
   }
 
   public Instruction workflowId(ObjectRef workflowId) {
-    super.setWorkflowId(workflowId);
+    super.workflowId(workflowId);
     return this;
   }
 
   public Instruction subject(PartyProxy subject) {
-    super.setSubject(subject);
+    super.subject(subject);
     return this;
   }
 
   public Instruction provider(PartyProxy provider) {
-    super.setProvider(provider);
+    super.provider(provider);
     return this;
   }
 
   public Instruction name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public Instruction archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public Instruction uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public Instruction links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -239,15 +236,14 @@ public class Instruction extends CareEntry {
   }
 
   public Instruction archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public Instruction feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -18,6 +18,9 @@ inherit
 
 
   DATA_VALUE
+      rename
+          output as out_DataValue
+      end
 
 feature --Access
 
@@ -51,7 +54,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_datavalue)
+        Result.append(out_DataValue)
         Result.append("%Nclass DV_STATE%N")
         if attached value as l_value then
           Result.append ("%Nvalue:")

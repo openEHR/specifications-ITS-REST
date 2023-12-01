@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AbstractEntry type satisfies the MappedNullable interface at compile time
@@ -20,6 +21,7 @@ var _ MappedNullable = &AbstractEntry{}
 
 // AbstractEntry struct for AbstractEntry
 type AbstractEntry struct {
+	ContentItem
 	Language CodePhrase `json:"language"`
 	Encoding CodePhrase `json:"encoding"`
 	OtherParticipations []Participation `json:"other_participations,omitempty"`
@@ -27,6 +29,8 @@ type AbstractEntry struct {
 	Subject PartyProxy `json:"subject"`
 	Provider *PartyProxy `json:"provider,omitempty"`
 }
+
+type _AbstractEntry AbstractEntry
 
 // NewAbstractEntry instantiates a new AbstractEntry object
 // This constructor will assign default values to properties that have it defined,
@@ -223,6 +227,14 @@ func (o AbstractEntry) MarshalJSON() ([]byte, error) {
 
 func (o AbstractEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedContentItem, errContentItem := json.Marshal(o.ContentItem)
+	if errContentItem != nil {
+		return map[string]interface{}{}, errContentItem
+	}
+	errContentItem = json.Unmarshal([]byte(serializedContentItem), &toSerialize)
+	if errContentItem != nil {
+		return map[string]interface{}{}, errContentItem
+	}
 	toSerialize["language"] = o.Language
 	toSerialize["encoding"] = o.Encoding
 	if !IsNil(o.OtherParticipations) {
@@ -236,6 +248,43 @@ func (o AbstractEntry) ToMap() (map[string]interface{}, error) {
 		toSerialize["provider"] = o.Provider
 	}
 	return toSerialize, nil
+}
+
+func (o *AbstractEntry) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"language",
+		"encoding",
+		"subject",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAbstractEntry := _AbstractEntry{}
+
+	err = json.Unmarshal(bytes, &varAbstractEntry)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AbstractEntry(varAbstractEntry)
+
+	return err
 }
 
 type NullableAbstractEntry struct {

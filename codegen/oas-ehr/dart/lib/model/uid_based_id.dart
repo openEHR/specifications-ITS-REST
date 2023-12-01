@@ -23,8 +23,8 @@ class UidBasedId {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UidBasedId &&
-     other.type == type &&
-     other.value == value;
+    other.type == type &&
+    other.value == value;
 
   @override
   int get hashCode =>

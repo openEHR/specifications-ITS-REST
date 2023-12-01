@@ -20,6 +20,7 @@ var _ MappedNullable = &DvIntervalOfDateTime{}
 
 // DvIntervalOfDateTime struct for DvIntervalOfDateTime
 type DvIntervalOfDateTime struct {
+	DvInterval
 	Type *string `json:"_type,omitempty"`
 	Lower *DvDateTime `json:"lower,omitempty"`
 	Upper *DvDateTime `json:"upper,omitempty"`
@@ -152,6 +153,14 @@ func (o DvIntervalOfDateTime) MarshalJSON() ([]byte, error) {
 
 func (o DvIntervalOfDateTime) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDvInterval, errDvInterval := json.Marshal(o.DvInterval)
+	if errDvInterval != nil {
+		return map[string]interface{}{}, errDvInterval
+	}
+	errDvInterval = json.Unmarshal([]byte(serializedDvInterval), &toSerialize)
+	if errDvInterval != nil {
+		return map[string]interface{}{}, errDvInterval
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

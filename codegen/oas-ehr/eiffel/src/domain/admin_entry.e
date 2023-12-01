@@ -18,6 +18,9 @@ inherit
 
 
   ABSTRACT_ENTRY
+      rename
+          output as out_AbstractEntry
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_abstractentry)
+        Result.append(out_AbstractEntry)
         Result.append("%Nclass ADMIN_ENTRY%N")
         if attached data as l_data then
           Result.append ("%Ndata:")

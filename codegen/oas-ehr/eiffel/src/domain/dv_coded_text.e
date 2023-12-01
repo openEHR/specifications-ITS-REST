@@ -18,6 +18,9 @@ inherit
 
 
   DV_TEXT
+      rename
+          output as out_DvText
+      end
 
 feature --Access
 
@@ -41,7 +44,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_dvtext)
+        Result.append(out_DvText)
         Result.append("%Nclass DV_CODED_TEXT%N")
         if attached defining_code as l_defining_code then
           Result.append ("%Ndefining_code:")

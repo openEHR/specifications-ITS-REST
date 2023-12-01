@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the LocatableRef type satisfies the MappedNullable interface at compile time
@@ -25,6 +26,8 @@ type LocatableRef struct {
 	Id UidBasedId `json:"id"`
 	Path *string `json:"path,omitempty"`
 }
+
+type _LocatableRef LocatableRef
 
 // NewLocatableRef instantiates a new LocatableRef object
 // This constructor will assign default values to properties that have it defined,
@@ -167,6 +170,43 @@ func (o LocatableRef) ToMap() (map[string]interface{}, error) {
 		toSerialize["path"] = o.Path
 	}
 	return toSerialize, nil
+}
+
+func (o *LocatableRef) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"namespace",
+		"type",
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varLocatableRef := _LocatableRef{}
+
+	err = json.Unmarshal(bytes, &varLocatableRef)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LocatableRef(varLocatableRef)
+
+	return err
 }
 
 type NullableLocatableRef struct {

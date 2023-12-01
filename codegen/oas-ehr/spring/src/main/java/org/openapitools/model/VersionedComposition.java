@@ -32,11 +32,6 @@ public class VersionedComposition extends VersionedObject {
 
   private String type = "VERSIONED_COMPOSITION";
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link VersionedComposition#VersionedComposition(HierObjectId, ObjectRef, DvDateTime)}
-   */
-  @Deprecated
   public VersionedComposition() {
     super();
   }
@@ -68,21 +63,21 @@ public class VersionedComposition extends VersionedObject {
     this.type = type;
   }
 
+
   public VersionedComposition uid(HierObjectId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public VersionedComposition ownerId(ObjectRef ownerId) {
-    super.setOwnerId(ownerId);
+    super.ownerId(ownerId);
     return this;
   }
 
   public VersionedComposition timeCreated(DvDateTime timeCreated) {
-    super.setTimeCreated(timeCreated);
+    super.timeCreated(timeCreated);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

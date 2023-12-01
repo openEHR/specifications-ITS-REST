@@ -22,12 +22,8 @@
     }
 
     Class class = nil;
-    if ([discriminatedClassName isEqualToString:@"DV_TEXT"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_CODED_TEXT"]) {
         class = NSClassFromString(@"OAIDvCodedText");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"DV_TEXT"]) {
-        class = NSClassFromString(@"OAIDvText");
     }
     else
     {

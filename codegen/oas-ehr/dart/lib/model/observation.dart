@@ -32,9 +32,9 @@ class Observation {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Observation &&
-     other.type == type &&
-     other.data == data &&
-     other.state == state;
+    other.type == type &&
+    other.data == data &&
+    other.state == state;
 
   @override
   int get hashCode =>

@@ -18,6 +18,9 @@ inherit
 
 
   VERSIONED_OBJECT
+      rename
+          output as out_VersionedObject
+      end
 
 feature --Access
 
@@ -31,7 +34,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_versionedobject)
+        Result.append(out_VersionedObject)
         Result.append("%Nclass VERSIONED_COMPOSITION%N")
       end
 end

@@ -22,11 +22,7 @@
     }
 
     Class class = nil;
-    if ([discriminatedClassName isEqualToString:@"DV_INTERVAL"]) {
-        class = NSClassFromString(@"OAIDvInterval");
-    }
-    else
-    if ([discriminatedClassName isEqualToString:@"DV_INTERVAL"]) {
+    if ([discriminatedClassName isEqualToString:@"DV_INTERVAL_of_DATE_TIME"]) {
         class = NSClassFromString(@"OAIDvIntervalOfDateTime");
     }
     else

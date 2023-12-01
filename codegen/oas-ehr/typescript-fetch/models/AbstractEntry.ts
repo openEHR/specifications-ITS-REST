@@ -51,7 +51,7 @@ import {
      EvaluationFromJSONTyped,
      InstructionFromJSONTyped,
      ObservationFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -118,22 +118,22 @@ export function AbstractEntryFromJSONTyped(json: any, ignoreDiscriminator: boole
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'ACTION') {
+        if (json['_type'] === 'ACTION') {
             return ActionFromJSONTyped(json, true);
         }
-        if (json['type'] === 'ADMIN_ENTRY') {
+        if (json['_type'] === 'ADMIN_ENTRY') {
             return AdminEntryFromJSONTyped(json, true);
         }
-        if (json['type'] === 'CARE_ENTRY') {
+        if (json['_type'] === 'CARE_ENTRY') {
             return CareEntryFromJSONTyped(json, true);
         }
-        if (json['type'] === 'EVALUATION') {
+        if (json['_type'] === 'EVALUATION') {
             return EvaluationFromJSONTyped(json, true);
         }
-        if (json['type'] === 'INSTRUCTION') {
+        if (json['_type'] === 'INSTRUCTION') {
             return InstructionFromJSONTyped(json, true);
         }
-        if (json['type'] === 'OBSERVATION') {
+        if (json['_type'] === 'OBSERVATION') {
             return ObservationFromJSONTyped(json, true);
         }
     }

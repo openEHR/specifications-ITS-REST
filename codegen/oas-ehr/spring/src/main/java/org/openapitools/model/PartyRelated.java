@@ -33,11 +33,6 @@ public class PartyRelated extends PartyIdentified {
 
   private DvCodedText relationship;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link PartyRelated#PartyRelated(DvCodedText)}
-   */
-  @Deprecated
   public PartyRelated() {
     super();
   }
@@ -90,13 +85,14 @@ public class PartyRelated extends PartyIdentified {
     this.relationship = relationship;
   }
 
+
   public PartyRelated name(String name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public PartyRelated identifiers(List<@Valid DvIdentifier> identifiers) {
-    super.setIdentifiers(identifiers);
+    super.identifiers(identifiers);
     return this;
   }
 
@@ -106,10 +102,9 @@ public class PartyRelated extends PartyIdentified {
   }
 
   public PartyRelated externalRef(PartyRef externalRef) {
-    super.setExternalRef(externalRef);
+    super.externalRef(externalRef);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

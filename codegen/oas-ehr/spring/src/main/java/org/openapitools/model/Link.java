@@ -29,11 +29,6 @@ public class Link {
 
   private DvEhrUri target;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Link#Link(DvText, DvText, DvEhrUri)}
-   */
-  @Deprecated
   public Link() {
     super();
   }

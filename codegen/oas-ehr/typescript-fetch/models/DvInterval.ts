@@ -21,9 +21,8 @@ import {
 } from './DataValue';
 
 import {
-     DvIntervalFromJSONTyped,
      DvIntervalOfDateTimeFromJSONTyped
-} from './';
+} from './index';
 
 /**
  * 
@@ -85,10 +84,7 @@ export function DvIntervalFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         return json;
     }
     if (!ignoreDiscriminator) {
-        if (json['type'] === 'DV_INTERVAL') {
-            return DvIntervalFromJSONTyped(json, true);
-        }
-        if (json['type'] === 'DV_INTERVAL_of_DATE_TIME') {
+        if (json['_type'] === 'DV_INTERVAL_of_DATE_TIME') {
             return DvIntervalOfDateTimeFromJSONTyped(json, true);
         }
     }

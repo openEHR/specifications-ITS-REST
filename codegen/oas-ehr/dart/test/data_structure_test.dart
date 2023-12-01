@@ -16,7 +16,7 @@ void main() {
   // final instance = DataStructure();
 
   group('test DataStructure', () {
-    // String type (default value: 'DATE_STRUCTURE')
+    // String type (default value: 'DATA_STRUCTURE')
     test('to test the property `type`', () async {
       // TODO
     });

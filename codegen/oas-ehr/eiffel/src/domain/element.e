@@ -18,6 +18,9 @@ inherit
 
 
   ITEM
+      rename
+          output as out_Item
+      end
 
 feature --Access
 
@@ -61,7 +64,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_item)
+        Result.append(out_Item)
         Result.append("%Nclass ELEMENT%N")
         if attached null_flavour as l_null_flavour then
           Result.append ("%Nnull_flavour:")

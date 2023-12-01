@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.Item;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -33,11 +34,6 @@ public class Clstr extends Item {
   @Valid
   private List<@Valid Item> items = new ArrayList<>();
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link Clstr#Clstr(List<@Valid Item>)}
-   */
-  @Deprecated
   public Clstr() {
     super();
   }
@@ -46,7 +42,7 @@ public class Clstr extends Item {
    * Constructor with only required parameters
    */
   public Clstr(List<@Valid Item> items) {
-    super(name, archetypeNodeId);
+    super();
     this.items = items;
   }
 
@@ -98,23 +94,24 @@ public class Clstr extends Item {
     this.items = items;
   }
 
+
   public Clstr name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public Clstr archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public Clstr uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public Clstr links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -124,15 +121,14 @@ public class Clstr extends Item {
   }
 
   public Clstr archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public Clstr feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

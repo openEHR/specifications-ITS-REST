@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DvInterval type satisfies the MappedNullable interface at compile time
@@ -20,12 +21,15 @@ var _ MappedNullable = &DvInterval{}
 
 // DvInterval struct for DvInterval
 type DvInterval struct {
+	DataValue
 	Type *string `json:"_type,omitempty"`
 	LowerUnbounded bool `json:"lower_unbounded"`
 	UpperUnbounded bool `json:"upper_unbounded"`
 	LowerIncluded bool `json:"lower_included"`
 	UpperIncluded bool `json:"upper_included"`
 }
+
+type _DvInterval DvInterval
 
 // NewDvInterval instantiates a new DvInterval object
 // This constructor will assign default values to properties that have it defined,
@@ -186,6 +190,14 @@ func (o DvInterval) MarshalJSON() ([]byte, error) {
 
 func (o DvInterval) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDataValue, errDataValue := json.Marshal(o.DataValue)
+	if errDataValue != nil {
+		return map[string]interface{}{}, errDataValue
+	}
+	errDataValue = json.Unmarshal([]byte(serializedDataValue), &toSerialize)
+	if errDataValue != nil {
+		return map[string]interface{}{}, errDataValue
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -194,6 +206,44 @@ func (o DvInterval) ToMap() (map[string]interface{}, error) {
 	toSerialize["lower_included"] = o.LowerIncluded
 	toSerialize["upper_included"] = o.UpperIncluded
 	return toSerialize, nil
+}
+
+func (o *DvInterval) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"lower_unbounded",
+		"upper_unbounded",
+		"lower_included",
+		"upper_included",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDvInterval := _DvInterval{}
+
+	err = json.Unmarshal(bytes, &varDvInterval)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DvInterval(varDvInterval)
+
+	return err
 }
 
 type NullableDvInterval struct {

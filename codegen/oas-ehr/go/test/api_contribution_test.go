@@ -1,7 +1,7 @@
 /*
 EHR API
 
-Testing CONTRIBUTIONApiService
+Testing CONTRIBUTIONAPIService
 
 */
 
@@ -17,18 +17,18 @@ import (
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
-func Test_openapi_CONTRIBUTIONApiService(t *testing.T) {
+func Test_openapi_CONTRIBUTIONAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test CONTRIBUTIONApiService ContributionCreate", func(t *testing.T) {
+	t.Run("Test CONTRIBUTIONAPIService ContributionCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 
-		resp, httpRes, err := apiClient.CONTRIBUTIONApi.ContributionCreate(context.Background(), ehrId).Execute()
+		resp, httpRes, err := apiClient.CONTRIBUTIONAPI.ContributionCreate(context.Background(), ehrId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,14 +36,14 @@ func Test_openapi_CONTRIBUTIONApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test CONTRIBUTIONApiService ContributionGet", func(t *testing.T) {
+	t.Run("Test CONTRIBUTIONAPIService ContributionGet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ehrId string
 		var contributionUid string
 
-		resp, httpRes, err := apiClient.CONTRIBUTIONApi.ContributionGet(context.Background(), ehrId, contributionUid).Execute()
+		resp, httpRes, err := apiClient.CONTRIBUTIONAPI.ContributionGet(context.Background(), ehrId, contributionUid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

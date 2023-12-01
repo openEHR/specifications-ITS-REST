@@ -89,16 +89,16 @@ class DvMultimedia {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvMultimedia &&
-     other.type == type &&
-     other.alternateText == alternateText &&
-     other.uri == uri &&
-     other.data == data &&
-     other.mediaType == mediaType &&
-     other.compressionAlgorithm == compressionAlgorithm &&
-     other.integrityCheck == integrityCheck &&
-     other.integrityCheckAlgorithm == integrityCheckAlgorithm &&
-     other.thumbnail == thumbnail &&
-     other.size == size;
+    other.type == type &&
+    other.alternateText == alternateText &&
+    other.uri == uri &&
+    other.data == data &&
+    other.mediaType == mediaType &&
+    other.compressionAlgorithm == compressionAlgorithm &&
+    other.integrityCheck == integrityCheck &&
+    other.integrityCheckAlgorithm == integrityCheckAlgorithm &&
+    other.thumbnail == thumbnail &&
+    other.size == size;
 
   @override
   int get hashCode =>

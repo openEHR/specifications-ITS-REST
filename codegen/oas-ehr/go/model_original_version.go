@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the OriginalVersion type satisfies the MappedNullable interface at compile time
@@ -20,6 +21,7 @@ var _ MappedNullable = &OriginalVersion{}
 
 // OriginalVersion struct for OriginalVersion
 type OriginalVersion struct {
+	Version
 	Type *string `json:"_type,omitempty"`
 	Uid ObjectVersionId `json:"uid"`
 	PrecedingVersionUid *ObjectVersionId `json:"preceding_version_uid,omitempty"`
@@ -27,6 +29,8 @@ type OriginalVersion struct {
 	LifecycleState DvCodedText `json:"lifecycle_state"`
 	Attestations []Attestation `json:"attestations,omitempty"`
 }
+
+type _OriginalVersion OriginalVersion
 
 // NewOriginalVersion instantiates a new OriginalVersion object
 // This constructor will assign default values to properties that have it defined,
@@ -238,6 +242,14 @@ func (o OriginalVersion) MarshalJSON() ([]byte, error) {
 
 func (o OriginalVersion) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedVersion, errVersion := json.Marshal(o.Version)
+	if errVersion != nil {
+		return map[string]interface{}{}, errVersion
+	}
+	errVersion = json.Unmarshal([]byte(serializedVersion), &toSerialize)
+	if errVersion != nil {
+		return map[string]interface{}{}, errVersion
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -253,6 +265,45 @@ func (o OriginalVersion) ToMap() (map[string]interface{}, error) {
 		toSerialize["attestations"] = o.Attestations
 	}
 	return toSerialize, nil
+}
+
+func (o *OriginalVersion) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"uid",
+		"lifecycle_state",
+		"contribution",
+		"commit_audit",
+		"data",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varOriginalVersion := _OriginalVersion{}
+
+	err = json.Unmarshal(bytes, &varOriginalVersion)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OriginalVersion(varOriginalVersion)
+
+	return err
 }
 
 type NullableOriginalVersion struct {

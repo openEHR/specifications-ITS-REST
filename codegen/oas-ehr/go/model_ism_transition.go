@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the IsmTransition type satisfies the MappedNullable interface at compile time
@@ -20,12 +21,15 @@ var _ MappedNullable = &IsmTransition{}
 
 // IsmTransition struct for IsmTransition
 type IsmTransition struct {
+	Pathable
 	Type *string `json:"_type,omitempty"`
 	CurrentState DvCodedText `json:"current_state"`
 	Transition *DvCodedText `json:"transition,omitempty"`
 	CareflowStep *DvCodedText `json:"careflow_step,omitempty"`
 	Reason []DvText `json:"reason,omitempty"`
 }
+
+type _IsmTransition IsmTransition
 
 // NewIsmTransition instantiates a new IsmTransition object
 // This constructor will assign default values to properties that have it defined,
@@ -210,6 +214,14 @@ func (o IsmTransition) MarshalJSON() ([]byte, error) {
 
 func (o IsmTransition) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedPathable, errPathable := json.Marshal(o.Pathable)
+	if errPathable != nil {
+		return map[string]interface{}{}, errPathable
+	}
+	errPathable = json.Unmarshal([]byte(serializedPathable), &toSerialize)
+	if errPathable != nil {
+		return map[string]interface{}{}, errPathable
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -224,6 +236,41 @@ func (o IsmTransition) ToMap() (map[string]interface{}, error) {
 		toSerialize["reason"] = o.Reason
 	}
 	return toSerialize, nil
+}
+
+func (o *IsmTransition) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"current_state",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varIsmTransition := _IsmTransition{}
+
+	err = json.Unmarshal(bytes, &varIsmTransition)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IsmTransition(varIsmTransition)
+
+	return err
 }
 
 type NullableIsmTransition struct {

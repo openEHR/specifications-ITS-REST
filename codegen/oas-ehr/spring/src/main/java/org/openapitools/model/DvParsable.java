@@ -32,11 +32,6 @@ public class DvParsable extends DvEncapsulated {
 
   private String formalism;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link DvParsable#DvParsable(String, String)}
-   */
-  @Deprecated
   public DvParsable() {
     super();
   }
@@ -45,7 +40,7 @@ public class DvParsable extends DvEncapsulated {
    * Constructor with only required parameters
    */
   public DvParsable(String value, String formalism) {
-    super();
+    super(type);
     this.value = value;
     this.formalism = formalism;
   }
@@ -110,16 +105,16 @@ public class DvParsable extends DvEncapsulated {
     this.formalism = formalism;
   }
 
+
   public DvParsable charset(CodePhrase charset) {
-    super.setCharset(charset);
+    super.charset(charset);
     return this;
   }
 
   public DvParsable language(CodePhrase language) {
-    super.setLanguage(language);
+    super.language(language);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

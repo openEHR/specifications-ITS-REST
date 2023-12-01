@@ -26,9 +26,9 @@ class Contribution {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Contribution &&
-     other.uid == uid &&
-     other.versions == versions &&
-     other.audit == audit;
+    other.uid == uid &&
+    _deepEquality.equals(other.versions, versions) &&
+    other.audit == audit;
 
   @override
   int get hashCode =>

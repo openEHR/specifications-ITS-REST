@@ -14,13 +14,13 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import org.openapitools.client.model.DvCodedText;
 import org.openapitools.client.model.DvIntervalOfDateTime;
 import org.openapitools.client.model.DvText;
@@ -46,7 +46,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openapitools.client.JSON;
@@ -76,7 +75,6 @@ public class Participation {
   }
 
   public Participation function(DvText function) {
-    
     this.function = function;
     return this;
   }
@@ -90,14 +88,12 @@ public class Participation {
     return function;
   }
 
-
   public void setFunction(DvText function) {
     this.function = function;
   }
 
 
   public Participation mode(DvCodedText mode) {
-    
     this.mode = mode;
     return this;
   }
@@ -111,14 +107,12 @@ public class Participation {
     return mode;
   }
 
-
   public void setMode(DvCodedText mode) {
     this.mode = mode;
   }
 
 
   public Participation performer(PartyProxy performer) {
-    
     this.performer = performer;
     return this;
   }
@@ -132,14 +126,12 @@ public class Participation {
     return performer;
   }
 
-
   public void setPerformer(PartyProxy performer) {
     this.performer = performer;
   }
 
 
   public Participation time(DvIntervalOfDateTime time) {
-    
     this.time = time;
     return this;
   }
@@ -152,7 +144,6 @@ public class Participation {
   public DvIntervalOfDateTime getTime() {
     return time;
   }
-
 
   public void setTime(DvIntervalOfDateTime time) {
     this.time = time;
@@ -222,43 +213,44 @@ public class Participation {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to Participation
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to Participation
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!Participation.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Participation.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Participation is not found in the empty JSON string", Participation.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!Participation.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Participation` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Participation` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : Participation.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `function`
-      DvText.validateJsonObject(jsonObj.getAsJsonObject("function"));
+      DvText.validateJsonElement(jsonObj.get("function"));
       // validate the optional field `mode`
       if (jsonObj.get("mode") != null && !jsonObj.get("mode").isJsonNull()) {
-        DvCodedText.validateJsonObject(jsonObj.getAsJsonObject("mode"));
+        DvCodedText.validateJsonElement(jsonObj.get("mode"));
       }
       // validate the required field `performer`
-      PartyProxy.validateJsonObject(jsonObj.getAsJsonObject("performer"));
+      PartyProxy.validateJsonElement(jsonObj.get("performer"));
       // validate the optional field `time`
       if (jsonObj.get("time") != null && !jsonObj.get("time").isJsonNull()) {
-        DvIntervalOfDateTime.validateJsonObject(jsonObj.getAsJsonObject("time"));
+        DvIntervalOfDateTime.validateJsonElement(jsonObj.get("time"));
       }
   }
 
@@ -282,9 +274,9 @@ public class Participation {
 
            @Override
            public Participation read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

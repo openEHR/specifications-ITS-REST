@@ -8,5 +8,5 @@ import org.openapitools.model.Locatable;
 @Canonical
 class DataStructure {
     
-    String type = "DATE_STRUCTURE"
+    String type = "DATA_STRUCTURE"
 }

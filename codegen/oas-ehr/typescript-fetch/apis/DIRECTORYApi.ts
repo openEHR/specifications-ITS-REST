@@ -16,11 +16,11 @@
 import * as runtime from '../runtime';
 import type {
   Folder,
-} from '../models';
+} from '../models/index';
 import {
     FolderFromJSON,
     FolderToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface DirectoryCreateRequest {
     ehr_id: string;

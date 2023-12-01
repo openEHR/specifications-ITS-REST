@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DvIdentifier type satisfies the MappedNullable interface at compile time
@@ -20,11 +21,14 @@ var _ MappedNullable = &DvIdentifier{}
 
 // DvIdentifier Type for representing identifiers of real-world entities. Typical identifiers include drivers licence number, social security number, veterans affairs number, prescription id, order id, and so on.  DV_IDENTIFIER is used to represent any identifier of a real thing, issued by some authority or agency. 
 type DvIdentifier struct {
+	DataValue
 	Issuer *string `json:"issuer,omitempty"`
 	Assigner *string `json:"assigner,omitempty"`
 	Id string `json:"id"`
 	Type *string `json:"type,omitempty"`
 }
+
+type _DvIdentifier DvIdentifier
 
 // NewDvIdentifier instantiates a new DvIdentifier object
 // This constructor will assign default values to properties that have it defined,
@@ -173,6 +177,14 @@ func (o DvIdentifier) MarshalJSON() ([]byte, error) {
 
 func (o DvIdentifier) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedDataValue, errDataValue := json.Marshal(o.DataValue)
+	if errDataValue != nil {
+		return map[string]interface{}{}, errDataValue
+	}
+	errDataValue = json.Unmarshal([]byte(serializedDataValue), &toSerialize)
+	if errDataValue != nil {
+		return map[string]interface{}{}, errDataValue
+	}
 	if !IsNil(o.Issuer) {
 		toSerialize["issuer"] = o.Issuer
 	}
@@ -184,6 +196,41 @@ func (o DvIdentifier) ToMap() (map[string]interface{}, error) {
 		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
+}
+
+func (o *DvIdentifier) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDvIdentifier := _DvIdentifier{}
+
+	err = json.Unmarshal(bytes, &varDvIdentifier)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DvIdentifier(varDvIdentifier)
+
+	return err
 }
 
 type NullableDvIdentifier struct {

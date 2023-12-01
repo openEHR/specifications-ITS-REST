@@ -35,10 +35,10 @@ class Event {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Event &&
-     other.type == type &&
-     other.time == time &&
-     other.state == state &&
-     other.data == data;
+    other.type == type &&
+    other.time == time &&
+    other.state == state &&
+    other.data == data;
 
   @override
   int get hashCode =>

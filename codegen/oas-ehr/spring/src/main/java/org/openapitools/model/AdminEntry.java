@@ -32,11 +32,6 @@ public class AdminEntry extends AbstractEntry {
 
   private ItemStructure data;
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link AdminEntry#AdminEntry(ItemStructure)}
-   */
-  @Deprecated
   public AdminEntry() {
     super();
   }
@@ -45,7 +40,7 @@ public class AdminEntry extends AbstractEntry {
    * Constructor with only required parameters
    */
   public AdminEntry(ItemStructure data) {
-    super(language, encoding, subject, name, archetypeNodeId);
+    super(language, encoding, subject);
     this.data = data;
   }
 
@@ -89,18 +84,19 @@ public class AdminEntry extends AbstractEntry {
     this.data = data;
   }
 
+
   public AdminEntry language(CodePhrase language) {
-    super.setLanguage(language);
+    super.language(language);
     return this;
   }
 
   public AdminEntry encoding(CodePhrase encoding) {
-    super.setEncoding(encoding);
+    super.encoding(encoding);
     return this;
   }
 
   public AdminEntry otherParticipations(List<@Valid Participation> otherParticipations) {
-    super.setOtherParticipations(otherParticipations);
+    super.otherParticipations(otherParticipations);
     return this;
   }
 
@@ -110,37 +106,37 @@ public class AdminEntry extends AbstractEntry {
   }
 
   public AdminEntry workflowId(ObjectRef workflowId) {
-    super.setWorkflowId(workflowId);
+    super.workflowId(workflowId);
     return this;
   }
 
   public AdminEntry subject(PartyProxy subject) {
-    super.setSubject(subject);
+    super.subject(subject);
     return this;
   }
 
   public AdminEntry provider(PartyProxy provider) {
-    super.setProvider(provider);
+    super.provider(provider);
     return this;
   }
 
   public AdminEntry name(DvText name) {
-    super.setName(name);
+    super.name(name);
     return this;
   }
 
   public AdminEntry archetypeNodeId(String archetypeNodeId) {
-    super.setArchetypeNodeId(archetypeNodeId);
+    super.archetypeNodeId(archetypeNodeId);
     return this;
   }
 
   public AdminEntry uid(UidBasedId uid) {
-    super.setUid(uid);
+    super.uid(uid);
     return this;
   }
 
   public AdminEntry links(List<@Valid Link> links) {
-    super.setLinks(links);
+    super.links(links);
     return this;
   }
 
@@ -150,15 +146,14 @@ public class AdminEntry extends AbstractEntry {
   }
 
   public AdminEntry archetypeDetails(Archetyped archetypeDetails) {
-    super.setArchetypeDetails(archetypeDetails);
+    super.archetypeDetails(archetypeDetails);
     return this;
   }
 
   public AdminEntry feederAudit(FeederAudit feederAudit) {
-    super.setFeederAudit(feederAudit);
+    super.feederAudit(feederAudit);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

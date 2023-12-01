@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CodePhrase type satisfies the MappedNullable interface at compile time
@@ -24,6 +25,8 @@ type CodePhrase struct {
 	CodeString string `json:"code_string"`
 	PreferredTerm *string `json:"preferred_term,omitempty"`
 }
+
+type _CodePhrase CodePhrase
 
 // NewCodePhrase instantiates a new CodePhrase object
 // This constructor will assign default values to properties that have it defined,
@@ -140,6 +143,42 @@ func (o CodePhrase) ToMap() (map[string]interface{}, error) {
 		toSerialize["preferred_term"] = o.PreferredTerm
 	}
 	return toSerialize, nil
+}
+
+func (o *CodePhrase) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"terminology_id",
+		"code_string",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCodePhrase := _CodePhrase{}
+
+	err = json.Unmarshal(bytes, &varCodePhrase)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CodePhrase(varCodePhrase)
+
+	return err
 }
 
 type NullableCodePhrase struct {

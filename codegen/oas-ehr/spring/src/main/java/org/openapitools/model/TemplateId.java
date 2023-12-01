@@ -28,11 +28,6 @@ public class TemplateId extends ObjectId {
 
   private String type = "TEMPLATE_ID";
 
-  /**
-   * Default constructor
-   * @deprecated Use {@link TemplateId#TemplateId(String)}
-   */
-  @Deprecated
   public TemplateId() {
     super();
   }
@@ -64,11 +59,11 @@ public class TemplateId extends ObjectId {
     this.type = type;
   }
 
+
   public TemplateId value(String value) {
-    super.setValue(value);
+    super.value(value);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

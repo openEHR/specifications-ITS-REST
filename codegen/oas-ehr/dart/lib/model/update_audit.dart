@@ -35,10 +35,10 @@ class UpdateAudit {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UpdateAudit &&
-     other.type == type &&
-     other.changeType == changeType &&
-     other.description == description &&
-     other.committer == committer;
+    other.type == type &&
+    other.changeType == changeType &&
+    other.description == description &&
+    other.committer == committer;
 
   @override
   int get hashCode =>

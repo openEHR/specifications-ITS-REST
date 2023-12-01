@@ -18,6 +18,9 @@ inherit
 
 
   UID_BASED_ID
+      rename
+          output as out_UidBasedId
+      end
 
 feature --Access
 
@@ -31,7 +34,7 @@ feature -- Change Element
           -- <Precursor>
       do
         create Result.make_empty
-        Result.append(out_uidbasedid)
+        Result.append(out_UidBasedId)
         Result.append("%Nclass OBJECT_VERSION_ID%N")
       end
 end

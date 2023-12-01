@@ -29,8 +29,8 @@ class ObjectVersionId {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ObjectVersionId &&
-     other.value == value &&
-     other.type == type;
+    other.value == value &&
+    other.type == type;
 
   @override
   int get hashCode =>

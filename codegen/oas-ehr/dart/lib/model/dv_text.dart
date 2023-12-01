@@ -62,13 +62,13 @@ class DvText {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvText &&
-     other.type == type &&
-     other.value == value &&
-     other.hyperlink == hyperlink &&
-     other.formatting == formatting &&
-     other.mappings == mappings &&
-     other.language == language &&
-     other.encoding == encoding;
+    other.type == type &&
+    other.value == value &&
+    other.hyperlink == hyperlink &&
+    other.formatting == formatting &&
+    _deepEquality.equals(other.mappings, mappings) &&
+    other.language == language &&
+    other.encoding == encoding;
 
   @override
   int get hashCode =>

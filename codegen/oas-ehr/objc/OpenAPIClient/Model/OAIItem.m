@@ -21,11 +21,11 @@
     }
 
     Class class = nil;
-    if ([discriminatedClassName isEqualToString:@"ITEM"]) {
+    if ([discriminatedClassName isEqualToString:@"CLUSTER"]) {
         class = NSClassFromString(@"OAIClstr");
     }
     else
-    if ([discriminatedClassName isEqualToString:@"ITEM"]) {
+    if ([discriminatedClassName isEqualToString:@"ELEMENT"]) {
         class = NSClassFromString(@"OAIElement");
     }
     else

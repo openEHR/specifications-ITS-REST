@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Composition type satisfies the MappedNullable interface at compile time
@@ -20,6 +21,7 @@ var _ MappedNullable = &Composition{}
 
 // Composition A COMPOSITION resource
 type Composition struct {
+	Versionable
 	Type *string `json:"_type,omitempty"`
 	Language CodePhrase `json:"language"`
 	Territory CodePhrase `json:"territory"`
@@ -28,6 +30,8 @@ type Composition struct {
 	Composer PartyProxy `json:"composer"`
 	Content []ContentItem `json:"content"`
 }
+
+type _Composition Composition
 
 // NewComposition instantiates a new Composition object
 // This constructor will assign default values to properties that have it defined,
@@ -236,6 +240,14 @@ func (o Composition) MarshalJSON() ([]byte, error) {
 
 func (o Composition) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedVersionable, errVersionable := json.Marshal(o.Versionable)
+	if errVersionable != nil {
+		return map[string]interface{}{}, errVersionable
+	}
+	errVersionable = json.Unmarshal([]byte(serializedVersionable), &toSerialize)
+	if errVersionable != nil {
+		return map[string]interface{}{}, errVersionable
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}
@@ -246,6 +258,46 @@ func (o Composition) ToMap() (map[string]interface{}, error) {
 	toSerialize["composer"] = o.Composer
 	toSerialize["content"] = o.Content
 	return toSerialize, nil
+}
+
+func (o *Composition) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"language",
+		"territory",
+		"category",
+		"context",
+		"composer",
+		"content",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varComposition := _Composition{}
+
+	err = json.Unmarshal(bytes, &varComposition)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Composition(varComposition)
+
+	return err
 }
 
 type NullableComposition struct {

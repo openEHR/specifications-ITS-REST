@@ -49,11 +49,11 @@ public class PartySelf extends PartyProxy {
     this.type = type;
   }
 
+
   public PartySelf externalRef(PartyRef externalRef) {
-    super.setExternalRef(externalRef);
+    super.externalRef(externalRef);
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -20,6 +20,7 @@ var _ MappedNullable = &Folder{}
 
 // Folder A FOLDER resource
 type Folder struct {
+	Locatable
 	Type *string `json:"_type,omitempty"`
 	Items []ObjectRef `json:"items,omitempty"`
 	Folders []Folder `json:"folders,omitempty"`
@@ -185,6 +186,14 @@ func (o Folder) MarshalJSON() ([]byte, error) {
 
 func (o Folder) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedLocatable, errLocatable := json.Marshal(o.Locatable)
+	if errLocatable != nil {
+		return map[string]interface{}{}, errLocatable
+	}
+	errLocatable = json.Unmarshal([]byte(serializedLocatable), &toSerialize)
+	if errLocatable != nil {
+		return map[string]interface{}{}, errLocatable
+	}
 	if !IsNil(o.Type) {
 		toSerialize["_type"] = o.Type
 	}

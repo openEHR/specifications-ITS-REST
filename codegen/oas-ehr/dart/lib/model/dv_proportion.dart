@@ -38,11 +38,11 @@ class DvProportion {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DvProportion &&
-     other.type == type &&
-     other.numerator == numerator &&
-     other.denominator == denominator &&
-     other.semanticType == semanticType &&
-     other.precision == precision;
+    other.type == type &&
+    other.numerator == numerator &&
+    other.denominator == denominator &&
+    other.semanticType == semanticType &&
+    other.precision == precision;
 
   @override
   int get hashCode =>
@@ -90,12 +90,8 @@ class DvProportion {
 
       return DvProportion(
         type: mapValueOfType<String>(json, r'_type') ?? 'DV_PROPORTION',
-        numerator: json[r'numerator'] == null
-            ? null
-            : num.parse(json[r'numerator'].toString()),
-        denominator: json[r'denominator'] == null
-            ? null
-            : num.parse(json[r'denominator'].toString()),
+        numerator: num.parse('${json[r'numerator']}'),
+        denominator: num.parse('${json[r'denominator']}'),
         semanticType: mapValueOfType<int>(json, r'semantic_type')!,
         precision: mapValueOfType<int>(json, r'precision'),
       );
