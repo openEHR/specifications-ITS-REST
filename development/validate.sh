@@ -14,7 +14,7 @@ function validate() {
 
 
 case "${1:-}" in
-		overview|ehr|query|definition)
+		overview|ehr|query|definition|resources)
 		  validate "$@"
       ;;
 		all)
@@ -22,6 +22,7 @@ case "${1:-}" in
 		  validate ehr
 		  validate query
 		  validate definition
+		  validate resources
       ;;
     data)
       cd ..

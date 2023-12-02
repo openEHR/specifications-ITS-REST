@@ -113,41 +113,6 @@ tags:
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
       Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
-  - name: EHR_schema
-    x-displayName: EHR
-    description:
-      $ref: ./tags/EHR_schema.md
-  - name: EHR_STATUS_schema
-    x-displayName: EHR_STATUS
-    description:
-      $ref: ./tags/EHR_STATUS_schema.md
-  - name: COMPOSITION_schema
-    x-displayName: COMPOSITION
-    description:
-      $ref: ./tags/COMPOSITION_schema.md
-  - name: DIRECTORY_schema
-    x-displayName: DIRECTORY
-    description:
-      $ref: ./tags/DIRECTORY_schema.md
-  - name: CONTRIBUTION_schema
-    x-displayName: CONTRIBUTION
-    description:
-      $ref: ./tags/CONTRIBUTION_schema.md
-x-tagGroups:
-  - name: Resource endpoints
-    tags:
-      - EHR
-      - EHR_STATUS
-      - COMPOSITION
-      - DIRECTORY
-      - CONTRIBUTION
-  - name: Resource schemas
-    tags:
-      - EHR_schema
-      - EHR_STATUS_schema
-      - COMPOSITION_schema
-      - DIRECTORY_schema
-      - CONTRIBUTION_schema
 components:
   schemas:
     UAbstractItemStructure:

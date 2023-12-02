@@ -76,26 +76,9 @@ tags:
       Stored queries are identified by their [qualified name and version](query.html#tag/Qualified_query_name).
       They can be executed using the [query endpoint](query.html#tag/Query/operation/query_execute_stored_query_body).
 
-  - name: TemplateList_schema
-    x-displayName: Template list
-    description:
-      $ref: ./tags/TemplateList_schema.md
-  - name: Template_schema
-    x-displayName: Template
-    description:
-      $ref: ./tags/Template_schema.md
-  - name: StoredQuery_schema
-    x-displayName: Stored Query
-    description:
-      $ref: ./tags/StoredQuery_schema.md
 x-tagGroups:
   - name: Resource endpoints
     tags:
       - ADL1.4
       - ADL2
       - Query
-  - name: Resource schema
-    tags:
-      - TemplateList_schema
-      - Template_schema
-      - StoredQuery_schema

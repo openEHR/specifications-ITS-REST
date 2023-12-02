@@ -248,57 +248,6 @@ tags:
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
       Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
-  - name: EHR_schema
-    x-displayName: EHR
-    description: |
-      This resource is formally specified in Reference Model as the [EHR](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class) class.
-
-      <SchemaDefinition schemaRef="#/components/schemas/Ehr" />
-  - name: EHR_STATUS_schema
-    x-displayName: EHR_STATUS
-    description: |
-      The following resources are formally specified in the Reference Model as [EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_status_class) and [VERSIONED_EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_ehr_status_class) classes.
-      <div class="mb-5"></div>
-
-      The `EHR_STATUS` resource:
-      <SchemaDefinition schemaRef="#/components/schemas/EhrStatus" />
-
-      The `VERSIONED_EHR_STATUS` resource:
-      <SchemaDefinition schemaRef="#/components/schemas/VersionedEhrStatus" />
-  - name: COMPOSITION_schema
-    x-displayName: COMPOSITION
-    description: |
-      The following resources are formally specified in the Reference Model as [COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class) and [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class) classes.
-      <div class="mb-5"></div>
-
-      The `COMPOSITION` resource:
-      <SchemaDefinition schemaRef="#/components/schemas/Composition" />
-
-      The abstract `CONTENT_ITEM` class, used in `COMPOSITION`:
-      <SchemaDefinition schemaRef="#/components/schemas/ContentItem" />
-
-      The abstract `ITEM_STRUCTURE` class, used in `CONTENT_ITEM`:
-      <SchemaDefinition schemaRef="#/components/schemas/ItemStructure" />
-
-      The `VERSIONED_COMPOSITION` resource:
-      <SchemaDefinition schemaRef="#/components/schemas/VersionedComposition" />
-  - name: DIRECTORY_schema
-    x-displayName: DIRECTORY
-    description: |
-      This resource is formally specified in Reference Model in the [directory](https://specifications.openehr.org/releases/RM/latest/ehr.html#_directory) section, using [FOLDER](https://specifications.openehr.org/releases/RM/latest/common.html#_folder_class) class.
-
-      <SchemaDefinition schemaRef="#/components/schemas/Folder" />
-  - name: CONTRIBUTION_schema
-    x-displayName: CONTRIBUTION
-    description: |
-      The following resources are formally specified in the Reference Model as the [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) class.
-      <div class="mb-5"></div>
-
-      A new `CONTRIBUTION` to be committed:
-      <SchemaDefinition schemaRef="#/components/schemas/NewContribution" />
-
-      A retrieved `CONTRIBUTION`:
-      <SchemaDefinition schemaRef="#/components/schemas/Contribution" />
 paths:
   /ehr:
     post:
@@ -3472,18 +3421,3 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/contribution/0826851c-c4c2-4d61-92b9-410fb8275ff0
-x-tagGroups:
-  - name: Resource endpoints
-    tags:
-      - EHR
-      - EHR_STATUS
-      - COMPOSITION
-      - DIRECTORY
-      - CONTRIBUTION
-  - name: Resource schemas
-    tags:
-      - EHR_schema
-      - EHR_STATUS_schema
-      - COMPOSITION_schema
-      - DIRECTORY_schema
-      - CONTRIBUTION_schema

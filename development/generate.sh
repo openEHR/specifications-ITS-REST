@@ -71,7 +71,7 @@ case "${1:-}" in
       --additional-properties=taggedUnions=true \
       --additional-properties=enumPropertyNaming=original
     ;;
-  overview | ehr | query | definition)
+  overview | ehr | query | definition | resources)
     swagger "$@"
     ;;
   all)
@@ -79,8 +79,9 @@ case "${1:-}" in
     swagger ehr
     swagger query
     swagger definition
+    swagger resources
     ;;
   "")
-    echo "Usage: generate.sh [overview|ehr|query|definition]"
+    echo "Usage: generate.sh [overview|ehr|query|definition|resources]"
     ;;
   esac

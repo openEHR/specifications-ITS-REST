@@ -1,0 +1,116 @@
+openapi: 3.0.3
+info:
+  title: Resources
+  version: latest
+  x-status: STABLE
+  x-spec: resources
+  contact:
+    name: Specifications Editorial Committee openEHR
+    url: 'https://specifications.openehr.org/'
+    email: info@openehr.org
+  license:
+    name: Creative Commons Attribution-NoDerivs 3.0 Unported
+    url: 'https://creativecommons.org/licenses/by-nd/3.0/'
+  description:
+    $ref: ./docs/resources/Intro.md
+servers: []
+security: []
+paths: {}
+tags:
+  - name: EHR_schema
+    x-displayName: EHR
+    description:
+      $ref: ./tags/EHR_schema.md
+  - name: EHR_STATUS_schema
+    x-displayName: EHR_STATUS
+    description:
+      $ref: ./tags/EHR_STATUS_schema.md
+  - name: COMPOSITION_schema
+    x-displayName: COMPOSITION
+    description:
+      $ref: ./tags/COMPOSITION_schema.md
+  - name: DIRECTORY_schema
+    x-displayName: DIRECTORY
+    description:
+      $ref: ./tags/DIRECTORY_schema.md
+  - name: CONTRIBUTION_schema
+    x-displayName: CONTRIBUTION
+    description:
+      $ref: ./tags/CONTRIBUTION_schema.md
+  - name: Query_schema
+    x-displayName: Query Execute
+    description:
+      $ref: ./tags/Query_schema.md
+  - name: RESULT_SET_schema
+    x-displayName: RESULT_SET
+    description:
+      $ref: ./tags/RESULT_SET_schema.md
+  - name: TemplateList_schema
+    x-displayName: Template list
+    description:
+      $ref: ./tags/TemplateList_schema.md
+  - name: Template_schema
+    x-displayName: Template
+    description:
+      $ref: ./tags/Template_schema.md
+  - name: StoredQuery_schema
+    x-displayName: Stored Query
+    description:
+      $ref: ./tags/StoredQuery_schema.md
+x-tagGroups:
+  - name: EHR Resources
+    tags:
+      - EHR_schema
+      - EHR_STATUS_schema
+      - COMPOSITION_schema
+      - DIRECTORY_schema
+      - CONTRIBUTION_schema
+  - name: Query Resources
+    tags:
+      - Query_schema
+      - RESULT_SET_schema
+  - name: Definition Resources
+    tags:
+      - TemplateList_schema
+      - Template_schema
+      - StoredQuery_schema
+components:
+  schemas:
+    UAbstractItemStructure:
+      $ref: ./schemas/data_structures/UAbstractItemStructure.yaml
+    UAbstractContentItem:
+      $ref: ./schemas/ehr/UAbstractContentItem.yaml
+    Ehr:
+      $ref: ./schemas/ehr/Ehr.yaml
+    EhrStatus:
+      $ref: ./schemas/ehr/EhrStatus.yaml
+    VersionedEhrStatus:
+      $ref: ./schemas/ehr/VersionedEhrStatus.yaml
+    Composition:
+      $ref: ./schemas/ehr/Composition.yaml
+    VersionedComposition:
+      $ref: ./schemas/ehr/VersionedComposition.yaml
+    Folder:
+      $ref: ./schemas/ehr/Folder.yaml
+    Contribution:
+      $ref: ./schemas/common/Contribution.yaml
+    NewContribution:
+      $ref: ./schemas/common/NewContribution.yaml
+    AdhocQueryExecute:
+      $ref: ./schemas/query/AdhocQueryExecute.yaml
+    Query:
+      $ref: ./schemas/query/Query.yaml
+    ResultSet:
+      $ref: ./schemas/query/ResultSet.yaml
+    TemplateList:
+      $ref: ./schemas/definition/TemplateList.yaml
+    TemplateMetadata:
+      $ref: ./schemas/definition/TemplateMetadata.yaml
+    QueryList:
+      $ref: ./schemas/definition/QueryList.yaml
+    OperationalTemplate:
+      $ref: ./schemas/aom/OperationalTemplate.yaml
+    OperationalTemplateV2:
+      $ref: ./schemas/aom/OperationalTemplateV2.yaml
+    WebTemplate:
+      $ref: ./schemas/web_template/WebTemplate.yaml
