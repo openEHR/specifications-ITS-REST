@@ -468,7 +468,7 @@ paths:
         - $ref: '#/components/parameters/version_at_time'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION_at_time'
+          $ref: '#/components/responses/200_VERSION_of_EHR_STATUS_at_time'
         '400':
           $ref: '#/components/responses/400_invalid_version_at_time'
         '404':
@@ -486,7 +486,7 @@ paths:
         - $ref: '#/components/parameters/version_uid'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION'
+          $ref: '#/components/responses/200_VERSION_of_EHR_STATUS_by_id'
         '404':
           $ref: '#/components/responses/404_unknown_ehr_id_or_version_uid'
   /ehr/{ehr_id}/composition:
@@ -666,7 +666,7 @@ paths:
         - $ref: '#/components/parameters/version_uid_COMPOSITION'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION'
+          $ref: '#/components/responses/200_VERSION_of_COMPOSITION_by_id'
         '404':
           $ref: '#/components/responses/404_unknown_ehr_id_or_versioned_object_uid_or_version_uid'
   /ehr/{ehr_id}/directory:
@@ -837,6 +837,44 @@ paths:
           $ref: '#/components/responses/404_CONTRIBUTION'
 components:
   schemas:
+    VersionOfComposition:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRef'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Composition'
+      description: A VERSION resource
+    VersionOfEhrStatus:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRef'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/EhrStatus'
+      description: A VERSION resource
     ObjectId:
       title: OBJECT_ID
       required:
@@ -3106,7 +3144,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/RevisionHistory'
-    200_VERSION_at_time:
+    200_VERSION_of_EHR_STATUS_at_time:
       description: |
         `200 OK` is returned when the requested VERSION is successfully retrieved.
       headers:
@@ -3117,14 +3155,14 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Version'
-    200_VERSION:
+            $ref: '#/components/schemas/VersionOfEhrStatus'
+    200_VERSION_of_EHR_STATUS_by_id:
       description: |
         `200 OK` is returned when the requested VERSION is successfully retrieved.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Version'
+            $ref: '#/components/schemas/VersionOfEhrStatus'
     201_COMPOSITION:
       description: |
         `201 Created` is returned when the COMPOSITION was created. 
@@ -3228,10 +3266,17 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Version'
+            $ref: '#/components/schemas/VersionOfComposition'
     404_unknown_ehr_id_or_versioned_object_uid_or_no_version_at_time:
       description: |
         `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when `versioned_object_uid` does not exist, or when a version of the resource does not exist at the specified `version_at_time`.
+    200_VERSION_of_COMPOSITION_by_id:
+      description: |
+        `200 OK` is returned when the requested VERSION is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/VersionOfComposition'
     404_unknown_ehr_id_or_versioned_object_uid_or_version_uid:
       description: |
         `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when `versioned_object_uid` does not exist, or when a VERSION with `version_uid` does not exist.

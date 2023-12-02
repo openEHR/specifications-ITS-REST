@@ -468,7 +468,7 @@ paths:
         - $ref: '#/components/parameters/version_at_time'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION_at_time'
+          $ref: '#/components/responses/200_VERSION_of_EHR_STATUS_at_time'
         '400':
           $ref: '#/components/responses/400_invalid_version_at_time'
         '404':
@@ -486,7 +486,7 @@ paths:
         - $ref: '#/components/parameters/version_uid'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION'
+          $ref: '#/components/responses/200_VERSION_of_EHR_STATUS_by_id'
         '404':
           $ref: '#/components/responses/404_unknown_ehr_id_or_version_uid'
   /ehr/{ehr_id}/composition:
@@ -666,7 +666,7 @@ paths:
         - $ref: '#/components/parameters/version_uid_COMPOSITION'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION'
+          $ref: '#/components/responses/200_VERSION_of_COMPOSITION_by_id'
         '404':
           $ref: '#/components/responses/404_unknown_ehr_id_or_versioned_object_uid_or_version_uid'
   /ehr/{ehr_id}/directory:
@@ -843,6 +843,44 @@ components:
     UAbstractContentItem:
       title: CONTENT_ITEM
       type: object
+    VersionOfComposition:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRef'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Composition'
+      description: A VERSION resource
+    VersionOfEhrStatus:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRef'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/EhrStatus'
+      description: A VERSION resource
     HierObjectId:
       title: HIER_OBJECT_ID
       required:
@@ -3035,7 +3073,7 @@ components:
           items:
             $ref: '#/components/schemas/Attestation'
       x-discriminator-value: ORIGINAL_VERSION
-    UMOriginalVersion:
+    UMOriginalVersionOfEhrStatus:
       title: ORIGINAL_VERSION
       required:
         - contribution
@@ -3057,7 +3095,7 @@ components:
         commit_audit:
           $ref: '#/components/schemas/AuditDetails'
         data:
-          $ref: '#/components/schemas/UVersionable'
+          $ref: '#/components/schemas/EhrStatus'
         uid:
           $ref: '#/components/schemas/ObjectVersionId'
         preceding_version_uid:
@@ -3073,7 +3111,7 @@ components:
           items:
             $ref: '#/components/schemas/Attestation'
       x-discriminator-value: ORIGINAL_VERSION
-    UMImportedVersion:
+    UMImportedVersionOfEhrStatus:
       title: IMPORTED_VERSION
       required:
         - contribution
@@ -3094,20 +3132,20 @@ components:
         commit_audit:
           $ref: '#/components/schemas/AuditDetails'
         data:
-          $ref: '#/components/schemas/UVersionable'
+          $ref: '#/components/schemas/EhrStatus'
         item:
-          $ref: '#/components/schemas/OriginalVersion'
+          $ref: '#/components/schemas/UMOriginalVersionOfEhrStatus'
       x-discriminator-value: IMPORTED_VERSION
-    UVersion:
+    UVersionOfEhrStatus:
       title: VERSION
       oneOf:
-        - $ref: '#/components/schemas/UMOriginalVersion'
-        - $ref: '#/components/schemas/UMImportedVersion'
+        - $ref: '#/components/schemas/UMOriginalVersionOfEhrStatus'
+        - $ref: '#/components/schemas/UMImportedVersionOfEhrStatus'
       discriminator:
         propertyName: _type
         mapping:
-          ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersion'
-          IMPORTED_VERSION: '#/components/schemas/UMImportedVersion'
+          ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersionOfEhrStatus'
+          IMPORTED_VERSION: '#/components/schemas/UMImportedVersionOfEhrStatus'
     Error:
       title: Error
       required:
@@ -3157,6 +3195,79 @@ components:
         - uid
         - owner_id
         - time_created
+    UMOriginalVersionOfComposition:
+      title: ORIGINAL_VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+        - uid
+        - lifecycle_state
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - ORIGINAL_VERSION
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRef'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Composition'
+        uid:
+          $ref: '#/components/schemas/ObjectVersionId'
+        preceding_version_uid:
+          $ref: '#/components/schemas/ObjectVersionId'
+        other_input_version_uids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectVersionId'
+        lifecycle_state:
+          $ref: '#/components/schemas/DvCodedText'
+        attestations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attestation'
+      x-discriminator-value: ORIGINAL_VERSION
+    UMImportedVersionOfComposition:
+      title: IMPORTED_VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+        - item
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - IMPORTED_VERSION
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRef'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Composition'
+        item:
+          $ref: '#/components/schemas/UMOriginalVersionOfComposition'
+      x-discriminator-value: IMPORTED_VERSION
+    UVersionOfComposition:
+      title: VERSION
+      oneOf:
+        - $ref: '#/components/schemas/UMOriginalVersionOfComposition'
+        - $ref: '#/components/schemas/UMImportedVersionOfComposition'
+      discriminator:
+        propertyName: _type
+        mapping:
+          ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersionOfComposition'
+          IMPORTED_VERSION: '#/components/schemas/UMImportedVersionOfComposition'
     Folder:
       title: FOLDER
       type: object
@@ -3632,7 +3743,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/RevisionHistory'
-    200_VERSION_at_time:
+    200_VERSION_of_EHR_STATUS_at_time:
       description: |
         `200 OK` is returned when the requested VERSION is successfully retrieved.
       headers:
@@ -3643,14 +3754,14 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/UVersion'
-    200_VERSION:
+            $ref: '#/components/schemas/UVersionOfEhrStatus'
+    200_VERSION_of_EHR_STATUS_by_id:
       description: |
         `200 OK` is returned when the requested VERSION is successfully retrieved.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/UVersion'
+            $ref: '#/components/schemas/UVersionOfEhrStatus'
     201_COMPOSITION:
       description: |
         `201 Created` is returned when the COMPOSITION was created. 
@@ -3754,10 +3865,17 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/UVersion'
+            $ref: '#/components/schemas/UVersionOfComposition'
     404_unknown_ehr_id_or_versioned_object_uid_or_no_version_at_time:
       description: |
         `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when `versioned_object_uid` does not exist, or when a version of the resource does not exist at the specified `version_at_time`.
+    200_VERSION_of_COMPOSITION_by_id:
+      description: |
+        `200 OK` is returned when the requested VERSION is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UVersionOfComposition'
     404_unknown_ehr_id_or_versioned_object_uid_or_version_uid:
       description: |
         `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when `versioned_object_uid` does not exist, or when a VERSION with `version_uid` does not exist.

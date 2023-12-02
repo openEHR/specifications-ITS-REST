@@ -3,4 +3,4 @@ description: |
 content:
   application/json:
     schema:
-      $ref: ../schemas/common/UVersion.yaml
+      $ref: ../schemas/ehr/UVersionOfComposition.yaml
