@@ -2,6 +2,8 @@ title: PARTY
 type: object
 allOf:
   - $ref: ../common/Versionable.yaml
+required:
+  - identities
 properties:
   details:
     $ref: ../data_structures/UItemStructure.yaml

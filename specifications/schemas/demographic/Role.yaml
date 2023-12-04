@@ -3,8 +3,11 @@ type: object
 allOf:
   - $ref: ../demographic/Party.yaml
 required:
-  - languages
+  - performer
 properties:
+  _type:
+    type: string
+    default: ROLE
   time_validity:
     $ref: ../data_types/DvIntervalOfDate.yaml
   performer:
@@ -13,3 +16,4 @@ properties:
     type: array
     items:
       $ref: ../demographic/Capability.yaml
+x-discriminator-value: ROLE

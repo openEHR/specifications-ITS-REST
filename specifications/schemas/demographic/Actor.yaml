@@ -2,8 +2,6 @@ title: ACTOR
 type: object
 allOf:
   - $ref: ../demographic/Party.yaml
-required:
-  - languages
 properties:
   languages:
     type: array

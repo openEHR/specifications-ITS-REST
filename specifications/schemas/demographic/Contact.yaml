@@ -2,6 +2,8 @@ title: CONTACT
 type: object
 allOf:
   - $ref: ../common/Locatable.yaml
+required:
+  - addresses
 properties:
   time_validity:
     $ref: ../data_types/DvIntervalOfDate.yaml
