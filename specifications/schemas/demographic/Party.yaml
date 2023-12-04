@@ -15,3 +15,7 @@ properties:
       $ref: ../demographic/Contact.yaml
   details:
     $ref: ../data_structures/UItemStructure.yaml
+  relationships:
+    type: array
+    items:
+      $ref: ../demographic/PartyRelationship.yaml
