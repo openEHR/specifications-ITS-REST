@@ -1,0 +1,9 @@
+title: VERSION
+oneOf:
+  - $ref: ../demographic/UMOriginalVersionOfParty.yaml
+  - $ref: ../demographic/UMImportedVersionOfParty.yaml
+discriminator:
+  propertyName: _type
+  mapping:
+    ORIGINAL_VERSION: ../demographic/UMOriginalVersionOfParty.yaml
+    IMPORTED_VERSION: ../demographic/UMImportedVersionOfParty.yaml
