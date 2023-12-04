@@ -5,9 +5,9 @@ allOf:
 required:
   - addresses
 properties:
-  time_validity:
-    $ref: ../data_types/DvIntervalOfDate.yaml
   addresses:
     type: array
     items:
       $ref: ../demographic/Address.yaml
+  time_validity:
+    $ref: ../data_types/DvIntervalOfDate.yaml
