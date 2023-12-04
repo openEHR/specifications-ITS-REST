@@ -1,0 +1,14 @@
+operationId: versioned_composition_version_get_by_id
+summary: Get versioned PARTY version by id
+description: |
+  Retrieves a VERSION identified by `version_uid` of a VERSIONED_PARTY identified by `versioned_object_uid`.
+tags:
+  - PARTY
+parameters:
+  - $ref: ../parameters/path/versioned_object_uid_PARTY.yaml
+  - $ref: ../parameters/path/version_uid.yaml
+responses:
+  '200':
+    $ref: ../responses/200_VERSION_of_PARTY_by_id.yaml
+  '404':
+    $ref: ../responses/404.yaml
