@@ -14,17 +14,8 @@ info:
   description:
     $ref: ./docs/overview/Intro.md
 security: []
-servers:
-  - url: 'https://{baseUrl}/v1'
-    description: An example openEHR server URL.
-    variables:
-      baseUrl:
-        default: openEHRSys.example.com
-        description: The (example) server base URL prefix providing openEHR services. This may contain server name, port and base path prefix.
-paths:
-  '/':
-    options:
-      $ref: ./operations/options.yaml
+servers: []
+paths: {}
 tags:
   - name: Glossary_and_conventions
     x-displayName: Glossary and conventions
@@ -37,15 +28,4 @@ tags:
   - name: Resources
     description:
       $ref: ./docs/overview/Resources.md
-  - name: Options
-    description: Retrieving system options and conformance information.
-x-tagGroups:
-  - name: Docs
-    tags:
-      - Glossary_and_conventions
-      - Requests_and_responses
-      - Resources
-  - name: Endpoints
-    tags:
-      - Options
 
