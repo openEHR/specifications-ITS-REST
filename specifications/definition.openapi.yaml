@@ -12,7 +12,7 @@ info:
     name: Creative Commons Attribution-NoDerivs 3.0 Unported
     url: 'https://creativecommons.org/licenses/by-nd/3.0/'
   description:
-    $ref: ./docs/definition/Intro.md
+    $ref: ./docs/definition/Description.md
 security: []
 servers:
   - url: 'https://{baseUrl}/v1'
@@ -68,7 +68,6 @@ tags:
       See also [ADL2 Template specifications](https://specifications.openehr.org/releases/AM/latest/ADL2.html#_templates).
   - name: Query
     x-displayName: Stored Query
-    x-summary: |
     description: |
       Management of [stored (registered) queries](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_registered_queries) in the system.
       Actions upon resources of this group are also formally described in the [I_DEFINITION_QUERY](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_definition_query_interface) Abstract Service Model interface.

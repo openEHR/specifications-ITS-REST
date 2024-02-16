@@ -12,15 +12,28 @@ info:
     name: Creative Commons Attribution-NoDerivs 3.0 Unported
     url: 'https://creativecommons.org/licenses/by-nd/3.0/'
   description:
-    $ref: ./docs/overview/Intro.md
+    $ref: ./docs/overview/Description.md
 security: []
 servers: []
 paths: {}
 tags:
+  - name: Amendment_record
+    x-displayName: Amendment Record
+    description:
+      $ref: ./docs/overview/Amendment_record.md
+  - name: Acknowledgements
+    description:
+      $ref: ./docs/overview/Acknowledgements.md
+  - name: Preface
+    description:
+      $ref: ./docs/overview/Preface.md
   - name: Glossary_and_conventions
     x-displayName: Glossary and conventions
     description:
       $ref: ./docs/overview/Glossary_and_conventions.md
+  - name: Specifications
+    description:
+      $ref: ./docs/overview/Specifications.md
   - name: Requests_and_responses
     x-displayName: Requests and responses
     description:

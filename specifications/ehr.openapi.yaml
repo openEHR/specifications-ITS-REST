@@ -12,7 +12,7 @@ info:
     name: Creative Commons Attribution-NoDerivs 3.0 Unported
     url: 'https://creativecommons.org/licenses/by-nd/3.0/'
   description:
-    $ref: ./docs/ehr/Intro.md
+    $ref: ./docs/ehr/Description.md
 servers:
   - url: 'https://{baseUrl}/v1'
     description: An example openEHR server URL.
@@ -113,6 +113,14 @@ tags:
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
       Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
+x-tagGroups:
+  - name: Resource endpoints
+    tags:
+      - EHR
+      - EHR_STATUS
+      - COMPOSITION
+      - DIRECTORY
+      - CONTRIBUTION
 components:
   schemas:
     UAbstractItemStructure:

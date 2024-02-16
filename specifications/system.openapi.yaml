@@ -12,7 +12,7 @@ info:
     name: Creative Commons Attribution-NoDerivs 3.0 Unported
     url: 'https://creativecommons.org/licenses/by-nd/3.0/'
   description:
-    $ref: ./docs/system/Intro.md
+    $ref: ./docs/system/Description.md
 security: []
 servers:
   - url: 'https://{baseUrl}/v1'
