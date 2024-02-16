@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: APIs Overview
+  title: Overview
   version: latest
   x-status: STABLE
   x-spec: overview
