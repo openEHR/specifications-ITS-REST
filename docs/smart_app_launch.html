@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.21">
 <meta name="description" content="openEHR SMART App Launch and Service Discovery Framework (SMART)">
 <meta name="keywords" content="JSON, REST, SMART, OAuth2, OIDC, Authentication, Authorization, Application, App">
 <title>SMART on openEHR (SMART)</title>
@@ -122,7 +122,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2023 - 2023 The openEHR Foundation</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2023 - 2024 The openEHR Foundation</th>
 </tr>
 </thead>
 <tbody>
@@ -334,11 +334,11 @@ S Iancu</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is the real person or software agent who is using the Application to perform some function. This is often referred to as the "end-user".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the real person who is using the Application to perform some function. This is often referred to as the "end-user".</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Application</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A software application developed by a vendor, designed to work with the Platform and/or Launcher built by the same or another vendor. This is also known as the "client" in terms of OAuth roles, and often referred to as the "SMART App" by <em>SMART on FHIR</em> specification.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A software application developed by a vendor, designed to work with the Platform and/or Launcher built by the same or different vendor. This is also known as the "client" in terms of OAuth roles, and often referred to as the "SMART App" by <em>SMART on FHIR</em> specification.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Platform</p></td>
@@ -432,7 +432,7 @@ On the other hand, openEHR has specification for an <a href="https://specificati
 <div class="sect2">
 <h3 id="_requirements"><a class="anchor" href="#_requirements"></a>2.4. Requirements</h3>
 <div class="paragraph">
-<p>The <a href="https://specifications.openehr.org/releases/RM/latest/index" target="_blank" rel="noopener">openEHR Reference Model</a> and openEHR REST APIs provide a foundation for interoperable <em>Applications</em>. For such applications to be truly portable between systems and vendors, there is a requirement for a uniform <em>authentication</em> and <em>authorization</em> process.</p>
+<p>The <a href="https://specifications.openehr.org/releases/RM/latest/index" target="_blank" rel="noopener">openEHR Reference Model</a> and <a href="https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html" target="_blank" rel="noopener">openEHR REST API specification</a> provide a foundation for interoperable <em>Applications</em>. For such applications to be truly portable between systems and vendors, there is a requirement for a uniform <em>authentication</em> and <em>authorization</em> process.</p>
 </div>
 <div class="paragraph">
 <p>Many of such applications also function in the <em>context</em> of a single EHR or Patient, and potentially of a single Episode. Selection of this <em>context</em> also becomes essential before lunching the <em>Application</em>.</p>
@@ -458,9 +458,6 @@ On the other hand, openEHR has specification for an <a href="https://specificati
 </div>
 <div class="paragraph">
 <p>While this process could be formalised and automated in the future using protocols like <a href="https://tools.ietf.org/html/rfc7591" target="_blank" rel="noopener">OAuth2 Dynamic Client Registration Protocol</a>, the current recommendation is to do this out-of-band in a way that makes sense for the Application Vendor and the Platform Vendor. For example, the Platform vendor could offer a Registration Page that Application Vendors could use to register their applications, and can have an approval and audit mechanism before applications are registered.</p>
-</div>
-<div class="paragraph">
-<p>For compliance and consistency reason, the <em>Application</em> should also have a valid registration according to <a href="https://www.hl7.org/fhir/smart-app-launch/app-launch.html#register-app-with-ehr" target="_blank" rel="noopener">FHIR specification of the registration process</a>.</p>
 </div>
 </div>
 </div>
@@ -1183,12 +1180,18 @@ As an example, an application can be launched by a URL like: <code>https://myapp
 </li>
 </ul>
 </div>
+<div id="smart_logo" class="imageblock text-center text-center">
+<div class="content">
+<img src="smart_app_launch/diagrams/smart_logo.svg" alt="smart logo" width="140px">
+</div>
+<div class="title">Figure 4. SMART™ and the SMART logos are trademarks of The Children&#8217;s Medical Center Corporation. Used with permission</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-09-09 15:17:45 UTC
+Last updated 2024-03-06 18:06:52 +0530
 </div>
 </div>
 </body>
