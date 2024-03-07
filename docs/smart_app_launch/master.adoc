@@ -83,5 +83,6 @@ include::master06-authentication_authorization_scopes.adoc[leveloffset=+1]
 
 
 [.text-center]
-.SMART™ and the SMART logos are trademarks of The Children's Medical Center Corporation. Used with permission 
-image::{diagrams_uri}/smart_logo.svg[id=smart_logo, align="center", width="140px", style="margin-top: 40px;margin-bottom: 40px;"]
+:figure-caption!:
+.SMART™ and the SMART logos are trademarks of The Children's Medical Center Corporation. Used with permission
+image::{diagrams_uri}/smart_logo.svg[SMART,140,80,id=smart_logo,link=https://smarthealthit.org/]
