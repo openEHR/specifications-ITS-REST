@@ -23,4 +23,4 @@ responses:
   '404':
     $ref: ../responses/404_unknown_ehr_id.yaml
   '422':
-    $ref: ../responses/422_COMPOSITION.yaml
+    $ref: ../responses/422.yaml

@@ -33,4 +33,4 @@ responses:
   '412':
     $ref: ../responses/412_COMPOSITION.yaml
   '422':
-    $ref: ../responses/422_COMPOSITION.yaml
+    $ref: ../responses/422.yaml
