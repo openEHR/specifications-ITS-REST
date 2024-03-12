@@ -14,14 +14,16 @@ function validate() {
 
 
 case "${1:-}" in
-		overview|ehr|query|definition)
+		overview | system | ehr | query | definition | resources)
 		  validate "$@"
       ;;
 		all)
 		  validate overview
+		  validate system
 		  validate ehr
 		  validate query
 		  validate definition
+		  validate resources
       ;;
     data)
       cd ..
@@ -38,6 +40,6 @@ case "${1:-}" in
       docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.8-openjdk-18 bash
       ;;
 		"")
-			echo "Usage: bundle.sh [overview|ehr|query|definition]"
+			echo "Usage: bundle.sh [overview | system | ehr | query | definition | resources]"
 			;;
 	esac

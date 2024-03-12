@@ -11,176 +11,8 @@ info:
   license:
     name: Creative Commons Attribution-NoDerivs 3.0 Unported
     url: https://creativecommons.org/licenses/by-nd/3.0/
-  description: |+
-    <table>
-        <colgroup>
-            <col style="width: 20%;">
-            <col style="width: 80%;">
-        </colgroup>
-        <thead>
-        <tr>
-            <th colspan="2">© 2018 - 2023 The openEHR Foundation</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td colspan="2">
-                The <a href="https://www.openEHR.org" target="_blank" rel="noopener">openEHR Foundation</a> is an independent, non-profit foundation, facilitating the sharing of health records by consumers and clinicians via open specifications, clinical models and open platform implementations.
-            </td>
-        </tr>
-        <tr>
-            <td><strong>Licence</strong></td>
-            <td><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported.
-                <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a>
-            </td>
-        </tr>
-        <tr>
-            <td><strong>Support</strong></td>
-            <td>Issues: <a href="https://specifications.openehr.org/components/ITS/open_issues" target="_blank" rel="noopener">Problem Reports</a><br>
-                Web: <a href="https://specifications.openehr.org" target="_blank" rel="noopener">specifications.openEHR.org</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-    ### Amendment Record
-
-    <table>
-        <colgroup>
-            <col style="width: 9%;">
-            <col style="width: 55%;">
-            <col style="width: 18%;">
-            <col style="width: 18%;">
-        </colgroup>
-        <thead>
-        <tr>
-            <th>Issue</th>
-            <th>Details</th>
-            <th>Raiser, Implementer</th>
-            <th>Completed</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.0.3</a></th>
-        </tr>
-        <tr>
-            <td>5.1</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
-                Migrate REST API specs to OpenAPI Specification</td>
-            <td>S Iancu</td>
-            <td>19 Dec 2022</td>
-        </tr>
-        <tr>
-            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.2" target="_blank" rel="noopener">Release-1.0.2</a></th>
-        </tr>
-        <tr>
-            <td>4.2</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-41" target="_blank" rel="noopener">SPECITS-41</a>:
-                Add double quotes to ETag and If-Match headers</td>
-            <td>S Iancu</td>
-            <td>21 Mar 2021</td>
-        </tr>
-        <tr>
-            <td>4.1</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-49" target="_blank" rel="noopener">SPECITS-49</a>:
-                Describing Resource Identification; add clarification over getting COMPOSITIONs by with `version_uid` vs `versioned_object_uid`</td>
-            <td>J Smolka, M Polajnar, S Iancu</td>
-            <td>08 Mar 2021</td>
-        </tr>
-        <tr>
-            <td>4.0</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-52" target="_blank" rel="noopener">SPECITS-52</a>:
-                Fix wrong example on revision history of the VERSIONED_COMPOSITION and VERSIONED_EHR_STATUS</td>
-            <td>J Smolka, S Iancu</td>
-            <td>06 Mar 2021</td>
-        </tr>
-        <tr>
-            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.1" target="_blank" rel="noopener">Release-1.0.1</a></th>
-        </tr>
-        <tr>
-            <td>3.2</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-38" target="_blank" rel="noopener">SPECITS-38</a>:
-                Fix response status code for semantic validation errors (fixes also
-                <a href="https://specifications.openehr.org/tickets/SPECPR-298" target="_blank" rel="noopener">SPECPR-298</a>)</td>
-            <td>P Pazos, S Iancu</td>
-            <td>01 Oct 2019</td>
-        </tr>
-        <tr>
-            <td>3.1</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-40" target="_blank" rel="noopener">SPECITS-40</a>:
-                Fix and improve documentation on EHR (fixes also
-                <a href="https://specifications.openehr.org/tickets/SPECPR-312" target="_blank" rel="noopener">SPECPR-312</a>)</td>
-            <td>P Pazos, S Iancu</td>
-            <td>28 Sep 2019</td>
-        </tr>
-        <tr>
-            <td>3.0</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-32" target="_blank" rel="noopener">SPECITS-32</a>: Fix typos and minor documentary errors (fixes
-                <a href="https://specifications.openehr.org/tickets/SPECPR-252" target="_blank" rel="noopener">SPECPR-253</a>,
-                <a href="https://specifications.openehr.org/tickets/SPECPR-255" target="_blank" rel="noopener">SPECPR-255</a>,
-                <a href="https://specifications.openehr.org/tickets/SPECPR-298" target="_blank" rel="noopener">SPECPR-298</a>,
-                <a href="https://specifications.openehr.org/tickets/SPECPR-333" target="_blank" rel="noopener">SPECPR-333</a>,
-                <a href="https://specifications.openehr.org/tickets/SPECPR-337" target="_blank" rel="noopener">SPECPR-337</a>)</td>
-            <td>J Smolka, P Pazos, E Sundvall, T Beale, S Iancu</td>
-            <td>1 Sep 2019</td>
-        </tr>
-        <tr>
-            <td>2.2</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-24" target="_blank" rel="noopener">SPECITS-24</a>: Added changelog</td>
-            <td>J Smolka, S Iancu</td>
-            <td>12 May 2019</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-25" target="_blank" rel="noopener">SPECITS-25</a>,
-                <a href="https://specifications.openehr.org/tickets/SPECITS-29" target="_blank" rel="noopener">SPECITS-29</a>: Change layout and structure</td>
-            <td>J Smolka, S Iancu</td>
-            <td>12 May 2019</td>
-        </tr>
-        <tr>
-            <td>2.1</td>
-            <td>Update links to new openEHR specifications website</td>
-            <td>S Iancu</td>
-            <td>16 Dec 2018</td>
-        </tr>
-        <tr>
-            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.0" target="_blank" rel="noopener">Release-1.0.0</a></th>
-        </tr>
-        </tbody>
-    </table>
-
-
-    # Intro
-
-
-    ## Acknowledgements
-
-    ### Editor
-    - Sebastian Iancu, Architect, Code24, Netherlands
-
-    ### Contributors
-    This specification benefited from wide formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.
-    - Birger Haarbrandt, MSc, Peter L. Reichertz Institut for Medical Informatics (PLRI), Germany
-    - Bjørn Næss, DIPS, Norway
-    - Bostjan Lah, Senior Architect, Better, Slovenia
-    - Erik Sundvall, Information Architect at Karolinska University Hospital, Sweden
-    - Heath Frankel, Ocean Informatics, Australia
-    - Ian McNicoll MD, FreshEHR, UK
-    - Jake Smolka, Software Engineer, Better, Slovenia
-    - Matija Polajnar, PhD, Software Engineer, Better, Slovenia
-    - Pablo Pazos Gutierrez, Senior engineer, CaboLabs, Uruguay
-    - Rong Chen MD, PhD, Cambio Healthcare Systems, Sweden
-    - Sebastian Iancu, Architect, Code24, Netherlands
-    - Seref Arikan, MEcon, Ocean Informatics UK, Centre for Health Informatics and Multi-professional Education (CHIME) UK
-    - Thomas Beale, Ars Semantica UK, openEHR Foundation Management Board
-
-    ### Trademarks
-    - 'openEHR' is a trademark of the [openEHR Foundation](https://www.openEHR.org)
-    - 'OpenAPI' is a trademark of the [The Linux Foundation](https://www.linuxfoundation.org)
-
-
-    ## Preface
+  description: |
+    ## Description
 
     ### Purpose
 
@@ -206,19 +38,6 @@ info:
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
     The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/ehr.html>.
-
-    ### Feedback
-
-    Feedback may be provided on the [Implementation Technology Specifications forum](https://discourse.openehr.org/c/specifications/its/41).
-
-    Issues may be raised on the [specifications Problem Report tracker](https://openehr.atlassian.net/browse/SPECPR).
-
-    To see changes made due to previously reported issues, see the [ITS component Change Request tracker](https://specifications.openehr.org/components/ITS/history).
-
-    ### Conformance
-
-    tbd.
-
 servers:
   - url: https://{baseUrl}/v1
     description: An example openEHR server URL.
@@ -248,57 +67,6 @@ tags:
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
       Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
-  - name: EHR_schema
-    x-displayName: EHR
-    description: |
-      This resource is formally specified in Reference Model as the [EHR](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class) class.
-
-      <SchemaDefinition schemaRef="#/components/schemas/Ehr" />
-  - name: EHR_STATUS_schema
-    x-displayName: EHR_STATUS
-    description: |
-      The following resources are formally specified in the Reference Model as [EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_status_class) and [VERSIONED_EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_ehr_status_class) classes.
-      <div class="mb-5"></div>
-
-      The `EHR_STATUS` resource:
-      <SchemaDefinition schemaRef="#/components/schemas/EhrStatus" />
-
-      The `VERSIONED_EHR_STATUS` resource:
-      <SchemaDefinition schemaRef="#/components/schemas/VersionedEhrStatus" />
-  - name: COMPOSITION_schema
-    x-displayName: COMPOSITION
-    description: |
-      The following resources are formally specified in the Reference Model as [COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class) and [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class) classes.
-      <div class="mb-5"></div>
-
-      The `COMPOSITION` resource:
-      <SchemaDefinition schemaRef="#/components/schemas/Composition" />
-
-      The abstract `CONTENT_ITEM` class, used in `COMPOSITION`:
-      <SchemaDefinition schemaRef="#/components/schemas/ContentItem" />
-
-      The abstract `ITEM_STRUCTURE` class, used in `CONTENT_ITEM`:
-      <SchemaDefinition schemaRef="#/components/schemas/ItemStructure" />
-
-      The `VERSIONED_COMPOSITION` resource:
-      <SchemaDefinition schemaRef="#/components/schemas/VersionedComposition" />
-  - name: DIRECTORY_schema
-    x-displayName: DIRECTORY
-    description: |
-      This resource is formally specified in Reference Model in the [directory](https://specifications.openehr.org/releases/RM/latest/ehr.html#_directory) section, using [FOLDER](https://specifications.openehr.org/releases/RM/latest/common.html#_folder_class) class.
-
-      <SchemaDefinition schemaRef="#/components/schemas/Folder" />
-  - name: CONTRIBUTION_schema
-    x-displayName: CONTRIBUTION
-    description: |
-      The following resources are formally specified in the Reference Model as the [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) class.
-      <div class="mb-5"></div>
-
-      A new `CONTRIBUTION` to be committed:
-      <SchemaDefinition schemaRef="#/components/schemas/NewContribution" />
-
-      A retrieved `CONTRIBUTION`:
-      <SchemaDefinition schemaRef="#/components/schemas/Contribution" />
 paths:
   /ehr:
     post:
@@ -519,7 +287,7 @@ paths:
         - $ref: '#/components/parameters/version_at_time'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION_at_time'
+          $ref: '#/components/responses/200_VERSION_of_EHR_STATUS_at_time'
         '400':
           $ref: '#/components/responses/400_invalid_version_at_time'
         '404':
@@ -537,7 +305,7 @@ paths:
         - $ref: '#/components/parameters/version_uid'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION'
+          $ref: '#/components/responses/200_VERSION_of_EHR_STATUS_by_id'
         '404':
           $ref: '#/components/responses/404_unknown_ehr_id_or_version_uid'
   /ehr/{ehr_id}/composition:
@@ -717,7 +485,7 @@ paths:
         - $ref: '#/components/parameters/version_uid_COMPOSITION'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION'
+          $ref: '#/components/responses/200_VERSION_of_COMPOSITION_by_id'
         '404':
           $ref: '#/components/responses/404_unknown_ehr_id_or_versioned_object_uid_or_version_uid'
   /ehr/{ehr_id}/directory:
@@ -888,6 +656,44 @@ paths:
           $ref: '#/components/responses/404_CONTRIBUTION'
 components:
   schemas:
+    VersionOfComposition:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRef'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Composition'
+      description: A VERSION resource
+    VersionOfEhrStatus:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRef'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/EhrStatus'
+      description: A VERSION resource
     ObjectId:
       title: OBJECT_ID
       required:
@@ -3157,7 +2963,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/RevisionHistory'
-    200_VERSION_at_time:
+    200_VERSION_of_EHR_STATUS_at_time:
       description: |
         `200 OK` is returned when the requested VERSION is successfully retrieved.
       headers:
@@ -3168,14 +2974,14 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Version'
-    200_VERSION:
+            $ref: '#/components/schemas/VersionOfEhrStatus'
+    200_VERSION_of_EHR_STATUS_by_id:
       description: |
         `200 OK` is returned when the requested VERSION is successfully retrieved.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Version'
+            $ref: '#/components/schemas/VersionOfEhrStatus'
     201_COMPOSITION:
       description: |
         `201 Created` is returned when the COMPOSITION was created. 
@@ -3279,10 +3085,17 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Version'
+            $ref: '#/components/schemas/VersionOfComposition'
     404_unknown_ehr_id_or_versioned_object_uid_or_no_version_at_time:
       description: |
         `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when `versioned_object_uid` does not exist, or when a version of the resource does not exist at the specified `version_at_time`.
+    200_VERSION_of_COMPOSITION_by_id:
+      description: |
+        `200 OK` is returned when the requested VERSION is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/VersionOfComposition'
     404_unknown_ehr_id_or_versioned_object_uid_or_version_uid:
       description: |
         `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when `versioned_object_uid` does not exist, or when a VERSION with `version_uid` does not exist.
@@ -3480,10 +3293,3 @@ x-tagGroups:
       - COMPOSITION
       - DIRECTORY
       - CONTRIBUTION
-  - name: Resource schemas
-    tags:
-      - EHR_schema
-      - EHR_STATUS_schema
-      - COMPOSITION_schema
-      - DIRECTORY_schema
-      - CONTRIBUTION_schema

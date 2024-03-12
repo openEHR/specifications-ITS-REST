@@ -13,24 +13,44 @@
     <style>
         body {
             margin: 0;
-            padding-top: 60px;
+            padding-top: 70px;
         }
         .api-content h3 {
-            font-weight: 500 !important;
-            font-size: 1.17em !important;
-            margin-top: 0.6rem !important;
+            font-weight: 700 !important;
+            font-size: 1.25em !important;
         }
-        .react-tabs__tab-panel pre {
-            color: #ffffff !important;
+        .api-content h3, .api-content h2, .api-content h1 {
+            margin-top: 1.6rem !important;
+            margin-bottom: 0.4em !important;
         }
         div.api-info div:first-child {
             display: none;
         }
-        ul[role=menu] ul ul ul li label {
-            padding-left: 60px;
+        ul[role=menu] label {
+            padding-right: 10px;
+            font-size: 15px;
         }
-        label[type=group] span {
-            font-weight: bold;
+        ul[role=menu] li[depth="0"] > label {
+            font-weight: 700;
+            font-size: 14px;
+        }
+        ul[role=menu] li[depth="1"] > label {
+            font-weight: 700;
+        }
+        ul[role=menu] li[depth="3"] > label {
+            padding-left: 48px;
+        }
+        ul[role=menu] label span[type] + span {
+            margin-right: 14px;
+        }
+        ul[role=menu] li[depth="0"] > label > span {
+            border-bottom: 1px solid lightgray;
+            width: 100% !important;
+        }
+        ul[role=menu] span[type] {
+            height: 16px;
+            line-height: 16px;
+            margin-top: 4px;
         }
     </style>
     <!-- Twitter Bootstrap -->
@@ -40,7 +60,7 @@
     {{{redocHead}}}
 
     {{#unless disableGoogleFont}}
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Source+Sans+Pro:300,400,600,700|Source+Code+Pro:300,400,600,700" rel="stylesheet">
     {{/unless}}
 </head>
 <body>
@@ -57,7 +77,10 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{#if templateOptions.page_overview}} active {{/if}}">
-                    <a class="nav-link mx-2 {{#if templateOptions.page_overview}} text-primary {{/if}}" href="overview.html">APIs Overview{{#if templateOptions.page_overview}} <span class="sr-only">(current)</span>{{/if}}</a>
+                    <a class="nav-link mx-2 {{#if templateOptions.page_overview}} text-primary {{/if}}" href="overview.html">Overview{{#if templateOptions.page_overview}} <span class="sr-only">(current)</span>{{/if}}</a>
+                </li>
+                <li class="nav-item {{#if templateOptions.page_system}} active {{/if}}">
+                    <a class="nav-link mx-2 {{#if templateOptions.page_system}} text-primary {{/if}}" href="system.html">System API{{#if templateOptions.page_system}} <span class="sr-only">(current)</span>{{/if}}</a>
                 </li>
                 <li class="nav-item {{#if templateOptions.page_ehr}} active {{/if}}">
                     <a class="nav-link mx-2 {{#if templateOptions.page_ehr}} text-primary {{/if}}" href="ehr.html">EHR API{{#if templateOptions.page_ehr}} <span class="sr-only">(current)</span>{{/if}}</a>
@@ -67,6 +90,9 @@
                 </li>
                 <li class="nav-item {{#if templateOptions.page_definition}} active {{/if}}">
                     <a class="nav-link mx-2 {{#if templateOptions.page_definition}} text-primary {{/if}}" href="definition.html">Definition API{{#if templateOptions.page_definition}} <span class="sr-only">(current)</span>{{/if}}</a>
+                </li>
+                <li class="nav-item {{#if templateOptions.page_resources}} active {{/if}}">
+                    <a class="nav-link mx-2 {{#if templateOptions.page_resources}} text-primary {{/if}}" href="resources.html">Resources{{#if templateOptions.page_resources}} <span class="sr-only">(current)</span>{{/if}}</a>
                 </li>
             </ul>
             <div class="nav">
@@ -110,10 +136,13 @@
                 statusClass = "secondary";
         }
         $("div.api-info h1")
-            .addClass("d-inline-block mx-1")
-            .after("<a href='computable/OAS/"+spec+"-validation.openapi.yaml' download='"+spec+"-validation.openapi.yaml' type='application/yaml' target='_blank' class='d-none d-xl-block btn btn-outline-primary btn-sm mx-1 align-baseline float-right' role='button' aria-pressed='true' data-toggle='tooltip' data-placement='bottom' title='Download YAML for validation purpose'>Download</a>")
-            .after("<a href='computable/OAS/"+spec+"-codegen.openapi.yaml' download='"+spec+"-codegen.openapi.yaml' type='application/yaml' target='_blank' class='d-none d-xl-block btn btn-outline-primary btn-sm mx-1 align-baseline float-right' role='button' aria-pressed='true' data-toggle='tooltip' data-placement='bottom' title='Download YAML for code-generate purpose'>Codegen</a>")
-            .after("<span class='badge badge-" + statusClass + " align-top'>" + status + "</span>");
+            .addClass("d-inline-block mx-1 pt-3")
+            .after("<span class='badge badge-" + statusClass + " align-top mt-5'>" + status + "</span>");
+        if (spec !== 'overview') {
+            $("div.api-info h1")
+                .after("<a href='computable/OAS/"+spec+"-validation.openapi.yaml' download='"+spec+"-validation.openapi.yaml' type='application/yaml' target='_blank' class='d-none d-xl-block btn btn-outline-primary btn-sm mx-1 mt-4 align-baseline float-right' role='button' aria-pressed='true' data-toggle='tooltip' data-placement='bottom' title='Download YAML for validation purpose'>Download</a>")
+                .after("<a href='computable/OAS/"+spec+"-codegen.openapi.yaml' download='"+spec+"-codegen.openapi.yaml' type='application/yaml' target='_blank' class='d-none d-xl-block btn btn-outline-primary btn-sm mx-1 mt-4 align-baseline float-right' role='button' aria-pressed='true' data-toggle='tooltip' data-placement='bottom' title='Download YAML for code-generate purpose'>Codegen</a>")
+        }
     });
 </script>
 </body>

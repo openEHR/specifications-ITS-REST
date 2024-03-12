@@ -11,162 +11,8 @@ info:
   license:
     name: Creative Commons Attribution-NoDerivs 3.0 Unported
     url: https://creativecommons.org/licenses/by-nd/3.0/
-  description: |+
-    <table>
-        <colgroup>
-            <col style="width: 20%;">
-            <col style="width: 80%;">
-        </colgroup>
-        <thead>
-        <tr>
-            <th colspan="2">© 2018 - 2023 The openEHR Foundation</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td colspan="2">
-                The <a href="https://www.openEHR.org" target="_blank" rel="noopener">openEHR Foundation</a> is an independent, non-profit foundation, facilitating the sharing of health records by consumers and clinicians via open specifications, clinical models and open platform implementations.
-            </td>
-        </tr>
-        <tr>
-            <td><strong>Licence</strong></td>
-            <td><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported.
-                <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a>
-            </td>
-        </tr>
-        <tr>
-            <td><strong>Support</strong></td>
-            <td>Issues: <a href="https://specifications.openehr.org/components/ITS/open_issues" target="_blank" rel="noopener">Problem Reports</a><br>
-                Web: <a href="https://specifications.openehr.org" target="_blank" rel="noopener">specifications.openEHR.org</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-    ### Amendment Record
-
-    <table>
-        <colgroup>
-            <col style="width: 9%;">
-            <col style="width: 55%;">
-            <col style="width: 18%;">
-            <col style="width: 18%;">
-        </colgroup>
-        <thead>
-        <tr>
-            <th>Issue</th>
-            <th>Details</th>
-            <th>Raiser, Implementer</th>
-            <th>Completed</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.0.3</a></th>
-        </tr>
-        <tr>
-            <td>5.1</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-66" target="_blank" rel="noopener">SPECITS-66</a>:
-                Migrate REST API specs to OpenAPI Specification</td>
-            <td>S Iancu</td>
-            <td>19 Dec 2022</td>
-        </tr>
-        <tr>
-            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.2" target="_blank" rel="noopener">Release-1.0.2</a></th>
-        </tr>
-        <tr>
-            <td>4.1</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-41" target="_blank" rel="noopener">SPECITS-41</a>:
-                Add double quotes to ETag and If-Match headers</td>
-            <td>S Iancu</td>
-            <td>21 Mar 2021</td>
-        </tr>
-        <tr>
-            <td>4.0</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-47" target="_blank" rel="noopener">SPECITS-47</a>: Fix inconsistency over query_parameter(s)</td>
-            <td>P Pazos, S Iancu</td>
-            <td>06 Mar 2021</td>
-        </tr>
-        <tr>
-            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.1" target="_blank" rel="noopener">Release-1.0.1</a></th>
-        </tr>
-        <tr>
-            <td>3.1</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-37" target="_blank" rel="noopener">SPECITS-37</a>: Fix query definition endpoint and content-type errors</td>
-            <td>P Pazos, J Smolka, S Iancu</td>
-            <td>01 Oct 2019</td>
-        </tr>
-        <tr>
-            <td>3.0</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-32" target="_blank" rel="noopener">SPECITS-32</a>: Fix typos and minor documentary errors (fixes
-                <a href="https://specifications.openehr.org/tickets/SPECPR-252" target="_blank" rel="noopener">SPECPR-252</a>,
-                <a href="https://specifications.openehr.org/tickets/SPECPR-255" target="_blank" rel="noopener">SPECPR-255</a>)</td>
-            <td>E Sundvall, T Beale, S Iancu</td>
-            <td>1 Sep 2019</td>
-        </tr>
-        <tr>
-            <td>2.2</td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-24" target="_blank" rel="noopener">SPECITS-24</a>: Added changelog</td>
-            <td>J Smolka, S Iancu</td>
-            <td>12 May 2019</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-25" target="_blank" rel="noopener">SPECITS-25</a>,
-                <a href="https://specifications.openehr.org/tickets/SPECITS-29" target="_blank" rel="noopener">SPECITS-29</a>: Change layout and structure</td>
-            <td>J Smolka, S Iancu</td>
-            <td>12 May 2019</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><a href="https://specifications.openehr.org/tickets/SPECITS-30" target="_blank" rel="noopener">SPECITS-30</a>: Fix typos, links, examples and few other minor errors</td>
-            <td>S Iancu</td>
-            <td>12 May 2019</td>
-        </tr>
-        <tr>
-            <td>2.1</td>
-            <td>Update links to new openEHR specifications website</td>
-            <td>S Iancu</td>
-            <td>16 Dec 2018</td>
-        </tr>
-        <tr>
-            <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.0" target="_blank" rel="noopener">Release-1.0.0</a></th>
-        </tr>
-        </tbody>
-    </table>
-
-
-
-    # Intro
-
-
-    ## Acknowledgements
-
-    ### Editor
-    - Sebastian Iancu, Architect, Code24, Netherlands
-
-    ### Contributors
-    This specification benefited from wide formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.
-    - Birger Haarbrandt, MSc, Peter L. Reichertz Institut for Medical Informatics (PLRI), Germany
-    - Bjørn Næss, DIPS, Norway
-    - Bostjan Lah, Senior Architect, Better, Slovenia
-    - Erik Sundvall, Information Architect at Karolinska University Hospital, Sweden
-    - Heath Frankel, Ocean Informatics, Australia
-    - Ian McNicoll MD, FreshEHR, UK
-    - Jake Smolka, Software Engineer, Better, Slovenia
-    - Matija Polajnar, PhD, Software Engineer, Better, Slovenia
-    - Pablo Pazos Gutierrez, Senior engineer, CaboLabs, Uruguay
-    - Rong Chen MD, PhD, Cambio Healthcare Systems, Sweden
-    - Sebastian Iancu, Architect, Code24, Netherlands
-    - Seref Arikan, MEcon, Ocean Informatics UK, Centre for Health Informatics and Multi-professional Education (CHIME) UK
-    - Thomas Beale, Ars Semantica UK, openEHR Foundation Management Board
-
-    ### Trademarks
-    - 'openEHR' is a trademark of the [openEHR Foundation](https://www.openEHR.org)
-    - 'OpenAPI' is a trademark of the [The Linux Foundation](https://www.linuxfoundation.org)
-
-
-    ## Preface
+  description: |
+    ## Description
 
     ### Purpose
 
@@ -194,19 +40,6 @@ info:
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
     The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/query.html>.
-
-    ### Feedback
-
-    Feedback may be provided on the [Implementation Technology Specifications forum](https://discourse.openehr.org/c/specifications/its/41).
-
-    Issues may be raised on the [specifications Problem Report tracker](https://openehr.atlassian.net/browse/SPECPR).
-
-    To see changes made due to previously reported issues, see the [ITS component Change Request tracker](https://specifications.openehr.org/components/ITS/history).
-
-    ### Conformance
-
-    tbd.
-
 servers:
   - url: https://{baseUrl}/v1
     description: An example openEHR server URL.
@@ -297,7 +130,7 @@ tags:
       Requests based on the `GET` method have URI length restriction, or some characters might not be allowed and have to be encoded.
       Long queries in the `q` parameter and having a long list of `query_parameters` may add up to reach that limit, thus we recommend clients using the `POST` method instead of `GET`.
 
-      # Common Headers and Query Parameters 
+      ## Common Headers and Query Parameters 
 
       All query execution requests SHOULD support at least the following parameters:
       - `ehr_id` - used to execute the query within a single EHR context: an EHR identifier taken from EHR.ehr_id.value
@@ -312,14 +145,14 @@ tags:
       - `ETag` - A unique identifier of the resultSet
 
 
-      ## About the ehr_id parameter
+      ### About the ehr_id parameter
 
       The `ehr_id` parameter SHOULD be supplied by clients when executing single EHR queries and MAY be used by the underlying backend to perform routing, optimizations or similar. It MUST NOT be supplied for 'population queries' and similar multi-patient queries.
 
       Depending on the needs, clients MAY supply it as a query parameter `ehr_id` or alternatively as a request header named `openEHR-EHR-id`.
 
 
-      ## Query parameters
+      ### Query parameters
 
       Depending on each query definition, various query parameters SHOULD be supported, generically named `query_parameters`
       in this specification, but in the real request they will have specific names (e.g. `uid`, `systolic_bp`, etc.)
@@ -362,28 +195,10 @@ tags:
 
       <SchemaDefinition schemaRef="#/components/schemas/ResultSetMetadata" />
   - name: Query
-    x-displayName: Query Execute
+    x-displayName: Execute Query
     description: |
       Execution of [AQL queries](https://specifications.openehr.org/releases/QUERY/latest/AQL.html).
       Actions upon resources of this group are also formally described in the [I_QUERY_SERVICE](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_query_service_interface) Abstract Service Model interface.
-  - name: Query_schema
-    x-displayName: Query Execute
-    x-traitTag: true
-    description: |
-      The following resources are formally specified in the [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) and in the [Query Service](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_query_service).
-      <div class="mb-5"></div>
-
-      The `AdhocQueryExecute` resource:
-      <SchemaDefinition schemaRef="#/components/schemas/AdhocQueryExecute" />
-
-      The stored-query execute, known as the `Query` resource:
-      <SchemaDefinition schemaRef="#/components/schemas/Query" />
-  - name: RESULT_SET_schema
-    x-displayName: RESULT_SET
-    description: |
-      This resource is formally specified in the Service Model as [Query Result](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_result_set_class).
-
-      <SchemaDefinition schemaRef="#/components/schemas/ResultSet" />
 paths:
   /query/aql:
     get:
@@ -826,7 +641,3 @@ x-tagGroups:
   - name: Resource endpoints
     tags:
       - Query
-  - name: Resource Schema
-    tags:
-      - Query_schema
-      - RESULT_SET_schema

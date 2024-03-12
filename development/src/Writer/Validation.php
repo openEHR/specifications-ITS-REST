@@ -51,8 +51,11 @@ class Validation extends AbstractWriter {
     protected function run(): void {
         echo "slurping() ...";
         foreach ($this->apiSpecification->components->schemas as $schema) {
+            if ($schema instanceof Schema) {
+
             $this->slurping($schema);
             $this->cleaning($schema);
+            }
         }
         echo "removing ...";
         $redundant = [
