@@ -1,0 +1,13 @@
+operationId: versioned_agent_revision_history
+summary: Get versioned AGENT revision history
+description: |
+  Retrieves revision history of the VERSIONED_AGENT identified by `versioned_object_uid`.
+tags:
+  - AGENT
+parameters:
+  - $ref: ../parameters/path/versioned_object_uid_AGENT.yaml
+responses:
+  '200':
+    $ref: ../responses/200_REVISION_HISTORY.yaml
+  '404':
+    $ref: ../responses/404.yaml

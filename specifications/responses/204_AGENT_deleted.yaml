@@ -1,0 +1,7 @@
+description: |
+  `204 No Content` is returned when AGENT was deleted.
+headers:
+  ETag:
+    $ref: ../headers/ETag.yaml
+  Location:
+    $ref: ../headers/Location_AGENT.yaml

@@ -1,0 +1,9 @@
+title: VERSION
+oneOf:
+  - $ref: ../demographic/UMOriginalVersionOfAgent.yaml
+  - $ref: ../demographic/UMImportedVersionOfAgent.yaml
+discriminator:
+  propertyName: _type
+  mapping:
+    ORIGINAL_VERSION: ../demographic/UMOriginalVersionOfAgent.yaml
+    IMPORTED_VERSION: ../demographic/UMImportedVersionOfAgent.yaml

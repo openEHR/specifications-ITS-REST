@@ -22,6 +22,28 @@ servers:
         description: The (example) server base URL prefix providing openEHR services. This may contain server name, port and base path prefix.
 security: []
 paths:
+  '/demographic/agent':
+    post:
+      $ref: ./operations/agent_create.yaml
+  '/demographic/agent/{uid_based_id}':
+    get:
+      $ref: ./operations/agent_get.yaml
+    put:
+      $ref: ./operations/agent_update.yaml
+    delete:
+      $ref: ./operations/agent_delete.yaml
+  '/demographic/versioned_agent/{versioned_object_uid}':
+    get:
+      $ref: ./operations/versioned_agent_get.yaml
+  '/demographic/versioned_agent/{versioned_object_uid}/revision_history':
+    get:
+      $ref: ./operations/versioned_agent_revision_history.yaml
+  '/demographic/versioned_agent/{versioned_object_uid}/version':
+    get:
+      $ref: ./operations/versioned_agent_version_get_at_time.yaml
+  '/demographic/versioned_agent/{versioned_object_uid}/version/{version_uid}':
+    get:
+      $ref: ./operations/versioned_agent_version_get_by_id.yaml
   '/demographic/person':
     post:
       $ref: ./operations/person_create.yaml
@@ -51,6 +73,9 @@ paths:
     get:
       $ref: ./operations/contribution_get.yaml
 tags:
+  - name: AGENT
+    description: |
+      Management of the [AGENT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_agent_class) and the associated [VERSIONED_AGENT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
   - name: PERSON
     description: |
       Management of the [PERSON](https://specifications.openehr.org/releases/RM/latest/demographic.html#_person_class) and the associated [VERSIONED_PERSON](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.

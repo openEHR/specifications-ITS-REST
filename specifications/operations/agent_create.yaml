@@ -1,0 +1,25 @@
+operationId: agent_create
+summary: Create AGENT
+description: |
+  Creates the first version of a new AGENT.
+tags:
+  - AGENT
+parameters:
+  - $ref: ../parameters/header/Prefer.yaml
+requestBody:
+  description: |
+    The AGENT.
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/demographic/Agent.yaml
+  required: true
+responses:
+  '201':
+    $ref: ../responses/201_AGENT.yaml
+  '400':
+    $ref: ../responses/400.yaml
+  '422':
+    $ref: ../responses/422.yaml
+  '404':
+    $ref: ../responses/404.yaml
