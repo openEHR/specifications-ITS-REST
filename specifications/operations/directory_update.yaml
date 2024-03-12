@@ -24,7 +24,7 @@ responses:
   '204':
     $ref: ../responses/204_directory_updated.yaml
   '400':
-    $ref: ../responses/400_FOLDER.yaml
+    $ref: ../responses/400.yaml
   '404':
     $ref: ../responses/404_unknown_ehr_id.yaml
   '412':
