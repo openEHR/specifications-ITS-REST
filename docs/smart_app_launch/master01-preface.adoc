@@ -2,7 +2,7 @@
 
 == Purpose
 
-This document describes SMART protocol for an openEHR platform.
+This document describes the SMART protocol for an openEHR platform.
 
 The intended audience includes:
 
@@ -17,6 +17,7 @@ Prerequisite documents for reading this document include:
 * The {openehr_overview}[openEHR Architecture Overview^]
 * {openehr_its_rest_releases}[openEHR REST APIs]
 * {hl7_fhir}/smart-app-launch/[SMART on FHIR^]
+* 'About SMART' page on https://smarthealthit.org/about-smart-2/[SMART Health IT^]
 * {ietf_html}/rfc6749[OAuth2^] and {oidc_authentication}[OpenId Connect (OIDC)^]
 
 == Status

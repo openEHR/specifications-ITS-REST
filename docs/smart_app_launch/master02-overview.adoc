@@ -2,7 +2,7 @@
 
 == Background
 
-*SMART* stands for “Substitutable Medical Applications and Reusable Technologies”, a healthcare standard through which applications can access clinical information through a data store. It was initially proposed by https://smarthealthit.org/[SMART Health IT^] project and was later specified as {hl7_fhir}/smart-app-launch/[SMART on FHIR^], a protocol which works on top of the {hl7_fhir}[FHIR APIs^] facilitating access to data. The specification builds on {ietf_html}/rfc6749[OAuth2^] and {oidc_authentication}[OpenID Connect (OIDC)^], which are industry standards for authentication and authorization, and allows 3rd-party applications to authorize and seamlessly work with any system that implements the protocol.
+*SMART* stands for “Substitutable Medical Applications and Reusable Technologies”, a healthcare standard through which applications can access clinical information through a data store. It was initially proposed by https://smarthealthit.org/[SMART Health IT^] project (run by Boston Children’s Hospital Computational Health Informatics Program) and was later specified as {hl7_fhir}/smart-app-launch/[SMART on FHIR^], a protocol which works on top of the {hl7_fhir}[FHIR APIs^] facilitating access to data. The specification builds on {ietf_html}/rfc6749[OAuth2^] and {oidc_authentication}[OpenID Connect (OIDC)^], which are industry standards for authentication and authorization, and allows 3rd-party applications to authorize and seamlessly work with any system that implements the protocol.
 
 == Glossary
 

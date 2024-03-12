@@ -43,12 +43,13 @@ This specification has benefited from formal and informal input from the openEHR
 
 A significant part of the design ideas of this specification was derived from:
 
-* the SMART on FHIR protocol - SMART App Launch Release 2.1.0, published by HL7® FHIR®
+* the SMART on FHIR protocol - SMART App Launch Release 2.1.0, published by HL7® FHIR® standard
 
 === Trademarks
 
 * 'openEHR' is a registered trademark of the openEHR Foundation
-* 'HL7' and 'FHIR' are the registered trademark of the Health Level Seven International
+* HL7® and FHIR® are the registered trademark of the Health Level Seven International and their use does not constitute endorsement by HL7
+* SMART™ and the SMART logos are trademarks of The Children’s Medical Center Corporation. Used with permission.
 
 //
 // --------------------------------------------- TOC -----------------------------------------------
@@ -75,8 +76,15 @@ include::master06-authentication_authorization_scopes.adoc[leveloffset=+1]
 == References
 
 * SMART App Launch - Release 2.1.0 (2021), {hl7_fhir}/smart-app-launch
+* The 'About SMART' page on SMART Health IT, https://smarthealthit.org/about-smart-2/
 * OAuth2 Framework, {ietf_html}/rfc6749
 * OpenId Connect (OIDC), {oidc_authentication}
 * JSON Web Token (JWT) Assertion, {ietf_html}/rfc7523
 * JSON Web Signature (JWS), {ietf_html}/rfc7515
 * Best Practices in Authorization for SMART on FHIR EHRs, https://docs.smarthealthit.org/authorization/best-practices
+
+
+[.text-center]
+:figure-caption!:
+.SMART™ and the SMART logos are trademarks of The Children's Medical Center Corporation. Used with permission.
+image::{diagrams_uri}/smart_logo.svg[SMART,140,80,id=smart_logo,link=https://smarthealthit.org/]
