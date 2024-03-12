@@ -1,0 +1,13 @@
+operationId: versioned_person_get
+summary: Get versioned PERSON
+description: |
+  Retrieves a VERSIONED_PERSON identified by `versioned_object_uid`.
+tags:
+  - PERSON
+parameters:
+  - $ref: ../parameters/path/versioned_object_uid_PERSON.yaml
+responses:
+  '200':
+    $ref: ../responses/200_VERSIONED_PERSON.yaml
+  '404':
+    $ref: ../responses/404.yaml

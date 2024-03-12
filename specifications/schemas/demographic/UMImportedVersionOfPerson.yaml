@@ -9,7 +9,7 @@ properties:
     type: string
     enum: [IMPORTED_VERSION]
   data:
-    $ref: ../demographic/UParty.yaml
+    $ref: ../demographic/Person.yaml
   item:
-    $ref: ../demographic/UMOriginalVersionOfParty.yaml
+    $ref: ../demographic/UMOriginalVersionOfPerson.yaml
 x-discriminator-value: IMPORTED_VERSION

@@ -5,4 +5,4 @@ headers:
   ETag:
     $ref: ../headers/ETag.yaml
   Location:
-    $ref: ../headers/Location_PARTY.yaml
+    $ref: ../headers/Location_PERSON.yaml

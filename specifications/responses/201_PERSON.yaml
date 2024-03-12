@@ -1,12 +1,12 @@
 description: |
-  `201 Created` is returned when the PARTY was created. 
+  `201 Created` is returned when the PERSON was created. 
   Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
 headers:
   ETag:
     $ref: ../headers/ETag.yaml
   Location:
-    $ref: ../headers/Location_PARTY.yaml
+    $ref: ../headers/Location_PERSON.yaml
 content:
   application/json:
     schema:
-      $ref: ../schemas/demographic/UParty.yaml
+      $ref: ../schemas/demographic/Person.yaml

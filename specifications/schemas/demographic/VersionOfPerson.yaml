@@ -15,4 +15,4 @@ properties:
   commit_audit:
     $ref: ../common/AuditDetails.yaml
   data:
-    $ref: ../demographic/UParty.yaml
+    $ref: ../demographic/Person.yaml

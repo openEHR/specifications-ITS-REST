@@ -1,7 +1,7 @@
 name: versioned_object_uid
 in: path
 description: |
-  VERSIONED_PARTY identifier taken from VERSIONED_PARTY.uid.value.
+  VERSIONED_PERSON identifier taken from VERSIONED_PERSON.uid.value.
 required: true
 style: simple
 schema:

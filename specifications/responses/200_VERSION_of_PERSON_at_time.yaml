@@ -4,8 +4,8 @@ headers:
   ETag:
     $ref: ../headers/ETag_VERSION.yaml
   Location:
-    $ref: ../headers/Location_VERSIONED_PARTY_VERSION.yaml
+    $ref: ../headers/Location_VERSIONED_PERSON_VERSION.yaml
 content:
   application/json:
     schema:
-      $ref: ../schemas/demographic/UVersionOfParty.yaml
+      $ref: ../schemas/demographic/UVersionOfPerson.yaml

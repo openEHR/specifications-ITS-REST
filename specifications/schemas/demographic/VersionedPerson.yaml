@@ -1,13 +1,13 @@
-title: VERSIONED_PARTY
-description: A VERSIONED_PARTY resource
+title: VERSIONED_PERSON
+description: A VERSIONED_PERSON resource
 type: object
 allOf:
   - $ref: ../common/VersionedObject.yaml
 properties:
   _type:
     type: string
-    default: VERSIONED_PARTY
-x-discriminator-value: VERSIONED_PARTY
+    default: VERSIONED_PERSON
+x-discriminator-value: VERSIONED_PERSON
 example:
   uid:
     value: 8849182c-82ad-4088-a07f-48ead4180515

@@ -3,4 +3,4 @@ description: |
 content:
   application/json:
     schema:
-      $ref: ../schemas/demographic/UVersionOfParty.yaml
+      $ref: ../schemas/demographic/UVersionOfPerson.yaml

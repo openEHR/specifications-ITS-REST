@@ -9,5 +9,5 @@ properties:
     type: string
     enum: [ORIGINAL_VERSION]
   data:
-    $ref: ../demographic/UParty.yaml
+    $ref: ../demographic/Person.yaml
 x-discriminator-value: ORIGINAL_VERSION

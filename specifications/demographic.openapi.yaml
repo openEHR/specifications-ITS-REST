@@ -22,28 +22,28 @@ servers:
         description: The (example) server base URL prefix providing openEHR services. This may contain server name, port and base path prefix.
 security: []
 paths:
-  '/demographic/actor':
+  '/demographic/person':
     post:
-      $ref: ./operations/party_create.yaml
-  '/demographic/party/{uid_based_id}':
+      $ref: ./operations/person_create.yaml
+  '/demographic/person/{uid_based_id}':
     get:
-      $ref: ./operations/party_get.yaml
+      $ref: ./operations/person_get.yaml
     put:
-      $ref: ./operations/party_update.yaml
+      $ref: ./operations/person_update.yaml
     delete:
-      $ref: ./operations/party_delete.yaml
-  '/demographic/versioned_party/{versioned_object_uid}':
+      $ref: ./operations/person_delete.yaml
+  '/demographic/versioned_person/{versioned_object_uid}':
     get:
-      $ref: ./operations/versioned_party_get.yaml
-  '/demographic/versioned_party/{versioned_object_uid}/revision_history':
+      $ref: ./operations/versioned_person_get.yaml
+  '/demographic/versioned_person/{versioned_object_uid}/revision_history':
     get:
-      $ref: ./operations/versioned_party_revision_history.yaml
-  '/demographic/versioned_party/{versioned_object_uid}/version':
+      $ref: ./operations/versioned_person_revision_history.yaml
+  '/demographic/versioned_person/{versioned_object_uid}/version':
     get:
-      $ref: ./operations/versioned_party_version_get_at_time.yaml
-  '/demographic/versioned_party/{versioned_object_uid}/version/{version_uid}':
+      $ref: ./operations/versioned_person_version_get_at_time.yaml
+  '/demographic/versioned_person/{versioned_object_uid}/version/{version_uid}':
     get:
-      $ref: ./operations/versioned_party_version_get_by_id.yaml
+      $ref: ./operations/versioned_person_version_get_by_id.yaml
   '/demographic/contribution':
     post:
       $ref: ./operations/contribution_create.yaml
@@ -51,14 +51,12 @@ paths:
     get:
       $ref: ./operations/contribution_get.yaml
 tags:
-  - name: PARTY
+  - name: PERSON
     description: |
-      Management of the [directory](https://specifications.openehr.org/releases/RM/latest/ehr.html#_directory) [FOLDER](https://specifications.openehr.org/releases/RM/latest/common.html#_folder_class) resource.
-      Actions upon resources of this group are also formally described in the [I_EHR_DIRECTORY](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_directory_interface) Abstract Service Model interface.
+      Management of the [PERSON](https://specifications.openehr.org/releases/RM/latest/demographic.html#_person_class) and the associated [VERSIONED_PERSON](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
   - name: CONTRIBUTION
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
-      Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
 components:
   schemas:
     UAbstractItemStructure:
