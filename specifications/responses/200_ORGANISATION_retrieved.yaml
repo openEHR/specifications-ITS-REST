@@ -1,0 +1,11 @@
+description: |
+  `200 OK` is returned when the requested ORGANISATION is successfully retrieved.
+headers:
+  ETag:
+    $ref: ../headers/ETag.yaml
+  Location:
+    $ref: ../headers/Location_ORGANISATION.yaml
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/demographic/Organisation.yaml

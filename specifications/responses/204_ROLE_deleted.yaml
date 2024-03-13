@@ -1,0 +1,7 @@
+description: |
+  `204 No Content` is returned when ROLE was deleted.
+headers:
+  ETag:
+    $ref: ../headers/ETag.yaml
+  Location:
+    $ref: ../headers/Location_ROLE.yaml

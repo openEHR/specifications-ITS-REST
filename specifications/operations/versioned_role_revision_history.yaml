@@ -1,0 +1,13 @@
+operationId: versioned_role_revision_history
+summary: Get versioned ROLE revision history
+description: |
+  Retrieves revision history of the VERSIONED_ROLE identified by `versioned_object_uid`.
+tags:
+  - ROLE
+parameters:
+  - $ref: ../parameters/path/versioned_object_uid_ROLE.yaml
+responses:
+  '200':
+    $ref: ../responses/200_REVISION_HISTORY.yaml
+  '404':
+    $ref: ../responses/404.yaml

@@ -1,0 +1,12 @@
+description: |
+  `201 Created` is returned when the ORGANISATION was created. 
+  Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+headers:
+  ETag:
+    $ref: ../headers/ETag.yaml
+  Location:
+    $ref: ../headers/Location_ORGANISATION.yaml
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/demographic/Organisation.yaml

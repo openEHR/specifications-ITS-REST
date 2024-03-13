@@ -1,0 +1,7 @@
+description: |
+  `204 No Content` is returned when ORGANISATION was deleted.
+headers:
+  ETag:
+    $ref: ../headers/ETag.yaml
+  Location:
+    $ref: ../headers/Location_ORGANISATION.yaml

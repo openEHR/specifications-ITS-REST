@@ -1,0 +1,11 @@
+description: |
+  `200 OK` is returned when the requested ROLE is successfully retrieved.
+headers:
+  ETag:
+    $ref: ../headers/ETag.yaml
+  Location:
+    $ref: ../headers/Location_ROLE.yaml
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/demographic/Role.yaml

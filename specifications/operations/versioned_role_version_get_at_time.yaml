@@ -1,0 +1,16 @@
+operationId: versioned_role_version_get_at_time
+summary: Get versioned ROLE version at time
+description: |
+  Retrieves a VERSION from the VERSIONED_ROLE identified by `versioned_object_uid`.
+
+  If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
+tags:
+  - ROLE
+parameters:
+  - $ref: ../parameters/path/versioned_object_uid_ROLE.yaml
+  - $ref: ../parameters/query/version_at_time.yaml
+responses:
+  '200':
+    $ref: ../responses/200_VERSION_of_ROLE_at_time.yaml
+  '404':
+    $ref: ../responses/404_not_found_or_no_version_at_time.yaml

@@ -1,0 +1,25 @@
+operationId: role_create
+summary: Create ROLE
+description: |
+  Creates the first version of a new ROLE.
+tags:
+  - ROLE
+parameters:
+  - $ref: ../parameters/header/Prefer.yaml
+requestBody:
+  description: |
+    The ROLE.
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/demographic/Role.yaml
+  required: true
+responses:
+  '201':
+    $ref: ../responses/201_ROLE.yaml
+  '400':
+    $ref: ../responses/400.yaml
+  '422':
+    $ref: ../responses/422.yaml
+  '404':
+    $ref: ../responses/404.yaml

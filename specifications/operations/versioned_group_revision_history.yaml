@@ -1,0 +1,13 @@
+operationId: versioned_group_revision_history
+summary: Get versioned GROUP revision history
+description: |
+  Retrieves revision history of the VERSIONED_GROUP identified by `versioned_object_uid`.
+tags:
+  - GROUP
+parameters:
+  - $ref: ../parameters/path/versioned_object_uid_GROUP.yaml
+responses:
+  '200':
+    $ref: ../responses/200_REVISION_HISTORY.yaml
+  '404':
+    $ref: ../responses/404.yaml

@@ -1,0 +1,13 @@
+operationId: versioned_group_get
+summary: Get versioned GROUP
+description: |
+  Retrieves a VERSIONED_GROUP identified by `versioned_object_uid`.
+tags:
+  - GROUP
+parameters:
+  - $ref: ../parameters/path/versioned_object_uid_GROUP.yaml
+responses:
+  '200':
+    $ref: ../responses/200_VERSIONED_GROUP.yaml
+  '404':
+    $ref: ../responses/404.yaml
