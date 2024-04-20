@@ -7,7 +7,7 @@ function render() {
     docker-compose run --rm php /opt/project/bin/generate_all computable/OAS/"$1".openapi.json
     echo
     echo "Creating yaml files..."
-    docker-compose run --rm redocly bundle computable/OAS/"$1"-codegen.openapi.json --remove-unused-components -o computable/OAS/"$1"-codegen.openapi.yaml
+    docker-compose run --rm redocly bundle computable/OAS/"$1"-codegen.openapi.json -o computable/OAS/"$1"-codegen.openapi.yaml
     docker-compose run --rm redocly bundle computable/OAS/"$1"-validation.openapi.json -o computable/OAS/"$1"-validation.openapi.yaml
     echo
     echo "Generating HTML file..."

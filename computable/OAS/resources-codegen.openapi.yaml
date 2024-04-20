@@ -139,6 +139,40 @@ tags:
 paths: {}
 components:
   schemas:
+    Ehr:
+      title: EHR
+      type: object
+      properties:
+        system_id:
+          $ref: '#/components/schemas/HierObjectId'
+        ehr_id:
+          $ref: '#/components/schemas/HierObjectId'
+        ehr_status:
+          $ref: '#/components/schemas/ObjectRef'
+        ehr_access:
+          $ref: '#/components/schemas/ObjectRef'
+        time_created:
+          $ref: '#/components/schemas/DvDateTime'
+      description: An EHR resource
+      example:
+        system_id:
+          value: 9624982A-9F42-41A5-9318-AE13D5F5031F
+        ehr_id:
+          value: 7d44b88c-4199-4bad-97dc-d78268e01398
+        ehr_status:
+          id:
+            _type: OBJECT_VERSION_ID
+            value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          namespace: local
+          type: EHR_STATUS
+        ehr_access:
+          id:
+            _type: OBJECT_VERSION_ID
+            value: 59a8d0ac-140e-4feb-b2d6-af99f8e68af8::openEHRSys.example.com::1
+          namespace: local
+          type: EHR_ACCESS
+        time_created:
+          value: '2015-01-20T19:30:22.765+01:00'
     EhrStatus:
       title: EHR_STATUS
       required:
@@ -328,6 +362,140 @@ components:
         items: []
         folders: []
       x-discriminator-value: FOLDER
+    Contribution:
+      title: CONTRIBUTION
+      required:
+        - uid
+        - versions
+        - audit
+      type: object
+      properties:
+        uid:
+          $ref: '#/components/schemas/HierObjectId'
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectRef'
+        audit:
+          $ref: '#/components/schemas/AuditDetails'
+      description: A CONTRIBUTION resource
+      example:
+        uid:
+          value: 0826851c-c4c2-4d61-92b9-410fb8275ff0
+        versions:
+          - _type: OBJECT_REF
+            id:
+              _type: OBJECT_VERSION_ID
+              value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+            namespace: local
+            type: COMPOSITION
+          - _type: OBJECT_REF
+            id:
+              _type: OBJECT_VERSION_ID
+              value: abcdefgh-1323-42bc-b7f8-787f3660a0ba::openEHRSys.example.com::1
+            namespace: local
+            type: FOLDER
+        audit:
+          system_id: 9624982A-9F42-41A5-9318-AE13D5F5031F
+          committer:
+            _type: PARTY_IDENTIFIED
+            name: A user name
+          time_committed:
+            value: '2017-08-15T10:37:15.422+02:00'
+          change_type:
+            value: creation
+            defining_code:
+              terminology_id:
+                value: openehr
+              code_string: '249'
+          description:
+            value: Description text
+    NewContribution:
+      title: NewContribution
+      required:
+        - versions
+        - audit
+      type: object
+      properties:
+        uid:
+          $ref: '#/components/schemas/HierObjectId'
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateVersion'
+        audit:
+          $ref: '#/components/schemas/UpdateAudit'
+      description: A new (un-committed) CONTRIBUTION resource
+    AdhocQueryExecute:
+      title: AdhocQueryExecute
+      required:
+        - q
+      type: object
+      properties:
+        q:
+          $ref: '#/components/schemas/AQL'
+        offset:
+          $ref: '#/components/schemas/Offset'
+        fetch:
+          $ref: '#/components/schemas/Fetch'
+        query_parameters:
+          $ref: '#/components/schemas/QueryParameters'
+    Query:
+      title: Query
+      required:
+        - offset
+        - fetch
+        - query_parameters
+      type: object
+      properties:
+        offset:
+          $ref: '#/components/schemas/Offset'
+        fetch:
+          $ref: '#/components/schemas/Fetch'
+        query_parameters:
+          $ref: '#/components/schemas/QueryParameters'
+    ResultSet:
+      title: RESULT_SET
+      required:
+        - rows
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResultSetMetadata'
+        name:
+          $ref: '#/components/schemas/QueryName'
+        q:
+          $ref: '#/components/schemas/AQL'
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResultSetColumn'
+          description: |
+            A set of AQL column specifications, defined in the given AQL.
+          example:
+            - name: '#0'
+              path: /ehr_id/value
+            - name: startTime
+              path: /context/start_time/value
+            - name: systolic
+              path: /data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude
+            - name: cid
+              path: /uid/value
+            - name: '#4'
+              path: /name
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResultSetRow'
+          description: |
+            An ordered set of RESULT_SET rows.
+    TemplateList:
+      title: TemplateList
+      type: array
+      items:
+        $ref: '#/components/schemas/TemplateMetadata'
+      description: |
+        List of uploaded TEMPLATE resources.
     TemplateMetadata:
       title: TemplateMetadata
       required:
@@ -354,6 +522,60 @@ components:
         concept: Vital Signs
         archetype_id: openEHR-EHR-COMPOSITION.encounter.v1
         created_timestamp: '2017-08-14T19:24:56.639Z'
+    QueryList:
+      title: QueryList
+      type: array
+      items:
+        $ref: '#/components/schemas/StoredQuery'
+      description: |
+        List of Stored Query resources.
+      example:
+        - name: org.openehr::compositions
+          type: aql
+          version: 1.0.1
+          saved: '2017-07-16T19:20:30.450+01:00'
+          q: |-
+            SELECT c  FROM EHR e[ehr_id/value=$ehr_id] 
+              CONTAINS COMPOSITION c[$compositionid] 
+            WHERE c/name/value = 'Vitals'
+        - name: org.openehr::compositions
+          type: aql
+          version: 1.1.7
+          saved: '2018-06-13T09:37:20.530+01:00'
+          q: |-
+            SELECT c  FROM EHR e[ehr_id/value=$ehr_id] 
+              CONTAINS COMPOSITION c[$uid] 
+            WHERE c/name/value = 'Vitals'
+    OperationalTemplate:
+      title: OPERATIONAL_TEMPLATE
+      type: object
+      xml:
+        name: response200
+    OperationalTemplateV2:
+      title: OPERATIONAL_TEMPLATE_V2
+      type: object
+    WebTemplate:
+      title: WebTemplate
+      required:
+        - templateId
+        - version
+        - defaultLanguage
+        - languages
+        - tree
+      type: object
+      properties:
+        templateId:
+          type: string
+        version:
+          type: string
+        defaultLanguage:
+          type: string
+        languages:
+          type: array
+          items:
+            type: string
+        tree:
+          $ref: '#/components/schemas/Tree'
     ObjectId:
       title: OBJECT_ID
       required:
