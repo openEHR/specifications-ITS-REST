@@ -1,4 +1,3 @@
-version: "3"
 services:
     php:
         build:
@@ -11,12 +10,13 @@ services:
         user: 1000:1000
 
     redocly:
-        image: redocly/cli
+        image: redocly/cli:1.11.0
         volumes:
             - ..:/spec
         tty: true
         user: 1000:1000
         environment:
+            REDOCLY_TELEMETRY: off
             NODE_OPTIONS: "--max-old-space-size=4048"
 
     swagger-cli:
