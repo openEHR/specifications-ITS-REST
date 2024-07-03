@@ -940,13 +940,17 @@ components:
           type: string
         value:
           type: string
+      example:
+        _type: DV_URI
+        value: https://www.example.com
     DvEhrUri:
       title: DV_EHR_URI
       type: object
       properties:
         _type:
+          enum:
+            - DV_EHR_URI
           type: string
-          default: DV_EHR_URI
         value:
           type: string
       example:
@@ -980,9 +984,6 @@ components:
         mapping:
           DV_URI: '#/components/schemas/UMDvUri'
           DV_EHR_URI: '#/components/schemas/UMDvEhrUri'
-      example:
-        _type: DV_URI
-        value: https://www.example.com
     DvCodedText:
       title: DV_CODED_TEXT
       required:

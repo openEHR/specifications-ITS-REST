@@ -786,10 +786,16 @@ components:
         - $ref: '#/components/schemas/DataValue'
       properties:
         _type:
+          enum:
+            - DV_URI
+            - DV_EHR_URI
           type: string
           default: DV_URI
         value:
           type: string
+      example:
+        _type: DV_URI
+        value: https://www.example.com
       x-discriminator-value: DV_URI
       discriminator:
         propertyName: _type
@@ -802,8 +808,9 @@ components:
         - $ref: '#/components/schemas/DvUri'
       properties:
         _type:
+          enum:
+            - DV_EHR_URI
           type: string
-          default: DV_EHR_URI
       example:
         _type: DV_EHR_URI
         value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
