@@ -7,7 +7,13 @@ required:
 properties:
   _type:
     type: string
+    enum:
+      - DV_URI
+      - DV_EHR_URI
     default: DV_URI
   value:
     type: string
 x-discriminator-value: DV_URI
+example:
+  _type: DV_URI
+  value: 'https://www.example.com'
