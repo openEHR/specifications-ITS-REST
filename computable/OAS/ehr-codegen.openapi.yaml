@@ -930,9 +930,6 @@ components:
         - $ref: '#/components/schemas/DataValue'
       properties:
         _type:
-          enum:
-            - DV_URI
-            - DV_EHR_URI
           type: string
           default: DV_URI
         value:
@@ -968,9 +965,6 @@ components:
         - $ref: '#/components/schemas/DataValue'
       properties:
         _type:
-          enum:
-            - DV_TEXT
-            - DV_CODED_TEXT
           type: string
           default: DV_TEXT
         value:
@@ -1127,8 +1121,9 @@ components:
         - $ref: '#/components/schemas/DvAmount'
       properties:
         _type:
+          enum:
+            - DV_DURATION
           type: string
-          default: DV_DURATION
       x-discriminator-value: DV_DURATION
     DvTemporal:
       title: DV_TEMPORAL
@@ -1157,8 +1152,9 @@ components:
         - $ref: '#/components/schemas/DvTemporal'
       properties:
         _type:
+          enum:
+            - DV_DATE_TIME
           type: string
-          default: DV_DATE_TIME
         value:
           type: string
           format: date-time
@@ -1279,6 +1275,10 @@ components:
       allOf:
         - $ref: '#/components/schemas/DataValue'
       properties:
+        _type:
+          enum:
+            - DV_IDENTIFIER
+          type: string
         issuer:
           type: string
         assigner:
@@ -1394,7 +1394,6 @@ components:
       properties:
         _type:
           type: string
-          default: PARTY_PROXY
         external_ref:
           $ref: '#/components/schemas/PartyRef'
       discriminator:
@@ -1442,8 +1441,9 @@ components:
         - $ref: '#/components/schemas/PartyIdentified'
       properties:
         _type:
+          enum:
+            - PARTY_RELATED
           type: string
-          default: PARTY_RELATED
         relationship:
           $ref: '#/components/schemas/DvCodedText'
       x-discriminator-value: PARTY_RELATED
@@ -1454,8 +1454,9 @@ components:
         - $ref: '#/components/schemas/PartyProxy'
       properties:
         _type:
+          enum:
+            - PARTY_SELF
           type: string
-          default: PARTY_SELF
       x-discriminator-value: PARTY_SELF
     Locatable:
       title: LOCATABLE
@@ -1565,8 +1566,9 @@ components:
         - $ref: '#/components/schemas/DataValue'
       properties:
         _type:
+          enum:
+            - DV_BOOLEAN
           type: string
-          default: DV_BOOLEAN
         value:
           type: boolean
       x-discriminator-value: DV_BOOLEAN
@@ -1579,8 +1581,9 @@ components:
         - $ref: '#/components/schemas/DvAmount'
       properties:
         _type:
+          enum:
+            - DV_COUNT
           type: string
-          default: DV_COUNT
         magnitude:
           type: integer
       x-discriminator-value: DV_COUNT
@@ -1593,8 +1596,9 @@ components:
         - $ref: '#/components/schemas/DvTemporal'
       properties:
         _type:
+          enum:
+            - DV_DATE
           type: string
-          default: DV_DATE
         value:
           type: string
           format: date
@@ -1612,8 +1616,9 @@ components:
         - $ref: '#/components/schemas/DvOrdered'
       properties:
         _type:
+          enum:
+            - DV_ORDINAL
           type: string
-          default: DV_ORDINAL
         symbol:
           $ref: '#/components/schemas/DvCodedText'
         value:
@@ -1630,8 +1635,9 @@ components:
         - $ref: '#/components/schemas/DvAmount'
       properties:
         _type:
+          enum:
+            - DV_PROPORTION
           type: string
-          default: DV_PROPORTION
         numerator:
           type: number
         denominator:
@@ -1651,8 +1657,9 @@ components:
         - $ref: '#/components/schemas/DvAmount'
       properties:
         _type:
+          enum:
+            - DV_QUANTITY
           type: string
-          default: DV_QUANTITY
         magnitude:
           type: number
         precision:
@@ -1674,8 +1681,9 @@ components:
         - $ref: '#/components/schemas/DvOrdered'
       properties:
         _type:
+          enum:
+            - DV_SCALE
           type: string
-          default: DV_SCALE
         symbol:
           $ref: '#/components/schemas/DvCodedText'
         value:
@@ -1691,8 +1699,9 @@ components:
         - $ref: '#/components/schemas/DataValue'
       properties:
         _type:
+          enum:
+            - DV_STATE
           type: string
-          default: DV_STATE
         value:
           $ref: '#/components/schemas/DvCodedText'
         is_terminal:
@@ -1707,14 +1716,15 @@ components:
         - $ref: '#/components/schemas/DvTemporal'
       properties:
         _type:
+          enum:
+            - DV_TIME
           type: string
-          default: DV_TIME
         value:
           type: string
           format: time
       example:
-        _type: DV_DATE
-        value: '2017-08-15'
+        _type: DV_TIME
+        value: '08:20:12'
       x-discriminator-value: DV_TIME
     Element:
       title: ELEMENT
@@ -1809,6 +1819,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Item'
+          description: See [ITEM](resources.html#tag/ITEM_schema) type details.
       x-discriminator-value: ITEM_TREE
     FeederAuditDetails:
       title: FEEDER_AUDIT_DETAILS
@@ -1861,6 +1872,7 @@ components:
         mapping:
           COMPOSITION: '#/components/schemas/Composition'
           EHR_STATUS: '#/components/schemas/EhrStatus'
+          FOLDER: '#/components/schemas/Folder'
     EhrStatus:
       title: EHR_STATUS
       required:
@@ -1872,8 +1884,9 @@ components:
         - $ref: '#/components/schemas/Versionable'
       properties:
         _type:
+          enum:
+            - EHR_STATUS
           type: string
-          default: EHR_STATUS
         subject:
           $ref: '#/components/schemas/PartyProxy'
         is_queryable:
@@ -1958,8 +1971,9 @@ components:
         - $ref: '#/components/schemas/VersionedObject'
       properties:
         _type:
+          enum:
+            - VERSIONED_EHR_STATUS
           type: string
-          default: VERSIONED_EHR_STATUS
       description: A VERSIONED_EHR_STATUS resource
       example:
         uid:
@@ -2171,8 +2185,9 @@ components:
         - $ref: '#/components/schemas/AbstractEntry'
       properties:
         _type:
+          enum:
+            - ADMIN_ENTRY
           type: string
-          default: ADMIN_ENTRY
         data:
           $ref: '#/components/schemas/ItemStructure'
       x-discriminator-value: ADMIN_ENTRY
@@ -2245,8 +2260,9 @@ components:
         - $ref: '#/components/schemas/CareEntry'
       properties:
         _type:
+          enum:
+            - OBSERVATION
           type: string
-          default: OBSERVATION
         data:
           $ref: '#/components/schemas/History'
         state:
@@ -2261,8 +2277,9 @@ components:
         - $ref: '#/components/schemas/CareEntry'
       properties:
         _type:
+          enum:
+            - EVALUATION
           type: string
-          default: EVALUATION
         data:
           $ref: '#/components/schemas/ItemStructure'
       x-discriminator-value: EVALUATION
@@ -2276,8 +2293,9 @@ components:
         - $ref: '#/components/schemas/Locatable'
       properties:
         _type:
+          enum:
+            - ACTIVITY
           type: string
-          default: ACTIVITY
         timing:
           $ref: '#/components/schemas/DvParsable'
         action_archetype_id:
@@ -2294,8 +2312,9 @@ components:
         - $ref: '#/components/schemas/CareEntry'
       properties:
         _type:
+          enum:
+            - INSTRUCTION
           type: string
-          default: INSTRUCTION
         narrative:
           $ref: '#/components/schemas/DvText'
         expiry_time:
@@ -2316,8 +2335,9 @@ components:
         - $ref: '#/components/schemas/Pathable'
       properties:
         _type:
+          enum:
+            - ISM_TRANSITION
           type: string
-          default: ISM_TRANSITION
         current_state:
           $ref: '#/components/schemas/DvCodedText'
         transition:
@@ -2355,8 +2375,9 @@ components:
         - $ref: '#/components/schemas/Pathable'
       properties:
         _type:
+          enum:
+            - INSTRUCTION_DETAILS
           type: string
-          default: INSTRUCTION_DETAILS
         instruction_id:
           $ref: '#/components/schemas/LocatableRef'
         activity_id:
@@ -2375,8 +2396,9 @@ components:
         - $ref: '#/components/schemas/CareEntry'
       properties:
         _type:
+          enum:
+            - ACTION
           type: string
-          default: ACTION
         time:
           $ref: '#/components/schemas/DvDateTime'
         ism_transition:
@@ -2400,8 +2422,9 @@ components:
         - $ref: '#/components/schemas/Versionable'
       properties:
         _type:
+          enum:
+            - COMPOSITION
           type: string
-          default: COMPOSITION
         language:
           $ref: '#/components/schemas/CodePhrase'
         territory:
@@ -2416,6 +2439,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ContentItem'
+          description: See [CONTENT_ITEM](resources.html#tag/CONTENT_ITEM_schema) type details.
       description: A COMPOSITION resource
       example:
         archetype_node_id: openEHR-EHR-COMPOSITION.encounter.v1
@@ -2465,6 +2489,37 @@ components:
               code_string: '238'
         content: []
       x-discriminator-value: COMPOSITION
+    Folder:
+      title: FOLDER
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Versionable'
+      properties:
+        _type:
+          enum:
+            - FOLDER
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectRef'
+        folders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Folder'
+        details:
+          $ref: '#/components/schemas/ItemStructure'
+      description: A FOLDER resource
+      example:
+        archetype_node_id: openEHR-EHR-FOLDER.directory.v1
+        name:
+          value: Directory
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        items: []
+        folders: []
+      x-discriminator-value: FOLDER
     Version:
       title: VERSION
       required:
@@ -2499,8 +2554,9 @@ components:
         - $ref: '#/components/schemas/AuditDetails'
       properties:
         _type:
+          enum:
+            - ATTESTATION
           type: string
-          default: ATTESTATION
         attested_view:
           $ref: '#/components/schemas/DvMultimedia'
         proof:
@@ -2524,8 +2580,9 @@ components:
         - $ref: '#/components/schemas/Version'
       properties:
         _type:
+          enum:
+            - ORIGINAL_VERSION
           type: string
-          default: ORIGINAL_VERSION
         uid:
           $ref: '#/components/schemas/ObjectVersionId'
         preceding_version_uid:
@@ -2550,8 +2607,9 @@ components:
         - $ref: '#/components/schemas/Version'
       properties:
         _type:
+          enum:
+            - IMPORTED_VERSION
           type: string
-          default: IMPORTED_VERSION
         item:
           $ref: '#/components/schemas/OriginalVersion'
       x-discriminator-value: IMPORTED_VERSION
@@ -2562,8 +2620,9 @@ components:
         - $ref: '#/components/schemas/VersionedObject'
       properties:
         _type:
+          enum:
+            - VERSIONED_COMPOSITION
           type: string
-          default: VERSIONED_COMPOSITION
       description: A VERSIONED_COMPOSITION resource
       example:
         uid:
@@ -2577,36 +2636,6 @@ components:
         time_created:
           value: '2015-01-20T19:30:22.765+01:00'
       x-discriminator-value: VERSIONED_COMPOSITION
-    Folder:
-      title: FOLDER
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Locatable'
-      properties:
-        _type:
-          type: string
-          default: FOLDER
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ObjectRef'
-        folders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Folder'
-        details:
-          $ref: '#/components/schemas/ItemStructure'
-      description: A FOLDER resource
-      example:
-        archetype_node_id: openEHR-EHR-FOLDER.directory.v1
-        name:
-          value: Directory
-        uid:
-          _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-        items: []
-        folders: []
-      x-discriminator-value: FOLDER
     TerminologyCode:
       title: TERMINOLOGY_CODE
       required:
@@ -2668,8 +2697,9 @@ components:
         - $ref: '#/components/schemas/UpdateAudit'
       properties:
         _type:
+          enum:
+            - UPDATE_ATTESTATION
           type: string
-          default: UPDATE_ATTESTATION
         attested_view:
           $ref: '#/components/schemas/DvMultimedia'
         proof:

@@ -656,53 +656,6 @@ paths:
           $ref: '#/components/responses/404_CONTRIBUTION'
 components:
   schemas:
-    UAbstractItem:
-      title: ITEM
-      type: object
-    UAbstractItemStructure:
-      title: ITEM_STRUCTURE
-      type: object
-    UAbstractContentItem:
-      title: CONTENT_ITEM
-      type: object
-    VersionOfComposition:
-      title: VERSION
-      required:
-        - contribution
-        - commit_audit
-        - data
-      type: object
-      properties:
-        _type:
-          type: string
-        contribution:
-          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
-        signature:
-          type: string
-        commit_audit:
-          $ref: '#/components/schemas/AuditDetails'
-        data:
-          $ref: '#/components/schemas/Composition'
-      description: A VERSION resource
-    VersionOfEhrStatus:
-      title: VERSION
-      required:
-        - contribution
-        - commit_audit
-        - data
-      type: object
-      properties:
-        _type:
-          type: string
-        contribution:
-          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
-        signature:
-          type: string
-        commit_audit:
-          $ref: '#/components/schemas/AuditDetails'
-        data:
-          $ref: '#/components/schemas/EhrStatus'
-      description: A VERSION resource
     HierObjectId:
       title: HIER_OBJECT_ID
       required:
@@ -1147,8 +1100,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - DV_DURATION
           type: string
-          default: DV_DURATION
         normal_status:
           $ref: '#/components/schemas/CodePhrase'
         normal_range:
@@ -1171,8 +1125,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - DV_DATE_TIME
           type: string
-          default: DV_DATE_TIME
         normal_status:
           $ref: '#/components/schemas/CodePhrase'
         normal_range:
@@ -1277,6 +1232,8 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - DV_IDENTIFIER
           type: string
         issuer:
           type: string
@@ -1567,34 +1524,6 @@ components:
           type: number
         magnitude:
           type: integer
-    DvDate:
-      title: DV_DATE
-      required:
-        - value
-      type: object
-      properties:
-        _type:
-          type: string
-          default: DV_DATE
-        normal_status:
-          $ref: '#/components/schemas/CodePhrase'
-        normal_range:
-          $ref: '#/components/schemas/DvInterval'
-        other_reference_ranges:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReferenceRange'
-        magnitude_status:
-          type: string
-          default: '='
-        accuracy:
-          $ref: '#/components/schemas/DvDuration'
-        value:
-          type: string
-          format: date
-      example:
-        _type: DV_DATE
-        value: '2017-08-15'
     UMDvDate:
       title: DV_DATE
       required:
@@ -1867,8 +1796,8 @@ components:
           type: string
           format: time
       example:
-        _type: DV_DATE
-        value: '2017-08-15'
+        _type: DV_TIME
+        value: '08:20:12'
     UDataValue:
       title: DATA_VALUE
       oneOf:
@@ -2105,6 +2034,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UItem'
+          description: See [ITEM](resources.html#tag/ITEM_schema) type details.
       required:
         - name
         - archetype_node_id
@@ -2173,8 +2103,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - EHR_STATUS
           type: string
-          default: EHR_STATUS
         name:
           $ref: '#/components/schemas/UDvText'
         archetype_node_id:
@@ -2257,8 +2188,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - VERSIONED_EHR_STATUS
           type: string
-          default: VERSIONED_EHR_STATUS
         uid:
           $ref: '#/components/schemas/HierObjectId'
         owner_id:
@@ -2663,8 +2595,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - ACTIVITY
           type: string
-          default: ACTIVITY
         name:
           $ref: '#/components/schemas/UDvText'
         archetype_node_id:
@@ -2754,8 +2687,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - ISM_TRANSITION
           type: string
-          default: ISM_TRANSITION
         current_state:
           $ref: '#/components/schemas/DvCodedText'
         transition:
@@ -2790,8 +2724,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - INSTRUCTION_DETAILS
           type: string
-          default: INSTRUCTION_DETAILS
         instruction_id:
           $ref: '#/components/schemas/LocatableRef'
         activity_id:
@@ -2888,8 +2823,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - COMPOSITION
           type: string
-          default: COMPOSITION
         name:
           $ref: '#/components/schemas/UDvText'
         archetype_node_id:
@@ -2920,6 +2856,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UContentItem'
+          description: See [CONTENT_ITEM](resources.html#tag/CONTENT_ITEM_schema) type details.
       description: A COMPOSITION resource
       example:
         archetype_node_id: openEHR-EHR-COMPOSITION.encounter.v1
@@ -2968,16 +2905,85 @@ components:
                 value: openehr
               code_string: '238'
         content: []
+    UObjectRefOfUidBasedId:
+      title: OBJECT_REF
+      type: object
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UUidBasedId'
+      example:
+        id:
+          _type: HIER_OBJECT_ID
+          value: 6cb19121-4307-4648-9da0-d62e4d51f19b
+        namespace: local
+        type: COMPOSITION
+      required:
+        - namespace
+        - type
+        - id
+    Folder:
+      title: FOLDER
+      type: object
+      properties:
+        _type:
+          enum:
+            - FOLDER
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UObjectRefOfUidBasedId'
+        folders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Folder'
+        details:
+          $ref: '#/components/schemas/UItemStructure'
+      description: A FOLDER resource
+      example:
+        archetype_node_id: openEHR-EHR-FOLDER.directory.v1
+        name:
+          value: Directory
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        items: []
+        folders: []
+      required:
+        - name
+        - archetype_node_id
     UVersionable:
       title: Versionable
       oneOf:
         - $ref: '#/components/schemas/Composition'
         - $ref: '#/components/schemas/EhrStatus'
+        - $ref: '#/components/schemas/Folder'
       discriminator:
         propertyName: _type
         mapping:
           COMPOSITION: '#/components/schemas/Composition'
           EHR_STATUS: '#/components/schemas/EhrStatus'
+          FOLDER: '#/components/schemas/Folder'
     Attestation:
       title: ATTESTATION
       required:
@@ -2990,8 +2996,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - ATTESTATION
           type: string
-          default: ATTESTATION
         system_id:
           type: string
         time_committed:
@@ -3029,41 +3036,6 @@ components:
             code_string: '249'
         description:
           value: Description text
-    OriginalVersion:
-      title: ORIGINAL_VERSION
-      required:
-        - contribution
-        - commit_audit
-        - data
-        - uid
-        - lifecycle_state
-      type: object
-      properties:
-        _type:
-          type: string
-          default: ORIGINAL_VERSION
-        contribution:
-          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
-        signature:
-          type: string
-        commit_audit:
-          $ref: '#/components/schemas/AuditDetails'
-        data:
-          $ref: '#/components/schemas/UVersionable'
-        uid:
-          $ref: '#/components/schemas/ObjectVersionId'
-        preceding_version_uid:
-          $ref: '#/components/schemas/ObjectVersionId'
-        other_input_version_uids:
-          type: array
-          items:
-            $ref: '#/components/schemas/ObjectVersionId'
-        lifecycle_state:
-          $ref: '#/components/schemas/DvCodedText'
-        attestations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attestation'
     UMOriginalVersionOfEhrStatus:
       title: ORIGINAL_VERSION
       required:
@@ -3140,8 +3112,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - VERSIONED_COMPOSITION
           type: string
-          default: VERSIONED_COMPOSITION
         uid:
           $ref: '#/components/schemas/HierObjectId'
         owner_id:
@@ -3235,72 +3208,6 @@ components:
         mapping:
           ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersionOfComposition'
           IMPORTED_VERSION: '#/components/schemas/UMImportedVersionOfComposition'
-    UObjectRefOfUidBasedId:
-      title: OBJECT_REF
-      type: object
-      properties:
-        namespace:
-          type: string
-        type:
-          type: string
-        id:
-          $ref: '#/components/schemas/UUidBasedId'
-      example:
-        id:
-          _type: HIER_OBJECT_ID
-          value: 6cb19121-4307-4648-9da0-d62e4d51f19b
-        namespace: local
-        type: COMPOSITION
-      required:
-        - namespace
-        - type
-        - id
-    Folder:
-      title: FOLDER
-      type: object
-      properties:
-        _type:
-          type: string
-          default: FOLDER
-        name:
-          $ref: '#/components/schemas/UDvText'
-        archetype_node_id:
-          type: string
-          xml:
-            attribute: true
-        uid:
-          $ref: '#/components/schemas/UUidBasedId'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        archetype_details:
-          $ref: '#/components/schemas/Archetyped'
-        feeder_audit:
-          $ref: '#/components/schemas/FeederAudit'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/UObjectRefOfUidBasedId'
-        folders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Folder'
-        details:
-          $ref: '#/components/schemas/UItemStructure'
-      description: A FOLDER resource
-      example:
-        archetype_node_id: openEHR-EHR-FOLDER.directory.v1
-        name:
-          value: Directory
-        uid:
-          _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-        items: []
-        folders: []
-      required:
-        - name
-        - archetype_node_id
     TerminologyCode:
       title: TERMINOLOGY_CODE
       required:
@@ -3357,8 +3264,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - UPDATE_ATTESTATION
           type: string
-          default: UPDATE_ATTESTATION
         change_type:
           $ref: '#/components/schemas/TerminologyCode'
         description:
