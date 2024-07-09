@@ -129,6 +129,8 @@ components:
       $ref: ./schemas/data_structures/UAbstractItemStructure.yaml
     UAbstractContentItem:
       $ref: ./schemas/ehr/UAbstractContentItem.yaml
+    UAbstractVersionable:
+      $ref: ./schemas/common/UAbstractVersionable.yaml
     VersionOfComposition:
       $ref: ./schemas/ehr/VersionOfComposition.yaml
     VersionOfEhrStatus:

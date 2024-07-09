@@ -18,12 +18,14 @@ class Html extends Validation {
             [
                 '"$ref": "#/components/schemas/UItem"',
                 '"$ref": "#/components/schemas/UItemStructure"',
-                '"$ref": "#/components/schemas/UContentItem"'
+                '"$ref": "#/components/schemas/UContentItem"',
+                '"$ref": "#/components/schemas/UVersionable"',
             ],
             [
                 '"$ref": "#/components/schemas/UAbstractItem"',
                 '"$ref": "#/components/schemas/UAbstractItemStructure"',
-                '"$ref": "#/components/schemas/UAbstractContentItem"'
+                '"$ref": "#/components/schemas/UAbstractContentItem"',
+                '"$ref": "#/components/schemas/UAbstractVersionable"',
             ],
             $this->input);
     }
