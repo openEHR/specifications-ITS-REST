@@ -7,6 +7,9 @@ required:
 properties:
   _type:
     type: string
+    enum:
+      - DV_TEXT
+      - DV_CODED_TEXT
     default: DV_TEXT
   value:
     type: string
@@ -23,3 +26,6 @@ properties:
   encoding:
     $ref: ../data_types/CodePhrase.yaml
 x-discriminator-value: DV_TEXT
+example:
+  _type: DV_TEXT
+  value: 'Text value'
