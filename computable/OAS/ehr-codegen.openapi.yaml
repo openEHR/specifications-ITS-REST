@@ -942,6 +942,9 @@ components:
         - $ref: '#/components/schemas/DataValue'
       properties:
         _type:
+          enum:
+            - DV_TEXT
+            - DV_CODED_TEXT
           type: string
           default: DV_TEXT
         value:
@@ -958,6 +961,9 @@ components:
           $ref: '#/components/schemas/CodePhrase'
         encoding:
           $ref: '#/components/schemas/CodePhrase'
+      example:
+        _type: DV_TEXT
+        value: Text value
       x-discriminator-value: DV_TEXT
       discriminator:
         propertyName: _type
@@ -972,8 +978,9 @@ components:
         - $ref: '#/components/schemas/DvText'
       properties:
         _type:
+          enum:
+            - DV_CODED_TEXT
           type: string
-          default: DV_CODED_TEXT
         defining_code:
           $ref: '#/components/schemas/CodePhrase'
       example:

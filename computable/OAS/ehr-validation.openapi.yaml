@@ -995,8 +995,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - DV_CODED_TEXT
           type: string
-          default: DV_CODED_TEXT
         value:
           type: string
         hyperlink:
@@ -1058,6 +1059,9 @@ components:
           $ref: '#/components/schemas/CodePhrase'
         encoding:
           $ref: '#/components/schemas/CodePhrase'
+      example:
+        _type: DV_TEXT
+        value: Text value
     UMDvCodedText:
       title: DV_CODED_TEXT
       required:
@@ -1102,9 +1106,6 @@ components:
         mapping:
           DV_TEXT: '#/components/schemas/UMDvText'
           DV_CODED_TEXT: '#/components/schemas/UMDvCodedText'
-      example:
-        _type: DV_TEXT
-        value: Text value
     ReferenceRange:
       title: REFERENCE_RANGE
       required:
