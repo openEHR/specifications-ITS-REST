@@ -39,7 +39,13 @@ info:
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
     The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/resources.html>.
-servers: []
+servers:
+  - url: https://{baseUrl}/v1
+    description: An example openEHR server URL.
+    variables:
+      baseUrl:
+        default: openEHRSys.example.com
+        description: The (example) server base URL prefix providing openEHR services. This may contain server name, port and base path prefix.
 security: []
 tags:
   - name: EHR_schema

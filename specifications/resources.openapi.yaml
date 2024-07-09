@@ -13,7 +13,13 @@ info:
     url: 'https://creativecommons.org/licenses/by-nd/3.0/'
   description:
     $ref: ./docs/resources/Description.md
-servers: []
+servers:
+  - url: https://{baseUrl}/v1
+    description: An example openEHR server URL.
+    variables:
+      baseUrl:
+        default: openEHRSys.example.com
+        description: The (example) server base URL prefix providing openEHR services. This may contain server name, port and base path prefix.
 security: []
 paths: {}
 tags:
@@ -76,6 +82,8 @@ x-tagGroups:
       - StoredQuery_schema
 components:
   schemas:
+    UAbstractItem:
+      $ref: ./schemas/data_structures/UAbstractItem.yaml
     UAbstractItemStructure:
       $ref: ./schemas/data_structures/UAbstractItemStructure.yaml
     UAbstractContentItem:

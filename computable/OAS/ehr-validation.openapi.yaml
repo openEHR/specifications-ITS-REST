@@ -656,6 +656,9 @@ paths:
           $ref: '#/components/responses/404_CONTRIBUTION'
 components:
   schemas:
+    UAbstractItem:
+      title: ITEM
+      type: object
     UAbstractItemStructure:
       title: ITEM_STRUCTURE
       type: object

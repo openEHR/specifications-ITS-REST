@@ -123,6 +123,8 @@ x-tagGroups:
       - CONTRIBUTION
 components:
   schemas:
+    UAbstractItem:
+      $ref: ./schemas/data_structures/UAbstractItem.yaml
     UAbstractItemStructure:
       $ref: ./schemas/data_structures/UAbstractItemStructure.yaml
     UAbstractContentItem:
