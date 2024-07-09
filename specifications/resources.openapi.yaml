@@ -43,6 +43,14 @@ tags:
     x-displayName: CONTRIBUTION
     description:
       $ref: ./tags/CONTRIBUTION_schema.md
+  - name: Content_schema
+    x-displayName: Content types
+    description:
+      $ref: ./tags/Content_schema.md
+  - name: Versionable_schema
+    x-displayName: Versionable types
+    description:
+      $ref: ./tags/Versionable_schema.md
   - name: Query_schema
     x-displayName: Query Execute
     description:
@@ -70,7 +78,11 @@ x-tagGroups:
       - EHR_STATUS_schema
       - COMPOSITION_schema
       - DIRECTORY_schema
+  - name: Common
+    tags:
       - CONTRIBUTION_schema
+      - Content_schema
+      - Versionable_schema
   - name: Query Resources
     tags:
       - Query_schema
