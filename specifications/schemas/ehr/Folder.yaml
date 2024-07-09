@@ -10,7 +10,7 @@ properties:
   items:
     type: array
     items:
-      $ref: ../base_types/ObjectRef.yaml
+      $ref: ../base_types/UObjectRefOfUidBasedId.yaml
   folders:
     type: array
     items:
