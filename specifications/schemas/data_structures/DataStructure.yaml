@@ -5,5 +5,4 @@ allOf:
 properties:
   _type:
     type: string
-    default: DATA_STRUCTURE
 x-discriminator-value: DATA_STRUCTURE
