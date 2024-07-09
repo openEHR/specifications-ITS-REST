@@ -11,7 +11,7 @@ function render() {
       removeUnusedComponentsOption="--remove-unused-components "
     fi
     docker-compose run --rm redocly bundle computable/OAS/"$1"-codegen.openapi.json -o computable/OAS/"$1"-codegen.openapi.yaml
-    docker-compose run --rm redocly bundle computable/OAS/"$1"-validation.openapi.json -o computable/OAS/"$1"-validation.openapi.yaml
+    docker-compose run --rm redocly bundle computable/OAS/"$1"-validation.openapi.json $removeUnusedComponentsOption -o computable/OAS/"$1"-validation.openapi.yaml
     docker-compose run --rm redocly bundle computable/OAS/"$1"-html.openapi.json $removeUnusedComponentsOption -o computable/OAS/"$1"-html.openapi.yaml
     echo
     echo "Generating HTML file..."

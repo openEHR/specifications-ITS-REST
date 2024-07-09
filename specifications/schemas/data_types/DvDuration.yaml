@@ -5,5 +5,5 @@ allOf:
 properties:
   _type:
     type: string
-    default: DV_DURATION
+    enum: [DV_DURATION]
 x-discriminator-value: DV_DURATION

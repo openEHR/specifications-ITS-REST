@@ -8,7 +8,7 @@ required:
 properties:
   _type:
     type: string
-    default: ORIGINAL_VERSION
+    enum: [ORIGINAL_VERSION]
   uid:
     $ref: ../base_types/ObjectVersionId.yaml
   preceding_version_uid:

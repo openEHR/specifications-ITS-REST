@@ -5,6 +5,5 @@ required:
 properties:
   _type:
     type: string
-    default: PARTY_PROXY
   external_ref:
     $ref: ../base_types/PartyRef.yaml

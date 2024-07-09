@@ -7,9 +7,6 @@ required:
 properties:
   _type:
     type: string
-    enum:
-      - DV_TEXT
-      - DV_CODED_TEXT
     default: DV_TEXT
   value:
     type: string

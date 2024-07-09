@@ -13,7 +13,7 @@ required:
 properties:
   _type:
     type: string
-    default: COMPOSITION
+    enum: [COMPOSITION]
   language:
     $ref: ../data_types/CodePhrase.yaml
   territory:

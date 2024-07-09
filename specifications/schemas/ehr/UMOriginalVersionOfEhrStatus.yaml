@@ -5,9 +5,6 @@ allOf:
 required:
   - _type
 properties:
-  _type:
-    type: string
-    enum: [ORIGINAL_VERSION]
   data:
     $ref: ../ehr/EhrStatus.yaml
 x-discriminator-value: ORIGINAL_VERSION
