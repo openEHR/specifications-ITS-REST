@@ -163,9 +163,9 @@ components:
         ehr_id:
           $ref: '#/components/schemas/HierObjectId'
         ehr_status:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
         ehr_access:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
         time_created:
           $ref: '#/components/schemas/DvDateTime'
       description: An EHR resource
@@ -249,7 +249,7 @@ components:
         uid:
           $ref: '#/components/schemas/HierObjectId'
         owner_id:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         time_created:
           $ref: '#/components/schemas/DvDateTime'
       description: A VERSIONED_EHR_STATUS resource
@@ -372,7 +372,7 @@ components:
         uid:
           $ref: '#/components/schemas/HierObjectId'
         owner_id:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         time_created:
           $ref: '#/components/schemas/DvDateTime'
       description: A VERSIONED_COMPOSITION resource
@@ -417,7 +417,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/ObjectRef'
+            $ref: '#/components/schemas/UObjectRefOfUidBasedId'
         folders:
           type: array
           items:
@@ -450,7 +450,7 @@ components:
         versions:
           type: array
           items:
-            $ref: '#/components/schemas/ObjectRef'
+            $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
         audit:
           $ref: '#/components/schemas/AuditDetails'
       description: A CONTRIBUTION resource
@@ -846,6 +846,26 @@ components:
           value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
         namespace: local
         type: COMPOSITION
+    ObjectRefOfObjectVersionId:
+      title: OBJECT_REF
+      type: object
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UMObjectVersionId'
+      example:
+        id:
+          _type: OBJECT_VERSION_ID
+          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+        namespace: local
+        type: COMPOSITION
+      required:
+        - namespace
+        - type
+        - id
     CodePhrase:
       title: CODE_PHRASE
       required:
@@ -2055,6 +2075,26 @@ components:
           $ref: '#/components/schemas/FeederAuditDetails'
         feeder_system_audit:
           $ref: '#/components/schemas/FeederAuditDetails'
+    ObjectRefOfHierObjectId:
+      title: OBJECT_REF
+      type: object
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UMHierObjectId'
+      example:
+        id:
+          _type: HIER_OBJECT_ID
+          value: 6cb19121-4307-4648-9da0-d62e4d51f19b
+        namespace: local
+        type: CONTRIBUTION
+      required:
+        - namespace
+        - type
+        - id
     DvIntervalOfDateTime:
       title: DV_INTERVAL_of_DATE_TIME
       type: object
@@ -2567,6 +2607,26 @@ components:
           EVALUATION: '#/components/schemas/UMEvaluation'
           INSTRUCTION: '#/components/schemas/UMInstruction'
           ACTION: '#/components/schemas/UMAction'
+    UObjectRefOfUidBasedId:
+      title: OBJECT_REF
+      type: object
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UUidBasedId'
+      example:
+        id:
+          _type: HIER_OBJECT_ID
+          value: 6cb19121-4307-4648-9da0-d62e4d51f19b
+        namespace: local
+        type: COMPOSITION
+      required:
+        - namespace
+        - type
+        - id
     AuditDetails:
       title: AUDIT_DETAILS
       required:

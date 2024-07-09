@@ -676,7 +676,7 @@ components:
         _type:
           type: string
         contribution:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         signature:
           type: string
         commit_audit:
@@ -695,7 +695,7 @@ components:
         _type:
           type: string
         contribution:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         signature:
           type: string
         commit_audit:
@@ -898,6 +898,26 @@ components:
           value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
         namespace: local
         type: COMPOSITION
+    ObjectRefOfObjectVersionId:
+      title: OBJECT_REF
+      type: object
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UMObjectVersionId'
+      example:
+        id:
+          _type: OBJECT_VERSION_ID
+          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+        namespace: local
+        type: COMPOSITION
+      required:
+        - namespace
+        - type
+        - id
     CodePhrase:
       title: CODE_PHRASE
       required:
@@ -1181,9 +1201,9 @@ components:
         ehr_id:
           $ref: '#/components/schemas/HierObjectId'
         ehr_status:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
         ehr_access:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
         time_created:
           $ref: '#/components/schemas/DvDateTime'
       description: An EHR resource
@@ -2211,6 +2231,26 @@ components:
         validationErrors:
           - error1
           - error2
+    ObjectRefOfHierObjectId:
+      title: OBJECT_REF
+      type: object
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UMHierObjectId'
+      example:
+        id:
+          _type: HIER_OBJECT_ID
+          value: 6cb19121-4307-4648-9da0-d62e4d51f19b
+        namespace: local
+        type: CONTRIBUTION
+      required:
+        - namespace
+        - type
+        - id
     VersionedEhrStatus:
       title: VERSIONED_EHR_STATUS
       type: object
@@ -2221,7 +2261,7 @@ components:
         uid:
           $ref: '#/components/schemas/HierObjectId'
         owner_id:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         time_created:
           $ref: '#/components/schemas/DvDateTime'
       description: A VERSIONED_EHR_STATUS resource
@@ -3002,7 +3042,7 @@ components:
           type: string
           default: ORIGINAL_VERSION
         contribution:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         signature:
           type: string
         commit_audit:
@@ -3039,7 +3079,7 @@ components:
             - ORIGINAL_VERSION
           type: string
         contribution:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         signature:
           type: string
         commit_audit:
@@ -3075,7 +3115,7 @@ components:
             - IMPORTED_VERSION
           type: string
         contribution:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         signature:
           type: string
         commit_audit:
@@ -3104,7 +3144,7 @@ components:
         uid:
           $ref: '#/components/schemas/HierObjectId'
         owner_id:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         time_created:
           $ref: '#/components/schemas/DvDateTime'
       description: A VERSIONED_COMPOSITION resource
@@ -3139,7 +3179,7 @@ components:
             - ORIGINAL_VERSION
           type: string
         contribution:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         signature:
           type: string
         commit_audit:
@@ -3175,7 +3215,7 @@ components:
             - IMPORTED_VERSION
           type: string
         contribution:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         signature:
           type: string
         commit_audit:
@@ -3194,6 +3234,26 @@ components:
         mapping:
           ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersionOfComposition'
           IMPORTED_VERSION: '#/components/schemas/UMImportedVersionOfComposition'
+    UObjectRefOfUidBasedId:
+      title: OBJECT_REF
+      type: object
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UUidBasedId'
+      example:
+        id:
+          _type: HIER_OBJECT_ID
+          value: 6cb19121-4307-4648-9da0-d62e4d51f19b
+        namespace: local
+        type: COMPOSITION
+      required:
+        - namespace
+        - type
+        - id
     Folder:
       title: FOLDER
       type: object
@@ -3220,7 +3280,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/ObjectRef'
+            $ref: '#/components/schemas/UObjectRefOfUidBasedId'
         folders:
           type: array
           items:
@@ -3377,7 +3437,7 @@ components:
         versions:
           type: array
           items:
-            $ref: '#/components/schemas/ObjectRef'
+            $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
         audit:
           $ref: '#/components/schemas/AuditDetails'
       description: A CONTRIBUTION resource

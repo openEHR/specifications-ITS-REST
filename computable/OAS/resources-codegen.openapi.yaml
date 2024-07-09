@@ -154,9 +154,9 @@ components:
         ehr_id:
           $ref: '#/components/schemas/HierObjectId'
         ehr_status:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
         ehr_access:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
         time_created:
           $ref: '#/components/schemas/DvDateTime'
       description: An EHR resource
@@ -381,7 +381,7 @@ components:
         versions:
           type: array
           items:
-            $ref: '#/components/schemas/ObjectRef'
+            $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
         audit:
           $ref: '#/components/schemas/AuditDetails'
       description: A CONTRIBUTION resource
@@ -707,6 +707,24 @@ components:
           type: string
         id:
           $ref: '#/components/schemas/ObjectId'
+      example:
+        id:
+          _type: OBJECT_VERSION_ID
+          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+        namespace: local
+        type: COMPOSITION
+      discriminator:
+        propertyName: _type
+        mapping:
+          OBJECT_REF: '#/components/schemas/ObjectRef'
+    ObjectRefOfObjectVersionId:
+      title: OBJECT_REF
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ObjectRef'
+      properties:
+        id:
+          $ref: '#/components/schemas/ObjectVersionId'
       example:
         id:
           _type: OBJECT_VERSION_ID
@@ -1700,6 +1718,20 @@ components:
         mapping:
           COMPOSITION: '#/components/schemas/Composition'
           EHR_STATUS: '#/components/schemas/EhrStatus'
+    ObjectRefOfHierObjectId:
+      title: OBJECT_REF
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ObjectRef'
+      properties:
+        id:
+          $ref: '#/components/schemas/HierObjectId'
+      example:
+        id:
+          _type: HIER_OBJECT_ID
+          value: 6cb19121-4307-4648-9da0-d62e4d51f19b
+        namespace: local
+        type: CONTRIBUTION
     VersionedObject:
       title: VERSIONED_OBJECT
       required:
@@ -1713,7 +1745,7 @@ components:
         uid:
           $ref: '#/components/schemas/HierObjectId'
         owner_id:
-          $ref: '#/components/schemas/ObjectRef'
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
         time_created:
           $ref: '#/components/schemas/DvDateTime'
       discriminator:
