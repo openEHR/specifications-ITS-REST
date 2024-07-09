@@ -1304,11 +1304,7 @@ components:
         - $ref: '#/components/schemas/DataValue'
       properties:
         _type:
-          enum:
-            - DV_ENCAPSULATED
-            - DV_PARSABLE
           type: string
-          default: DV_ENCAPSULATED
         charset:
           $ref: '#/components/schemas/CodePhrase'
         language:
@@ -1328,8 +1324,9 @@ components:
         - $ref: '#/components/schemas/DvEncapsulated'
       properties:
         _type:
+          enum:
+            - DV_MULTIMEDIA
           type: string
-          default: DV_MULTIMEDIA
         alternate_text:
           type: string
         uri:

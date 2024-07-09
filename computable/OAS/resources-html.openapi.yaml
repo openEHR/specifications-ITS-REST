@@ -1216,8 +1216,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - DV_MULTIMEDIA
           type: string
-          default: DV_MULTIMEDIA
         charset:
           $ref: '#/components/schemas/CodePhrase'
         language:
