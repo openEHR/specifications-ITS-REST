@@ -7,10 +7,6 @@ required:
 properties:
   _type:
     type: string
-    enum:
-      - DV_ENCAPSULATED
-      - DV_PARSABLE
-    default: DV_ENCAPSULATED
   charset:
     $ref: ../data_types/CodePhrase.yaml
   language:
