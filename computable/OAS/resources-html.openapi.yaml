@@ -658,19 +658,22 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - HIER_OBJECT_ID
           type: string
-          default: UID_BASED_ID
         value:
           type: string
           format: uuid
-          example: 6cb19121-4307-4648-9da0-d62e4d51f19b
+      example:
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b
     ArchetypeId:
       title: ARCHETYPE_ID
       type: object
       properties:
         _type:
+          enum:
+            - ARCHETYPE_ID
           type: string
-          default: ARCHETYPE_ID
         value:
           type: string
       required:
@@ -693,8 +696,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - TEMPLATE_ID
           type: string
-          default: TEMPLATE_ID
         value:
           type: string
       required:
@@ -717,8 +721,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - TERMINOLOGY_ID
           type: string
-          default: TERMINOLOGY_ID
         value:
           type: string
       required:
@@ -743,6 +748,10 @@ components:
         - scheme
         - _type
       type: object
+      example:
+        _type: GENERIC_ID
+        value: c7ec861c-c413-39ff-9965-a198ebf44747
+        scheme: pid
       properties:
         _type:
           enum:
@@ -752,16 +761,15 @@ components:
           type: string
         scheme:
           type: string
-      example:
-        _type: GENERIC_ID
-        value: c7ec861c-c413-39ff-9965-a198ebf44747
-        scheme: pid
     UMHierObjectId:
       title: HIER_OBJECT_ID
       required:
         - value
         - _type
       type: object
+      example:
+        _type: HIER_OBJECT_ID
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b
       properties:
         _type:
           enum:
@@ -770,27 +778,10 @@ components:
         value:
           type: string
           format: uuid
-          example: 6cb19121-4307-4648-9da0-d62e4d51f19b
-      example:
-        _type: HIER_OBJECT_ID
-        value: 6cb19121-4307-4648-9da0-d62e4d51f19b
     ObjectVersionId:
       title: OBJECT_VERSION_ID
       required:
         - value
-      type: object
-      properties:
-        _type:
-          type: string
-          default: UID_BASED_ID
-        value:
-          type: string
-          example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
-    UMObjectVersionId:
-      title: OBJECT_VERSION_ID
-      required:
-        - value
-        - _type
       type: object
       properties:
         _type:
@@ -799,10 +790,24 @@ components:
           type: string
         value:
           type: string
-          example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+      example:
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+    UMObjectVersionId:
+      title: OBJECT_VERSION_ID
+      required:
+        - value
+        - _type
+      type: object
       example:
         _type: OBJECT_VERSION_ID
         value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+      properties:
+        _type:
+          enum:
+            - OBJECT_VERSION_ID
+          type: string
+        value:
+          type: string
     UObjectId:
       title: OBJECT_ID
       oneOf:

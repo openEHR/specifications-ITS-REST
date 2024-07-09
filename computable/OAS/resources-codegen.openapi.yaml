@@ -607,10 +607,6 @@ components:
       type: object
       allOf:
         - $ref: '#/components/schemas/ObjectId'
-      properties:
-        _type:
-          type: string
-          default: UID_BASED_ID
       x-discriminator-value: UID_BASED_ID
       discriminator:
         propertyName: _type
@@ -625,9 +621,14 @@ components:
       allOf:
         - $ref: '#/components/schemas/UidBasedId'
       properties:
+        _type:
+          enum:
+            - HIER_OBJECT_ID
+          type: string
         value:
           type: string
-          example: 6cb19121-4307-4648-9da0-d62e4d51f19b
+      example:
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b
       x-discriminator-value: HIER_OBJECT_ID
     ArchetypeId:
       title: ARCHETYPE_ID
@@ -636,8 +637,9 @@ components:
         - $ref: '#/components/schemas/ObjectId'
       properties:
         _type:
+          enum:
+            - ARCHETYPE_ID
           type: string
-          default: ARCHETYPE_ID
       x-discriminator-value: ARCHETYPE_ID
     TemplateId:
       title: TEMPLATE_ID
@@ -646,8 +648,9 @@ components:
         - $ref: '#/components/schemas/ObjectId'
       properties:
         _type:
+          enum:
+            - TEMPLATE_ID
           type: string
-          default: TEMPLATE_ID
       x-discriminator-value: TEMPLATE_ID
     TerminologyId:
       title: TERMINOLOGY_ID
@@ -656,8 +659,9 @@ components:
         - $ref: '#/components/schemas/ObjectId'
       properties:
         _type:
+          enum:
+            - TERMINOLOGY_ID
           type: string
-          default: TERMINOLOGY_ID
       x-discriminator-value: TERMINOLOGY_ID
     GenericId:
       title: GENERIC_ID
@@ -668,8 +672,9 @@ components:
         - $ref: '#/components/schemas/ObjectId'
       properties:
         _type:
+          enum:
+            - GENERIC_ID
           type: string
-          default: GENERIC_ID
         scheme:
           type: string
       x-discriminator-value: GENERIC_ID
@@ -681,9 +686,12 @@ components:
       allOf:
         - $ref: '#/components/schemas/UidBasedId'
       properties:
-        value:
+        _type:
+          enum:
+            - OBJECT_VERSION_ID
           type: string
-          example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+      example:
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
       x-discriminator-value: OBJECT_VERSION_ID
     ObjectRef:
       title: OBJECT_REF
