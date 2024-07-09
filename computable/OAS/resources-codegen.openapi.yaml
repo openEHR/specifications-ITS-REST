@@ -1132,6 +1132,9 @@ components:
         - $ref: '#/components/schemas/DataValue'
       properties:
         _type:
+          enum:
+            - DV_ENCAPSULATED
+            - DV_PARSABLE
           type: string
           default: DV_ENCAPSULATED
         charset:
@@ -1184,8 +1187,9 @@ components:
         - $ref: '#/components/schemas/DvEncapsulated'
       properties:
         _type:
+          enum:
+            - DV_PARSABLE
           type: string
-          default: DV_PARSABLE
         value:
           type: string
         formalism:
@@ -1344,7 +1348,6 @@ components:
       properties:
         _type:
           type: string
-          default: DATA_STRUCTURE
       x-discriminator-value: DATA_STRUCTURE
       discriminator:
         propertyName: _type
@@ -1551,8 +1554,9 @@ components:
         - $ref: '#/components/schemas/Item'
       properties:
         _type:
+          enum:
+            - ELEMENT
           type: string
-          default: ELEMENT
         null_flavour:
           $ref: '#/components/schemas/DvCodedText'
         value:
@@ -1569,8 +1573,9 @@ components:
         - $ref: '#/components/schemas/ItemStructure'
       properties:
         _type:
+          enum:
+            - ITEM_SINGLE
           type: string
-          default: ITEM_SINGLE
         item:
           $ref: '#/components/schemas/Element'
       x-discriminator-value: ITEM_SINGLE
@@ -1581,8 +1586,9 @@ components:
         - $ref: '#/components/schemas/ItemStructure'
       properties:
         _type:
+          enum:
+            - ITEM_LIST
           type: string
-          default: ITEM_LIST
         items:
           type: array
           items:
@@ -1597,8 +1603,9 @@ components:
         - $ref: '#/components/schemas/Item'
       properties:
         _type:
+          enum:
+            - CLUSTER
           type: string
-          default: CLUSTER
         items:
           type: array
           items:
@@ -1611,8 +1618,9 @@ components:
         - $ref: '#/components/schemas/ItemStructure'
       properties:
         _type:
+          enum:
+            - ITEM_TABLE
           type: string
-          default: ITEM_TABLE
         items:
           type: array
           items:
@@ -1625,8 +1633,9 @@ components:
         - $ref: '#/components/schemas/ItemStructure'
       properties:
         _type:
+          enum:
+            - ITEM_TREE
           type: string
-          default: ITEM_TREE
         items:
           type: array
           items:

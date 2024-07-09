@@ -1344,8 +1344,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - DV_PARSABLE
           type: string
-          default: DV_PARSABLE
         charset:
           $ref: '#/components/schemas/CodePhrase'
         language:
@@ -1888,8 +1889,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - ELEMENT
           type: string
-          default: ELEMENT
         name:
           $ref: '#/components/schemas/UDvText'
         archetype_node_id:
@@ -1924,8 +1926,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - ITEM_SINGLE
           type: string
-          default: ITEM_SINGLE
         name:
           $ref: '#/components/schemas/UDvText'
         archetype_node_id:
@@ -1949,8 +1952,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - ITEM_LIST
           type: string
-          default: ITEM_LIST
         name:
           $ref: '#/components/schemas/UDvText'
         archetype_node_id:
@@ -1983,8 +1987,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - CLUSTER
           type: string
-          default: CLUSTER
         name:
           $ref: '#/components/schemas/UDvText'
         archetype_node_id:
@@ -2020,8 +2025,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - ITEM_TABLE
           type: string
-          default: ITEM_TABLE
         name:
           $ref: '#/components/schemas/UDvText'
         archetype_node_id:
@@ -2050,8 +2056,9 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - ITEM_TREE
           type: string
-          default: ITEM_TREE
         name:
           $ref: '#/components/schemas/UDvText'
         archetype_node_id:
