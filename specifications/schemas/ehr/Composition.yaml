@@ -28,6 +28,7 @@ properties:
     type: array
     items:
       $ref: ../ehr/UContentItem.yaml
+    description: See [CONTENT_ITEM](resources.html#tag/CONTENT_ITEM_schema) type details.
 x-discriminator-value: COMPOSITION
 example:
   archetype_node_id: openEHR-EHR-COMPOSITION.encounter.v1
