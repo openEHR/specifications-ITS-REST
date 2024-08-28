@@ -144,7 +144,7 @@ More information can be found also in their ['examples'](https://www.ehrscape.co
 and [conformance tests](https://github.com/better-care/web-template-tests).
 
 ```
-EHRbase also has support for this format, and provides information in their [documentation](https://ehrbase.readthedocs.io/en/latest/02_getting_started/05_load_data/index.html#flat-format). 
+EHRbase also has support for this format, and provides information in their [documentation](https://docs.ehrbase.org/docs/EHRbase/openEHR-Introduction/Load-Data#flat-format). 
 ```
 
 - `application/openehr.wt.structured+json` for the structured IM Simplified Data Template (structSDT) as JSON,

@@ -96,23 +96,23 @@ tags:
   - name: EHR
     description: |
       Management of [EHRs](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class).
-      Actions upon resources of this group are also formally described in the [I_EHR_SERVICE](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_service_interface) Abstract Service Model interface.
+      Actions upon resources of this group are also formally described in the [I_EHR_SERVICE](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_service_interface) Abstract Service Model interface.
   - name: EHR_STATUS
     description: |
       Management of [EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_status_class) and [VERSIONED_EHR_STATUS](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_ehr_status_class) resources.
-      Actions upon resources of this group are also formally described in the [I_EHR_STATUS](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_status_interface) Abstract Service Model interface.
+      Actions upon resources of this group are also formally described in the [I_EHR_STATUS](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_status_interface) Abstract Service Model interface.
   - name: COMPOSITION
     description: |
       Management of [COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class) and [VERSIONED_COMPOSITION](https://specifications.openehr.org/releases/RM/latest/ehr.html#_versioned_composition_class) resources.
-      Actions upon resources of this group are also formally described in the [I_EHR_COMPOSITION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_composition_interface) Abstract Service Model interface.
+      Actions upon resources of this group are also formally described in the [I_EHR_COMPOSITION](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_composition_interface) Abstract Service Model interface.
   - name: DIRECTORY
     description: |
       Management of the [directory](https://specifications.openehr.org/releases/RM/latest/ehr.html#_directory) [FOLDER](https://specifications.openehr.org/releases/RM/latest/common.html#_folder_class) resource.
-      Actions upon resources of this group are also formally described in the [I_EHR_DIRECTORY](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_directory_interface) Abstract Service Model interface.
+      Actions upon resources of this group are also formally described in the [I_EHR_DIRECTORY](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_directory_interface) Abstract Service Model interface.
   - name: CONTRIBUTION
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
-      Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
+      Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
 x-tagGroups:
   - name: Resource endpoints
     tags:
