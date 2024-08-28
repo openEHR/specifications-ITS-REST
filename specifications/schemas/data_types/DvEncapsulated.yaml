@@ -7,7 +7,6 @@ required:
 properties:
   _type:
     type: string
-    default: DV_ENCAPSULATED
   charset:
     $ref: ../data_types/CodePhrase.yaml
   language:

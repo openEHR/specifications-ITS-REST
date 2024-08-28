@@ -13,7 +13,7 @@ required:
 properties:
   _type:
     type: string
-    default: COMPOSITION
+    enum: [COMPOSITION]
   language:
     $ref: ../data_types/CodePhrase.yaml
   territory:
@@ -28,6 +28,7 @@ properties:
     type: array
     items:
       $ref: ../ehr/UContentItem.yaml
+    description: See [CONTENT_ITEM](resources.html#tag/CONTENT_ITEM_schema) type details.
 x-discriminator-value: COMPOSITION
 example:
   archetype_node_id: openEHR-EHR-COMPOSITION.encounter.v1

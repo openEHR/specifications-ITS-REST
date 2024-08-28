@@ -4,8 +4,4 @@ allOf:
   - $ref: ../common/ImportedVersion.yaml
 required:
   - _type
-properties:
-  _type:
-    type: string
-    enum: [IMPORTED_VERSION]
 x-discriminator-value: IMPORTED_VERSION

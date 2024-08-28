@@ -23,3 +23,6 @@ properties:
   encoding:
     $ref: ../data_types/CodePhrase.yaml
 x-discriminator-value: DV_TEXT
+example:
+  _type: DV_TEXT
+  value: 'Text value'

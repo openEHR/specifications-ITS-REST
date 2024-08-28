@@ -9,7 +9,7 @@ properties:
   _type:
     type: string
   contribution:
-    $ref: ../base_types/ObjectRef.yaml
+    $ref: ../base_types/ObjectRefOfHierObjectId.yaml
   signature:
     type: string
   commit_audit:

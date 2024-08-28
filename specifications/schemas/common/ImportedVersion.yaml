@@ -7,7 +7,7 @@ required:
 properties:
   _type:
     type: string
-    default: IMPORTED_VERSION
+    enum: [IMPORTED_VERSION]
   item:
     $ref: ../common/OriginalVersion.yaml
 x-discriminator-value: IMPORTED_VERSION

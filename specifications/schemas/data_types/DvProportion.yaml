@@ -9,7 +9,7 @@ required:
 properties:
   _type:
     type: string
-    default: DV_PROPORTION
+    enum: [DV_PROPORTION]
   numerator:
     type: number
   denominator:

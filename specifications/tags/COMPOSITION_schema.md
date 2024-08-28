@@ -4,11 +4,5 @@ The following resources are formally specified in the Reference Model as [COMPOS
 The `COMPOSITION` resource:
 <SchemaDefinition schemaRef="#/components/schemas/Composition" />
 
-The abstract `CONTENT_ITEM` class, used in `COMPOSITION`:
-<SchemaDefinition schemaRef="#/components/schemas/UContentItem" />
-
-The abstract `ITEM_STRUCTURE` class, used in `CONTENT_ITEM`:
-<SchemaDefinition schemaRef="#/components/schemas/UItemStructure" />
-
 The `VERSIONED_COMPOSITION` resource:
 <SchemaDefinition schemaRef="#/components/schemas/VersionedComposition" />

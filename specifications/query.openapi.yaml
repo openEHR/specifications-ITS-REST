@@ -58,7 +58,7 @@ tags:
     x-displayName: Execute Query
     description: |
       Execution of [AQL queries](https://specifications.openehr.org/releases/QUERY/latest/AQL.html).
-      Actions upon resources of this group are also formally described in the [I_QUERY_SERVICE](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_query_service_interface) Abstract Service Model interface.
+      Actions upon resources of this group are also formally described in the [I_QUERY_SERVICE](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_query_service_interface) Abstract Service Model interface.
 x-tagGroups:
   - name: Docs
     tags:
