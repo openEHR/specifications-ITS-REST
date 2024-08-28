@@ -16,6 +16,17 @@
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, headers, http"
         },
         {
+            "id": "system",
+            "title": "System REST API",
+            "title_short": "System",
+            "description": "openEHR System REST API",
+            "summary": "This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with System openEHR API in a RESTful manner.",
+            "micro_summary": "System API",
+            "copyright_year": "2018",
+            "spec_status": "STABLE",
+            "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, System"
+        },
+        {
             "id": "ehr",
             "title": "EHR REST API",
             "title_short": "EHR API",
@@ -55,8 +66,8 @@
             "description": "openEHR DEMOGRAPHIC REST API",
             "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR DEMOGRAPHIC API in a RESTful manner.",
             "micro_summary": "DEMOGRAPHIC API",
-            "copyright_year": "2023",
-            "spec_status": "DRAFT",
+            "copyright_year": "2024",
+            "spec_status": "DEVELOPMENT",
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, DEMOGRAPHIC"
         },
         {
