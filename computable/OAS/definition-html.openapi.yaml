@@ -32,14 +32,14 @@ info:
     - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
     - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
     - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
-    - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html)
+    - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
 
     ### Status
 
     This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/definition-validation.openapi.yaml), or [for code generators](computable/OAS/definition-codegen.openapi.yaml).
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
-    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/definition.html>.
+    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/development/definition.html>.
 servers:
   - url: https://{baseUrl}/v1
     description: An example openEHR server URL.
@@ -66,8 +66,8 @@ tags:
   - name: Query
     x-displayName: Stored Query
     description: |
-      Management of [stored (registered) queries](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_registered_queries) in the system.
-      Actions upon resources of this group are also formally described in the [I_DEFINITION_QUERY](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_definition_query_interface) Abstract Service Model interface.
+      Management of [stored (registered) queries](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_registered_queries) in the system.
+      Actions upon resources of this group are also formally described in the [I_DEFINITION_QUERY](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_definition_query_interface) Abstract Service Model interface.
 
       Stored queries are identified by their [qualified name and version](query.html#tag/Qualified_query_name).
       They can be executed using the [query endpoint](query.html#tag/Query/operation/query_execute_stored_query_body).

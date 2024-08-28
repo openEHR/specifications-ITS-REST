@@ -31,14 +31,14 @@ info:
     - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
     - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
     - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
-    - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html)
+    - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
 
     ### Status
 
     This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/resources-validation.openapi.yaml), or [for code generators](computable/OAS/resources-codegen.openapi.yaml).
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
-    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/resources.html>.
+    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/development/resources.html>.
 servers:
   - url: https://{baseUrl}/v1
     description: An example openEHR server URL.
@@ -124,7 +124,7 @@ tags:
   - name: Query_schema
     x-displayName: Query Execute
     description: |
-      The following resources are formally specified in the [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) and in the [Query Service](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_query_service).
+      The following resources are formally specified in the [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) and in the [Query Service](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_query_service).
       <div class="mb-5"></div>
 
       The `AdhocQueryExecute` resource:
@@ -135,13 +135,13 @@ tags:
   - name: RESULT_SET_schema
     x-displayName: RESULT_SET
     description: |
-      This resource is formally specified in the Service Model as [Query Result](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_result_set_class).
+      This resource is formally specified in the Service Model as [Query Result](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_result_set_class).
 
       <SchemaDefinition schemaRef="#/components/schemas/ResultSet" />
   - name: TemplateList_schema
     x-displayName: Template list
     description: |
-      This resource represents the list of `Template` meta-information associated with uploaded templates - see also [Service Model - Definition Package](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_definition_package).
+      This resource represents the list of `Template` meta-information associated with uploaded templates - see also [Service Model - Definition Package](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_definition_package).
 
       <SchemaDefinition schemaRef="#/components/schemas/TemplateList" />
   - name: Template_schema
@@ -161,7 +161,7 @@ tags:
   - name: StoredQuery_schema
     x-displayName: Stored Query
     description: |
-      This resource represents the definition of a stored Query and is formally specified in the Service Model as [Registered Queries](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_registered_queries).
+      This resource represents the definition of a stored Query and is formally specified in the Service Model as [Registered Queries](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_registered_queries).
 
       <SchemaDefinition schemaRef="#/components/schemas/StoredQuery" />
 paths: {}
