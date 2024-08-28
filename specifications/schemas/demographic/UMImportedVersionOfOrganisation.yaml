@@ -1,13 +1,10 @@
 title: IMPORTED_VERSION
 type: object
 allOf:
-  - $ref: ../common/ImportedVersion.yaml
+  - $ref: ../demographic/ImportedVersion.yaml
 required:
   - _type
 properties:
-  _type:
-    type: string
-    enum: [IMPORTED_VERSION]
   data:
     $ref: ../demographic/Organisation.yaml
   item:

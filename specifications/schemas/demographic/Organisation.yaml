@@ -1,11 +1,9 @@
-title: GROUP
+title: ORGANISATION
 type: object
 allOf:
   - $ref: ../demographic/Actor.yaml
-required:
-  - data
 properties:
   _type:
     type: string
-    default: GROUP
-x-discriminator-value: GROUP
+    enum: [ORGANISATION]
+x-discriminator-value: ORGANISATION

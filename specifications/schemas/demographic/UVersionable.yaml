@@ -1,0 +1,15 @@
+title: Versionable
+oneOf:
+  - $ref: ../demographic/Agent.yaml
+  - $ref: ../demographic/Group.yaml
+#  - $ref: ../demographic/Organisation.yaml
+#  - $ref: ../demographic/Person.yaml
+#  - $ref: ../demographic/Role.yaml
+discriminator:
+  propertyName: _type
+  mapping:
+    AGENT: ../demographic/Agent.yaml
+    GROUP: ../demographic/Group.yaml
+#    ORGANISATION: ../demographic/Organisation.yaml
+#    PERSON: ../demographic/Person.yaml
+#    ROLE: ../demographic/Role.yaml

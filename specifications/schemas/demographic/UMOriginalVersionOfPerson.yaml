@@ -1,13 +1,10 @@
 title: ORIGINAL_VERSION
 type: object
 allOf:
-  - $ref: ../common/OriginalVersion.yaml
+  - $ref: ../demographic/OriginalVersion.yaml
 required:
   - _type
 properties:
-  _type:
-    type: string
-    enum: [ORIGINAL_VERSION]
   data:
     $ref: ../demographic/Person.yaml
 x-discriminator-value: ORIGINAL_VERSION

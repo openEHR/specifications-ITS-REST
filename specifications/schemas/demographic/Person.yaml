@@ -2,10 +2,8 @@ title: PERSON
 type: object
 allOf:
   - $ref: ../demographic/Actor.yaml
-required:
-  - data
 properties:
   _type:
     type: string
-    default: PERSON
+    enum: [PERSON]
 x-discriminator-value: PERSON

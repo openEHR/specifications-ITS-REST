@@ -2,10 +2,8 @@ title: GROUP
 type: object
 allOf:
   - $ref: ../demographic/Actor.yaml
-required:
-  - data
 properties:
   _type:
     type: string
-    default: GROUP
+    enum: [GROUP]
 x-discriminator-value: GROUP

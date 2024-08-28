@@ -2,8 +2,8 @@ openapi: 3.0.3
 info:
   title: Demographic API
   version: latest
-  x-status: DRAFT
-  x-spec: ehr
+  x-status: DEVELOPMENT
+  x-spec: demographic
   contact:
     name: Specifications Editorial Committee openEHR
     url: 'https://specifications.openehr.org/'
@@ -134,10 +134,10 @@ paths:
       $ref: ./operations/versioned_role_version_get_by_id.yaml
   '/demographic/contribution':
     post:
-      $ref: ./operations/contribution_create.yaml
+      $ref: ./operations/demographic_contribution_create.yaml
   '/demographic/contribution/{contribution_uid}':
     get:
-      $ref: ./operations/contribution_get.yaml
+      $ref: ./operations/demographic_contribution_get.yaml
 tags:
   - name: AGENT
     description: |
@@ -168,8 +168,14 @@ x-tagGroups:
       - CONTRIBUTION
 components:
   schemas:
+    UAbstractItem:
+      $ref: ./schemas/data_structures/UAbstractItem.yaml
     UAbstractItemStructure:
       $ref: ./schemas/data_structures/UAbstractItemStructure.yaml
+    UAbstractContentItem:
+      $ref: ./schemas/ehr/UAbstractContentItem.yaml
+    UAbstractVersionable:
+      $ref: ./schemas/common/UAbstractVersionable.yaml
     VersionOfAgent:
       $ref: ./schemas/demographic/VersionOfAgent.yaml
     VersionOfGroup:

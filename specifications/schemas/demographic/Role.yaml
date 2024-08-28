@@ -7,7 +7,7 @@ required:
 properties:
   _type:
     type: string
-    default: ROLE
+    enum: [ROLE]
   time_validity:
     $ref: ../data_types/DvIntervalOfDate.yaml
   performer:

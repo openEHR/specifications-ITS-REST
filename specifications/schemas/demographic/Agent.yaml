@@ -2,10 +2,8 @@ title: AGENT
 type: object
 allOf:
   - $ref: ../demographic/Actor.yaml
-required:
-  - data
 properties:
   _type:
     type: string
-    default: AGENT
+    enum: [AGENT]
 x-discriminator-value: AGENT
