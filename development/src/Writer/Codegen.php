@@ -17,8 +17,9 @@ class Codegen extends AbstractWriter {
      */
     protected function prepareInput(): void {
         echo "prepareInput() ...";
+        $this->input = preg_replace('#\\/schemas\\/U(ObjectRef)Of[a-zA-Z]*#', '\\/schemas\\/$1', $this->input);
         $this->input = preg_replace('#\\/schemas\\/U((?:Dv|Party|Version|Object|Uid|Content|Item|DataValue)[a-zA-Z]*)#', '\\/schemas\\/$1', $this->input);
-        $this->input = preg_replace('#\\/schemas\\/UM(DvDateTime)#', '\\/schemas\\/$1', $this->input);
+        $this->input = preg_replace('#\\/schemas\\/UM(DvDateTime|DvDate|ObjectVersionId|HierObjectId)#', '\\/schemas\\/$1', $this->input);
     }
 
     /**

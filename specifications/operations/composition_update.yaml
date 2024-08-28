@@ -27,10 +27,10 @@ responses:
   '200':
     $ref: ../responses/200_COMPOSITION_updated.yaml
   '400':
-    $ref: ../responses/400_COMPOSITION.yaml
+    $ref: ../responses/400.yaml
   '404':
     $ref: ../responses/404_unknown_ehr_id_or_uid_based_id.yaml
   '412':
     $ref: ../responses/412_COMPOSITION.yaml
   '422':
-    $ref: ../responses/422_COMPOSITION.yaml
+    $ref: ../responses/422.yaml

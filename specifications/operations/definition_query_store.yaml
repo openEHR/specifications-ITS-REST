@@ -25,4 +25,4 @@ responses:
   '200':
     $ref: ../responses/200_StoredQuery_stored.yaml
   '400':
-    $ref: ../responses/400_StoredQuery.yaml
+    $ref: ../responses/400.yaml

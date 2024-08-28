@@ -15,8 +15,18 @@ class Html extends Validation {
     protected function prepareInput(): void {
         echo "prepareInput() ...";
         $this->input = str_replace(
-            ['"$ref": "#/components/schemas/UItemStructure"', '"$ref": "#/components/schemas/UContentItem"'],
-            ['"$ref": "#/components/schemas/UAbstractItemStructure"', '"$ref": "#/components/schemas/UAbstractContentItem"'],
+            [
+                '"$ref": "#/components/schemas/UItem"',
+                '"$ref": "#/components/schemas/UItemStructure"',
+                '"$ref": "#/components/schemas/UContentItem"',
+                '"$ref": "#/components/schemas/UVersionable"',
+            ],
+            [
+                '"$ref": "#/components/schemas/UAbstractItem"',
+                '"$ref": "#/components/schemas/UAbstractItemStructure"',
+                '"$ref": "#/components/schemas/UAbstractContentItem"',
+                '"$ref": "#/components/schemas/UAbstractVersionable"',
+            ],
             $this->input);
     }
 

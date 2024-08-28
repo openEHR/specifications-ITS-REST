@@ -9,7 +9,7 @@ This tool will parse OAS source files located on /specifications folders and wil
 First you will need to change directory to `development`.
 Docker-compose will be used to create a container with PHP code that will perform all necessary tasks.
 The sequence of commands should normally be:
-```
+```bash
 cd development
 docker-compose run --rm php composer install
 ./bundle.sh all       # to build all OAS files

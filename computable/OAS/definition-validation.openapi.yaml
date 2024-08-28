@@ -32,14 +32,14 @@ info:
     - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
     - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
     - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
-    - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html)
+    - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
 
     ### Status
 
     This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/definition-validation.openapi.yaml), or [for code generators](computable/OAS/definition-codegen.openapi.yaml).
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
-    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/definition.html>.
+    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/development/definition.html>.
 servers:
   - url: https://{baseUrl}/v1
     description: An example openEHR server URL.
@@ -66,8 +66,8 @@ tags:
   - name: Query
     x-displayName: Stored Query
     description: |
-      Management of [stored (registered) queries](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_registered_queries) in the system.
-      Actions upon resources of this group are also formally described in the [I_DEFINITION_QUERY](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_i_definition_query_interface) Abstract Service Model interface.
+      Management of [stored (registered) queries](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_registered_queries) in the system.
+      Actions upon resources of this group are also formally described in the [I_DEFINITION_QUERY](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_definition_query_interface) Abstract Service Model interface.
 
       Stored queries are identified by their [qualified name and version](query.html#tag/Qualified_query_name).
       They can be executed using the [query endpoint](query.html#tag/Query/operation/query_execute_stored_query_body).
@@ -147,7 +147,7 @@ paths:
         '201':
           $ref: '#/components/responses/201_Template_adl1_4_upload'
         '400':
-          $ref: '#/components/responses/400_invalid_template_content'
+          $ref: '#/components/responses/400'
         '409':
           $ref: '#/components/responses/409_template_already_exists'
     get:
@@ -177,7 +177,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_Template_adl1_4_retrieved'
         '400':
-          $ref: '#/components/responses/400_invalid_template_id'
+          $ref: '#/components/responses/400'
         '404':
           $ref: '#/components/responses/404_unknown_template_id'
         '406':
@@ -223,7 +223,7 @@ paths:
         '201':
           $ref: '#/components/responses/201_Template_adl2_upload'
         '400':
-          $ref: '#/components/responses/400_invalid_template_content'
+          $ref: '#/components/responses/400'
         '409':
           $ref: '#/components/responses/409_template_already_exists'
     get:
@@ -250,7 +250,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_Template_adl2_retrieved'
         '400':
-          $ref: '#/components/responses/400_invalid_template_id'
+          $ref: '#/components/responses/400'
         '404':
           $ref: '#/components/responses/404_unknown_template_id'
   /definition/template/adl2/{template_id}/{version}:
@@ -268,7 +268,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_Template_adl2_retrieved'
         '400':
-          $ref: '#/components/responses/400_invalid_template_id'
+          $ref: '#/components/responses/400'
         '404':
           $ref: '#/components/responses/404_unknown_template_id_or_version'
   /definition/query/{qualified_query_name}:
@@ -317,7 +317,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_StoredQuery_stored'
         '400':
-          $ref: '#/components/responses/400_StoredQuery'
+          $ref: '#/components/responses/400'
   /definition/query/{qualified_query_name}/{version}:
     put:
       operationId: definition_query_version_store.yaml
@@ -347,7 +347,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_StoredQuery_stored'
         '400':
-          $ref: '#/components/responses/400_StoredQuery'
+          $ref: '#/components/responses/400'
         '409':
           $ref: '#/components/responses/409_StoredQuery_version'
     get:
@@ -405,6 +405,25 @@ components:
       type: object
       xml:
         name: response200
+    Error:
+      title: Error
+      required:
+        - message
+        - validationErrors
+      type: object
+      properties:
+        message:
+          type: string
+        validationErrors:
+          type: array
+          items:
+            type: string
+          description: ''
+      example:
+        message: Error message
+        validationErrors:
+          - error1
+          - error2
     LocalizedNames:
       title: LocalizedNames
       required:
@@ -1202,6 +1221,14 @@ components:
               CONTAINS COMPOSITION c[$uid] 
             WHERE c/name/value = 'Vitals'
   responses:
+    '400':
+      description: |
+        `400 Bad Request` is returned when the request could not be parsed or is invalid (e.g. malformed request URL syntax, missing required header or parameter, or syntactically invalid header, parameter or content). 
+        The response body MAY contain error details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     '406':
       description: |
         `406 Not Acceptable` is returned when the service cannot produce a response matching `Accept` request header, i.e. content type or format is not supported.
@@ -1235,9 +1262,6 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/OperationalTemplate'
-    400_invalid_template_content:
-      description: |
-        `400 Bad Request` is returned when unable to upload a template, because of invalid content.
     409_template_already_exists:
       description: |
         `409 Conflict` is returned when a template with same `template_id` (at given version, if supplied) already exists.
@@ -1305,9 +1329,6 @@ components:
         application/openehr.wt+json:
           schema:
             $ref: '#/components/schemas/WebTemplate'
-    400_invalid_template_id:
-      description: |
-        `400 Bad Request` is returned when the request has invalid `template_id` (i.e. an incorrectly formatted `template_id`).
     404_unknown_template_id:
       description: |
         `404 Not Found` is returned when a template with the specified `template_id` does not exist.
@@ -1389,10 +1410,6 @@ components:
       headers:
         Location:
           $ref: '#/components/headers/Location_Query'
-    400_StoredQuery:
-      description: |
-        `400 Bad Request` is returned when the server was unable to store the query. 
-        This could be due to incorrect request body (could not be parsed, etc), unknown query type, etc.
     200_StoredQuery_get:
       description: |
         `200 OK` is returned when the stored AQL is successfully retrieved.

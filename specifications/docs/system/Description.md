@@ -16,11 +16,11 @@ Related documents include:
 - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
 - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
 - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
-- The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/latest/openehr_platform.html)
+- The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
 
 ### Status
 
 This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/system-validation.openapi.yaml), or [for code generators](computable/OAS/system-codegen.openapi.yaml).
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
-The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/latest/resources.html>.
+The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/development/resources.html>.

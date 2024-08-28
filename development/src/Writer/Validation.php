@@ -19,13 +19,15 @@ class Validation extends AbstractWriter {
      */
     protected function slurping(Schema $schema): void {
         if ($schema->allOf) {
-            echo "slurping {$schema->title} ... ";
             /** @var Schema $parentSchema */
             $parentSchema = $schema->allOf[0]->resolve();
             $this->slurping($parentSchema);
+            echo "slurping allOf {$parentSchema->title} into {$schema->title} ... ";
             if ($parentSchema->required) {
-                $schema->properties = array_merge($parentSchema->properties, $schema->properties ?? []);
                 $schema->required = array_unique(array_merge($parentSchema->required, $schema->required ?? []));
+            }
+            if ($parentSchema->properties) {
+                $schema->properties = array_merge($parentSchema->properties, $schema->properties ?? []);
             }
             if ($parentSchema->example && !$schema->example) {
                 $schema->example = $parentSchema->example;
@@ -40,7 +42,12 @@ class Validation extends AbstractWriter {
      */
     protected function cleaning(Schema $schema): void {
         if (isset($schema->{'x-cg-allOf'})) {
+            echo "cleaning x-cg-allOf from {$schema->title}... ";
             unset($schema->{'x-cg-allOf'});
+        }
+        if (isset($schema->{'x-discriminator-value'})) {
+            echo "cleaning x-discriminator-value from {$schema->title}... ";
+            unset($schema->{'x-discriminator-value'});
         }
     }
 
@@ -52,12 +59,11 @@ class Validation extends AbstractWriter {
         echo "slurping() ...";
         foreach ($this->apiSpecification->components->schemas as $schema) {
             if ($schema instanceof Schema) {
-
-            $this->slurping($schema);
-            $this->cleaning($schema);
+                $this->slurping($schema);
+                $this->cleaning($schema);
             }
         }
-        echo "removing ...";
+        echo "removing redundant types...";
         $redundant = [
             'AbstractEntry',
             'Action',
@@ -70,23 +76,23 @@ class Validation extends AbstractWriter {
             'DvBoolean',
             'DvCount',
             'DvEncapsulated',
-            'DvProportion',
             'DvOrdered',
             'DvOrdinal',
+            'DvProportion',
             'DvQuantified',
             'DvQuantity',
             'DvScale',
             'DvState',
-            'DvText',
             'DvTemporal',
+            'DvText',
             'DvTime',
             'DvUri',
             'Evaluation',
             'GenericId',
             'ImportedVersion',
             'Instruction',
-            'ItemStructure',
             'Item',
+            'ItemStructure',
             'Locatable',
             'ObjectId',
             'Observation',

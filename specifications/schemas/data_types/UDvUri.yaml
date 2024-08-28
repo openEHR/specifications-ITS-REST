@@ -7,6 +7,3 @@ discriminator:
   mapping:
     DV_URI: ../data_types/UMDvUri.yaml
     DV_EHR_URI: ../data_types/UMDvEhrUri.yaml
-example:
-  _type: DV_URI
-  value: 'https://www.example.com'

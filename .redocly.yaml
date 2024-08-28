@@ -1,5 +1,6 @@
 # See https://redocly.com/docs/cli/configuration/ for more information.
-
+extends:
+  - recommended
 
 # https://redocly.com/docs/api-reference-docs/configuration/functionality/#featuresopenapi-schema
 theme:
@@ -8,7 +9,6 @@ theme:
     schemaExpansionLevel: 0
     scrollYOffset: 72
     nativeScrollbars: true
-    htmlTemplate: development/redoc-template.html
     hideDownloadButton: true
     # https://redocly.com/docs/api-reference-docs/configuration/theming/
     theme:

@@ -11,7 +11,7 @@ properties:
   versions:
     type: array
     items:
-      $ref: ../base_types/ObjectRef.yaml
+      $ref: ../base_types/ObjectRefOfObjectVersionId.yaml
   audit:
     $ref: ../common/AuditDetails.yaml
 example:
