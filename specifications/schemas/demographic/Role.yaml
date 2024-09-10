@@ -13,7 +13,5 @@ properties:
   performer:
     $ref: ../base_types/PartyRef.yaml
   capabilities:
-    type: array
-    items:
-      $ref: ../demographic/Capability.yaml
+    $ref: ../demographic/ListOfCapability.yaml
 x-discriminator-value: ROLE

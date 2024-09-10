@@ -12,7 +12,7 @@ info:
     name: Creative Commons Attribution-NoDerivs 3.0 Unported
     url: 'https://creativecommons.org/licenses/by-nd/3.0/'
   #description:
-  #  $ref: ./docs/ehr/Intro.md
+  #  $ref: ./docs/demographic/Intro.md
 servers:
   - url: 'https://{baseUrl}/v1'
     description: An example openEHR server URL.
@@ -157,6 +157,36 @@ tags:
   - name: CONTRIBUTION
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
+  - name: CAPABILITY_schema
+    x-displayName: CAPABILITY
+    description: |
+      The `CAPABILITY` schema, formally specified in the Reference Model as the [CAPABILITY](https://specifications.openehr.org/releases/RM/latest/demographic.html#_capability_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/Capability" />
+  - name: CONTACT_schema
+    x-displayName: CONTACT
+    description: |
+      The `CONTACT` schema, formally specified in the Reference Model as the [CONTACT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_contact_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/Contact" />
+  - name: PARTY_IDENTITY_schema
+    x-displayName: PARTY_IDENTITY
+    description: |
+      The `PARTY_IDENTITY` schema, formally specified in the Reference Model as the [PARTY_IDENTITY](https://specifications.openehr.org/releases/RM/latest/demographic.html#_party_identity_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/PartyIdentity" />
+  - name: PARTY_RELATIONSHIP_schema
+    x-displayName: PARTY_RELATIONSHIP
+    description: |
+      The `PARTY_RELATIONSHIP` resource, formally specified in the Reference Model as the [PARTY_RELATIONSHIP](https://specifications.openehr.org/releases/RM/latest/demographic.html#_party_relationship_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/PartyRelationship" />
+  - name: ITEM_schema
+    x-displayName: ITEM
+    description: |
+      The abstract `ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItem" />
+  - name: ITEM_STRUCTURE_schema
+    x-displayName: ITEM_STRUCTURE
+    description: |
+      The abstract `ITEM_STRUCTURE` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItemStructure" />
 x-tagGroups:
   - name: Resource endpoints
     tags:
@@ -166,16 +196,28 @@ x-tagGroups:
       - PERSON
       - ROLE
       - CONTRIBUTION
+  - name: Related schemas
+    tags:
+      - CAPABILITY_schema
+      - CONTACT_schema
+      - ITEM_schema
+      - ITEM_STRUCTURE_schema
+      - PARTY_IDENTITY_schema
+      - PARTY_RELATIONSHIP_schema
 components:
   schemas:
     UAbstractItem:
       $ref: ./schemas/data_structures/UAbstractItem.yaml
     UAbstractItemStructure:
       $ref: ./schemas/data_structures/UAbstractItemStructure.yaml
-    UAbstractContentItem:
-      $ref: ./schemas/ehr/UAbstractContentItem.yaml
-    UAbstractVersionable:
-      $ref: ./schemas/common/UAbstractVersionable.yaml
+    SeeContact:
+      $ref: ./schemas/demographic/SeeContact.yaml
+    SeeCapability:
+      $ref: ./schemas/demographic/SeeCapability.yaml
+    SeePartyIdentity:
+      $ref: ./schemas/demographic/SeePartyIdentity.yaml
+    SeePartyRelationship:
+      $ref: ./schemas/demographic/SeePartyRelationship.yaml
     VersionOfAgent:
       $ref: ./schemas/demographic/VersionOfAgent.yaml
     VersionOfGroup:

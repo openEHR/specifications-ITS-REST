@@ -19,13 +19,19 @@ class Html extends Validation {
                 '"$ref": "#/components/schemas/UItem"',
                 '"$ref": "#/components/schemas/UItemStructure"',
                 '"$ref": "#/components/schemas/UContentItem"',
-                '"$ref": "#/components/schemas/UVersionable"',
+                '"$ref": "#/components/schemas/ListOfContact"',
+                '"$ref": "#/components/schemas/ListOfCapability"',
+                '"$ref": "#/components/schemas/ListOfPartyIdentity"',
+                '"$ref": "#/components/schemas/ListOfPartyRelationship"'
             ],
             [
                 '"$ref": "#/components/schemas/UAbstractItem"',
                 '"$ref": "#/components/schemas/UAbstractItemStructure"',
                 '"$ref": "#/components/schemas/UAbstractContentItem"',
-                '"$ref": "#/components/schemas/UAbstractVersionable"',
+                '"$ref": "#/components/schemas/SeeContact"',
+                '"$ref": "#/components/schemas/SeeCapability"',
+                '"$ref": "#/components/schemas/SeePartyIdentity"',
+                '"$ref": "#/components/schemas/SeePartyRelationship"'
             ],
             $this->input);
     }

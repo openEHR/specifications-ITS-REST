@@ -10,5 +10,5 @@ properties:
     type: array
     items:
       $ref: ../data_structures/UItem.yaml
-    description: See [ITEM](resources.html#tag/ITEM_schema) type details.
+    description: See [ITEM](#tag/ITEM_schema) schema details.
 x-discriminator-value: ITEM_TREE

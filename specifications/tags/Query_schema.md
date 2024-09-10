@@ -4,5 +4,7 @@ The following resources are formally specified in the [Archetype Query Language 
 The `AdhocQueryExecute` resource:
 <SchemaDefinition schemaRef="#/components/schemas/AdhocQueryExecute" />
 
+<div class="mb-5"></div>
+
 The stored-query execute, known as the `Query` resource:
 <SchemaDefinition schemaRef="#/components/schemas/Query" />

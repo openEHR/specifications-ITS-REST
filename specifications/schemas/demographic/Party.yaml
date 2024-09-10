@@ -6,16 +6,10 @@ required:
   - identities
 properties:
   identities:
-    type: array
-    items:
-      $ref: ../demographic/PartyIdentity.yaml
+    $ref: ../demographic/ListOfPartyIdentity.yaml
   contacts:
-    type: array
-    items:
-      $ref: ../demographic/Contact.yaml
+    $ref: ../demographic/ListOfContact.yaml
   details:
     $ref: ../data_structures/UItemStructure.yaml
   relationships:
-    type: array
-    items:
-      $ref: ../demographic/PartyRelationship.yaml
+    $ref: ../demographic/ListOfPartyRelationship.yaml
