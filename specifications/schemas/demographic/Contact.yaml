@@ -5,6 +5,9 @@ allOf:
 required:
   - addresses
 properties:
+  _type:
+    type: string
+    enum: [CONTACT]
   addresses:
     type: array
     items:

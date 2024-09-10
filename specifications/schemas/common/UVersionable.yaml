@@ -1,4 +1,5 @@
 title: Versionable
+type: object
 oneOf:
   - $ref: ../ehr/Composition.yaml
   - $ref: ../ehr/EhrStatus.yaml

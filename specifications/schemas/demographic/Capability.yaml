@@ -5,6 +5,9 @@ allOf:
 required:
   - credentials
 properties:
+  _type:
+    type: string
+    enum: [CAPABILITY]
   credentials:
     $ref: ../data_structures/UItemStructure.yaml
   time_validity:

@@ -1,4 +1,5 @@
 title: VERSION
+type: object
 oneOf:
   - $ref: ../demographic/UMOriginalVersionOfPerson.yaml
   - $ref: ../demographic/UMImportedVersionOfPerson.yaml

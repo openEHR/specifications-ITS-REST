@@ -1,4 +1,5 @@
 title: VERSION
+type: object
 oneOf:
   - $ref: ../common/UMOriginalVersion.yaml
   - $ref: ../common/UMImportedVersion.yaml
