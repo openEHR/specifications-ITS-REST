@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Demographic API
-  version: latest
+  version: development
   x-status: DEVELOPMENT
   x-spec: demographic
   contact:
@@ -11,6 +11,33 @@ info:
   license:
     name: Creative Commons Attribution-NoDerivs 3.0 Unported
     url: https://creativecommons.org/licenses/by-nd/3.0/
+  description: |
+    ## Description
+
+    ### Purpose
+
+    This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with Demographic openEHR API in a RESTful manner.
+
+    ### Related Documents
+
+    Prerequisite documents for reading this document include:
+
+    - The [Demographic Information Model](https://specifications.openehr.org/releases/RM/latest/demographic.html#_demographic_package)
+
+    Related documents include:
+
+    - The [openEHR Architecture Overview](https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html)
+    - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
+    - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
+    - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
+    - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
+
+    ### Status
+
+    This specification is in the `DEVELOPMENT` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/demographic-validation.openapi.yaml), or [for code generators](computable/OAS/demographic-codegen.openapi.yaml).
+    Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
+
+    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/development/demographic.html>.
 servers:
   - url: https://{baseUrl}/v1
     description: An example openEHR server URL.
@@ -22,22 +49,25 @@ security: []
 tags:
   - name: AGENT
     description: |
-      Management of the [AGENT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_agent_class) and the associated [VERSIONED_AGENT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
+      Management of the [AGENT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_agent_class) class.
   - name: GROUP
     description: |
-      Management of the [GROUP](https://specifications.openehr.org/releases/RM/latest/demographic.html#_group_class) and the associated [VERSIONED_GROUP](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
+      Management of the [GROUP](https://specifications.openehr.org/releases/RM/latest/demographic.html#_group_class) class.
   - name: ORGANISATION
     description: |
-      Management of the [ORGANISATION](https://specifications.openehr.org/releases/RM/latest/demographic.html#_organisation_class) and the associated [VERSIONED_ORGANISATION](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
+      Management of the [ORGANISATION](https://specifications.openehr.org/releases/RM/latest/demographic.html#_organisation_class) class.
   - name: PERSON
     description: |
-      Management of the [PERSON](https://specifications.openehr.org/releases/RM/latest/demographic.html#_person_class) and the associated [VERSIONED_PERSON](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
+      Management of the [PERSON](https://specifications.openehr.org/releases/RM/latest/demographic.html#_person_class) class.
   - name: ROLE
     description: |
-      Management of the [ROLE](https://specifications.openehr.org/releases/RM/latest/demographic.html#_ROLE_class) and the associated [VERSIONED_ROLE](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
+      Management of the [ROLE](https://specifications.openehr.org/releases/RM/latest/demographic.html#_role_class) class.
+  - name: VERSIONED_PARTY
+    description: |
+      Management of the [VERSIONED_PARTY](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) class.
   - name: CONTRIBUTION
     description: |
-      Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
+      Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) class.
   - name: CAPABILITY_schema
     x-displayName: CAPABILITY
     description: |
@@ -177,70 +207,6 @@ paths:
           $ref: '#/components/responses/404'
         '409':
           $ref: '#/components/responses/409_AGENT_with_uid_based_id'
-  /demographic/versioned_agent/{versioned_object_uid}:
-    get:
-      operationId: versioned_agent_get
-      summary: Get versioned AGENT
-      description: |
-        Retrieves a VERSIONED_AGENT identified by `versioned_object_uid`.
-      tags:
-        - AGENT
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_AGENT'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSIONED_AGENT'
-        '404':
-          $ref: '#/components/responses/404'
-  /demographic/versioned_agent/{versioned_object_uid}/revision_history:
-    get:
-      operationId: versioned_agent_revision_history
-      summary: Get versioned AGENT revision history
-      description: |
-        Retrieves revision history of the VERSIONED_AGENT identified by `versioned_object_uid`.
-      tags:
-        - AGENT
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_AGENT'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_REVISION_HISTORY'
-        '404':
-          $ref: '#/components/responses/404'
-  /demographic/versioned_agent/{versioned_object_uid}/version:
-    get:
-      operationId: versioned_agent_version_get_at_time
-      summary: Get versioned AGENT version at time
-      description: |
-        Retrieves a VERSION from the VERSIONED_AGENT identified by `versioned_object_uid`.
-
-        If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
-      tags:
-        - AGENT
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_AGENT'
-        - $ref: '#/components/parameters/version_at_time'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSION_of_AGENT_at_time'
-        '404':
-          $ref: '#/components/responses/404_not_found_or_no_version_at_time'
-  /demographic/versioned_agent/{versioned_object_uid}/version/{version_uid}:
-    get:
-      operationId: versioned_composition_version_get_by_id
-      summary: Get versioned AGENT version by id
-      description: |
-        Retrieves a VERSION identified by `version_uid` of a VERSIONED_AGENT identified by `versioned_object_uid`.
-      tags:
-        - AGENT
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_AGENT'
-        - $ref: '#/components/parameters/version_uid'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSION_of_AGENT_by_id'
-        '404':
-          $ref: '#/components/responses/404'
   /demographic/group:
     post:
       operationId: group_create
@@ -349,70 +315,6 @@ paths:
           $ref: '#/components/responses/404'
         '409':
           $ref: '#/components/responses/409_GROUP_with_uid_based_id'
-  /demographic/versioned_group/{versioned_object_uid}:
-    get:
-      operationId: versioned_group_get
-      summary: Get versioned GROUP
-      description: |
-        Retrieves a VERSIONED_GROUP identified by `versioned_object_uid`.
-      tags:
-        - GROUP
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_GROUP'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSIONED_GROUP'
-        '404':
-          $ref: '#/components/responses/404'
-  /demographic/versioned_group/{versioned_object_uid}/revision_history:
-    get:
-      operationId: versioned_group_revision_history
-      summary: Get versioned GROUP revision history
-      description: |
-        Retrieves revision history of the VERSIONED_GROUP identified by `versioned_object_uid`.
-      tags:
-        - GROUP
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_GROUP'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_REVISION_HISTORY'
-        '404':
-          $ref: '#/components/responses/404'
-  /demographic/versioned_group/{versioned_object_uid}/version:
-    get:
-      operationId: versioned_group_version_get_at_time
-      summary: Get versioned GROUP version at time
-      description: |
-        Retrieves a VERSION from the VERSIONED_GROUP identified by `versioned_object_uid`.
-
-        If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
-      tags:
-        - GROUP
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_GROUP'
-        - $ref: '#/components/parameters/version_at_time'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSION_of_GROUP_at_time'
-        '404':
-          $ref: '#/components/responses/404_not_found_or_no_version_at_time'
-  /demographic/versioned_group/{versioned_object_uid}/version/{version_uid}:
-    get:
-      operationId: versioned_composition_version_get_by_id
-      summary: Get versioned GROUP version by id
-      description: |
-        Retrieves a VERSION identified by `version_uid` of a VERSIONED_GROUP identified by `versioned_object_uid`.
-      tags:
-        - GROUP
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_GROUP'
-        - $ref: '#/components/parameters/version_uid'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSION_of_GROUP_by_id'
-        '404':
-          $ref: '#/components/responses/404'
   /demographic/organisation:
     post:
       operationId: organisation_create
@@ -521,70 +423,6 @@ paths:
           $ref: '#/components/responses/404'
         '409':
           $ref: '#/components/responses/409_ORGANISATION_with_uid_based_id'
-  /demographic/versioned_organisation/{versioned_object_uid}:
-    get:
-      operationId: versioned_organisation_get
-      summary: Get versioned ORGANISATION
-      description: |
-        Retrieves a VERSIONED_ORGANISATION identified by `versioned_object_uid`.
-      tags:
-        - ORGANISATION
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_ORGANISATION'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSIONED_ORGANISATION'
-        '404':
-          $ref: '#/components/responses/404'
-  /demographic/versioned_organisation/{versioned_object_uid}/revision_history:
-    get:
-      operationId: versioned_organisation_revision_history
-      summary: Get versioned ORGANISATION revision history
-      description: |
-        Retrieves revision history of the VERSIONED_ORGANISATION identified by `versioned_object_uid`.
-      tags:
-        - ORGANISATION
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_ORGANISATION'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_REVISION_HISTORY'
-        '404':
-          $ref: '#/components/responses/404'
-  /demographic/versioned_organisation/{versioned_object_uid}/version:
-    get:
-      operationId: versioned_organisation_version_get_at_time
-      summary: Get versioned ORGANISATION version at time
-      description: |
-        Retrieves a VERSION from the VERSIONED_ORGANISATION identified by `versioned_object_uid`.
-
-        If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
-      tags:
-        - ORGANISATION
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_ORGANISATION'
-        - $ref: '#/components/parameters/version_at_time'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSION_of_ORGANISATION_at_time'
-        '404':
-          $ref: '#/components/responses/404_not_found_or_no_version_at_time'
-  /demographic/versioned_organisation/{versioned_object_uid}/version/{version_uid}:
-    get:
-      operationId: versioned_composition_version_get_by_id
-      summary: Get versioned ORGANISATION version by id
-      description: |
-        Retrieves a VERSION identified by `version_uid` of a VERSIONED_ORGANISATION identified by `versioned_object_uid`.
-      tags:
-        - ORGANISATION
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_ORGANISATION'
-        - $ref: '#/components/parameters/version_uid'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSION_of_ORGANISATION_by_id'
-        '404':
-          $ref: '#/components/responses/404'
   /demographic/person:
     post:
       operationId: person_create
@@ -693,70 +531,6 @@ paths:
           $ref: '#/components/responses/404'
         '409':
           $ref: '#/components/responses/409_PERSON_with_uid_based_id'
-  /demographic/versioned_person/{versioned_object_uid}:
-    get:
-      operationId: versioned_person_get
-      summary: Get versioned PERSON
-      description: |
-        Retrieves a VERSIONED_PERSON identified by `versioned_object_uid`.
-      tags:
-        - PERSON
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_PERSON'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSIONED_PERSON'
-        '404':
-          $ref: '#/components/responses/404'
-  /demographic/versioned_person/{versioned_object_uid}/revision_history:
-    get:
-      operationId: versioned_person_revision_history
-      summary: Get versioned PERSON revision history
-      description: |
-        Retrieves revision history of the VERSIONED_PERSON identified by `versioned_object_uid`.
-      tags:
-        - PERSON
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_PERSON'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_REVISION_HISTORY'
-        '404':
-          $ref: '#/components/responses/404'
-  /demographic/versioned_person/{versioned_object_uid}/version:
-    get:
-      operationId: versioned_person_version_get_at_time
-      summary: Get versioned PERSON version at time
-      description: |
-        Retrieves a VERSION from the VERSIONED_PERSON identified by `versioned_object_uid`.
-
-        If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
-      tags:
-        - PERSON
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_PERSON'
-        - $ref: '#/components/parameters/version_at_time'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSION_of_PERSON_at_time'
-        '404':
-          $ref: '#/components/responses/404_not_found_or_no_version_at_time'
-  /demographic/versioned_person/{versioned_object_uid}/version/{version_uid}:
-    get:
-      operationId: versioned_composition_version_get_by_id
-      summary: Get versioned PERSON version by id
-      description: |
-        Retrieves a VERSION identified by `version_uid` of a VERSIONED_PERSON identified by `versioned_object_uid`.
-      tags:
-        - PERSON
-      parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_PERSON'
-        - $ref: '#/components/parameters/version_uid'
-      responses:
-        '200':
-          $ref: '#/components/responses/200_VERSION_of_PERSON_by_id'
-        '404':
-          $ref: '#/components/responses/404'
   /demographic/role:
     post:
       operationId: role_create
@@ -865,68 +639,68 @@ paths:
           $ref: '#/components/responses/404'
         '409':
           $ref: '#/components/responses/409_ROLE_with_uid_based_id'
-  /demographic/versioned_role/{versioned_object_uid}:
+  /demographic/versioned_party/{versioned_object_uid}:
     get:
-      operationId: versioned_role_get
-      summary: Get versioned ROLE
+      operationId: versioned_party_get
+      summary: Get VERSIONED_PARTY
       description: |
-        Retrieves a VERSIONED_ROLE identified by `versioned_object_uid`.
+        Retrieves a VERSIONED_PARTY identified by `versioned_object_uid`.
       tags:
-        - ROLE
+        - VERSIONED_PARTY
       parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_ROLE'
+        - $ref: '#/components/parameters/versioned_object_uid_PARTY'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSIONED_ROLE'
+          $ref: '#/components/responses/200_VERSIONED_PARTY'
         '404':
           $ref: '#/components/responses/404'
-  /demographic/versioned_role/{versioned_object_uid}/revision_history:
+  /demographic/versioned_party/{versioned_object_uid}/revision_history:
     get:
-      operationId: versioned_role_revision_history
-      summary: Get versioned ROLE revision history
+      operationId: versioned_party_revision_history
+      summary: Get VERSIONED_PARTY revision history
       description: |
-        Retrieves revision history of the VERSIONED_ROLE identified by `versioned_object_uid`.
+        Retrieves revision history of the VERSIONED_PARTY identified by `versioned_object_uid`.
       tags:
-        - ROLE
+        - VERSIONED_PARTY
       parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_ROLE'
+        - $ref: '#/components/parameters/versioned_object_uid_PARTY'
       responses:
         '200':
           $ref: '#/components/responses/200_REVISION_HISTORY'
         '404':
           $ref: '#/components/responses/404'
-  /demographic/versioned_role/{versioned_object_uid}/version:
+  /demographic/versioned_party/{versioned_object_uid}/version:
     get:
-      operationId: versioned_role_version_get_at_time
-      summary: Get versioned ROLE version at time
+      operationId: versioned_party_version_get_at_time
+      summary: Get VERSIONED_PARTY version at time
       description: |
-        Retrieves a VERSION from the VERSIONED_ROLE identified by `versioned_object_uid`.
+        Retrieves a VERSION from the VERSIONED_PARTY identified by `versioned_object_uid`.
 
         If `version_at_time` is supplied, retrieves the VERSION extant _at specified time_, otherwise retrieves the _latest_ VERSION.
       tags:
-        - ROLE
+        - VERSIONED_PARTY
       parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_ROLE'
+        - $ref: '#/components/parameters/versioned_object_uid_PARTY'
         - $ref: '#/components/parameters/version_at_time'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION_of_ROLE_at_time'
+          $ref: '#/components/responses/200_VERSION_of_PARTY_at_time'
         '404':
           $ref: '#/components/responses/404_not_found_or_no_version_at_time'
-  /demographic/versioned_role/{versioned_object_uid}/version/{version_uid}:
+  /demographic/versioned_party/{versioned_object_uid}/version/{version_uid}:
     get:
-      operationId: versioned_composition_version_get_by_id
-      summary: Get versioned ROLE version by id
+      operationId: versioned_party_version_get_by_id
+      summary: Get VERSIONED_PARTY version by id
       description: |
-        Retrieves a VERSION identified by `version_uid` of a VERSIONED_ROLE identified by `versioned_object_uid`.
+        Retrieves a VERSION identified by `version_uid` of a VERSIONED_PARTY identified by `versioned_object_uid`.
       tags:
-        - ROLE
+        - VERSIONED_PARTY
       parameters:
-        - $ref: '#/components/parameters/versioned_object_uid_ROLE'
+        - $ref: '#/components/parameters/versioned_object_uid_PARTY'
         - $ref: '#/components/parameters/version_uid'
       responses:
         '200':
-          $ref: '#/components/responses/200_VERSION_of_ROLE_by_id'
+          $ref: '#/components/responses/200_VERSION_of_PARTY_by_id'
         '404':
           $ref: '#/components/responses/404'
   /demographic/contribution:
@@ -974,7 +748,7 @@ paths:
           $ref: '#/components/responses/404_demographic_CONTRIBUTION'
 components:
   schemas:
-    VersionOfAgent:
+    VersionOfParty:
       title: VERSION
       required:
         - contribution
@@ -991,83 +765,7 @@ components:
         commit_audit:
           $ref: '#/components/schemas/AuditDetails'
         data:
-          $ref: '#/components/schemas/Agent'
-      description: A VERSION resource
-    VersionOfGroup:
-      title: VERSION
-      required:
-        - contribution
-        - commit_audit
-        - data
-      type: object
-      properties:
-        _type:
-          type: string
-        contribution:
-          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
-        signature:
-          type: string
-        commit_audit:
-          $ref: '#/components/schemas/AuditDetails'
-        data:
-          $ref: '#/components/schemas/Group'
-      description: A VERSION resource
-    VersionOfOrganisation:
-      title: VERSION
-      required:
-        - contribution
-        - commit_audit
-        - data
-      type: object
-      properties:
-        _type:
-          type: string
-        contribution:
-          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
-        signature:
-          type: string
-        commit_audit:
-          $ref: '#/components/schemas/AuditDetails'
-        data:
-          $ref: '#/components/schemas/Organisation'
-      description: A VERSION resource
-    VersionOfPerson:
-      title: VERSION
-      required:
-        - contribution
-        - commit_audit
-        - data
-      type: object
-      properties:
-        _type:
-          type: string
-        contribution:
-          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
-        signature:
-          type: string
-        commit_audit:
-          $ref: '#/components/schemas/AuditDetails'
-        data:
-          $ref: '#/components/schemas/Person'
-      description: A VERSION resource
-    VersionOfRole:
-      title: VERSION
-      required:
-        - contribution
-        - commit_audit
-        - data
-      type: object
-      properties:
-        _type:
-          type: string
-        contribution:
-          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
-        signature:
-          type: string
-        commit_audit:
-          $ref: '#/components/schemas/AuditDetails'
-        data:
-          $ref: '#/components/schemas/Role'
+          $ref: '#/components/schemas/Party'
       description: A VERSION resource
     Pathable:
       title: PATHABLE
@@ -2354,6 +2052,79 @@ components:
         validationErrors:
           - error1
           - error2
+    Group:
+      title: GROUP
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Actor'
+      properties:
+        _type:
+          enum:
+            - GROUP
+          type: string
+      x-discriminator-value: GROUP
+    Organisation:
+      title: ORGANISATION
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Actor'
+      properties:
+        _type:
+          enum:
+            - ORGANISATION
+          type: string
+      x-discriminator-value: ORGANISATION
+    Person:
+      title: PERSON
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Actor'
+      properties:
+        _type:
+          enum:
+            - PERSON
+          type: string
+      x-discriminator-value: PERSON
+    Capability:
+      title: CAPABILITY
+      required:
+        - credentials
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Locatable'
+      properties:
+        _type:
+          enum:
+            - CAPABILITY
+          type: string
+        credentials:
+          $ref: '#/components/schemas/ItemStructure'
+        time_validity:
+          $ref: '#/components/schemas/DvIntervalOfDate'
+    ListOfCapability:
+      title: ListOfCapability
+      type: array
+      items:
+        $ref: '#/components/schemas/Capability'
+    Role:
+      title: ROLE
+      required:
+        - performer
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Party'
+      properties:
+        _type:
+          enum:
+            - ROLE
+          type: string
+        time_validity:
+          $ref: '#/components/schemas/DvIntervalOfDate'
+        performer:
+          $ref: '#/components/schemas/PartyRef'
+        capabilities:
+          $ref: '#/components/schemas/ListOfCapability'
+      x-discriminator-value: ROLE
     ObjectRefOfHierObjectId:
       title: OBJECT_REF
       type: object
@@ -2387,22 +2158,18 @@ components:
       discriminator:
         propertyName: _type
         mapping:
-          VERSIONED_AGENT: '#/components/schemas/VersionedAgent'
-          VERSIONED_GROUP: '#/components/schemas/VersionedGroup'
-          VERSIONED_ORGANISATION: '#/components/schemas/VersionedOrganisation'
-          VERSIONED_PERSON: '#/components/schemas/VersionedPerson'
-          VERSIONED_ROLE: '#/components/schemas/VersionedRole'
-    VersionedAgent:
-      title: VERSIONED_AGENT
+          VERSIONED_PARTY: '#/components/schemas/VersionedParty'
+    VersionedParty:
+      title: VERSIONED_PARTY
       type: object
       allOf:
         - $ref: '#/components/schemas/VersionedObject'
       properties:
         _type:
           enum:
-            - VERSIONED_AGENT
+            - VERSIONED_PARTY
           type: string
-      description: A VERSIONED_AGENT resource
+      description: A VERSIONED_PARTY resource
       example:
         uid:
           value: 8849182c-82ad-4088-a07f-48ead4180515
@@ -2414,7 +2181,7 @@ components:
           type: SYSTEM
         time_created:
           value: '2015-01-20T19:30:22.765+01:00'
-      x-discriminator-value: VERSIONED_AGENT
+      x-discriminator-value: VERSIONED_PARTY
     AuditDetails:
       title: AUDIT_DETAILS
       required:
@@ -2501,79 +2268,6 @@ components:
           items:
             $ref: '#/components/schemas/RevisionHistoryItem'
       description: A REVISION_HISTORY resource
-    Group:
-      title: GROUP
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Actor'
-      properties:
-        _type:
-          enum:
-            - GROUP
-          type: string
-      x-discriminator-value: GROUP
-    Organisation:
-      title: ORGANISATION
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Actor'
-      properties:
-        _type:
-          enum:
-            - ORGANISATION
-          type: string
-      x-discriminator-value: ORGANISATION
-    Person:
-      title: PERSON
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Actor'
-      properties:
-        _type:
-          enum:
-            - PERSON
-          type: string
-      x-discriminator-value: PERSON
-    Capability:
-      title: CAPABILITY
-      required:
-        - credentials
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Locatable'
-      properties:
-        _type:
-          enum:
-            - CAPABILITY
-          type: string
-        credentials:
-          $ref: '#/components/schemas/ItemStructure'
-        time_validity:
-          $ref: '#/components/schemas/DvIntervalOfDate'
-    ListOfCapability:
-      title: ListOfCapability
-      type: array
-      items:
-        $ref: '#/components/schemas/Capability'
-    Role:
-      title: ROLE
-      required:
-        - performer
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Party'
-      properties:
-        _type:
-          enum:
-            - ROLE
-          type: string
-        time_validity:
-          $ref: '#/components/schemas/DvIntervalOfDate'
-        performer:
-          $ref: '#/components/schemas/PartyRef'
-        capabilities:
-          $ref: '#/components/schemas/ListOfCapability'
-      x-discriminator-value: ROLE
     Version:
       title: VERSION
       required:
@@ -2667,98 +2361,6 @@ components:
         item:
           $ref: '#/components/schemas/OriginalVersion'
       x-discriminator-value: IMPORTED_VERSION
-    VersionedGroup:
-      title: VERSIONED_GROUP
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/VersionedObject'
-      properties:
-        _type:
-          enum:
-            - VERSIONED_GROUP
-          type: string
-      description: A VERSIONED_GROUP resource
-      example:
-        uid:
-          value: 8849182c-82ad-4088-a07f-48ead4180515
-        owner_id:
-          id:
-            _type: HIER_OBJECT_ID
-            value: 7d44b88c-4199-4bad-97dc-d78268e01398
-          namespace: local
-          type: SYSTEM
-        time_created:
-          value: '2015-01-20T19:30:22.765+01:00'
-      x-discriminator-value: VERSIONED_GROUP
-    VersionedOrganisation:
-      title: VERSIONED_ORGANISATION
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/VersionedObject'
-      properties:
-        _type:
-          enum:
-            - VERSIONED_ORGANISATION
-          type: string
-      description: A VERSIONED_ORGANISATION resource
-      example:
-        uid:
-          value: 8849182c-82ad-4088-a07f-48ead4180515
-        owner_id:
-          id:
-            _type: HIER_OBJECT_ID
-            value: 7d44b88c-4199-4bad-97dc-d78268e01398
-          namespace: local
-          type: SYSTEM
-        time_created:
-          value: '2015-01-20T19:30:22.765+01:00'
-      x-discriminator-value: VERSIONED_ORGANISATION
-    VersionedPerson:
-      title: VERSIONED_PERSON
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/VersionedObject'
-      properties:
-        _type:
-          enum:
-            - VERSIONED_PERSON
-          type: string
-      description: A VERSIONED_PERSON resource
-      example:
-        uid:
-          value: 8849182c-82ad-4088-a07f-48ead4180515
-        owner_id:
-          id:
-            _type: HIER_OBJECT_ID
-            value: 7d44b88c-4199-4bad-97dc-d78268e01398
-          namespace: local
-          type: SYSTEM
-        time_created:
-          value: '2015-01-20T19:30:22.765+01:00'
-      x-discriminator-value: VERSIONED_PERSON
-    VersionedRole:
-      title: VERSIONED_ROLE
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/VersionedObject'
-      properties:
-        _type:
-          enum:
-            - VERSIONED_ROLE
-          type: string
-      description: A VERSIONED_ROLE resource
-      example:
-        uid:
-          value: 8849182c-82ad-4088-a07f-48ead4180515
-        owner_id:
-          id:
-            _type: HIER_OBJECT_ID
-            value: 7d44b88c-4199-4bad-97dc-d78268e01398
-          namespace: local
-          type: SYSTEM
-        time_created:
-          value: '2015-01-20T19:30:22.765+01:00'
-      x-discriminator-value: VERSIONED_ROLE
     TerminologyCode:
       title: TERMINOLOGY_CODE
       required:
@@ -3004,11 +2606,11 @@ components:
       schema:
         type: string
         example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
-    versioned_object_uid_AGENT:
+    versioned_object_uid_PARTY:
       name: versioned_object_uid
       in: path
       description: |
-        VERSIONED_AGENT identifier taken from VERSIONED_AGENT.uid.value.
+        VERSIONED_PARTY identifier taken from VERSIONED_PARTY.uid.value.
       required: true
       style: simple
       schema:
@@ -3024,46 +2626,6 @@ components:
       schema:
         type: string
         example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
-    versioned_object_uid_GROUP:
-      name: versioned_object_uid
-      in: path
-      description: |
-        VERSIONED_GROUP identifier taken from VERSIONED_GROUP.uid.value.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 6cb19121-4307-4648-9da0-d62e4d51f19b
-    versioned_object_uid_ORGANISATION:
-      name: versioned_object_uid
-      in: path
-      description: |
-        VERSIONED_ORGANISATION identifier taken from VERSIONED_ORGANISATION.uid.value.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 6cb19121-4307-4648-9da0-d62e4d51f19b
-    versioned_object_uid_PERSON:
-      name: versioned_object_uid
-      in: path
-      description: |
-        VERSIONED_PERSON identifier taken from VERSIONED_PERSON.uid.value.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 6cb19121-4307-4648-9da0-d62e4d51f19b
-    versioned_object_uid_ROLE:
-      name: versioned_object_uid
-      in: path
-      description: |
-        VERSIONED_ROLE identifier taken from VERSIONED_ROLE.uid.value.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: 6cb19121-4307-4648-9da0-d62e4d51f19b
     contribution_uid:
       name: contribution_uid
       in: path
@@ -3088,19 +2650,6 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/demographic/agent/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
-    ETag_VERSION:
-      description: |
-        The `ETag` (i.e. entity tag) response header is the VERSION identifier (i.e. the `version_uid`) enclosed by double quotes.
-      schema:
-        type: string
-        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"'
-    Location_VERSIONED_AGENT_VERSION:
-      description: |
-        The `Location` response header indicates the URL of the VERSION resource.
-      schema:
-        type: string
-        format: url
-        example: https://openEHRSys.example.com/v1/demographic/versioned_agent/6cb19121-4307-4648-9da0-d62e4d51f19b/version/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1
     Location_GROUP:
       description: |
         The `Location` response header indicates the URL of the GROUP resource.
@@ -3108,13 +2657,6 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/demographic/group/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
-    Location_VERSIONED_GROUP_VERSION:
-      description: |
-        The `Location` response header indicates the URL of the VERSION resource.
-      schema:
-        type: string
-        format: url
-        example: https://openEHRSys.example.com/v1/demographic/versioned_group/6cb19121-4307-4648-9da0-d62e4d51f19b/version/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1
     Location_ORGANISATION:
       description: |
         The `Location` response header indicates the URL of the ORGANISATION resource.
@@ -3122,13 +2664,6 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/demographic/organisation/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
-    Location_VERSIONED_ORGANISATION_VERSION:
-      description: |
-        The `Location` response header indicates the URL of the VERSION resource.
-      schema:
-        type: string
-        format: url
-        example: https://openEHRSys.example.com/v1/demographic/versioned_organisation/6cb19121-4307-4648-9da0-d62e4d51f19b/version/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1
     Location_PERSON:
       description: |
         The `Location` response header indicates the URL of the PERSON resource.
@@ -3136,13 +2671,6 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/demographic/person/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
-    Location_VERSIONED_PERSON_VERSION:
-      description: |
-        The `Location` response header indicates the URL of the VERSION resource.
-      schema:
-        type: string
-        format: url
-        example: https://openEHRSys.example.com/v1/demographic/versioned_person/6cb19121-4307-4648-9da0-d62e4d51f19b/version/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1
     Location_ROLE:
       description: |
         The `Location` response header indicates the URL of the ROLE resource.
@@ -3150,13 +2678,19 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/demographic/role/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
-    Location_VERSIONED_ROLE_VERSION:
+    ETag_VERSION:
+      description: |
+        The `ETag` (i.e. entity tag) response header is the VERSION identifier (i.e. the `version_uid`) enclosed by double quotes.
+      schema:
+        type: string
+        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"'
+    Location_VERSIONED_PARTY_VERSION:
       description: |
         The `Location` response header indicates the URL of the VERSION resource.
       schema:
         type: string
         format: url
-        example: https://openEHRSys.example.com/v1/demographic/versioned_role/6cb19121-4307-4648-9da0-d62e4d51f19b/version/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1
+        example: https://openEHRSys.example.com/v1/demographic/versioned_party/6cb19121-4307-4648-9da0-d62e4d51f19b/version/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1
     ETag_CONTRIBUTION:
       description: |
         The `ETag` (i.e. entity tag) response header is the `contribution_uid` identifier, enclosed by double quotes.
@@ -3218,7 +2752,7 @@ components:
         `204 No Content` is returned when the resource identified by the request parameters (at specified `version_at_time`) time has been deleted.
     404_not_found_or_no_version_at_time:
       description: |
-        `404 Not Found` is returned when either the URL configured doesn't exist at all, or the targeted resource doesn't exist, or when a version of the resource does not exist at the specified `version_at_time`.
+        `404 Not Found` is returned when either the URL configured doesn't exist at all, or the targeted resource doesn't exist, or when a VERSION of the resource does not exist at the specified `version_at_time`.
     200_AGENT_updated:
       description: |
         `200 OK` is returned when the AGENT is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
@@ -3260,39 +2794,6 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_AGENT'
-    200_VERSIONED_AGENT:
-      description: |
-        `200 OK` is returned when the requested VERSIONED_AGENT is successfully retrieved.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionedAgent'
-    200_REVISION_HISTORY:
-      description: |
-        `200 OK` is returned when the requested REVISION_HISTORY is successfully retrieved.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RevisionHistory'
-    200_VERSION_of_AGENT_at_time:
-      description: |
-        `200 OK` is returned when the requested VERSION is successfully retrieved.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag_VERSION'
-        Location:
-          $ref: '#/components/headers/Location_VERSIONED_AGENT_VERSION'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionOfAgent'
-    200_VERSION_of_AGENT_by_id:
-      description: |
-        `200 OK` is returned when the requested VERSION is successfully retrieved.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionOfAgent'
     201_GROUP:
       description: |
         `201 Created` is returned when the GROUP was created. 
@@ -3356,32 +2857,6 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_GROUP'
-    200_VERSIONED_GROUP:
-      description: |
-        `200 OK` is returned when the requested VERSIONED_GROUP is successfully retrieved.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionedGroup'
-    200_VERSION_of_GROUP_at_time:
-      description: |
-        `200 OK` is returned when the requested VERSION is successfully retrieved.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag_VERSION'
-        Location:
-          $ref: '#/components/headers/Location_VERSIONED_GROUP_VERSION'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionOfGroup'
-    200_VERSION_of_GROUP_by_id:
-      description: |
-        `200 OK` is returned when the requested VERSION is successfully retrieved.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionOfGroup'
     201_ORGANISATION:
       description: |
         `201 Created` is returned when the ORGANISATION was created. 
@@ -3445,32 +2920,6 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_ORGANISATION'
-    200_VERSIONED_ORGANISATION:
-      description: |
-        `200 OK` is returned when the requested VERSIONED_ORGANISATION is successfully retrieved.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionedOrganisation'
-    200_VERSION_of_ORGANISATION_at_time:
-      description: |
-        `200 OK` is returned when the requested VERSION is successfully retrieved.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag_VERSION'
-        Location:
-          $ref: '#/components/headers/Location_VERSIONED_ORGANISATION_VERSION'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionOfOrganisation'
-    200_VERSION_of_ORGANISATION_by_id:
-      description: |
-        `200 OK` is returned when the requested VERSION is successfully retrieved.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionOfOrganisation'
     201_PERSON:
       description: |
         `201 Created` is returned when the PERSON was created. 
@@ -3534,32 +2983,6 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_PERSON'
-    200_VERSIONED_PERSON:
-      description: |
-        `200 OK` is returned when the requested VERSIONED_PERSON is successfully retrieved.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionedPerson'
-    200_VERSION_of_PERSON_at_time:
-      description: |
-        `200 OK` is returned when the requested VERSION is successfully retrieved.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag_VERSION'
-        Location:
-          $ref: '#/components/headers/Location_VERSIONED_PERSON_VERSION'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionOfPerson'
-    200_VERSION_of_PERSON_by_id:
-      description: |
-        `200 OK` is returned when the requested VERSION is successfully retrieved.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionOfPerson'
     201_ROLE:
       description: |
         `201 Created` is returned when the ROLE was created. 
@@ -3623,32 +3046,39 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_ROLE'
-    200_VERSIONED_ROLE:
+    200_VERSIONED_PARTY:
       description: |
-        `200 OK` is returned when the requested VERSIONED_ROLE is successfully retrieved.
+        `200 OK` is returned when the requested VERSIONED_PARTY is successfully retrieved.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/VersionedRole'
-    200_VERSION_of_ROLE_at_time:
+            $ref: '#/components/schemas/VersionedParty'
+    200_REVISION_HISTORY:
+      description: |
+        `200 OK` is returned when the requested REVISION_HISTORY is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RevisionHistory'
+    200_VERSION_of_PARTY_at_time:
       description: |
         `200 OK` is returned when the requested VERSION is successfully retrieved.
       headers:
         ETag:
           $ref: '#/components/headers/ETag_VERSION'
         Location:
-          $ref: '#/components/headers/Location_VERSIONED_ROLE_VERSION'
+          $ref: '#/components/headers/Location_VERSIONED_PARTY_VERSION'
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/VersionOfRole'
-    200_VERSION_of_ROLE_by_id:
+            $ref: '#/components/schemas/VersionOfParty'
+    200_VERSION_of_PARTY_by_id:
       description: |
         `200 OK` is returned when the requested VERSION is successfully retrieved.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/VersionOfRole'
+            $ref: '#/components/schemas/VersionOfParty'
     201_demographic_CONTRIBUTION:
       description: |
         `201 Created` is returned when the CONTRIBUTION was created. 
@@ -3688,6 +3118,7 @@ x-tagGroups:
       - ORGANISATION
       - PERSON
       - ROLE
+      - VERSIONED_PARTY
       - CONTRIBUTION
   - name: Related schemas
     tags:

@@ -2931,6 +2931,154 @@ components:
                 value: openehr
               code_string: '238'
         content: []
+    UMComposition:
+      title: COMPOSITION
+      required:
+        - name
+        - archetype_node_id
+        - language
+        - territory
+        - category
+        - context
+        - composer
+        - content
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - COMPOSITION
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        territory:
+          $ref: '#/components/schemas/CodePhrase'
+        category:
+          $ref: '#/components/schemas/DvCodedText'
+        context:
+          $ref: '#/components/schemas/EventContext'
+        composer:
+          $ref: '#/components/schemas/UPartyProxy'
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/UContentItem'
+          description: See [CONTENT_ITEM](#tag/CONTENT_ITEM_schema) schema details.
+      example:
+        archetype_node_id: openEHR-EHR-COMPOSITION.encounter.v1
+        name:
+          value: Vital Signs
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        archetype_details:
+          archetype_id:
+            value: openEHR-EHR-COMPOSITION.encounter.v1
+          template_id:
+            value: Example.v1::c7ec861c-c413-39ff-9965-a198ebf44747
+          rm_version: 1.0.2
+        language:
+          terminology_id:
+            value: ISO_639-1
+          code_string: en
+        territory:
+          terminology_id:
+            value: ISO_3166-1
+          code_string: NL
+        category:
+          value: event
+          defining_code:
+            terminology_id:
+              value: openehr
+            code_string: '433'
+        composer:
+          _type: PARTY_IDENTIFIED
+          external_ref:
+            id:
+              _type: GENERIC_ID
+              value: 16b74749-e6aa-4945-b760-b42bdc07098a
+              scheme: pid
+            namespace: openEHRSys.example.com
+            type: PERSON
+          name: A name
+        context:
+          start_time:
+            value: '2014-11-18T09:50:35.000+01:00'
+          setting:
+            value: other care
+            defining_code:
+              terminology_id:
+                value: openehr
+              code_string: '238'
+        content: []
+    UMEhrStatus:
+      title: EHR_STATUS
+      required:
+        - name
+        - archetype_node_id
+        - subject
+        - is_queryable
+        - is_modifiable
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - EHR_STATUS
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        subject:
+          $ref: '#/components/schemas/UPartyProxy'
+        is_queryable:
+          type: boolean
+          default: true
+        is_modifiable:
+          type: boolean
+          default: true
+        other_details:
+          $ref: '#/components/schemas/UItemStructure'
+      example:
+        archetype_node_id: openEHR-EHR-EHR_STATUS.generic.v1
+        name:
+          value: EHR status
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        subject:
+          _type: PARTY_SELF
+        is_queryable: true
+        is_modifiable: true
     UObjectRefOfUidBasedId:
       title: OBJECT_REF
       type: object
@@ -2998,19 +3146,66 @@ components:
       required:
         - name
         - archetype_node_id
+    UMFolder:
+      title: FOLDER
+      required:
+        - name
+        - archetype_node_id
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - FOLDER
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UObjectRefOfUidBasedId'
+        folders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Folder'
+        details:
+          $ref: '#/components/schemas/UItemStructure'
+      example:
+        archetype_node_id: openEHR-EHR-FOLDER.directory.v1
+        name:
+          value: Directory
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        items: []
+        folders: []
     UVersionable:
       title: Versionable
       type: object
       oneOf:
-        - $ref: '#/components/schemas/Composition'
-        - $ref: '#/components/schemas/EhrStatus'
-        - $ref: '#/components/schemas/Folder'
+        - $ref: '#/components/schemas/UMComposition'
+        - $ref: '#/components/schemas/UMEhrStatus'
+        - $ref: '#/components/schemas/UMFolder'
       discriminator:
         propertyName: _type
         mapping:
-          COMPOSITION: '#/components/schemas/Composition'
-          EHR_STATUS: '#/components/schemas/EhrStatus'
-          FOLDER: '#/components/schemas/Folder'
+          COMPOSITION: '#/components/schemas/UMComposition'
+          EHR_STATUS: '#/components/schemas/UMEhrStatus'
+          FOLDER: '#/components/schemas/UMFolder'
     Attestation:
       title: ATTESTATION
       required:
