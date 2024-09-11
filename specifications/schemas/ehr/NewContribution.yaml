@@ -10,6 +10,6 @@ properties:
   versions:
     type: array
     items:
-      $ref: ../common/UpdateVersion.yaml
+      $ref: ../ehr/UpdateVersion.yaml
   audit:
     $ref: ../common/UpdateAudit.yaml

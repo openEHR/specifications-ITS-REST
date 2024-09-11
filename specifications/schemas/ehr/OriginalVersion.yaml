@@ -1,7 +1,7 @@
 title: ORIGINAL_VERSION
 type: object
 allOf:
-  - $ref: ../common/Version.yaml
+  - $ref: ../ehr/Version.yaml
 required:
   - uid
   - lifecycle_state

@@ -1,4 +1,4 @@
-# Note: copy of same resource type from `common`, as we need to redefine UVersionable to use only demographic types
+# Note: copy of same schema from `ehr`, as we need to redefine to use only demographic types
 #       reminder to keep them in sync!
 title: VERSION
 type: object
