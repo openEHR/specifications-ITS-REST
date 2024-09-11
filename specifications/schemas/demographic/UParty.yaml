@@ -1,6 +1,5 @@
-# Note: copy of same resource type from `common`, as we need to redefine UVersionable to use only demographic types
-#       reminder to keep them in sync!
-title: Versionable
+
+title: PARTY
 type: object
 oneOf:
   - $ref: ../demographic/UMAgent.yaml

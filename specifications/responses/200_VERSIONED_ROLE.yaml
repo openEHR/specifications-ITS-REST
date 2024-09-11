@@ -1,6 +1,0 @@
-description: |
-  `200 OK` is returned when the requested VERSIONED_ROLE is successfully retrieved.
-content:
-  application/json:
-    schema:
-      $ref: ../schemas/demographic/VersionedRole.yaml

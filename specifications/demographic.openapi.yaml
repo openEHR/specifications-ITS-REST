@@ -32,18 +32,6 @@ paths:
       $ref: ./operations/agent_update.yaml
     delete:
       $ref: ./operations/agent_delete.yaml
-  '/demographic/versioned_agent/{versioned_object_uid}':
-    get:
-      $ref: ./operations/versioned_agent_get.yaml
-  '/demographic/versioned_agent/{versioned_object_uid}/revision_history':
-    get:
-      $ref: ./operations/versioned_agent_revision_history.yaml
-  '/demographic/versioned_agent/{versioned_object_uid}/version':
-    get:
-      $ref: ./operations/versioned_agent_version_get_at_time.yaml
-  '/demographic/versioned_agent/{versioned_object_uid}/version/{version_uid}':
-    get:
-      $ref: ./operations/versioned_agent_version_get_by_id.yaml
   '/demographic/group':
     post:
       $ref: ./operations/group_create.yaml
@@ -54,18 +42,6 @@ paths:
       $ref: ./operations/group_update.yaml
     delete:
       $ref: ./operations/group_delete.yaml
-  '/demographic/versioned_group/{versioned_object_uid}':
-    get:
-      $ref: ./operations/versioned_group_get.yaml
-  '/demographic/versioned_group/{versioned_object_uid}/revision_history':
-    get:
-      $ref: ./operations/versioned_group_revision_history.yaml
-  '/demographic/versioned_group/{versioned_object_uid}/version':
-    get:
-      $ref: ./operations/versioned_group_version_get_at_time.yaml
-  '/demographic/versioned_group/{versioned_object_uid}/version/{version_uid}':
-    get:
-      $ref: ./operations/versioned_group_version_get_by_id.yaml
   '/demographic/organisation':
     post:
       $ref: ./operations/organisation_create.yaml
@@ -76,18 +52,6 @@ paths:
       $ref: ./operations/organisation_update.yaml
     delete:
       $ref: ./operations/organisation_delete.yaml
-  '/demographic/versioned_organisation/{versioned_object_uid}':
-    get:
-      $ref: ./operations/versioned_organisation_get.yaml
-  '/demographic/versioned_organisation/{versioned_object_uid}/revision_history':
-    get:
-      $ref: ./operations/versioned_organisation_revision_history.yaml
-  '/demographic/versioned_organisation/{versioned_object_uid}/version':
-    get:
-      $ref: ./operations/versioned_organisation_version_get_at_time.yaml
-  '/demographic/versioned_organisation/{versioned_object_uid}/version/{version_uid}':
-    get:
-      $ref: ./operations/versioned_organisation_version_get_by_id.yaml
   '/demographic/person':
     post:
       $ref: ./operations/person_create.yaml
@@ -98,18 +62,6 @@ paths:
       $ref: ./operations/person_update.yaml
     delete:
       $ref: ./operations/person_delete.yaml
-  '/demographic/versioned_person/{versioned_object_uid}':
-    get:
-      $ref: ./operations/versioned_person_get.yaml
-  '/demographic/versioned_person/{versioned_object_uid}/revision_history':
-    get:
-      $ref: ./operations/versioned_person_revision_history.yaml
-  '/demographic/versioned_person/{versioned_object_uid}/version':
-    get:
-      $ref: ./operations/versioned_person_version_get_at_time.yaml
-  '/demographic/versioned_person/{versioned_object_uid}/version/{version_uid}':
-    get:
-      $ref: ./operations/versioned_person_version_get_by_id.yaml
   '/demographic/role':
     post:
       $ref: ./operations/role_create.yaml
@@ -120,18 +72,18 @@ paths:
       $ref: ./operations/role_update.yaml
     delete:
       $ref: ./operations/role_delete.yaml
-  '/demographic/versioned_role/{versioned_object_uid}':
+  '/demographic/versioned_party/{versioned_object_uid}':
     get:
-      $ref: ./operations/versioned_role_get.yaml
-  '/demographic/versioned_role/{versioned_object_uid}/revision_history':
+      $ref: ./operations/versioned_party_get.yaml
+  '/demographic/versioned_party/{versioned_object_uid}/revision_history':
     get:
-      $ref: ./operations/versioned_role_revision_history.yaml
-  '/demographic/versioned_role/{versioned_object_uid}/version':
+      $ref: ./operations/versioned_party_revision_history.yaml
+  '/demographic/versioned_party/{versioned_object_uid}/version':
     get:
-      $ref: ./operations/versioned_role_version_get_at_time.yaml
-  '/demographic/versioned_role/{versioned_object_uid}/version/{version_uid}':
+      $ref: ./operations/versioned_party_version_get_at_time.yaml
+  '/demographic/versioned_party/{versioned_object_uid}/version/{version_uid}':
     get:
-      $ref: ./operations/versioned_role_version_get_by_id.yaml
+      $ref: ./operations/versioned_party_version_get_by_id.yaml
   '/demographic/contribution':
     post:
       $ref: ./operations/demographic_contribution_create.yaml
@@ -141,22 +93,25 @@ paths:
 tags:
   - name: AGENT
     description: |
-      Management of the [AGENT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_agent_class) and the associated [VERSIONED_AGENT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
+      Management of the [AGENT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_agent_class) class.
   - name: GROUP
     description: |
-      Management of the [GROUP](https://specifications.openehr.org/releases/RM/latest/demographic.html#_group_class) and the associated [VERSIONED_GROUP](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
+      Management of the [GROUP](https://specifications.openehr.org/releases/RM/latest/demographic.html#_group_class) class.
   - name: ORGANISATION
     description: |
-      Management of the [ORGANISATION](https://specifications.openehr.org/releases/RM/latest/demographic.html#_organisation_class) and the associated [VERSIONED_ORGANISATION](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
+      Management of the [ORGANISATION](https://specifications.openehr.org/releases/RM/latest/demographic.html#_organisation_class) class.
   - name: PERSON
     description: |
-      Management of the [PERSON](https://specifications.openehr.org/releases/RM/latest/demographic.html#_person_class) and the associated [VERSIONED_PERSON](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
+      Management of the [PERSON](https://specifications.openehr.org/releases/RM/latest/demographic.html#_person_class) class.
   - name: ROLE
     description: |
-      Management of the [ROLE](https://specifications.openehr.org/releases/RM/latest/demographic.html#_ROLE_class) and the associated [VERSIONED_ROLE](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) resource.
+      Management of the [ROLE](https://specifications.openehr.org/releases/RM/latest/demographic.html#_role_class) class.
+  - name: VERSIONED_PARTY
+    description: |
+      Management of the [VERSIONED_PARTY](https://specifications.openehr.org/releases/RM/latest/demographic.html#_versioned_party_class) class.
   - name: CONTRIBUTION
     description: |
-      Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
+      Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) class.
   - name: CAPABILITY_schema
     x-displayName: CAPABILITY
     description: |
@@ -195,6 +150,7 @@ x-tagGroups:
       - ORGANISATION
       - PERSON
       - ROLE
+      - VERSIONED_PARTY
       - CONTRIBUTION
   - name: Related schemas
     tags:
@@ -218,13 +174,5 @@ components:
       $ref: ./schemas/demographic/SeePartyIdentity.yaml
     SeePartyRelationship:
       $ref: ./schemas/demographic/SeePartyRelationship.yaml
-    VersionOfAgent:
-      $ref: ./schemas/demographic/VersionOfAgent.yaml
-    VersionOfGroup:
-      $ref: ./schemas/demographic/VersionOfGroup.yaml
-    VersionOfOrganisation:
-      $ref: ./schemas/demographic/VersionOfOrganisation.yaml
-    VersionOfPerson:
-      $ref: ./schemas/demographic/VersionOfPerson.yaml
-    VersionOfRole:
-      $ref: ./schemas/demographic/VersionOfRole.yaml
+    VersionOfParty:
+      $ref: ./schemas/demographic/VersionOfParty.yaml
