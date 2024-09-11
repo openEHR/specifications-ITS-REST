@@ -67,6 +67,21 @@ tags:
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
       Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
+  - name: CONTENT_ITEM_schema
+    x-displayName: CONTENT_ITEM
+    description: |
+      The abstract `CONTENT_ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/ContentItem" />
+  - name: ITEM_schema
+    x-displayName: ITEM
+    description: |
+      The abstract `ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/Item" />
+  - name: ITEM_STRUCTURE_schema
+    x-displayName: ITEM_STRUCTURE
+    description: |
+      The abstract `ITEM_STRUCTURE` class:
+      <SchemaDefinition schemaRef="#/components/schemas/ItemStructure" />
 paths:
   /ehr:
     post:
@@ -829,6 +844,7 @@ components:
         propertyName: _type
         mapping:
           OBJECT_REF: '#/components/schemas/ObjectRef'
+          PARTY_REF: '#/components/schemas/PartyRef'
     ObjectRefOfObjectVersionId:
       title: OBJECT_REF
       type: object
@@ -1366,24 +1382,20 @@ components:
       x-discriminator-value: DV_PARSABLE
     PartyRef:
       title: PARTY_REF
-      required:
-        - namespace
-        - type
-        - id
       type: object
+      allOf:
+        - $ref: '#/components/schemas/ObjectRef'
       properties:
-        namespace:
-          type: string
         type:
           pattern: ^PERSON|ORGANISATION|GROUP|AGENT|ROLE|PARTY|ACTOR$
           type: string
         id:
-          $ref: '#/components/schemas/ObjectId'
+          $ref: '#/components/schemas/HierObjectId'
       description: Identifier for parties in a demographic or identity service.
       example:
         id:
-          _type: OBJECT_VERSION_ID
-          value: b52b9408-7048-4ec8-94bd-831fb0727e67::openEHRSys.example.com::1
+          _type: HIER_OBJECT_ID
+          value: b52b9408-7048-4ec8-94bd-831fb0727e67
         namespace: local
         type: PERSON
     PartyProxy:
@@ -1819,7 +1831,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Item'
-          description: See [ITEM](resources.html#tag/ITEM_schema) type details.
+          description: See [ITEM](#tag/ITEM_schema) schema details.
       x-discriminator-value: ITEM_TREE
     FeederAuditDetails:
       title: FEEDER_AUDIT_DETAILS
@@ -2439,7 +2451,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ContentItem'
-          description: See [CONTENT_ITEM](resources.html#tag/CONTENT_ITEM_schema) type details.
+          description: See [CONTENT_ITEM](#tag/CONTENT_ITEM_schema) schema details.
       description: A COMPOSITION resource
       example:
         archetype_node_id: openEHR-EHR-COMPOSITION.encounter.v1
@@ -3373,3 +3385,8 @@ x-tagGroups:
       - COMPOSITION
       - DIRECTORY
       - CONTRIBUTION
+  - name: Related schemas
+    tags:
+      - CONTENT_ITEM_schema
+      - ITEM_schema
+      - ITEM_STRUCTURE_schema

@@ -38,6 +38,36 @@ tags:
   - name: CONTRIBUTION
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
+  - name: CAPABILITY_schema
+    x-displayName: CAPABILITY
+    description: |
+      The `CAPABILITY` schema, formally specified in the Reference Model as the [CAPABILITY](https://specifications.openehr.org/releases/RM/latest/demographic.html#_capability_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/Capability" />
+  - name: CONTACT_schema
+    x-displayName: CONTACT
+    description: |
+      The `CONTACT` schema, formally specified in the Reference Model as the [CONTACT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_contact_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/Contact" />
+  - name: PARTY_IDENTITY_schema
+    x-displayName: PARTY_IDENTITY
+    description: |
+      The `PARTY_IDENTITY` schema, formally specified in the Reference Model as the [PARTY_IDENTITY](https://specifications.openehr.org/releases/RM/latest/demographic.html#_party_identity_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/PartyIdentity" />
+  - name: PARTY_RELATIONSHIP_schema
+    x-displayName: PARTY_RELATIONSHIP
+    description: |
+      The `PARTY_RELATIONSHIP` resource, formally specified in the Reference Model as the [PARTY_RELATIONSHIP](https://specifications.openehr.org/releases/RM/latest/demographic.html#_party_relationship_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/PartyRelationship" />
+  - name: ITEM_schema
+    x-displayName: ITEM
+    description: |
+      The abstract `ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItem" />
+  - name: ITEM_STRUCTURE_schema
+    x-displayName: ITEM_STRUCTURE
+    description: |
+      The abstract `ITEM_STRUCTURE` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItemStructure" />
 paths:
   /demographic/agent:
     post:
@@ -944,14 +974,132 @@ paths:
           $ref: '#/components/responses/404_demographic_CONTRIBUTION'
 components:
   schemas:
+    UAbstractItem:
+      title: ITEM
+      type: object
     UAbstractItemStructure:
       title: ITEM_STRUCTURE
       type: object
-      description: See [ITEM_STRUCTURE](resources.html#tag/ITEM_STRUCTURE_schema) type details.
-    UAbstractVersionable:
-      title: Versionable
+      description: See [ITEM_STRUCTURE](#tag/ITEM_STRUCTURE_schema) schema details.
+    SeeContact:
+      title: CONTACT
+      type: array
+      items:
+        type: object
+      description: See [CONTACT](demographic.html#tag/CONTACT_schema) schema details.
+    SeeCapability:
+      title: CAPABILITY
+      type: array
+      items:
+        type: object
+      description: See [CAPABILITY](demographic.html#tag/CAPABILITY_schema) schema details.
+    SeePartyIdentity:
+      title: PARTY_IDENTITY
+      type: array
+      items:
+        type: object
+      description: See [PARTY_IDENTITY](demographic.html#tag/PARTY_IDENTITY_schema) schema details.
+    SeePartyRelationship:
+      title: PARTY_RELATIONSHIP
+      type: array
+      items:
+        type: object
+      description: See [PARTY_RELATIONSHIP](demographic.html#tag/PARTY_RELATIONSHIP_schema) schema details.
+    VersionOfAgent:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
       type: object
-      description: See [Versionable](resources.html#tag/Versionable_schema) type details.
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Agent'
+      description: A VERSION resource
+    VersionOfGroup:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Group'
+      description: A VERSION resource
+    VersionOfOrganisation:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Organisation'
+      description: A VERSION resource
+    VersionOfPerson:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Person'
+      description: A VERSION resource
+    VersionOfRole:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Role'
+      description: A VERSION resource
     UMDvUri:
       title: DV_URI
       required:
@@ -1001,6 +1149,7 @@ components:
         value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
     UDvUri:
       title: DV_URI
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvUri'
         - $ref: '#/components/schemas/UMDvEhrUri'
@@ -1149,6 +1298,7 @@ components:
           code_string: at0001
     UDvText:
       title: DV_TEXT
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvText'
         - $ref: '#/components/schemas/UMDvCodedText'
@@ -1221,6 +1371,7 @@ components:
           type: string
     UUidBasedId:
       title: UID_BASED_ID
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMHierObjectId'
         - $ref: '#/components/schemas/UMObjectVersionId'
@@ -1380,6 +1531,26 @@ components:
           $ref: '#/components/schemas/DvMultimedia'
         size:
           type: integer
+    DvParsable:
+      title: DV_PARSABLE
+      required:
+        - _type
+        - value
+        - formalism
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_PARSABLE
+          type: string
+        charset:
+          $ref: '#/components/schemas/CodePhrase'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        value:
+          type: string
+        formalism:
+          type: string
     UMDvParsable:
       title: DV_PARSABLE
       required:
@@ -1402,6 +1573,7 @@ components:
           type: string
     UDvEncapsulated:
       title: DV_ENCAPSULATED
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvMultimedia'
         - $ref: '#/components/schemas/UMDvParsable'
@@ -1410,6 +1582,104 @@ components:
         mapping:
           DV_MULTIMEDIA: '#/components/schemas/UMDvMultimedia'
           DV_PARSABLE: '#/components/schemas/UMDvParsable'
+    UMArchetypeId:
+      title: ARCHETYPE_ID
+      required:
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - ARCHETYPE_ID
+          type: string
+        value:
+          type: string
+    UMTemplateId:
+      title: TEMPLATE_ID
+      required:
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - TEMPLATE_ID
+          type: string
+        value:
+          type: string
+    UMTerminologyId:
+      title: TERMINOLOGY_ID
+      required:
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - TERMINOLOGY_ID
+          type: string
+        value:
+          type: string
+    UMGenericId:
+      title: GENERIC_ID
+      required:
+        - value
+        - scheme
+        - _type
+      type: object
+      example:
+        _type: GENERIC_ID
+        value: c7ec861c-c413-39ff-9965-a198ebf44747
+        scheme: pid
+      properties:
+        _type:
+          enum:
+            - GENERIC_ID
+          type: string
+        value:
+          type: string
+        scheme:
+          type: string
+    UObjectId:
+      title: OBJECT_ID
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/UMArchetypeId'
+        - $ref: '#/components/schemas/UMTemplateId'
+        - $ref: '#/components/schemas/UMTerminologyId'
+        - $ref: '#/components/schemas/UMGenericId'
+        - $ref: '#/components/schemas/UMHierObjectId'
+        - $ref: '#/components/schemas/UMObjectVersionId'
+      discriminator:
+        propertyName: _type
+        mapping:
+          ARCHETYPE_ID: '#/components/schemas/UMArchetypeId'
+          TEMPLATE_ID: '#/components/schemas/UMTemplateId'
+          TERMINOLOGY_ID: '#/components/schemas/UMTerminologyId'
+          GENERIC_ID: '#/components/schemas/UMGenericId'
+          HIER_OBJECT_ID: '#/components/schemas/UMHierObjectId'
+          OBJECT_VERSION_ID: '#/components/schemas/UMObjectVersionId'
+    ObjectRef:
+      title: OBJECT_REF
+      required:
+        - namespace
+        - type
+        - id
+      type: object
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UObjectId'
+      example:
+        id:
+          _type: OBJECT_VERSION_ID
+          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+        namespace: local
+        type: COMPOSITION
     PartyRef:
       title: PARTY_REF
       type: object
@@ -1493,6 +1763,7 @@ components:
         name: A name
     UPartyIdentified:
       title: PARTY_IDENTIFIED
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMPartyIdentified'
         - $ref: '#/components/schemas/UMPartyRelated'
@@ -1515,6 +1786,7 @@ components:
           $ref: '#/components/schemas/PartyRef'
     UPartyProxy:
       title: PARTY_PROXY
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMPartySelf'
         - $ref: '#/components/schemas/UMPartyIdentified'
@@ -1608,6 +1880,76 @@ components:
       example:
         _type: DV_DATE_TIME
         value: '2017-08-15T10:37:15.422+02:00'
+    UMDvBoolean:
+      title: DV_BOOLEAN
+      required:
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_BOOLEAN
+          type: string
+        value:
+          type: boolean
+    UMDvCount:
+      title: DV_COUNT
+      required:
+        - magnitude
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_COUNT
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+        magnitude:
+          type: integer
+    DvDate:
+      title: DV_DATE
+      required:
+        - value
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_DATE
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy:
+          $ref: '#/components/schemas/DvDuration'
+        value:
+          type: string
+          format: date
+      example:
+        _type: DV_DATE
+        value: '2017-08-15'
     UMDvDate:
       title: DV_DATE
       required:
@@ -1638,6 +1980,507 @@ components:
       example:
         _type: DV_DATE
         value: '2017-08-15'
+    UMDvDateTime:
+      title: DV_DATE_TIME
+      required:
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_DATE_TIME
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy:
+          $ref: '#/components/schemas/DvDuration'
+        value:
+          type: string
+          format: date-time
+      example:
+        _type: DV_DATE_TIME
+        value: '2017-08-15T10:37:15.422+02:00'
+    UMDvDuration:
+      title: DV_DURATION
+      required:
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_DURATION
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+    UMDvIdentifier:
+      title: DV_IDENTIFIER
+      required:
+        - id
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_IDENTIFIER
+          type: string
+        issuer:
+          type: string
+        assigner:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+      example:
+        id: 16b74749-e6aa-4945-b760-b42bdc07098a
+        type: Patient
+    UMDvOrdinal:
+      title: DV_ORDINAL
+      required:
+        - symbol
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_ORDINAL
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        symbol:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          type: integer
+    UMDvProportion:
+      title: DV_PROPORTION
+      required:
+        - numerator
+        - denominator
+        - semantic_type
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_PROPORTION
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+        numerator:
+          type: number
+        denominator:
+          type: number
+        semantic_type:
+          type: integer
+        precision:
+          type: integer
+    UMDvQuantity:
+      title: DV_QUANTITY
+      required:
+        - magnitude
+        - units
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_QUANTITY
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+        magnitude:
+          type: number
+        precision:
+          type: integer
+        units:
+          type: string
+        units_system:
+          type: string
+        units_display_name:
+          type: string
+    UMDvScale:
+      title: DV_SCALE
+      required:
+        - symbol
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_SCALE
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        symbol:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          type: number
+    UMDvState:
+      title: DV_STATE
+      required:
+        - value
+        - is_terminal
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_STATE
+          type: string
+        value:
+          $ref: '#/components/schemas/DvCodedText'
+        is_terminal:
+          type: boolean
+    UMDvTime:
+      title: DV_TIME
+      required:
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_TIME
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy:
+          $ref: '#/components/schemas/DvDuration'
+        value:
+          type: string
+          format: time
+      example:
+        _type: DV_TIME
+        value: '08:20:12'
+    UDataValue:
+      title: DATA_VALUE
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/UMDvBoolean'
+        - $ref: '#/components/schemas/UMDvCodedText'
+        - $ref: '#/components/schemas/UMDvCount'
+        - $ref: '#/components/schemas/UMDvDate'
+        - $ref: '#/components/schemas/UMDvDateTime'
+        - $ref: '#/components/schemas/UMDvDuration'
+        - $ref: '#/components/schemas/UMDvEhrUri'
+        - $ref: '#/components/schemas/UMDvIdentifier'
+        - $ref: '#/components/schemas/UMDvMultimedia'
+        - $ref: '#/components/schemas/UMDvOrdinal'
+        - $ref: '#/components/schemas/UMDvParsable'
+        - $ref: '#/components/schemas/UMDvProportion'
+        - $ref: '#/components/schemas/UMDvQuantity'
+        - $ref: '#/components/schemas/UMDvScale'
+        - $ref: '#/components/schemas/UMDvState'
+        - $ref: '#/components/schemas/UMDvText'
+        - $ref: '#/components/schemas/UMDvUri'
+      discriminator:
+        propertyName: _type
+        mapping:
+          DV_BOOLEAN: '#/components/schemas/UMDvBoolean'
+          DV_CODED_TEXT: '#/components/schemas/UMDvCodedText'
+          DV_COUNT: '#/components/schemas/UMDvCount'
+          DV_DATE: '#/components/schemas/UMDvDate'
+          DV_DATE_TIME: '#/components/schemas/UMDvDateTime'
+          DV_DURATION: '#/components/schemas/UMDvDuration'
+          DV_EHR_URI: '#/components/schemas/UMDvEhrUri'
+          DV_IDENTIFIER: '#/components/schemas/UMDvIdentifier'
+          DV_MULTIMEDIA: '#/components/schemas/UMDvMultimedia'
+          DV_ORDINAL: '#/components/schemas/UMDvOrdinal'
+          DV_PARSABLE: '#/components/schemas/UMDvParsable'
+          DV_PROPORTION: '#/components/schemas/UMDvProportion'
+          DV_QUANTITY: '#/components/schemas/UMDvQuantity'
+          DV_SCALE: '#/components/schemas/UMDvScale'
+          DV_STATE: '#/components/schemas/UMDvState'
+          DV_TEXT: '#/components/schemas/UMDvText'
+          DV_TIME: '#/components/schemas/UMDvTime'
+          DV_URI: '#/components/schemas/UMDvUri'
+    Element:
+      title: ELEMENT
+      type: object
+      properties:
+        _type:
+          enum:
+            - ELEMENT
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        null_flavour:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          $ref: '#/components/schemas/UDataValue'
+        null_reason:
+          $ref: '#/components/schemas/UDvText'
+      required:
+        - name
+        - archetype_node_id
+    ItemSingle:
+      title: ITEM_SINGLE
+      required:
+        - name
+        - archetype_node_id
+        - item
+      type: object
+      properties:
+        _type:
+          enum:
+            - ITEM_SINGLE
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        item:
+          $ref: '#/components/schemas/Element'
+    ItemList:
+      title: ITEM_LIST
+      type: object
+      properties:
+        _type:
+          enum:
+            - ITEM_LIST
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Element'
+      required:
+        - name
+        - archetype_node_id
+    Clstr:
+      title: CLUSTER
+      required:
+        - name
+        - archetype_node_id
+        - items
+      type: object
+      properties:
+        _type:
+          enum:
+            - CLUSTER
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UAbstractItem'
+    UItem:
+      title: ITEM
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/Element'
+        - $ref: '#/components/schemas/Clstr'
+      discriminator:
+        propertyName: _type
+        mapping:
+          ELEMENT: '#/components/schemas/Element'
+          CLUSTER: '#/components/schemas/Clstr'
+    ItemTable:
+      title: ITEM_TABLE
+      type: object
+      properties:
+        _type:
+          enum:
+            - ITEM_TABLE
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Clstr'
+      required:
+        - name
+        - archetype_node_id
+    ItemTree:
+      title: ITEM_TREE
+      type: object
+      properties:
+        _type:
+          enum:
+            - ITEM_TREE
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UAbstractItem'
+          description: See [ITEM](#tag/ITEM_schema) schema details.
+      required:
+        - name
+        - archetype_node_id
+    UItemStructure:
+      title: ITEM_STRUCTURE
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/ItemSingle'
+        - $ref: '#/components/schemas/ItemList'
+        - $ref: '#/components/schemas/ItemTable'
+        - $ref: '#/components/schemas/ItemTree'
+      discriminator:
+        propertyName: _type
+        mapping:
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
+          ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_TABLE: '#/components/schemas/ItemTable'
+          ITEM_TREE: '#/components/schemas/ItemTree'
     FeederAuditDetails:
       title: FEEDER_AUDIT_DETAILS
       required:
@@ -1706,6 +2549,11 @@ components:
           $ref: '#/components/schemas/FeederAudit'
         details:
           $ref: '#/components/schemas/UAbstractItemStructure'
+    ListOfPartyIdentity:
+      title: ListOfPartyIdentity
+      type: array
+      items:
+        $ref: '#/components/schemas/PartyIdentity'
     Address:
       title: ADDRESS
       required:
@@ -1767,6 +2615,8 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - CONTACT
           type: string
         name:
           $ref: '#/components/schemas/UDvText'
@@ -1790,6 +2640,11 @@ components:
             $ref: '#/components/schemas/Address'
         time_validity:
           $ref: '#/components/schemas/DvIntervalOfDate'
+    ListOfContact:
+      title: ListOfContact
+      type: array
+      items:
+        $ref: '#/components/schemas/Contact'
     PartyRelationship:
       title: PARTY_RELATIONSHIP
       required:
@@ -1825,6 +2680,87 @@ components:
           $ref: '#/components/schemas/UAbstractItemStructure'
         time_validity:
           $ref: '#/components/schemas/DvIntervalOfDate'
+    ListOfPartyRelationship:
+      title: ListOfPartyRelationShip
+      type: array
+      items:
+        $ref: '#/components/schemas/PartyRelationship'
+    Party:
+      title: PARTY
+      required:
+        - name
+        - archetype_node_id
+        - identities
+      type: object
+      properties:
+        _type:
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        identities:
+          $ref: '#/components/schemas/SeePartyIdentity'
+        contacts:
+          $ref: '#/components/schemas/SeeContact'
+        details:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        relationships:
+          $ref: '#/components/schemas/SeePartyRelationship'
+    Actor:
+      title: ACTOR
+      type: object
+      properties:
+        _type:
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        identities:
+          $ref: '#/components/schemas/SeePartyIdentity'
+        contacts:
+          $ref: '#/components/schemas/SeeContact'
+        details:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        relationships:
+          $ref: '#/components/schemas/SeePartyRelationship'
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/UDvText'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartyRef'
+      required:
+        - name
+        - archetype_node_id
+        - identities
     Agent:
       title: AGENT
       type: object
@@ -1850,19 +2786,13 @@ components:
         feeder_audit:
           $ref: '#/components/schemas/FeederAudit'
         identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
+          $ref: '#/components/schemas/SeePartyIdentity'
         contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
+          $ref: '#/components/schemas/SeeContact'
         details:
           $ref: '#/components/schemas/UAbstractItemStructure'
         relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
+          $ref: '#/components/schemas/SeePartyRelationship'
         languages:
           type: array
           items:
@@ -2050,19 +2980,13 @@ components:
         feeder_audit:
           $ref: '#/components/schemas/FeederAudit'
         identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
+          $ref: '#/components/schemas/SeePartyIdentity'
         contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
+          $ref: '#/components/schemas/SeeContact'
         details:
           $ref: '#/components/schemas/UAbstractItemStructure'
         relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
+          $ref: '#/components/schemas/SeePartyRelationship'
         languages:
           type: array
           items:
@@ -2075,6 +2999,191 @@ components:
         - name
         - archetype_node_id
         - identities
+    Organisation:
+      title: ORGANISATION
+      type: object
+      properties:
+        _type:
+          enum:
+            - ORGANISATION
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        identities:
+          $ref: '#/components/schemas/SeePartyIdentity'
+        contacts:
+          $ref: '#/components/schemas/SeeContact'
+        details:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        relationships:
+          $ref: '#/components/schemas/SeePartyRelationship'
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/UDvText'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartyRef'
+      required:
+        - name
+        - archetype_node_id
+        - identities
+    Person:
+      title: PERSON
+      type: object
+      properties:
+        _type:
+          enum:
+            - PERSON
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        identities:
+          $ref: '#/components/schemas/SeePartyIdentity'
+        contacts:
+          $ref: '#/components/schemas/SeeContact'
+        details:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        relationships:
+          $ref: '#/components/schemas/SeePartyRelationship'
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/UDvText'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartyRef'
+      required:
+        - name
+        - archetype_node_id
+        - identities
+    Capability:
+      title: CAPABILITY
+      required:
+        - name
+        - archetype_node_id
+        - credentials
+      type: object
+      properties:
+        _type:
+          enum:
+            - CAPABILITY
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        credentials:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        time_validity:
+          $ref: '#/components/schemas/DvIntervalOfDate'
+    ListOfCapability:
+      title: ListOfCapability
+      type: array
+      items:
+        $ref: '#/components/schemas/Capability'
+    Role:
+      title: ROLE
+      required:
+        - name
+        - archetype_node_id
+        - identities
+        - performer
+      type: object
+      properties:
+        _type:
+          enum:
+            - ROLE
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        identities:
+          $ref: '#/components/schemas/SeePartyIdentity'
+        contacts:
+          $ref: '#/components/schemas/SeeContact'
+        details:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        relationships:
+          $ref: '#/components/schemas/SeePartyRelationship'
+        time_validity:
+          $ref: '#/components/schemas/DvIntervalOfDate'
+        performer:
+          $ref: '#/components/schemas/PartyRef'
+        capabilities:
+          $ref: '#/components/schemas/SeeCapability'
+    UVersionable:
+      title: Versionable
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/Agent'
+        - $ref: '#/components/schemas/Group'
+        - $ref: '#/components/schemas/Organisation'
+        - $ref: '#/components/schemas/Person'
+        - $ref: '#/components/schemas/Role'
+      discriminator:
+        propertyName: _type
+        mapping:
+          AGENT: '#/components/schemas/Agent'
+          GROUP: '#/components/schemas/Group'
+          ORGANISATION: '#/components/schemas/Organisation'
+          PERSON: '#/components/schemas/Person'
+          ROLE: '#/components/schemas/Role'
     Attestation:
       title: ATTESTATION
       required:
@@ -2127,6 +3236,42 @@ components:
             code_string: '249'
         description:
           value: Description text
+    OriginalVersion:
+      title: ORIGINAL_VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+        - uid
+        - lifecycle_state
+      type: object
+      properties:
+        _type:
+          enum:
+            - ORIGINAL_VERSION
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/UVersionable'
+        uid:
+          $ref: '#/components/schemas/ObjectVersionId'
+        preceding_version_uid:
+          $ref: '#/components/schemas/ObjectVersionId'
+        other_input_version_uids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectVersionId'
+        lifecycle_state:
+          $ref: '#/components/schemas/DvCodedText'
+        attestations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attestation'
     UMOriginalVersionOfAgent:
       title: ORIGINAL_VERSION
       required:
@@ -2190,6 +3335,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfAgent'
     UVersionOfAgent:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfAgent'
         - $ref: '#/components/schemas/UMImportedVersionOfAgent'
@@ -2291,6 +3437,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfGroup'
     UVersionOfGroup:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfGroup'
         - $ref: '#/components/schemas/UMImportedVersionOfGroup'
@@ -2299,56 +3446,6 @@ components:
         mapping:
           ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersionOfGroup'
           IMPORTED_VERSION: '#/components/schemas/UMImportedVersionOfGroup'
-    Organisation:
-      title: ORGANISATION
-      type: object
-      properties:
-        _type:
-          enum:
-            - ORGANISATION
-          type: string
-        name:
-          $ref: '#/components/schemas/UDvText'
-        archetype_node_id:
-          type: string
-          xml:
-            attribute: true
-        uid:
-          $ref: '#/components/schemas/UUidBasedId'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        archetype_details:
-          $ref: '#/components/schemas/Archetyped'
-        feeder_audit:
-          $ref: '#/components/schemas/FeederAudit'
-        identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        details:
-          $ref: '#/components/schemas/UAbstractItemStructure'
-        relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
-        languages:
-          type: array
-          items:
-            $ref: '#/components/schemas/UDvText'
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRef'
-      required:
-        - name
-        - archetype_node_id
-        - identities
     VersionedOrganisation:
       title: VERSIONED_ORGANISATION
       type: object
@@ -2442,6 +3539,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfOrganisation'
     UVersionOfOrganisation:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfOrganisation'
         - $ref: '#/components/schemas/UMImportedVersionOfOrganisation'
@@ -2450,56 +3548,6 @@ components:
         mapping:
           ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersionOfOrganisation'
           IMPORTED_VERSION: '#/components/schemas/UMImportedVersionOfOrganisation'
-    Person:
-      title: PERSON
-      type: object
-      properties:
-        _type:
-          enum:
-            - PERSON
-          type: string
-        name:
-          $ref: '#/components/schemas/UDvText'
-        archetype_node_id:
-          type: string
-          xml:
-            attribute: true
-        uid:
-          $ref: '#/components/schemas/UUidBasedId'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        archetype_details:
-          $ref: '#/components/schemas/Archetyped'
-        feeder_audit:
-          $ref: '#/components/schemas/FeederAudit'
-        identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        details:
-          $ref: '#/components/schemas/UAbstractItemStructure'
-        relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
-        languages:
-          type: array
-          items:
-            $ref: '#/components/schemas/UDvText'
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRef'
-      required:
-        - name
-        - archetype_node_id
-        - identities
     VersionedPerson:
       title: VERSIONED_PERSON
       type: object
@@ -2593,6 +3641,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfPerson'
     UVersionOfPerson:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfPerson'
         - $ref: '#/components/schemas/UMImportedVersionOfPerson'
@@ -2601,87 +3650,6 @@ components:
         mapping:
           ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersionOfPerson'
           IMPORTED_VERSION: '#/components/schemas/UMImportedVersionOfPerson'
-    Capability:
-      title: CAPABILITY
-      required:
-        - name
-        - archetype_node_id
-        - credentials
-      type: object
-      properties:
-        _type:
-          type: string
-        name:
-          $ref: '#/components/schemas/UDvText'
-        archetype_node_id:
-          type: string
-          xml:
-            attribute: true
-        uid:
-          $ref: '#/components/schemas/UUidBasedId'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        archetype_details:
-          $ref: '#/components/schemas/Archetyped'
-        feeder_audit:
-          $ref: '#/components/schemas/FeederAudit'
-        credentials:
-          $ref: '#/components/schemas/UAbstractItemStructure'
-        time_validity:
-          $ref: '#/components/schemas/DvIntervalOfDate'
-    Role:
-      title: ROLE
-      required:
-        - name
-        - archetype_node_id
-        - identities
-        - performer
-      type: object
-      properties:
-        _type:
-          enum:
-            - ROLE
-          type: string
-        name:
-          $ref: '#/components/schemas/UDvText'
-        archetype_node_id:
-          type: string
-          xml:
-            attribute: true
-        uid:
-          $ref: '#/components/schemas/UUidBasedId'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        archetype_details:
-          $ref: '#/components/schemas/Archetyped'
-        feeder_audit:
-          $ref: '#/components/schemas/FeederAudit'
-        identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        details:
-          $ref: '#/components/schemas/UAbstractItemStructure'
-        relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
-        time_validity:
-          $ref: '#/components/schemas/DvIntervalOfDate'
-        performer:
-          $ref: '#/components/schemas/PartyRef'
-        capabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Capability'
     VersionedRole:
       title: VERSIONED_ROLE
       type: object
@@ -2775,6 +3743,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfRole'
     UVersionOfRole:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfRole'
         - $ref: '#/components/schemas/UMImportedVersionOfRole'
@@ -2889,7 +3858,7 @@ components:
           items:
             $ref: '#/components/schemas/UpdateAttestation'
         data:
-          $ref: '#/components/schemas/UAbstractVersionable'
+          $ref: '#/components/schemas/UVersionable'
         commit_audit:
           $ref: '#/components/schemas/UpdateAudit'
     NewContribution:
@@ -3729,3 +4698,11 @@ x-tagGroups:
       - PERSON
       - ROLE
       - CONTRIBUTION
+  - name: Related schemas
+    tags:
+      - CAPABILITY_schema
+      - CONTACT_schema
+      - ITEM_schema
+      - ITEM_STRUCTURE_schema
+      - PARTY_IDENTITY_schema
+      - PARTY_RELATIONSHIP_schema

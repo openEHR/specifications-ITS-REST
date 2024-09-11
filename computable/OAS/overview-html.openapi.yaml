@@ -319,10 +319,9 @@ tags:
       The openEHR REST specifications following service endpoints: 
        - [System API](system.html)
        - [EHR API](ehr.html)
+       - [Demographic API](demographic.html)
        - [Query API](query.html)
        - [Definition API](definition.html)
-
-      For convenience, an extract of associated resources are also presented in the [Resources](resources.html) page.  
 
       Specifications can be downloaded as YAML files in [OpenAPI Specification 3.0](https://spec.openapis.org/oas/v3.0.3) format.
       For each API there are two flavours provided: 

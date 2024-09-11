@@ -38,6 +38,36 @@ tags:
   - name: CONTRIBUTION
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
+  - name: CAPABILITY_schema
+    x-displayName: CAPABILITY
+    description: |
+      The `CAPABILITY` schema, formally specified in the Reference Model as the [CAPABILITY](https://specifications.openehr.org/releases/RM/latest/demographic.html#_capability_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/Capability" />
+  - name: CONTACT_schema
+    x-displayName: CONTACT
+    description: |
+      The `CONTACT` schema, formally specified in the Reference Model as the [CONTACT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_contact_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/Contact" />
+  - name: PARTY_IDENTITY_schema
+    x-displayName: PARTY_IDENTITY
+    description: |
+      The `PARTY_IDENTITY` schema, formally specified in the Reference Model as the [PARTY_IDENTITY](https://specifications.openehr.org/releases/RM/latest/demographic.html#_party_identity_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/PartyIdentity" />
+  - name: PARTY_RELATIONSHIP_schema
+    x-displayName: PARTY_RELATIONSHIP
+    description: |
+      The `PARTY_RELATIONSHIP` resource, formally specified in the Reference Model as the [PARTY_RELATIONSHIP](https://specifications.openehr.org/releases/RM/latest/demographic.html#_party_relationship_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/PartyRelationship" />
+  - name: ITEM_schema
+    x-displayName: ITEM
+    description: |
+      The abstract `ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/Item" />
+  - name: ITEM_STRUCTURE_schema
+    x-displayName: ITEM_STRUCTURE
+    description: |
+      The abstract `ITEM_STRUCTURE` class:
+      <SchemaDefinition schemaRef="#/components/schemas/ItemStructure" />
 paths:
   /demographic/agent:
     post:
@@ -2106,7 +2136,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Item'
-          description: See [ITEM](resources.html#tag/ITEM_schema) type details.
+          description: See [ITEM](#tag/ITEM_schema) schema details.
       x-discriminator-value: ITEM_TREE
     FeederAuditDetails:
       title: FEEDER_AUDIT_DETAILS
@@ -2174,6 +2204,11 @@ components:
       properties:
         details:
           $ref: '#/components/schemas/ItemStructure'
+    ListOfPartyIdentity:
+      title: ListOfPartyIdentity
+      type: array
+      items:
+        $ref: '#/components/schemas/PartyIdentity'
     Address:
       title: ADDRESS
       required:
@@ -2206,12 +2241,21 @@ components:
       allOf:
         - $ref: '#/components/schemas/Locatable'
       properties:
+        _type:
+          enum:
+            - CONTACT
+          type: string
         addresses:
           type: array
           items:
             $ref: '#/components/schemas/Address'
         time_validity:
           $ref: '#/components/schemas/DvIntervalOfDate'
+    ListOfContact:
+      title: ListOfContact
+      type: array
+      items:
+        $ref: '#/components/schemas/Contact'
     PartyRelationship:
       title: PARTY_RELATIONSHIP
       required:
@@ -2229,6 +2273,11 @@ components:
           $ref: '#/components/schemas/ItemStructure'
         time_validity:
           $ref: '#/components/schemas/DvIntervalOfDate'
+    ListOfPartyRelationship:
+      title: ListOfPartyRelationShip
+      type: array
+      items:
+        $ref: '#/components/schemas/PartyRelationship'
     Party:
       title: PARTY
       required:
@@ -2238,19 +2287,13 @@ components:
         - $ref: '#/components/schemas/Versionable'
       properties:
         identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
+          $ref: '#/components/schemas/ListOfPartyIdentity'
         contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
+          $ref: '#/components/schemas/ListOfContact'
         details:
           $ref: '#/components/schemas/ItemStructure'
         relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
+          $ref: '#/components/schemas/ListOfPartyRelationship'
       discriminator:
         propertyName: _type
         mapping:
@@ -2469,6 +2512,68 @@ components:
             - GROUP
           type: string
       x-discriminator-value: GROUP
+    Organisation:
+      title: ORGANISATION
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Actor'
+      properties:
+        _type:
+          enum:
+            - ORGANISATION
+          type: string
+      x-discriminator-value: ORGANISATION
+    Person:
+      title: PERSON
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Actor'
+      properties:
+        _type:
+          enum:
+            - PERSON
+          type: string
+      x-discriminator-value: PERSON
+    Capability:
+      title: CAPABILITY
+      required:
+        - credentials
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Locatable'
+      properties:
+        _type:
+          enum:
+            - CAPABILITY
+          type: string
+        credentials:
+          $ref: '#/components/schemas/ItemStructure'
+        time_validity:
+          $ref: '#/components/schemas/DvIntervalOfDate'
+    ListOfCapability:
+      title: ListOfCapability
+      type: array
+      items:
+        $ref: '#/components/schemas/Capability'
+    Role:
+      title: ROLE
+      required:
+        - performer
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Party'
+      properties:
+        _type:
+          enum:
+            - ROLE
+          type: string
+        time_validity:
+          $ref: '#/components/schemas/DvIntervalOfDate'
+        performer:
+          $ref: '#/components/schemas/PartyRef'
+        capabilities:
+          $ref: '#/components/schemas/ListOfCapability'
+      x-discriminator-value: ROLE
     Version:
       title: VERSION
       required:
@@ -2585,17 +2690,6 @@ components:
         time_created:
           value: '2015-01-20T19:30:22.765+01:00'
       x-discriminator-value: VERSIONED_GROUP
-    Organisation:
-      title: ORGANISATION
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Actor'
-      properties:
-        _type:
-          enum:
-            - ORGANISATION
-          type: string
-      x-discriminator-value: ORGANISATION
     VersionedOrganisation:
       title: VERSIONED_ORGANISATION
       type: object
@@ -2619,17 +2713,6 @@ components:
         time_created:
           value: '2015-01-20T19:30:22.765+01:00'
       x-discriminator-value: VERSIONED_ORGANISATION
-    Person:
-      title: PERSON
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Actor'
-      properties:
-        _type:
-          enum:
-            - PERSON
-          type: string
-      x-discriminator-value: PERSON
     VersionedPerson:
       title: VERSIONED_PERSON
       type: object
@@ -2653,39 +2736,6 @@ components:
         time_created:
           value: '2015-01-20T19:30:22.765+01:00'
       x-discriminator-value: VERSIONED_PERSON
-    Capability:
-      title: CAPABILITY
-      required:
-        - credentials
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Locatable'
-      properties:
-        credentials:
-          $ref: '#/components/schemas/ItemStructure'
-        time_validity:
-          $ref: '#/components/schemas/DvIntervalOfDate'
-    Role:
-      title: ROLE
-      required:
-        - performer
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Party'
-      properties:
-        _type:
-          enum:
-            - ROLE
-          type: string
-        time_validity:
-          $ref: '#/components/schemas/DvIntervalOfDate'
-        performer:
-          $ref: '#/components/schemas/PartyRef'
-        capabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Capability'
-      x-discriminator-value: ROLE
     VersionedRole:
       title: VERSIONED_ROLE
       type: object
@@ -3639,3 +3689,11 @@ x-tagGroups:
       - PERSON
       - ROLE
       - CONTRIBUTION
+  - name: Related schemas
+    tags:
+      - CAPABILITY_schema
+      - CONTACT_schema
+      - ITEM_schema
+      - ITEM_STRUCTURE_schema
+      - PARTY_IDENTITY_schema
+      - PARTY_RELATIONSHIP_schema

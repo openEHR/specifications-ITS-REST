@@ -38,6 +38,36 @@ tags:
   - name: CONTRIBUTION
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
+  - name: CAPABILITY_schema
+    x-displayName: CAPABILITY
+    description: |
+      The `CAPABILITY` schema, formally specified in the Reference Model as the [CAPABILITY](https://specifications.openehr.org/releases/RM/latest/demographic.html#_capability_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/Capability" />
+  - name: CONTACT_schema
+    x-displayName: CONTACT
+    description: |
+      The `CONTACT` schema, formally specified in the Reference Model as the [CONTACT](https://specifications.openehr.org/releases/RM/latest/demographic.html#_contact_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/Contact" />
+  - name: PARTY_IDENTITY_schema
+    x-displayName: PARTY_IDENTITY
+    description: |
+      The `PARTY_IDENTITY` schema, formally specified in the Reference Model as the [PARTY_IDENTITY](https://specifications.openehr.org/releases/RM/latest/demographic.html#_party_identity_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/PartyIdentity" />
+  - name: PARTY_RELATIONSHIP_schema
+    x-displayName: PARTY_RELATIONSHIP
+    description: |
+      The `PARTY_RELATIONSHIP` resource, formally specified in the Reference Model as the [PARTY_RELATIONSHIP](https://specifications.openehr.org/releases/RM/latest/demographic.html#_party_relationship_class) class:
+      <SchemaDefinition schemaRef="#/components/schemas/PartyRelationship" />
+  - name: ITEM_schema
+    x-displayName: ITEM
+    description: |
+      The abstract `ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItem" />
+  - name: ITEM_STRUCTURE_schema
+    x-displayName: ITEM_STRUCTURE
+    description: |
+      The abstract `ITEM_STRUCTURE` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItemStructure" />
 paths:
   /demographic/agent:
     post:
@@ -993,6 +1023,7 @@ components:
         value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
     UDvUri:
       title: DV_URI
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvUri'
         - $ref: '#/components/schemas/UMDvEhrUri'
@@ -1141,6 +1172,7 @@ components:
           code_string: at0001
     UDvText:
       title: DV_TEXT
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvText'
         - $ref: '#/components/schemas/UMDvCodedText'
@@ -1213,6 +1245,7 @@ components:
           type: string
     UUidBasedId:
       title: UID_BASED_ID
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMHierObjectId'
         - $ref: '#/components/schemas/UMObjectVersionId'
@@ -1394,6 +1427,7 @@ components:
           type: string
     UDvEncapsulated:
       title: DV_ENCAPSULATED
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvMultimedia'
         - $ref: '#/components/schemas/UMDvParsable'
@@ -1485,6 +1519,7 @@ components:
         name: A name
     UPartyIdentified:
       title: PARTY_IDENTIFIED
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMPartyIdentified'
         - $ref: '#/components/schemas/UMPartyRelated'
@@ -1507,6 +1542,7 @@ components:
           $ref: '#/components/schemas/PartyRef'
     UPartyProxy:
       title: PARTY_PROXY
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMPartySelf'
         - $ref: '#/components/schemas/UMPartyIdentified'
@@ -1917,6 +1953,7 @@ components:
         value: '08:20:12'
     UDataValue:
       title: DATA_VALUE
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvBoolean'
         - $ref: '#/components/schemas/UMDvCodedText'
@@ -2084,6 +2121,7 @@ components:
             $ref: '#/components/schemas/UItem'
     UItem:
       title: ITEM
+      type: object
       oneOf:
         - $ref: '#/components/schemas/Element'
         - $ref: '#/components/schemas/Clstr'
@@ -2151,12 +2189,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UItem'
-          description: See [ITEM](resources.html#tag/ITEM_schema) type details.
+          description: See [ITEM](#tag/ITEM_schema) schema details.
       required:
         - name
         - archetype_node_id
     UItemStructure:
       title: ITEM_STRUCTURE
+      type: object
       oneOf:
         - $ref: '#/components/schemas/ItemSingle'
         - $ref: '#/components/schemas/ItemList'
@@ -2237,6 +2276,11 @@ components:
           $ref: '#/components/schemas/FeederAudit'
         details:
           $ref: '#/components/schemas/UItemStructure'
+    ListOfPartyIdentity:
+      title: ListOfPartyIdentity
+      type: array
+      items:
+        $ref: '#/components/schemas/PartyIdentity'
     Address:
       title: ADDRESS
       required:
@@ -2298,6 +2342,8 @@ components:
       type: object
       properties:
         _type:
+          enum:
+            - CONTACT
           type: string
         name:
           $ref: '#/components/schemas/UDvText'
@@ -2321,6 +2367,11 @@ components:
             $ref: '#/components/schemas/Address'
         time_validity:
           $ref: '#/components/schemas/DvIntervalOfDate'
+    ListOfContact:
+      title: ListOfContact
+      type: array
+      items:
+        $ref: '#/components/schemas/Contact'
     PartyRelationship:
       title: PARTY_RELATIONSHIP
       required:
@@ -2356,6 +2407,11 @@ components:
           $ref: '#/components/schemas/UItemStructure'
         time_validity:
           $ref: '#/components/schemas/DvIntervalOfDate'
+    ListOfPartyRelationship:
+      title: ListOfPartyRelationShip
+      type: array
+      items:
+        $ref: '#/components/schemas/PartyRelationship'
     Agent:
       title: AGENT
       type: object
@@ -2381,19 +2437,13 @@ components:
         feeder_audit:
           $ref: '#/components/schemas/FeederAudit'
         identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
+          $ref: '#/components/schemas/ListOfPartyIdentity'
         contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
+          $ref: '#/components/schemas/ListOfContact'
         details:
           $ref: '#/components/schemas/UItemStructure'
         relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
+          $ref: '#/components/schemas/ListOfPartyRelationship'
         languages:
           type: array
           items:
@@ -2581,19 +2631,13 @@ components:
         feeder_audit:
           $ref: '#/components/schemas/FeederAudit'
         identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
+          $ref: '#/components/schemas/ListOfPartyIdentity'
         contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
+          $ref: '#/components/schemas/ListOfContact'
         details:
           $ref: '#/components/schemas/UItemStructure'
         relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
+          $ref: '#/components/schemas/ListOfPartyRelationship'
         languages:
           type: array
           items:
@@ -2606,16 +2650,191 @@ components:
         - name
         - archetype_node_id
         - identities
+    Organisation:
+      title: ORGANISATION
+      type: object
+      properties:
+        _type:
+          enum:
+            - ORGANISATION
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        identities:
+          $ref: '#/components/schemas/ListOfPartyIdentity'
+        contacts:
+          $ref: '#/components/schemas/ListOfContact'
+        details:
+          $ref: '#/components/schemas/UItemStructure'
+        relationships:
+          $ref: '#/components/schemas/ListOfPartyRelationship'
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/UDvText'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartyRef'
+      required:
+        - name
+        - archetype_node_id
+        - identities
+    Person:
+      title: PERSON
+      type: object
+      properties:
+        _type:
+          enum:
+            - PERSON
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        identities:
+          $ref: '#/components/schemas/ListOfPartyIdentity'
+        contacts:
+          $ref: '#/components/schemas/ListOfContact'
+        details:
+          $ref: '#/components/schemas/UItemStructure'
+        relationships:
+          $ref: '#/components/schemas/ListOfPartyRelationship'
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/UDvText'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartyRef'
+      required:
+        - name
+        - archetype_node_id
+        - identities
+    Capability:
+      title: CAPABILITY
+      required:
+        - name
+        - archetype_node_id
+        - credentials
+      type: object
+      properties:
+        _type:
+          enum:
+            - CAPABILITY
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        credentials:
+          $ref: '#/components/schemas/UItemStructure'
+        time_validity:
+          $ref: '#/components/schemas/DvIntervalOfDate'
+    ListOfCapability:
+      title: ListOfCapability
+      type: array
+      items:
+        $ref: '#/components/schemas/Capability'
+    Role:
+      title: ROLE
+      required:
+        - name
+        - archetype_node_id
+        - identities
+        - performer
+      type: object
+      properties:
+        _type:
+          enum:
+            - ROLE
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        identities:
+          $ref: '#/components/schemas/ListOfPartyIdentity'
+        contacts:
+          $ref: '#/components/schemas/ListOfContact'
+        details:
+          $ref: '#/components/schemas/UItemStructure'
+        relationships:
+          $ref: '#/components/schemas/ListOfPartyRelationship'
+        time_validity:
+          $ref: '#/components/schemas/DvIntervalOfDate'
+        performer:
+          $ref: '#/components/schemas/PartyRef'
+        capabilities:
+          $ref: '#/components/schemas/ListOfCapability'
     UVersionable:
       title: Versionable
+      type: object
       oneOf:
         - $ref: '#/components/schemas/Agent'
         - $ref: '#/components/schemas/Group'
+        - $ref: '#/components/schemas/Organisation'
+        - $ref: '#/components/schemas/Person'
+        - $ref: '#/components/schemas/Role'
       discriminator:
         propertyName: _type
         mapping:
           AGENT: '#/components/schemas/Agent'
           GROUP: '#/components/schemas/Group'
+          ORGANISATION: '#/components/schemas/Organisation'
+          PERSON: '#/components/schemas/Person'
+          ROLE: '#/components/schemas/Role'
     Attestation:
       title: ATTESTATION
       required:
@@ -2731,6 +2950,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfAgent'
     UVersionOfAgent:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfAgent'
         - $ref: '#/components/schemas/UMImportedVersionOfAgent'
@@ -2832,6 +3052,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfGroup'
     UVersionOfGroup:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfGroup'
         - $ref: '#/components/schemas/UMImportedVersionOfGroup'
@@ -2840,56 +3061,6 @@ components:
         mapping:
           ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersionOfGroup'
           IMPORTED_VERSION: '#/components/schemas/UMImportedVersionOfGroup'
-    Organisation:
-      title: ORGANISATION
-      type: object
-      properties:
-        _type:
-          enum:
-            - ORGANISATION
-          type: string
-        name:
-          $ref: '#/components/schemas/UDvText'
-        archetype_node_id:
-          type: string
-          xml:
-            attribute: true
-        uid:
-          $ref: '#/components/schemas/UUidBasedId'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        archetype_details:
-          $ref: '#/components/schemas/Archetyped'
-        feeder_audit:
-          $ref: '#/components/schemas/FeederAudit'
-        identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        details:
-          $ref: '#/components/schemas/UItemStructure'
-        relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
-        languages:
-          type: array
-          items:
-            $ref: '#/components/schemas/UDvText'
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRef'
-      required:
-        - name
-        - archetype_node_id
-        - identities
     VersionedOrganisation:
       title: VERSIONED_ORGANISATION
       type: object
@@ -2983,6 +3154,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfOrganisation'
     UVersionOfOrganisation:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfOrganisation'
         - $ref: '#/components/schemas/UMImportedVersionOfOrganisation'
@@ -2991,56 +3163,6 @@ components:
         mapping:
           ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersionOfOrganisation'
           IMPORTED_VERSION: '#/components/schemas/UMImportedVersionOfOrganisation'
-    Person:
-      title: PERSON
-      type: object
-      properties:
-        _type:
-          enum:
-            - PERSON
-          type: string
-        name:
-          $ref: '#/components/schemas/UDvText'
-        archetype_node_id:
-          type: string
-          xml:
-            attribute: true
-        uid:
-          $ref: '#/components/schemas/UUidBasedId'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        archetype_details:
-          $ref: '#/components/schemas/Archetyped'
-        feeder_audit:
-          $ref: '#/components/schemas/FeederAudit'
-        identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        details:
-          $ref: '#/components/schemas/UItemStructure'
-        relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
-        languages:
-          type: array
-          items:
-            $ref: '#/components/schemas/UDvText'
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRef'
-      required:
-        - name
-        - archetype_node_id
-        - identities
     VersionedPerson:
       title: VERSIONED_PERSON
       type: object
@@ -3134,6 +3256,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfPerson'
     UVersionOfPerson:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfPerson'
         - $ref: '#/components/schemas/UMImportedVersionOfPerson'
@@ -3142,87 +3265,6 @@ components:
         mapping:
           ORIGINAL_VERSION: '#/components/schemas/UMOriginalVersionOfPerson'
           IMPORTED_VERSION: '#/components/schemas/UMImportedVersionOfPerson'
-    Capability:
-      title: CAPABILITY
-      required:
-        - name
-        - archetype_node_id
-        - credentials
-      type: object
-      properties:
-        _type:
-          type: string
-        name:
-          $ref: '#/components/schemas/UDvText'
-        archetype_node_id:
-          type: string
-          xml:
-            attribute: true
-        uid:
-          $ref: '#/components/schemas/UUidBasedId'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        archetype_details:
-          $ref: '#/components/schemas/Archetyped'
-        feeder_audit:
-          $ref: '#/components/schemas/FeederAudit'
-        credentials:
-          $ref: '#/components/schemas/UItemStructure'
-        time_validity:
-          $ref: '#/components/schemas/DvIntervalOfDate'
-    Role:
-      title: ROLE
-      required:
-        - name
-        - archetype_node_id
-        - identities
-        - performer
-      type: object
-      properties:
-        _type:
-          enum:
-            - ROLE
-          type: string
-        name:
-          $ref: '#/components/schemas/UDvText'
-        archetype_node_id:
-          type: string
-          xml:
-            attribute: true
-        uid:
-          $ref: '#/components/schemas/UUidBasedId'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        archetype_details:
-          $ref: '#/components/schemas/Archetyped'
-        feeder_audit:
-          $ref: '#/components/schemas/FeederAudit'
-        identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyIdentity'
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        details:
-          $ref: '#/components/schemas/UItemStructure'
-        relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartyRelationship'
-        time_validity:
-          $ref: '#/components/schemas/DvIntervalOfDate'
-        performer:
-          $ref: '#/components/schemas/PartyRef'
-        capabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Capability'
     VersionedRole:
       title: VERSIONED_ROLE
       type: object
@@ -3316,6 +3358,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfRole'
     UVersionOfRole:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfRole'
         - $ref: '#/components/schemas/UMImportedVersionOfRole'
@@ -4270,3 +4313,11 @@ x-tagGroups:
       - PERSON
       - ROLE
       - CONTRIBUTION
+  - name: Related schemas
+    tags:
+      - CAPABILITY_schema
+      - CONTACT_schema
+      - ITEM_schema
+      - ITEM_STRUCTURE_schema
+      - PARTY_IDENTITY_schema
+      - PARTY_RELATIONSHIP_schema

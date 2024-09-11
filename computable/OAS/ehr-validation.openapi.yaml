@@ -67,6 +67,21 @@ tags:
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
       Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
+  - name: CONTENT_ITEM_schema
+    x-displayName: CONTENT_ITEM
+    description: |
+      The abstract `CONTENT_ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UContentItem" />
+  - name: ITEM_schema
+    x-displayName: ITEM
+    description: |
+      The abstract `ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItem" />
+  - name: ITEM_STRUCTURE_schema
+    x-displayName: ITEM_STRUCTURE
+    description: |
+      The abstract `ITEM_STRUCTURE` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItemStructure" />
 paths:
   /ehr:
     post:
@@ -815,6 +830,7 @@ components:
           type: string
     UObjectId:
       title: OBJECT_ID
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMArchetypeId'
         - $ref: '#/components/schemas/UMTemplateId'
@@ -957,6 +973,7 @@ components:
         value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
     UDvUri:
       title: DV_URI
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvUri'
         - $ref: '#/components/schemas/UMDvEhrUri'
@@ -1076,6 +1093,7 @@ components:
           code_string: at0001
     UDvText:
       title: DV_TEXT
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvText'
         - $ref: '#/components/schemas/UMDvCodedText'
@@ -1183,6 +1201,7 @@ components:
           value: '2015-01-20T19:30:22.765+01:00'
     UUidBasedId:
       title: UID_BASED_ID
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMHierObjectId'
         - $ref: '#/components/schemas/UMObjectVersionId'
@@ -1360,6 +1379,7 @@ components:
           type: string
     UDvEncapsulated:
       title: DV_ENCAPSULATED
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvMultimedia'
         - $ref: '#/components/schemas/UMDvParsable'
@@ -1370,10 +1390,6 @@ components:
           DV_PARSABLE: '#/components/schemas/UMDvParsable'
     PartyRef:
       title: PARTY_REF
-      required:
-        - namespace
-        - type
-        - id
       type: object
       properties:
         namespace:
@@ -1382,14 +1398,18 @@ components:
           pattern: ^PERSON|ORGANISATION|GROUP|AGENT|ROLE|PARTY|ACTOR$
           type: string
         id:
-          $ref: '#/components/schemas/UObjectId'
+          $ref: '#/components/schemas/UMHierObjectId'
       description: Identifier for parties in a demographic or identity service.
       example:
         id:
-          _type: OBJECT_VERSION_ID
-          value: b52b9408-7048-4ec8-94bd-831fb0727e67::openEHRSys.example.com::1
+          _type: HIER_OBJECT_ID
+          value: b52b9408-7048-4ec8-94bd-831fb0727e67
         namespace: local
         type: PERSON
+      required:
+        - namespace
+        - type
+        - id
     UMPartyIdentified:
       title: PARTY_IDENTIFIED
       required:
@@ -1451,6 +1471,7 @@ components:
         name: A name
     UPartyIdentified:
       title: PARTY_IDENTIFIED
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMPartyIdentified'
         - $ref: '#/components/schemas/UMPartyRelated'
@@ -1473,6 +1494,7 @@ components:
           $ref: '#/components/schemas/PartyRef'
     UPartyProxy:
       title: PARTY_PROXY
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMPartySelf'
         - $ref: '#/components/schemas/UMPartyIdentified'
@@ -1800,6 +1822,7 @@ components:
         value: '08:20:12'
     UDataValue:
       title: DATA_VALUE
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvBoolean'
         - $ref: '#/components/schemas/UMDvCodedText'
@@ -1967,6 +1990,7 @@ components:
             $ref: '#/components/schemas/UItem'
     UItem:
       title: ITEM
+      type: object
       oneOf:
         - $ref: '#/components/schemas/Element'
         - $ref: '#/components/schemas/Clstr'
@@ -2034,12 +2058,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UItem'
-          description: See [ITEM](resources.html#tag/ITEM_schema) type details.
+          description: See [ITEM](#tag/ITEM_schema) schema details.
       required:
         - name
         - archetype_node_id
     UItemStructure:
       title: ITEM_STRUCTURE
+      type: object
       oneOf:
         - $ref: '#/components/schemas/ItemSingle'
         - $ref: '#/components/schemas/ItemList'
@@ -2795,6 +2820,7 @@ components:
           $ref: '#/components/schemas/UItemStructure'
     UContentItem:
       title: CONTENT_ITEM
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMAdminEntry'
         - $ref: '#/components/schemas/UMObservation'
@@ -2856,7 +2882,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UContentItem'
-          description: See [CONTENT_ITEM](resources.html#tag/CONTENT_ITEM_schema) type details.
+          description: See [CONTENT_ITEM](#tag/CONTENT_ITEM_schema) schema details.
       description: A COMPOSITION resource
       example:
         archetype_node_id: openEHR-EHR-COMPOSITION.encounter.v1
@@ -2974,6 +3000,7 @@ components:
         - archetype_node_id
     UVersionable:
       title: Versionable
+      type: object
       oneOf:
         - $ref: '#/components/schemas/Composition'
         - $ref: '#/components/schemas/EhrStatus'
@@ -3099,6 +3126,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfEhrStatus'
     UVersionOfEhrStatus:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfEhrStatus'
         - $ref: '#/components/schemas/UMImportedVersionOfEhrStatus'
@@ -3200,6 +3228,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfComposition'
     UVersionOfComposition:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfComposition'
         - $ref: '#/components/schemas/UMImportedVersionOfComposition'
@@ -3955,3 +3984,8 @@ x-tagGroups:
       - COMPOSITION
       - DIRECTORY
       - CONTRIBUTION
+  - name: Related schemas
+    tags:
+      - CONTENT_ITEM_schema
+      - ITEM_schema
+      - ITEM_STRUCTURE_schema
