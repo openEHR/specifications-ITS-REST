@@ -17,10 +17,6 @@ security: []
 servers: []
 paths: {}
 tags:
-  - name: Amendment_record
-    x-displayName: Amendment Record
-    description:
-      $ref: ./docs/overview/Amendment_record.md
   - name: Acknowledgements
     description:
       $ref: ./docs/overview/Acknowledgements.md
@@ -41,4 +37,8 @@ tags:
   - name: Resources
     description:
       $ref: ./docs/overview/Resources.md
+  - name: Amendment_record
+    x-displayName: Amendment Record
+    description:
+      $ref: ./docs/overview/Amendment_record.md
 

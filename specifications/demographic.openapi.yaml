@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Demographic API
-  version: latest
+  version: development
   x-status: DEVELOPMENT
   x-spec: demographic
   contact:
@@ -11,8 +11,8 @@ info:
   license:
     name: Creative Commons Attribution-NoDerivs 3.0 Unported
     url: 'https://creativecommons.org/licenses/by-nd/3.0/'
-  #description:
-  #  $ref: ./docs/demographic/Intro.md
+  description:
+    $ref: ./docs/demographic/Description.md
 servers:
   - url: 'https://{baseUrl}/v1'
     description: An example openEHR server URL.
