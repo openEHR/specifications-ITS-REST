@@ -41,10 +41,6 @@ class Validation extends AbstractWriter {
      * @return void
      */
     protected function cleaning(Schema $schema): void {
-        if (isset($schema->{'x-cg-allOf'})) {
-            echo "cleaning x-cg-allOf from {$schema->title}... ";
-            unset($schema->{'x-cg-allOf'});
-        }
         if (isset($schema->{'x-discriminator-value'})) {
             echo "cleaning x-discriminator-value from {$schema->title}... ";
             unset($schema->{'x-discriminator-value'});
@@ -67,6 +63,7 @@ class Validation extends AbstractWriter {
         $redundant = [
             'AbstractEntry',
             'Action',
+            'Actor',
             'AdminEntry',
             'CareEntry',
             'ContentItem',
@@ -96,6 +93,8 @@ class Validation extends AbstractWriter {
             'Locatable',
             'ObjectId',
             'Observation',
+            'OriginalVersion',
+            'Party',
             'PartyIdentified',
             'PartyProxy',
             'PartyRelated',

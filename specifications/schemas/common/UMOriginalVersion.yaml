@@ -1,7 +1,0 @@
-title: ORIGINAL_VERSION
-type: object
-allOf:
-  - $ref: ../common/OriginalVersion.yaml
-required:
-  - _type
-x-discriminator-value: ORIGINAL_VERSION

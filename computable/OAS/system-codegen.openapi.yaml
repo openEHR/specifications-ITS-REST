@@ -37,7 +37,7 @@ info:
     This specification is in the `STABLE` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/system-validation.openapi.yaml), or [for code generators](computable/OAS/system-codegen.openapi.yaml).
     Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.
 
-    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/development/resources.html>.
+    The development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/development/system.html>.
 servers:
   - url: https://{baseUrl}/v1
     description: An example openEHR server URL.
@@ -94,12 +94,13 @@ components:
             type: string
       example:
         solution: openEHRSys
-        solution_version: v0.9
+        solution_version: v1.0
         vendor: My-openEHR
-        restapi_specs_version: v1.0.3
+        restapi_specs_version: 1.1.0
         conformance_profile: STANDARD
         endpoints:
           - /ehr
+          - /demographic
           - /definition
           - /query
   responses:

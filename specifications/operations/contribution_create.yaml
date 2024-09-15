@@ -16,7 +16,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../schemas/common/NewContribution.yaml
+        $ref: ../schemas/ehr/NewContribution.yaml
   required: true
 responses:
   '201':

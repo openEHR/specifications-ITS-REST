@@ -1,4 +1,5 @@
 title: VERSION
+type: object
 oneOf:
   - $ref: ../ehr/UMOriginalVersionOfEhrStatus.yaml
   - $ref: ../ehr/UMImportedVersionOfEhrStatus.yaml

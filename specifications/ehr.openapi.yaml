@@ -113,6 +113,22 @@ tags:
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
       Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
+  - name: CONTENT_ITEM_schema
+    x-displayName: CONTENT_ITEM
+    description: |
+      The abstract `CONTENT_ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UContentItem" />
+  - name: ITEM_schema
+    x-displayName: ITEM
+    description: |
+      The abstract `ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItem" />
+  - name: ITEM_STRUCTURE_schema
+    x-displayName: ITEM_STRUCTURE
+    description: |
+      The abstract `ITEM_STRUCTURE` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItemStructure" />
+
 x-tagGroups:
   - name: Resource endpoints
     tags:
@@ -121,6 +137,11 @@ x-tagGroups:
       - COMPOSITION
       - DIRECTORY
       - CONTRIBUTION
+  - name: Related schemas
+    tags:
+      - CONTENT_ITEM_schema
+      - ITEM_schema
+      - ITEM_STRUCTURE_schema
 components:
   schemas:
     UAbstractItem:
@@ -129,8 +150,6 @@ components:
       $ref: ./schemas/data_structures/UAbstractItemStructure.yaml
     UAbstractContentItem:
       $ref: ./schemas/ehr/UAbstractContentItem.yaml
-    UAbstractVersionable:
-      $ref: ./schemas/common/UAbstractVersionable.yaml
     VersionOfComposition:
       $ref: ./schemas/ehr/VersionOfComposition.yaml
     VersionOfEhrStatus:

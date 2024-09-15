@@ -1,4 +1,5 @@
 title: CONTENT_ITEM
+type: object
 oneOf:
   - $ref: ../ehr/UMAdminEntry.yaml
   - $ref: ../ehr/UMObservation.yaml

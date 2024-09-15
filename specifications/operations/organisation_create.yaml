@@ -1,0 +1,25 @@
+operationId: organisation_create
+summary: Create ORGANISATION
+description: |
+  Creates the first version of a new ORGANISATION.
+tags:
+  - ORGANISATION
+parameters:
+  - $ref: ../parameters/header/Prefer.yaml
+requestBody:
+  description: |
+    The ORGANISATION.
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/demographic/Organisation.yaml
+  required: true
+responses:
+  '201':
+    $ref: ../responses/201_ORGANISATION.yaml
+  '400':
+    $ref: ../responses/400.yaml
+  '422':
+    $ref: ../responses/422.yaml
+  '404':
+    $ref: ../responses/404.yaml

@@ -67,6 +67,21 @@ tags:
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
       Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
+  - name: CONTENT_ITEM_schema
+    x-displayName: CONTENT_ITEM
+    description: |
+      The abstract `CONTENT_ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UContentItem" />
+  - name: ITEM_schema
+    x-displayName: ITEM
+    description: |
+      The abstract `ITEM` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItem" />
+  - name: ITEM_STRUCTURE_schema
+    x-displayName: ITEM_STRUCTURE
+    description: |
+      The abstract `ITEM_STRUCTURE` class:
+      <SchemaDefinition schemaRef="#/components/schemas/UItemStructure" />
 paths:
   /ehr:
     post:
@@ -656,18 +671,55 @@ paths:
           $ref: '#/components/responses/404_CONTRIBUTION'
 components:
   schemas:
+    UAbstractItem:
+      title: ITEM
+      type: object
     UAbstractItemStructure:
       title: ITEM_STRUCTURE
       type: object
-      description: See [ITEM_STRUCTURE](resources.html#tag/ITEM_STRUCTURE_schema) type details.
+      description: See [ITEM_STRUCTURE](#tag/ITEM_STRUCTURE_schema) schema details.
     UAbstractContentItem:
       title: CONTENT_ITEM
       type: object
-      description: See [CONTENT_ITEM](resources.html#tag/CONTENT_ITEM_schema) type details.
-    UAbstractVersionable:
-      title: Versionable
+      description: See [CONTENT_ITEM](#tag/CONTENT_ITEM_schema) schema details.
+    VersionOfComposition:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
       type: object
-      description: See [Versionable](resources.html#tag/Versionable_schema) type details.
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/Composition'
+      description: A VERSION resource
+    VersionOfEhrStatus:
+      title: VERSION
+      required:
+        - contribution
+        - commit_audit
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+        contribution:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+        signature:
+          type: string
+        commit_audit:
+          $ref: '#/components/schemas/AuditDetails'
+        data:
+          $ref: '#/components/schemas/EhrStatus'
+      description: A VERSION resource
     HierObjectId:
       title: HIER_OBJECT_ID
       required:
@@ -827,6 +879,7 @@ components:
           type: string
     UObjectId:
       title: OBJECT_ID
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMArchetypeId'
         - $ref: '#/components/schemas/UMTemplateId'
@@ -843,6 +896,26 @@ components:
           GENERIC_ID: '#/components/schemas/UMGenericId'
           HIER_OBJECT_ID: '#/components/schemas/UMHierObjectId'
           OBJECT_VERSION_ID: '#/components/schemas/UMObjectVersionId'
+    ObjectRef:
+      title: OBJECT_REF
+      required:
+        - namespace
+        - type
+        - id
+      type: object
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UObjectId'
+      example:
+        id:
+          _type: OBJECT_VERSION_ID
+          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+        namespace: local
+        type: COMPOSITION
     ObjectRefOfObjectVersionId:
       title: OBJECT_REF
       type: object
@@ -949,6 +1022,7 @@ components:
         value: ehr://system_id/ehr_id/top_level_structure_locator/path_inside_top_level_structure
     UDvUri:
       title: DV_URI
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvUri'
         - $ref: '#/components/schemas/UMDvEhrUri'
@@ -1068,6 +1142,7 @@ components:
           code_string: at0001
     UDvText:
       title: DV_TEXT
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvText'
         - $ref: '#/components/schemas/UMDvCodedText'
@@ -1175,6 +1250,7 @@ components:
           value: '2015-01-20T19:30:22.765+01:00'
     UUidBasedId:
       title: UID_BASED_ID
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMHierObjectId'
         - $ref: '#/components/schemas/UMObjectVersionId'
@@ -1310,6 +1386,26 @@ components:
           $ref: '#/components/schemas/DvMultimedia'
         size:
           type: integer
+    DvParsable:
+      title: DV_PARSABLE
+      required:
+        - _type
+        - value
+        - formalism
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_PARSABLE
+          type: string
+        charset:
+          $ref: '#/components/schemas/CodePhrase'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        value:
+          type: string
+        formalism:
+          type: string
     UMDvParsable:
       title: DV_PARSABLE
       required:
@@ -1332,6 +1428,7 @@ components:
           type: string
     UDvEncapsulated:
       title: DV_ENCAPSULATED
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMDvMultimedia'
         - $ref: '#/components/schemas/UMDvParsable'
@@ -1342,10 +1439,6 @@ components:
           DV_PARSABLE: '#/components/schemas/UMDvParsable'
     PartyRef:
       title: PARTY_REF
-      required:
-        - namespace
-        - type
-        - id
       type: object
       properties:
         namespace:
@@ -1354,14 +1447,18 @@ components:
           pattern: ^PERSON|ORGANISATION|GROUP|AGENT|ROLE|PARTY|ACTOR$
           type: string
         id:
-          $ref: '#/components/schemas/UObjectId'
+          $ref: '#/components/schemas/UMHierObjectId'
       description: Identifier for parties in a demographic or identity service.
       example:
         id:
-          _type: OBJECT_VERSION_ID
-          value: b52b9408-7048-4ec8-94bd-831fb0727e67::openEHRSys.example.com::1
+          _type: HIER_OBJECT_ID
+          value: b52b9408-7048-4ec8-94bd-831fb0727e67
         namespace: local
         type: PERSON
+      required:
+        - namespace
+        - type
+        - id
     UMPartyIdentified:
       title: PARTY_IDENTIFIED
       required:
@@ -1423,6 +1520,7 @@ components:
         name: A name
     UPartyIdentified:
       title: PARTY_IDENTIFIED
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMPartyIdentified'
         - $ref: '#/components/schemas/UMPartyRelated'
@@ -1445,6 +1543,7 @@ components:
           $ref: '#/components/schemas/PartyRef'
     UPartyProxy:
       title: PARTY_PROXY
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMPartySelf'
         - $ref: '#/components/schemas/UMPartyIdentified'
@@ -1455,6 +1554,106 @@ components:
           PARTY_SELF: '#/components/schemas/UMPartySelf'
           PARTY_IDENTIFIED: '#/components/schemas/UMPartyIdentified'
           PARTY_RELATED: '#/components/schemas/UMPartyRelated'
+    UMDvBoolean:
+      title: DV_BOOLEAN
+      required:
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_BOOLEAN
+          type: string
+        value:
+          type: boolean
+    UMDvCount:
+      title: DV_COUNT
+      required:
+        - magnitude
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_COUNT
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+        magnitude:
+          type: integer
+    DvDate:
+      title: DV_DATE
+      required:
+        - value
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_DATE
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy:
+          $ref: '#/components/schemas/DvDuration'
+        value:
+          type: string
+          format: date
+      example:
+        _type: DV_DATE
+        value: '2017-08-15'
+    UMDvDate:
+      title: DV_DATE
+      required:
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_DATE
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy:
+          $ref: '#/components/schemas/DvDuration'
+        value:
+          type: string
+          format: date
+      example:
+        _type: DV_DATE
+        value: '2017-08-15'
     UMDvDateTime:
       title: DV_DATE_TIME
       required:
@@ -1485,6 +1684,477 @@ components:
       example:
         _type: DV_DATE_TIME
         value: '2017-08-15T10:37:15.422+02:00'
+    UMDvDuration:
+      title: DV_DURATION
+      required:
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_DURATION
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+    UMDvIdentifier:
+      title: DV_IDENTIFIER
+      required:
+        - id
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_IDENTIFIER
+          type: string
+        issuer:
+          type: string
+        assigner:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+      example:
+        id: 16b74749-e6aa-4945-b760-b42bdc07098a
+        type: Patient
+    UMDvOrdinal:
+      title: DV_ORDINAL
+      required:
+        - symbol
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_ORDINAL
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        symbol:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          type: integer
+    UMDvProportion:
+      title: DV_PROPORTION
+      required:
+        - numerator
+        - denominator
+        - semantic_type
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_PROPORTION
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+        numerator:
+          type: number
+        denominator:
+          type: number
+        semantic_type:
+          type: integer
+        precision:
+          type: integer
+    UMDvQuantity:
+      title: DV_QUANTITY
+      required:
+        - magnitude
+        - units
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_QUANTITY
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy_is_percent:
+          type: boolean
+        accuracy:
+          type: number
+        magnitude:
+          type: number
+        precision:
+          type: integer
+        units:
+          type: string
+        units_system:
+          type: string
+        units_display_name:
+          type: string
+    UMDvScale:
+      title: DV_SCALE
+      required:
+        - symbol
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_SCALE
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        symbol:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          type: number
+    UMDvState:
+      title: DV_STATE
+      required:
+        - value
+        - is_terminal
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_STATE
+          type: string
+        value:
+          $ref: '#/components/schemas/DvCodedText'
+        is_terminal:
+          type: boolean
+    UMDvTime:
+      title: DV_TIME
+      required:
+        - value
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - DV_TIME
+          type: string
+        normal_status:
+          $ref: '#/components/schemas/CodePhrase'
+        normal_range:
+          $ref: '#/components/schemas/DvInterval'
+        other_reference_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceRange'
+        magnitude_status:
+          type: string
+          default: '='
+        accuracy:
+          $ref: '#/components/schemas/DvDuration'
+        value:
+          type: string
+          format: time
+      example:
+        _type: DV_TIME
+        value: '08:20:12'
+    UDataValue:
+      title: DATA_VALUE
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/UMDvBoolean'
+        - $ref: '#/components/schemas/UMDvCodedText'
+        - $ref: '#/components/schemas/UMDvCount'
+        - $ref: '#/components/schemas/UMDvDate'
+        - $ref: '#/components/schemas/UMDvDateTime'
+        - $ref: '#/components/schemas/UMDvDuration'
+        - $ref: '#/components/schemas/UMDvEhrUri'
+        - $ref: '#/components/schemas/UMDvIdentifier'
+        - $ref: '#/components/schemas/UMDvMultimedia'
+        - $ref: '#/components/schemas/UMDvOrdinal'
+        - $ref: '#/components/schemas/UMDvParsable'
+        - $ref: '#/components/schemas/UMDvProportion'
+        - $ref: '#/components/schemas/UMDvQuantity'
+        - $ref: '#/components/schemas/UMDvScale'
+        - $ref: '#/components/schemas/UMDvState'
+        - $ref: '#/components/schemas/UMDvText'
+        - $ref: '#/components/schemas/UMDvUri'
+      discriminator:
+        propertyName: _type
+        mapping:
+          DV_BOOLEAN: '#/components/schemas/UMDvBoolean'
+          DV_CODED_TEXT: '#/components/schemas/UMDvCodedText'
+          DV_COUNT: '#/components/schemas/UMDvCount'
+          DV_DATE: '#/components/schemas/UMDvDate'
+          DV_DATE_TIME: '#/components/schemas/UMDvDateTime'
+          DV_DURATION: '#/components/schemas/UMDvDuration'
+          DV_EHR_URI: '#/components/schemas/UMDvEhrUri'
+          DV_IDENTIFIER: '#/components/schemas/UMDvIdentifier'
+          DV_MULTIMEDIA: '#/components/schemas/UMDvMultimedia'
+          DV_ORDINAL: '#/components/schemas/UMDvOrdinal'
+          DV_PARSABLE: '#/components/schemas/UMDvParsable'
+          DV_PROPORTION: '#/components/schemas/UMDvProportion'
+          DV_QUANTITY: '#/components/schemas/UMDvQuantity'
+          DV_SCALE: '#/components/schemas/UMDvScale'
+          DV_STATE: '#/components/schemas/UMDvState'
+          DV_TEXT: '#/components/schemas/UMDvText'
+          DV_TIME: '#/components/schemas/UMDvTime'
+          DV_URI: '#/components/schemas/UMDvUri'
+    Element:
+      title: ELEMENT
+      type: object
+      properties:
+        _type:
+          enum:
+            - ELEMENT
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        null_flavour:
+          $ref: '#/components/schemas/DvCodedText'
+        value:
+          $ref: '#/components/schemas/UDataValue'
+        null_reason:
+          $ref: '#/components/schemas/UDvText'
+      required:
+        - name
+        - archetype_node_id
+    ItemSingle:
+      title: ITEM_SINGLE
+      required:
+        - name
+        - archetype_node_id
+        - item
+      type: object
+      properties:
+        _type:
+          enum:
+            - ITEM_SINGLE
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        item:
+          $ref: '#/components/schemas/Element'
+    ItemList:
+      title: ITEM_LIST
+      type: object
+      properties:
+        _type:
+          enum:
+            - ITEM_LIST
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Element'
+      required:
+        - name
+        - archetype_node_id
+    Clstr:
+      title: CLUSTER
+      required:
+        - name
+        - archetype_node_id
+        - items
+      type: object
+      properties:
+        _type:
+          enum:
+            - CLUSTER
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UAbstractItem'
+    UItem:
+      title: ITEM
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/Element'
+        - $ref: '#/components/schemas/Clstr'
+      discriminator:
+        propertyName: _type
+        mapping:
+          ELEMENT: '#/components/schemas/Element'
+          CLUSTER: '#/components/schemas/Clstr'
+    ItemTable:
+      title: ITEM_TABLE
+      type: object
+      properties:
+        _type:
+          enum:
+            - ITEM_TABLE
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Clstr'
+      required:
+        - name
+        - archetype_node_id
+    ItemTree:
+      title: ITEM_TREE
+      type: object
+      properties:
+        _type:
+          enum:
+            - ITEM_TREE
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UAbstractItem'
+          description: See [ITEM](#tag/ITEM_schema) schema details.
+      required:
+        - name
+        - archetype_node_id
+    UItemStructure:
+      title: ITEM_STRUCTURE
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/ItemSingle'
+        - $ref: '#/components/schemas/ItemList'
+        - $ref: '#/components/schemas/ItemTable'
+        - $ref: '#/components/schemas/ItemTree'
+      discriminator:
+        propertyName: _type
+        mapping:
+          ITEM_SINGLE: '#/components/schemas/ItemSingle'
+          ITEM_LIST: '#/components/schemas/ItemList'
+          ITEM_TABLE: '#/components/schemas/ItemTable'
+          ITEM_TREE: '#/components/schemas/ItemTree'
     FeederAuditDetails:
       title: FEEDER_AUDIT_DETAILS
       required:
@@ -1791,6 +2461,458 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participation'
+    UMAdminEntry:
+      title: ADMIN_ENTRY
+      required:
+        - name
+        - archetype_node_id
+        - language
+        - encoding
+        - subject
+        - data
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - ADMIN_ENTRY
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        encoding:
+          $ref: '#/components/schemas/CodePhrase'
+        other_participations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participation'
+        workflow_id:
+          $ref: '#/components/schemas/ObjectRef'
+        subject:
+          $ref: '#/components/schemas/UPartyProxy'
+        provider:
+          $ref: '#/components/schemas/UPartyProxy'
+        data:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+    Event:
+      title: EVENT
+      required:
+        - name
+        - archetype_node_id
+        - time
+        - data
+      type: object
+      properties:
+        _type:
+          type: string
+          default: EVENT
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        time:
+          $ref: '#/components/schemas/DvDateTime'
+        state:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        data:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+    History:
+      title: HISTORY
+      required:
+        - name
+        - archetype_node_id
+        - origin
+      type: object
+      properties:
+        _type:
+          type: string
+          default: HISTORY
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        origin:
+          $ref: '#/components/schemas/DvDateTime'
+        period:
+          $ref: '#/components/schemas/DvDuration'
+        duration:
+          $ref: '#/components/schemas/DvDuration'
+        summary:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    UMObservation:
+      title: OBSERVATION
+      required:
+        - name
+        - archetype_node_id
+        - language
+        - encoding
+        - subject
+        - data
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - OBSERVATION
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        encoding:
+          $ref: '#/components/schemas/CodePhrase'
+        other_participations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participation'
+        workflow_id:
+          $ref: '#/components/schemas/ObjectRef'
+        subject:
+          $ref: '#/components/schemas/UPartyProxy'
+        provider:
+          $ref: '#/components/schemas/UPartyProxy'
+        protocol:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        guideline_id:
+          $ref: '#/components/schemas/ObjectRef'
+        data:
+          $ref: '#/components/schemas/History'
+        state:
+          $ref: '#/components/schemas/History'
+    UMEvaluation:
+      title: EVALUATION
+      required:
+        - name
+        - archetype_node_id
+        - language
+        - encoding
+        - subject
+        - data
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - EVALUATION
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        encoding:
+          $ref: '#/components/schemas/CodePhrase'
+        other_participations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participation'
+        workflow_id:
+          $ref: '#/components/schemas/ObjectRef'
+        subject:
+          $ref: '#/components/schemas/UPartyProxy'
+        provider:
+          $ref: '#/components/schemas/UPartyProxy'
+        protocol:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        guideline_id:
+          $ref: '#/components/schemas/ObjectRef'
+        data:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+    Activity:
+      title: ACTIVITY
+      required:
+        - name
+        - archetype_node_id
+        - action_archetype_id
+        - description
+      type: object
+      properties:
+        _type:
+          enum:
+            - ACTIVITY
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        timing:
+          $ref: '#/components/schemas/DvParsable'
+        action_archetype_id:
+          type: string
+        description:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+    UMInstruction:
+      title: INSTRUCTION
+      required:
+        - name
+        - archetype_node_id
+        - language
+        - encoding
+        - subject
+        - narrative
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - INSTRUCTION
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        encoding:
+          $ref: '#/components/schemas/CodePhrase'
+        other_participations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participation'
+        workflow_id:
+          $ref: '#/components/schemas/ObjectRef'
+        subject:
+          $ref: '#/components/schemas/UPartyProxy'
+        provider:
+          $ref: '#/components/schemas/UPartyProxy'
+        protocol:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        guideline_id:
+          $ref: '#/components/schemas/ObjectRef'
+        narrative:
+          $ref: '#/components/schemas/UDvText'
+        expiry_time:
+          $ref: '#/components/schemas/DvDateTime'
+        wf_definition:
+          $ref: '#/components/schemas/DvParsable'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity'
+    IsmTransition:
+      title: ISM_TRANSITION
+      required:
+        - current_state
+      type: object
+      properties:
+        _type:
+          enum:
+            - ISM_TRANSITION
+          type: string
+        current_state:
+          $ref: '#/components/schemas/DvCodedText'
+        transition:
+          $ref: '#/components/schemas/DvCodedText'
+        careflow_step:
+          $ref: '#/components/schemas/DvCodedText'
+        reason:
+          type: array
+          items:
+            $ref: '#/components/schemas/UDvText'
+    LocatableRef:
+      title: LOCATABLE_REF
+      required:
+        - namespace
+        - type
+        - id
+      type: object
+      properties:
+        namespace:
+          type: string
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/UUidBasedId'
+        path:
+          type: string
+    InstructionDetails:
+      title: INSTRUCTION_DETAILS
+      required:
+        - instruction_id
+        - activity_id
+      type: object
+      properties:
+        _type:
+          enum:
+            - INSTRUCTION_DETAILS
+          type: string
+        instruction_id:
+          $ref: '#/components/schemas/LocatableRef'
+        activity_id:
+          type: string
+        wf_details:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+    UMAction:
+      title: ACTION
+      required:
+        - name
+        - archetype_node_id
+        - language
+        - encoding
+        - subject
+        - time
+        - ism_transition
+        - description
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - ACTION
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        encoding:
+          $ref: '#/components/schemas/CodePhrase'
+        other_participations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participation'
+        workflow_id:
+          $ref: '#/components/schemas/ObjectRef'
+        subject:
+          $ref: '#/components/schemas/UPartyProxy'
+        provider:
+          $ref: '#/components/schemas/UPartyProxy'
+        protocol:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+        guideline_id:
+          $ref: '#/components/schemas/ObjectRef'
+        time:
+          $ref: '#/components/schemas/DvDateTime'
+        ism_transition:
+          $ref: '#/components/schemas/IsmTransition'
+        instruction_details:
+          $ref: '#/components/schemas/InstructionDetails'
+        description:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+    UContentItem:
+      title: CONTENT_ITEM
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/UMAdminEntry'
+        - $ref: '#/components/schemas/UMObservation'
+        - $ref: '#/components/schemas/UMEvaluation'
+        - $ref: '#/components/schemas/UMInstruction'
+        - $ref: '#/components/schemas/UMAction'
+      discriminator:
+        propertyName: _type
+        mapping:
+          ADMIN_ENTRY: '#/components/schemas/UMAdminEntry'
+          OBSERVATION: '#/components/schemas/UMObservation'
+          EVALUATION: '#/components/schemas/UMEvaluation'
+          INSTRUCTION: '#/components/schemas/UMInstruction'
+          ACTION: '#/components/schemas/UMAction'
     Composition:
       title: COMPOSITION
       required:
@@ -1838,7 +2960,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UAbstractContentItem'
-          description: See [CONTENT_ITEM](resources.html#tag/CONTENT_ITEM_schema) type details.
+          description: See [CONTENT_ITEM](#tag/CONTENT_ITEM_schema) schema details.
       description: A COMPOSITION resource
       example:
         archetype_node_id: openEHR-EHR-COMPOSITION.encounter.v1
@@ -1887,6 +3009,154 @@ components:
                 value: openehr
               code_string: '238'
         content: []
+    UMComposition:
+      title: COMPOSITION
+      required:
+        - name
+        - archetype_node_id
+        - language
+        - territory
+        - category
+        - context
+        - composer
+        - content
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - COMPOSITION
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        language:
+          $ref: '#/components/schemas/CodePhrase'
+        territory:
+          $ref: '#/components/schemas/CodePhrase'
+        category:
+          $ref: '#/components/schemas/DvCodedText'
+        context:
+          $ref: '#/components/schemas/EventContext'
+        composer:
+          $ref: '#/components/schemas/UPartyProxy'
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/UAbstractContentItem'
+          description: See [CONTENT_ITEM](#tag/CONTENT_ITEM_schema) schema details.
+      example:
+        archetype_node_id: openEHR-EHR-COMPOSITION.encounter.v1
+        name:
+          value: Vital Signs
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        archetype_details:
+          archetype_id:
+            value: openEHR-EHR-COMPOSITION.encounter.v1
+          template_id:
+            value: Example.v1::c7ec861c-c413-39ff-9965-a198ebf44747
+          rm_version: 1.0.2
+        language:
+          terminology_id:
+            value: ISO_639-1
+          code_string: en
+        territory:
+          terminology_id:
+            value: ISO_3166-1
+          code_string: NL
+        category:
+          value: event
+          defining_code:
+            terminology_id:
+              value: openehr
+            code_string: '433'
+        composer:
+          _type: PARTY_IDENTIFIED
+          external_ref:
+            id:
+              _type: GENERIC_ID
+              value: 16b74749-e6aa-4945-b760-b42bdc07098a
+              scheme: pid
+            namespace: openEHRSys.example.com
+            type: PERSON
+          name: A name
+        context:
+          start_time:
+            value: '2014-11-18T09:50:35.000+01:00'
+          setting:
+            value: other care
+            defining_code:
+              terminology_id:
+                value: openehr
+              code_string: '238'
+        content: []
+    UMEhrStatus:
+      title: EHR_STATUS
+      required:
+        - name
+        - archetype_node_id
+        - subject
+        - is_queryable
+        - is_modifiable
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - EHR_STATUS
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        subject:
+          $ref: '#/components/schemas/UPartyProxy'
+        is_queryable:
+          type: boolean
+          default: true
+        is_modifiable:
+          type: boolean
+          default: true
+        other_details:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+      example:
+        archetype_node_id: openEHR-EHR-EHR_STATUS.generic.v1
+        name:
+          value: EHR status
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        subject:
+          _type: PARTY_SELF
+        is_queryable: true
+        is_modifiable: true
     UObjectRefOfUidBasedId:
       title: OBJECT_REF
       type: object
@@ -1954,6 +3224,66 @@ components:
       required:
         - name
         - archetype_node_id
+    UMFolder:
+      title: FOLDER
+      required:
+        - name
+        - archetype_node_id
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - FOLDER
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UObjectRefOfUidBasedId'
+        folders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Folder'
+        details:
+          $ref: '#/components/schemas/UAbstractItemStructure'
+      example:
+        archetype_node_id: openEHR-EHR-FOLDER.directory.v1
+        name:
+          value: Directory
+        uid:
+          _type: OBJECT_VERSION_ID
+          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        items: []
+        folders: []
+    UVersionable:
+      title: Versionable
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/UMComposition'
+        - $ref: '#/components/schemas/UMEhrStatus'
+        - $ref: '#/components/schemas/UMFolder'
+      discriminator:
+        propertyName: _type
+        mapping:
+          COMPOSITION: '#/components/schemas/UMComposition'
+          EHR_STATUS: '#/components/schemas/UMEhrStatus'
+          FOLDER: '#/components/schemas/UMFolder'
     Attestation:
       title: ATTESTATION
       required:
@@ -2069,6 +3399,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfEhrStatus'
     UVersionOfEhrStatus:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfEhrStatus'
         - $ref: '#/components/schemas/UMImportedVersionOfEhrStatus'
@@ -2170,6 +3501,7 @@ components:
           $ref: '#/components/schemas/UMOriginalVersionOfComposition'
     UVersionOfComposition:
       title: VERSION
+      type: object
       oneOf:
         - $ref: '#/components/schemas/UMOriginalVersionOfComposition'
         - $ref: '#/components/schemas/UMImportedVersionOfComposition'
@@ -2284,7 +3616,7 @@ components:
           items:
             $ref: '#/components/schemas/UpdateAttestation'
         data:
-          $ref: '#/components/schemas/UAbstractVersionable'
+          $ref: '#/components/schemas/UVersionable'
         commit_audit:
           $ref: '#/components/schemas/UpdateAudit'
     NewContribution:
@@ -2925,3 +4257,8 @@ x-tagGroups:
       - COMPOSITION
       - DIRECTORY
       - CONTRIBUTION
+  - name: Related schemas
+    tags:
+      - CONTENT_ITEM_schema
+      - ITEM_schema
+      - ITEM_STRUCTURE_schema

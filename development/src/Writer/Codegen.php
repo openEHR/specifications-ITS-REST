@@ -80,6 +80,8 @@ class Codegen extends AbstractWriter {
         foreach ($this->apiSpecification->components->schemas as $name => $schema) {
             if (preg_match('/^UM?[A-Z][a-z][\w]+/', $name)) {
                 echo "$name, ";
+            } elseif (preg_match('/^See?[A-Z][a-z][\w]+/', $name)) {
+                echo "$name, ";
             } elseif ($schema instanceof Schema) {
                 $this->cleaning($schema);
                 $schemas[$name] = $schema;

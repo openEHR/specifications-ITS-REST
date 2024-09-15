@@ -1,0 +1,7 @@
+description: |
+  `204 No Content` is returned when PERSON was deleted.
+headers:
+  ETag:
+    $ref: ../headers/ETag.yaml
+  Location:
+    $ref: ../headers/Location_PERSON.yaml

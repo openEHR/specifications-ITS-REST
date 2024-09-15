@@ -1,0 +1,11 @@
+description: |
+  `200 OK` is returned when the PERSON is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+headers:
+  ETag:
+    $ref: ../headers/ETag.yaml
+  Location:
+    $ref: ../headers/Location_PERSON.yaml
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/demographic/Person.yaml
