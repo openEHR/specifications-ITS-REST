@@ -66,20 +66,8 @@ openEHR-AUDIT_DETAILS.committer: name="John Doe", external_ref.id="BC8132EA-8F4A
 
 None of these headers are mandatory, but whatever is provided it MUST be merged with the default VERSION and VERSION.audit_details attributes on commit runtime.
 
-Below a list of `code_string` values and their meaning (taken from [openEHR terminology](https://raw.githubusercontent.com/openEHR/terminology/Release-2.0.0/openEHR_RM/en/openehr_terminology.xml)):
+The list of `code_string` values and their meaning is specified by the [Audit Change Type](https://specifications.openehr.org/releases/TERM/latest/SupportTerminology.html#_audit_change_type) and [Version Lifecycle State](https://specifications.openehr.org/releases/TERM/latest/SupportTerminology.html#_version_lifecycle_state) openEHR terminology vocabularies.
 
-| header                            | code | value / meaning |
-| --------------------------------- | ---- | --------------- |
-| openEHR-VERSION.lifecycle_state   | 532  | complete        |
-| openEHR-VERSION.lifecycle_state   | 553  | incomplete      |
-| openEHR-VERSION.lifecycle_state   | 523  | deleted         |
-| openEHR-AUDIT_DETAILS.change_type | 249  | creation        |
-| openEHR-AUDIT_DETAILS.change_type | 250  | amendment       |
-| openEHR-AUDIT_DETAILS.change_type | 251  | modification    |
-| openEHR-AUDIT_DETAILS.change_type | 252  | synthesis       |
-| openEHR-AUDIT_DETAILS.change_type | 523  | deleted         |
-| openEHR-AUDIT_DETAILS.change_type | 666  | attestation     |
-| openEHR-AUDIT_DETAILS.change_type | 253  | unknown         |
 
 ## If-Match and accidental overwrites
 
