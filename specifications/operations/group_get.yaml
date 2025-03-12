@@ -18,6 +18,6 @@ responses:
   '200':
     $ref: ../responses/200_GROUP_retrieved.yaml
   '204':
-    $ref: ../responses/204_because_deleted_at_time.yaml
+    $ref: ../responses/204_deleted_at_time.yaml
   '404':
     $ref: ../responses/404_not_found_or_no_version_at_time.yaml

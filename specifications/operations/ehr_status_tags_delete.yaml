@@ -18,6 +18,6 @@ parameters:
   - $ref: ../parameters/path/key.yaml
 responses:
   '204':
-    $ref: ../responses/204_because_deleted.yaml
+    $ref: ../responses/204_deleted.yaml
   '404':
     $ref: ../responses/404_unknown_ehr_id_or_uid_based_id_or_key.yaml
