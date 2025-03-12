@@ -2,11 +2,16 @@ operationId: composition_create
 summary: Create COMPOSITION
 description: |
   Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`.
+  
+  A list of ITEM_TAGs can be associated with the COMPOSITION, in which case a `openehr-item-tag` request header is needed to be set as well. 
+  The corresponding response header will return ITEM_TAGs as they were set by the server.
+
 tags:
   - COMPOSITION
 parameters:
   - $ref: ../parameters/path/ehr_id.yaml
   - $ref: ../parameters/header/Prefer.yaml
+  - $ref: ../parameters/header/openehr-item-tag.yaml
 requestBody:
   description: |
     The COMPOSITION.

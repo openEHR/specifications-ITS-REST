@@ -68,6 +68,27 @@ None of these headers are mandatory, but whatever is provided it MUST be merged 
 
 The list of `code_string` values and their meaning is specified by the [Audit Change Type](https://specifications.openehr.org/releases/TERM/latest/SupportTerminology.html#_audit_change_type) and [Version Lifecycle State](https://specifications.openehr.org/releases/TERM/latest/SupportTerminology.html#_version_lifecycle_state) openEHR terminology vocabularies.
 
+## openehr-item-tag
+
+The `openehr-item-tag` header is available all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.).
+
+Below is an example of this header:
+```http
+openehr-item-tag: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
+```
+
+Note that, this header acts as a convenient wrapper around dedicated ITEM_TAG actions (e.g. retrieving [COMPOSITION tags](ehr.html#tag/COMPOSITION/operation/composition_tags_get)), simplifying client interaction and reducing necessary API calls.
+If the server does not support ITEM_TAGs, this header will also be unsupported.
+
+##### Usage in Requests
+When used as a request headers for creation or update operations (`PUT`, `POST`), the header will instruct the system on which ITEM_TAG list should be associated with the target VERSION or VERSION_OBJECT resource.
+
+Providing an empty value for this header will effectively remove all ITEM_TAG associated with the given target.
+
+##### Usage in Responses
+Servers MAY add `openehr-item-tag` header to the response, to confirm the actual list as stored on server side.
+
+When retrieving resources viw `GET` methods, the server MAY also add `openehr-item-tag` response header that will contain the list of all ITEM_TAG associated with the target VERSION or VERSIONED_OBJECT.
 
 ## If-Match and accidental overwrites
 

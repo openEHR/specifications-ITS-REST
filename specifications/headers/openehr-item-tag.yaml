@@ -1,0 +1,5 @@
+description: |
+  The (semicolon-separated) list of all ITEM_TAG associated with the target VERSION or VERSIONED_OBJECT.
+schema:
+  type: string
+  example: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
