@@ -21,7 +21,7 @@ parameters:
   - $ref: ../parameters/query/tag_target_path.yaml
 responses:
   '200':
-    $ref: ../responses/200_ItemTagList_retrieved.yaml
+    $ref: ../responses/200_COMPOSITION_ItemTagList_retrieved.yaml
   '400':
     $ref: ../responses/400.yaml
   '404':

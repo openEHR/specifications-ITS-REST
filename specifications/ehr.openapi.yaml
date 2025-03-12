@@ -95,6 +95,15 @@ paths:
   '/ehr/{ehr_id}/tags':
     get:
       $ref: ./operations/ehr_tags_get.yaml
+  '/ehr/{ehr_id}/composition/{uid_based_id}/tags':
+    get:
+      $ref: ./operations/composition_tags_get.yaml
+    put:
+      $ref: ./operations/composition_tags_update.yaml
+  '/ehr/{ehr_id}/composition/{uid_based_id}/tags/{key}':
+    delete:
+      $ref: ./operations/composition_tags_delete.yaml
+
 tags:
   - name: EHR
     description: |

@@ -5,4 +5,4 @@ content:
     schema:
       type: array
       items:
-        $ref: ../schemas/common/ItemTag.yaml
+        $ref: ../schemas/common/ItemTagOfComposition.yaml
