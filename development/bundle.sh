@@ -20,7 +20,7 @@ function render() {
 
 
 case "${1:-}" in
-		overview | system | ehr | query | definition | demographic)
+		overview | system | ehr | query | definition | demographic | admin)
 		  render "$@"
       ;;
 		all)
@@ -30,9 +30,10 @@ case "${1:-}" in
 		  render query
 		  render definition
       render demographic
+      render admin
       ;;
 		"")
-			echo "Usage: bundle.sh [overview | system | ehr | query | definition | demographic]"
+			echo "Usage: bundle.sh [overview | system | ehr | query | definition | demographic | admin]"
 			echo "   or: bundle.sh all"
 			;;
 	esac
