@@ -4,7 +4,9 @@ headers:
   ETag:
     $ref: ../headers/ETag.yaml
   Location:
-    $ref: ../headers/Location_EHR_STATUS.yaml  
+    $ref: ../headers/Location_EHR_STATUS.yaml
+  openehr-item-tag:
+    $ref: ../headers/openehr-item-tag.yaml
 content:
   application/json:
     schema:
