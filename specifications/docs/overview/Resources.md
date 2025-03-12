@@ -129,6 +129,8 @@ Creating data instances according to canonical XML or JSON format is not always 
 particularly for developers with minimal exposure to openEHR, and various alternatives
 have been used in the past to simplify the job of content creation and committal for application developers.
 
+### Simplified Data Template formats
+
 There is an initiative exploring and documenting these alternative formats, which specifications can be consulted at
 [Simplified Data Template (SDT)](simplified_data_template.html) page.
 
@@ -152,7 +154,8 @@ EHRbase also has support for this format, and provides information in their [doc
 based on the 'STRUCTURED' version of the ['web template' format](https://www.ehrscape.com/reference.html) originally created by Marand for the Better platform
 (see also their ['examples'](https://www.ehrscape.com/examples.html)).
 
-- `text/plain` for all textual ADL2 templates or AQL queries,
+### Legacy or experimental formats
+
 - `application/openehr.nc.flat+json` for near-canonical RM Simplified Data Template (ncSDT) as JSON, based on the
 
 [ECISFLAT format](https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md), originally devised for the EtherCIS project,
