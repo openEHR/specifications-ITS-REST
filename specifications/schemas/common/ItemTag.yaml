@@ -1,0 +1,37 @@
+title: ITEM_TAG
+type: object
+required:
+  - key
+  - target
+  - owner_id
+properties:
+  key:
+    type: string
+  value:
+    type: string
+  target_path:
+    type: string
+  target:
+    $ref: ../base_types/UObjectRefOfUidBasedId.yaml
+  owner_id:
+    $ref: ../base_types/ObjectRefOfHierObjectId.yaml
+additionalProperties: false
+example:
+  key: flag
+  value: follow-up
+  target_path: /context/start_time/value
+  target:
+    id:
+      _type: HIER_OBJECT_ID
+      value: '8849182c-82ad-4088-a07f-48ead4180515'
+    namespace: local
+    type: COMPOSITION
+  owner_id:
+    id:
+      _type: HIER_OBJECT_ID
+      value: '7d44b88c-4199-4bad-97dc-d78268e01398'
+    namespace: local
+    type: EHR
+
+
+
