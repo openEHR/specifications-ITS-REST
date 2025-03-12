@@ -103,7 +103,14 @@ paths:
   '/ehr/{ehr_id}/composition/{uid_based_id}/tags/{key}':
     delete:
       $ref: ./operations/composition_tags_delete.yaml
-
+  '/ehr/{ehr_id}/ehr_status/{uid_based_id}/tags':
+    get:
+      $ref: ./operations/ehr_status_tags_get.yaml
+    put:
+      $ref: ./operations/ehr_status_tags_update.yaml
+  '/ehr/{ehr_id}/ehr_status/{uid_based_id}/tags/{key}':
+    delete:
+      $ref: ./operations/ehr_status_tags_delete.yaml
 tags:
   - name: EHR
     description: |
