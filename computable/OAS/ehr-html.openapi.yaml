@@ -67,6 +67,9 @@ tags:
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
       Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
+  - name: ITEM_TAG
+    description: |
+      Management of [ITEM_TAG](https://specifications.openehr.org/releases/RM/development/common.html#_item_tag_class) resources.
   - name: CONTENT_ITEM_schema
     x-displayName: CONTENT_ITEM
     description: |
@@ -193,6 +196,8 @@ paths:
       summary: Get EHR_STATUS by version id
       description: |
         Retrieves a particular version of the EHR_STATUS identified by `version_uid` and associated with the EHR identified by `ehr_id`.
+
+        When there are ITEM_TAGs associated with the retrieved EHR_STATUS, they will be returned as `openehr-item-tag` response header.
       tags:
         - EHR_STATUS
       parameters:
@@ -211,6 +216,8 @@ paths:
         Retrieves a version of the EHR_STATUS associated with the EHR identified by `ehr_id`.
 
         If `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ EHR_STATUS version.
+
+        When there are ITEM_TAGs associated with the retrieved EHR_STATUS, they will be returned as `openehr-item-tag` response header.
       tags:
         - EHR_STATUS
       parameters:
@@ -231,6 +238,9 @@ paths:
 
         The existing latest `version_uid` of EHR_STATUS resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
 
+        A list of ITEM_TAGs can be associated with the updated EHR_STATUS, in which case a `openehr-item-tag` request header is needed to be set as well. 
+        The corresponding response header will return ITEM_TAGs as they were set by the server.
+
         The response will contain the updated EHR_STATUS resource when the `Prefer` header has a value of `return=representation`.
       tags:
         - EHR_STATUS
@@ -238,6 +248,7 @@ paths:
         - $ref: '#/components/parameters/ehr_id'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-item-tag'
       requestBody:
         description: |
           The new EHR_STATUS.
@@ -329,11 +340,15 @@ paths:
       summary: Create COMPOSITION
       description: |
         Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`.
+
+        A list of ITEM_TAGs can be associated with the COMPOSITION, in which case a `openehr-item-tag` request header is needed to be set as well. 
+        The corresponding response header will return ITEM_TAGs as they were set by the server.
       tags:
         - COMPOSITION
       parameters:
         - $ref: '#/components/parameters/ehr_id'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-item-tag'
       requestBody:
         description: |
           The COMPOSITION.
@@ -364,6 +379,8 @@ paths:
         When the `uid_based_id` has the form of a HIER_OBJECT_ID, if the `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ COMPOSITION version.
 
         See [Resource identification](overview.html#tag/Resources/Resource-identification) for more details about the identifiers usage and meaning.
+
+        When there are ITEM_TAGs associated with the retrieved COMPOSITION, they will be returned as `openehr-item-tag` response header.
       tags:
         - COMPOSITION
       parameters:
@@ -388,6 +405,9 @@ paths:
         If the request body already contains a COMPOSITION.uid.value, it must match the `uid_based_id` in the URL. 
 
         The existing latest `version_uid` of COMPOSITION resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
+
+        A list of ITEM_TAGs can be associated with the updated COMPOSITION, in which case a `openehr-item-tag` request header is needed to be set as well. 
+        The corresponding response header will return ITEM_TAGs as they were set by the server.
       tags:
         - COMPOSITION
       parameters:
@@ -395,6 +415,7 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-item-tag'
       requestBody:
         description: |
           The new COMPOSITION.
@@ -669,6 +690,219 @@ paths:
           $ref: '#/components/responses/200_CONTRIBUTION'
         '404':
           $ref: '#/components/responses/404_CONTRIBUTION'
+  /ehr/{ehr_id}/tags:
+    get:
+      operationId: ehr_tags_get
+      summary: Get EHR tags
+      description: |
+        Retrieves the list of ITEM_TAG resources associated with any target VERSION or 
+        VERSIONED_OBJECT within the EHR identified by `ehr_id`. 
+
+        This list can be filtered by the given one or more `tag_key`, `tag_value`, `tag_target_path` query parameters. 
+        In case no such parameter is provided then all ITEM_TAG will be retrieved.
+
+        This will return an empty list when there is no matching ITEM_TAG associated with any target within given EHR.
+          
+        More then one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/ehr_id'
+        - $ref: '#/components/parameters/tag_key'
+        - $ref: '#/components/parameters/tag_value'
+        - $ref: '#/components/parameters/tag_target_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_COMPOSITION_ItemTagList_retrieved'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404_unknown_ehr_id'
+  /ehr/{ehr_id}/composition/{uid_based_id}/tags:
+    get:
+      operationId: composition_tags_get
+      summary: Get COMPOSITION tags
+      description: |
+        Retrieves the list of all ITEM_TAG resources associated with a given target COMPOSITION version or 
+        VERSIONED_COMPOSITION identified by `uid_based_id` and owned by EHR identified by `ehr_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to get the tags of a particular (target) version of the COMPOSITION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to get the tags of the target VERSIONED_COMPOSITION container, 
+        which semantically are equivalent to tags targeting the latest version.
+
+        This will return an empty list when there is no ITEM_TAG associated with the given target.
+          
+        More then one ITEM_TAG may be associated with a single target COMPOSITION or VERSIONED_COMPOSITION, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/ehr_id'
+        - $ref: '#/components/parameters/uid_based_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_COMPOSITION_ItemTagList_retrieved'
+        '404':
+          $ref: '#/components/responses/404_unknown_ehr_id_or_uid_based_id'
+    put:
+      operationId: composition_tags_update
+      summary: Update COMPOSITION tags
+      description: |
+        Updates the list of all ITEM_TAG resources associated with a given target COMPOSITION version or 
+        VERSIONED_COMPOSITION identified by `uid_based_id` and owned by EHR identified by `ehr_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to update the tags of a particular COMPOSITION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to update the tags of the target VERSIONED_COMPOSITION container, 
+        which semantically are equivalent to tags targeting the latest version.
+          
+        Providing an empty list will effectively remove all ITEM_TAG associated with the given target.
+
+        More then one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/ehr_id'
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateItemTag'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200_COMPOSITION_ItemTagList_updated'
+        '204':
+          $ref: '#/components/responses/204_updated'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404_unknown_ehr_id_or_uid_based_id'
+  /ehr/{ehr_id}/composition/{uid_based_id}/tags/{key}:
+    delete:
+      operationId: composition_tags_delete
+      summary: Delete COMPOSITION tags
+      description: |
+        Deletes the ITEM_TAG resource(s) identified by `tag_key`, associated with a given target COMPOSITION version or 
+        VERSIONED_COMPOSITION identified by `uid_based_id` and owned by EHR identified by `ehr_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to delete the tags a particular (target) version of the COMPOSITION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_COMPOSITION container,
+        which semantically are equivalent to tags targeting the latest version.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/ehr_id'
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/key'
+      responses:
+        '204':
+          $ref: '#/components/responses/204_because_deleted'
+        '404':
+          $ref: '#/components/responses/404_unknown_ehr_id_or_uid_based_id_or_key'
+  /ehr/{ehr_id}/ehr_status/{uid_based_id}/tags:
+    get:
+      operationId: ehr_status_tags_get
+      summary: Get EHR_STATUS tags
+      description: |
+        Retrieves the list of all ITEM_TAG resources associated with a given target EHR_STATUS version or 
+        VERSIONED_EHR_STATUS identified by `uid_based_id` and owned by EHR identified by `ehr_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to get the tags of a particular (target) version of the EHR_STATUS version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to get the tags of the target VERSIONED_EHR_STATUS container, 
+        which semantically are equivalent to tags targeting the latest version.
+
+        This will return an empty list when there is no ITEM_TAG associated with the given target.
+          
+        More then one ITEM_TAG may be associated with a single target EHR_STATUS or VERSIONED_EHR_STATUS, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/ehr_id'
+        - $ref: '#/components/parameters/uid_based_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_EHR_STATUS_ItemTagList_retrieved'
+        '404':
+          $ref: '#/components/responses/404_unknown_ehr_id_or_uid_based_id'
+    put:
+      operationId: ehr_status_tags_update
+      summary: Update EHR_STATUS tags
+      description: |
+        Updates the list of all ITEM_TAG resources associated with a given target EHR_STATUS version or 
+        VERSIONED_EHR_STATUS identified by `uid_based_id` and owned by EHR identified by `ehr_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to update the tags of a particular EHR_STATUS version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to update the tags of the target VERSIONED_EHR_STATUS container, 
+        which semantically are equivalent to tags targeting the latest version.
+          
+        Providing an empty list will effectively remove all ITEM_TAG associated with the given target.
+
+        More then one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/ehr_id'
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateItemTag'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200_EHR_STATUS_ItemTagList_updated'
+        '204':
+          $ref: '#/components/responses/204_updated'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404_unknown_ehr_id_or_uid_based_id'
+  /ehr/{ehr_id}/ehr_status/{uid_based_id}/tags/{key}:
+    delete:
+      operationId: ehr_status_tags_delete
+      summary: Delete EHR_STATUS tags
+      description: |
+        Deletes the ITEM_TAG resource(s) identified by `tag_key`, associated with a given target EHR_STATUS version or 
+        VERSIONED_EHR_STATUS identified by `uid_based_id` and owned by EHR identified by `ehr_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to delete the tags a particular (target) version of the EHR_STATUS version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_EHR_STATUS container,
+        which semantically are equivalent to tags targeting the latest version.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/ehr_id'
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/key'
+      responses:
+        '204':
+          $ref: '#/components/responses/204_because_deleted'
+        '404':
+          $ref: '#/components/responses/404_unknown_ehr_id_or_uid_based_id_or_key'
 components:
   schemas:
     UAbstractItem:
@@ -2266,6 +2500,26 @@ components:
         validationErrors:
           - error1
           - error2
+    UpdateItemTag:
+      title: UPDATE_ITEM_TAG
+      required:
+        - key
+      type: object
+      properties:
+        key:
+          type: string
+          description: Tag key (identifier)
+        value:
+          type: string
+          description: Tag value
+        target_path:
+          type: string
+          description: An AQL path withing the `target` used to tag a fine-grained element
+      example:
+        key: flag
+        value: follow-up
+        target_path: /context/start_time/value
+      additionalProperties: false
     ObjectRefOfHierObjectId:
       title: OBJECT_REF
       type: object
@@ -3656,14 +3910,12 @@ components:
         uid:
           value: 0826851c-c4c2-4d61-92b9-410fb8275ff0
         versions:
-          - _type: OBJECT_REF
-            id:
+          - id:
               _type: OBJECT_VERSION_ID
               value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
             namespace: local
             type: COMPOSITION
-          - _type: OBJECT_REF
-            id:
+          - id:
               _type: OBJECT_VERSION_ID
               value: abcdefgh-1323-42bc-b7f8-787f3660a0ba::openEHRSys.example.com::1
             namespace: local
@@ -3683,6 +3935,93 @@ components:
               code_string: '249'
           description:
             value: Description text
+    ItemTag:
+      title: ITEM_TAG
+      required:
+        - key
+        - target
+        - owner_id
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        target_path:
+          type: string
+        target:
+          $ref: '#/components/schemas/UObjectRefOfUidBasedId'
+        owner_id:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+      additionalProperties: false
+    ItemTagOfComposition:
+      title: ITEM_TAG
+      type: object
+      example:
+        key: flag
+        value: follow-up
+        target_path: /context/start_time/value
+        target:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 8849182c-82ad-4088-a07f-48ead4180515
+          namespace: local
+          type: COMPOSITION
+        owner_id:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 7d44b88c-4199-4bad-97dc-d78268e01398
+          namespace: local
+          type: EHR
+      required:
+        - key
+        - target
+        - owner_id
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        target_path:
+          type: string
+        target:
+          $ref: '#/components/schemas/UObjectRefOfUidBasedId'
+        owner_id:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+    ItemTagOfEhrStatus:
+      title: ITEM_TAG
+      type: object
+      example:
+        key: flag
+        value: follow-up
+        target_path: ''
+        target:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 8849182c-82ad-4088-a07f-48ead4180515
+          namespace: local
+          type: EHR_STATUS
+        owner_id:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 7d44b88c-4199-4bad-97dc-d78268e01398
+          namespace: local
+          type: EHR
+      required:
+        - key
+        - target
+        - owner_id
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        target_path:
+          type: string
+        target:
+          $ref: '#/components/schemas/UObjectRefOfUidBasedId'
+        owner_id:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
   parameters:
     subject_id:
       name: subject_id
@@ -3763,6 +4102,19 @@ components:
       schema:
         type: string
         example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"'
+    openehr-item-tag:
+      name: openehr-item-tag
+      in: header
+      description: |
+        The (semicolon-separated) list of all ITEM_TAG to be set or updated and associated with the given VERSION or VERSIONED_OBJECT.
+      required: false
+      style: simple
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/UpdateItemTag'
+      example: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
     uid_based_id:
       name: uid_based_id
       in: path
@@ -3833,6 +4185,40 @@ components:
       schema:
         type: string
         example: 0826851c-c4c2-4d61-92b9-410fb8275ff0
+    tag_key:
+      name: tag_key
+      in: query
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: flag
+    tag_value:
+      name: tag_value
+      in: query
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: follow-up
+    tag_target_path:
+      name: tag_target_path
+      in: query
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: /context/start_time/value
+    key:
+      name: key
+      in: path
+      description: |
+        The ITEM_TAG key.
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: flag
   responses:
     '400':
       description: |
@@ -3889,6 +4275,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_EHR_STATUS'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
       content:
         application/json:
           schema:
@@ -3907,6 +4295,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_EHR_STATUS'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
       content:
         application/json:
           schema:
@@ -3919,6 +4309,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_EHR_STATUS'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
     412_EHR_STATUS:
       description: |
         `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
@@ -3970,6 +4362,8 @@ components:
           $ref: '#/components/headers/ETag_COMPOSITION'
         Location:
           $ref: '#/components/headers/Location_COMPOSITION'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
       content:
         application/json:
           schema:
@@ -3982,6 +4376,8 @@ components:
           $ref: '#/components/headers/ETag_COMPOSITION'
         Location:
           $ref: '#/components/headers/Location_COMPOSITION'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
       content:
         application/json:
           schema:
@@ -3997,6 +4393,8 @@ components:
           $ref: '#/components/headers/ETag_COMPOSITION'
         Location:
           $ref: '#/components/headers/Location_COMPOSITION'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
       content:
         application/json:
           schema:
@@ -4157,6 +4555,48 @@ components:
     404_CONTRIBUTION:
       description: |
         `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a CONTRIBUTION with `contribution_uid` does not exist.
+    200_COMPOSITION_ItemTagList_retrieved:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfComposition'
+    200_COMPOSITION_ItemTagList_updated:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfComposition'
+    204_updated:
+      description: |
+        `204 No Content` is returned when the update operation was successful and the `Prefer` header is missing or is set to `return=minimal`.
+    404_unknown_ehr_id_or_uid_based_id_or_key:
+      description: |
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when the `uid_based_id` does not exist, or when the ITEM_TAG identified by the `key` does not exist.
+    200_EHR_STATUS_ItemTagList_retrieved:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfEhrStatus'
+    200_EHR_STATUS_ItemTagList_updated:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfEhrStatus'
   headers:
     ETag_EHR:
       description: |
@@ -4184,6 +4624,12 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+    openehr-item-tag:
+      description: |
+        The (semicolon-separated) list of all ITEM_TAG associated with the target VERSION or VERSIONED_OBJECT.
+      schema:
+        type: string
+        example: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
     ETag_VERSION:
       description: |
         The `ETag` (i.e. entity tag) response header is the VERSION identifier (i.e. the `version_uid`) enclosed by double quotes.
@@ -4257,6 +4703,7 @@ x-tagGroups:
       - COMPOSITION
       - DIRECTORY
       - CONTRIBUTION
+      - ITEM_TAG
   - name: Related schemas
     tags:
       - CONTENT_ITEM_schema
