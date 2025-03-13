@@ -4,7 +4,7 @@
 
 A common use-case is to execute queries within a specific EHR. 
 
-This is achieved by supplying a `ehr_id` query parameter or setting a `openEHR-EHR-id` request header.
+This is achieved by supplying a `ehr_id` query parameter or setting a `openehr-ehr-id` request header.
 
 
 ## Population queries

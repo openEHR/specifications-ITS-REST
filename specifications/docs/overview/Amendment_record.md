@@ -31,6 +31,13 @@
         <td>13 Mar 2025</td>
     </tr>
     <tr>
+        <td></td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-75" target="_blank" rel="noopener">SPECITS-75</a>:
+            Fix inconsistent and invalid header names</td>
+        <td>E Astrom, J Grisham, S Iancu</td>
+        <td>13 Mar 2025</td>
+    </tr>
+    <tr>
         <td>5.1</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-73" target="_blank" rel="noopener">SPECITS-73</a>:
             Add Demographic API endpoint</td>

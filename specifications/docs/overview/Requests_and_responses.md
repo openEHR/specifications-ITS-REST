@@ -40,11 +40,27 @@ in their request headers.
 
 # HTTP headers
 
-Standard HTTP Request and Response headers are described by [RFC 7231](https://tools.ietf.org/html/rfc7231)
-and by the [IANA Message Headers](http://www.iana.org/assignments/message-headers/message-headers.xhtml).
-The following describes the use of a subset of these headers, as well as the custom headers used by an openEHR API.
+Standard HTTP request and response headers are defined by [RFC 9110](https://tools.ietf.org/html/rfc9110) and the [IANA Message Headers Registry](http://www.iana.org/assignments/message-headers/message-headers.xhtml).
 
-## openEHR-VERSION and openEHR-AUDIT_DETAILS
+This section outlines the subset of these headers used in the openEHR API, along with custom headers specific to openEHR.
+
+## Deprecated headers
+
+[Prior to Release 1.1.0](https://specifications.openehr.org/releases/ITS-REST/Release-1.0.3/overview.html#tag/Requests_and_responses/HTTP-headers), some openEHR custom headers included special characters that caused compatibility issues with HTTP standards. To ensure compliance and improve interoperability, these headers have been deprecated.
+
+While the deprecated headers remain available for backward compatibility, their use is strongly discouraged. The table below lists the updated header names alongside their deprecated counterparts:
+
+| Deprecated header     | New header            |
+|-----------------------|-----------------------|
+| openEHR-VERSION       | openehr-version       |
+| openEHR-AUDIT_DETAILS | openehr-audit-details |
+| openEHR-TEMPLATE_ID   | openehr-template-id   |
+| openEHR-uri           | openehr-uri           |
+| openEHR-EHR-id        | openehr-ehr-id        |
+
+For optimal compatibility, all new implementations should adopt the updated header names.
+
+## openehr-version and openehr-audit-details
 
 When it comes to committing content to an openEHR system, for all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.) the services are
 [performing versioning](https://specifications.openehr.org/releases/RM/latest/common.html#\_change_control_package) under the hood.
@@ -53,15 +69,15 @@ and wrap the content as a [VERSION](https://specifications.openehr.org/releases/
 To keep things simpler and consistent, services MUST also allow `PUT`, `POST` and `DELETE` methods directly on these change-controlled resources.
 However, these operations MUST internally be executed using the 'native' way.
 
-In order to allow clients to provide committal metadata, services MUST accept `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` custom request headers.
+In order to allow clients to provide committal metadata, services MUST accept `openehr-version` and `openehr-audit_details` custom request headers.
 For clients, it is RECOMMENDED to provision these headers based on [authentication and authorization](#tag/Requests_and_responses/Authentication-and-authorization) runtime data.
 Below is a complex example of these request headers used in a `PUT` action to update a COMPOSITION:
 
 ```http
-openEHR-VERSION.lifecycle_state: code_string="532"
-openEHR-AUDIT_DETAILS.change_type: code_string="251"
-openEHR-AUDIT_DETAILS.description: value="An updated composition contribution description"
-openEHR-AUDIT_DETAILS.committer: name="John Doe", external_ref.id="BC8132EA-8F4A-11E7-BB31-BE2E44B06B34", external_ref.namespace="demographic", external_ref.type="PERSON"
+openehr-version: lifecycle_state.code_string="532"
+openehr-audit-details: change_type.code_string="251"
+openehr-audit-details: description.value="An updated composition contribution description"
+openehr-audit-details: committer.name="John Doe",committer.external_ref.id="BC8132EA-8F4A-11E7-BB31-BE2E44B06B34",committer.external_ref.namespace="demographic",committer.external_ref.type="PERSON"
 ```
 
 None of these headers are mandatory, but whatever is provided it MUST be merged with the default VERSION and VERSION.audit_details attributes on commit runtime.
@@ -104,13 +120,13 @@ If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 
 See also details for `If-Match` described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
 
-## openEHR-TEMPLATE_ID
+## openehr-template-id
 
-The `openEHR-TEMPLATE_ID` request header MUST be used whenever committing COMPOSITION (via `PUT` or `POST` methods)
+The `openehr-template-id` request header MUST be used whenever committing COMPOSITION (via `PUT` or `POST` methods)
 using a [simplified data format](#header-alternative-data-formats) which does not support TEMPLATE_ID value
 under an equivalent `LOCATABLE.archetype_details.template_id` attribute of contained data.
 
-## Location and openEHR-uri
+## Location and openehr-uri
 
 The `Location` response header indicates the resource location (URL).
 According to [RFC 7231](https://tools.ietf.org/html/rfc7231#section-7.1.2), it is used to refer to a specific resource in relation to the response.
@@ -127,10 +143,10 @@ Location: https://openEHRSys.example.com/v1/ehr/347a5490-55ee-4da9-b91a-9bba710f
 See [representation details negotiation](#tag/Requests_and_responses/Representation-details-negotiation) section
 for more details on how use this header.
 
-If services have support to generate resource URL as specified by the DV_URI/DV_EHR_URI format, then they MAY send also `openEHR-uri` response header. Example:
+If services have support to generate resource URL as specified by the DV_URI/DV_EHR_URI format, then they MAY send also `openehr-uri` response header. Example:
 
 ```http
-openEHR-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B
+openehr-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B
 ```
 
 ## Prefer
