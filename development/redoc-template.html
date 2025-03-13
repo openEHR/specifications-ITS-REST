@@ -68,7 +68,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-light fixed-top shadow" style="background-color: #effaff">
         <a class="navbar-brand pt-0" href="#">
-            <img src="https://www.openehr.org/static/img/logo.svg" height="24" class="d-inline-block align-middle mr-4" alt="openEHR">
+            <img src="https://specifications.openehr.org/images/openehr_logo_large.png" height="24" class="d-inline-block align-middle mr-4" alt="openEHR">
             <p class="h6 m-0 text-right"><em>REST specifications</em></p>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,6 +93,9 @@
                 </li>
                 <li class="nav-item {{#if templateOptions.page_definition}} active {{/if}}">
                     <a class="nav-link mx-2 {{#if templateOptions.page_definition}} text-primary {{/if}}" href="definition.html">Definition API{{#if templateOptions.page_definition}} <span class="sr-only">(current)</span>{{/if}}</a>
+                </li>
+                <li class="nav-item {{#if templateOptions.page_admin}} active {{/if}}">
+                    <a class="nav-link mx-2 {{#if templateOptions.page_admin}} text-primary {{/if}}" href="admin.html">Admin API{{#if templateOptions.page_admin}} <span class="sr-only">(current)</span>{{/if}}</a>
                 </li>
             </ul>
             <div class="nav">

@@ -24,6 +24,13 @@
         <td>12 Mar 2025</td>
     </tr>
     <tr>
+        <td></td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-80" target="_blank" rel="noopener">SPECITS-80</a>:
+            Add admin support to delete EHR</td>
+        <td>S Iancu</td>
+        <td>13 Mar 2025</td>
+    </tr>
+    <tr>
         <td>5.1</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-73" target="_blank" rel="noopener">SPECITS-73</a>:
             Add Demographic API endpoint</td>

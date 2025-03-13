@@ -11,7 +11,7 @@ parameters:
   - $ref: ../parameters/header/If-Match.yaml
 responses:
   '204':
-    $ref: ../responses/204_because_deleted.yaml
+    $ref: ../responses/204_deleted.yaml
   '400':
     $ref: ../responses/400.yaml
   '404':

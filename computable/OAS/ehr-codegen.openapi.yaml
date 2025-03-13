@@ -391,7 +391,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_COMPOSITION_retrieved'
         '204':
-          $ref: '#/components/responses/204_because_deleted_at_time'
+          $ref: '#/components/responses/204_deleted_at_time'
         '404':
           $ref: '#/components/responses/404_unknown_ehr_id_or_no_version_at_time'
     put:
@@ -596,7 +596,7 @@ paths:
         - $ref: '#/components/parameters/If-Match'
       responses:
         '204':
-          $ref: '#/components/responses/204_because_deleted'
+          $ref: '#/components/responses/204_deleted'
         '400':
           $ref: '#/components/responses/400'
         '404':
@@ -621,7 +621,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_FOLDER_retrieved'
         '204':
-          $ref: '#/components/responses/204_because_deleted_at_time'
+          $ref: '#/components/responses/204_deleted_at_time'
         '404':
           $ref: '#/components/responses/404_directory_unknown_ehr_id_or_no_version_at_time_or_no_path'
   /ehr/{ehr_id}/directory/{version_uid}:
@@ -808,7 +808,7 @@ paths:
         - $ref: '#/components/parameters/key'
       responses:
         '204':
-          $ref: '#/components/responses/204_because_deleted'
+          $ref: '#/components/responses/204_deleted'
         '404':
           $ref: '#/components/responses/404_unknown_ehr_id_or_uid_based_id_or_key'
   /ehr/{ehr_id}/ehr_status/{uid_based_id}/tags:
@@ -900,7 +900,7 @@ paths:
         - $ref: '#/components/parameters/key'
       responses:
         '204':
-          $ref: '#/components/responses/204_because_deleted'
+          $ref: '#/components/responses/204_deleted'
         '404':
           $ref: '#/components/responses/404_unknown_ehr_id_or_uid_based_id_or_key'
 components:
@@ -3174,6 +3174,7 @@ components:
       style: simple
       schema:
         type: string
+        format: uuid
         example: 7d44b88c-4199-4bad-97dc-d78268e01398
     version_uid:
       name: version_uid
@@ -3194,6 +3195,7 @@ components:
       explode: true
       schema:
         type: string
+        format: datetime
         example: '2015-01-20T19:30:22.765+01:00'
     If-Match:
       name: If-Match
@@ -3240,6 +3242,7 @@ components:
       style: simple
       schema:
         type: string
+        format: uuid
         example: 8849182c-82ad-4088-a07f-48ead4180515
     uid_based_id_as_version_uid:
       name: uid_based_id
@@ -3260,6 +3263,7 @@ components:
       style: simple
       schema:
         type: string
+        format: uuid
         example: 8849182c-82ad-4088-a07f-48ead4180515
     version_uid_COMPOSITION:
       name: version_uid
@@ -3290,6 +3294,7 @@ components:
       style: simple
       schema:
         type: string
+        format: uuid
         example: 0826851c-c4c2-4d61-92b9-410fb8275ff0
     tag_key:
       name: tag_key
@@ -3488,7 +3493,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Composition'
-    204_because_deleted_at_time:
+    204_deleted_at_time:
       description: |
         `204 No Content` is returned when the resource identified by the request parameters (at specified `version_at_time`) time has been deleted.
     200_COMPOSITION_updated:
@@ -3624,7 +3629,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Folder'
-    204_because_deleted:
+    204_deleted:
       description: |
         `204 No Content` is returned when the resource identified by the request parameters has been (logically) deleted.
     404_directory_unknown_ehr_id_or_no_version_uid_or_no_path:
