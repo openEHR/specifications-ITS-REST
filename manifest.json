@@ -78,7 +78,7 @@
             "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR Admin API in a RESTful manner.",
             "micro_summary": "Admin API",
             "copyright_year": "2025",
-            "spec_status": "Admin",
+            "spec_status": "DEVELOPMENT",
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, Admin"
         },
         {
