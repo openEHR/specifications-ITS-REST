@@ -6,6 +6,7 @@ The openEHR REST specifications following service endpoints:
  - [Demographic API](demographic.html)
  - [Query API](query.html)
  - [Definition API](definition.html)
+ - [Admin API](admin.html)
 
 Specifications can be downloaded as YAML files in [OpenAPI Specification 3.0](https://spec.openapis.org/oas/v3.0.3) format.
 For each API there are two flavours provided: 

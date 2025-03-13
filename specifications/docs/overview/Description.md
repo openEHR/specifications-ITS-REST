@@ -5,7 +5,7 @@
     </colgroup>
     <thead>
     <tr>
-        <th colspan="2">© 2018 - 2024 The openEHR Foundation</th>
+        <th colspan="2">© 2018 - 2025 The openEHR Foundation</th>
     </tr>
     </thead>
     <tbody>

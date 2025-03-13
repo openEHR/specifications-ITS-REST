@@ -19,7 +19,7 @@ info:
         </colgroup>
         <thead>
         <tr>
-            <th colspan="2">© 2018 - 2024 The openEHR Foundation</th>
+            <th colspan="2">© 2018 - 2025 The openEHR Foundation</th>
         </tr>
         </thead>
         <tbody>
@@ -151,6 +151,7 @@ tags:
        - [Demographic API](demographic.html)
        - [Query API](query.html)
        - [Definition API](definition.html)
+       - [Admin API](admin.html)
 
       Specifications can be downloaded as YAML files in [OpenAPI Specification 3.0](https://spec.openapis.org/oas/v3.0.3) format.
       For each API there are two flavours provided: 

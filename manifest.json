@@ -71,6 +71,17 @@
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, DEMOGRAPHIC"
         },
         {
+            "id": "admin",
+            "title": "Admin REST API",
+            "title_short": "Admin API",
+            "description": "openEHR Admin REST API",
+            "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR Admin API in a RESTful manner.",
+            "micro_summary": "Admin API",
+            "copyright_year": "2025",
+            "spec_status": "Admin",
+            "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, Admin"
+        },
+        {
             "id": "simplified_data_template",
             "title": "Simplified Data Template (SDT)",
             "title_short": "SDT",
