@@ -58,7 +58,7 @@ tags:
 
       A common use-case is to execute queries within a specific EHR. 
 
-      This is achieved by supplying a `ehr_id` query parameter or setting a `openEHR-EHR-id` request header.
+      This is achieved by supplying a `ehr_id` query parameter or setting a `openehr-ehr-id` request header.
 
 
       ## Population queries
@@ -139,7 +139,7 @@ tags:
       - other parameter(s) to replace placeholder(s) within the query, here generically named `query_parameters` (see [below](#tag/Request/Common-Headers-and-Query-Parameters/Query-parameters)).
 
       Related request headers:
-      - `openEHR-EHR-id` - used to execute the query within a single EHR context: an EHR identifier taken from EHR.ehr_id.value
+      - `openehr-ehr-id` - used to execute the query within a single EHR context: an EHR identifier taken from EHR.ehr_id.value
 
       Related response headers:
       - `ETag` - A unique identifier of the resultSet
@@ -149,7 +149,7 @@ tags:
 
       The `ehr_id` parameter SHOULD be supplied by clients when executing single EHR queries and MAY be used by the underlying backend to perform routing, optimizations or similar. It MUST NOT be supplied for 'population queries' and similar multi-patient queries.
 
-      Depending on the needs, clients MAY supply it as a query parameter `ehr_id` or alternatively as a request header named `openEHR-EHR-id`.
+      Depending on the needs, clients MAY supply it as a query parameter `ehr_id` or alternatively as a request header named `openehr-ehr-id`.
 
 
       ### Query parameters

@@ -21,21 +21,21 @@
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-77" target="_blank" rel="noopener">SPECITS-77</a>:
             Add support for ITEM_TAGs</td>
         <td>REST WG</td>
-        <td>12 Mar 2025</td>
+        <td>14 Mar 2025</td>
     </tr>
     <tr>
         <td></td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-80" target="_blank" rel="noopener">SPECITS-80</a>:
             Add admin support to delete EHR</td>
         <td>S Iancu</td>
-        <td>13 Mar 2025</td>
+        <td>14 Mar 2025</td>
     </tr>
     <tr>
         <td></td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-75" target="_blank" rel="noopener">SPECITS-75</a>:
             Fix inconsistent and invalid header names</td>
         <td>E Astrom, J Grisham, S Iancu</td>
-        <td>13 Mar 2025</td>
+        <td>14 Mar 2025</td>
     </tr>
     <tr>
         <td>5.1</td>
