@@ -10,12 +10,11 @@ Furthermore, general details about resources, [data representation](#tag/Resourc
 
 # HTTP Methods
 
-HTTP Methods are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4)
-and by [IANA HTTP Method Registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
+HTTP Methods are described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-overview).
 The following subset is being used in this specification:
 
 | Method  | Description                                                                              |
-| ------- | ---------------------------------------------------------------------------------------- |
+|---------|------------------------------------------------------------------------------------------|
 | GET     | Transfer a current representation of the target resource.                                |
 | HEAD    | Check existence of target resource and return the status, but does not transfer content. |
 | POST    | Perform resource-specific processing on the request payload.                             |
@@ -23,13 +22,15 @@ The following subset is being used in this specification:
 | DELETE  | Remove all current representations of the target resource.                               |
 | OPTIONS | Describe the communication options for the target resource.                              |
 
+A server that receives a request method that is unrecognized or not implemented SHOULD respond with the `501 Not Implemented` status code. A server that receives a request method that is recognized and implemented, but not allowed for the target resource, SHOULD respond with the `405 Method Not Allowed` status code.
+
 
 # Authentication and authorization
 
 Services SHOULD implement and support an HTTP Authentication and Authorization framework
 (which can support various schemes) but there is no assumption or recommendation being made
 in this specification about which authentication scheme should be used by services and clients.
-See [RFC 7235](https://tools.ietf.org/html/rfc7235) or [Mozilla's HTTP Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+See [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-http-authentication) or [Mozilla's HTTP Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 for details on this subject.
 
 If an Authentication and Authorisation framework is present, services MUST properly use `WWW-Authenticate` and/or
@@ -40,11 +41,27 @@ in their request headers.
 
 # HTTP headers
 
-Standard HTTP Request and Response headers are described by [RFC 7231](https://tools.ietf.org/html/rfc7231)
-and by the [IANA Message Headers](http://www.iana.org/assignments/message-headers/message-headers.xhtml).
-The following describes the use of a subset of these headers, as well as the custom headers used by an openEHR API.
+Standard HTTP request and response headers are defined by [RFC 9110](https://tools.ietf.org/html/rfc9110) and the [IANA Message Headers Registry](http://www.iana.org/assignments/message-headers/message-headers.xhtml).
 
-## openEHR-VERSION and openEHR-AUDIT_DETAILS
+This section outlines the subset of these headers used in the openEHR API, along with custom headers specific to openEHR.
+
+## Deprecated headers
+
+[Prior to Release 1.1.0](https://specifications.openehr.org/releases/ITS-REST/Release-1.0.3/overview.html#tag/Requests_and_responses/HTTP-headers), some openEHR custom headers included special characters that caused compatibility issues with HTTP standards. To ensure compliance and improve interoperability, these headers have been deprecated.
+
+While the deprecated headers remain available for backward compatibility, their use is strongly discouraged. The table below lists the updated header names alongside their deprecated counterparts:
+
+| Deprecated header     | New header            |
+|-----------------------|-----------------------|
+| openEHR-VERSION       | openehr-version       |
+| openEHR-AUDIT_DETAILS | openehr-audit-details |
+| openEHR-TEMPLATE_ID   | openehr-template-id   |
+| openEHR-uri           | openehr-uri           |
+| openEHR-EHR-id        | openehr-ehr-id        |
+
+For optimal compatibility, all new implementations should adopt the updated header names.
+
+## openehr-version and openehr-audit-details
 
 When it comes to committing content to an openEHR system, for all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.) the services are
 [performing versioning](https://specifications.openehr.org/releases/RM/latest/common.html#\_change_control_package) under the hood.
@@ -53,15 +70,15 @@ and wrap the content as a [VERSION](https://specifications.openehr.org/releases/
 To keep things simpler and consistent, services MUST also allow `PUT`, `POST` and `DELETE` methods directly on these change-controlled resources.
 However, these operations MUST internally be executed using the 'native' way.
 
-In order to allow clients to provide committal metadata, services MUST accept `openEHR-VERSION` and `openEHR-AUDIT_DETAILS` custom request headers.
+In order to allow clients to provide committal metadata, services MUST accept `openehr-version` and `openehr-audit_details` custom request headers.
 For clients, it is RECOMMENDED to provision these headers based on [authentication and authorization](#tag/Requests_and_responses/Authentication-and-authorization) runtime data.
 Below is a complex example of these request headers used in a `PUT` action to update a COMPOSITION:
 
 ```http
-openEHR-VERSION.lifecycle_state: code_string="532"
-openEHR-AUDIT_DETAILS.change_type: code_string="251"
-openEHR-AUDIT_DETAILS.description: value="An updated composition contribution description"
-openEHR-AUDIT_DETAILS.committer: name="John Doe", external_ref.id="BC8132EA-8F4A-11E7-BB31-BE2E44B06B34", external_ref.namespace="demographic", external_ref.type="PERSON"
+openehr-version: lifecycle_state.code_string="532"
+openehr-audit-details: change_type.code_string="251"
+openehr-audit-details: description.value="An updated composition contribution description"
+openehr-audit-details: committer.name="John Doe",committer.external_ref.id="BC8132EA-8F4A-11E7-BB31-BE2E44B06B34",committer.external_ref.namespace="demographic",committer.external_ref.type="PERSON"
 ```
 
 None of these headers are mandatory, but whatever is provided it MUST be merged with the default VERSION and VERSION.audit_details attributes on commit runtime.
@@ -102,18 +119,18 @@ Example:
 If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 ```
 
-See also details for `If-Match` described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
+See also details for `If-Match` described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-if-match).
 
-## openEHR-TEMPLATE_ID
+## openehr-template-id
 
-The `openEHR-TEMPLATE_ID` request header MUST be used whenever committing COMPOSITION (via `PUT` or `POST` methods)
+The `openehr-template-id` request header MUST be used whenever committing COMPOSITION (via `PUT` or `POST` methods)
 using a [simplified data format](#header-alternative-data-formats) which does not support TEMPLATE_ID value
 under an equivalent `LOCATABLE.archetype_details.template_id` attribute of contained data.
 
-## Location and openEHR-uri
+## Location and openehr-uri
 
 The `Location` response header indicates the resource location (URL).
-According to [RFC 7231](https://tools.ietf.org/html/rfc7231#section-7.1.2), it is used to refer to a specific resource in relation to the response.
+According to [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.location), it is used to refer to a specific resource in relation to the response.
 The type of relationship is defined by the combination of request method and status code semantics.
 The identifiers part of this URI-reference SHOULD comply with [resource identification](#tag/Resources/Resource-identification) semantics of this specification.
 
@@ -127,10 +144,10 @@ Location: https://openEHRSys.example.com/v1/ehr/347a5490-55ee-4da9-b91a-9bba710f
 See [representation details negotiation](#tag/Requests_and_responses/Representation-details-negotiation) section
 for more details on how use this header.
 
-If services have support to generate resource URL as specified by the DV_URI/DV_EHR_URI format, then they MAY send also `openEHR-uri` response header. Example:
+If services have support to generate resource URL as specified by the DV_URI/DV_EHR_URI format, then they MAY send also `openehr-uri` response header. Example:
 
 ```http
-openEHR-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B
+openehr-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B
 ```
 
 ## Prefer
@@ -143,16 +160,9 @@ See more details on [representation details negotiation](#tag/Requests_and_respo
 These headers are mainly related to whether or not a returned resource may be cacheable.
 Their purpose is to give clients information about the state of the requested resources.
 
-According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
+According to [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag),
 
-> The "ETag" header field in a response provides the current entity-tag
-for the selected representation, as determined at the conclusion of
-handling the request.  An entity-tag is an opaque validator for
-differentiating between multiple representations of the same
-resource, regardless of whether those multiple representations are
-due to resource state changes over time, content negotiation
-resulting in multiple representations being valid at the same time,
-or both.
+> The "ETag" field in a response provides the current entity tag for the selected representation, as determined at the conclusion of handling the request. An entity tag is an opaque validator for differentiating between multiple representations of the same resource, regardless of whether those multiple representations are due to resource state changes over time, content negotiation resulting in multiple representations being valid at the same time, or both. An entity tag consists of an opaque quoted string, possibly prefixed by a weakness indicator.
 
 The `ETag` response HTTP header contains a string token that the server associates with a resource in order to
 uniquely identify the state of that resource over its lifetime. The value of the token changes as soon as the resource changes.
@@ -179,7 +189,7 @@ that have similar unique identifier.
 
 # HTTP status codes 
 
-HTTP Status codes are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6)
+HTTP Status codes are described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-status-codes)
 and by the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 The following subset of the is being used in this specification:
 
