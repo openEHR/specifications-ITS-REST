@@ -10,12 +10,11 @@ Furthermore, general details about resources, [data representation](#tag/Resourc
 
 # HTTP Methods
 
-HTTP Methods are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4)
-and by [IANA HTTP Method Registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
+HTTP Methods are described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-overview).
 The following subset is being used in this specification:
 
 | Method  | Description                                                                              |
-| ------- | ---------------------------------------------------------------------------------------- |
+|---------|------------------------------------------------------------------------------------------|
 | GET     | Transfer a current representation of the target resource.                                |
 | HEAD    | Check existence of target resource and return the status, but does not transfer content. |
 | POST    | Perform resource-specific processing on the request payload.                             |
@@ -23,13 +22,15 @@ The following subset is being used in this specification:
 | DELETE  | Remove all current representations of the target resource.                               |
 | OPTIONS | Describe the communication options for the target resource.                              |
 
+A server that receives a request method that is unrecognized or not implemented SHOULD respond with the `501 Not Implemented` status code. A server that receives a request method that is recognized and implemented, but not allowed for the target resource, SHOULD respond with the `405 Method Not Allowed` status code.
+
 
 # Authentication and authorization
 
 Services SHOULD implement and support an HTTP Authentication and Authorization framework
 (which can support various schemes) but there is no assumption or recommendation being made
 in this specification about which authentication scheme should be used by services and clients.
-See [RFC 7235](https://tools.ietf.org/html/rfc7235) or [Mozilla's HTTP Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+See [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-http-authentication) or [Mozilla's HTTP Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 for details on this subject.
 
 If an Authentication and Authorisation framework is present, services MUST properly use `WWW-Authenticate` and/or
@@ -118,7 +119,7 @@ Example:
 If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 ```
 
-See also details for `If-Match` described by [RFC 7232](https://tools.ietf.org/html/rfc7232#section-3.1).
+See also details for `If-Match` described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-if-match).
 
 ## openehr-template-id
 
@@ -129,7 +130,7 @@ under an equivalent `LOCATABLE.archetype_details.template_id` attribute of conta
 ## Location and openehr-uri
 
 The `Location` response header indicates the resource location (URL).
-According to [RFC 7231](https://tools.ietf.org/html/rfc7231#section-7.1.2), it is used to refer to a specific resource in relation to the response.
+According to [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.location), it is used to refer to a specific resource in relation to the response.
 The type of relationship is defined by the combination of request method and status code semantics.
 The identifiers part of this URI-reference SHOULD comply with [resource identification](#tag/Resources/Resource-identification) semantics of this specification.
 
@@ -159,16 +160,9 @@ See more details on [representation details negotiation](#tag/Requests_and_respo
 These headers are mainly related to whether or not a returned resource may be cacheable.
 Their purpose is to give clients information about the state of the requested resources.
 
-According to [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3),
+According to [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag),
 
-> The "ETag" header field in a response provides the current entity-tag
-for the selected representation, as determined at the conclusion of
-handling the request.  An entity-tag is an opaque validator for
-differentiating between multiple representations of the same
-resource, regardless of whether those multiple representations are
-due to resource state changes over time, content negotiation
-resulting in multiple representations being valid at the same time,
-or both.
+> The "ETag" field in a response provides the current entity tag for the selected representation, as determined at the conclusion of handling the request. An entity tag is an opaque validator for differentiating between multiple representations of the same resource, regardless of whether those multiple representations are due to resource state changes over time, content negotiation resulting in multiple representations being valid at the same time, or both. An entity tag consists of an opaque quoted string, possibly prefixed by a weakness indicator.
 
 The `ETag` response HTTP header contains a string token that the server associates with a resource in order to
 uniquely identify the state of that resource over its lifetime. The value of the token changes as soon as the resource changes.
@@ -195,7 +189,7 @@ that have similar unique identifier.
 
 # HTTP status codes 
 
-HTTP Status codes are described by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6)
+HTTP Status codes are described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-status-codes)
 and by the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 The following subset of the is being used in this specification:
 
