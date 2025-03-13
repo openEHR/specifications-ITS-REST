@@ -1,0 +1,12 @@
+name: openehr-item-tag
+in: header
+description: |
+  The (semicolon-separated) list of all ITEM_TAG to be set or updated and associated with the given VERSION or VERSIONED_OBJECT.
+required: false
+style: simple
+explode: true
+schema:
+  type: array
+  items:
+    $ref: ../../schemas/common/UpdateItemTag.yaml
+example: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"

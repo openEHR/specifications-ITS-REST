@@ -92,6 +92,25 @@ paths:
   '/ehr/{ehr_id}/contribution/{contribution_uid}':
     get:
       $ref: ./operations/contribution_get.yaml
+  '/ehr/{ehr_id}/tags':
+    get:
+      $ref: ./operations/ehr_tags_get.yaml
+  '/ehr/{ehr_id}/composition/{uid_based_id}/tags':
+    get:
+      $ref: ./operations/composition_tags_get.yaml
+    put:
+      $ref: ./operations/composition_tags_update.yaml
+  '/ehr/{ehr_id}/composition/{uid_based_id}/tags/{key}':
+    delete:
+      $ref: ./operations/composition_tags_delete.yaml
+  '/ehr/{ehr_id}/ehr_status/{uid_based_id}/tags':
+    get:
+      $ref: ./operations/ehr_status_tags_get.yaml
+    put:
+      $ref: ./operations/ehr_status_tags_update.yaml
+  '/ehr/{ehr_id}/ehr_status/{uid_based_id}/tags/{key}':
+    delete:
+      $ref: ./operations/ehr_status_tags_delete.yaml
 tags:
   - name: EHR
     description: |
@@ -113,6 +132,9 @@ tags:
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) resource.
       Actions upon resources of this group are also formally described in the [I_EHR_CONTRIBUTION](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_ehr_contribution_interface) Abstract Service Model interface.
+  - name: ITEM_TAG
+    description: |
+      Management of [ITEM_TAG](https://specifications.openehr.org/releases/RM/development/common.html#_item_tag_class) resources.
   - name: CONTENT_ITEM_schema
     x-displayName: CONTENT_ITEM
     description: |
@@ -137,6 +159,7 @@ x-tagGroups:
       - COMPOSITION
       - DIRECTORY
       - CONTRIBUTION
+      - ITEM_TAG
   - name: Related schemas
     tags:
       - CONTENT_ITEM_schema
