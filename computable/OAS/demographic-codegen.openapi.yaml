@@ -148,7 +148,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_AGENT_retrieved'
         '204':
-          $ref: '#/components/responses/204_because_deleted_at_time'
+          $ref: '#/components/responses/204_deleted_at_time'
         '404':
           $ref: '#/components/responses/404_not_found_or_no_version_at_time'
     put:
@@ -256,7 +256,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_GROUP_retrieved'
         '204':
-          $ref: '#/components/responses/204_because_deleted_at_time'
+          $ref: '#/components/responses/204_deleted_at_time'
         '404':
           $ref: '#/components/responses/404_not_found_or_no_version_at_time'
     put:
@@ -364,7 +364,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_ORGANISATION_retrieved'
         '204':
-          $ref: '#/components/responses/204_because_deleted_at_time'
+          $ref: '#/components/responses/204_deleted_at_time'
         '404':
           $ref: '#/components/responses/404_not_found_or_no_version_at_time'
     put:
@@ -472,7 +472,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_PERSON_retrieved'
         '204':
-          $ref: '#/components/responses/204_because_deleted_at_time'
+          $ref: '#/components/responses/204_deleted_at_time'
         '404':
           $ref: '#/components/responses/404_not_found_or_no_version_at_time'
     put:
@@ -580,7 +580,7 @@ paths:
         '200':
           $ref: '#/components/responses/200_ROLE_retrieved'
         '204':
-          $ref: '#/components/responses/204_because_deleted_at_time'
+          $ref: '#/components/responses/204_deleted_at_time'
         '404':
           $ref: '#/components/responses/404_not_found_or_no_version_at_time'
     put:
@@ -2511,14 +2511,12 @@ components:
         uid:
           value: 0826851c-c4c2-4d61-92b9-410fb8275ff0
         versions:
-          - _type: OBJECT_REF
-            id:
+          - id:
               _type: OBJECT_VERSION_ID
               value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
             namespace: local
             type: COMPOSITION
-          - _type: OBJECT_REF
-            id:
+          - id:
               _type: OBJECT_VERSION_ID
               value: abcdefgh-1323-42bc-b7f8-787f3660a0ba::openEHRSys.example.com::1
             namespace: local
@@ -2572,6 +2570,7 @@ components:
       explode: true
       schema:
         type: string
+        format: datetime
         example: '2015-01-20T19:30:22.765+01:00'
     uid_based_id_as_versioned_object_uid:
       name: uid_based_id
@@ -2582,6 +2581,7 @@ components:
       style: simple
       schema:
         type: string
+        format: uuid
         example: 8849182c-82ad-4088-a07f-48ead4180515
     If-Match:
       name: If-Match
@@ -2615,6 +2615,7 @@ components:
       style: simple
       schema:
         type: string
+        format: uuid
         example: 6cb19121-4307-4648-9da0-d62e4d51f19b
     version_uid:
       name: version_uid
@@ -2635,6 +2636,7 @@ components:
       style: simple
       schema:
         type: string
+        format: uuid
         example: 0826851c-c4c2-4d61-92b9-410fb8275ff0
   headers:
     ETag:
@@ -2715,7 +2717,7 @@ components:
             $ref: '#/components/schemas/Error'
     '404':
       description: |
-        `404 Not Found` is returned when either the URL configured doesn't exist at all, or the targeted resource doesn't exist.
+        `404 Not Found` is returned when, based on the request parameters, the server did not find a current representation of a target resource, or is not willing to disclose that one exists.
     '409':
       description: |
         `409 Conflict` is returned when a resource with same identifier(s) already exists.
@@ -2747,7 +2749,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Agent'
-    204_because_deleted_at_time:
+    204_deleted_at_time:
       description: |
         `204 No Content` is returned when the resource identified by the request parameters (at specified `version_at_time`) time has been deleted.
     404_not_found_or_no_version_at_time:
