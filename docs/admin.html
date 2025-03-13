@@ -57,272 +57,300 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
-    <script src="https://cdn.redoc.ly/redoc/v2.1.3/bundles/redoc.standalone.js"></script><style data-styled="true" data-styled-version="6.1.8">.fSrimA{width:calc(100% - 40%);padding:0 30px;}/*!sc*/
-@media print,screen and (max-width: 75rem){.fSrimA{width:100%;padding:0px 30px;}}/*!sc*/
-data-styled.g4[id="sc-hLQSwg"]{content:"fSrimA,"}/*!sc*/
-.OuEvO{padding:0px 0;}/*!sc*/
-.OuEvO:last-child{min-height:calc(100vh + 1px);}/*!sc*/
-.OuEvO>.OuEvO:last-child{min-height:initial;}/*!sc*/
-@media print,screen and (max-width: 75rem){.OuEvO{padding:0;}}/*!sc*/
-.ksVRJd{padding:0px 0;position:relative;}/*!sc*/
-.ksVRJd:last-child{min-height:calc(100vh + 1px);}/*!sc*/
-.ksVRJd>.ksVRJd:last-child{min-height:initial;}/*!sc*/
-@media print,screen and (max-width: 75rem){.ksVRJd{padding:0;}}/*!sc*/
-.ksVRJd:not(:last-of-type):after{position:absolute;bottom:0;width:100%;display:block;content:'';border-bottom:1px solid rgba(0, 0, 0, 0.2);}/*!sc*/
-data-styled.g5[id="sc-eDLKkx"]{content:"OuEvO,ksVRJd,"}/*!sc*/
-.dbQgao{width:40%;color:#ffffff;background-color:#263238;padding:0 30px;}/*!sc*/
-@media print,screen and (max-width: 75rem){.dbQgao{width:100%;padding:0px 30px;}}/*!sc*/
-data-styled.g6[id="sc-jTQCzO"]{content:"dbQgao,"}/*!sc*/
-.jGdkPR{background-color:#263238;}/*!sc*/
-data-styled.g7[id="sc-gLLuof"]{content:"jGdkPR,"}/*!sc*/
-.fsPUig{display:flex;width:100%;padding:0;}/*!sc*/
-@media print,screen and (max-width: 75rem){.fsPUig{flex-direction:column;}}/*!sc*/
-data-styled.g8[id="sc-iBdnpw"]{content:"fsPUig,"}/*!sc*/
-.gOHUue{font-family:Source Sans Pro;font-weight:700;font-size:1.85714em;line-height:1.6em;color:#333333;}/*!sc*/
-data-styled.g9[id="sc-fsYfdN"]{content:"gOHUue,"}/*!sc*/
-.jbdRxx{font-family:Source Sans Pro;font-weight:700;font-size:1.57143em;line-height:1.6em;color:#333333;margin:0 0 20px;}/*!sc*/
-data-styled.g10[id="sc-qZrbh"]{content:"jbdRxx,"}/*!sc*/
-.cnGhhy{border-bottom:1px solid rgba(38, 50, 56, 0.3);margin:1em 0 1em 0;color:rgba(38, 50, 56, 0.5);font-weight:normal;text-transform:uppercase;font-size:0.929em;line-height:20px;}/*!sc*/
-data-styled.g13[id="sc-irLvIq"]{content:"cnGhhy,"}/*!sc*/
-.fNhImz{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
-.fNhImz:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
-h1:hover>.fNhImz::before,h2:hover>.fNhImz::before,.fNhImz:hover::before{visibility:visible;}/*!sc*/
-data-styled.g14[id="sc-csKJxZ"]{content:"fNhImz,"}/*!sc*/
-.gEokXu{height:18px;width:18px;min-width:18px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
-.exoGJA{height:20px;width:20px;min-width:20px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(0);}/*!sc*/
-.exoGJA polygon{fill:white;}/*!sc*/
-data-styled.g15[id="sc-eTNRI"]{content:"gEokXu,exoGJA,"}/*!sc*/
-.cLxLAu{border-left:1px solid #a4a4c6;box-sizing:border-box;position:relative;padding:10px 10px 10px 0;}/*!sc*/
-@media screen and (max-width: 50rem){.cLxLAu{display:block;overflow:hidden;}}/*!sc*/
-tr:first-of-type>.cLxLAu,tr.last>.cLxLAu{border-left-width:0;background-position:top left;background-repeat:no-repeat;background-size:1px 100%;}/*!sc*/
-tr:first-of-type>.cLxLAu{background-image:linear-gradient(
+    <script src="https://cdn.redocly.com/redoc/v2.4.0/bundles/redoc.standalone.js"></script><style data-styled="true" data-styled-version="6.1.15">.ezLEvM{width:calc(100% - 40%);padding:0 30px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.ezLEvM{width:100%;padding:0px 30px;}}/*!sc*/
+data-styled.g4[id="sc-fLDLck"]{content:"ezLEvM,"}/*!sc*/
+.kbXiPQ{padding:0px 0;}/*!sc*/
+.kbXiPQ:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.kbXiPQ>.kbXiPQ:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.kbXiPQ{padding:0;}}/*!sc*/
+.lfXVQf{padding:0px 0;position:relative;}/*!sc*/
+.lfXVQf:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.lfXVQf>.lfXVQf:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.lfXVQf{padding:0;}}/*!sc*/
+.lfXVQf:not(:last-of-type):after{position:absolute;bottom:0;width:100%;display:block;content:'';border-bottom:1px solid rgba(0, 0, 0, 0.2);}/*!sc*/
+data-styled.g5[id="sc-dycHyt"]{content:"kbXiPQ,lfXVQf,"}/*!sc*/
+.gQxIbn{width:40%;color:#ffffff;background-color:#263238;padding:0 30px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.gQxIbn{width:100%;padding:0px 30px;}}/*!sc*/
+data-styled.g6[id="sc-jbAkgO"]{content:"gQxIbn,"}/*!sc*/
+.libpUV{background-color:#263238;}/*!sc*/
+data-styled.g7[id="sc-gNZgCX"]{content:"libpUV,"}/*!sc*/
+.eTCvZl{display:flex;width:100%;padding:0;}/*!sc*/
+@media print,screen and (max-width: 75rem){.eTCvZl{flex-direction:column;}}/*!sc*/
+data-styled.g8[id="sc-kfeOyU"]{content:"eTCvZl,"}/*!sc*/
+.djwAnR{font-family:Source Sans Pro;font-weight:700;font-size:1.85714em;line-height:1.6em;color:#333333;}/*!sc*/
+data-styled.g9[id="sc-hRDKVd"]{content:"djwAnR,"}/*!sc*/
+.bdVLOV{font-family:Source Sans Pro;font-weight:700;font-size:1.57143em;line-height:1.6em;color:#333333;margin:0 0 20px;}/*!sc*/
+data-styled.g10[id="sc-jBIHhB"]{content:"bdVLOV,"}/*!sc*/
+.kXHtdt{font-family:Source Sans Pro;font-weight:700;font-size:1.27em;line-height:1.6em;color:#333333;}/*!sc*/
+data-styled.g11[id="sc-cMqPwU"]{content:"kXHtdt,"}/*!sc*/
+.dunSEZ{border-bottom:1px solid rgba(38, 50, 56, 0.3);margin:1em 0 1em 0;color:rgba(38, 50, 56, 0.5);font-weight:normal;text-transform:uppercase;font-size:0.929em;line-height:20px;}/*!sc*/
+data-styled.g13[id="sc-deSjom"]{content:"dunSEZ,"}/*!sc*/
+.ccWJGj{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.ccWJGj:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+h1:hover>.ccWJGj::before,h2:hover>.ccWJGj::before,.ccWJGj:hover::before{visibility:visible;}/*!sc*/
+data-styled.g14[id="sc-jHswkR"]{content:"ccWJGj,"}/*!sc*/
+.krlsJY{height:18px;width:18px;min-width:18px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.jsDnaG{height:20px;width:20px;min-width:20px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(0);}/*!sc*/
+.jsDnaG polygon{fill:white;}/*!sc*/
+data-styled.g15[id="sc-cSaEAk"]{content:"krlsJY,jsDnaG,"}/*!sc*/
+.fSvPEv{border-left:1px solid #a4a4c6;box-sizing:border-box;position:relative;padding:10px 10px 10px 0;}/*!sc*/
+@media screen and (max-width: 50rem){.fSvPEv{display:block;overflow:hidden;}}/*!sc*/
+tr:first-of-type>.fSvPEv,tr.last>.fSvPEv{border-left-width:0;background-position:top left;background-repeat:no-repeat;background-size:1px 100%;}/*!sc*/
+tr:first-of-type>.fSvPEv{background-image:linear-gradient(
       to bottom,
       transparent 0%,
       transparent 22px,
       #a4a4c6 22px,
       #a4a4c6 100%
     );}/*!sc*/
-tr.last>.cLxLAu{background-image:linear-gradient(
+tr.last>.fSvPEv{background-image:linear-gradient(
       to bottom,
       #a4a4c6 0%,
       #a4a4c6 22px,
       transparent 22px,
       transparent 100%
     );}/*!sc*/
-tr.last+tr>.cLxLAu{border-left-color:transparent;}/*!sc*/
-tr.last:first-child>.cLxLAu{background:none;border-left-color:transparent;}/*!sc*/
-data-styled.g18[id="sc-hABBmJ"]{content:"cLxLAu,"}/*!sc*/
-.gUQzCY{vertical-align:top;line-height:20px;white-space:nowrap;font-size:13px;font-family:monospace;}/*!sc*/
-.gUQzCY.deprecated{text-decoration:line-through;color:#707070;}/*!sc*/
-data-styled.g20[id="sc-fHejqy"]{content:"gUQzCY,"}/*!sc*/
-.bGEmHi{border-bottom:1px solid #9fb4be;padding:10px 0;width:75%;box-sizing:border-box;}/*!sc*/
-tr.expanded .bGEmHi{border-bottom:none;}/*!sc*/
-@media screen and (max-width: 50rem){.bGEmHi{padding:0 20px;border-bottom:none;border-left:1px solid #a4a4c6;}tr.last>.bGEmHi{border-left:none;}}/*!sc*/
-data-styled.g21[id="sc-blmEgr"]{content:"bGEmHi,"}/*!sc*/
-.cKGSqL{color:#a4a4c6;font-family:monospace;margin-right:10px;}/*!sc*/
-.cKGSqL::before{content:'';display:inline-block;vertical-align:middle;width:10px;height:1px;background:#a4a4c6;}/*!sc*/
-.cKGSqL::after{content:'';display:inline-block;vertical-align:middle;width:1px;background:#a4a4c6;height:7px;}/*!sc*/
-data-styled.g22[id="sc-ifyrAs"]{content:"cKGSqL,"}/*!sc*/
-.kuUpel{border-collapse:separate;border-radius:3px;font-size:16px;border-spacing:0;width:100%;}/*!sc*/
-.kuUpel >tr{vertical-align:middle;}/*!sc*/
-@media screen and (max-width: 50rem){.kuUpel{display:block;}.kuUpel >tr,.kuUpel >tbody>tr{display:block;}}/*!sc*/
-@media screen and (max-width: 50rem) and (-ms-high-contrast:none){.kuUpel td{float:left;width:100%;}}/*!sc*/
-.kuUpel .sc-dJGMql,.kuUpel .sc-dJGMql .sc-dJGMql .sc-dJGMql,.kuUpel .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql{margin:1em;margin-right:0;background:#fafafa;}/*!sc*/
-.kuUpel .sc-dJGMql .sc-dJGMql,.kuUpel .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql,.kuUpel .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql{background:#ffffff;}/*!sc*/
-data-styled.g24[id="sc-hIPBNq"]{content:"kuUpel,"}/*!sc*/
-.WVNwY code[class*='language-'],.WVNwY pre[class*='language-']{text-shadow:0 -0.1em 0.2em black;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}/*!sc*/
-@media print{.WVNwY code[class*='language-'],.WVNwY pre[class*='language-']{text-shadow:none;}}/*!sc*/
-.WVNwY pre[class*='language-']{padding:1em;margin:0.5em 0;overflow:auto;}/*!sc*/
-.WVNwY .token.comment,.WVNwY .token.prolog,.WVNwY .token.doctype,.WVNwY .token.cdata{color:hsl(30, 20%, 50%);}/*!sc*/
-.WVNwY .token.punctuation{opacity:0.7;}/*!sc*/
-.WVNwY .namespace{opacity:0.7;}/*!sc*/
-.WVNwY .token.property,.WVNwY .token.tag,.WVNwY .token.number,.WVNwY .token.constant,.WVNwY .token.symbol{color:#4a8bb3;}/*!sc*/
-.WVNwY .token.boolean{color:#e64441;}/*!sc*/
-.WVNwY .token.selector,.WVNwY .token.attr-name,.WVNwY .token.string,.WVNwY .token.char,.WVNwY .token.builtin,.WVNwY .token.inserted{color:#a0fbaa;}/*!sc*/
-.WVNwY .token.selector+a,.WVNwY .token.attr-name+a,.WVNwY .token.string+a,.WVNwY .token.char+a,.WVNwY .token.builtin+a,.WVNwY .token.inserted+a,.WVNwY .token.selector+a:visited,.WVNwY .token.attr-name+a:visited,.WVNwY .token.string+a:visited,.WVNwY .token.char+a:visited,.WVNwY .token.builtin+a:visited,.WVNwY .token.inserted+a:visited{color:#4ed2ba;text-decoration:underline;}/*!sc*/
-.WVNwY .token.property.string{color:white;}/*!sc*/
-.WVNwY .token.operator,.WVNwY .token.entity,.WVNwY .token.url,.WVNwY .token.variable{color:hsl(40, 90%, 60%);}/*!sc*/
-.WVNwY .token.atrule,.WVNwY .token.attr-value,.WVNwY .token.keyword{color:hsl(350, 40%, 70%);}/*!sc*/
-.WVNwY .token.regex,.WVNwY .token.important{color:#e90;}/*!sc*/
-.WVNwY .token.important,.WVNwY .token.bold{font-weight:bold;}/*!sc*/
-.WVNwY .token.italic{font-style:italic;}/*!sc*/
-.WVNwY .token.entity{cursor:help;}/*!sc*/
-.WVNwY .token.deleted{color:red;}/*!sc*/
-data-styled.g32[id="sc-iKOmoZ"]{content:"WVNwY,"}/*!sc*/
-.gqpIeV{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
-.gqpIeV p:last-child{margin-bottom:0;}/*!sc*/
-.gqpIeV h1{font-family:Source Sans Pro;font-weight:700;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
-.gqpIeV h2{font-family:Source Sans Pro;font-weight:700;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
-.gqpIeV code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 4px;font-size:14px;font-weight:400;word-break:break-word;}/*!sc*/
-.gqpIeV pre{font-family:monospace;white-space:pre;background-color:#11171a;color:white;padding:16px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
-.gqpIeV pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
-.gqpIeV pre code:before,.gqpIeV pre code:after{content:none;}/*!sc*/
-.gqpIeV blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
-.gqpIeV img{max-width:100%;box-sizing:content-box;}/*!sc*/
-.gqpIeV ul,.gqpIeV ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
-.gqpIeV ul ul,.gqpIeV ol ul,.gqpIeV ul ol,.gqpIeV ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
-.gqpIeV table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
-.gqpIeV table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
-.gqpIeV table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
-.gqpIeV table th,.gqpIeV table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
-.gqpIeV table th{text-align:left;font-weight:bold;}/*!sc*/
-.gqpIeV .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
-.gqpIeV .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
-.gqpIeV h1:hover>.share-link::before,.gqpIeV h2:hover>.share-link::before,.gqpIeV .share-link:hover::before{visibility:visible;}/*!sc*/
-.gqpIeV a{text-decoration:auto;color:#32329f;}/*!sc*/
-.gqpIeV a:visited{color:#32329f;}/*!sc*/
-.gqpIeV a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
-.gjyacz{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
-.gjyacz p:last-child{margin-bottom:0;}/*!sc*/
-.gjyacz p:first-child{margin-top:0;}/*!sc*/
-.gjyacz p:last-child{margin-bottom:0;}/*!sc*/
-.gjyacz h1{font-family:Source Sans Pro;font-weight:700;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
-.gjyacz h2{font-family:Source Sans Pro;font-weight:700;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
-.gjyacz code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 4px;font-size:14px;font-weight:400;word-break:break-word;}/*!sc*/
-.gjyacz pre{font-family:monospace;white-space:pre;background-color:#11171a;color:white;padding:16px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
-.gjyacz pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
-.gjyacz pre code:before,.gjyacz pre code:after{content:none;}/*!sc*/
-.gjyacz blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
-.gjyacz img{max-width:100%;box-sizing:content-box;}/*!sc*/
-.gjyacz ul,.gjyacz ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
-.gjyacz ul ul,.gjyacz ol ul,.gjyacz ul ol,.gjyacz ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
-.gjyacz table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
-.gjyacz table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
-.gjyacz table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
-.gjyacz table th,.gjyacz table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
-.gjyacz table th{text-align:left;font-weight:bold;}/*!sc*/
-.gjyacz .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
-.gjyacz .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
-.gjyacz h1:hover>.share-link::before,.gjyacz h2:hover>.share-link::before,.gjyacz .share-link:hover::before{visibility:visible;}/*!sc*/
-.gjyacz a{text-decoration:auto;color:#32329f;}/*!sc*/
-.gjyacz a:visited{color:#32329f;}/*!sc*/
-.gjyacz a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
-data-styled.g42[id="sc-cCzLxZ"]{content:"gqpIeV,gjyacz,"}/*!sc*/
-.LxEPk{display:inline;}/*!sc*/
-data-styled.g43[id="sc-ckdEwu"]{content:"LxEPk,"}/*!sc*/
-.dIDJpI{vertical-align:middle;font-size:14px;line-height:20px;}/*!sc*/
-data-styled.g58[id="sc-gUjWJS"]{content:"dIDJpI,"}/*!sc*/
-.BWdEk{color:rgba(128,128,128,0.9);}/*!sc*/
-data-styled.g59[id="sc-kZOsHZ"]{content:"BWdEk,"}/*!sc*/
-.bouVdd{color:#808080;}/*!sc*/
-data-styled.g60[id="sc-iLXxbI"]{content:"bouVdd,"}/*!sc*/
-.ciWJhv{color:#d41f1c;font-size:0.9em;font-weight:normal;margin-left:20px;line-height:1;}/*!sc*/
-data-styled.g62[id="sc-eKzvBH"]{content:"ciWJhv,"}/*!sc*/
-.gIMuDc{border-radius:2px;word-break:break-word;background-color:rgba(51,51,51,0.05);color:rgba(51,51,51,0.9);padding:0 4px;border:1px solid rgba(51,51,51,0.1);font-family:monospace;}/*!sc*/
+tr.last+tr>.fSvPEv{border-left-color:transparent;}/*!sc*/
+tr.last:first-child>.fSvPEv{background:none;border-left-color:transparent;}/*!sc*/
+data-styled.g18[id="sc-kXOizl"]{content:"fSvPEv,"}/*!sc*/
+.bXzRho{vertical-align:top;line-height:20px;white-space:nowrap;font-size:13px;font-family:monospace;}/*!sc*/
+.bXzRho.deprecated{text-decoration:line-through;color:#707070;}/*!sc*/
+data-styled.g20[id="sc-dPKAra"]{content:"bXzRho,"}/*!sc*/
+.hBUAPQ{border-bottom:1px solid #9fb4be;padding:10px 0;width:75%;box-sizing:border-box;}/*!sc*/
+tr.expanded .hBUAPQ{border-bottom:none;}/*!sc*/
+@media screen and (max-width: 50rem){.hBUAPQ{padding:0 20px;border-bottom:none;border-left:1px solid #a4a4c6;}tr.last>.hBUAPQ{border-left:none;}}/*!sc*/
+data-styled.g21[id="sc-fuExOL"]{content:"hBUAPQ,"}/*!sc*/
+.HDyVo{color:#a4a4c6;font-family:monospace;margin-right:10px;}/*!sc*/
+.HDyVo::before{content:'';display:inline-block;vertical-align:middle;width:10px;height:1px;background:#a4a4c6;}/*!sc*/
+.HDyVo::after{content:'';display:inline-block;vertical-align:middle;width:1px;background:#a4a4c6;height:7px;}/*!sc*/
+data-styled.g22[id="sc-gjXmFk"]{content:"HDyVo,"}/*!sc*/
+.kGrkEc{border-collapse:separate;border-radius:3px;font-size:16px;border-spacing:0;width:100%;}/*!sc*/
+.kGrkEc >tr{vertical-align:middle;}/*!sc*/
+@media screen and (max-width: 50rem){.kGrkEc{display:block;}.kGrkEc >tr,.kGrkEc >tbody>tr{display:block;}}/*!sc*/
+@media screen and (max-width: 50rem) and (-ms-high-contrast:none){.kGrkEc td{float:left;width:100%;}}/*!sc*/
+.kGrkEc .sc-hORkcV,.kGrkEc .sc-hORkcV .sc-hORkcV .sc-hORkcV,.kGrkEc .sc-hORkcV .sc-hORkcV .sc-hORkcV .sc-hORkcV .sc-hORkcV{margin:1em;margin-right:0;background:#fafafa;}/*!sc*/
+.kGrkEc .sc-hORkcV .sc-hORkcV,.kGrkEc .sc-hORkcV .sc-hORkcV .sc-hORkcV .sc-hORkcV,.kGrkEc .sc-hORkcV .sc-hORkcV .sc-hORkcV .sc-hORkcV .sc-hORkcV .sc-hORkcV{background:#ffffff;}/*!sc*/
+data-styled.g24[id="sc-dVupuq"]{content:"kGrkEc,"}/*!sc*/
+.eOvdyU code[class*='language-'],.eOvdyU pre[class*='language-']{text-shadow:0 -0.1em 0.2em black;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}/*!sc*/
+@media print{.eOvdyU code[class*='language-'],.eOvdyU pre[class*='language-']{text-shadow:none;}}/*!sc*/
+.eOvdyU pre[class*='language-']{padding:1em;margin:0.5em 0;overflow:auto;}/*!sc*/
+.eOvdyU .token.comment,.eOvdyU .token.prolog,.eOvdyU .token.doctype,.eOvdyU .token.cdata{color:hsl(30, 20%, 50%);}/*!sc*/
+.eOvdyU .token.punctuation{opacity:0.7;}/*!sc*/
+.eOvdyU .namespace{opacity:0.7;}/*!sc*/
+.eOvdyU .token.property,.eOvdyU .token.tag,.eOvdyU .token.number,.eOvdyU .token.constant,.eOvdyU .token.symbol{color:#4a8bb3;}/*!sc*/
+.eOvdyU .token.boolean{color:#e64441;}/*!sc*/
+.eOvdyU .token.selector,.eOvdyU .token.attr-name,.eOvdyU .token.string,.eOvdyU .token.char,.eOvdyU .token.builtin,.eOvdyU .token.inserted{color:#a0fbaa;}/*!sc*/
+.eOvdyU .token.selector+a,.eOvdyU .token.attr-name+a,.eOvdyU .token.string+a,.eOvdyU .token.char+a,.eOvdyU .token.builtin+a,.eOvdyU .token.inserted+a,.eOvdyU .token.selector+a:visited,.eOvdyU .token.attr-name+a:visited,.eOvdyU .token.string+a:visited,.eOvdyU .token.char+a:visited,.eOvdyU .token.builtin+a:visited,.eOvdyU .token.inserted+a:visited{color:#4ed2ba;text-decoration:underline;}/*!sc*/
+.eOvdyU .token.property.string{color:white;}/*!sc*/
+.eOvdyU .token.operator,.eOvdyU .token.entity,.eOvdyU .token.url,.eOvdyU .token.variable{color:hsl(40, 90%, 60%);}/*!sc*/
+.eOvdyU .token.atrule,.eOvdyU .token.attr-value,.eOvdyU .token.keyword{color:hsl(350, 40%, 70%);}/*!sc*/
+.eOvdyU .token.regex,.eOvdyU .token.important{color:#e90;}/*!sc*/
+.eOvdyU .token.important,.eOvdyU .token.bold{font-weight:bold;}/*!sc*/
+.eOvdyU .token.italic{font-style:italic;}/*!sc*/
+.eOvdyU .token.entity{cursor:help;}/*!sc*/
+.eOvdyU .token.deleted{color:red;}/*!sc*/
+data-styled.g32[id="sc-dJkDXt"]{content:"eOvdyU,"}/*!sc*/
+.cdPpTD{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.cdPpTD p:last-child{margin-bottom:0;}/*!sc*/
+.cdPpTD h1{font-family:Source Sans Pro;font-weight:700;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.cdPpTD h2{font-family:Source Sans Pro;font-weight:700;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.cdPpTD code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 4px;font-size:14px;font-weight:400;word-break:break-word;}/*!sc*/
+.cdPpTD pre{font-family:monospace;white-space:pre;background-color:#11171a;color:white;padding:16px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.cdPpTD pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.cdPpTD pre code:before,.cdPpTD pre code:after{content:none;}/*!sc*/
+.cdPpTD blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.cdPpTD img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.cdPpTD ul,.cdPpTD ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.cdPpTD ul ul,.cdPpTD ol ul,.cdPpTD ul ol,.cdPpTD ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.cdPpTD table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.cdPpTD table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.cdPpTD table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.cdPpTD table th,.cdPpTD table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.cdPpTD table th{text-align:left;font-weight:bold;}/*!sc*/
+.cdPpTD .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.cdPpTD .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.cdPpTD h1:hover>.share-link::before,.cdPpTD h2:hover>.share-link::before,.cdPpTD .share-link:hover::before{visibility:visible;}/*!sc*/
+.cdPpTD a{text-decoration:auto;color:#32329f;}/*!sc*/
+.cdPpTD a:visited{color:#32329f;}/*!sc*/
+.cdPpTD a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+.jnPkpd{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.jnPkpd p:last-child{margin-bottom:0;}/*!sc*/
+.jnPkpd p:first-child{margin-top:0;}/*!sc*/
+.jnPkpd p:last-child{margin-bottom:0;}/*!sc*/
+.jnPkpd h1{font-family:Source Sans Pro;font-weight:700;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.jnPkpd h2{font-family:Source Sans Pro;font-weight:700;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.jnPkpd code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 4px;font-size:14px;font-weight:400;word-break:break-word;}/*!sc*/
+.jnPkpd pre{font-family:monospace;white-space:pre;background-color:#11171a;color:white;padding:16px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.jnPkpd pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.jnPkpd pre code:before,.jnPkpd pre code:after{content:none;}/*!sc*/
+.jnPkpd blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.jnPkpd img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.jnPkpd ul,.jnPkpd ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.jnPkpd ul ul,.jnPkpd ol ul,.jnPkpd ul ol,.jnPkpd ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.jnPkpd table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.jnPkpd table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.jnPkpd table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.jnPkpd table th,.jnPkpd table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.jnPkpd table th{text-align:left;font-weight:bold;}/*!sc*/
+.jnPkpd .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.jnPkpd .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.jnPkpd h1:hover>.share-link::before,.jnPkpd h2:hover>.share-link::before,.jnPkpd .share-link:hover::before{visibility:visible;}/*!sc*/
+.jnPkpd a{text-decoration:auto;color:#32329f;}/*!sc*/
+.jnPkpd a:visited{color:#32329f;}/*!sc*/
+.jnPkpd a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+.hMgQNd{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.hMgQNd p:last-child{margin-bottom:0;}/*!sc*/
+.hMgQNd p:first-child{margin-top:0;}/*!sc*/
+.hMgQNd p:last-child{margin-bottom:0;}/*!sc*/
+.hMgQNd p{display:inline-block;}/*!sc*/
+.hMgQNd h1{font-family:Source Sans Pro;font-weight:700;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.hMgQNd h2{font-family:Source Sans Pro;font-weight:700;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.hMgQNd code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 4px;font-size:14px;font-weight:400;word-break:break-word;}/*!sc*/
+.hMgQNd pre{font-family:monospace;white-space:pre;background-color:#11171a;color:white;padding:16px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.hMgQNd pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.hMgQNd pre code:before,.hMgQNd pre code:after{content:none;}/*!sc*/
+.hMgQNd blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.hMgQNd img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.hMgQNd ul,.hMgQNd ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.hMgQNd ul ul,.hMgQNd ol ul,.hMgQNd ul ol,.hMgQNd ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.hMgQNd table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.hMgQNd table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.hMgQNd table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.hMgQNd table th,.hMgQNd table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.hMgQNd table th{text-align:left;font-weight:bold;}/*!sc*/
+.hMgQNd .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.hMgQNd .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.hMgQNd h1:hover>.share-link::before,.hMgQNd h2:hover>.share-link::before,.hMgQNd .share-link:hover::before{visibility:visible;}/*!sc*/
+.hMgQNd a{text-decoration:auto;color:#32329f;}/*!sc*/
+.hMgQNd a:visited{color:#32329f;}/*!sc*/
+.hMgQNd a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g42[id="sc-eXfTSZ"]{content:"cdPpTD,jnPkpd,hMgQNd,"}/*!sc*/
+.iWCNbi{display:inline;}/*!sc*/
+data-styled.g43[id="sc-dXYVqG"]{content:"iWCNbi,"}/*!sc*/
+.cSdpmK{vertical-align:middle;font-size:14px;line-height:20px;}/*!sc*/
+data-styled.g58[id="sc-sediK"]{content:"cSdpmK,"}/*!sc*/
+.cuNUAn{color:rgba(128,128,128,0.9);}/*!sc*/
+data-styled.g59[id="sc-cAQujh"]{content:"cuNUAn,"}/*!sc*/
+.ifbswQ{color:#808080;}/*!sc*/
+data-styled.g60[id="sc-haUlXw"]{content:"ifbswQ,"}/*!sc*/
+.kpBMZY{color:#d41f1c;font-size:0.9em;font-weight:normal;margin-left:20px;line-height:1;}/*!sc*/
+data-styled.g62[id="sc-incsXD"]{content:"kpBMZY,"}/*!sc*/
+.jWNyXr{border-radius:2px;word-break:break-word;background-color:rgba(51,51,51,0.05);color:rgba(51,51,51,0.9);padding:0 4px;border:1px solid rgba(51,51,51,0.1);font-family:monospace;}/*!sc*/
 +{margin-left:0;}/*!sc*/
-data-styled.g66[id="sc-ldgOGP"]{content:"gIMuDc,"}/*!sc*/
-.gIWUlp{margin-top:1em;list-style-position:outside;}/*!sc*/
-data-styled.g73[id="sc-UFult"]{content:"gIWUlp,"}/*!sc*/
-.ObWVe{margin-top:0;margin-bottom:0.5em;}/*!sc*/
-data-styled.g91[id="sc-eFyDpN"]{content:"ObWVe,"}/*!sc*/
-.bTPOee::before{content:'|';display:inline-block;opacity:0.5;width:15px;text-align:center;}/*!sc*/
-.bTPOee:last-child::after{display:none;}/*!sc*/
-data-styled.g93[id="sc-dEFUer"]{content:"bTPOee,"}/*!sc*/
-.fiaqWn{overflow:hidden;}/*!sc*/
-data-styled.g94[id="sc-bqOYya"]{content:"fiaqWn,"}/*!sc*/
-.jqfeha{display:flex;flex-wrap:wrap;margin-left:-15px;}/*!sc*/
-data-styled.g95[id="sc-gHjVMF"]{content:"jqfeha,"}/*!sc*/
-.fQFuqm{width:9ex;display:inline-block;height:14px;line-height:14px;background-color:#333;border-radius:3px;background-repeat:no-repeat;background-position:6px 4px;font-size:7px;font-family:Verdana,sans-serif;color:white;text-transform:uppercase;text-align:center;font-weight:bold;vertical-align:middle;margin-right:6px;margin-top:2px;}/*!sc*/
-.fQFuqm.get{background-color:#2F8132;}/*!sc*/
-.fQFuqm.post{background-color:#186FAF;}/*!sc*/
-.fQFuqm.put{background-color:#95507c;}/*!sc*/
-.fQFuqm.options{background-color:#947014;}/*!sc*/
-.fQFuqm.patch{background-color:#bf581d;}/*!sc*/
-.fQFuqm.delete{background-color:#cc3333;}/*!sc*/
-.fQFuqm.basic{background-color:#707070;}/*!sc*/
-.fQFuqm.link{background-color:#07818F;}/*!sc*/
-.fQFuqm.head{background-color:#A23DAD;}/*!sc*/
-.fQFuqm.hook{background-color:#32329f;}/*!sc*/
-.fQFuqm.schema{background-color:#707070;}/*!sc*/
-data-styled.g99[id="sc-dmcoYd"]{content:"fQFuqm,"}/*!sc*/
-.fTlmpg{margin:0;padding:0;}/*!sc*/
-.fTlmpg:first-child{padding-bottom:32px;}/*!sc*/
-.sc-YltrM .sc-YltrM{font-size:0.929em;}/*!sc*/
-.dOKzVh{margin:0;padding:0;display:none;}/*!sc*/
-.dOKzVh:first-child{padding-bottom:32px;}/*!sc*/
-.sc-YltrM .sc-YltrM{font-size:0.929em;}/*!sc*/
-data-styled.g100[id="sc-YltrM"]{content:"fTlmpg,dOKzVh,"}/*!sc*/
-.kIUuLW{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;}/*!sc*/
-.iEvVIc{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;margin-top:15px;}/*!sc*/
-data-styled.g101[id="sc-imiRDh"]{content:"kIUuLW,iEvVIc,"}/*!sc*/
-.hinpXl{cursor:pointer;color:#333333;margin:0;padding:12.5px 16px;display:flex;justify-content:space-between;font-family:Source Sans Pro;font-size:0.929em;text-transform:none;background-color:#fafafa;}/*!sc*/
-.hinpXl:hover{color:#32329f;background-color:#e1e1e1;}/*!sc*/
-.hinpXl .sc-eTNRI{height:1.5em;width:1.5em;}/*!sc*/
-.hinpXl .sc-eTNRI polygon{fill:#333333;}/*!sc*/
-.cIJdcZ{cursor:pointer;color:#333333;margin:0;padding:12.5px 16px;display:flex;justify-content:space-between;font-family:Source Sans Pro;opacity:0.7;text-transform:uppercase;font-size:0.8em;padding-bottom:0;cursor:default;background-color:#fafafa;}/*!sc*/
-.cIJdcZ .sc-eTNRI{height:1.5em;width:1.5em;}/*!sc*/
-.cIJdcZ .sc-eTNRI polygon{fill:#333333;}/*!sc*/
-.cqmhmz{cursor:pointer;color:#333333;margin:0;padding:12.5px 16px;display:flex;justify-content:space-between;font-family:Source Sans Pro;background-color:#fafafa;}/*!sc*/
-.cqmhmz:hover{color:#32329f;background-color:#ededed;}/*!sc*/
-.cqmhmz .sc-eTNRI{height:1.5em;width:1.5em;}/*!sc*/
-.cqmhmz .sc-eTNRI polygon{fill:#333333;}/*!sc*/
-data-styled.g102[id="sc-vIyEI"]{content:"hinpXl,cIJdcZ,cqmhmz,"}/*!sc*/
-.fXgHFV{display:inline-block;vertical-align:middle;width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;}/*!sc*/
-data-styled.g103[id="sc-bjUHJT"]{content:"fXgHFV,"}/*!sc*/
-.cIfsrE{font-size:0.8em;margin-top:8px;text-align:center;position:fixed;width:300px;bottom:0;background:#fafafa;}/*!sc*/
-.cIfsrE a,.cIfsrE a:visited,.cIfsrE a:hover{color:#333333!important;padding:4px 0;border-top:1px solid #e1e1e1;text-decoration:none;display:flex;align-items:center;justify-content:center;}/*!sc*/
-.cIfsrE img{width:15px;margin-right:5px;}/*!sc*/
-@media screen and (max-width: 50rem){.cIfsrE{width:100%;}}/*!sc*/
-data-styled.g104[id="sc-eIPYkq"]{content:"cIfsrE,"}/*!sc*/
-.cIsduN{cursor:pointer;position:relative;margin-bottom:5px;}/*!sc*/
-data-styled.g110[id="sc-bPrlCs"]{content:"cIsduN,"}/*!sc*/
-.bpvLMW{font-family:monospace;margin-left:10px;flex:1;overflow-x:hidden;text-overflow:ellipsis;}/*!sc*/
-data-styled.g111[id="sc-fYrVWQ"]{content:"bpvLMW,"}/*!sc*/
-.bclCVA{outline:0;color:inherit;width:100%;text-align:left;cursor:pointer;padding:10px 30px 10px 20px;border-radius:4px 4px 0 0;background-color:#11171a;display:flex;white-space:nowrap;align-items:center;border:1px solid transparent;border-bottom:0;transition:border-color 0.25s ease;}/*!sc*/
-.bclCVA ..sc-fYrVWQ{color:#ffffff;}/*!sc*/
-.bclCVA:focus{box-shadow:inset 0 2px 2px rgba(0, 0, 0, 0.45),0 2px 0 rgba(128, 128, 128, 0.25);}/*!sc*/
-data-styled.g112[id="sc-GkLId"]{content:"bclCVA,"}/*!sc*/
-.hIeiNw{font-size:0.929em;line-height:20px;background-color:#cc3333;color:#ffffff;padding:3px 10px;text-transform:uppercase;font-family:Source Sans Pro;margin:0;}/*!sc*/
-data-styled.g113[id="sc-jYnQyy"]{content:"hIeiNw,"}/*!sc*/
-.hsEiws{position:absolute;width:100%;z-index:100;background:#fafafa;color:#263238;box-sizing:border-box;box-shadow:0 0 6px rgba(0, 0, 0, 0.33);overflow:hidden;border-bottom-left-radius:4px;border-bottom-right-radius:4px;transition:all 0.25s ease;visibility:hidden;transform:translateY(-50%) scaleY(0);}/*!sc*/
-data-styled.g114[id="sc-eGgGjL"]{content:"hsEiws,"}/*!sc*/
-.jerStl{padding:10px;}/*!sc*/
-data-styled.g115[id="sc-fnpiog"]{content:"jerStl,"}/*!sc*/
-.etvaCd{padding:5px;border:1px solid #ccc;background:#fff;word-break:break-all;color:#32329f;}/*!sc*/
-.etvaCd >span{color:#333333;}/*!sc*/
-data-styled.g116[id="sc-lkDHyp"]{content:"etvaCd,"}/*!sc*/
-.iSOCsR{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#1d8127;background-color:rgba(29,129,39,0.07);cursor:default;}/*!sc*/
-.iSOCsR:focus{outline:auto #1d8127;}/*!sc*/
-.iSOCsR::before{content:"—";font-weight:bold;width:1.5em;text-align:center;display:inline-block;vertical-align:top;}/*!sc*/
-.iSOCsR:focus{outline:0;}/*!sc*/
-.ifZPCr{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#d41f1c;background-color:rgba(212,31,28,0.07);cursor:default;}/*!sc*/
-.ifZPCr:focus{outline:auto #d41f1c;}/*!sc*/
-.ifZPCr::before{content:"—";font-weight:bold;width:1.5em;text-align:center;display:inline-block;vertical-align:top;}/*!sc*/
-.ifZPCr:focus{outline:0;}/*!sc*/
-data-styled.g119[id="sc-hsaIUA"]{content:"iSOCsR,ifZPCr,"}/*!sc*/
-.ePkkgX{vertical-align:top;}/*!sc*/
-data-styled.g122[id="sc-gWQvRS"]{content:"ePkkgX,"}/*!sc*/
-.duKVDl{font-size:1.3em;padding:0.2em 0;margin:3em 0 1.1em;color:#333333;font-weight:normal;}/*!sc*/
-data-styled.g123[id="sc-fYitVF"]{content:"duKVDl,"}/*!sc*/
-.euFbwE{margin-bottom:24px;}/*!sc*/
-data-styled.g128[id="sc-eYFTNc"]{content:"euFbwE,"}/*!sc*/
-.bUvUmx{user-select:none;width:20px;height:20px;align-self:center;display:flex;flex-direction:column;color:#32329f;}/*!sc*/
-data-styled.g129[id="sc-iEYVpv"]{content:"bUvUmx,"}/*!sc*/
-.eaTQoW{width:300px;background-color:#fafafa;overflow:hidden;display:flex;flex-direction:column;backface-visibility:hidden;height:100vh;position:sticky;position:-webkit-sticky;top:0;}/*!sc*/
-@media screen and (max-width: 50rem){.eaTQoW{position:fixed;z-index:20;width:100%;background:#fafafa;display:none;}}/*!sc*/
-@media print{.eaTQoW{display:none;}}/*!sc*/
-data-styled.g130[id="sc-iqziPC"]{content:"eaTQoW,"}/*!sc*/
-.kHszPm{outline:none;user-select:none;background-color:#f2f2f2;color:#32329f;display:none;cursor:pointer;position:fixed;right:20px;z-index:100;border-radius:50%;box-shadow:0 0 20px rgba(0, 0, 0, 0.3);bottom:44px;width:60px;height:60px;padding:0 20px;}/*!sc*/
-@media screen and (max-width: 50rem){.kHszPm{display:flex;}}/*!sc*/
-.kHszPm svg{color:#0065FB;}/*!sc*/
-@media print{.kHszPm{display:none;}}/*!sc*/
-data-styled.g131[id="sc-eXzmLu"]{content:"kHszPm,"}/*!sc*/
-.erqnbc{font-family:Roboto,sans-serif;font-size:16px;font-weight:400;line-height:1.5em;color:#333333;display:flex;position:relative;text-align:left;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeSpeed!important;tap-highlight-color:rgba(0, 0, 0, 0);text-size-adjust:100%;}/*!sc*/
-.erqnbc *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(255, 255, 255, 0);}/*!sc*/
-data-styled.g132[id="sc-kUNLVD"]{content:"erqnbc,"}/*!sc*/
-.dkPooL{z-index:1;position:relative;overflow:hidden;width:calc(100% - 300px);contain:layout;}/*!sc*/
-@media print,screen and (max-width: 50rem){.dkPooL{width:100%;}}/*!sc*/
-data-styled.g133[id="sc-dxfTlo"]{content:"dkPooL,"}/*!sc*/
-.jSDjCV{background:#263238;position:absolute;top:0;bottom:0;right:0;width:calc((100% - 300px) * 0.4);}/*!sc*/
-@media print,screen and (max-width: 75rem){.jSDjCV{display:none;}}/*!sc*/
-data-styled.g134[id="sc-juusvx"]{content:"jSDjCV,"}/*!sc*/
-.cUtpgV{padding:5px 0;}/*!sc*/
-data-styled.g135[id="sc-emwzcK"]{content:"cUtpgV,"}/*!sc*/
-.hBbamu{width:calc(100% - 32px);box-sizing:border-box;margin:0 16px;padding:5px 8px 5px 16px;border:0;border-bottom:1px solid #e1e1e1;font-family:Roboto,sans-serif;font-weight:bold;font-size:13px;color:#333333;background-color:transparent;outline:none;}/*!sc*/
-data-styled.g136[id="sc-kjKYmT"]{content:"hBbamu,"}/*!sc*/
-.hrVDDm{position:absolute;left:16px;height:1.8em;width:0.9em;}/*!sc*/
-.hrVDDm path{fill:#333333;}/*!sc*/
-data-styled.g137[id="sc-cMdfCE"]{content:"hrVDDm,"}/*!sc*/
+data-styled.g66[id="sc-cHQrJj"]{content:"jWNyXr,"}/*!sc*/
+.chJlOY{margin-top:1em;list-style-position:outside;}/*!sc*/
+data-styled.g74[id="sc-cHtFsA"]{content:"chJlOY,"}/*!sc*/
+.jsViCe{margin-top:0;margin-bottom:0.5em;}/*!sc*/
+data-styled.g92[id="sc-jYpOcw"]{content:"jsViCe,"}/*!sc*/
+.fgZohQ::before{content:'|';display:inline-block;opacity:0.5;width:15px;text-align:center;}/*!sc*/
+.fgZohQ:last-child::after{display:none;}/*!sc*/
+data-styled.g94[id="sc-kqRhTO"]{content:"fgZohQ,"}/*!sc*/
+.cIigUg{overflow:hidden;}/*!sc*/
+data-styled.g95[id="sc-fDVLrx"]{content:"cIigUg,"}/*!sc*/
+.hBmrEQ{display:flex;flex-wrap:wrap;margin-left:-15px;}/*!sc*/
+data-styled.g96[id="sc-kdZDfM"]{content:"hBmrEQ,"}/*!sc*/
+.bOiWpJ{width:9ex;display:inline-block;height:14px;line-height:14px;background-color:#333;border-radius:3px;background-repeat:no-repeat;background-position:6px 4px;font-size:7px;font-family:Verdana,sans-serif;color:white;text-transform:uppercase;text-align:center;font-weight:bold;vertical-align:middle;margin-right:6px;margin-top:2px;}/*!sc*/
+.bOiWpJ.get{background-color:#2F8132;}/*!sc*/
+.bOiWpJ.post{background-color:#186FAF;}/*!sc*/
+.bOiWpJ.put{background-color:#95507c;}/*!sc*/
+.bOiWpJ.options{background-color:#947014;}/*!sc*/
+.bOiWpJ.patch{background-color:#bf581d;}/*!sc*/
+.bOiWpJ.delete{background-color:#cc3333;}/*!sc*/
+.bOiWpJ.basic{background-color:#707070;}/*!sc*/
+.bOiWpJ.link{background-color:#07818F;}/*!sc*/
+.bOiWpJ.head{background-color:#A23DAD;}/*!sc*/
+.bOiWpJ.hook{background-color:#32329f;}/*!sc*/
+.bOiWpJ.schema{background-color:#707070;}/*!sc*/
+data-styled.g100[id="sc-ilTbHY"]{content:"bOiWpJ,"}/*!sc*/
+.gsQdUH{margin:0;padding:0;}/*!sc*/
+.gsQdUH:first-child{padding-bottom:32px;}/*!sc*/
+.sc-kDeqfd .sc-kDeqfd{font-size:0.929em;}/*!sc*/
+.iuxSEa{margin:0;padding:0;display:none;}/*!sc*/
+.iuxSEa:first-child{padding-bottom:32px;}/*!sc*/
+.sc-kDeqfd .sc-kDeqfd{font-size:0.929em;}/*!sc*/
+data-styled.g101[id="sc-kDeqfd"]{content:"gsQdUH,iuxSEa,"}/*!sc*/
+.khtnrT{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;}/*!sc*/
+.jGFIbl{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;margin-top:15px;}/*!sc*/
+data-styled.g102[id="sc-UBoew"]{content:"khtnrT,jGFIbl,"}/*!sc*/
+.hmBhJT{cursor:pointer;color:#333333;margin:0;padding:12.5px 16px;display:flex;justify-content:space-between;font-family:Source Sans Pro;font-size:0.929em;text-transform:none;background-color:#fafafa;}/*!sc*/
+.hmBhJT:hover{color:#32329f;background-color:#e1e1e1;}/*!sc*/
+.hmBhJT .sc-cSaEAk{height:1.5em;width:1.5em;}/*!sc*/
+.hmBhJT .sc-cSaEAk polygon{fill:#333333;}/*!sc*/
+.jfMUoL{cursor:pointer;color:#333333;margin:0;padding:12.5px 16px;display:flex;justify-content:space-between;font-family:Source Sans Pro;opacity:0.7;text-transform:uppercase;font-size:0.8em;padding-bottom:0;cursor:default;background-color:#fafafa;}/*!sc*/
+.jfMUoL .sc-cSaEAk{height:1.5em;width:1.5em;}/*!sc*/
+.jfMUoL .sc-cSaEAk polygon{fill:#333333;}/*!sc*/
+.bQAxKV{cursor:pointer;color:#333333;margin:0;padding:12.5px 16px;display:flex;justify-content:space-between;font-family:Source Sans Pro;background-color:#fafafa;}/*!sc*/
+.bQAxKV:hover{color:#32329f;background-color:#ededed;}/*!sc*/
+.bQAxKV .sc-cSaEAk{height:1.5em;width:1.5em;}/*!sc*/
+.bQAxKV .sc-cSaEAk polygon{fill:#333333;}/*!sc*/
+data-styled.g103[id="sc-edctFj"]{content:"hmBhJT,jfMUoL,bQAxKV,"}/*!sc*/
+.dRfQPL{display:inline-block;vertical-align:middle;width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g104[id="sc-fJVbdy"]{content:"dRfQPL,"}/*!sc*/
+.beEqWm{font-size:0.8em;margin-top:8px;text-align:center;position:fixed;width:300px;bottom:0;background:#fafafa;}/*!sc*/
+.beEqWm a,.beEqWm a:visited,.beEqWm a:hover{color:#333333!important;padding:4px 0;border-top:1px solid #e1e1e1;text-decoration:none;display:flex;align-items:center;justify-content:center;}/*!sc*/
+.beEqWm img{width:15px;margin-right:5px;}/*!sc*/
+@media screen and (max-width: 50rem){.beEqWm{width:100%;}}/*!sc*/
+data-styled.g105[id="sc-kwHJyZ"]{content:"beEqWm,"}/*!sc*/
+.jSOGEJ{cursor:pointer;position:relative;margin-bottom:5px;}/*!sc*/
+data-styled.g111[id="sc-dNMyuw"]{content:"jSOGEJ,"}/*!sc*/
+.evMzeR{font-family:monospace;margin-left:10px;flex:1;overflow-x:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g112[id="sc-ijEwUV"]{content:"evMzeR,"}/*!sc*/
+.NZAfQ{outline:0;color:inherit;width:100%;text-align:left;cursor:pointer;padding:10px 30px 10px 20px;border-radius:4px 4px 0 0;background-color:#11171a;display:flex;white-space:nowrap;align-items:center;border:1px solid transparent;border-bottom:0;transition:border-color 0.25s ease;}/*!sc*/
+.NZAfQ ..sc-ijEwUV{color:#ffffff;}/*!sc*/
+.NZAfQ:focus{box-shadow:inset 0 2px 2px rgba(0, 0, 0, 0.45),0 2px 0 rgba(128, 128, 128, 0.25);}/*!sc*/
+data-styled.g113[id="sc-iNzRy"]{content:"NZAfQ,"}/*!sc*/
+.liIjVl{font-size:0.929em;line-height:20px;background-color:#cc3333;color:#ffffff;padding:3px 10px;text-transform:uppercase;font-family:Source Sans Pro;margin:0;}/*!sc*/
+data-styled.g114[id="sc-eEFyrX"]{content:"liIjVl,"}/*!sc*/
+.jElwoi{position:absolute;width:100%;z-index:100;background:#fafafa;color:#263238;box-sizing:border-box;box-shadow:0 0 6px rgba(0, 0, 0, 0.33);overflow:hidden;border-bottom-left-radius:4px;border-bottom-right-radius:4px;transition:all 0.25s ease;visibility:hidden;transform:translateY(-50%) scaleY(0);}/*!sc*/
+data-styled.g115[id="sc-dHpROs"]{content:"jElwoi,"}/*!sc*/
+.fLVjhV{padding:10px;}/*!sc*/
+data-styled.g116[id="sc-idhQoR"]{content:"fLVjhV,"}/*!sc*/
+.cpBCZw{padding:5px;border:1px solid #ccc;background:#fff;word-break:break-all;color:#32329f;}/*!sc*/
+.cpBCZw >span{color:#333333;}/*!sc*/
+data-styled.g117[id="sc-cqTlu"]{content:"cpBCZw,"}/*!sc*/
+.igjdiI{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#1d8127;background-color:rgba(29,129,39,0.07);cursor:default;}/*!sc*/
+.igjdiI:focus{outline:auto #1d8127;}/*!sc*/
+.igjdiI::before{content:"—";font-weight:bold;width:1.5em;text-align:center;display:inline-block;vertical-align:top;}/*!sc*/
+.igjdiI:focus{outline:0;}/*!sc*/
+.gkyJaa{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#d41f1c;background-color:rgba(212,31,28,0.07);cursor:default;}/*!sc*/
+.gkyJaa:focus{outline:auto #d41f1c;}/*!sc*/
+.gkyJaa::before{content:"—";font-weight:bold;width:1.5em;text-align:center;display:inline-block;vertical-align:top;}/*!sc*/
+.gkyJaa:focus{outline:0;}/*!sc*/
+data-styled.g120[id="sc-kdWPFt"]{content:"igjdiI,gkyJaa,"}/*!sc*/
+.bniiic{vertical-align:top;}/*!sc*/
+data-styled.g123[id="sc-dxpuJR"]{content:"bniiic,"}/*!sc*/
+.eXjWTp{font-size:1.3em;padding:0.2em 0;margin:3em 0 1.1em;color:#333333;font-weight:normal;}/*!sc*/
+data-styled.g124[id="sc-frtHmg"]{content:"eXjWTp,"}/*!sc*/
+.BLZDj{margin-bottom:24px;}/*!sc*/
+data-styled.g129[id="sc-bACthX"]{content:"BLZDj,"}/*!sc*/
+.bCXLbK{user-select:none;width:20px;height:20px;align-self:center;display:flex;flex-direction:column;color:#32329f;}/*!sc*/
+data-styled.g130[id="sc-duGFKm"]{content:"bCXLbK,"}/*!sc*/
+.bFiRmW{width:300px;background-color:#fafafa;overflow:hidden;display:flex;flex-direction:column;backface-visibility:hidden;height:100vh;position:sticky;position:-webkit-sticky;top:0;}/*!sc*/
+@media screen and (max-width: 50rem){.bFiRmW{position:fixed;z-index:20;width:100%;background:#fafafa;display:none;}}/*!sc*/
+@media print{.bFiRmW{display:none;}}/*!sc*/
+data-styled.g131[id="sc-egnSlO"]{content:"bFiRmW,"}/*!sc*/
+.RFwOH{outline:none;user-select:none;background-color:#f2f2f2;color:#32329f;display:none;cursor:pointer;position:fixed;right:20px;z-index:100;border-radius:50%;box-shadow:0 0 20px rgba(0, 0, 0, 0.3);bottom:44px;width:60px;height:60px;padding:0 20px;}/*!sc*/
+@media screen and (max-width: 50rem){.RFwOH{display:flex;}}/*!sc*/
+.RFwOH svg{color:#0065FB;}/*!sc*/
+@media print{.RFwOH{display:none;}}/*!sc*/
+data-styled.g132[id="sc-iCfQMn"]{content:"RFwOH,"}/*!sc*/
+.jbiBOv{font-family:Roboto,sans-serif;font-size:16px;font-weight:400;line-height:1.5em;color:#333333;display:flex;position:relative;text-align:left;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeSpeed!important;tap-highlight-color:rgba(0, 0, 0, 0);text-size-adjust:100%;}/*!sc*/
+.jbiBOv *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(255, 255, 255, 0);}/*!sc*/
+data-styled.g133[id="sc-kSwkvc"]{content:"jbiBOv,"}/*!sc*/
+.lmqkHv{z-index:1;position:relative;overflow:hidden;width:calc(100% - 300px);contain:layout;}/*!sc*/
+@media print,screen and (max-width: 50rem){.lmqkHv{width:100%;}}/*!sc*/
+data-styled.g134[id="sc-dYSzwF"]{content:"lmqkHv,"}/*!sc*/
+.dEMbob{background:#263238;position:absolute;top:0;bottom:0;right:0;width:calc((100% - 300px) * 0.4);}/*!sc*/
+@media print,screen and (max-width: 75rem){.dEMbob{display:none;}}/*!sc*/
+data-styled.g135[id="sc-dZRlFK"]{content:"dEMbob,"}/*!sc*/
+.fgXvUT{padding:5px 0;}/*!sc*/
+data-styled.g136[id="sc-ivJkgj"]{content:"fgXvUT,"}/*!sc*/
+.hGlQKn{width:calc(100% - 32px);box-sizing:border-box;margin:0 16px;padding:5px 8px 5px 16px;border:0;border-bottom:1px solid #e1e1e1;font-family:Roboto,sans-serif;font-weight:bold;font-size:13px;color:#333333;background-color:transparent;outline:none;}/*!sc*/
+data-styled.g137[id="sc-kLZDOY"]{content:"hGlQKn,"}/*!sc*/
+.bEbtHZ{position:absolute;left:16px;height:1.8em;width:0.9em;}/*!sc*/
+.bEbtHZ path{fill:#333333;}/*!sc*/
+data-styled.g138[id="sc-dSvSQB"]{content:"bEbtHZ,"}/*!sc*/
 </style>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Source+Sans+Pro:300,400,600,700|Source+Code+Pro:300,400,600,700" rel="stylesheet">
@@ -381,7 +409,7 @@ data-styled.g137[id="sc-cMdfCE"]{content:"hrVDDm,"}/*!sc*/
 <!-- Begin page content -->
 <main role="main" class="container-fluid px-0 d-none">
 
-      <div id="redoc"><div class="sc-kUNLVD erqnbc redoc-wrap"><div class="sc-iqziPC eaTQoW menu-content" style="top:0px;height:calc(100vh - 0px)"><div role="search" class="sc-emwzcK cUtpgV"><svg class="sc-cMdfCE hrVDDm search-icon" version="1.1" viewBox="0 0 1000 1000" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><path d="M968.2,849.4L667.3,549c83.9-136.5,66.7-317.4-51.7-435.6C477.1-25,252.5-25,113.9,113.4c-138.5,138.3-138.5,362.6,0,501C219.2,730.1,413.2,743,547.6,666.5l301.9,301.4c43.6,43.6,76.9,14.9,104.2-12.4C981,928.3,1011.8,893,968.2,849.4z M524.5,522c-88.9,88.7-233,88.7-321.8,0c-88.9-88.7-88.9-232.6,0-321.3c88.9-88.7,233-88.7,321.8,0C613.4,289.4,613.4,433.3,524.5,522z"></path></svg><input placeholder="Search..." aria-label="Search" type="text" class="sc-kjKYmT hBbamu search-input" value=""/></div><div style="overflow:auto;overscroll-behavior:contain;-ms-overflow-style:-ms-autohiding-scrollbar"><ul role="menu" class="sc-YltrM fTlmpg"><li tabindex="0" depth="1" data-item-id="section/Description" role="menuitem" class="sc-imiRDh kIUuLW"><label class="sc-vIyEI hinpXl -depth1"><span width="calc(100% - 38px)" title="Description" class="sc-bjUHJT fXgHFV">Description</span></label></li><li tabindex="0" depth="0" data-item-id="group/Resource-endpoints" role="menuitem" class="sc-imiRDh iEvVIc"><label class="sc-vIyEI cIJdcZ -depth0"><span width="calc(100% - 38px)" title="Resource endpoints" class="sc-bjUHJT fXgHFV">Resource endpoints</span></label><ul class="sc-YltrM fTlmpg"><li tabindex="0" depth="1" data-item-id="tag/EHR" role="menuitem" class="sc-imiRDh kIUuLW"><label class="sc-vIyEI hinpXl -depth1"><span width="calc(100% - 38px)" title="EHR" class="sc-bjUHJT fXgHFV">EHR</span><svg class="sc-eTNRI gEokXu" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></label><ul class="sc-YltrM dOKzVh"><li tabindex="0" depth="2" data-item-id="tag/EHR/operation/admin_ehr_delete" role="menuitem" class="sc-imiRDh kIUuLW"><label class="sc-vIyEI cqmhmz -depth2"><span type="delete" class="sc-dmcoYd fQFuqm operation-type delete">del</span><span tabindex="0" width="calc(100% - 38px)" class="sc-bjUHJT fXgHFV">Delete EHR</span></label></li><li tabindex="0" depth="2" data-item-id="tag/EHR/operation/admin_ehr_delete_all" role="menuitem" class="sc-imiRDh kIUuLW"><label class="sc-vIyEI cqmhmz -depth2"><span type="delete" class="sc-dmcoYd fQFuqm operation-type delete">del</span><span tabindex="0" width="calc(100% - 38px)" class="sc-bjUHJT fXgHFV">Delete all EHRs</span></label></li></ul></li></ul></li></ul><div class="sc-eIPYkq cIfsrE"><a target="_blank" rel="noopener noreferrer" href="https://redocly.com/redoc/">API docs by Redocly</a></div></div></div><div class="sc-eXzmLu kHszPm"><div class="sc-iEYVpv bUvUmx"><svg class="" style="transform:translate(2px, -4px) rotate(180deg);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+      <div id="redoc"><div class="sc-kSwkvc jbiBOv redoc-wrap"><div class="sc-egnSlO bFiRmW menu-content" style="top:0px;height:calc(100vh - 0px)"><div role="search" class="sc-ivJkgj fgXvUT"><svg class="sc-dSvSQB bEbtHZ search-icon" version="1.1" viewBox="0 0 1000 1000" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><path d="M968.2,849.4L667.3,549c83.9-136.5,66.7-317.4-51.7-435.6C477.1-25,252.5-25,113.9,113.4c-138.5,138.3-138.5,362.6,0,501C219.2,730.1,413.2,743,547.6,666.5l301.9,301.4c43.6,43.6,76.9,14.9,104.2-12.4C981,928.3,1011.8,893,968.2,849.4z M524.5,522c-88.9,88.7-233,88.7-321.8,0c-88.9-88.7-88.9-232.6,0-321.3c88.9-88.7,233-88.7,321.8,0C613.4,289.4,613.4,433.3,524.5,522z"></path></svg><input placeholder="Search..." aria-label="Search" type="text" class="sc-kLZDOY hGlQKn search-input" value=""/></div><div style="overflow:auto;overscroll-behavior:contain;-ms-overflow-style:-ms-autohiding-scrollbar"><ul role="menu" class="sc-kDeqfd gsQdUH"><li tabindex="0" depth="1" data-item-id="section/Description" role="menuitem" class="sc-UBoew khtnrT"><label class="sc-edctFj hmBhJT -depth1"><span width="calc(100% - 38px)" title="Description" class="sc-fJVbdy dRfQPL">Description</span></label></li><li tabindex="0" depth="0" data-item-id="group/Resource-endpoints" role="menuitem" class="sc-UBoew jGFIbl"><label class="sc-edctFj jfMUoL -depth0"><span width="calc(100% - 38px)" title="Resource endpoints" class="sc-fJVbdy dRfQPL">Resource endpoints</span></label><ul class="sc-kDeqfd gsQdUH"><li tabindex="0" depth="1" data-item-id="tag/EHR" role="menuitem" class="sc-UBoew khtnrT"><label class="sc-edctFj hmBhJT -depth1"><span width="calc(100% - 38px)" title="EHR" class="sc-fJVbdy dRfQPL">EHR</span><svg class="sc-cSaEAk krlsJY" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></label><ul class="sc-kDeqfd iuxSEa"><li tabindex="0" depth="2" data-item-id="tag/EHR/operation/admin_ehr_delete" role="menuitem" class="sc-UBoew khtnrT"><label class="sc-edctFj bQAxKV -depth2"><span type="delete" class="sc-ilTbHY bOiWpJ operation-type delete">del</span><span tabindex="0" width="calc(100% - 38px)" class="sc-fJVbdy dRfQPL">Delete EHR</span></label></li><li tabindex="0" depth="2" data-item-id="tag/EHR/operation/admin_ehr_delete_all" role="menuitem" class="sc-UBoew khtnrT"><label class="sc-edctFj bQAxKV -depth2"><span type="delete" class="sc-ilTbHY bOiWpJ operation-type delete">del</span><span tabindex="0" width="calc(100% - 38px)" class="sc-fJVbdy dRfQPL">Delete all EHRs</span></label></li></ul></li></ul></li></ul><div class="sc-kwHJyZ beEqWm"><a target="_blank" rel="noopener noreferrer" href="https://redocly.com/redoc/">API docs by Redocly</a></div></div></div><div class="sc-iCfQMn RFwOH"><div class="sc-duGFKm bCXLbK"><svg class="" style="transform:translate(2px, -4px) rotate(180deg);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
           m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
           -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
           0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
@@ -399,7 +427,7 @@ data-styled.g137[id="sc-cMdfCE"]{content:"hrVDDm,"}/*!sc*/
           55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
           -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
           -104.0616 -231.873,-231.248 z
-        " fill="currentColor"></path></g></svg></div></div><div class="sc-dxfTlo dkPooL api-content"><div class="sc-eDLKkx OuEvO"><div class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg fSrimA api-info"><h1 class="sc-fsYfdN sc-eFyDpN gOHUue ObWVe">Admin API<!-- --> <span>(<!-- -->development<!-- -->)</span></h1><div class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV"><div class="sc-bqOYya fiaqWn"><div class="sc-gHjVMF jqfeha"><span class="sc-dEFUer bTPOee">Specifications Editorial Committee openEHR<!-- -->:<!-- --> <a href="mailto:info@openehr.org">info@openehr.org</a></span> <span class="sc-dEFUer bTPOee">URL: <a href="https://specifications.openehr.org/">https://specifications.openehr.org/</a></span> <span class="sc-dEFUer bTPOee">License:<!-- --> <a href="https://creativecommons.org/licenses/by-nd/3.0/">Creative Commons Attribution-NoDerivs 3.0 Unported</a></span> </div></div></div><div data-role="redoc-summary" html="" class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV"></div><div data-role="redoc-description" html="" class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV"></div></div></div></div><div id="section/Description" data-section-id="section/Description" class="sc-eDLKkx OuEvO"><div class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg fSrimA"><h2 class="sc-qZrbh jbdRxx"><a class="sc-csKJxZ fNhImz" href="#section/Description" aria-label="section/Description"></a>Description</h2></div></div><div class="sc-hLQSwg fSrimA"><div class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV redoc-markdown " html="&lt;h3 id=&quot;purpose&quot;&gt;Purpose&lt;/h3&gt;
+        " fill="currentColor"></path></g></svg></div></div><div class="sc-dYSzwF lmqkHv api-content"><div class="sc-dycHyt kbXiPQ"><div class="sc-kfeOyU eTCvZl"><div class="sc-fLDLck ezLEvM api-info"><h1 class="sc-hRDKVd sc-jYpOcw djwAnR jsViCe">Admin API<!-- --> <span>(<!-- -->development<!-- -->)</span></h1><div class="sc-dJkDXt sc-eXfTSZ eOvdyU cdPpTD"><div class="sc-fDVLrx cIigUg"><div class="sc-kdZDfM hBmrEQ"><span class="sc-kqRhTO fgZohQ">Specifications Editorial Committee openEHR<!-- -->:<!-- --> <a href="mailto:info@openehr.org">info@openehr.org</a></span> <span class="sc-kqRhTO fgZohQ">URL: <a href="https://specifications.openehr.org/">https://specifications.openehr.org/</a></span> <span class="sc-kqRhTO fgZohQ">License:<!-- --> <a href="https://creativecommons.org/licenses/by-nd/3.0/">Creative Commons Attribution-NoDerivs 3.0 Unported</a></span> </div></div></div><div data-role="redoc-summary" html="" class="sc-dJkDXt sc-eXfTSZ eOvdyU cdPpTD"></div><div data-role="redoc-description" html="" class="sc-dJkDXt sc-eXfTSZ eOvdyU cdPpTD"></div></div></div></div><div id="section/Description" data-section-id="section/Description" class="sc-dycHyt kbXiPQ"><div class="sc-kfeOyU eTCvZl"><div class="sc-fLDLck ezLEvM"><h2 class="sc-cMqPwU kXHtdt"><a class="sc-jHswkR ccWJGj" href="#section/Description" aria-label="section/Description"></a>Description</h2></div></div><div class="sc-fLDLck ezLEvM"><div class="sc-dJkDXt sc-eXfTSZ eOvdyU cdPpTD redoc-markdown " html="&lt;h3 id=&quot;purpose&quot;&gt;Purpose&lt;/h3&gt;
 &lt;p&gt;This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with Admin openEHR API in a RESTful manner.&lt;/p&gt;
 &lt;h3 id=&quot;related-documents&quot;&gt;Related Documents&lt;/h3&gt;
 &lt;p&gt;Prerequisite documents for reading this document include:&lt;/p&gt;
@@ -443,51 +471,51 @@ Users are encouraged to comment on and/or advise on these paragraphs as well as 
 <p>This specification is in the <code>DEVELOPMENT</code> state, and can be downloaded as <a href="https://spec.openapis.org/oas/v3.0.3">OpenAPI specification</a> file (in YAML format) <a href="computable/OAS/admin-validation.openapi.yaml">for validation</a>, or <a href="computable/OAS/admin-codegen.openapi.yaml">for code generators</a>.
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.</p>
 <p>The development version of this document can be found at <a href="https://specifications.openehr.org/releases/ITS-REST/development/admin.html">https://specifications.openehr.org/releases/ITS-REST/development/admin.html</a>.</p>
-</div></div></div><div id="tag/EHR" data-section-id="tag/EHR" class="sc-eDLKkx OuEvO"><div class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg fSrimA"><h1 class="sc-fsYfdN gOHUue"><a class="sc-csKJxZ fNhImz" href="#tag/EHR" aria-label="tag/EHR"></a>EHR</h1></div></div><div class="sc-hLQSwg fSrimA"><div class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV redoc-markdown " html="&lt;p&gt;Admin management of &lt;a href=&quot;https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class&quot;&gt;EHRs&lt;/a&gt;.&lt;/p&gt;
+</div></div></div><div id="tag/EHR" data-section-id="tag/EHR" class="sc-dycHyt kbXiPQ"><div class="sc-kfeOyU eTCvZl"><div class="sc-fLDLck ezLEvM"><h2 class="sc-jBIHhB bdVLOV"><a class="sc-jHswkR ccWJGj" href="#tag/EHR" aria-label="tag/EHR"></a>EHR</h2></div></div><div class="sc-fLDLck ezLEvM"><div class="sc-dJkDXt sc-eXfTSZ eOvdyU cdPpTD redoc-markdown " html="&lt;p&gt;Admin management of &lt;a href=&quot;https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class&quot;&gt;EHRs&lt;/a&gt;.&lt;/p&gt;
 "><p>Admin management of <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class">EHRs</a>.</p>
-</div></div></div><div id="tag/EHR/operation/admin_ehr_delete" data-section-id="tag/EHR/operation/admin_ehr_delete" class="sc-eDLKkx ksVRJd"><div data-section-id="operation/admin_ehr_delete" id="operation/admin_ehr_delete" class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg fSrimA"><h2 class="sc-qZrbh jbdRxx"><a class="sc-csKJxZ fNhImz" href="#tag/EHR/operation/admin_ehr_delete" aria-label="tag/EHR/operation/admin_ehr_delete"></a>Delete EHR<!-- --> </h2><div class="sc-eYFTNc euFbwE"><div html="&lt;p&gt;Deletes the EHR identified by &lt;code&gt;ehr_id&lt;/code&gt;. &lt;/p&gt;
+</div></div></div><div id="tag/EHR/operation/admin_ehr_delete" data-section-id="tag/EHR/operation/admin_ehr_delete" class="sc-dycHyt lfXVQf"><div data-section-id="operation/admin_ehr_delete" id="operation/admin_ehr_delete" class="sc-kfeOyU eTCvZl"><div class="sc-fLDLck ezLEvM"><h2 class="sc-jBIHhB bdVLOV"><a class="sc-jHswkR ccWJGj" href="#tag/EHR/operation/admin_ehr_delete" aria-label="tag/EHR/operation/admin_ehr_delete"></a>Delete EHR<!-- --> </h2><div class="sc-bACthX BLZDj"><div html="&lt;p&gt;Deletes the EHR identified by &lt;code&gt;ehr_id&lt;/code&gt;. &lt;/p&gt;
 &lt;p&gt;All corresponding or owned resources, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc. including historical versions, will also be (physically) deleted.&lt;/p&gt;
 &lt;p&gt;The server may perform this operation in an asynchronous way (in batches), in which case status &lt;code&gt;202 Accepted&lt;/code&gt; is returned,
 or may perform this operation directly, in which case (by successful outcome) will return status &lt;code&gt;204 No Content&lt;/code&gt;.&lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV"><p>Deletes the EHR identified by <code>ehr_id</code>. </p>
+" class="sc-dJkDXt sc-eXfTSZ eOvdyU cdPpTD"><p>Deletes the EHR identified by <code>ehr_id</code>. </p>
 <p>All corresponding or owned resources, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc. including historical versions, will also be (physically) deleted.</p>
 <p>The server may perform this operation in an asynchronous way (in batches), in which case status <code>202 Accepted</code> is returned,
 or may perform this operation directly, in which case (by successful outcome) will return status <code>204 No Content</code>.</p>
-</div></div><div><h5 class="sc-irLvIq cnGhhy">path<!-- --> Parameters</h5><table class="sc-hIPBNq kuUpel"><tbody><tr class="last "><td kind="field" title="ehr_id" class="sc-hABBmJ sc-fHejqy cLxLAu gUQzCY"><span class="sc-ifyrAs cKGSqL"></span><span class="property-name">ehr_id</span><div class="sc-gUjWJS sc-eKzvBH dIDJpI ciWJhv">required</div></td><td class="sc-blmEgr bGEmHi"><div><div><span class="sc-gUjWJS sc-kZOsHZ dIDJpI BWdEk"></span><span class="sc-gUjWJS sc-iLXxbI dIDJpI bouVdd">string</span><span class="sc-gUjWJS sc-iLXxbI dIDJpI bouVdd"> <!-- -->&lt;<!-- -->uuid<!-- -->&gt;<!-- --> </span></div> <div><span class="sc-gUjWJS dIDJpI"> <!-- -->Example:<!-- --> </span> <span class="sc-gUjWJS sc-ldgOGP dIDJpI gIMuDc">7d44b88c-4199-4bad-97dc-d78268e01398</span></div><div><div html="&lt;p&gt;EHR identifier taken from EHR.ehr_id.value.&lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gjyacz"><p>EHR identifier taken from EHR.ehr_id.value.</p>
-</div></div></div></td></tr></tbody></table></div><div><h3 class="sc-fYitVF duKVDl">Responses</h3><div><button class="sc-hsaIUA iSOCsR" disabled=""><strong class="sc-gWQvRS ePkkgX">202<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;202 Accepted&lt;/code&gt; is returned when the requested operation has been accepted for processing, 
+</div></div><div><h5 class="sc-deSjom dunSEZ">path<!-- --> Parameters</h5><table class="sc-dVupuq kGrkEc"><tbody><tr class="last "><td kind="field" title="ehr_id" class="sc-kXOizl sc-dPKAra fSvPEv bXzRho"><span class="sc-gjXmFk HDyVo"></span><span class="property-name">ehr_id</span><div class="sc-sediK sc-incsXD cSdpmK kpBMZY">required</div></td><td class="sc-fuExOL hBUAPQ"><div><div><span class="sc-sediK sc-cAQujh cSdpmK cuNUAn"></span><span class="sc-sediK sc-haUlXw cSdpmK ifbswQ">string</span><span class="sc-sediK sc-haUlXw cSdpmK ifbswQ"> <!-- -->&lt;<!-- -->uuid<!-- -->&gt;<!-- --> </span></div> <div><span class="sc-sediK cSdpmK"> <!-- -->Example:<!-- --> </span> <span class="sc-sediK sc-cHQrJj cSdpmK jWNyXr">7d44b88c-4199-4bad-97dc-d78268e01398</span></div><div><div html="&lt;p&gt;EHR identifier taken from EHR.ehr_id.value.&lt;/p&gt;
+" class="sc-dJkDXt sc-eXfTSZ eOvdyU jnPkpd"><p>EHR identifier taken from EHR.ehr_id.value.</p>
+</div></div></div></td></tr></tbody></table></div><div><h3 class="sc-frtHmg eXjWTp">Responses</h3><div><button class="sc-kdWPFt igjdiI" disabled=""><strong class="sc-dxpuJR bniiic">202<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;202 Accepted&lt;/code&gt; is returned when the requested operation has been accepted for processing, 
 but processing has not been completed or may not have started (i.e. when requests are processed in batches). &lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV sc-ckdEwu LxEPk"><p><code>202 Accepted</code> is returned when the requested operation has been accepted for processing, 
+" class="sc-dJkDXt sc-eXfTSZ sc-dXYVqG eOvdyU hMgQNd iWCNbi"><p><code>202 Accepted</code> is returned when the requested operation has been accepted for processing, 
 but processing has not been completed or may not have started (i.e. when requests are processed in batches). </p>
-</div></button></div><div><button class="sc-hsaIUA iSOCsR" disabled=""><strong class="sc-gWQvRS ePkkgX">204<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;204 No Content&lt;/code&gt; is returned when the requested operation succeeded and the resource(s) identified by the request parameters has been physically deleted (i.e. hard-delete).&lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV sc-ckdEwu LxEPk"><p><code>204 No Content</code> is returned when the requested operation succeeded and the resource(s) identified by the request parameters has been physically deleted (i.e. hard-delete).</p>
-</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">404<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;404 Not Found&lt;/code&gt; is returned when an EHR with &lt;code&gt;ehr_id&lt;/code&gt; does not exist.&lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV sc-ckdEwu LxEPk"><p><code>404 Not Found</code> is returned when an EHR with <code>ehr_id</code> does not exist.</p>
-</div></button></div></div></div><div class="sc-jTQCzO sc-gLLuof dbQgao jGdkPR"><div class="sc-bPrlCs cIsduN"><button class="sc-GkLId bclCVA"><span type="delete" class="sc-jYnQyy hIeiNw http-verb delete">delete</span><span class="sc-fYrVWQ bpvLMW">/admin/ehr/{ehr_id}</span><svg class="sc-eTNRI exoGJA" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-eGgGjL hsEiws"><div class="sc-fnpiog jerStl"><div html="&lt;p&gt;An example openEHR server URL.&lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gjyacz"><p>An example openEHR server URL.</p>
-</div><div tabindex="0" role="button"><div class="sc-lkDHyp etvaCd"><span>https://{baseUrl}/v1</span>/admin/ehr/{ehr_id}</div></div></div></div></div></div></div></div><div id="tag/EHR/operation/admin_ehr_delete_all" data-section-id="tag/EHR/operation/admin_ehr_delete_all" class="sc-eDLKkx ksVRJd"><div data-section-id="operation/admin_ehr_delete_all" id="operation/admin_ehr_delete_all" class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg fSrimA"><h2 class="sc-qZrbh jbdRxx"><a class="sc-csKJxZ fNhImz" href="#tag/EHR/operation/admin_ehr_delete_all" aria-label="tag/EHR/operation/admin_ehr_delete_all"></a>Delete all EHRs<!-- --> </h2><div class="sc-eYFTNc euFbwE"><div html="&lt;p&gt;Deletes all EHRs, or a subset of EHRs defined using the &lt;code&gt;ehr_id&lt;/code&gt; query parameter. &lt;/p&gt;
+</div></button></div><div><button class="sc-kdWPFt igjdiI" disabled=""><strong class="sc-dxpuJR bniiic">204<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;204 No Content&lt;/code&gt; is returned when the requested operation succeeded and the resource(s) identified by the request parameters has been physically deleted (i.e. hard-delete).&lt;/p&gt;
+" class="sc-dJkDXt sc-eXfTSZ sc-dXYVqG eOvdyU hMgQNd iWCNbi"><p><code>204 No Content</code> is returned when the requested operation succeeded and the resource(s) identified by the request parameters has been physically deleted (i.e. hard-delete).</p>
+</div></button></div><div><button class="sc-kdWPFt gkyJaa" disabled=""><strong class="sc-dxpuJR bniiic">404<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;404 Not Found&lt;/code&gt; is returned when an EHR with &lt;code&gt;ehr_id&lt;/code&gt; does not exist.&lt;/p&gt;
+" class="sc-dJkDXt sc-eXfTSZ sc-dXYVqG eOvdyU hMgQNd iWCNbi"><p><code>404 Not Found</code> is returned when an EHR with <code>ehr_id</code> does not exist.</p>
+</div></button></div></div></div><div class="sc-jbAkgO sc-gNZgCX gQxIbn libpUV"><div class="sc-dNMyuw jSOGEJ"><button class="sc-iNzRy NZAfQ"><span type="delete" class="sc-eEFyrX liIjVl http-verb delete">delete</span><span class="sc-ijEwUV evMzeR">/admin/ehr/{ehr_id}</span><svg class="sc-cSaEAk jsDnaG" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-dHpROs jElwoi"><div class="sc-idhQoR fLVjhV"><div html="&lt;p&gt;An example openEHR server URL.&lt;/p&gt;
+" class="sc-dJkDXt sc-eXfTSZ eOvdyU jnPkpd"><p>An example openEHR server URL.</p>
+</div><div tabindex="0" role="button"><div class="sc-cqTlu cpBCZw"><span>https://{baseUrl}/v1</span>/admin/ehr/{ehr_id}</div></div></div></div></div></div></div></div><div id="tag/EHR/operation/admin_ehr_delete_all" data-section-id="tag/EHR/operation/admin_ehr_delete_all" class="sc-dycHyt lfXVQf"><div data-section-id="operation/admin_ehr_delete_all" id="operation/admin_ehr_delete_all" class="sc-kfeOyU eTCvZl"><div class="sc-fLDLck ezLEvM"><h2 class="sc-jBIHhB bdVLOV"><a class="sc-jHswkR ccWJGj" href="#tag/EHR/operation/admin_ehr_delete_all" aria-label="tag/EHR/operation/admin_ehr_delete_all"></a>Delete all EHRs<!-- --> </h2><div class="sc-bACthX BLZDj"><div html="&lt;p&gt;Deletes all EHRs, or a subset of EHRs defined using the &lt;code&gt;ehr_id&lt;/code&gt; query parameter. &lt;/p&gt;
 &lt;p&gt;All corresponding or owned resources by the candidate EHRs, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc. 
 including historical versions, will also be (physically) deleted.&lt;/p&gt;
 &lt;p&gt;The server may perform this operation in an asynchronous way (in batches), in which case status &lt;code&gt;202 Accepted&lt;/code&gt; is returned,
 or may perform this operation directly, in which case (by successful outcome) will return status &lt;code&gt;204 No Content&lt;/code&gt;.&lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV"><p>Deletes all EHRs, or a subset of EHRs defined using the <code>ehr_id</code> query parameter. </p>
+" class="sc-dJkDXt sc-eXfTSZ eOvdyU cdPpTD"><p>Deletes all EHRs, or a subset of EHRs defined using the <code>ehr_id</code> query parameter. </p>
 <p>All corresponding or owned resources by the candidate EHRs, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc. 
 including historical versions, will also be (physically) deleted.</p>
 <p>The server may perform this operation in an asynchronous way (in batches), in which case status <code>202 Accepted</code> is returned,
 or may perform this operation directly, in which case (by successful outcome) will return status <code>204 No Content</code>.</p>
-</div></div><div><h5 class="sc-irLvIq cnGhhy">query<!-- --> Parameters</h5><table class="sc-hIPBNq kuUpel"><tbody><tr class="last "><td kind="field" title="ehr_id" class="sc-hABBmJ sc-fHejqy cLxLAu gUQzCY"><span class="sc-ifyrAs cKGSqL"></span><span class="property-name">ehr_id</span></td><td class="sc-blmEgr bGEmHi"><div><div><span class="sc-gUjWJS sc-kZOsHZ dIDJpI BWdEk"></span><span class="sc-gUjWJS sc-iLXxbI dIDJpI bouVdd">string</span><span class="sc-gUjWJS sc-iLXxbI dIDJpI bouVdd"> <!-- -->&lt;<!-- -->uuid<!-- -->&gt;<!-- --> </span></div> <span class="sc-gUjWJS dIDJpI"> <!-- -->Examples<!-- -->: </span><ul class="sc-UFult gIWUlp"><li><span class="sc-gUjWJS sc-ldgOGP dIDJpI gIMuDc">ehr_id=7d44b88c-4199-4bad-97dc-d78268e01398</span> -<!-- --> <!-- -->A single EHR identifier</li><li><span class="sc-gUjWJS sc-ldgOGP dIDJpI gIMuDc">ehr_id=7d44b88c-4199-4bad-97dc-d78268e01398&amp;ehr_id=297c3e91-7c17-4497-85dd-01e05aaae44e</span> -<!-- --> <!-- -->Multiple EHR identifiers</li></ul><div><div html="&lt;p&gt;An optional parameter to perform the operation on a subset of EHRs.&lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gjyacz"><p>An optional parameter to perform the operation on a subset of EHRs.</p>
-</div></div></div></td></tr></tbody></table></div><div><h3 class="sc-fYitVF duKVDl">Responses</h3><div><button class="sc-hsaIUA iSOCsR" disabled=""><strong class="sc-gWQvRS ePkkgX">202<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;202 Accepted&lt;/code&gt; is returned when the requested operation has been accepted for processing, 
+</div></div><div><h5 class="sc-deSjom dunSEZ">query<!-- --> Parameters</h5><table class="sc-dVupuq kGrkEc"><tbody><tr class="last "><td kind="field" title="ehr_id" class="sc-kXOizl sc-dPKAra fSvPEv bXzRho"><span class="sc-gjXmFk HDyVo"></span><span class="property-name">ehr_id</span></td><td class="sc-fuExOL hBUAPQ"><div><div><span class="sc-sediK sc-cAQujh cSdpmK cuNUAn"></span><span class="sc-sediK sc-haUlXw cSdpmK ifbswQ">string</span><span class="sc-sediK sc-haUlXw cSdpmK ifbswQ"> <!-- -->&lt;<!-- -->uuid<!-- -->&gt;<!-- --> </span></div> <span class="sc-sediK cSdpmK"> <!-- -->Examples<!-- -->: </span><ul class="sc-cHtFsA chJlOY"><li><span class="sc-sediK sc-cHQrJj cSdpmK jWNyXr">ehr_id=7d44b88c-4199-4bad-97dc-d78268e01398</span> -<!-- --> <!-- -->A single EHR identifier</li><li><span class="sc-sediK sc-cHQrJj cSdpmK jWNyXr">ehr_id=7d44b88c-4199-4bad-97dc-d78268e01398&amp;ehr_id=297c3e91-7c17-4497-85dd-01e05aaae44e</span> -<!-- --> <!-- -->Multiple EHR identifiers</li></ul><div><div html="&lt;p&gt;An optional parameter to perform the operation on a subset of EHRs.&lt;/p&gt;
+" class="sc-dJkDXt sc-eXfTSZ eOvdyU jnPkpd"><p>An optional parameter to perform the operation on a subset of EHRs.</p>
+</div></div></div></td></tr></tbody></table></div><div><h3 class="sc-frtHmg eXjWTp">Responses</h3><div><button class="sc-kdWPFt igjdiI" disabled=""><strong class="sc-dxpuJR bniiic">202<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;202 Accepted&lt;/code&gt; is returned when the requested operation has been accepted for processing, 
 but processing has not been completed or may not have started (i.e. when requests are processed in batches). &lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV sc-ckdEwu LxEPk"><p><code>202 Accepted</code> is returned when the requested operation has been accepted for processing, 
+" class="sc-dJkDXt sc-eXfTSZ sc-dXYVqG eOvdyU hMgQNd iWCNbi"><p><code>202 Accepted</code> is returned when the requested operation has been accepted for processing, 
 but processing has not been completed or may not have started (i.e. when requests are processed in batches). </p>
-</div></button></div><div><button class="sc-hsaIUA iSOCsR" disabled=""><strong class="sc-gWQvRS ePkkgX">204<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;204 No Content&lt;/code&gt; is returned when the requested operation succeeded and the resource(s) identified by the request parameters has been physically deleted (i.e. hard-delete).&lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV sc-ckdEwu LxEPk"><p><code>204 No Content</code> is returned when the requested operation succeeded and the resource(s) identified by the request parameters has been physically deleted (i.e. hard-delete).</p>
-</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">404<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;404 Not Found&lt;/code&gt; is returned when, based on the request parameters, the server did not find a current representation of a target resource, or is not willing to disclose that one exists.&lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gqpIeV sc-ckdEwu LxEPk"><p><code>404 Not Found</code> is returned when, based on the request parameters, the server did not find a current representation of a target resource, or is not willing to disclose that one exists.</p>
-</div></button></div></div></div><div class="sc-jTQCzO sc-gLLuof dbQgao jGdkPR"><div class="sc-bPrlCs cIsduN"><button class="sc-GkLId bclCVA"><span type="delete" class="sc-jYnQyy hIeiNw http-verb delete">delete</span><span class="sc-fYrVWQ bpvLMW">/admin/ehr/all{?ehr_id*}</span><svg class="sc-eTNRI exoGJA" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-eGgGjL hsEiws"><div class="sc-fnpiog jerStl"><div html="&lt;p&gt;An example openEHR server URL.&lt;/p&gt;
-" class="sc-iKOmoZ sc-cCzLxZ WVNwY gjyacz"><p>An example openEHR server URL.</p>
-</div><div tabindex="0" role="button"><div class="sc-lkDHyp etvaCd"><span>https://{baseUrl}/v1</span>/admin/ehr/all{?ehr_id*}</div></div></div></div></div></div></div></div></div><div class="sc-juusvx jSDjCV"></div></div></div>
+</div></button></div><div><button class="sc-kdWPFt igjdiI" disabled=""><strong class="sc-dxpuJR bniiic">204<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;204 No Content&lt;/code&gt; is returned when the requested operation succeeded and the resource(s) identified by the request parameters has been physically deleted (i.e. hard-delete).&lt;/p&gt;
+" class="sc-dJkDXt sc-eXfTSZ sc-dXYVqG eOvdyU hMgQNd iWCNbi"><p><code>204 No Content</code> is returned when the requested operation succeeded and the resource(s) identified by the request parameters has been physically deleted (i.e. hard-delete).</p>
+</div></button></div><div><button class="sc-kdWPFt gkyJaa" disabled=""><strong class="sc-dxpuJR bniiic">404<!-- --> </strong><div html="&lt;p&gt;&lt;code&gt;404 Not Found&lt;/code&gt; is returned when, based on the request parameters, the server did not find a current representation of a target resource, or is not willing to disclose that one exists.&lt;/p&gt;
+" class="sc-dJkDXt sc-eXfTSZ sc-dXYVqG eOvdyU hMgQNd iWCNbi"><p><code>404 Not Found</code> is returned when, based on the request parameters, the server did not find a current representation of a target resource, or is not willing to disclose that one exists.</p>
+</div></button></div></div></div><div class="sc-jbAkgO sc-gNZgCX gQxIbn libpUV"><div class="sc-dNMyuw jSOGEJ"><button class="sc-iNzRy NZAfQ"><span type="delete" class="sc-eEFyrX liIjVl http-verb delete">delete</span><span class="sc-ijEwUV evMzeR">/admin/ehr/all{?ehr_id*}</span><svg class="sc-cSaEAk jsDnaG" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-dHpROs jElwoi"><div class="sc-idhQoR fLVjhV"><div html="&lt;p&gt;An example openEHR server URL.&lt;/p&gt;
+" class="sc-dJkDXt sc-eXfTSZ eOvdyU jnPkpd"><p>An example openEHR server URL.</p>
+</div><div tabindex="0" role="button"><div class="sc-cqTlu cpBCZw"><span>https://{baseUrl}/v1</span>/admin/ehr/all{?ehr_id*}</div></div></div></div></div></div></div></div></div><div class="sc-dZRlFK dEMbob"></div></div></div>
       <script>
       const __redoc_state = {"menu":{"activeItemIdx":-1},"spec":{"data":{"openapi":"3.0.3","info":{"title":"Admin API","version":"development","x-status":"DEVELOPMENT","x-spec":"admin","contact":{"name":"Specifications Editorial Committee openEHR","url":"https://specifications.openehr.org/","email":"info@openehr.org"},"license":{"name":"Creative Commons Attribution-NoDerivs 3.0 Unported","url":"https://creativecommons.org/licenses/by-nd/3.0/"},"description":"## Description\n\n### Purpose\n\nThis specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with Admin openEHR API in a RESTful manner.\n\n### Related Documents\n\nPrerequisite documents for reading this document include:\n\n- The [EHR Information Model](https://specifications.openehr.org/releases/RM/latest/ehr.html#_the_ehr_information_model)\n- The [Demographic Information Model](https://specifications.openehr.org/releases/RM/latest/demographic.html#_demographic_package)\n- The [Operational Template 2](https://specifications.openehr.org/releases/AM/latest/OPT2.html)\n- The [Archetype Query Language(AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html)\n\nRelated documents include:\n\n- The [openEHR Architecture Overview](https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html)\n- The [openEHR Global Class Index](https://specifications.openehr.org/classes)\n- The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)\n- The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)\n- The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)\n\n### Status\n\nThis specification is in the `DEVELOPMENT` state, and can be downloaded as [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3) file (in YAML format) [for validation](computable/OAS/admin-validation.openapi.yaml), or [for code generators](computable/OAS/admin-codegen.openapi.yaml).\nUsers are encouraged to comment on and/or advise on these paragraphs as well as the main content.\n\nThe development version of this document can be found at <https://specifications.openehr.org/releases/ITS-REST/development/admin.html>.\n"},"servers":[{"url":"https://{baseUrl}/v1","description":"An example openEHR server URL.","variables":{"baseUrl":{"default":"openEHRSys.example.com","description":"The (example) server base URL prefix providing openEHR services. This may contain server name, port and base path prefix."}}}],"security":[],"tags":[{"name":"EHR","description":"Admin management of [EHRs](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class).\n"}],"paths":{"/admin/ehr/{ehr_id}":{"delete":{"operationId":"admin_ehr_delete","summary":"Delete EHR","description":"Deletes the EHR identified by `ehr_id`. \n\nAll corresponding or owned resources, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc. including historical versions, will also be (physically) deleted.\n\nThe server may perform this operation in an asynchronous way (in batches), in which case status `202 Accepted` is returned,\nor may perform this operation directly, in which case (by successful outcome) will return status `204 No Content`.\n","tags":["EHR"],"parameters":[{"$ref":"#/components/parameters/ehr_id"}],"responses":{"202":{"$ref":"#/components/responses/202"},"204":{"$ref":"#/components/responses/204_deleted_hard"},"404":{"$ref":"#/components/responses/404_unknown_ehr_id"}}}},"/admin/ehr/all{?ehr_id*}":{"delete":{"operationId":"admin_ehr_delete_all","summary":"Delete all EHRs","description":"Deletes all EHRs, or a subset of EHRs defined using the `ehr_id` query parameter. \n\nAll corresponding or owned resources by the candidate EHRs, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc. \nincluding historical versions, will also be (physically) deleted.\n\nThe server may perform this operation in an asynchronous way (in batches), in which case status `202 Accepted` is returned,\nor may perform this operation directly, in which case (by successful outcome) will return status `204 No Content`.\n","tags":["EHR"],"parameters":[{"$ref":"#/components/parameters/ehr_id_Admin"}],"responses":{"202":{"$ref":"#/components/responses/202"},"204":{"$ref":"#/components/responses/204_deleted_hard"},"404":{"$ref":"#/components/responses/404"}}}}},"components":{"parameters":{"ehr_id":{"name":"ehr_id","in":"path","description":"EHR identifier taken from EHR.ehr_id.value.\n","required":true,"style":"simple","schema":{"type":"string","format":"uuid","example":"7d44b88c-4199-4bad-97dc-d78268e01398"}},"ehr_id_Admin":{"name":"ehr_id","in":"query","description":"An optional parameter to perform the operation on a subset of EHRs.\n","style":"form","explode":true,"schema":{"type":"string","format":"uuid"},"examples":{"single":{"summary":"A single EHR identifier","value":"7d44b88c-4199-4bad-97dc-d78268e01398"},"multiple":{"summary":"Multiple EHR identifiers","value":["7d44b88c-4199-4bad-97dc-d78268e01398","297c3e91-7c17-4497-85dd-01e05aaae44e"]}}}},"responses":{"202":{"description":"`202 Accepted` is returned when the requested operation has been accepted for processing, \nbut processing has not been completed or may not have started (i.e. when requests are processed in batches). \n"},"404":{"description":"`404 Not Found` is returned when, based on the request parameters, the server did not find a current representation of a target resource, or is not willing to disclose that one exists.\n"},"204_deleted_hard":{"description":"`204 No Content` is returned when the requested operation succeeded and the resource(s) identified by the request parameters has been physically deleted (i.e. hard-delete).\n"},"404_unknown_ehr_id":{"description":"`404 Not Found` is returned when an EHR with `ehr_id` does not exist.\n"}},"schemas":{}},"x-tagGroups":[{"name":"Resource endpoints","tags":["EHR"]}]}},"searchIndex":{"store":["section/Description","tag/EHR","tag/EHR/operation/admin_ehr_delete","tag/EHR/operation/admin_ehr_delete_all"],"index":{"version":"2.3.9","fields":["title","description"],"fieldVectors":[["title/0",[0,1.394]],["description/0",[1,2.24,2,0.831,3,1.265,4,0.831,5,1.265,6,0.831,7,0.246,8,0.375,9,1.265,10,0.831,11,0.831,12,0.831,13,0.831,14,0.478,15,1.712,16,0.831,17,0.831,18,0.831,19,1.265,20,1.843,21,0.831,22,0.831,23,0.375,24,0.143,25,1.265,26,0.831,27,0.831,28,0.831,29,1.265,30,0.831,31,0.831,32,0.478,33,0.831,34,0.831,35,0.831,36,0.831,37,0.831,38,0.831,39,0.831,40,0.831,41,0.831,42,0.831,43,0.831,44,0.831,45,0.831,46,0.831,47,0.831,48,0.246,49,1.265,50,0.831,51,0.831,52,0.831,53,0.831,54,0.831,55,0.831,56,0.831,57,0.831,58,0.831,59,0.831,60,0.831,61,0.831,62,0.831,63,0.831,64,0.831,65,0.831,66,0.831,67,0.246,68,0.246,69,0.831,70,0.831]],["title/1",[24,0.24]],["description/1",[14,1.123,71,1.95,72,1.95]],["title/2",[24,0.183,73,0.093]],["description/2",[7,0.381,8,0.513,23,0.381,24,0.222,48,0.513,67,0.381,68,0.381,73,0.152,74,1.286,75,0.741,76,0.741,77,0.741,78,0.741,79,0.741,80,0.741,81,0.741,82,0.741,83,0.741,84,0.741,85,0.741,86,0.997,87,0.741,88,0.741,89,0.741,90,0.997,91,0.741,92,0.741,93,0.997,94,0.741,95,0.741,96,0.741,97,0.741,98,1.286]],["title/3",[24,0.183,73,0.093]],["description/3",[7,0.357,8,0.491,23,0.357,24,0.327,32,0.695,48,0.491,67,0.357,68,0.357,73,0.145,75,0.695,76,0.695,77,0.695,78,0.695,79,0.695,80,0.695,81,0.695,82,0.695,83,0.695,84,0.695,85,0.695,86,0.955,87,0.695,88,0.695,89,0.695,90,0.955,91,0.695,92,0.695,93,0.955,94,0.695,95,0.695,96,0.695,97,0.695,99,1.207,100,1.207,101,1.207,102,1.207,103,1.207,104,1.207]]],"invertedIndex":[["",{"_index":1,"title":{},"description":{"0":{}}}],["202",{"_index":91,"title":{},"description":{"2":{},"3":{}}}],["204",{"_index":97,"title":{},"description":{"2":{},"3":{}}}],["2](https://specifications.openehr.org/releases/am/latest/opt2.html",{"_index":30,"title":{},"description":{"0":{}}}],["abstract",{"_index":46,"title":{},"description":{"0":{}}}],["accept",{"_index":92,"title":{},"description":{"2":{},"3":{}}}],["admin",{"_index":14,"title":{},"description":{"0":{},"1":{}}}],["admin/ehr/all{?ehr_id",{"_index":104,"title":{},"description":{"3":{}}}],["admin/ehr/{ehr_id",{"_index":98,"title":{},"description":{"2":{}}}],["advis",{"_index":64,"title":{},"description":{"0":{}}}],["and/or",{"_index":63,"title":{},"description":{"0":{}}}],["api",{"_index":16,"title":{},"description":{"0":{}}}],["archetyp",{"_index":31,"title":{},"description":{"0":{}}}],["architectur",{"_index":34,"title":{},"description":{"0":{}}}],["asynchron",{"_index":87,"title":{},"description":{"2":{},"3":{}}}],["batch",{"_index":89,"title":{},"description":{"2":{},"3":{}}}],["candid",{"_index":103,"title":{},"description":{"3":{}}}],["case",{"_index":90,"title":{},"description":{"2":{},"3":{}}}],["class",{"_index":37,"title":{},"description":{"0":{}}}],["code",{"_index":58,"title":{},"description":{"0":{}}}],["comment",{"_index":62,"title":{},"description":{"0":{}}}],["composit",{"_index":79,"title":{},"description":{"2":{},"3":{}}}],["content",{"_index":67,"title":{},"description":{"0":{},"2":{},"3":{}}}],["correspond",{"_index":76,"title":{},"description":{"2":{},"3":{}}}],["data",{"_index":43,"title":{},"description":{"0":{}}}],["defin",{"_index":100,"title":{},"description":{"3":{}}}],["delet",{"_index":73,"title":{"2":{},"3":{}},"description":{"2":{},"3":{}}}],["demograph",{"_index":27,"title":{},"description":{"0":{}}}],["describ",{"_index":4,"title":{},"description":{"0":{}}}],["descript",{"_index":0,"title":{"0":{}},"description":{}}],["detail",{"_index":10,"title":{},"description":{"0":{}}}],["develop",{"_index":49,"title":{},"description":{"0":{}}}],["directli",{"_index":94,"title":{},"description":{"2":{},"3":{}}}],["document",{"_index":20,"title":{},"description":{"0":{}}}],["download",{"_index":51,"title":{},"description":{"0":{}}}],["ehr",{"_index":24,"title":{"1":{},"2":{},"3":{}},"description":{"0":{},"2":{},"3":{}}}],["ehr_id",{"_index":75,"title":{},"description":{"2":{},"3":{}}}],["ehr_statu",{"_index":80,"title":{},"description":{"2":{},"3":{}}}],["ehrs](https://specifications.openehr.org/releases/rm/latest/ehr.html#_ehr_class",{"_index":72,"title":{},"description":{"1":{}}}],["encourag",{"_index":61,"title":{},"description":{"0":{}}}],["endpoint",{"_index":6,"title":{},"description":{"0":{}}}],["etc",{"_index":82,"title":{},"description":{"2":{},"3":{}}}],["file",{"_index":54,"title":{},"description":{"0":{}}}],["format",{"_index":56,"title":{},"description":{"0":{}}}],["found",{"_index":69,"title":{},"description":{"0":{}}}],["generators](computable/oas/admin-codegen.openapi.yaml",{"_index":59,"title":{},"description":{"0":{}}}],["global",{"_index":36,"title":{},"description":{"0":{}}}],["histor",{"_index":83,"title":{},"description":{"2":{},"3":{}}}],["https://specifications.openehr.org/releases/its-rest/development/admin.html",{"_index":70,"title":{},"description":{"0":{}}}],["identifi",{"_index":74,"title":{},"description":{"2":{}}}],["includ",{"_index":23,"title":{},"description":{"0":{},"2":{},"3":{}}}],["index](https://specifications.openehr.org/class",{"_index":38,"title":{},"description":{"0":{}}}],["inform",{"_index":25,"title":{},"description":{"0":{}}}],["interact",{"_index":13,"title":{},"description":{"0":{}}}],["item_tag",{"_index":81,"title":{},"description":{"2":{},"3":{}}}],["json-schemas](https://specifications.openehr.org/releases/its-json/latest",{"_index":41,"title":{},"description":{"0":{}}}],["language(aql)](https://specifications.openehr.org/releases/query/latest/aql.html",{"_index":33,"title":{},"description":{"0":{}}}],["main",{"_index":66,"title":{},"description":{"0":{}}}],["manag",{"_index":71,"title":{},"description":{"1":{}}}],["manner",{"_index":18,"title":{},"description":{"0":{}}}],["model](https://specifications.openehr.org/releases/rm/latest/demographic.html#_demographic_packag",{"_index":28,"title":{},"description":{"0":{}}}],["model](https://specifications.openehr.org/releases/rm/latest/ehr.html#_the_ehr_information_model",{"_index":26,"title":{},"description":{"0":{}}}],["model](https://specifications.openehr.org/releases/sm/development/openehr_platform.html",{"_index":47,"title":{},"description":{"0":{}}}],["openapi",{"_index":52,"title":{},"description":{"0":{}}}],["openehr",{"_index":15,"title":{},"description":{"0":{}}}],["oper",{"_index":8,"title":{},"description":{"0":{},"2":{},"3":{}}}],["outcom",{"_index":96,"title":{},"description":{"2":{},"3":{}}}],["overview](https://specifications.openehr.org/releases/base/latest/architecture_overview.html",{"_index":35,"title":{},"description":{"0":{}}}],["own",{"_index":77,"title":{},"description":{"2":{},"3":{}}}],["paragraph",{"_index":65,"title":{},"description":{"0":{}}}],["paramet",{"_index":102,"title":{},"description":{"3":{}}}],["perform",{"_index":86,"title":{},"description":{"2":{},"3":{}}}],["physic",{"_index":84,"title":{},"description":{"2":{},"3":{}}}],["platform",{"_index":45,"title":{},"description":{"0":{}}}],["prerequisit",{"_index":21,"title":{},"description":{"0":{}}}],["purpos",{"_index":2,"title":{},"description":{"0":{}}}],["queri",{"_index":32,"title":{},"description":{"0":{},"3":{}}}],["read",{"_index":22,"title":{},"description":{"0":{}}}],["relat",{"_index":19,"title":{},"description":{"0":{}}}],["request",{"_index":11,"title":{},"description":{"0":{}}}],["resourc",{"_index":7,"title":{},"description":{"0":{},"2":{},"3":{}}}],["respons",{"_index":12,"title":{},"description":{"0":{}}}],["rest",{"_index":17,"title":{},"description":{"0":{}}}],["return",{"_index":93,"title":{},"description":{"2":{},"3":{}}}],["sdt)](simplified_data_template.html",{"_index":44,"title":{},"description":{"0":{}}}],["server",{"_index":85,"title":{},"description":{"2":{},"3":{}}}],["servic",{"_index":5,"title":{},"description":{"0":{}}}],["simplifi",{"_index":42,"title":{},"description":{"0":{}}}],["specif",{"_index":3,"title":{},"description":{"0":{}}}],["specification](https://spec.openapis.org/oas/v3.0.3",{"_index":53,"title":{},"description":{"0":{}}}],["state",{"_index":50,"title":{},"description":{"0":{}}}],["statu",{"_index":48,"title":{},"description":{"0":{},"2":{},"3":{}}}],["subset",{"_index":99,"title":{},"description":{"3":{}}}],["success",{"_index":95,"title":{},"description":{"2":{},"3":{}}}],["such",{"_index":78,"title":{},"description":{"2":{},"3":{}}}],["templat",{"_index":29,"title":{},"description":{"0":{}}}],["us",{"_index":101,"title":{},"description":{"3":{}}}],["user",{"_index":60,"title":{},"description":{"0":{}}}],["validation](computable/oas/admin-validation.openapi.yaml",{"_index":57,"title":{},"description":{"0":{}}}],["version",{"_index":68,"title":{},"description":{"0":{},"2":{},"3":{}}}],["way",{"_index":88,"title":{},"description":{"2":{},"3":{}}}],["well",{"_index":9,"title":{},"description":{"0":{}}}],["xml-schema",{"_index":39,"title":{},"description":{"0":{}}}],["xsd)](https://specifications.openehr.org/releases/its-xml/latest",{"_index":40,"title":{},"description":{"0":{}}}],["yaml",{"_index":55,"title":{},"description":{"0":{}}}]],"pipeline":[]}},"options":{"showObjectSchemaExamples":false,"schemaExpansionLevel":0,"scrollYOffset":72,"nativeScrollbars":true,"hideDownloadButton":true,"theme":{"spacing":{"unit":4,"sectionHorizontal":30,"sectionVertical":0},"typography":{"fontSize":"16px","smoothing":"antialiased","optimizeSpeed":true,"headings":{"fontFamily":"Source Sans Pro","fontWeight":"700"},"code":{"fontSize":"14px","fontFamily":"monospace"}},"colors":{"tonalOffset":0.3},"sidebar":{"width":"300px","textColor":"#333333"}}}};
 

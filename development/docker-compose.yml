@@ -10,7 +10,7 @@ services:
         user: 1000:1000
 
     redocly:
-        image: redocly/cli:1.11.0
+        image: redocly/cli:1.33.1
         volumes:
             - ..:/spec
         tty: true
