@@ -101,19 +101,6 @@ Servers MAY add `openehr-item-tag` header to the response, to confirm the actual
 
 When retrieving resources viw `GET` methods, the server MAY also add `openehr-item-tag` response header that will contain the list of all ITEM_TAG associated with the target VERSION or VERSIONED_OBJECT.
 
-## If-Match and accidental overwrites
-
-The `If-Match` request header SHOULD be used by the clients to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. This is only required by a small set of versioned resources of this specification.
-In case a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method and instead MUST respond with
-HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `Location` and `ETag` response headers.
-
-Example:
-```http
-If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
-```
-
-See also details for `If-Match` described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-if-match).
-
 ## openehr-template-id
 
 The `openehr-template-id` request header MUST be used whenever committing COMPOSITION (via `PUT` or `POST` methods) using a [simplified data format](#header-alternative-data-formats) which does not support TEMPLATE_ID value under an equivalent `LOCATABLE.archetype_details.template_id` attribute of contained data.
@@ -155,11 +142,10 @@ See more details on [representation details negotiation](#tag/Requests_and_respo
 The `ETag` and `Last-Modified` headers provide essential information about the state of a resource, enabling clients to manage caching, detect changes, and prevent unintentional overwrites.
 
 The `ETag` (Entity Tag) header acts as a unique identifier for a specific version of a resource. It helps clients determine whether a resource has changed between requests, supporting efficient caching and optimistic concurrency control.
-According to [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag),
 
-> The "ETag" field in a response provides the current entity tag for the selected representation, as determined at the conclusion of handling the request. An entity tag is an opaque validator for differentiating between multiple representations of the same resource, regardless of whether those multiple representations are due to resource state changes over time, content negotiation resulting in multiple representations being valid at the same time, or both. An entity tag consists of an opaque quoted string, possibly prefixed by a weakness indicator.
+In this specification, the `ETag` value is independent of its serialization format (JSON/XML). This differs from standard HTTP behavior, where an `ETag` typically identifies a specific representation of a resource - see [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag).
+The `ETag` value is usually taken from e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc. It changes as soon as the resource changes (i.e. when a new version is created).
 
-The `ETag` value changes as soon as the resource changes (i.e. when a new version is created).
 An example of `ETag` header value format is:
 
 ```http
@@ -167,7 +153,7 @@ HTTP/1.1 200 OK
 ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 ```
 
-While the server MAY define its own `ETag` format, it is recommended to use the unique identifier of the requested resource (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).
+Servers MAY add additional `ETag` response headers, consisting of an opaque quoted string, possibly prefixed by a weakness indicator.
 
 The `Last-Modified` response HTTP header, indicates the date and time when the resource was last modified.
 This helps clients determine freshness and manage conditional requests.
@@ -181,6 +167,18 @@ Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
 ```
 
 Both `ETag` and `Last-Modified` SHOULD be included in responses for VERSION, VERSIONED_OBJECT, or other resources that have versioning or unique state identifiers.
+
+## If-Match and accidental overwrites
+
+The `If-Match` request header SHOULD be used by the clients with state-changing methods (e.g., `POST`, `PUT`, `DELETE`) to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem). This is only required by a small set of versioned resources in this specification.
+If a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method. Instead, it MUST respond with HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `Location` and `ETag` response headers. When the service expects `If-Match` for an operation, but the client does not provide it, the service SHOULD respond with `400 Bad Reequest`. 
+
+Example:
+```http
+If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
+```
+
+See also details for `If-Match` described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-if-match).
 
 
 # HTTP status codes
