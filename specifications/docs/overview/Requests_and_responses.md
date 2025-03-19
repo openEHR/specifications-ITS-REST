@@ -1,7 +1,6 @@
 [comment]: # (title: Requests and Responses)
 
-The following describes in details how HTTP [headers](#tag/Requests_and_responses/HTTP-headers) and [status codes](#tag/Requests_and_responses/HTTP-status-codes)
-MUST be used by an openEHR REST API implementation in order to achieve good interaction between services and clients in the spirit of this specification.
+The following describes in details how HTTP [headers](#tag/Requests_and_responses/HTTP-headers) and [status codes](#tag/Requests_and_responses/HTTP-status-codes) MUST be used by an openEHR REST API implementation in order to achieve good interaction between services and clients in the spirit of this specification.
 
 Furthermore, general details about resources, [data representation](#tag/Resources/Data-representation) and content negotiation are described in this specification.
 
@@ -27,16 +26,10 @@ A server that receives a request method that is unrecognized or not implemented 
 
 # Authentication and authorization
 
-Services SHOULD implement and support an HTTP Authentication and Authorization framework
-(which can support various schemes) but there is no assumption or recommendation being made
-in this specification about which authentication scheme should be used by services and clients.
-See [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-http-authentication) or [Mozilla's HTTP Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
-for details on this subject.
+Services SHOULD implement and support an HTTP Authentication and Authorization framework (which can support various schemes) but there is no assumption or recommendation being made in this specification about which authentication scheme should be used by services and clients.
+See [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-http-authentication) or [Mozilla's HTTP Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) for details on this subject.
 
-If an Authentication and Authorisation framework is present, services MUST properly use `WWW-Authenticate` and/or
-`Proxy-Authenticate` response headers and return HTTP status code `403 Forbidden` or `401 Unauthorized` or
-`407 Proxy Authentication` whenever applicable, and clients MUST properly use `Authorization` and `Proxy-Authorization`
-in their request headers.
+If an Authentication and Authorisation framework is present, services MUST properly use `WWW-Authenticate` and/or `Proxy-Authenticate` response headers and return HTTP status code `403 Forbidden` or `401 Unauthorized` or `407 Proxy Authentication` whenever applicable, and clients MUST properly use `Authorization` and `Proxy-Authorization` in their request headers.
 
 
 # HTTP headers
@@ -63,10 +56,8 @@ For optimal compatibility, all new implementations should adopt the updated head
 
 ## openehr-version and openehr-audit-details
 
-When it comes to committing content to an openEHR system, for all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.) the services are
-[performing versioning](https://specifications.openehr.org/releases/RM/latest/common.html#\_change_control_package) under the hood.
-The 'native' way of committing is to use a [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#\_contributions)
-and wrap the content as a [VERSION](https://specifications.openehr.org/releases/RM/latest/common.html#\_version_class).
+When it comes to committing content to an openEHR system, for all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.) the services are [performing versioning](https://specifications.openehr.org/releases/RM/latest/common.html#\_change_control_package) under the hood.
+The 'native' way of committing is to use a [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#\_contributions) and wrap the content as a [VERSION](https://specifications.openehr.org/releases/RM/latest/common.html#\_version_class).
 To keep things simpler and consistent, services MUST also allow `PUT`, `POST` and `DELETE` methods directly on these change-controlled resources.
 However, these operations MUST internally be executed using the 'native' way.
 
@@ -109,8 +100,7 @@ When retrieving resources viw `GET` methods, the server MAY also add `openehr-it
 
 ## If-Match and accidental overwrites
 
-The `If-Match` request header SHOULD be used by the clients to prevent accidental overwrites when multiple user
-agents might be acting in parallel on the same resource. This is only required by a small set of versioned resources of this specification.
+The `If-Match` request header SHOULD be used by the clients to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. This is only required by a small set of versioned resources of this specification.
 In case a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method and instead MUST respond with
 HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `Location` and `ETag` response headers.
 
@@ -123,9 +113,7 @@ See also details for `If-Match` described by [RFC 9110](https://datatracker.ietf
 
 ## openehr-template-id
 
-The `openehr-template-id` request header MUST be used whenever committing COMPOSITION (via `PUT` or `POST` methods)
-using a [simplified data format](#header-alternative-data-formats) which does not support TEMPLATE_ID value
-under an equivalent `LOCATABLE.archetype_details.template_id` attribute of contained data.
+The `openehr-template-id` request header MUST be used whenever committing COMPOSITION (via `PUT` or `POST` methods) using a [simplified data format](#header-alternative-data-formats) which does not support TEMPLATE_ID value under an equivalent `LOCATABLE.archetype_details.template_id` attribute of contained data.
 
 ## Location and openehr-uri
 
@@ -164,33 +152,28 @@ According to [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag
 
 > The "ETag" field in a response provides the current entity tag for the selected representation, as determined at the conclusion of handling the request. An entity tag is an opaque validator for differentiating between multiple representations of the same resource, regardless of whether those multiple representations are due to resource state changes over time, content negotiation resulting in multiple representations being valid at the same time, or both. An entity tag consists of an opaque quoted string, possibly prefixed by a weakness indicator.
 
-The `ETag` response HTTP header contains a string token that the server associates with a resource in order to
-uniquely identify the state of that resource over its lifetime. The value of the token changes as soon as the resource changes.
+The `ETag` response HTTP header contains a string token that the server associates with a resource in order to uniquely identify the state of that resource over its lifetime. The value of the token changes as soon as the resource changes.
 An example of such header value format is:
 
 ```http
 ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 ```
 
-Servers MAY choose their own format for this header, but the recommended value is the unique identifier of the requested resource
-(e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).
+Servers MAY choose their own format for this header, but the recommended value is the unique identifier of the requested resource (e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc).
 
-The `Last-Modified` response HTTP header contains the datetime of the last modification of targeted resource
-which should be taken from VERSION.commit_audit.time_committed.value.
+The `Last-Modified` response HTTP header contains the datetime of the last modification of targeted resource which should be taken from VERSION.commit_audit.time_committed.value.
 An example of such header value format is:
 
 ```http
 Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
 ```
 
-These two headers SHOULD be present in all responses targeting VERSION, VERSIONED_OBJECT or other resources
-that have similar unique identifier.
+These two headers SHOULD be present in all responses targeting VERSION, VERSIONED_OBJECT or other resources that have similar unique identifier.
 
 
 # HTTP status codes 
 
-HTTP Status codes are described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-status-codes)
-and by the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
+HTTP Status codes are described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-status-codes) and by the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 The following subset of the is being used in this specification:
 
 | Code | Reason-Phrase          | Meaning, usecase and details                                                                                                                                               |
@@ -256,8 +239,7 @@ Example:
 
 # Representation details negotiation
 
-When using the `POST` and `PUT` HTTP methods to create or update a resource, the service SHOULD give clients the option of returning either a complete
-representation of the (modified) resource, or a minimal or no content in the payload response (assuming the operation was successfully completed).
+When using the `POST` and `PUT` HTTP methods to create or update a resource, the service SHOULD give clients the option of returning either a complete representation of the (modified) resource, or a minimal or no content in the payload response (assuming the operation was successfully completed).
 See [RFC 7240](https://tools.ietf.org/html/rfc7240#section-4.2) for more details on how achieve this using `Prefer` header.
 The client MAY choose any of the following:
 
@@ -273,10 +255,9 @@ and the payload content SHOULD include a full representation.
 
 In case no `Prefer` header is present in request, the default response policy is `return=minimal`.
 
-Another preference is related to following and resolving OBJECT_REF identifiers. Under some circumstances a client
-MAY indicate that prefers response containing full or partial resource representation instead of references to resources using OBJECT_REF.
-A typical case is a list of COMPOSITIONs part of an EHR, which, strictly following RM specification, should always return
-list of OBJECT_REF, but sometimes clients prefers to get COMPOSITIONs.
+Another preference is related to following and resolving OBJECT_REF identifiers. 
+Under some circumstances a client MAY indicate that it prefers response containing full or partial resource representation instead of references to resources using OBJECT_REF.
+A typical case is a list of COMPOSITIONs part of an EHR, which, strictly following RM specification, should always return list of OBJECT_REF, but sometimes clients prefers to get COMPOSITIONs.
 Services that have this capability implemented SHOULD accept and honor `Prefer: resolve_refs` request header.
 
 ```http
