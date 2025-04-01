@@ -3,8 +3,8 @@ summary: Delete EHR
 description: |
   Deletes the EHR identified by `ehr_id`. 
   
-  All corresponding or owned resources, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc. including historical versions, will also be (physically) deleted.
-  
+  All corresponding or owned resources, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc., including historical versions, will also be permanently deleted in compliance with GDPR.
+
   The server may perform this operation in an asynchronous way (in batches), in which case status `202 Accepted` is returned,
   or may perform this operation directly, in which case (by successful outcome) will return status `204 No Content`.
 
