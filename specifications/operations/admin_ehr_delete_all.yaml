@@ -1,13 +1,17 @@
 operationId: admin_ehr_delete_all
-summary: Delete all EHRs
+summary: Delete multiple EHRs
 description: |
+
   Deletes all EHRs, or a subset of EHRs defined using the `ehr_id` query parameter. 
+
+  The delete all EHRs functionality is for **DEVELOPMENT** use only and should be **disabled in production**.
   
   All corresponding or owned resources by the candidate EHRs, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc. 
-  including historical versions, will also be (physically) deleted.
+  including historical versions, will also be (physically) permanently deleted in compliance with GDPR.
   
   The server may perform this operation in an asynchronous way (in batches), in which case status `202 Accepted` is returned,
   or may perform this operation directly, in which case (by successful outcome) will return status `204 No Content`.
+
 
 tags:
   - EHR
