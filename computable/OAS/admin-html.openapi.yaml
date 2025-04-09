@@ -57,14 +57,14 @@ paths:
   /admin/ehr/{ehr_id}:
     delete:
       operationId: admin_ehr_delete
-      summary: Delete EHR
+      summary: Delete EHR by id
       description: |
         Deletes the EHR identified by `ehr_id`. 
 
-        All corresponding or owned resources, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc. including historical versions, will also be (physically) deleted.
+        All resources associated with or owned by the specified EHR (such as COMPOSITION, EHR_STATUS, ITEM_TAG, CONTRIBUTION, and their historical versions) will also be **permanently** and physically deleted, in compliance with applicable data protection regulations (e.g., the GDPR in the European Union).
 
-        The server may perform this operation in an asynchronous way (in batches), in which case status `202 Accepted` is returned,
-        or may perform this operation directly, in which case (by successful outcome) will return status `204 No Content`.
+        The server may execute this operation asynchronously (e.g. in batches), in which case returns status `202 Accepted`.
+        If the deletion is processed synchronously and completes successfully, the server returns status `204 No Content`.
       tags:
         - EHR
       parameters:
@@ -79,15 +79,17 @@ paths:
   /admin/ehr/all{?ehr_id*}:
     delete:
       operationId: admin_ehr_delete_all
-      summary: Delete all EHRs
+      summary: Delete multiple EHRs
       description: |
-        Deletes all EHRs, or a subset of EHRs defined using the `ehr_id` query parameter. 
 
-        All corresponding or owned resources by the candidate EHRs, such as COMPOSITION, EHR_STATUS, ITEM_TAG, etc. 
-        including historical versions, will also be (physically) deleted.
+        Deletes all or multiple EHRs, or a specified subset of EHRs identified using the `ehr_id` query parameter. 
 
-        The server may perform this operation in an asynchronous way (in batches), in which case status `202 Accepted` is returned,
-        or may perform this operation directly, in which case (by successful outcome) will return status `204 No Content`.
+        > NOTE: This functionality is intended primarily for **development** or **testing** purposes and may be disabled in **production** environments, in which case server may respond with `405 Method Not Allowed`.
+
+        All resources associated with or owned by the targeted EHRs (such as COMPOSITION, EHR_STATUS, ITEM_TAG, CONTRIBUTION, and their historical versions) will also be **permanently** and physically deleted, in compliance with applicable data protection regulations (e.g., the GDPR in the European Union).
+
+        The server may execute this operation asynchronously (e.g. in batches), in which case returns status `202 Accepted`.
+        If the deletion is processed synchronously and completes successfully, the server returns status `204 No Content`.
       tags:
         - EHR
       parameters:
@@ -99,6 +101,8 @@ paths:
           $ref: '#/components/responses/204_deleted_hard'
         '404':
           $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
 components:
   parameters:
     ehr_id:
@@ -135,10 +139,13 @@ components:
     '202':
       description: |
         `202 Accepted` is returned when the requested operation has been accepted for processing, 
-        but processing has not been completed or may not have started (i.e. when requests are processed in batches). 
+        but processing has not been completed or may not have started (i.e. when requests are processed asynchronously). 
     '404':
       description: |
         `404 Not Found` is returned when, based on the request parameters, the server did not find a current representation of a target resource, or is not willing to disclose that one exists.
+    '405':
+      description: |
+        `405 Method Not Allowed` is returned when the service knows the request method, but the target resource doesn't support this method (e.g. due to security concerns). 
     204_deleted_hard:
       description: |
         `204 No Content` is returned when the requested operation succeeded and the resource(s) identified by the request parameters has been physically deleted (i.e. hard-delete).
