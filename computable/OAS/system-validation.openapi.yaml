@@ -80,18 +80,23 @@ components:
       properties:
         solution:
           type: string
+          description: 'The name of the solution as chosen by the vendor.'
         solution_version:
           type: string
+          description: 'The deployed version of the solution. This is a vendor-specific version number. Ideally, this is a semantic version number.'
         vendor:
           type: string
+          description: 'The name of the vendor of the solution.'
         restapi_specs_version:
           type: string
+          description: 'The semantic version of the openEHR REST API specifications that the solution is compliant with. Must be one of the releases listed in the [openEHR REST API specifications](https://specifications.openehr.org/releases/ITS-REST/latest).'
         conformance_profile:
           type: string
         endpoints:
           type: array
           items:
             type: string
+          description: 'The endpoints that are supported by the solution.'
       example:
         solution: openEHRSys
         solution_version: v1.0
