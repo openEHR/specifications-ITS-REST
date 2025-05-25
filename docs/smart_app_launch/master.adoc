@@ -66,6 +66,7 @@ include::master01-preface.adoc[leveloffset=+1]
 include::master02-overview.adoc[leveloffset=+1]
 include::master04-registration.adoc[leveloffset=+1]
 include::master05-service_discovery.adoc[leveloffset=+1]
+include::master05-application_types.adoc[leveloffset=+1]
 include::master06-authentication_authorization_scopes.adoc[leveloffset=+1]
 
 //
