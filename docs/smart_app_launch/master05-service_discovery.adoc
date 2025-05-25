@@ -1,21 +1,31 @@
 = Service Discovery
 
-A _Platform_ usually has multiple endpoints of interest. Some of these are the OAuth2's endpoints, like the Token and Authentication endpoints, while others are data resource or service endpoints defined by the openEHR REST APIs, FHIR APIs, DICOMWeb APIs, or other vendor's proprietary APIs.
+A _Platform_ typically exposes multiple service endpoints.
+These include OAuth 2.0 endpoints such as Authorization and Token, standard data service endpoints (e.g., openEHR REST APIs, FHIR APIs), and possibly other standard or proprietary APIs (e.g. DICOMWeb APIs).
 
-The *SMART Service Discovery* builds on the FHIR {hl7_fhir}/smart-app-launch/conformance.html#using-well-known[`.well-known/smart-configuration`^] and enables a _Platform_ to advertise multiple <<_services,services>> alongside the OAuth2 endpoints for <<_authentication_endpoints,authentication>> and any available <<_capabilities,SMART capabilities>>.
+The *SMART Service Discovery* mechanism extends the {hl7_smart_app_launch}/conformance.html#using-well-known[FHIR `.well-known/smart-configuration`^] endpoint definition.
+It allows a _Platform_ to advertise <<_authentication_endpoints,authentications>> endpoint, SMART <<_capabilities,capabilities>>, and a list of available <<_services,services>>.
 
 [.text-center]
 .SMART Service Discovery
 image::{diagrams_uri}/smart_service_discovery.svg[id=smart_service_discovery, align="center"]
 
-Given a _Platform_ base URL of `\https://platform.example.com`, the SMART configuration endpoint should be available at the location formed by appending `/.well-known/smart-configuration` to their base URL, i.e. at `\https://platform.example.com/.well-known/smart-configuration`. This base URL may also contain a path component, e.g. `\https://platform.example.com/**gateway/v1/**`.
+The configuration endpoint should be always available relative to the _Platform_ base URL.
+For example, given a base URL as `\https://platform.example.com`, the SMART configuration endpoint must be available at `\https://platform.example.com/.well-known/smart-configuration`.
+If the base URL includes a path segment as `\https://platform.example.com/gateway/v1`, then the configuration should be accessible at `\https://platform.example.com/gateway/v1/.well-known/smart-configuration`.
+
+Unlike the {hl7_smart_app_launch}/conformance.html#using-well-known[FHIR `.well-known/smart-configuration`^], which defines the configuration endpoint relative to the base URL of the FHIR server, this specification defines this endpoint relative to the _Platform_ base URL (i.e. the gateway).
+This allows the _Platform_ to advertise service capabilities beyond FHIR APIs, including openEHR REST APIs and other APIs that may not be part of the FHIR server itself.
+While this provides greater flexibility and aligns with a multi-API architecture, _Platform_ vendors are encouraged to ensure compatibility with SMART FHIR applications by maintaining a consistent `issuer` and exposing the FHIR API at the same base URL when feasible.
 
 [NOTE]
 ====
-In order to maintain compatibility with _SMART on FHIR_ applications, it is recommended that the platform vendor makes the _Platform_ base URL (e.g. `\https://platform.example.com`) also the FHIR server base URL, fulfilling FHIR SMART apps expectations, which assumes that the `iss` launch parameter is the same as the `issuer` endpoint advertised in the `.well-known/smart-configuration` and represents the FHIR server endpoint.
+In order to maintain compatibility with SMART App Launch, it is recommended that the base URL of the _Platform_ also acts as the base URL of the FHIR server.
+Such applications often assume the `iss` (issuer) launch parameter is both the base FHIR endpoint and the `issuer` value in the configuration document.
+_Platform_ vendors may implement this alignment using gateways, proxies, or redirection mechanisms. However, such implementation details are outside the scope of this specification.
 ====
 
-Responses for `/.well-known/smart-configuration` requests should be always returned in JSON format, using the `application/json` mime type. An example will look like this:
+Responses to `/.well-known/smart-configuration` endpoint must be served with the `application/json` MIME type. A representative example is shown below:
 
 [source,json]
 --------
@@ -76,51 +86,59 @@ Responses for `/.well-known/smart-configuration` requests should be always retur
 
 The details of the `/.well-known/smart-configuration` are described in the sections below.
 
-== Authentication endpoints
+== Authentication Endpoints
 
-The following configurations keys should be exactly the same as in the OAuth2 + OIDC protocol's `.well-known/openid-configuration` as per https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig[OpenID Connect Discovery 1.0^] and {hl7_fhir}/smart-app-launch/conformance.html#metadata[FHIR^] specifications:
+The following attributes in the `.well-known/openid-configuration` must match those defined in the OAuth 2.0 + https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig[OpenID Connect Discovery^] specification as well as the {hl7_fhir}/smart-app-launch/conformance.html#metadata[FHIR SMART metadata^] specification:
 
-- `isuer`
+- `issuer`
 - `jwks_uri`
 - `authorization_endpoint`
+- `grant_types_supported`
 - `token_endpoint`
 - `token_endpoint_auth_methods_supported`
-- `grant_types_supported`
+- `registration_endpoint`
 - `scopes_supported`
+- `management_endpoint`
 - `response_types_supported`
 - `introspection_endpoint`
 - `revocation_endpoint`
+- `capabilities`
 - `code_challenge_methods_supported`
 
 == Services
 
-A response from the SMART Configuration endpoint should include besides the {hl7_fhir}/smart-app-launch/conformance.html#metadata[FHIR metadata^] also a hash of all available `services` on the _Platform_. The `services` section allows the application to discover the APIs of all services that can be used along with their description and documentation. The `services` section is represented as a hash, where the key is represented by a reverse domain name of the service (e.g. `org.openehr.rest`), and the value represents the service specification.
+In addition to the {hl7_fhir}/smart-app-launch/conformance.html#metadata[FHIR-specific metadata^], the response from configuration endpoint must include the `services` section describing the available service interfaces exposed by the _Platform_.
+This section enables Applications to dynamically discover the APIs provided by the _Platform_, along with their respective base URLs, descriptions, and potentially documentation links.
 
-Listed services should include minimally the openEHR REST APIs endpoints specification available on the _Platform_, using the key `org.openehr.rest`. For consistency reason, it is recommended to also include the specification of the FHIR server using the key `org.fhir.rest`:
+The `services` is a hash map, where each key is a reverse domain name uniquely identifying a service (e.g., `org.openehr.rest`), and the corresponding value contains the service-specific metadata and base URL. This structure allows for a flexible and extensible way to declare multiple APIs that may coexist within the _Platform_.
+
+At a minimum, the `services` section must include the openEHR REST API using the key `org.openehr.rest`.
+For consistency reason, it is also recommended to include the FHIR API under the key `org.fhir.rest`:
 
 * `org.openehr.rest`: The base URL of the openEHR REST APIs `*(required)*`
 * `org.fhir.rest`: The base URL of the FHIR APIs `*(recommended)*`
 
-The Platform vendor may add additional services to the services list, for example:
+Additional services, such as CDS Hooks endpoints, terminology services, or non-RESTful interfaces, may be included using appropriately namespaced keys. For example:
 
-* `org.dicomstandard.dicomweb.rest`: The base URL of the DICOMWeb REST API
-* `com.amazon.aws.s3.rest`: The base URL of an AWS S3 compatible REST API
-* `com.example.demographics`: The base URL of a proprietary service that is not part of the openEHR, FHIR or DICOMWeb specifications
+* `org.dicomstandard.dicomweb.rest`: DICOMWeb REST API endpoint
+* `com.amazon.aws.s3.rest`: AWS S3-compatible REST API
+* `com.example.demographics`: A vendor-specific demographic service
 
-Each service specification should include the following configurations:
+Each service definition may contain:
 
-* `baseUrl`: The base URL of the service `*(required)*`
-* `description`: A short description of the service
-* `documentation`: A URL to the documentation of the service
-* `openapi`: A URL to the OpenAPI specification of the service
+- `baseUrl`: Absolute URL to the root of the API `*(required)*`
+- `description`: Human-readable description of the service
+- `version`: Service API version
+- `documentation`: Link to service documentation
+- `openapi`: Link to the OpenAPI (Swagger) definition of the API
 
-As an example, the openEHR REST APIs endpoints may be described as:
+Example:
 
 [source,json]
 --------
 {
     "org.openehr.rest" : {
-        "baseUrl":"https://platform.example.com/openehr/rest/v1",
+        "baseUrl": "https://platform.example.com/openehr/rest/v1",
         "description": "The openEHR REST API baseUrl",
         "documentation": "https://platform.example.com/openehr/docs",
         "openapi": "https://platform.example.com/openehr/rest/v1/openapi.json"
@@ -130,9 +148,9 @@ As an example, the openEHR REST APIs endpoints may be described as:
 
 == Capabilities
 
-The `capabilities` section is an array that should include all relevant SMART capabilities. Besides {hl7_fhir}/smart-app-launch/conformance.html#capabilities[FHIR capabilities^], the following additional values should be used in order to indicate the ability to launch an application using openEHR artefacts:
+The `capabilities` section advertises supported SMART features as an array value. In addition to those scopes defined in the original {hl7_smart_app_launch}/conformance.html#capabilities[SMART App Launch^] framework, the following capabilities extend the list for openEHR platforms:
 
-* `context-openehr-ehr` - support for EHR-level launch context (requested by `launch/patient` scope, conveyed via `ehrId` token parameter).
-* `context-openehr-episode` - support for Episode-level launch context (requested by `launch/episode` scope, conveyed via `episodeId` token parameter). This capability is deemed experimental.
-* `openehr-permission-v1` - support for the scope and authorization scheme for openEHR REST APIs as described <<_scopes_for_openehr_rest_api,below>>
-* `launch-base64-json` - support for the `launch` URL parameter being a base64 encoded JSON of the context.
+* `context-openehr-ehr`: Indicates support for EHR-level launch context, requested via `launch/patient` scope and conveyed via the `ehrId` token claim.
+* `context-openehr-episode`: Indicates support for Episode-level context, requested via `launch/episode`, scope conveyed via `episodeId` (<<_experimental_episode_context,experimental>>).
+* `openehr-permission-v1`: Indicates support for fine-grained <<_resource_scopes,scopes>> and authorization scheme over openEHR resources.
+* `launch-base64-json`: Indicates support for encoding launch context as a base64-encoded JSON object in the `launch` parameter.
