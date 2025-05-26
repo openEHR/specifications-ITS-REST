@@ -45,7 +45,7 @@ This specification has benefited from formal and informal input from the openEHR
 
 A significant part of the design ideas of this specification was derived from:
 
-* the SMART on FHIR protocol - SMART App Launch Release 2.1.0, published by HL7® FHIR® standard
+* SMART App Launch - Release 2.1.0, published by HL7® FHIR® standard
 
 === Trademarks
 
@@ -67,7 +67,9 @@ include::master02-overview.adoc[leveloffset=+1]
 include::master04-registration.adoc[leveloffset=+1]
 include::master05-service_discovery.adoc[leveloffset=+1]
 include::master05-application_types.adoc[leveloffset=+1]
-include::master06-authentication_authorization_scopes.adoc[leveloffset=+1]
+include::master06-authentication.adoc[leveloffset=+1]
+include::master07-authorization.adoc[leveloffset=+1]
+include::master08-scopes.adoc[leveloffset=+1]
 
 //
 // --------------------------------------------- REFERENCES -----------------------------------------------
