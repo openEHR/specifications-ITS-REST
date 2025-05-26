@@ -64,8 +64,8 @@ A significant part of the design ideas of this specification was derived from:
 :sectnums:
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-overview.adoc[leveloffset=+1]
-include::master04-registration.adoc[leveloffset=+1]
-include::master05-service_discovery.adoc[leveloffset=+1]
+include::master03-registration.adoc[leveloffset=+1]
+include::master04-service_discovery.adoc[leveloffset=+1]
 include::master05-application_types.adoc[leveloffset=+1]
 include::master06-authentication.adoc[leveloffset=+1]
 include::master07-authorization.adoc[leveloffset=+1]
