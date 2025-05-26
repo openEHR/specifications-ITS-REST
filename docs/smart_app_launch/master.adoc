@@ -70,6 +70,7 @@ include::master05-application_types.adoc[leveloffset=+1]
 include::master06-authentication.adoc[leveloffset=+1]
 include::master07-authorization.adoc[leveloffset=+1]
 include::master08-scopes.adoc[leveloffset=+1]
+include::master09-experimental_features.adoc[leveloffset=+1]
 
 //
 // --------------------------------------------- REFERENCES -----------------------------------------------
