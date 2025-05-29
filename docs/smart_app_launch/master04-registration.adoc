@@ -1,8 +1,0 @@
-= Application Registration
-
-An _Application_ needs to first register itself with the _Platform_ that it needs to integrate with. This process involves the followings:
-
-- The _Application_ registers with the _Platform_ by providing the appropriate ID, OAuth2 Scopes, Launch Contexts, Domains, Redirect URLs (`redirect_uri`) etc.
-- The _Application_ obtains credentials like the `client_id`, JSON Web Keys or  `client_secret` from the _Platform_ for authentication and authorization.
-
-While this process could be formalised and automated in the future using protocols like {ietf_html}/rfc7591[OAuth2 Dynamic Client Registration Protocol^], the current recommendation is to do this out-of-band in a way that makes sense for the Application Vendor and the Platform Vendor. For example, the Platform vendor could offer a Registration Page that Application Vendors could use to register their applications, and can have an approval and audit mechanism before applications are registered.
