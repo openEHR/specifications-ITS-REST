@@ -17,6 +17,13 @@
     </thead>
     <tbody>
     <tr>
+        <td>5.3</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-74" target="_blank" rel="noopener">SPECITS-74</a>:
+            Deprecate some of the use of Location response header</td>
+        <td>REST WG</td>
+        <td>26 Aug 2025</td>
+    </tr>
+    <tr>
         <td>5.2</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-77" target="_blank" rel="noopener">SPECITS-77</a>:
             Add support for ITEM_TAGs</td>
