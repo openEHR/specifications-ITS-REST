@@ -68,7 +68,7 @@
     </tr>
     <tr>
         <td>5.0</td>
-        <td><a href="https://specifications.openehr.org/tickets/SPECITS-73" target="_blank" rel="noopener">SPECITS-73</a>:
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-75" target="_blank" rel="noopener">SPECITS-75</a>:
             Change structure and improve yaml specs</td>
         <td>S Iancu</td>
         <td>11 Sep 2024</td>
