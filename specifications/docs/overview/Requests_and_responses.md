@@ -58,6 +58,10 @@ While the deprecated headers remain available for backward compatibility, their 
 Some of the `GET` methods had a `Location` response header to indicate the canonical location of a representation. 
 However, this was an incorrect use of the header, and it is now deprecated.
 For more information see [Location header](#tag/Requests_and_responses/HTTP-headers/Location) section.
+
+The `ETag` response header was used without a weakness indicator `W/`. 
+This is now deprecated, all `ETag` headers that holds a resource identifier MUST include a weakness indicator `W/`.
+For more information see [ETag and Last-Modified](#tag/Requests_and_responses/HTTP-headers/ETag-and-Last-Modified) section.
  
 For optimal compatibility, all new implementations should adopt the updated header names.
 
@@ -149,14 +153,17 @@ The `ETag` and `Last-Modified` headers provide essential information about the s
 
 The `ETag` (Entity Tag) header acts as a unique identifier for a specific version of a resource. It helps clients determine whether a resource has changed between requests, supporting efficient caching and optimistic concurrency control.
 
-In this specification, the `ETag` value is independent of its serialization format (JSON/XML). This differs from standard HTTP behavior, where an `ETag` typically identifies a specific representation of a resource - see [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag).
+In this specification, the `ETag` value is independent of its resource serialization format (JSON/XML). This differs from standard HTTP behavior, where an `ETag` typically identifies a specific representation of a resource - see [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag). Therefore, the `ETag` are considered to be of weak-type and should have a weakness indicator `W/` prefix.
+
+> DEPRECATION: [Prior to Release 1.1.0](https://specifications.openehr.org/releases/ITS-REST/Release-1.0.3/overview.html#tag/Requests_and_responses/HTTP-headers), the `ETag` header was used without a weakness indicator `W/`. This usage is now deprecated, but implementations MAY still support it alongside the updated header format that includes the weakness indicator `W/` prefix.
+
 The `ETag` value is usually taken from e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc. It changes as soon as the resource changes (i.e. when a new version is created).
 
 An example of `ETag` header value format is:
 
 ```http
 HTTP/1.1 200 OK
-ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
+ETag: W/"8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 ```
 
 Servers MAY add additional `ETag` response headers, consisting of an opaque quoted string, possibly prefixed by a weakness indicator.
