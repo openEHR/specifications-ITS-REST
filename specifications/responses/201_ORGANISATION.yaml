@@ -1,6 +1,7 @@
 description: |
-  `201 Created` is returned when the ORGANISATION was created. 
-  Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+  `201 Created` is returned when the ORGANISATION is successfully created. 
+  If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its identifiers are included. 
+  If the `Prefer` header is missing or set to `return=minimal`, the body is empty.
 headers:
   ETag:
     $ref: ../headers/ETag.yaml
@@ -9,4 +10,6 @@ headers:
 content:
   application/json:
     schema:
-      $ref: ../schemas/demographic/Organisation.yaml
+      oneOf:
+        - $ref: ../schemas/demographic/Organisation.yaml
+        - $ref: ../schemas/others/Identifier.yaml

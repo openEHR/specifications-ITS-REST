@@ -29,6 +29,14 @@
             Add ETag weakness indicator W/ prefix</td>
         <td>REST WG</td>
         <td>26 Aug 2025</td>
+        <td>26 August 2025</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-50" target="_blank" rel="noopener">SPECITS-50</a>:
+            Return very minimal REST responses to avoid 204 No content codes.</td>
+        <td>REST WG</td>
+        <td>26 August 2025</td>
     </tr>
     <tr>
         <td>5.2</td>
