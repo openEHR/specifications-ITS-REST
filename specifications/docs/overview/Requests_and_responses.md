@@ -285,7 +285,7 @@ Clients MAY use the following preferences to control the verbosity of successful
 Clients MAY request a minimal response that includes only the identifier (e.g., the `uid`) of the affected resource by specifying:
 
 ```http
-DELETE https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+PUT https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
 Prefer: return=identifier
 Accept: application/json
 ```
