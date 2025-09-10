@@ -56,7 +56,8 @@ While the deprecated headers remain available for backward compatibility, their 
 | openEHR-EHR-id        | openehr-ehr-id        |
 
 Some of the `GET` methods had a `Location` response header to indicate the canonical location of a representation. 
-However, this was an incorrect use of the header, and it is now deprecated.
+However, this was an incorrect use of the header, and it is now deprecated. 
+Similarly, the `Location` response header was deprecated from responses of `DELETE` methods.
 For more information see [Location header](#tag/Requests_and_responses/HTTP-headers/Location) section.
 
 The `ETag` response header was used without a weakness indicator `W/`. 
@@ -183,8 +184,8 @@ Both `ETag` and `Last-Modified` SHOULD be included in responses for VERSION, VER
 
 ## If-Match and accidental overwrites
 
-The `If-Match` request header SHOULD be used by the clients with state-changing methods (e.g., `POST`, `PUT`, `DELETE`) to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem). This is only required by a small set of versioned resources in this specification.
-If a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method. Instead, it MUST respond with HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `Location` and `ETag` response headers. When the service expects `If-Match` for an operation, but the client does not provide it, the service SHOULD respond with `400 Bad Reequest`. 
+The `If-Match` request header SHOULD be used by the clients with state-changing methods (e.g., `PUT`) to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem). This is only required by a small set of versioned resources in this specification, when the `preceding_version_uid` is not part of the endpoint path segment.
+If a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method. Instead, it MUST respond with HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `ETag` response headers. When the service expects `If-Match` for an operation, but the client does not provide it, the service SHOULD respond with `400 Bad Reequest`. 
 
 Example:
 ```http
