@@ -63,8 +63,11 @@ For more information see [Location header](#tag/Requests_and_responses/HTTP-head
 The `ETag` response header was used without a weakness indicator `W/`. 
 This is now deprecated, all `ETag` headers that holds a resource identifier MUST include a weakness indicator `W/`.
 For more information see [ETag and Last-Modified](#tag/Requests_and_responses/HTTP-headers/ETag-and-Last-Modified) section.
- 
-For optimal compatibility, all new implementations should adopt the updated header names.
+
+To ensure forward compatibility, clients are strongly encouraged to always include the `Prefer` request header explicitly. Although the current default behavior is equivalent to `Prefer=minimal`, this might change in the near future to `Prefer=identifier`. Explicitly stating the preference prevents unexpected behavior changes as the default evolves.
+For more information see [Prefer only identifier](#tag/Requests_and_responses/Representation-details-negotiation/Prefer-only-identifier) section.
+
+For long-term stability, all new implementations should adopt the updated header names and follow their prescribed usage.
 
 ## openehr-version and openehr-audit-details
 
@@ -303,6 +306,8 @@ Content-Type: application/json
   "uid": "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3"
 }
 ```
+
+> **Notice:** Although the current default behavior is `return=minimal`, some server implementations MAY provide a configurable flag to switch the default response preference to `return=identifier`. To ensure forward compatibility, clients are encouraged to always include the `Prefer` request header explicitly. Stating the preference explicitly prevents unexpected behavior changes as the default behavior evolves.
 
 ## Prefer resolving Object references
 
