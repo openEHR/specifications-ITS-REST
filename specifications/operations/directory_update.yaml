@@ -22,7 +22,7 @@ responses:
   '200':
     $ref: ../responses/200_directory_updated.yaml
   '204':
-    $ref: ../responses/204_directory_updated.yaml
+    $ref: ../responses/204_version_updated.yaml
   '400':
     $ref: ../responses/400.yaml
   '404':

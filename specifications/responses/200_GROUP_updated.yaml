@@ -1,5 +1,5 @@
 description: |
-  `200 OK` is returned when the GROUP is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+  `200 OK` is returned when the GROUP is successfully updated, with the full resource in the response body when `Prefer` header is `return=representation`, or only its identifiers when `Prefer` header is `return=identifier`.
 headers:
   ETag:
     $ref: ../headers/ETag.yaml
@@ -8,4 +8,6 @@ headers:
 content:
   application/json:
     schema:
-      $ref: ../schemas/demographic/Group.yaml
+      oneOf:
+        - $ref: ../schemas/demographic/Group.yaml
+        - $ref: ../schemas/others/Identifier.yaml

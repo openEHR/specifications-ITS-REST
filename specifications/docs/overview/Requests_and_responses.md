@@ -63,8 +63,11 @@ For more information see [Location header](#tag/Requests_and_responses/HTTP-head
 The `ETag` response header was used without a weakness indicator `W/`. 
 This is now deprecated, all `ETag` headers that holds a resource identifier MUST include a weakness indicator `W/`.
 For more information see [ETag and Last-Modified](#tag/Requests_and_responses/HTTP-headers/ETag-and-Last-Modified) section.
- 
-For optimal compatibility, all new implementations should adopt the updated header names.
+
+To ensure forward compatibility, clients are strongly encouraged to always include the `Prefer` request header explicitly. Although the current default behavior is equivalent to `Prefer=minimal`, this might change in the near future to `Prefer=identifier`. Explicitly stating the preference prevents unexpected behavior changes as the default evolves.
+For more information see [Prefer only identifier](#tag/Requests_and_responses/Representation-details-negotiation/Prefer-only-identifier) section.
+
+For long-term stability, all new implementations should adopt the updated header names and follow their prescribed usage.
 
 ## openehr-version and openehr-audit-details
 
@@ -264,7 +267,7 @@ The service MAY include a `Preference-Applied` header in the response, such as `
 
 If no `Prefer` header is provided, the default behavior is assumed to be `return=minimal`.
 
-## Prefer minimal or full representation response
+## Prefer minimal, identifier or full representation response
 
 Clients MAY use the following preferences to control the verbosity of successful responses:
 
@@ -272,10 +275,39 @@ Clients MAY use the following preferences to control the verbosity of successful
   Indicates the client prefers a minimal response. 
   The response SHOULD include a `Location` header pointing to the newly created or updated resource. The HTTP status is typically `201 Created`. If no response body is returned, the service SHOULD use `204 No Content`.
 
+* `Prefer: return=identifier`  
+  Indicates the client prefers a minimal response that includes only the identifier (e.g., the `uid`) of the affected resource. 
+  The response MAY include a `Location` header pointing to the newly created or updated resource. The HTTP status is typically `201 Created` or `200 OK` and the response body SHOULD contain only the identifier of the affected resource.
+
 * `Prefer: return=representation`  
   Indicates the client prefers a full resource representation in the response.  
   The response MAY include a `Location` header, and the response body SHOULD contain the full representation of the resource. The HTTP status is typically `201 Created` or `200 OK`.
 
+
+## Prefer only identifier 
+
+Clients MAY request a minimal response that includes only the identifier (e.g., the `uid`) of the affected resource by specifying:
+
+```http
+PUT https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+Prefer: return=identifier
+Accept: application/json
+```
+
+This is a variant of preference that implies minimal response semantics, but with a non-empty response body (i.e., the status will be `201 Created` or `200 OK`, never `204 No Content`).
+The response body SHOULD contain only the identifier of the affected resource formatted according to the `Accept` request header.
+For example, when `application/json` is requested as above, the response body will be a single JSON object with a single `uid` attribute.
+
+```http
+HTTP/1.1 200 OK
+Preference-Applied: return=identifier
+Content-Type: application/json
+{ 
+  "uid": "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3"
+}
+```
+
+> **Notice:** Although the current default behavior is `return=minimal`, some server implementations MAY provide a configurable flag to switch the default response preference to `return=identifier`. To ensure forward compatibility, clients are encouraged to always include the `Prefer` request header explicitly. Stating the preference explicitly prevents unexpected behavior changes as the default behavior evolves.
 
 ## Prefer resolving Object references
 

@@ -25,6 +25,8 @@ requestBody:
 responses:
   '200':
     $ref: ../responses/200_AGENT_updated.yaml
+  '204':
+    $ref: ../responses/204_version_updated.yaml
   '400':
     $ref: ../responses/400.yaml
   '404':

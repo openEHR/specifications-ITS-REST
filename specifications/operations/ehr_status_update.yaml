@@ -28,8 +28,8 @@ responses:
   '200':
     $ref: ../responses/200_EHR_STATUS_updated.yaml
   '204':
-    $ref: ../responses/204_EHR_STATUS.yaml
-  '400':    
+    $ref: ../responses/204_version_updated.yaml
+  '400':
     $ref: ../responses/400.yaml
   '404':    
     $ref: ../responses/404_unknown_ehr_id.yaml
