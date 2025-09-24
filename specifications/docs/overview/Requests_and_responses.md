@@ -55,6 +55,15 @@ While the deprecated headers remain available for backward compatibility, their 
 | openEHR-uri           | openehr-uri           |
 | openEHR-EHR-id        | openehr-ehr-id        |
 
+Some of the `GET` methods had a `Location` response header to indicate the canonical location of a representation. 
+However, this was an incorrect use of the header, and it is now deprecated. 
+Similarly, the `Location` response header was deprecated from responses of `DELETE` methods.
+For more information see [Location header](#tag/Requests_and_responses/HTTP-headers/Location) section.
+
+The `ETag` response header was used without a weakness indicator `W/`. 
+This is now deprecated, all `ETag` headers that holds a resource identifier MUST include a weakness indicator `W/`.
+For more information see [ETag and Last-Modified](#tag/Requests_and_responses/HTTP-headers/ETag-and-Last-Modified) section.
+ 
 For optimal compatibility, all new implementations should adopt the updated header names.
 
 ## openehr-version and openehr-audit-details
@@ -105,37 +114,39 @@ When retrieving resources viw `GET` methods, the server MAY also add `openehr-it
 
 The `openehr-template-id` request header MUST be used whenever committing COMPOSITION (via `PUT` or `POST` methods) using a [simplified data format](#header-alternative-data-formats) which does not support TEMPLATE_ID value under an equivalent `LOCATABLE.archetype_details.template_id` attribute of contained data.
 
-## Location and openehr-uri
+## Location
 
-The `Location` response header indicates the resource location (URL).
-According to [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.location), it is used to refer to a specific resource in relation to the response.
-The type of relationship is defined by the combination of request method and status code semantics.
-The identifiers part of this URI-reference SHOULD comply with [resource identification](#tag/Resources/Resource-identification) semantics of this specification.
+The `Location` header, as defined in [RFC 9110, Section 10.2.2](https://datatracker.ietf.org/doc/html/rfc9110#field.location), is used by a server to indicate the URL of a newly created resource.
+In the openEHR REST API, it is used in `201 Created` responses when a new resource is successfully created (e.g., via `POST` method). 
+It MUST NOT be used to indicate an alternate representation of an existing resource (e.g. via `GET` method).
 
-Services MUST return this header whenever a create or update operation was performed, but it MAY
-return this header on other operation or action. Example:
+> DEPRECATION: [Prior to Release 1.1.0](https://specifications.openehr.org/releases/ITS-REST/Release-1.0.3/overview.html#tag/Requests_and_responses/HTTP-headers), the `Location` header was used to indicate the canonical location of a representation in a response.
+> This usage is now deprecated. 
+> The `Location` header MUST ONLY be used for resource creation (e.g., `201 Created`) or redirect responses.
+
+Example of a `Location` response header:
 
 ```http
+HTTP/1.1 201 Created
 Location: https://openEHRSys.example.com/v1/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+Preference-Applied: return=minimal
 ```
-
-See [representation details negotiation](#tag/Requests_and_responses/Representation-details-negotiation) section
-for more details on how use this header.
 
 ## openehr-uri
 
-If services have support to generate resource URI as specified by the [DV_EHR_URI](https://specifications.openehr.org/releases/RM/development/data_types.html#_dv_ehr_uri_class) format, then they MAY also send `openehr-uri` response header for all openEHR resources where this is applicable.
+If the service supports generating resource URIs in the format defined by the [DV_EHR_URI](https://specifications.openehr.org/releases/RM/development/data_types.html#_dv_ehr_uri_class) class, it MAY include the openehr-uri response header for applicable openEHR resources.
 
 Example:
 
 ```http
+HTTP/1.1 200 Ok
 openehr-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B
 ```
 
 ## Prefer
 
-The `Prefer` request header MAY be used by clients for resource representation negotiation.
-See more details on [representation details negotiation](#tag/Requests_and_responses/Representation-details-negotiation) section.
+The `Prefer` request header MAY be used by clients to negotiate the format or content of the resource representation in the response.
+For more information, see the [representation details negotiation](#tag/Requests_and_responses/Representation-details-negotiation) section.
 
 ## ETag and Last-Modified
 
@@ -143,14 +154,17 @@ The `ETag` and `Last-Modified` headers provide essential information about the s
 
 The `ETag` (Entity Tag) header acts as a unique identifier for a specific version of a resource. It helps clients determine whether a resource has changed between requests, supporting efficient caching and optimistic concurrency control.
 
-In this specification, the `ETag` value is independent of its serialization format (JSON/XML). This differs from standard HTTP behavior, where an `ETag` typically identifies a specific representation of a resource - see [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag).
+In this specification, the `ETag` value is independent of its resource serialization format (JSON/XML). This differs from standard HTTP behavior, where an `ETag` typically identifies a specific representation of a resource - see [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag). Therefore, the `ETag` are considered to be of weak-type and should have a weakness indicator `W/` prefix.
+
+> DEPRECATION: [Prior to Release 1.1.0](https://specifications.openehr.org/releases/ITS-REST/Release-1.0.3/overview.html#tag/Requests_and_responses/HTTP-headers), the `ETag` header was used without a weakness indicator `W/`. This usage is now deprecated, but implementations MAY still support it alongside the updated header format that includes the weakness indicator `W/` prefix.
+
 The `ETag` value is usually taken from e.g. VERSIONED_OBJECT.uid.value, VERSION.uid.value, EHR.ehr_id.value, etc. It changes as soon as the resource changes (i.e. when a new version is created).
 
 An example of `ETag` header value format is:
 
 ```http
 HTTP/1.1 200 OK
-ETag: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
+ETag: W/"8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
 ```
 
 Servers MAY add additional `ETag` response headers, consisting of an opaque quoted string, possibly prefixed by a weakness indicator.
@@ -170,8 +184,8 @@ Both `ETag` and `Last-Modified` SHOULD be included in responses for VERSION, VER
 
 ## If-Match and accidental overwrites
 
-The `If-Match` request header SHOULD be used by the clients with state-changing methods (e.g., `POST`, `PUT`, `DELETE`) to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem). This is only required by a small set of versioned resources in this specification.
-If a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method. Instead, it MUST respond with HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `Location` and `ETag` response headers. When the service expects `If-Match` for an operation, but the client does not provide it, the service SHOULD respond with `400 Bad Reequest`. 
+The `If-Match` request header SHOULD be used by the clients with state-changing methods (e.g., `PUT`) to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem). This is only required by a small set of versioned resources in this specification, when the `preceding_version_uid` is not part of the endpoint path segment.
+If a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method. Instead, it MUST respond with HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `ETag` response headers. When the service expects `If-Match` for an operation, but the client does not provide it, the service SHOULD respond with `400 Bad Reequest`. 
 
 Example:
 ```http
@@ -244,27 +258,31 @@ Example error response:
 
 # Representation details negotiation
 
-When using `POST` or `PUT` to create or update a resource, the client can specify its response preference using the `Prefer` header, as described in [RFC 7240, Section 4.2](https://tools.ietf.org/html/rfc7240#section-4.2).
+When using `POST`, `PUT`, or `DELETE` to create, update, or delete a resource, the client can specify its preferred response format using the `Prefer` header, as defined in [RFC 7240, Section 4.2](https://tools.ietf.org/html/rfc7240#section-4.2).
 
-## Minimal or full representation response
+The service MAY include a `Preference-Applied` header in the response, such as `Preference-Applied: return=minimal` or `Preference-Applied: return=representation`, to indicate that the client's preference has been honored.
 
-Clients MAY choose any of the following:
+If no `Prefer` header is provided, the default behavior is assumed to be `return=minimal`.
 
-- send `Prefer: return=minimal` to inform the service that prefers only a minimal response to a successful request.
-  A `Location` header indicating the direct URL to access the resource MUST be part of the service response.
-  If there is no payload content to be returned, the service SHOULD use HTTP status code `204 No Content`.
+## Prefer minimal or full representation response
 
-- send `Prefer: return=representation` to inform the service that prefers a full representation response to a successful request.
-  The `Location` header indicating the direct URL to access the resource representation MAY be part of the service response, and the payload content SHOULD include a full representation, while HTTP response status code is usually `201 Created`.
+Clients MAY use the following preferences to control the verbosity of successful responses:
 
-If no `Prefer` header is specified, the default behavior is `return=minimal`.
+* `Prefer: return=minimal`  
+  Indicates the client prefers a minimal response. 
+  The response SHOULD include a `Location` header pointing to the newly created or updated resource. The HTTP status is typically `201 Created`. If no response body is returned, the service SHOULD use `204 No Content`.
 
-## Resolving Object References
+* `Prefer: return=representation`  
+  Indicates the client prefers a full resource representation in the response.  
+  The response MAY include a `Location` header, and the response body SHOULD contain the full representation of the resource. The HTTP status is typically `201 Created` or `200 OK`.
 
-Clients can request with `Prefer: resolve_refs` that object references (OBJECT_REF) be resolved into full or partial representations instead of being returned as references:
+
+## Prefer resolving Object references
+
+Clients MAY request that object references (e.g., OBJECT_REF) be resolved into full or partial representations by specifying:
 
 ```http
 Prefer: return=representation, resolve_refs
 ```
 
-This is useful when retrieving lists of COMPOSITION resources within an EHR, where the default behavior is to return only references.
+This is particularly useful when retrieving lists of COMPOSITION resources within an EHR, where the default behavior is to return only reference links.

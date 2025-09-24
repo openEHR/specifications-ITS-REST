@@ -4,7 +4,7 @@ headers:
   ETag:
     $ref: ../headers/ETag_VERSION.yaml
   Location:
-    $ref: ../headers/Location_VERSIONED_EHR_STATUS_VERSION.yaml
+    $ref: ../headers/Location_deprecated.yaml
 content:
   application/json:
     schema:
