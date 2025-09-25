@@ -7,6 +7,8 @@ headers:
     $ref: ../headers/Location_deprecated.yaml
   openehr-item-tag:
     $ref: ../headers/openehr-item-tag.yaml
+  openehr-version-item-tag:
+    $ref: ../headers/openehr-version-item-tag.yaml
 content:
   application/json:
     schema:

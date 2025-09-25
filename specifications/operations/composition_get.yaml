@@ -10,7 +10,7 @@ description: |
 
   See [Resource identification](overview.html#tag/Resources/Resource-identification) for more details about the identifiers usage and meaning.
   
-  When there are ITEM_TAGs associated with the retrieved COMPOSITION, they will be returned as `openehr-item-tag` response header.
+  When there are ITEM_TAGs associated with the retrieved COMPOSITION, they will be returned as `openehr-item-tag` and `openehr-version-item-tag` response headers, respectively - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
 tags:
   - COMPOSITION
 parameters:
