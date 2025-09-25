@@ -1,39 +1,27 @@
 <?php
 
 namespace OpenEHR\Specifications\Tools\OpenAPI\Writer;
+class Html extends Validation
+{
+    private const array SCHEMA_MAPPINGS = [
+        '#/components/schemas/UItem' => '#/components/schemas/UAbstractItem',
+        '#/components/schemas/UItemStructure' => '#/components/schemas/UAbstractItemStructure',
+        '#/components/schemas/UContentItem' => '#/components/schemas/UAbstractContentItem',
+        '#/components/schemas/ListOfContact' => '#/components/schemas/SeeContact',
+        '#/components/schemas/ListOfCapability' => '#/components/schemas/SeeCapability',
+        '#/components/schemas/ListOfPartyIdentity' => '#/components/schemas/SeePartyIdentity',
+        '#/components/schemas/ListOfPartyRelationship' => '#/components/schemas/SeePartyRelationship'
+    ];
 
-class Html extends Validation {
-
-    /**
-     * @var string
-     */
     protected string $type = 'html';
 
-    /**
-     * @return void
-     */
-    protected function prepareInput(): void {
+    protected function prepareInput(): void
+    {
         echo "prepareInput() ...";
         $this->input = str_replace(
-            [
-                '"$ref": "#/components/schemas/UItem"',
-                '"$ref": "#/components/schemas/UItemStructure"',
-                '"$ref": "#/components/schemas/UContentItem"',
-                '"$ref": "#/components/schemas/ListOfContact"',
-                '"$ref": "#/components/schemas/ListOfCapability"',
-                '"$ref": "#/components/schemas/ListOfPartyIdentity"',
-                '"$ref": "#/components/schemas/ListOfPartyRelationship"'
-            ],
-            [
-                '"$ref": "#/components/schemas/UAbstractItem"',
-                '"$ref": "#/components/schemas/UAbstractItemStructure"',
-                '"$ref": "#/components/schemas/UAbstractContentItem"',
-                '"$ref": "#/components/schemas/SeeContact"',
-                '"$ref": "#/components/schemas/SeeCapability"',
-                '"$ref": "#/components/schemas/SeePartyIdentity"',
-                '"$ref": "#/components/schemas/SeePartyRelationship"'
-            ],
-            $this->input);
+            array_keys(self::SCHEMA_MAPPINGS),
+            array_values(self::SCHEMA_MAPPINGS),
+            $this->input
+        );
     }
-
 }

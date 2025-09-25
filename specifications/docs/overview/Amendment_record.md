@@ -21,22 +21,21 @@
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-74" target="_blank" rel="noopener">SPECITS-74</a>:
             Deprecate some of the use of Location response header</td>
         <td>REST WG</td>
-        <td>26 Aug 2025</td>
+        <td>25 Sep 2025</td>
     </tr>
     <tr>
         <td></td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-82" target="_blank" rel="noopener">SPECITS-82</a>:
             Add ETag weakness indicator W/ prefix</td>
         <td>REST WG</td>
-        <td>26 Aug 2025</td>
-        <td>26 August 2025</td>
+        <td>25 Sep 2025</td>
     </tr>
     <tr>
         <td></td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-50" target="_blank" rel="noopener">SPECITS-50</a>:
             Return very minimal REST responses to avoid 204 No content codes.</td>
         <td>REST WG</td>
-        <td>26 August 2025</td>
+        <td>25 Sep 2025</td>
     </tr>
     <tr>
         <td>5.2</td>
@@ -68,7 +67,7 @@
     </tr>
     <tr>
         <td>5.0</td>
-        <td><a href="https://specifications.openehr.org/tickets/SPECITS-73" target="_blank" rel="noopener">SPECITS-73</a>:
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-75" target="_blank" rel="noopener">SPECITS-75</a>:
             Change structure and improve yaml specs</td>
         <td>S Iancu</td>
         <td>11 Sep 2024</td>

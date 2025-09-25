@@ -1,4 +1,4 @@
-FROM php:8.3-cli-alpine
+FROM php:8.3-cli-alpine AS php
 
 # create a guest local user
 ARG user=localuser
@@ -18,3 +18,13 @@ WORKDIR /opt/project
 
 # Switch to user
 USER ${uid}
+
+
+FROM node:alpine AS swagger-cli
+
+RUN npm install -g swagger-cli
+
+WORKDIR /data
+
+ENTRYPOINT ["swagger-cli"]
+CMD []
