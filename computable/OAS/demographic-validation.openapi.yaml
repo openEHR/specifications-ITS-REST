@@ -179,6 +179,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200_AGENT_updated'
+        '204':
+          $ref: '#/components/responses/204_version_updated'
         '400':
           $ref: '#/components/responses/400'
         '404':
@@ -200,7 +202,7 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_version_uid'
       responses:
         '204':
-          $ref: '#/components/responses/204_AGENT_deleted'
+          $ref: '#/components/responses/204_version_deleted'
         '400':
           $ref: '#/components/responses/400_already_deleted'
         '404':
@@ -287,6 +289,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200_GROUP_updated'
+        '204':
+          $ref: '#/components/responses/204_version_updated'
         '400':
           $ref: '#/components/responses/400'
         '404':
@@ -308,7 +312,7 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_version_uid'
       responses:
         '204':
-          $ref: '#/components/responses/204_GROUP_deleted'
+          $ref: '#/components/responses/204_version_deleted'
         '400':
           $ref: '#/components/responses/400_already_deleted'
         '404':
@@ -395,6 +399,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200_ORGANISATION_updated'
+        '204':
+          $ref: '#/components/responses/204_version_updated'
         '400':
           $ref: '#/components/responses/400'
         '404':
@@ -416,7 +422,7 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_version_uid'
       responses:
         '204':
-          $ref: '#/components/responses/204_ORGANISATION_deleted'
+          $ref: '#/components/responses/204_version_deleted'
         '400':
           $ref: '#/components/responses/400_already_deleted'
         '404':
@@ -503,6 +509,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200_PERSON_updated'
+        '204':
+          $ref: '#/components/responses/204_version_updated'
         '400':
           $ref: '#/components/responses/400'
         '404':
@@ -524,7 +532,7 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_version_uid'
       responses:
         '204':
-          $ref: '#/components/responses/204_PERSON_deleted'
+          $ref: '#/components/responses/204_version_deleted'
         '400':
           $ref: '#/components/responses/400_already_deleted'
         '404':
@@ -611,6 +619,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200_ROLE_updated'
+        '204':
+          $ref: '#/components/responses/204_version_updated'
         '400':
           $ref: '#/components/responses/400'
         '404':
@@ -632,7 +642,7 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_version_uid'
       responses:
         '204':
-          $ref: '#/components/responses/204_ROLE_deleted'
+          $ref: '#/components/responses/204_version_deleted'
         '400':
           $ref: '#/components/responses/400_already_deleted'
         '404':
@@ -2230,6 +2240,17 @@ components:
         - name
         - archetype_node_id
         - identities
+    Identifier:
+      title: Identifier
+      required:
+        - uid
+      type: object
+      properties:
+        uid:
+          type: string
+          description: The (version) resource identifier.
+      example:
+        uid: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
     Error:
       title: Error
       required:
@@ -3171,7 +3192,7 @@ components:
       in: header
       description: |
         Request header to indicate the preference over response details.
-        The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+        The response will contain the entire resource when the `Prefer` header has a value of `return=representation`, or only the resource identifier (e.g., the `uid`) when the value is `return=identifier`.
       required: false
       style: simple
       schema:
@@ -3179,6 +3200,7 @@ components:
         enum:
           - return=representation
           - return=minimal
+          - return=identifier
         default: return=minimal
     uid_based_id:
       name: uid_based_id
@@ -3273,7 +3295,7 @@ components:
         The `ETag` (i.e. entity tag) response header is an identifier (e.g. a `version_uid` enclosed by double quotes) for a specific version of a resource.
       schema:
         type: string
-        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"'
+        example: W/"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"
     Location_AGENT:
       description: |
         The `Location` response header indicates the URL of the AGENT resource.
@@ -3281,6 +3303,24 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/demographic/agent/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+    Location_deprecated:
+      description: |
+        The `Location` is [deprecated](overview.html#tag/Requests_and_responses/HTTP-headers/Location) for this action.
+      deprecated: true
+      schema:
+        type: string
+    Location_version:
+      description: |
+        The `Location` response header indicates the URL of the resource version resulted from the operation.
+      schema:
+        type: string
+        format: url
+    openehr-item-tag:
+      description: |
+        The (semicolon-separated) list of all ITEM_TAG associated with the target VERSION or VERSIONED_OBJECT.
+      schema:
+        type: string
+        example: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
     Location_GROUP:
       description: |
         The `Location` response header indicates the URL of the GROUP resource.
@@ -3314,20 +3354,13 @@ components:
         The `ETag` (i.e. entity tag) response header is the VERSION identifier (i.e. the `version_uid`) enclosed by double quotes.
       schema:
         type: string
-        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"'
-    Location_VERSIONED_PARTY_VERSION:
-      description: |
-        The `Location` response header indicates the URL of the VERSION resource.
-      schema:
-        type: string
-        format: url
-        example: https://openEHRSys.example.com/v1/demographic/versioned_party/6cb19121-4307-4648-9da0-d62e4d51f19b/version/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1
+        example: W/"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"
     ETag_CONTRIBUTION:
       description: |
         The `ETag` (i.e. entity tag) response header is the `contribution_uid` identifier, enclosed by double quotes.
       schema:
         type: string
-        example: '"0826851c-c4c2-4d61-92b9-410fb8275ff0"'
+        example: W/"0826851c-c4c2-4d61-92b9-410fb8275ff0"
     Location_demographic_CONTRIBUTION:
       description: |
         The `Location` response header indicates the URL of the CONTRIBUTION resource.
@@ -3355,8 +3388,9 @@ components:
         `422 Unprocessable Entity` is returned when the content type and syntax is correct, could be converted to a resource, but there are semantic validation errors, such as the underlying template is not known or is not validating the supplied resource.
     201_AGENT:
       description: |
-        `201 Created` is returned when the AGENT was created. 
-        Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+        `201 Created` is returned when the AGENT is successfully created. 
+        If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its unique identifier is included. 
+        If the `Prefer` header is missing or set to `return=minimal`, the body is empty.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
@@ -3365,7 +3399,9 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Agent'
+            oneOf:
+              - $ref: '#/components/schemas/Agent'
+              - $ref: '#/components/schemas/Identifier'
     200_AGENT_retrieved:
       description: |
         `200 OK` is returned when the requested AGENT is successfully retrieved.
@@ -3373,7 +3409,7 @@ components:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_AGENT'
+          $ref: '#/components/headers/Location_deprecated'
       content:
         application/json:
           schema:
@@ -3386,7 +3422,7 @@ components:
         `404 Not Found` is returned when either the URL configured doesn't exist at all, or the targeted resource doesn't exist, or when a VERSION of the resource does not exist at the specified `version_at_time`.
     200_AGENT_updated:
       description: |
-        `200 OK` is returned when the AGENT is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+        `200 OK` is returned when the AGENT is successfully updated, with the full resource in the response body when `Prefer` header is `return=representation`, or only its identifiers when `Prefer` header is `return=identifier`.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
@@ -3395,40 +3431,53 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Agent'
+            oneOf:
+              - $ref: '#/components/schemas/Agent'
+              - $ref: '#/components/schemas/Identifier'
+    204_version_updated:
+      description: |
+        `204 No Content` is returned when the update operation was successful and the `Prefer` header is missing or is set to `return=minimal`.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+        Location:
+          $ref: '#/components/headers/Location_version'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
     412_AGENT:
       description: |
         `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
-        Returns also latest `version_uid` in the `Location` and `ETag` headers.
+        Returns also latest `version_uid` in the `ETag` header.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_AGENT'
-    204_AGENT_deleted:
+          $ref: '#/components/headers/Location_deprecated'
+    204_version_deleted:
       description: |
-        `204 No Content` is returned when AGENT was deleted.
+        `204 No Content` is returned for a successful delete operation.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_AGENT'
+          $ref: '#/components/headers/Location_deprecated'
     400_already_deleted:
       description: |
         `400 Bad Request` is returned when the request could not be parsed or is invalid (e.g. malformed request URL syntax, missing required header or parameter, or syntactically invalid header, parameter or content) or when the resource identified by the request parameters is already deleted.
     409_AGENT_with_uid_based_id:
       description: |
         `409 Conflict` is returned when supplied `uid_based_id` doesn't match the latest version.
-        Returns also latest version in the `Location` and `ETag` headers.
+        Returns also latest `version_uid` in the `ETag` header.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_AGENT'
+          $ref: '#/components/headers/Location_deprecated'
     201_GROUP:
       description: |
-        `201 Created` is returned when the GROUP was created. 
-        Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+        `201 Created` is returned when the GROUP is successfully created. 
+        If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its unique identifier is included. 
+        If the `Prefer` header is missing or set to `return=minimal`, the body is empty.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
@@ -3437,7 +3486,9 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Group'
+            oneOf:
+              - $ref: '#/components/schemas/Group'
+              - $ref: '#/components/schemas/Identifier'
     200_GROUP_retrieved:
       description: |
         `200 OK` is returned when the requested GROUP is successfully retrieved.
@@ -3445,14 +3496,14 @@ components:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_GROUP'
+          $ref: '#/components/headers/Location_deprecated'
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Group'
     200_GROUP_updated:
       description: |
-        `200 OK` is returned when the GROUP is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+        `200 OK` is returned when the GROUP is successfully updated, with the full resource in the response body when `Prefer` header is `return=representation`, or only its identifiers when `Prefer` header is `return=identifier`.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
@@ -3461,37 +3512,32 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Group'
+            oneOf:
+              - $ref: '#/components/schemas/Group'
+              - $ref: '#/components/schemas/Identifier'
     412_GROUP:
       description: |
         `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
-        Returns also latest `version_uid` in the `Location` and `ETag` headers.
+        Returns also latest `version_uid` in the `ETag` header.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_GROUP'
-    204_GROUP_deleted:
-      description: |
-        `204 No Content` is returned when GROUP was deleted.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-        Location:
-          $ref: '#/components/headers/Location_GROUP'
+          $ref: '#/components/headers/Location_deprecated'
     409_GROUP_with_uid_based_id:
       description: |
         `409 Conflict` is returned when supplied `uid_based_id` doesn't match the latest version.
-        Returns also latest version in the `Location` and `ETag` headers.
+        Returns also latest `version_uid` in the `ETag` header.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_GROUP'
+          $ref: '#/components/headers/Location_deprecated'
     201_ORGANISATION:
       description: |
-        `201 Created` is returned when the ORGANISATION was created. 
-        Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+        `201 Created` is returned when the ORGANISATION is successfully created. 
+        If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its unique identifier is included. 
+        If the `Prefer` header is missing or set to `return=minimal`, the body is empty.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
@@ -3500,7 +3546,9 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Organisation'
+            oneOf:
+              - $ref: '#/components/schemas/Organisation'
+              - $ref: '#/components/schemas/Identifier'
     200_ORGANISATION_retrieved:
       description: |
         `200 OK` is returned when the requested ORGANISATION is successfully retrieved.
@@ -3508,14 +3556,14 @@ components:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_ORGANISATION'
+          $ref: '#/components/headers/Location_deprecated'
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Organisation'
     200_ORGANISATION_updated:
       description: |
-        `200 OK` is returned when the ORGANISATION is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+        `200 OK` is returned when the ORGANISATION is successfully updated, with the full resource in the response body when `Prefer` header is `return=representation`, or only its identifiers when `Prefer` header is `return=identifier`.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
@@ -3524,37 +3572,32 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Organisation'
+            oneOf:
+              - $ref: '#/components/schemas/Organisation'
+              - $ref: '#/components/schemas/Identifier'
     412_ORGANISATION:
       description: |
         `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
-        Returns also latest `version_uid` in the `Location` and `ETag` headers.
+        Returns also latest `version_uid` in the `ETag` header.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_ORGANISATION'
-    204_ORGANISATION_deleted:
-      description: |
-        `204 No Content` is returned when ORGANISATION was deleted.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-        Location:
-          $ref: '#/components/headers/Location_ORGANISATION'
+          $ref: '#/components/headers/Location_deprecated'
     409_ORGANISATION_with_uid_based_id:
       description: |
         `409 Conflict` is returned when supplied `uid_based_id` doesn't match the latest version.
-        Returns also latest version in the `Location` and `ETag` headers.
+        Returns also latest `version_uid` in the `ETag` header.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_ORGANISATION'
+          $ref: '#/components/headers/Location_deprecated'
     201_PERSON:
       description: |
-        `201 Created` is returned when the PERSON was created. 
-        Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+        `201 Created` is returned when the PERSON is successfully created. 
+        If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its unique identifier is included. 
+        If the `Prefer` header is missing or set to `return=minimal`, the body is empty.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
@@ -3563,7 +3606,9 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Person'
+            oneOf:
+              - $ref: '#/components/schemas/Person'
+              - $ref: '#/components/schemas/Identifier'
     200_PERSON_retrieved:
       description: |
         `200 OK` is returned when the requested PERSON is successfully retrieved.
@@ -3571,14 +3616,14 @@ components:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_PERSON'
+          $ref: '#/components/headers/Location_deprecated'
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Person'
     200_PERSON_updated:
       description: |
-        `200 OK` is returned when the PERSON is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+        `200 OK` is returned when the PERSON is successfully updated, with the full resource in the response body when `Prefer` header is `return=representation`, or only its identifiers when `Prefer` header is `return=identifier`.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
@@ -3587,37 +3632,32 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Person'
+            oneOf:
+              - $ref: '#/components/schemas/Person'
+              - $ref: '#/components/schemas/Identifier'
     412_PERSON:
       description: |
         `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
-        Returns also latest `version_uid` in the `Location` and `ETag` headers.
+        Returns also latest `version_uid` in the `ETag` header.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_PERSON'
-    204_PERSON_deleted:
-      description: |
-        `204 No Content` is returned when PERSON was deleted.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-        Location:
-          $ref: '#/components/headers/Location_PERSON'
+          $ref: '#/components/headers/Location_deprecated'
     409_PERSON_with_uid_based_id:
       description: |
         `409 Conflict` is returned when supplied `uid_based_id` doesn't match the latest version.
-        Returns also latest version in the `Location` and `ETag` headers.
+        Returns also latest `version_uid` in the `ETag` header.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_PERSON'
+          $ref: '#/components/headers/Location_deprecated'
     201_ROLE:
       description: |
-        `201 Created` is returned when the ROLE was created. 
-        Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+        `201 Created` is returned when the ROLE is successfully created. 
+        If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its unique identifier is included. 
+        If the `Prefer` header is missing or set to `return=minimal`, the body is empty.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
@@ -3626,7 +3666,9 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Role'
+            oneOf:
+              - $ref: '#/components/schemas/Role'
+              - $ref: '#/components/schemas/Identifier'
     200_ROLE_retrieved:
       description: |
         `200 OK` is returned when the requested ROLE is successfully retrieved.
@@ -3634,14 +3676,14 @@ components:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_ROLE'
+          $ref: '#/components/headers/Location_deprecated'
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Role'
     200_ROLE_updated:
       description: |
-        `200 OK` is returned when the ROLE is successfully updated and the updated resource is returned in the body when `Prefer` header value is `return=representation`.
+        `200 OK` is returned when the ROLE is successfully updated, with the full resource in the response body when `Prefer` header is `return=representation`, or only its identifiers when `Prefer` header is `return=identifier`.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
@@ -3650,33 +3692,27 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Role'
+            oneOf:
+              - $ref: '#/components/schemas/Role'
+              - $ref: '#/components/schemas/Identifier'
     412_ROLE:
       description: |
         `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
-        Returns also latest `version_uid` in the `Location` and `ETag` headers.
+        Returns also latest `version_uid` in the `ETag` header.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_ROLE'
-    204_ROLE_deleted:
-      description: |
-        `204 No Content` is returned when ROLE was deleted.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-        Location:
-          $ref: '#/components/headers/Location_ROLE'
+          $ref: '#/components/headers/Location_deprecated'
     409_ROLE_with_uid_based_id:
       description: |
         `409 Conflict` is returned when supplied `uid_based_id` doesn't match the latest version.
-        Returns also latest version in the `Location` and `ETag` headers.
+        Returns also latest `version_uid` in the `ETag` header.
       headers:
         ETag:
           $ref: '#/components/headers/ETag'
         Location:
-          $ref: '#/components/headers/Location_ROLE'
+          $ref: '#/components/headers/Location_deprecated'
     200_VERSIONED_PARTY:
       description: |
         `200 OK` is returned when the requested VERSIONED_PARTY is successfully retrieved.
@@ -3698,7 +3734,7 @@ components:
         ETag:
           $ref: '#/components/headers/ETag_VERSION'
         Location:
-          $ref: '#/components/headers/Location_VERSIONED_PARTY_VERSION'
+          $ref: '#/components/headers/Location_deprecated'
       content:
         application/json:
           schema:
@@ -3712,8 +3748,9 @@ components:
             $ref: '#/components/schemas/UVersionOfParty'
     201_demographic_CONTRIBUTION:
       description: |
-        `201 Created` is returned when the CONTRIBUTION was created. 
-        Content body is only returned when `Prefer` header has `return=representation`, otherwise only headers are returned.
+        `201 Created` is returned when the CONTRIBUTION is successfully created. 
+        If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its unique identifier is included. 
+        If the `Prefer` header is missing or set to `return=minimal`, the body is empty.
       headers:
         ETag:
           $ref: '#/components/headers/ETag_CONTRIBUTION'
@@ -3722,7 +3759,9 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Contribution'
+            oneOf:
+              - $ref: '#/components/schemas/Contribution'
+              - $ref: '#/components/schemas/Identifier'
     400_CONTRIBUTION:
       description: |
         `400 Bad Request` is returned when the request could not be parsed or is invalid (e.g. malformed request URL syntax, missing required header or parameter, or syntactically invalid header, parameter or content, or the modification type does not match the operation - i.e. first version of a MODIFICATION).

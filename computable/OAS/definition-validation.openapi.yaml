@@ -1455,7 +1455,7 @@ components:
       in: header
       description: |
         Request header to indicate the preference over response details.
-        The response will contain the entire resource when the `Prefer` header has a value of `return=representation`.
+        The response will contain the entire resource when the `Prefer` header has a value of `return=representation`, or only the resource identifier (e.g., the `uid`) when the value is `return=identifier`.
       required: false
       style: simple
       schema:
@@ -1463,6 +1463,7 @@ components:
         enum:
           - return=representation
           - return=minimal
+          - return=identifier
         default: return=minimal
     template_id:
       name: template_id
@@ -1544,7 +1545,7 @@ components:
         The `ETag` (i.e. entity tag) response header is an identifier of Template.
       schema:
         type: string
-        example: '"b4d7f203-b329-4e89-a58a-c605b19e94de"'
+        example: W/"b4d7f203-b329-4e89-a58a-c605b19e94de"
     Location_Template_adl2:
       description: |
         The `Location` response header indicates the URL of the Template resource.
@@ -1557,7 +1558,7 @@ components:
         The `ETag` (i.e. entity tag) response header is an identifier of Template.
       schema:
         type: string
-        example: '"d8d643db-1cee-48ce-b609-12053077758f"'
+        example: W/"d8d643db-1cee-48ce-b609-12053077758f"
     Location_Query:
       description: |
         The `Location` response header indicates the URL of the Stored Query resource.
