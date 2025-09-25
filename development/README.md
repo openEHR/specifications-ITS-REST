@@ -12,7 +12,7 @@ For convenience, a `Makefile` (in `development/`) provides a thin wrapper around
 - **development/** — All build tooling and scripts live here.
     - `Makefile` — Primary entry point for common tasks (bundle, validate, generate, mock servers, install, clean).
     - `docker-compose.yml` — Defines php and redocly services; swagger-cli is provided via a separate image.
-    - `*.Dockerfile` — Container images for php and swagger-cli.
+    - `Dockerfile` — Container images for php and swagger-cli.
     - `src/` — PHP transformation code (OpenEHR\Specifications\Tools\OpenAPI\Writer\*).
 - **computable/OAS/** — Computed build artifacts (outputs) produced by bundling and transformation.
 - **docs/** — Rendered HTML docs for each spec (e.g., `docs/overview.html`).
