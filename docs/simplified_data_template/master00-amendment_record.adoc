@@ -4,15 +4,22 @@
 |===
 |Issue|Details|Raiser|Completed
 
+4+^h|*ITS_REST Release (unreleased)*
+
+|[[latest_issue]]1.1.0
+|{spec_tickets}/SPECITS-61[SPECITS-61^]. Cleanup and consolidate SDT specification
+|S Iancu
+|[[latest_issue_date]]10 Oct 2025
+
 4+^h|*ITS_REST Release 1.0.3*
 
 4+^h|*ITS_REST Release 1.0.2*
 
-|[[latest_issue]]1.0.2
+|1.0.2
 |{spec_tickets}/SPECITS-57[SPECITS-57^]. Updating information and links of simplified JSON formats
 |E Sundvall, +
 S Iancu
-|[[latest_issue_date]]13 Mar 2021
+|13 Mar 2021
 
 4+^h|*ITS_REST Release 1.0.1*
 

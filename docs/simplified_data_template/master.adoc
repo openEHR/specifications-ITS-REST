@@ -20,8 +20,6 @@ include::{ref_dir}/docs/references/reference_definitions.adoc[]
 // ============================================= Asciidoc BODY ===============================================
 //
 
-include::master00-amendment_record.adoc[leveloffset=+1]
-
 //
 // --------------------------------------------- Preface -----------------------------------------------
 //
@@ -73,6 +71,13 @@ include::master03-design_rationale.adoc[leveloffset=+1]
 include::master04-basic_concepts.adoc[leveloffset=+1]
 include::master05-rm_mapping.adoc[leveloffset=+1]
 include::master06-context_information.adoc[leveloffset=+1]
+
+//
+// --------------------------------------------- Amendment Record -----------------------------------------------
+//
+
+:sectnums!:
+include::master00-amendment_record.adoc[leveloffset=+1]
 
 //
 // --------------------------------------------- REFERENCES -----------------------------------------------

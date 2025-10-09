@@ -89,7 +89,7 @@
             "summary": "Simplified Data Template specification - a simplified data representation for committing data to the openEHR EHR.",
             "micro_summary": "Simplified Data Template",
             "copyright_year": "2019",
-            "spec_status": "DEVELOPMENT",
+            "spec_status": "STABLE",
             "keywords": "JSON, REST, web template, simplified data, SDT, simSDT, structSDT"
         },
         {
