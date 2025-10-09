@@ -90,7 +90,7 @@
             "micro_summary": "Simplified Data Template",
             "copyright_year": "2019",
             "spec_status": "DEVELOPMENT",
-            "keywords": "JSON, REST, web template, commit, simplified data, TDS, SDT, ncSDT, simSDT, structSDT"
+            "keywords": "JSON, REST, web template, simplified data, SDT, simSDT, structSDT"
         },
         {
             "id": "smart_app_launch",

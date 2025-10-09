@@ -1,14 +1,58 @@
 = Overview
 
-== Requirements
+== Introduction
 
-The default serialised data representations for openEHR content are canonical XML, based on the {openehr_its_xml_releases}[openEHR RM XSDs^], canonical JSON, described by the {openehr_its_json_releases}[openEHR JSON schemas^], and potentially any other canonical serial format based on the underlying Reference Model (e.g. YAML etc). Here, 'canonical' means any fully-expressed instance data in which:
+The *Web Template (WT) serialization* format is a JSON-based representation of openEHR data instances that use simplified field identifiers instead of canonical archetype paths.
+The format was originally developed by _Better d.o.o._ and has been adopted and extended by the _EHRbase_ open-source community as the *Simplified Data Template (SDT)* format.
 
-* the containment structure follows that of the RM;
-* all RM mandatory fields are present;
-* all attributes are named as per the RM, and 
-* all cardinalities respect the RM.
+Although _WT serialization_ and _SDT_ are historically different acronyms, in the context of this specification they serve the same purpose and can be used interchangeably.
 
-The canonical formats are routinely used by all openEHR implementations implementing the {openehr_ehr_rest_api}[openEHR REST API specification^], and in other ways, e.g. for DB dump/load implementation, ETL and so on. However, creating data instances according to these formats is not always straightforward, particularly for developers with minimal exposure to openEHR, and various alternatives have been used in the past to simplify the job of content creation and committal for application developers. These include TDS/TDD (XSD-based Template Data Schema & Document), and so-called EtherCIS Flat JSON, Marand Flat JSON and Structured JSON.
+The format has two primary variants:
 
-This specification responds to the requirement for a complete representation of all of these serial formats within a common formal framework that will permit further variants in the future as and when needed.
+* **simSDT** (simplified SDT) - colloquially known as "flat format"
+* **structSDT** (structured SDT) - colloquially known as "structured format"
+
+Key characteristics of the SDT format include:
+
+* __Human-readable field identifiers__: Uses friendly names like `temperature|magnitude` instead of archetype paths like `/content[openEHR-EHR-OBSERVATION.body_temperature.v1]/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value|magnitude`
+* __Two structural variants__: simSDT (flat) and structSDT (structured) representations
+* __Context data separation__: Clinical data separated from context metadata
+* __Template-specific__: Field identifiers are specific to each operational template
+* __Element-value simplification__: In flat format, there is no distinction between an ELEMENT and its value
+
+
+== Scope
+
+This specification covers:
+
+* The structure and syntax of *simSDT* and *structSDT* formats
+* Field identifier generation rules
+* Context data representation
+* RM attributes handling (underscore-prefixed attributes)
+* Mapping between SDT format and canonical openEHR RM
+* Serialization and deserialization requirements
+
+This specification does not cover:
+
+* Web Template itself as a resource
+* Archetype technology and associated constraints
+* Storage or indexing strategies
+
+
+== MIME Types
+
+Two MIME types are defined for the SDT serialization:
+
+* __simSDT (flat)__ format: `application/openehr.wt.flat+json`
+* __structSDT (structured)__ format: `application/openehr.wt.structured+json`
+
+
+== Relationship to Other Specifications
+
+The format relates to other openEHR specifications as follows:
+
+* __openEHR Reference Model__: serialized instances represent valid RM structures (e.g. COMPOSITION)
+* __Operational Templates (OPT)__: field identifiers are generated from OPT definitions
+* __AQL__: serialized instances include AQL paths to enable query integration
+* __Canonical JSON/XML__: SDT is an alternative serialization, convertible to canonical formats
+

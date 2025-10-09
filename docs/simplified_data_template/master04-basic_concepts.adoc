@@ -1,0 +1,462 @@
+
+= Basic Concepts
+
+== Web Template Metadata
+
+A Web Template is a processed representation of an openEHR Operational Template that includes:
+
+* Simplified node identifiers
+* AQL paths for all elements
+* Input type definitions for data entry
+* Localized labels and descriptions
+* Multiplicity constraints
+
+Web Template is used to generate and validate data instances. Specification of Web Template metadata is separate from the data serialization format described in this specification.
+
+Example of a Web Template:
+[source,json]
+----
+{
+  "templateId": "conformance-ehrbase.de.v0",
+  "semVer": "1.0.0",
+  "version": "2.3",
+  "defaultLanguage": "en",
+  "languages": [
+    "en"
+  ],
+  "tree": {
+    "id": "conformance-ehrbase.de.v0",
+    "name": "conformance-ehrbase.de.v0",
+    "localizedName": "conformance-ehrbase.de.v0",
+    "rmType": "COMPOSITION",
+    "nodeId": "openEHR-EHR-COMPOSITION.conformance_composition_.v0",
+    "min": 1,
+    "max": 1,
+    "aqlPath": "",
+    "children": [
+      {
+        "id": "conformance_section",
+        "name": "conformance section",
+        "localizedName": "conformance section",
+        "rmType": "SECTION",
+        "nodeId": "openEHR-EHR-SECTION.conformance_section.v0",
+        "min": 0,
+        "max": 1,
+        "aqlPath": "/content[openEHR-EHR-SECTION.conformance_section.v0]",
+        "children": [
+          {
+            "id": "conformance_observation",
+            "name": "Conformance Observation",
+            "localizedName": "Conformance Observation",
+            "rmType": "OBSERVATION",
+            "nodeId": "openEHR-EHR-OBSERVATION.conformance_observation.v0",
+            "min": 0,
+            "max": 1,
+            "aqlPath": "/content[openEHR-EHR-SECTION.conformance_section.v0]/items[openEHR-EHR-OBSERVATION.conformance_observation.v0]",
+            "children": [
+              {
+                "id": "any_event",
+                "name": "Any event",
+                "localizedName": "Any event",
+                "rmType": "EVENT",
+                "nodeId": "at0002",
+                "min": 0,
+                "max": -1,
+                "aqlPath": "/content[openEHR-EHR-SECTION.conformance_section.v0]/items[openEHR-EHR-OBSERVATION.conformance_observation.v0]/data[at0001]/events[at0002]",
+                "children": [
+                  {
+                    "id": "dv_quantity",
+                    "name": "DV_QUANTITY",
+                    "localizedName": "DV_QUANTITY",
+                    "rmType": "DV_QUANTITY",
+                    "nodeId": "at0008",
+                    "min": 0,
+                    "max": 1,
+                    "aqlPath": "/content[openEHR-EHR-SECTION.conformance_section.v0]/items[openEHR-EHR-OBSERVATION.conformance_observation.v0]/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value",
+                    "inputs": [
+                      {
+                        "suffix": "magnitude",
+                        "type": "DECIMAL"
+                      },
+                      {
+                        "suffix": "unit",
+                        "type": "CODED_TEXT"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+----
+
+== Field Identifiers
+
+SDT uses hierarchical field identifiers composed of:
+
+1. **Node IDs**: Generated from archetype node names
+2. **Path separators**: Forward slash (`/`) between hierarchy levels
+3. **Instance indicators**: Colon notation (`:0`, `:1`, etc.) for repeating elements
+4. **Attribute suffixes**: Pipe notation (`|magnitude`, `|unit`, etc.) for RM attributes
+5. **RM attribute prefix**: Underscore (`_`) for optional RM attributes not in template
+
+
+Example identifier structure:
+----
+vital_signs/body_temperature:0/any_event:0/temperature|magnitude
+vital_signs/body_temperature:0/any_event:0/temperature/_normal_range/lower|magnitude
+----
+
+
+=== Node ID Generation Rules
+
+Node IDs are generated from archetype node names using the following algorithm:
+
+1. __Character normalisation__: Replace any character that is not:
+* A Unicode alphabetic character (`\p{IsAlphabetic}`)
+* A digit (`0-9`)
+* An underscore (`_`)
+* A dot (`.`)
+* A dash (`-`)
++
+with an underscore (`_`)
+
+2. __Underscore consolidation__: Replace multiple consecutive underscores with a single underscore
+
+3. __Case normalisation__: Convert to lowercase
+
+4. __Trim underscores__: Remove leading and trailing underscores
+
+5. __Empty ID handling__: If result is empty, use "id" as the identifier
+
+6. __Numeric prefix handling__: If result starts with a digit, prepend "a"
+
+7. __Uniqueness__: Append a numeric suffix if needed to ensure uniqueness among siblings
+
+Examples:
+
+[cols="1,1", options="header"]
+|===
+|Original Name |Generated ID
+
+|Body temperature
+|body_temperature
+
+|Problem/diagnosis
+|problem_diagnosis
+
+|Tests (1, 2, 3)
+|tests_1_2_3
+
+|1st visit
+|a1st_visit
+
+|Blood Pressure
+|blood_pressure
+
+|BP (duplicate)
+|blood_pressure_1
+
+|===
+
+
+=== Path Construction
+
+Full paths are constructed by concatenating parent node IDs with forward slashes:
+
+----
+composition_id/section_id/observation_id/element_id
+----
+
+
+=== Instance Indexing
+
+When a node can occur multiple times (max > 1 or max = -1), instances are indexed using colon notation:
+
+----
+node_id:0  # First instance
+node_id:1  # Second instance
+node_id:2  # Third instance
+----
+
+The index is appended after the node ID and before the next path separator.
+
+Indexing examples:
+
+Multiple events in an observation:
+----
+vital_signs/body_temperature:0/any_event:0/temperature|magnitude
+vital_signs/body_temperature:0/any_event:1/temperature|magnitude
+----
+
+Multiple observations in a composition:
+----
+vital_signs/body_temperature:0/any_event:0/temperature|magnitude
+vital_signs/body_temperature:1/any_event:0/temperature|magnitude
+----
+
+=== Attribute Suffixes
+
+RM attributes are indicated by pipe-separated suffixes.
+
+Example of such attributes:
+
+[cols="1,1,2", options="header"]
+|===
+|RM Type |Suffix |Description
+|<<DV_QUANTITY,DV_QUANTITY>>           |`\|magnitude`      |Numeric value
+|<<DV_QUANTITY,DV_QUANTITY>>           |`\|unit`           |Unit of measure
+|<<DV_CODED_TEXT,DV_CODED_TEXT>>       |`\|code`           |Terminology code
+|<<DV_CODED_TEXT,DV_CODED_TEXT>>       |`\|value`          |Display term
+|<<DV_CODED_TEXT,DV_CODED_TEXT>>       |`\|terminology`    |Terminology identifier
+|<<PARTY_IDENTIFIED,PARTY_IDENTIFIED>> |`\|id`             |The ID value
+|<<PARTY_IDENTIFIED,PARTY_IDENTIFIED>> |`\|id_namespace`   |The namespace of the ID value
+|===
+
+
+=== RM Attributes prefix
+
+Some attributes are defined by the openEHR Reference Model but are optional and may not be constrained in the template.
+These RM attributes are accessed using an underscore prefix: `_attributeName`.
+
+This convention allows applications to populate optional RM attributes that provide additional metadata, audit information, or structural details beyond what is defined in the template.
+
+Examples:
+[source,json]
+----
+{
+  "conformance/observation:0/_uid": "9fcc1c70-9349-444d-b9cb-8fa817697f5e"
+}
+----
+[source,json]
+----
+{
+  "path/observation:0/_link:0|type": "problem",
+  "path/observation:0/_link:0|target": "ehr://problem-123",
+  "path/observation:0/_link:0|meaning|code": "related_to",
+  "path/observation:0/_link:0|meaning|value": "Related to"
+}
+----
+[source,json]
+----
+{
+  "vital_signs/temperature:0/value|magnitude": 37.5,
+  "vital_signs/temperature:0/value|unit": "°C",
+  "vital_signs/temperature:0/value/_normal_range/lower|magnitude": 36.0,
+  "vital_signs/temperature:0/value/_normal_range/lower|unit": "°C",
+  "vital_signs/temperature:0/value/_normal_range/upper|magnitude": 37.8,
+  "vital_signs/temperature:0/value/_normal_range/upper|unit": "°C"
+}
+----
+
+
+== Context
+
+Context information represents composition-level metadata and is prefixed with `ctx/`.
+
+This includes:
+
+* Mandatory: language, territory
+* Optional: composer, time, setting, participations, facility information, workflow identifiers
+
+Context data is typically not entered by users but provided by the application.
+The `ctx/time` field, if not explicitly set, defaults to the current server time (`now()`).
+
+See below <<_context_information>> for more details.
+
+
+== Format variants
+
+=== simSDT (Flat)
+
+In simSDT format, all data elements are represented as key-value pairs at a single level in JSON where:
+
+* Keys are full WT paths (with instance indices and attribute suffixes)
+* Values are primitive types (string, number, boolean), or simple objects
+* There is no distinction between ELEMENT and its value - elements ARE their values
+
+Syntax Rules:
+
+1. All paths MUST be fully qualified from the data instance root
+2. Context fields MUST use `ctx/` prefix
+3. Instance indices MUST be zero-based
+4. Attribute suffixes MUST be separated by pipe (`|`)
+5. RM attribute paths MUST use underscore prefix (`_`)
+6. Path segments MUST be separated by forward slash (`/`)
+
+Example:
+[source,json]
+----
+{
+  "ctx/language": "en",
+  "ctx/territory": "US",
+  "ctx/composer_name": "Dr. Smith",
+  "ctx/time": "2024-01-15T10:30:00Z",
+  "vital_signs/body_temperature:0/any_event:0/temperature|magnitude": 37.5,
+  "vital_signs/body_temperature:0/any_event:0/temperature|unit": "°C",
+  "vital_signs/body_temperature:0/any_event:0/temperature/_normal_range/lower|magnitude": 36.0,
+  "vital_signs/body_temperature:0/any_event:0/temperature/_normal_range/lower|unit": "°C",
+  "vital_signs/body_temperature:0/any_event:0/temperature/_normal_range/upper|magnitude": 37.8,
+  "vital_signs/body_temperature:0/any_event:0/temperature/_normal_range/upper|unit": "°C",
+  "vital_signs/body_temperature:0/any_event:0/time": "2024-01-15T10:30:00Z",
+  "vital_signs/blood_pressure:0/any_event:0/systolic|magnitude": 120,
+  "vital_signs/blood_pressure:0/any_event:0/systolic|unit": "mm[Hg]",
+  "vital_signs/blood_pressure:0/any_event:0/diastolic|magnitude": 80,
+  "vital_signs/blood_pressure:0/any_event:0/diastolic|unit": "mm[Hg]",
+  "vital_signs/blood_pressure:0/any_event:0/time": "2024-01-15T10:30:00Z"
+}
+----
+
+
+=== structSDT (Structured)
+
+In structSDT format, the hierarchy is preserved as nested JSON objects where:
+
+* Each path segment becomes a property in a nested object
+* Instance indices remain in property names (e.g., `body_temperature`)
+* Attribute suffixes become properties prefixed with pipe (e.g., `|magnitude`)
+* Context data is grouped under `ctx` object
+* Arrays are used throughout, even for single-cardinality elements
+
+Syntax Rules:
+
+1. Hierarchy MUST be represented by nested objects
+2. Instance indices MUST remain in property names
+3. Attribute suffixes MUST use pipe prefix
+4. Context data MUST be grouped under `ctx` property
+5. Arrays MUST be used for data values, even when cardinality is `0..1` or `1..1`
+6. Empty objects SHOULD be omitted
+
+[source,json]
+----
+{
+  "ctx": {
+    "language": "en",
+    "territory": "US",
+    "composer_name": "Dr. Smith",
+    "time": "2024-01-15T10:30:00Z"
+  },
+  "vital_signs": {
+    "body_temperature": [
+      {
+        "any_event": [
+          {
+            "temperature": [
+              {
+                "|magnitude": 37.5,
+                "|unit": "°C"
+              }
+            ],
+            "time": [
+              "2024-01-15T10:30:00Z"
+            ]
+          }
+        ]
+      }
+    ],
+    "blood_pressure": [
+      {
+        "any_event": [
+          {
+            "systolic": [
+              {
+                "|magnitude": 120,
+                "|unit": "mm[Hg]"
+              }
+            ],
+            "diastolic": [
+              {
+                "|magnitude": 80,
+                "|unit": "mm[Hg]"
+              }
+            ],
+            "time": [
+              "2024-01-15T10:30:00Z"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+----
+
+
+== Conversion Between Formats
+
+=== simSDT to structSDT
+
+Algorithm for converting flat format to structured:
+
+1. Parse each flat key into path segments
+2. Separate context fields (`ctx/`) from composition fields
+3. For each path:
+    a. Split on forward slash (`/`)
+    b. Create nested objects for each segment
+    c. For the final segment, check for attribute suffix (|)
+    d. If attribute suffix exists, create an array containing an object with suffix as property
+    e. Handle RM attributes (underscore prefix) appropriately
+4. Merge all nested structures
+5. Add context object
+
+=== structSDT to simSDT
+
+Algorithm for converting structured format to flat:
+
+1. Recursively traverse the nested object structure
+2. Build path by concatenating property names with forward slash
+3. For properties with a pipe prefix, append to a parent path with pipe
+4. Unwrap arrays (structSDT uses arrays throughout)
+5. Flatten context object with `ctx/` prefix
+6. Preserve instance indices in property names
+7. Preserve RM attribute underscore prefixes
+
+
+== Level Removal
+
+Certain RM types are omitted from paths to simplify the structure.
+These types do not typically carry significant clinical information and would unnecessarily complicate the path structure.
+
+=== Always Removed
+
+The following node types are ALWAYS removed from paths:
+
+* `ITEM_TREE`
+* `ITEM_LIST`
+* `ITEM_SINGLE`
+* `ITEM_TABLE`
+* `ITEM_STRUCTURE`
+* `HISTORY`
+
+=== Conditionally Removed
+
+The following types are removed when they meet specific criteria.
+
+An `EVENT` node is removed when:
+
+1. Its maximum occurrence is 1 (i.e., `max = 1`)
+2. AND it has no sibling `EVENT` nodes in the same parent
+
+`EVENT` nodes are retained when:
+
+* Multiple `EVENT` types exist in the same `OBSERVATION` (e.g., `POINT_EVENT` and `INTERVAL_EVENT`)
+* The `EVENT` can occur multiple times
+
+
+== Validation
+
+Implementations SHOULD validate:
+
+* Get the WT for the target template and map input fields to the identifiers
+* Check the final segment for the pipe to identify attribute suffix
+* Mandatory context fields (language, territory) are present
+* Field identifiers match WT metadata structure
+* Data types match expected types from the Operational Template
+* Cardinality constraints are satisfied
+* Terminology bindings are valid
+* RM attribute paths (underscore-prefixed) are valid
