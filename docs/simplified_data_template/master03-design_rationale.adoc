@@ -40,14 +40,14 @@ The following example shows a simple body temperature observation in canonical o
   "_type": "COMPOSITION",
   "name": {
     "_type": "DV_TEXT",
-    "value": "Vital Signs"
+    "value": "Blood_Pressure_Demo.v0"
   },
   "archetype_details": {
     "archetype_id": {
       "value": "openEHR-EHR-COMPOSITION.encounter.v1"
     },
     "template_id": {
-      "value": "Vital Signs"
+      "value": "Blood_Pressure_Demo.v0"
     },
     "rm_version": "1.0.4"
   },
@@ -65,7 +65,7 @@ The following example shows a simple body temperature observation in canonical o
       "_type": "TERMINOLOGY_ID",
       "value": "ISO_3166-1"
     },
-    "code_string": "US"
+    "code_string": "DE"
   },
   "category": {
     "_type": "DV_CODED_TEXT",
@@ -81,105 +81,275 @@ The following example shows a simple body temperature observation in canonical o
   },
   "composer": {
     "_type": "PARTY_IDENTIFIED",
-    "name": "Dr. Smith"
+    "name": "Max Mustermann"
   },
   "context": {
     "_type": "EVENT_CONTEXT",
     "start_time": {
       "_type": "DV_DATE_TIME",
-      "value": "2024-01-15T10:30:00Z"
+      "value": "2022-02-03T04:05:06"
+    },
+    "end_time": {
+      "_type": "DV_DATE_TIME",
+      "value": "2022-02-03T04:25:41"
     },
     "setting": {
       "_type": "DV_CODED_TEXT",
-      "value": "other care",
+      "value": "home",
       "defining_code": {
         "_type": "CODE_PHRASE",
         "terminology_id": {
           "_type": "TERMINOLOGY_ID",
           "value": "openehr"
         },
-        "code_string": "238"
+        "code_string": "225"
       }
     }
   },
-  "content": [
-    {
-      "_type": "OBSERVATION",
+  "content": [ {
+    "_type": "OBSERVATION",
+    "name": {
+      "_type": "DV_TEXT",
+      "value": "Blood pressure"
+    },
+    "archetype_details": {
+      "archetype_id": {
+        "value": "openEHR-EHR-OBSERVATION.blood_pressure.v2"
+      },
+      "rm_version": "1.0.4"
+    },
+    "language": {
+      "_type": "CODE_PHRASE",
+      "terminology_id": {
+        "_type": "TERMINOLOGY_ID",
+        "value": "ISO_639-1"
+      },
+      "code_string": "en"
+    },
+    "encoding": {
+      "_type": "CODE_PHRASE",
+      "terminology_id": {
+        "_type": "TERMINOLOGY_ID",
+        "value": "IANA_character-sets"
+      },
+      "code_string": "UTF-8"
+    },
+    "subject": {
+      "_type": "PARTY_SELF"
+    },
+    "protocol": {
+      "_type": "ITEM_TREE",
       "name": {
         "_type": "DV_TEXT",
-        "value": "Body temperature"
+        "value": "Tree"
       },
-      "archetype_node_id": "openEHR-EHR-OBSERVATION.body_temperature.v1",
-      "language": {
-        "_type": "CODE_PHRASE",
-        "terminology_id": {
-          "_type": "TERMINOLOGY_ID",
-          "value": "ISO_639-1"
-        },
-        "code_string": "en"
-      },
-      "encoding": {
-        "_type": "CODE_PHRASE",
-        "terminology_id": {
-          "_type": "TERMINOLOGY_ID",
-          "value": "IANA_character-sets"
-        },
-        "code_string": "UTF-8"
-      },
-      "subject": {
-        "_type": "PARTY_SELF"
-      },
-      "data": {
-        "_type": "HISTORY",
+      "items": [ {
+        "_type": "ELEMENT",
         "name": {
           "_type": "DV_TEXT",
-          "value": "History"
+          "value": "Method"
         },
-        "archetype_node_id": "at0002",
-        "origin": {
+        "value": {
+          "_type": "DV_CODED_TEXT",
+          "value": "Auscultation",
+          "defining_code": {
+            "_type": "CODE_PHRASE",
+            "terminology_id": {
+              "_type": "TERMINOLOGY_ID",
+              "value": "local"
+            },
+            "code_string": "at1036"
+          }
+        },
+        "archetype_node_id": "at1035"
+      } ],
+      "archetype_node_id": "at0011"
+    },
+    "data": {
+      "name": {
+        "_type": "DV_TEXT",
+        "value": "History"
+      },
+      "origin": {
+        "_type": "DV_DATE_TIME",
+        "value": "2022-02-03T04:05:06"
+      },
+      "events": [ {
+        "_type": "POINT_EVENT",
+        "name": {
+          "_type": "DV_TEXT",
+          "value": "Any event"
+        },
+        "time": {
           "_type": "DV_DATE_TIME",
-          "value": "2024-01-15T10:30:00Z"
+          "value": "2022-02-03T04:05:06"
         },
-        "events": [
-          {
-            "_type": "POINT_EVENT",
+        "state": {
+          "_type": "ITEM_TREE",
+          "name": {
+            "_type": "DV_TEXT",
+            "value": "state structure"
+          },
+          "items": [ {
+            "_type": "ELEMENT",
             "name": {
               "_type": "DV_TEXT",
-              "value": "Any event"
+              "value": "Position"
             },
-            "archetype_node_id": "at0003",
-            "time": {
-              "_type": "DV_DATE_TIME",
-              "value": "2024-01-15T10:30:00Z"
+            "value": {
+              "_type": "DV_CODED_TEXT",
+              "value": "Standing",
+              "defining_code": {
+                "_type": "CODE_PHRASE",
+                "terminology_id": {
+                  "_type": "TERMINOLOGY_ID",
+                  "value": "local"
+                },
+                "code_string": "at1000"
+              }
             },
-            "data": {
-              "_type": "ITEM_TREE",
-              "name": {
-                "_type": "DV_TEXT",
-                "value": "Tree"
-              },
-              "archetype_node_id": "at0001",
-              "items": [
-                {
-                  "_type": "ELEMENT",
-                  "name": {
-                    "_type": "DV_TEXT",
-                    "value": "Temperature"
-                  },
-                  "archetype_node_id": "at0004",
-                  "value": {
-                    "_type": "DV_QUANTITY",
-                    "magnitude": 37.5,
-                    "units": "°C"
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
+            "archetype_node_id": "at0008"
+          } ],
+          "archetype_node_id": "at0007"
+        },
+        "data": {
+          "_type": "ITEM_TREE",
+          "name": {
+            "_type": "DV_TEXT",
+            "value": "blood pressure"
+          },
+          "items": [ {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Systolic"
+            },
+            "value": {
+              "_type": "DV_QUANTITY",
+              "units": "mm[Hg]",
+              "magnitude": 154.0
+            },
+            "archetype_node_id": "at0004"
+          }, {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Diastolic"
+            },
+            "value": {
+              "_type": "DV_QUANTITY",
+              "units": "mm[Hg]",
+              "magnitude": 98.0
+            },
+            "archetype_node_id": "at0005"
+          }, {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Clinical interpretation"
+            },
+            "value": {
+              "_type": "DV_TEXT",
+              "value": "Stage 2 Hypertension: Blood pressure is significantly elevated with systolic pressure of 154 mmHg and diastolic pressure of 98 mmHg, indicating stage 2 hypertension according to current guidelines."
+            },
+            "archetype_node_id": "at1059"
+          } ],
+          "archetype_node_id": "at0003"
+        },
+        "archetype_node_id": "at0006"
+      }, {
+        "_type": "POINT_EVENT",
+        "name": {
+          "_type": "DV_TEXT",
+          "value": "Any event"
+        },
+        "time": {
+          "_type": "DV_DATE_TIME",
+          "value": "2022-02-03T04:25:41"
+        },
+        "state": {
+          "_type": "ITEM_TREE",
+          "name": {
+            "_type": "DV_TEXT",
+            "value": "state structure"
+          },
+          "items": [ {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Position"
+            },
+            "value": {
+              "_type": "DV_CODED_TEXT",
+              "value": "Standing",
+              "defining_code": {
+                "_type": "CODE_PHRASE",
+                "terminology_id": {
+                  "_type": "TERMINOLOGY_ID",
+                  "value": "local"
+                },
+                "code_string": "at1000"
+              }
+            },
+            "archetype_node_id": "at0008"
+          } ],
+          "archetype_node_id": "at0007"
+        },
+        "data": {
+          "_type": "ITEM_TREE",
+          "name": {
+            "_type": "DV_TEXT",
+            "value": "blood pressure"
+          },
+          "items": [ {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Systolic"
+            },
+            "value": {
+              "_type": "DV_QUANTITY",
+              "units": "mm[Hg]",
+              "magnitude": 144.0
+            },
+            "archetype_node_id": "at0004"
+          }, {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Diastolic"
+            },
+            "value": {
+              "_type": "DV_QUANTITY",
+              "units": "mm[Hg]",
+              "magnitude": 80.0
+            },
+            "archetype_node_id": "at0005"
+          }, {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Clinical interpretation"
+            },
+            "value": {
+              "_type": "DV_TEXT",
+              "value": "Stage 2 Hypertension: Blood pressure remains elevated with systolic pressure of 144 mmHg. Diastolic pressure has improved to 80 mmHg, but systolic pressure still indicates stage 2 hypertension."
+            },
+            "archetype_node_id": "at1059"
+          } ],
+          "archetype_node_id": "at0003"
+        },
+        "archetype_node_id": "at0006"
+      } ],
+      "archetype_node_id": "at0001"
+    },
+    "archetype_node_id": "openEHR-EHR-OBSERVATION.blood_pressure.v2"
+  } ],
+  "archetype_node_id": "openEHR-EHR-COMPOSITION.encounter.v1",
+  "uid": {
+    "_type": "OBJECT_VERSION_ID",
+    "value": "8073f453-8095-44e6-8077-798609b32a2f::local.ehrbase.org::1"
+  }
 }
 ----
 
@@ -240,7 +410,7 @@ Advantages:
 
 The format with its two variants is the basis for the current specification.
 
-=== Example simSDT:
+=== simSDT
 
 The simSDT format represents data in a flattened key-value structure where paths are used as keys, making it particularly suitable for form-based data entry and simple data structures.
 All nested objects are flattened into a single level using path separators.
@@ -248,95 +418,132 @@ All nested objects are flattened into a single level using path separators.
 [source, json]
 --------
 {
-  "laboratory_order/_uid": "23d69330-7790-4394-8abc-1455681f6ffa::ydh.code4health.com::1",
-  "laboratory_order/language|code": "en",
-  "laboratory_order/language|terminology": "ISO_639-1",
-  "laboratory_order/territory|code": "GB",
-  "laboratory_order/territory|terminology": "ISO_3166-1",
-  "laboratory_order/context/_health_care_facility|id": "999999-345",
-  "laboratory_order/context/_health_care_facility|id_scheme": "2.16.840.1.113883.2.1.4.3",
-  "laboratory_order/context/_health_care_facility|id_namespace": "NHS-UK",
-  "laboratory_order/context/_health_care_facility|name": "Northumbria Community NHS",
-  "laboratory_order/context/setting|terminology": "openehr",
-  "laboratory_order/laboratory_test_request/_uid": "b8c17799-457d-4583-8d85-c369dffacc21",
-  "laboratory_order/laboratory_test_request/lab_request/service_requested|code": "444164000",
-  "laboratory_order/laboratory_test_request/lab_request/service_requested|value": "Urea, electrolytes and creatinine measurement",
-  "laboratory_order/laboratory_test_request/lab_request/service_requested|terminology": "SNOMED-CT",
-  "laboratory_order/laboratory_test_request/lab_request/timing": "R5/2015-04-10T00:19:00+02:00/P2M",
-  "laboratory_order/laboratory_test_request/lab_request/timing|formalism": "timing",
-  "laboratory_order/laboratory_test_request/narrative": "Urea, electrolytes and creatinine measurement",
-  "laboratory_order/laboratory_test_request/language|code": "en",
-  "laboratory_order/laboratory_test_tracker/time": "2015-04-10T00:19:02.518+02:00",
-  "laboratory_order/laboratory_test_tracker/language|code": "en",
-  "laboratory_order/laboratory_test_tracker/language|terminology": "ISO_639-1",
-  "laboratory_order/laboratory_test_tracker/encoding|code": "UTF-8",
-  "laboratory_order/laboratory_test_tracker/encoding|terminology": "IANA_character-sets",
-  "laboratory_order/composer|name": "Dr Joyce Smith",
-  "ctx/language": "en",
-  "ctx/territory": "GB"
+  "blood_pressure_demo.v0/category|value": "event",
+  "blood_pressure_demo.v0/category|code": "433",
+  "blood_pressure_demo.v0/category|terminology": "openehr",
+  "blood_pressure_demo.v0/context/start_time": "2022-02-03T04:05:06",
+  "blood_pressure_demo.v0/context/setting|terminology": "openehr",
+  "blood_pressure_demo.v0/context/setting|code": "225",
+  "blood_pressure_demo.v0/context/setting|value": "home",
+  "blood_pressure_demo.v0/context/_end_time": "2022-02-03T04:25:41",
+  "blood_pressure_demo.v0/blood_pressure/any_event:0/systolic|unit": "mm[Hg]",
+  "blood_pressure_demo.v0/blood_pressure/any_event:0/systolic|magnitude": 154.0,
+  "blood_pressure_demo.v0/blood_pressure/any_event:0/diastolic|unit": "mm[Hg]",
+  "blood_pressure_demo.v0/blood_pressure/any_event:0/diastolic|magnitude": 98.0,
+  "blood_pressure_demo.v0/blood_pressure/any_event:0/clinical_interpretation": "Stage 2 Hypertension: Blood pressure is significantly elevated with systolic pressure of 154 mmHg and diastolic pressure of 98 mmHg, indicating stage 2 hypertension according to current guidelines.",
+  "blood_pressure_demo.v0/blood_pressure/any_event:0/position|terminology": "local",
+  "blood_pressure_demo.v0/blood_pressure/any_event:0/position|value": "Standing",
+  "blood_pressure_demo.v0/blood_pressure/any_event:0/position|code": "at1000",
+  "blood_pressure_demo.v0/blood_pressure/any_event:0/time": "2022-02-03T04:05:06",
+  "blood_pressure_demo.v0/blood_pressure/any_event:1/systolic|unit": "mm[Hg]",
+  "blood_pressure_demo.v0/blood_pressure/any_event:1/systolic|magnitude": 144.0,
+  "blood_pressure_demo.v0/blood_pressure/any_event:1/diastolic|magnitude": 80.0,
+  "blood_pressure_demo.v0/blood_pressure/any_event:1/diastolic|unit": "mm[Hg]",
+  "blood_pressure_demo.v0/blood_pressure/any_event:1/clinical_interpretation": "Stage 2 Hypertension: Blood pressure remains elevated with systolic pressure of 144 mmHg. Diastolic pressure has improved to 80 mmHg, but systolic pressure still indicates stage 2 hypertension.",
+  "blood_pressure_demo.v0/blood_pressure/any_event:1/position|code": "at1000",
+  "blood_pressure_demo.v0/blood_pressure/any_event:1/position|terminology": "local",
+  "blood_pressure_demo.v0/blood_pressure/any_event:1/position|value": "Standing",
+  "blood_pressure_demo.v0/blood_pressure/any_event:1/time": "2022-02-03T04:25:41",
+  "blood_pressure_demo.v0/blood_pressure/method|code": "at1036",
+  "blood_pressure_demo.v0/blood_pressure/method|value": "Auscultation",
+  "blood_pressure_demo.v0/blood_pressure/method|terminology": "local",
+  "blood_pressure_demo.v0/blood_pressure/language|code": "en",
+  "blood_pressure_demo.v0/blood_pressure/language|terminology": "ISO_639-1",
+  "blood_pressure_demo.v0/blood_pressure/encoding|terminology": "IANA_character-sets",
+  "blood_pressure_demo.v0/blood_pressure/encoding|code": "UTF-8",
+  "blood_pressure_demo.v0/language|terminology": "ISO_639-1",
+  "blood_pressure_demo.v0/language|code": "en",
+  "blood_pressure_demo.v0/territory|terminology": "ISO_3166-1",
+  "blood_pressure_demo.v0/territory|code": "DE",
+  "blood_pressure_demo.v0/composer|name": "Max Mustermann",
+  "blood_pressure_demo.v0/_uid": "8073f453-8095-44e6-8077-798609b32a2f::local.ehrbase.org::1"
 }
 --------
 
-=== Example structSDT:
+=== structSDT
 
 Another variant for this simplification is the _structSDT_ JSON format, with the difference that data is represented in JSON structures based on paths from the associated Web Template, rather than flattening them as a key-value list. An example is shown below.
 
 [source, json]
 --------
 {
-    "ctx": {
-      "language": "en",
-      "territory": "SI",
-      "composer_name": "matijak_test"
-    },
-    "vitals": {
-      "vitals": [
-        {
-          "body_temperature": [
-            {
-              "any_event": [
-                {
-                  "description_of_thermal_stress": [
-                    "Test description of symptoms"
-                  ],
-                  "temperature": [
-                    {
-                      "|magnitude": 37.2,
-                      "|unit": "°C"
-                    }
-                  ],
-                  "symptoms": [
-                    {
-                      "|code": "at0.64",
-                      "|value": "Chills / rigor / shivering",
-                      "|terminology": "local"
-                    }
-                  ],
-                  "time": [
-                    "2014-01-22T15:18:07.339+01:00"
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "context": [
-        {
-          "setting": [
-            {
-              "|code": "238",
-              "|value": "other care",
-              "|terminology": "openehr"
-            }
-          ],
-          "start_time": [
-            "2014-01-22T15:18:07.339+01:00"
-          ]
-        }
-      ]
-    }
+  "blood_pressure_demo.v0": {
+    "category": [ {
+      "|value": "event",
+      "|code": "433",
+      "|terminology": "openehr"
+    } ],
+    "context": [ {
+      "start_time": [ "2022-02-03T04:05:06" ],
+      "setting": [ {
+        "|terminology": "openehr",
+        "|code": "225",
+        "|value": "home"
+      } ],
+      "_end_time": [ "2022-02-03T04:25:41" ]
+    } ],
+    "blood_pressure": [ {
+      "any_event": [ {
+        "systolic": [ {
+          "|unit": "mm[Hg]",
+          "|magnitude": 154.0
+        } ],
+        "diastolic": [ {
+          "|unit": "mm[Hg]",
+          "|magnitude": 98.0
+        } ],
+        "clinical_interpretation": [ "Stage 2 Hypertension: Blood pressure is significantly elevated with systolic pressure of 154 mmHg and diastolic pressure of 98 mmHg, indicating stage 2 hypertension according to current guidelines." ],
+        "position": [ {
+          "|terminology": "local",
+          "|value": "Standing",
+          "|code": "at1000"
+        } ],
+        "time": [ "2022-02-03T04:05:06" ]
+      }, {
+        "systolic": [ {
+          "|unit": "mm[Hg]",
+          "|magnitude": 144.0
+        } ],
+        "diastolic": [ {
+          "|magnitude": 80.0,
+          "|unit": "mm[Hg]"
+        } ],
+        "clinical_interpretation": [ "Stage 2 Hypertension: Blood pressure remains elevated with systolic pressure of 144 mmHg. Diastolic pressure has improved to 80 mmHg, but systolic pressure still indicates stage 2 hypertension." ],
+        "position": [ {
+          "|code": "at1000",
+          "|terminology": "local",
+          "|value": "Standing"
+        } ],
+        "time": [ "2022-02-03T04:25:41" ]
+      } ],
+      "method": [ {
+        "|code": "at1036",
+        "|value": "Auscultation",
+        "|terminology": "local"
+      } ],
+      "language": [ {
+        "|code": "en",
+        "|terminology": "ISO_639-1"
+      } ],
+      "encoding": [ {
+        "|terminology": "IANA_character-sets",
+        "|code": "UTF-8"
+      } ]
+    } ],
+    "language": [ {
+      "|terminology": "ISO_639-1",
+      "|code": "en"
+    } ],
+    "territory": [ {
+      "|terminology": "ISO_3166-1",
+      "|code": "DE"
+    } ],
+    "composer": [ {
+      "|name": "Max Mustermann"
+    } ],
+    "_uid": [ "8073f453-8095-44e6-8077-798609b32a2f::local.ehrbase.org::1" ]
   }
+}
 --------
 
 

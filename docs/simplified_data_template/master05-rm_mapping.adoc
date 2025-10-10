@@ -1603,9 +1603,9 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 ----
 {
   "conformance-ehrbase.de.v0/composer|name": "Silvia Blake",
-  "conformance-ehrbase.de.v0/composer/relationship|code" : "10",
-  "conformance-ehrbase.de.v0/composer/relationship|value" : "mother",
-  "conformance-ehrbase.de.v0/composer/relationship|terminology" : "openehr"
+  "conformance-ehrbase.de.v0/composer/relationship|code": "10",
+  "conformance-ehrbase.de.v0/composer/relationship|value": "mother",
+  "conformance-ehrbase.de.v0/composer/relationship|terminology": "openehr"
 }
 ----
 
@@ -1616,9 +1616,9 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
   "conformance-ehrbase.de.v0/composer|id": "1234-5678",
   "conformance-ehrbase.de.v0/composer|id_scheme": "UUID",
   "conformance-ehrbase.de.v0/composer|id_namespace": "EHR.NETWORK",
-  "conformance-ehrbase.de.v0/composer/relationship|code" : "10",
-  "conformance-ehrbase.de.v0/composer/relationship|value" : "mother",
-  "conformance-ehrbase.de.v0/composer/relationship|terminology" : "openehr",
+  "conformance-ehrbase.de.v0/composer/relationship|code": "10",
+  "conformance-ehrbase.de.v0/composer/relationship|value": "mother",
+  "conformance-ehrbase.de.v0/composer/relationship|terminology": "openehr",
   "conformance-ehrbase.de.v0/composer/_identifier:0|id": "122",
   "conformance-ehrbase.de.v0/composer/_identifier:0|issuer": "issuer",
   "conformance-ehrbase.de.v0/composer/_identifier:0|assigner": "assigner",
