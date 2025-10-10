@@ -17,6 +17,13 @@
     </thead>
     <tbody>
     <tr>
+        <td>6.0</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-61" target="_blank" rel="noopener">SPECITS-61</a>:
+            Cleanup and consolidate SDT specifications</td>
+        <td>REST WG</td>
+        <td>10 Oct 2025</td>
+    </tr>
+    <tr>
         <td>5.3</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-74" target="_blank" rel="noopener">SPECITS-74</a>:
             Deprecate some of the use of Location response header</td>
