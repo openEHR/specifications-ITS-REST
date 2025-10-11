@@ -8,7 +8,7 @@ tags:
   - ADL1.4
 parameters:
   - $ref: ../parameters/path/template_id.yaml
-  - $ref: ../parameters/header/Accept_template.yaml
+  - $ref: ../parameters/header/Accept_Template.yaml
 responses:
   '200':
     $ref: ../responses/200_Template_adl1_4_retrieved.yaml

@@ -6,6 +6,14 @@ tags:
   - ADL1.4
 parameters:
   - $ref: ../parameters/header/Prefer.yaml
+  - $ref: ../parameters/header/Accept_Template.yaml
+  - name: Content-Type
+    in: header
+    style: simple
+    schema:
+      type: string
+      enum:
+        - application/xml
 requestBody:
   description: ''
   content:

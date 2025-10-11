@@ -1,5 +1,8 @@
 description: |
   `200 OK` is returned when the template is successfully retrieved.
+headers:
+  Content-Type:
+    $ref: ../headers/ContentType_Template_adl2.yaml
 content:
   text/plain:
     schema:

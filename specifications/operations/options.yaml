@@ -8,6 +8,8 @@ description: |
   Another use-case for this method is related to exposing service capabilities for a conformance manifest.
 tags:
   - Options
+parameters:
+  - $ref: ../parameters/header/Accept_JSON.yaml
 responses:
   '200':
     $ref: ../responses/200_options.yaml

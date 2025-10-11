@@ -7,6 +7,14 @@ tags:
 parameters:
   - $ref: ../parameters/query/at_version.yaml
   - $ref: ../parameters/header/Prefer.yaml
+  - $ref: ../parameters/header/Accept_Template_adl2.yaml
+  - name: Content-Type
+    in: header
+    style: simple
+    schema:
+      type: string
+      enum:
+        - text/plain
 requestBody:
   description: ''
   content:

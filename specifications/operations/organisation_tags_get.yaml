@@ -18,6 +18,7 @@ tags:
   - ITEM_TAG
 parameters:
   - $ref: ../parameters/path/uid_based_id.yaml
+  - $ref: ../parameters/header/Accept_canonical.yaml
 responses:
   '200':
     $ref: ../responses/200_ORGANISATION_ItemTagList_retrieved.yaml
