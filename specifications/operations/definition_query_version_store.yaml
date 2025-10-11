@@ -8,6 +8,7 @@ parameters:
   - $ref: ../parameters/path/qualified_query_name.yaml
   - $ref: ../parameters/path/version.yaml
   - $ref: ../parameters/query/query_type.yaml
+  - $ref: ../parameters/header/Accept_JSON.yaml
 requestBody:
   content:
     text/plain:

@@ -9,6 +9,8 @@ tags:
 parameters:
   - $ref: ../parameters/path/versioned_object_uid_PARTY.yaml
   - $ref: ../parameters/query/version_at_time.yaml
+  - $ref: ../parameters/header/Accept_canonical.yaml
+  - $ref: ../parameters/header/ContentType_canonical.yaml
 responses:
   '200':
     $ref: ../responses/200_VERSION_of_PARTY_at_time.yaml

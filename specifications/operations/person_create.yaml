@@ -10,6 +10,8 @@ tags:
   - PERSON
 parameters:
   - $ref: ../parameters/header/Prefer.yaml
+  - $ref: ../parameters/header/Accept_LOCATABLE.yaml
+  - $ref: ../parameters/header/ContentType_LOCATABLE.yaml
   - $ref: ../parameters/header/openehr-item-tag.yaml
   - $ref: ../parameters/header/openehr-version-item-tag.yaml
 requestBody:

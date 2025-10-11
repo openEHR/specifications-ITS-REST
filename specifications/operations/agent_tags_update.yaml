@@ -19,6 +19,8 @@ tags:
 parameters:
   - $ref: ../parameters/path/uid_based_id.yaml
   - $ref: ../parameters/header/Prefer.yaml
+  - $ref: ../parameters/header/Accept_canonical.yaml
+  - $ref: ../parameters/header/ContentType_canonical.yaml
 requestBody:
   content:
     application/json:

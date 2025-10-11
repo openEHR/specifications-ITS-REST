@@ -11,6 +11,8 @@ headers:
     $ref: ../headers/Location_Template_adl2.yaml
   ETag:
     $ref: ../headers/ETag_Template_adl2.yaml
+  Content-Type:
+    $ref: ../headers/ContentType_Template_adl2.yaml
 content:
   text/plain:
     schema:

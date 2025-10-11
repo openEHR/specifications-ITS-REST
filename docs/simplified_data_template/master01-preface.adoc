@@ -2,7 +2,10 @@
 
 == Purpose
 
-This document describes a 'simplified template' (ST) format, along with various concrete data formats, intended to be easier to use than the canonical formats, for typical developers with minimal exposure to openEHR. These formats are designed to enable easier creation of openEHR content (i.e. Compositions etc).
+This document specifies the Simplified *Data Template (SDT)* as a format for openEHR data instances.
+It provides a simplified, developer-friendly alternative to *canonical* openEHR JSON and XML serializations by using human-readable field identifiers rather than archetype paths.
+
+The format is designed to lower the barrier to entry for working with openEHR data by providing a more accessible way to create and manipulate content (e.g. Compositions) compared to the canonical formats, making it easier for developers who are new to openEHR.
 
 == Status
 
@@ -22,7 +25,5 @@ To see changes made due to previously reported issues, see the {component_histor
 
 == Conformance
 
-When used with openEHR-REST API, the available calls to be conformance tested are the same as for other openEHR serialisation formats (canonical JSON etc), but with at different representation format (indicated by setting appropriate Content-Type http header).
-
-[.tbd]
-*TBD*: Conformance testing and Content-Type will be further described later. 
+When used with openEHR-REST API, the available calls to be conformance tested are the same as for other openEHR serialisation formats (canonical JSON etc), with a different representation format indicated by setting the appropriate `Content-Type` HTTP header.
+Conformance of a data or software artefact to an openEHR specification is determined by a formal test of that artefact against the relevant openEHR Implementation Technology Specification(s) (ITSs).

@@ -19,6 +19,8 @@ parameters:
   - $ref: ../parameters/path/uid_based_id_as_versioned_object_uid.yaml
   - $ref: ../parameters/header/If-Match.yaml
   - $ref: ../parameters/header/Prefer.yaml
+  - $ref: ../parameters/header/Accept_LOCATABLE.yaml
+  - $ref: ../parameters/header/ContentType_LOCATABLE.yaml
   - $ref: ../parameters/header/openehr-item-tag.yaml
   - $ref: ../parameters/header/openehr-version-item-tag.yaml
 requestBody:

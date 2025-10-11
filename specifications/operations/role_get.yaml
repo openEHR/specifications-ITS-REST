@@ -17,6 +17,7 @@ tags:
 parameters:
   - $ref: ../parameters/path/uid_based_id.yaml
   - $ref: ../parameters/query/version_at_time.yaml
+  - $ref: ../parameters/header/Accept_LOCATABLE.yaml
 responses:
   '200':
     $ref: ../responses/200_ROLE_retrieved.yaml

@@ -7,6 +7,7 @@ tags:
 parameters:
   - $ref: ../parameters/path/ehr_id.yaml
   - $ref: ../parameters/path/contribution_uid.yaml
+  - $ref: ../parameters/header/Accept_canonical.yaml
 responses:
   '200':
     $ref: ../responses/200_CONTRIBUTION.yaml

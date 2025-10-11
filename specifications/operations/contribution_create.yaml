@@ -10,6 +10,8 @@ tags:
 parameters:
   - $ref: ../parameters/path/ehr_id.yaml
   - $ref: ../parameters/header/Prefer.yaml
+  - $ref: ../parameters/header/Accept_canonical.yaml
+  - $ref: ../parameters/header/ContentType_canonical.yaml
 requestBody:
   description: |
     The CONTRIBUTION.
