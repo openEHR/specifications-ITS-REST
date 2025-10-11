@@ -3,7 +3,7 @@ summary: Get EHR_STATUS by version id
 description: |
   Retrieves a particular version of the EHR_STATUS identified by `version_uid` and associated with the EHR identified by `ehr_id`.
 
-  When there are ITEM_TAGs associated with the retrieved EHR_STATUS, they will be returned as `openehr-item-tag` response header.
+  When there are ITEM_TAGs associated with the retrieved EHR_STATUS, they will be returned as `openehr-item-tag` and `openehr-version-item-tag` response headers, respectively - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
 
 tags:
   - EHR_STATUS

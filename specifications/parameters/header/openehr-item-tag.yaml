@@ -1,7 +1,7 @@
 name: openehr-item-tag
 in: header
 description: |
-  The (semicolon-separated) list of all ITEM_TAG to be set or updated and associated with the given VERSION or VERSIONED_OBJECT.
+  The list of all ITEM_TAG to be set and associated with the current VERSIONED_OBJECT - see [details](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag).
 required: false
 style: simple
 explode: true

@@ -5,4 +5,4 @@ content:
     schema:
       type: array
       items:
-        $ref: ../schemas/common/ItemTagOfEhrStatus.yaml
+        $ref: ../schemas/ehr/ItemTagOfEhrStatus.yaml

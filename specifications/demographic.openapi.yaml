@@ -90,6 +90,50 @@ paths:
   '/demographic/contribution/{contribution_uid}':
     get:
       $ref: ./operations/demographic_contribution_get.yaml
+  '/demographic/tags':
+    get:
+      $ref: ./operations/demographic_tags_get.yaml
+  '/demographic/agent/{uid_based_id}/tags':
+    get:
+      $ref: ./operations/agent_tags_get.yaml
+    put:
+      $ref: ./operations/agent_tags_update.yaml
+  '/demographic/agent/{uid_based_id}/tags/{key}':
+    delete:
+      $ref: ./operations/agent_tags_delete.yaml
+  '/demographic/group/{uid_based_id}/tags':
+    get:
+      $ref: ./operations/group_tags_get.yaml
+    put:
+      $ref: ./operations/group_tags_update.yaml
+  '/demographic/group/{uid_based_id}/tags/{key}':
+    delete:
+      $ref: ./operations/group_tags_delete.yaml
+  '/demographic/organisation/{uid_based_id}/tags':
+    get:
+      $ref: ./operations/organisation_tags_get.yaml
+    put:
+      $ref: ./operations/organisation_tags_update.yaml
+  '/demographic/organisation/{uid_based_id}/tags/{key}':
+    delete:
+      $ref: ./operations/organisation_tags_delete.yaml
+  '/demographic/person/{uid_based_id}/tags':
+    get:
+      $ref: ./operations/person_tags_get.yaml
+    put:
+      $ref: ./operations/person_tags_update.yaml
+  '/demographic/person/{uid_based_id}/tags/{key}':
+    delete:
+      $ref: ./operations/person_tags_delete.yaml
+  '/demographic/role/{uid_based_id}/tags':
+    get:
+      $ref: ./operations/role_tags_get.yaml
+    put:
+      $ref: ./operations/role_tags_update.yaml
+  '/demographic/role/{uid_based_id}/tags/{key}':
+    delete:
+      $ref: ./operations/role_tags_delete.yaml
+
 tags:
   - name: AGENT
     description: |
@@ -112,6 +156,9 @@ tags:
   - name: CONTRIBUTION
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) class.
+  - name: ITEM_TAG
+    description: |
+      Management of [ITEM_TAG](https://specifications.openehr.org/releases/RM/development/common.html#_item_tag_class) resources.
   - name: CAPABILITY_schema
     x-displayName: CAPABILITY
     description: |
@@ -152,6 +199,7 @@ x-tagGroups:
       - ROLE
       - VERSIONED_PARTY
       - CONTRIBUTION
+      - ITEM_TAG
   - name: Related schemas
     tags:
       - CAPABILITY_schema

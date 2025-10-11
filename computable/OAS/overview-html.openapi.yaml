@@ -257,27 +257,35 @@ tags:
 
       The list of `code_string` values and their meaning is specified by the [Audit Change Type](https://specifications.openehr.org/releases/TERM/latest/SupportTerminology.html#_audit_change_type) and [Version Lifecycle State](https://specifications.openehr.org/releases/TERM/latest/SupportTerminology.html#_version_lifecycle_state) openEHR terminology vocabularies.
 
-      ## openehr-item-tag
+      ## openehr-item-tag and openehr-version-item-tag
 
-      The `openehr-item-tag` header is available all change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.).
+      The `openehr-item-tag` and `openehr-version-item-tag` headers provide a lightweight mechanism for associating tags with change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.).
 
-      Below is an example of this header:
+      - `openehr-item-tag` applies to *VERSIONED_OBJECT* targets.
+      - `openehr-version-item-tag` applies to a specific target *VERSION* within a VERSIONED_OBJECT.
+
+      Below is an example of these headers:
       ```http
-      openehr-item-tag: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
+      openehr-item-tag: key="category",value="final"
+      openehr-version-item-tag: key="reviewed",value="true"; key="flag",value="follow-up",target_path="/composition/start_time/value"
       ```
 
-      Note that, this header acts as a convenient wrapper around dedicated ITEM_TAG actions (e.g. retrieving [COMPOSITION tags](ehr.html#tag/COMPOSITION/operation/composition_tags_get)), simplifying client interaction and reducing necessary API calls.
-      If the server does not support ITEM_TAGs, this header will also be unsupported.
+      Both headers act as convenient wrappers around the dedicated ITEM_TAG operations (e.g. retrieving [COMPOSITION tags](ehr.html#tag/COMPOSITION/operation/composition_tags_get)), simplifying client interaction and reducing the number of API calls.
+
+      Tag values are provided as a list of key-value pairs, separated by semicolons. They both support the same syntax and schema, having the following attributes: `key`, `value` and `target_path`.
+      More than one ITEM_TAG may be associated with a single target, in which case they are uniquely identified by their `key` and `target_path` pair attributes.
+
+      If the server does not support ITEM_TAGs, these headers will also be unsupported.
 
       #### Usage in Requests
-      When used as a request headers for creation or update operations (`PUT`, `POST`), the header will instruct the system on which ITEM_TAG list should be associated with the target VERSION or VERSION_OBJECT resource.
+      When used as request headers for creation or update operations (`PUT`, `POST`), the header instructs the system which ITEM_TAG list should be associated with the target VERSION or VERSIONED_OBJECT resource (depending on the header name).
 
-      Providing an empty value for this header will effectively remove all ITEM_TAG associated with the given target.
+      Providing an empty value for this header will effectively remove all ITEM_TAGs associated with the given target.
 
       #### Usage in Responses
-      Servers MAY add `openehr-item-tag` header to the response, to confirm the actual list as stored on server side.
+      Servers MAY include the `openehr-item-tag` or `openehr-version-item-tag` header in responses to confirm the actual list of ITEM_TAGs stored on the server side.
 
-      When retrieving resources viw `GET` methods, the server MAY also add `openehr-item-tag` response header that will contain the list of all ITEM_TAG associated with the target VERSION or VERSIONED_OBJECT.
+      When retrieving resources via `GET`, the server MAY also add these headers to the response, containing the list of ITEM_TAGs associated with the target VERSION or VERSIONED_OBJECT (depending on the header name).
 
       ## openehr-template-id
 

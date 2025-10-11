@@ -197,7 +197,7 @@ paths:
       description: |
         Retrieves a particular version of the EHR_STATUS identified by `version_uid` and associated with the EHR identified by `ehr_id`.
 
-        When there are ITEM_TAGs associated with the retrieved EHR_STATUS, they will be returned as `openehr-item-tag` response header.
+        When there are ITEM_TAGs associated with the retrieved EHR_STATUS, they will be returned as `openehr-item-tag` and `openehr-version-item-tag` response headers, respectively - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - EHR_STATUS
       parameters:
@@ -217,7 +217,7 @@ paths:
 
         If `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ EHR_STATUS version.
 
-        When there are ITEM_TAGs associated with the retrieved EHR_STATUS, they will be returned as `openehr-item-tag` response header.
+        When there are ITEM_TAGs associated with the retrieved EHR_STATUS, they will be returned as `openehr-item-tag` and `openehr-version-item-tag` response headers, respectively - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - EHR_STATUS
       parameters:
@@ -238,8 +238,8 @@ paths:
 
         The existing latest `version_uid` of EHR_STATUS resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
 
-        A list of ITEM_TAGs can be associated with the updated EHR_STATUS, in which case a `openehr-item-tag` request header is needed to be set as well. 
-        The corresponding response header will return ITEM_TAGs as they were set by the server.
+        A list of ITEM_TAGs can be associated with the updated EHR_STATUS, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
 
         The response will contain the updated EHR_STATUS resource when the `Prefer` header has a value of `return=representation`.
       tags:
@@ -249,6 +249,7 @@ paths:
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
         - $ref: '#/components/parameters/openehr-item-tag'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The new EHR_STATUS.
@@ -341,14 +342,15 @@ paths:
       description: |
         Creates the first version of a new COMPOSITION in the EHR identified by `ehr_id`.
 
-        A list of ITEM_TAGs can be associated with the COMPOSITION, in which case a `openehr-item-tag` request header is needed to be set as well. 
-        The corresponding response header will return ITEM_TAGs as they were set by the server.
+        A list of ITEM_TAGs can be associated with the COMPOSITION, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - COMPOSITION
       parameters:
         - $ref: '#/components/parameters/ehr_id'
         - $ref: '#/components/parameters/Prefer'
         - $ref: '#/components/parameters/openehr-item-tag'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The COMPOSITION.
@@ -380,7 +382,7 @@ paths:
 
         See [Resource identification](overview.html#tag/Resources/Resource-identification) for more details about the identifiers usage and meaning.
 
-        When there are ITEM_TAGs associated with the retrieved COMPOSITION, they will be returned as `openehr-item-tag` response header.
+        When there are ITEM_TAGs associated with the retrieved COMPOSITION, they will be returned as `openehr-item-tag` and `openehr-version-item-tag` response headers, respectively - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - COMPOSITION
       parameters:
@@ -406,8 +408,8 @@ paths:
 
         The existing latest `version_uid` of COMPOSITION resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
 
-        A list of ITEM_TAGs can be associated with the updated COMPOSITION, in which case a `openehr-item-tag` request header is needed to be set as well. 
-        The corresponding response header will return ITEM_TAGs as they were set by the server.
+        A list of ITEM_TAGs can be associated with the updated COMPOSITION, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - COMPOSITION
       parameters:
@@ -416,6 +418,7 @@ paths:
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
         - $ref: '#/components/parameters/openehr-item-tag'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The new COMPOSITION.
@@ -4122,7 +4125,20 @@ components:
       name: openehr-item-tag
       in: header
       description: |
-        The (semicolon-separated) list of all ITEM_TAG to be set or updated and associated with the given VERSION or VERSIONED_OBJECT.
+        The list of all ITEM_TAG to be set and associated with the current VERSIONED_OBJECT - see [details](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag).
+      required: false
+      style: simple
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/UpdateItemTag'
+      example: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
+    openehr-version-item-tag:
+      name: openehr-version-item-tag
+      in: header
+      description: |
+        The list of all ITEM_TAG to be set and associated with the current VERSION - see [details](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag).
       required: false
       style: simple
       explode: true
@@ -4298,6 +4314,8 @@ components:
           $ref: '#/components/headers/Location_deprecated'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -4318,6 +4336,8 @@ components:
           $ref: '#/components/headers/Location_EHR_STATUS'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -4334,6 +4354,8 @@ components:
           $ref: '#/components/headers/Location_version'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
     412_EHR_STATUS:
       description: |
         `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
@@ -4388,6 +4410,8 @@ components:
           $ref: '#/components/headers/Location_COMPOSITION'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -4404,6 +4428,8 @@ components:
           $ref: '#/components/headers/Location_deprecated'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -4421,6 +4447,8 @@ components:
           $ref: '#/components/headers/Location_COMPOSITION'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -4653,10 +4681,14 @@ components:
         type: string
     openehr-item-tag:
       description: |
-        The (semicolon-separated) list of all ITEM_TAG associated with the target VERSION or VERSIONED_OBJECT.
+        The list of all ITEM_TAG associated with the current VERSIONED_OBJECT - see [details](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag).
       schema:
         type: string
-        example: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
+    openehr-version-item-tag:
+      description: |
+        The list of all ITEM_TAG associated with the current VERSION - see [details](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag).
+      schema:
+        type: string
     Location_EHR_STATUS:
       description: |
         The `Location` response header indicates the URL of the EHR_STATUS resource.

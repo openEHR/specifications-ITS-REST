@@ -5,4 +5,4 @@ content:
     schema:
       type: array
       items:
-        $ref: ../schemas/common/ItemTagOfComposition.yaml
+        $ref: ../schemas/ehr/ItemTagOfComposition.yaml

@@ -68,6 +68,9 @@ tags:
   - name: CONTRIBUTION
     description: |
       Management of [CONTRIBUTION](https://specifications.openehr.org/releases/RM/latest/common.html#_contribution_class) class.
+  - name: ITEM_TAG
+    description: |
+      Management of [ITEM_TAG](https://specifications.openehr.org/releases/RM/development/common.html#_item_tag_class) resources.
   - name: CAPABILITY_schema
     x-displayName: CAPABILITY
     description: |
@@ -105,10 +108,15 @@ paths:
       summary: Create AGENT
       description: |
         Creates the first version of a new AGENT.
+
+        A list of ITEM_TAGs can be associated with the AGENT, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - AGENT
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-item-tag'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The AGENT.
@@ -139,6 +147,8 @@ paths:
         When the `uid_based_id` has the form of a HIER_OBJECT_ID, if the `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ AGENT version.
 
         See [Resource identification](overview.html#tag/Resources/Resource-identification) for more details about the identifiers usage and meaning.
+
+        When there are ITEM_TAGs associated with the retrieved AGENT, they will be returned as `openehr-item-tag` and `openehr-version-item-tag` response headers, respectively - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - AGENT
       parameters:
@@ -162,12 +172,16 @@ paths:
         If the request body already contains a AGENT.uid.value, it must match the `uid_based_id` in the URL. 
 
         The existing latest `version_uid` of AGENT resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
+
+        A list of ITEM_TAGs can be associated with the updated AGENT, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - AGENT
       parameters:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The new AGENT.
@@ -215,10 +229,15 @@ paths:
       summary: Create GROUP
       description: |
         Creates the first version of a new GROUP.
+
+        A list of ITEM_TAGs can be associated with the GROUP, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - GROUP
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-item-tag'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The GROUP.
@@ -249,6 +268,8 @@ paths:
         When the `uid_based_id` has the form of a HIER_OBJECT_ID, if the `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ GROUP version.
 
         See [Resource identification](overview.html#tag/Resources/Resource-identification) for more details about the identifiers usage and meaning.
+
+        When there are ITEM_TAGs associated with the retrieved GROUP, they will be returned as `openehr-item-tag` and `openehr-version-item-tag` response headers, respectively - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - GROUP
       parameters:
@@ -272,12 +293,16 @@ paths:
         If the request body already contains a GROUP.uid.value, it must match the `uid_based_id` in the URL. 
 
         The existing latest `version_uid` of GROUP resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
+
+        A list of ITEM_TAGs can be associated with the updated GROUP, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - GROUP
       parameters:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The new GROUP.
@@ -325,10 +350,15 @@ paths:
       summary: Create ORGANISATION
       description: |
         Creates the first version of a new ORGANISATION.
+
+        A list of ITEM_TAGs can be associated with the ORGANISATION, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - ORGANISATION
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-item-tag'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The ORGANISATION.
@@ -359,6 +389,8 @@ paths:
         When the `uid_based_id` has the form of a HIER_OBJECT_ID, if the `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ ORGANISATION version.
 
         See [Resource identification](overview.html#tag/Resources/Resource-identification) for more details about the identifiers usage and meaning.
+
+        When there are ITEM_TAGs associated with the retrieved ORGANISATION, they will be returned as `openehr-item-tag` and `openehr-version-item-tag` response headers, respectively - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - ORGANISATION
       parameters:
@@ -382,12 +414,16 @@ paths:
         If the request body already contains a ORGANISATION.uid.value, it must match the `uid_based_id` in the URL. 
 
         The existing latest `version_uid` of ORGANISATION resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
+
+        A list of ITEM_TAGs can be associated with the updated ORGANISATION, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - ORGANISATION
       parameters:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The new ORGANISATION.
@@ -435,10 +471,15 @@ paths:
       summary: Create PERSON
       description: |
         Creates the first version of a new PERSON.
+
+        A list of ITEM_TAGs can be associated with the PERSON, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - PERSON
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-item-tag'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The PERSON.
@@ -469,6 +510,8 @@ paths:
         When the `uid_based_id` has the form of a HIER_OBJECT_ID, if the `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ PERSON version.
 
         See [Resource identification](overview.html#tag/Resources/Resource-identification) for more details about the identifiers usage and meaning.
+
+        When there are ITEM_TAGs associated with the retrieved PERSON, they will be returned as `openehr-item-tag` and `openehr-version-item-tag` response headers, respectively - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - PERSON
       parameters:
@@ -492,12 +535,16 @@ paths:
         If the request body already contains a PERSON.uid.value, it must match the `uid_based_id` in the URL. 
 
         The existing latest `version_uid` of PERSON resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
+
+        A list of ITEM_TAGs can be associated with the updated PERSON, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - PERSON
       parameters:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The new PERSON.
@@ -545,10 +592,15 @@ paths:
       summary: Create ROLE
       description: |
         Creates the first version of a new ROLE.
+
+        A list of ITEM_TAGs can be associated with the ROLE, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - ROLE
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-item-tag'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The ROLE.
@@ -579,6 +631,8 @@ paths:
         When the `uid_based_id` has the form of a HIER_OBJECT_ID, if the `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ ROLE version.
 
         See [Resource identification](overview.html#tag/Resources/Resource-identification) for more details about the identifiers usage and meaning.
+
+        When there are ITEM_TAGs associated with the retrieved ROLE, they will be returned as `openehr-item-tag` and `openehr-version-item-tag` response headers, respectively - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - ROLE
       parameters:
@@ -602,12 +656,16 @@ paths:
         If the request body already contains a ROLE.uid.value, it must match the `uid_based_id` in the URL. 
 
         The existing latest `version_uid` of ROLE resource (i.e. the `preceding_version_uid`) must be specified in the `If-Match` header.
+
+        A list of ITEM_TAGs can be associated with the updated ROLE, in which case a `openehr-item-tag` or `openehr-version-item-tag` request header can be set as well. 
+        The corresponding response header(s) will return ITEM_TAGs as they were set by the server - see [item tags headers](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag) for more details.
       tags:
         - ROLE
       parameters:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
           The new ROLE.
@@ -756,6 +814,461 @@ paths:
           $ref: '#/components/responses/200_CONTRIBUTION'
         '404':
           $ref: '#/components/responses/404_demographic_CONTRIBUTION'
+  /demographic/tags:
+    get:
+      operationId: demographic_tags_get
+      summary: Get Demographic tags
+      description: |
+        Retrieves the list of ITEM_TAG resources associated with any target VERSION or VERSIONED_PARTY within the Demographic space. 
+
+        This list can be filtered by the given one or more `tag_key`, `tag_value`, `tag_target_path` query parameters. 
+        In case no such parameter is provided then all ITEM_TAG will be retrieved.
+
+        This will return an empty list when there is no matching ITEM_TAG associated with any target within given EHR.
+
+        More then one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/tag_key'
+        - $ref: '#/components/parameters/tag_value'
+        - $ref: '#/components/parameters/tag_target_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_PERSON_ItemTagList_retrieved'
+        '400':
+          $ref: '#/components/responses/400'
+  /demographic/agent/{uid_based_id}/tags:
+    get:
+      operationId: agent_tags_get
+      summary: Get AGENT tags
+      description: |
+        Retrieves the list of all ITEM_TAG resources associated with a given target AGENT version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to get the tags of a particular (target) version of the AGENT version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to get the tags of the target VERSIONED_PARTY container, 
+        which semantically are equivalent to tags targeting the latest version.
+
+        This will return an empty list when there is no ITEM_TAG associated with the given target.
+          
+        More then one ITEM_TAG may be associated with a single target AGENT or VERSIONED_PARTY, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_AGENT_ItemTagList_retrieved'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id'
+    put:
+      operationId: agent_tags_update
+      summary: Update AGENT tags
+      description: |
+        Updates the list of all ITEM_TAG resources associated with a given target AGENT version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to update the tags of a particular AGENT version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to update the tags of the target VERSIONED_PARTY container, 
+        which semantically are equivalent to tags targeting the latest version.
+          
+        Providing an empty list will effectively remove all ITEM_TAG associated with the given target.
+
+        More then one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateItemTag'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200_AGENT_ItemTagList_updated'
+        '204':
+          $ref: '#/components/responses/204_updated'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id'
+  /demographic/agent/{uid_based_id}/tags/{key}:
+    delete:
+      operationId: agent_tags_delete
+      summary: Delete AGENT tags
+      description: |
+        Deletes the ITEM_TAG resource(s) identified by `tag_key`, associated with a given target AGENT version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to delete the tags a particular (target) version of the AGENT version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container,
+        which semantically are equivalent to tags targeting the latest version.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/key'
+      responses:
+        '204':
+          $ref: '#/components/responses/204_deleted'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id_or_key'
+  /demographic/group/{uid_based_id}/tags:
+    get:
+      operationId: group_tags_get
+      summary: Get GROUP tags
+      description: |
+        Retrieves the list of all ITEM_TAG resources associated with a given target GROUP version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to get the tags of a particular (target) version of the GROUP version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to get the tags of the target VERSIONED_PARTY container, 
+        which semantically are equivalent to tags targeting the latest version.
+
+        This will return an empty list when there is no ITEM_TAG associated with the given target.
+          
+        More then one ITEM_TAG may be associated with a single target GROUP or VERSIONED_PARTY, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_GROUP_ItemTagList_retrieved'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id'
+    put:
+      operationId: group_tags_update
+      summary: Update GROUP tags
+      description: |
+        Updates the list of all ITEM_TAG resources associated with a given target GROUP version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to update the tags of a particular GROUP version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to update the tags of the target VERSIONED_PARTY container, 
+        which semantically are equivalent to tags targeting the latest version.
+          
+        Providing an empty list will effectively remove all ITEM_TAG associated with the given target.
+
+        More then one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateItemTag'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200_GROUP_ItemTagList_updated'
+        '204':
+          $ref: '#/components/responses/204_updated'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id'
+  /demographic/group/{uid_based_id}/tags/{key}:
+    delete:
+      operationId: group_tags_delete
+      summary: Delete GROUP tags
+      description: |
+        Deletes the ITEM_TAG resource(s) identified by `tag_key`, associated with a given target GROUP version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to delete the tags a particular (target) version of the GROUP version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container,
+        which semantically are equivalent to tags targeting the latest version.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/key'
+      responses:
+        '204':
+          $ref: '#/components/responses/204_deleted'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id_or_key'
+  /demographic/organisation/{uid_based_id}/tags:
+    get:
+      operationId: organisation_tags_get
+      summary: Get ORGANISATION tags
+      description: |
+        Retrieves the list of all ITEM_TAG resources associated with a given target ORGANISATION version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to get the tags of a particular (target) version of the ORGANISATION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to get the tags of the target VERSIONED_PARTY container, 
+        which semantically are equivalent to tags targeting the latest version.
+
+        This will return an empty list when there is no ITEM_TAG associated with the given target.
+          
+        More then one ITEM_TAG may be associated with a single target ORGANISATION or VERSIONED_PARTY, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_ORGANISATION_ItemTagList_retrieved'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id'
+    put:
+      operationId: organisation_tags_update
+      summary: Update ORGANISATION tags
+      description: |
+        Updates the list of all ITEM_TAG resources associated with a given target ORGANISATION version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to update the tags of a particular ORGANISATION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to update the tags of the target VERSIONED_PARTY container, 
+        which semantically are equivalent to tags targeting the latest version.
+          
+        Providing an empty list will effectively remove all ITEM_TAG associated with the given target.
+
+        More then one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateItemTag'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200_ORGANISATION_ItemTagList_updated'
+        '204':
+          $ref: '#/components/responses/204_updated'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id'
+  /demographic/organisation/{uid_based_id}/tags/{key}:
+    delete:
+      operationId: organisation_tags_delete
+      summary: Delete ORGANISATION tags
+      description: |
+        Deletes the ITEM_TAG resource(s) identified by `tag_key`, associated with a given target ORGANISATION version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to delete the tags a particular (target) version of the ORGANISATION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container,
+        which semantically are equivalent to tags targeting the latest version.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/key'
+      responses:
+        '204':
+          $ref: '#/components/responses/204_deleted'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id_or_key'
+  /demographic/person/{uid_based_id}/tags:
+    get:
+      operationId: person_tags_get
+      summary: Get PERSON tags
+      description: |
+        Retrieves the list of all ITEM_TAG resources associated with a given target PERSON version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to get the tags of a particular (target) version of the PERSON version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to get the tags of the target VERSIONED_PARTY container, 
+        which semantically are equivalent to tags targeting the latest version.
+
+        This will return an empty list when there is no ITEM_TAG associated with the given target.
+          
+        More then one ITEM_TAG may be associated with a single target PERSON or VERSIONED_PARTY, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_PERSON_ItemTagList_retrieved'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id'
+    put:
+      operationId: person_tags_update
+      summary: Update PERSON tags
+      description: |
+        Updates the list of all ITEM_TAG resources associated with a given target PERSON version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to update the tags of a particular PERSON version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to update the tags of the target VERSIONED_PARTY container, 
+        which semantically are equivalent to tags targeting the latest version.
+          
+        Providing an empty list will effectively remove all ITEM_TAG associated with the given target.
+
+        More then one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateItemTag'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200_PERSON_ItemTagList_updated'
+        '204':
+          $ref: '#/components/responses/204_updated'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id'
+  /demographic/person/{uid_based_id}/tags/{key}:
+    delete:
+      operationId: person_tags_delete
+      summary: Delete PERSON tags
+      description: |
+        Deletes the ITEM_TAG resource(s) identified by `tag_key`, associated with a given target PERSON version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to delete the tags a particular (target) version of the PERSON version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container,
+        which semantically are equivalent to tags targeting the latest version.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/key'
+      responses:
+        '204':
+          $ref: '#/components/responses/204_deleted'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id_or_key'
+  /demographic/role/{uid_based_id}/tags:
+    get:
+      operationId: role_tags_get
+      summary: Get ROLE tags
+      description: |
+        Retrieves the list of all ITEM_TAG resources associated with a given target ROLE version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to get the tags of a particular (target) version of the ROLE version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to get the tags of the target VERSIONED_PARTY container, 
+        which semantically are equivalent to tags targeting the latest version.
+
+        This will return an empty list when there is no ITEM_TAG associated with the given target.
+          
+        More then one ITEM_TAG may be associated with a single target ROLE or VERSIONED_PARTY, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/200_ROLE_ItemTagList_retrieved'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id'
+    put:
+      operationId: role_tags_update
+      summary: Update ROLE tags
+      description: |
+        Updates the list of all ITEM_TAG resources associated with a given target ROLE version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to update the tags of a particular ROLE version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to update the tags of the target VERSIONED_PARTY container, 
+        which semantically are equivalent to tags targeting the latest version.
+          
+        Providing an empty list will effectively remove all ITEM_TAG associated with the given target.
+
+        More then one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
+        by their `key` and `target_path` pair attributes.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateItemTag'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200_ROLE_ItemTagList_updated'
+        '204':
+          $ref: '#/components/responses/204_updated'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id'
+  /demographic/role/{uid_based_id}/tags/{key}:
+    delete:
+      operationId: role_tags_delete
+      summary: Delete ROLE tags
+      description: |
+        Deletes the ITEM_TAG resource(s) identified by `tag_key`, associated with a given target ROLE version or VERSIONED_PARTY identified by `uid_based_id`.
+
+        The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
+        or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
+        The former is used to delete the tags a particular (target) version of the ROLE version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        whereas the later (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container,
+        which semantically are equivalent to tags targeting the latest version.
+      tags:
+        - ITEM_TAG
+      parameters:
+        - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/key'
+      responses:
+        '204':
+          $ref: '#/components/responses/204_deleted'
+        '404':
+          $ref: '#/components/responses/404_unknown_uid_based_id_or_key'
 components:
   schemas:
     VersionOfParty:
@@ -777,6 +1290,26 @@ components:
         data:
           $ref: '#/components/schemas/Party'
       description: A VERSION resource
+    UpdateItemTag:
+      title: UPDATE_ITEM_TAG
+      required:
+        - key
+      type: object
+      properties:
+        key:
+          type: string
+          description: Tag key (identifier)
+        value:
+          type: string
+          description: Tag value
+        target_path:
+          type: string
+          description: An AQL path withing the `target` used to tag a fine-grained element
+      example:
+        key: flag
+        value: follow-up
+        target_path: /context/start_time/value
+      additionalProperties: false
     Pathable:
       title: PATHABLE
       type: object
@@ -2557,6 +3090,134 @@ components:
               code_string: '249'
           description:
             value: Description text
+    ItemTag:
+      title: ITEM_TAG
+      required:
+        - key
+        - target
+        - owner_id
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        target_path:
+          type: string
+        target:
+          $ref: '#/components/schemas/ObjectRef'
+        owner_id:
+          $ref: '#/components/schemas/ObjectRefOfHierObjectId'
+      additionalProperties: false
+      discriminator:
+        propertyName: _type
+        mapping:
+          ITEM_TAG: '#/components/schemas/ItemTag'
+    ItemTagOfPerson:
+      title: ITEM_TAG
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ItemTag'
+      example:
+        key: flag
+        value: follow-up
+        target_path: ''
+        target:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 8849182c-82ad-4088-a07f-48ead4180515
+          namespace: local
+          type: PERSON
+        owner_id:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 7d44b88c-4199-4bad-97dc-d78268e01398
+          namespace: local
+          type: SYSTEM
+    ItemTagOfAgent:
+      title: ITEM_TAG
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ItemTag'
+      example:
+        key: flag
+        value: follow-up
+        target_path: ''
+        target:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 8849182c-82ad-4088-a07f-48ead4180515
+          namespace: local
+          type: AGENT
+        owner_id:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 7d44b88c-4199-4bad-97dc-d78268e01398
+          namespace: local
+          type: SYSTEM
+    ItemTagOfGroup:
+      title: ITEM_TAG
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ItemTag'
+      example:
+        key: flag
+        value: follow-up
+        target_path: ''
+        target:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 8849182c-82ad-4088-a07f-48ead4180515
+          namespace: local
+          type: GROUP
+        owner_id:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 7d44b88c-4199-4bad-97dc-d78268e01398
+          namespace: local
+          type: SYSTEM
+    ItemTagOfOrganisation:
+      title: ITEM_TAG
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ItemTag'
+      example:
+        key: flag
+        value: follow-up
+        target_path: ''
+        target:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 8849182c-82ad-4088-a07f-48ead4180515
+          namespace: local
+          type: ORGANISATION
+        owner_id:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 7d44b88c-4199-4bad-97dc-d78268e01398
+          namespace: local
+          type: SYSTEM
+    ItemTagOfRole:
+      title: ITEM_TAG
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ItemTag'
+      example:
+        key: flag
+        value: follow-up
+        target_path: ''
+        target:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 8849182c-82ad-4088-a07f-48ead4180515
+          namespace: local
+          type: ROLE
+        owner_id:
+          id:
+            _type: HIER_OBJECT_ID
+            value: 7d44b88c-4199-4bad-97dc-d78268e01398
+          namespace: local
+          type: SYSTEM
   parameters:
     Prefer:
       name: Prefer
@@ -2573,6 +3234,32 @@ components:
           - return=minimal
           - return=identifier
         default: return=minimal
+    openehr-item-tag:
+      name: openehr-item-tag
+      in: header
+      description: |
+        The list of all ITEM_TAG to be set and associated with the current VERSIONED_OBJECT - see [details](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag).
+      required: false
+      style: simple
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/UpdateItemTag'
+      example: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
+    openehr-version-item-tag:
+      name: openehr-version-item-tag
+      in: header
+      description: |
+        The list of all ITEM_TAG to be set and associated with the current VERSION - see [details](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag).
+      required: false
+      style: simple
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/UpdateItemTag'
+      example: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
     uid_based_id:
       name: uid_based_id
       in: path
@@ -2660,6 +3347,40 @@ components:
         type: string
         format: uuid
         example: 0826851c-c4c2-4d61-92b9-410fb8275ff0
+    tag_key:
+      name: tag_key
+      in: query
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: flag
+    tag_value:
+      name: tag_value
+      in: query
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: follow-up
+    tag_target_path:
+      name: tag_target_path
+      in: query
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: /context/start_time/value
+    key:
+      name: key
+      in: path
+      description: |
+        The ITEM_TAG key.
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: flag
   headers:
     ETag:
       description: |
@@ -2674,6 +3395,16 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/demographic/agent/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+    openehr-item-tag:
+      description: |
+        The list of all ITEM_TAG associated with the current VERSIONED_OBJECT - see [details](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag).
+      schema:
+        type: string
+    openehr-version-item-tag:
+      description: |
+        The list of all ITEM_TAG associated with the current VERSION - see [details](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag).
+      schema:
+        type: string
     Location_deprecated:
       description: |
         The `Location` is [deprecated](overview.html#tag/Requests_and_responses/HTTP-headers/Location) for this action.
@@ -2686,12 +3417,6 @@ components:
       schema:
         type: string
         format: url
-    openehr-item-tag:
-      description: |
-        The (semicolon-separated) list of all ITEM_TAG associated with the target VERSION or VERSIONED_OBJECT.
-      schema:
-        type: string
-        example: key="category",value="final"; key="flag",value="follow-up",target_path="/composition/start_time/value"
     Location_GROUP:
       description: |
         The `Location` response header indicates the URL of the GROUP resource.
@@ -2767,6 +3492,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_AGENT'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -2781,6 +3510,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -2799,6 +3532,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_AGENT'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -2815,6 +3552,8 @@ components:
           $ref: '#/components/headers/Location_version'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
     412_AGENT:
       description: |
         `412 Precondition Failed` is returned when `If-Match` request header doesn't match the latest version on the service side.
@@ -2854,6 +3593,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_GROUP'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -2868,6 +3611,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -2880,6 +3627,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_GROUP'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -2914,6 +3665,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_ORGANISATION'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -2928,6 +3683,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -2940,6 +3699,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_ORGANISATION'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -2974,6 +3737,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_PERSON'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -2988,6 +3755,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -3000,6 +3771,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_PERSON'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -3034,6 +3809,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_ROLE'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -3048,6 +3827,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -3060,6 +3843,10 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_ROLE'
+        openehr-item-tag:
+          $ref: '#/components/headers/openehr-item-tag'
+        openehr-version-item-tag:
+          $ref: '#/components/headers/openehr-version-item-tag'
       content:
         application/json:
           schema:
@@ -3151,6 +3938,108 @@ components:
     404_demographic_CONTRIBUTION:
       description: |
         `404 Not Found` is returned when a CONTRIBUTION with `contribution_uid` does not exist.
+    200_PERSON_ItemTagList_retrieved:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfPerson'
+    200_AGENT_ItemTagList_retrieved:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfAgent'
+    404_unknown_uid_based_id:
+      description: |
+        `404 Not Found` is returned when the `uid_based_id` does not exist.
+    200_AGENT_ItemTagList_updated:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfAgent'
+    204_updated:
+      description: |
+        `204 No Content` is returned when the update operation was successful and the `Prefer` header is missing or is set to `return=minimal`.
+    204_deleted:
+      description: |
+        `204 No Content` is returned when the resource identified by the request parameters has been (logically) deleted.
+    404_unknown_uid_based_id_or_key:
+      description: |
+        `404 Not Found` is returned when the `uid_based_id` does not exist, or when the ITEM_TAG identified by the `key` does not exist.
+    200_GROUP_ItemTagList_retrieved:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfGroup'
+    200_GROUP_ItemTagList_updated:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfGroup'
+    200_ORGANISATION_ItemTagList_retrieved:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfOrganisation'
+    200_ORGANISATION_ItemTagList_updated:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfOrganisation'
+    200_PERSON_ItemTagList_updated:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfPerson'
+    200_ROLE_ItemTagList_retrieved:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfRole'
+    200_ROLE_ItemTagList_updated:
+      description: |
+        `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemTagOfRole'
 x-tagGroups:
   - name: Resource endpoints
     tags:
@@ -3161,6 +4050,7 @@ x-tagGroups:
       - ROLE
       - VERSIONED_PARTY
       - CONTRIBUTION
+      - ITEM_TAG
   - name: Related schemas
     tags:
       - CAPABILITY_schema

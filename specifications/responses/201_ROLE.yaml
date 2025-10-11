@@ -7,6 +7,10 @@ headers:
     $ref: ../headers/ETag.yaml
   Location:
     $ref: ../headers/Location_ROLE.yaml
+  openehr-item-tag:
+    $ref: ../headers/openehr-item-tag.yaml
+  openehr-version-item-tag:
+    $ref: ../headers/openehr-version-item-tag.yaml
 content:
   application/json:
     schema:
