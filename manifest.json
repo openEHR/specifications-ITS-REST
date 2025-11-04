@@ -82,15 +82,15 @@
             "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, Admin"
         },
         {
-            "id": "simplified_data_template",
-            "title": "Simplified Data Template (SDT)",
-            "title_short": "SDT",
-            "description": "openEHR Simplified Data Template (SDT)",
-            "summary": "Simplified Data Template specification - a simplified data representation for committing data to the openEHR EHR.",
-            "micro_summary": "Simplified Data Template",
+            "id": "simplified_formats",
+            "title": "Simplified Formats for openEHR Data",
+            "title_short": "Formats",
+            "description": "Simplified Formats (flat, structured) for openEHR Data",
+            "summary": "Simplified Formats (flat, structured) for serialization of openEHR Data.",
+            "micro_summary": "Simplified Formats",
             "copyright_year": "2019",
             "spec_status": "STABLE",
-            "keywords": "JSON, REST, web template, simplified data, SDT, simSDT, structSDT"
+            "keywords": "JSON, REST, web template, simplified data, flat, structured, simplified formats, SDT, simSDT, structSDT"
         },
         {
             "id": "smart_app_launch",

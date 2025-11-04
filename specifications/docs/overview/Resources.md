@@ -65,7 +65,7 @@ However, the implicit URI will only resolve to the same resource as the explicit
 # Data representation
 
 Services MUST support at least one of the openEHR **XML** or **JSON** canonical formats for resource representation.
-Additionally, the **Simplified Data Template (SDT)** format SHOULD be supported, while other alternative formats MAY be supported as well, depending on the use case.
+Additionally, the **Simplified Formats** format SHOULD be supported, while other alternative formats MAY be supported as well, depending on the use case.
 These formats and their negotiation protocols are described below.
 
 ## XML Format
@@ -126,15 +126,15 @@ The client SHOULD use the `Accept: application/json` request header to specify t
 If the service cannot fulfill this aspect of the request, it MUST respond with HTTP status code `406 Not Acceptable`.
 Proper header `Content-Type: application/json` MUST be present in the response of the service unless the response has no content body (HTTP status code `204`).
 
-## Simplified Data Template formats
+## Simplified Formats
 
-The detailed specifications of these formats can be consulted at [Simplified Data Template (SDT)](simplified_data_template.html) page.
+The detailed specifications of these formats can be consulted at [Simplified Formats](simplified_formats.html) page.
 
 To use these formats, content negotiation SHOULD be done in the same manner as for the canonical XML or JSON format above, but instead of `application/xml` or `application/json`, clients and servers MUST use:
 
-- `application/openehr.wt.flat+json` for the simplified IM Simplified Data Template (simSDT) as JSON,
-- `application/openehr.wt.structured+json` for the structured IM Simplified Data Template (structSDT) as JSON,
-- `application/openehr.wt+json` for the Operational Template definition as Web Template JSON.
+- `application/openehr.wt.flat+json` for the Simplified Flat JSON format,
+- `application/openehr.wt.structured+json` for the Simplified Structured JSON format,
+- `application/openehr.wt+json` for the Operational Template definition as Web Template JSON format.
 
 > NOTE: The `application/openehr.wt.flat.schema+json` and `application/openehr.wt.flat.schema+json` which were historically available in earlier versions of this specification, are now deprecated and will be removed in a future version of the specification. The equivalent formats are `application/openehr.wt.flat+json` and `application/openehr.wt.structured+json` SHOULD be used instead.
 

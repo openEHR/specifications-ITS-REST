@@ -25,7 +25,7 @@ S Iancu
 
 |0.7.0
 |{spec_tickets}/SPECITS-33[SPECITS-33^]. Add Simplified Data Template format specification; +
-Initial writing, adapted from the Marand Better Platform 'Web Templates' specification, EtherCIS documentation and the Ocean Health Systems Template Data Schema.
+ Initial writing, adapted from the Marand Better Platform 'Web Templates' specification, EtherCIS documentation and the Ocean Health Systems Template Data Schema.
 |openEHR SEC
 |17 Jul 2019
 

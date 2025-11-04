@@ -380,18 +380,18 @@ The <<tds,Template Data Schema (TDS)>> format was originally devised by Ocean He
 
 The <<ecisflat,ECISFLAT>> format was developed for the EtherCIS project as a JSON-based alternative. It uses AQL-style paths based on natural language-independent codes (like `at0001`) and, apart from simplification of `DV_XXX` and `PARTY_PROXY` types, largely retains the openEHR RM structure.
 
-The <<better_web_template,Web Template (WT)>> serialisation format was developed by Better (formerly Marand). It represents a more radical simplification of the openEHR RM and BASE models, using programmer-friendly, natural language-based paths. The serialisation format was originally based on the TDS, with a concrete expression in JSON and using paths, rather than sparse XML.
+The <<better-web-template,Web Template (WT)>> serialisation format was developed by Better (formerly Marand). It represents a more radical simplification of the openEHR RM and BASE models, using programmer-friendly, natural language-based paths. The serialisation format was originally based on the TDS, with a concrete expression in JSON and using paths, rather than sparse XML.
 
 EHRbase adopted and extended WT serialisation as <<ehrbase-sdt,Simplified Data Template (SDT)>> format.
 
 
 == Simplified JSON Formats
 
-The *SDT* format represents a more radical simplification of the openEHR RM and BASE models, using programmer-friendly, natural language-based paths. The format was originally based on TDS concepts but with:
+These Simplified Formats represent a more radical simplification of the openEHR RM and BASE models, using programmer-friendly, natural language-based paths. The approach was originally based on TDS concepts but with:
 
 * Concrete expression in JSON
 * Human-readable path elements (e.g., `body_temperature`, `serum_sodium`)
-* Two variants: **flat** (simSDT) and **structured** (structSDT)
+* Two variants: **Flat** and **Structured**
 
 Key innovations:
 
@@ -410,9 +410,9 @@ Advantages:
 
 The format with its two variants is the basis for the current specification.
 
-=== simSDT
+=== Flat format
 
-The simSDT format represents data in a flattened key-value structure where paths are used as keys, making it particularly suitable for form-based data entry and simple data structures.
+The Flat format represents data in a flattened key-value structure where paths are used as keys, making it particularly suitable for form-based data entry and simple data structures.
 All nested objects are flattened into a single level using path separators.
 
 [source, json]
@@ -460,9 +460,10 @@ All nested objects are flattened into a single level using path separators.
 }
 --------
 
-=== structSDT
+=== Structured format
 
-Another variant for this simplification is the _structSDT_ JSON format, with the difference that data is represented in JSON structures based on paths from the associated Web Template, rather than flattening them as a key-value list. An example is shown below.
+Another variant for this simplification is the Structured format, with the difference that data is represented in JSON structures based on paths from the associated Web Template, rather than flattening them as a key-value list.
+An example is shown below.
 
 [source, json]
 --------
@@ -555,7 +556,7 @@ To make any simplified format viable, the following requirements must be met:
 
 2. **Machine generability**: The format definition for any given commit data can be completely and routinely machine-generated from its canonical definition (i.e. from an openEHR Operational Template).
 
-3. **Bidirectional conversion**: Data instances of the simplified format can be routinely machine-converted to canonical format at execution time, and vice versa.
+3. **Bidirectional conversion**: Data instances of the simplified format can be routinely machine-converted to canonical format at execution time, and vice versa, but requires information from the underlying Operational Template.
 
 4. **Template specificity**: Field identifiers and structure are derived from and validated against a specific operational template.
 

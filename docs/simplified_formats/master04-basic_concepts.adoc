@@ -3,7 +3,7 @@
 
 == Web Template Metadata
 
-A Web Template is a processed representation of an openEHR Operational Template that includes:
+A Web Template is a processed-representation of an openEHR Operational Template that includes:
 
 * Simplified node identifiers
 * AQL paths for all elements
@@ -492,7 +492,7 @@ Example of a Web Template:
 
 == Field Identifiers
 
-SDT uses hierarchical field identifiers composed of:
+The Simplified Formats use hierarchical field identifiers composed of:
 
 1. **Node IDs**: Generated from archetype node names
 2. **Path separators**: Forward slash (`/`) between hierarchy levels
@@ -554,7 +554,7 @@ Examples:
 |Blood Pressure
 |blood_pressure
 
-|BP (duplicate)
+|Blood Pressure _(duplicate)_
 |blood_pressure_1
 
 |===
@@ -667,9 +667,9 @@ See below <<_context_information>> for more details.
 
 == Format variants
 
-=== simSDT (Flat)
+=== Flat format
 
-In simSDT format, all data elements are represented as key-value pairs at a single level in JSON where:
+In the Flat format, all data elements are represented as key-value pairs at a single level in JSON where:
 
 * Keys are full WT paths (with instance indices and attribute suffixes)
 * Values are primitive types (string, number, boolean), or simple objects
@@ -708,9 +708,9 @@ Example:
 ----
 
 
-=== structSDT (Structured)
+=== Structured format
 
-In structSDT format, the hierarchy is preserved as nested JSON objects where:
+In the Structured format, the hierarchy is preserved as nested JSON objects where:
 
 * Each path segment becomes a property in a nested object
 * Instance indices remain in property names (e.g., `body_temperature`)
@@ -784,7 +784,7 @@ Syntax Rules:
 
 == Conversion Between Formats
 
-=== simSDT to structSDT
+=== Flat to Structured
 
 Algorithm for converting flat format to structured:
 
@@ -799,14 +799,14 @@ Algorithm for converting flat format to structured:
 4. Merge all nested structures
 5. Add context object
 
-=== structSDT to simSDT
+=== Structured to Flat
 
 Algorithm for converting structured format to flat:
 
 1. Recursively traverse the nested object structure
 2. Build path by concatenating property names with forward slash
 3. For properties with a pipe prefix, append to a parent path with pipe
-4. Unwrap arrays (structSDT uses arrays throughout)
+4. Unwrap arrays (Structured uses arrays throughout)
 5. Flatten context object with `ctx/` prefix
 6. Preserve instance indices in property names
 7. Preserve RM attribute underscore prefixes
@@ -819,14 +819,13 @@ These types do not typically carry significant clinical information and would un
 
 === Always Removed
 
-The following node types are ALWAYS removed from paths:
+The following node types are always removed from paths, but their respective data carrying attribute is taken as the value at that specific level:
 
-* `ITEM_TREE`
-* `ITEM_LIST`
-* `ITEM_SINGLE`
-* `ITEM_TABLE`
-* `ITEM_STRUCTURE`
-* `HISTORY`
+* `ITEM_TREE` replaced by `ITEM_TREE.items`
+* `ITEM_LIST` replaced by `ITEM_LIST.items`
+* `ITEM_SINGLE` replaced by `ITEM_SINGLE.item`
+* `ITEM_TABLE` replaced by `ITEM_TABLE.rows`
+* `HISTORY` replaced by `HISTORY.events`
 
 === Conditionally Removed
 
