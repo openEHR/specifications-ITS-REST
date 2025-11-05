@@ -29,7 +29,7 @@ info:
     - The [openEHR Architecture Overview](https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html)
     - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
     - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
-    - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
+    - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Formats](simplified_formats.html)
     - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
 
     ### Status
@@ -115,6 +115,8 @@ paths:
         - AGENT
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
         - $ref: '#/components/parameters/openehr-item-tag'
         - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
@@ -154,6 +156,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
         - $ref: '#/components/parameters/version_at_time'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
       responses:
         '200':
           $ref: '#/components/responses/200_AGENT_retrieved'
@@ -181,6 +184,8 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
         - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
@@ -236,6 +241,8 @@ paths:
         - GROUP
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
         - $ref: '#/components/parameters/openehr-item-tag'
         - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
@@ -275,6 +282,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
         - $ref: '#/components/parameters/version_at_time'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
       responses:
         '200':
           $ref: '#/components/responses/200_GROUP_retrieved'
@@ -302,6 +310,8 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
         - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
@@ -357,6 +367,8 @@ paths:
         - ORGANISATION
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
         - $ref: '#/components/parameters/openehr-item-tag'
         - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
@@ -396,6 +408,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
         - $ref: '#/components/parameters/version_at_time'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
       responses:
         '200':
           $ref: '#/components/responses/200_ORGANISATION_retrieved'
@@ -423,6 +436,8 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
         - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
@@ -478,6 +493,8 @@ paths:
         - PERSON
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
         - $ref: '#/components/parameters/openehr-item-tag'
         - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
@@ -517,6 +534,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
         - $ref: '#/components/parameters/version_at_time'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
       responses:
         '200':
           $ref: '#/components/responses/200_PERSON_retrieved'
@@ -544,6 +562,8 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
         - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
@@ -599,6 +619,8 @@ paths:
         - ROLE
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
         - $ref: '#/components/parameters/openehr-item-tag'
         - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
@@ -638,6 +660,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
         - $ref: '#/components/parameters/version_at_time'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
       responses:
         '200':
           $ref: '#/components/responses/200_ROLE_retrieved'
@@ -665,6 +688,8 @@ paths:
         - $ref: '#/components/parameters/uid_based_id_as_versioned_object_uid'
         - $ref: '#/components/parameters/If-Match'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
         - $ref: '#/components/parameters/openehr-version-item-tag'
       requestBody:
         description: |
@@ -717,6 +742,8 @@ paths:
         - VERSIONED_PARTY
       parameters:
         - $ref: '#/components/parameters/versioned_object_uid_PARTY'
+        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/ContentType_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_VERSIONED_PARTY'
@@ -732,6 +759,8 @@ paths:
         - VERSIONED_PARTY
       parameters:
         - $ref: '#/components/parameters/versioned_object_uid_PARTY'
+        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/ContentType_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_REVISION_HISTORY'
@@ -750,6 +779,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/versioned_object_uid_PARTY'
         - $ref: '#/components/parameters/version_at_time'
+        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/ContentType_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_VERSION_of_PARTY_at_time'
@@ -766,6 +797,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/versioned_object_uid_PARTY'
         - $ref: '#/components/parameters/version_uid'
+        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/ContentType_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_VERSION_of_PARTY_by_id'
@@ -784,6 +817,8 @@ paths:
         - CONTRIBUTION
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/ContentType_canonical'
       requestBody:
         description: |
           The CONTRIBUTION.
@@ -809,6 +844,7 @@ paths:
         - CONTRIBUTION
       parameters:
         - $ref: '#/components/parameters/contribution_uid'
+        - $ref: '#/components/parameters/Accept_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_CONTRIBUTION'
@@ -834,6 +870,7 @@ paths:
         - $ref: '#/components/parameters/tag_key'
         - $ref: '#/components/parameters/tag_value'
         - $ref: '#/components/parameters/tag_target_path'
+        - $ref: '#/components/parameters/Accept_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_PERSON_ItemTagList_retrieved'
@@ -860,6 +897,7 @@ paths:
         - ITEM_TAG
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Accept_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_AGENT_ItemTagList_retrieved'
@@ -886,6 +924,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/ContentType_canonical'
       requestBody:
         content:
           application/json:
@@ -946,6 +986,7 @@ paths:
         - ITEM_TAG
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Accept_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_GROUP_ItemTagList_retrieved'
@@ -972,6 +1013,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/ContentType_canonical'
       requestBody:
         content:
           application/json:
@@ -1032,6 +1075,7 @@ paths:
         - ITEM_TAG
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Accept_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_ORGANISATION_ItemTagList_retrieved'
@@ -1058,6 +1102,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/ContentType_canonical'
       requestBody:
         content:
           application/json:
@@ -1118,6 +1164,7 @@ paths:
         - ITEM_TAG
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Accept_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_PERSON_ItemTagList_retrieved'
@@ -1144,6 +1191,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/ContentType_canonical'
       requestBody:
         content:
           application/json:
@@ -1204,6 +1253,7 @@ paths:
         - ITEM_TAG
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
+        - $ref: '#/components/parameters/Accept_canonical'
       responses:
         '200':
           $ref: '#/components/responses/200_ROLE_ItemTagList_retrieved'
@@ -1230,6 +1280,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/uid_based_id'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/ContentType_canonical'
       requestBody:
         content:
           application/json:
@@ -3925,6 +3977,28 @@ components:
           - return=minimal
           - return=identifier
         default: return=minimal
+    Accept_LOCATABLE:
+      name: Accept
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - application/json
+          - application/xml
+          - application/openehr.wt.flat+json
+          - application/openehr.wt.structured+json
+    ContentType_LOCATABLE:
+      name: Content-Type
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - application/json
+          - application/xml
+          - application/openehr.wt.flat+json
+          - application/openehr.wt.structured+json
     openehr-item-tag:
       name: openehr-item-tag
       in: header
@@ -4017,6 +4091,24 @@ components:
         type: string
         format: uuid
         example: 6cb19121-4307-4648-9da0-d62e4d51f19b
+    Accept_canonical:
+      name: Accept
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - application/json
+          - application/xml
+    ContentType_canonical:
+      name: Content-Type
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - application/json
+          - application/xml
     version_uid:
       name: version_uid
       in: path
@@ -4086,6 +4178,14 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/demographic/agent/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+    ContentType_LOCATABLE:
+      schema:
+        type: string
+        enum:
+          - application/xml
+          - application/json
+          - application/openehr.wt.flat+json
+          - application/openehr.wt.structured+json
     openehr-item-tag:
       description: |
         The list of all ITEM_TAG associated with the current VERSIONED_OBJECT - see [details](overview.html#tag/Requests_and_responses/HTTP-headers/openehr-item-tag-and-openehr-version-item-tag).
@@ -4136,6 +4236,12 @@ components:
         type: string
         format: url
         example: https://openEHRSys.example.com/v1/demographic/role/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+    ContentType_canonical:
+      schema:
+        type: string
+        enum:
+          - application/xml
+          - application/json
     ETag_VERSION:
       description: |
         The `ETag` (i.e. entity tag) response header is the VERSION identifier (i.e. the `version_uid`) enclosed by double quotes.
@@ -4183,6 +4289,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_AGENT'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4201,6 +4309,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4223,6 +4333,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_AGENT'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4284,6 +4396,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_GROUP'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4302,6 +4416,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4318,6 +4434,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_GROUP'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4356,6 +4474,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_ORGANISATION'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4374,6 +4494,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4390,6 +4512,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_ORGANISATION'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4428,6 +4552,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_PERSON'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4446,6 +4572,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4462,6 +4590,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_PERSON'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4500,6 +4630,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_ROLE'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4518,6 +4650,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4534,6 +4668,8 @@ components:
           $ref: '#/components/headers/ETag'
         Location:
           $ref: '#/components/headers/Location_ROLE'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_LOCATABLE'
         openehr-item-tag:
           $ref: '#/components/headers/openehr-item-tag'
         openehr-version-item-tag:
@@ -4565,6 +4701,9 @@ components:
     200_VERSIONED_PARTY:
       description: |
         `200 OK` is returned when the requested VERSIONED_PARTY is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4572,6 +4711,9 @@ components:
     200_REVISION_HISTORY:
       description: |
         `200 OK` is returned when the requested REVISION_HISTORY is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4584,6 +4726,8 @@ components:
           $ref: '#/components/headers/ETag_VERSION'
         Location:
           $ref: '#/components/headers/Location_deprecated'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4591,6 +4735,9 @@ components:
     200_VERSION_of_PARTY_by_id:
       description: |
         `200 OK` is returned when the requested VERSION is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4605,6 +4752,8 @@ components:
           $ref: '#/components/headers/ETag_CONTRIBUTION'
         Location:
           $ref: '#/components/headers/Location_demographic_CONTRIBUTION'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4622,6 +4771,9 @@ components:
     200_CONTRIBUTION:
       description: |
         `200 OK` is returned when the CONTRIBUTION is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4632,6 +4784,9 @@ components:
     200_PERSON_ItemTagList_retrieved:
       description: |
         `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4641,6 +4796,9 @@ components:
     200_AGENT_ItemTagList_retrieved:
       description: |
         `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4653,6 +4811,9 @@ components:
     200_AGENT_ItemTagList_updated:
       description: |
         `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4671,6 +4832,9 @@ components:
     200_GROUP_ItemTagList_retrieved:
       description: |
         `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4680,6 +4844,9 @@ components:
     200_GROUP_ItemTagList_updated:
       description: |
         `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4689,6 +4856,9 @@ components:
     200_ORGANISATION_ItemTagList_retrieved:
       description: |
         `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4698,6 +4868,9 @@ components:
     200_ORGANISATION_ItemTagList_updated:
       description: |
         `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4707,6 +4880,9 @@ components:
     200_PERSON_ItemTagList_updated:
       description: |
         `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4716,6 +4892,9 @@ components:
     200_ROLE_ItemTagList_retrieved:
       description: |
         `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:
@@ -4725,6 +4904,9 @@ components:
     200_ROLE_ItemTagList_updated:
       description: |
         `200 OK` is returned when the requested ITEM_TAG list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_canonical'
       content:
         application/json:
           schema:

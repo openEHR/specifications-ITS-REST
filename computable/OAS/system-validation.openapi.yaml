@@ -29,7 +29,7 @@ info:
 
     - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
     - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
-    - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
+    - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Formats](simplified_formats.html)
     - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
 
     ### Status
@@ -62,10 +62,21 @@ paths:
         Another use-case for this method is related to exposing service capabilities for a conformance manifest.
       tags:
         - Options
+      parameters:
+        - $ref: '#/components/parameters/Accept_JSON'
       responses:
         '200':
           $ref: '#/components/responses/200_options'
 components:
+  parameters:
+    Accept_JSON:
+      name: Accept
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - application/json
   headers:
     Allow:
       description: |
@@ -73,6 +84,11 @@ components:
       schema:
         type: string
         example: GET, POST, PUT, DELETE, OPTIONS
+    ContentType_JSON:
+      schema:
+        type: string
+        enum:
+          - application/json
   schemas:
     Options:
       title: Options
@@ -111,6 +127,8 @@ components:
       headers:
         Allow:
           $ref: '#/components/headers/Allow'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_JSON'
       content:
         application/json:
           schema:
