@@ -24,6 +24,13 @@
         <td>05 Nov 2025</td>
     </tr>
     <tr>
+        <td></td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-58" target="_blank" rel="noopener">SPECITS-58</a>:
+            Add support for /example sub-resource under template-definition endpoint</td>
+        <td>REST WG</td>
+        <td>05 Nov 2025</td>
+    </tr>
+    <tr>
         <td>5.3</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-74" target="_blank" rel="noopener">SPECITS-74</a>:
             Deprecate some of the use of Location response header</td>
