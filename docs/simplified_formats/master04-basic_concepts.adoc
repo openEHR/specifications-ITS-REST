@@ -499,6 +499,7 @@ The Simplified Formats use hierarchical field identifiers composed of:
 3. **Instance indicators**: Colon notation (`:0`, `:1`, etc.) for repeating elements
 4. **Attribute suffixes**: Pipe notation (`|magnitude`, `|unit`, etc.) for RM attributes
 5. **RM attribute prefix**: Underscore (`_`) for optional RM attributes not in template
+6. **Raw canonical JSON**: Use of `|raw` attribute to embed openEHR canonical JSON
 
 
 Example identifier structure:
@@ -616,8 +617,8 @@ Example of such attributes:
 
 === RM Attributes prefix
 
-Some attributes are defined by the openEHR Reference Model but are optional and may not be constrained in the template.
-These RM attributes are accessed using an underscore prefix: `_attributeName`.
+Some attributes are defined by the openEHR Reference Model but are optional and may not be explicitly constrained in the template.
+To access these RM attributes, an underscore prefix (i.e. '_') is used in the path: `_attributeName`.
 
 This convention allows applications to populate optional RM attributes that provide additional metadata, audit information, or structural details beyond what is defined in the template.
 
@@ -648,6 +649,34 @@ Examples:
   "vital_signs/temperature:0/value/_normal_range/upper|unit": "°C"
 }
 ----
+
+=== Raw canonical JSON 
+
+The `|raw` attribute is a special bypass mechanism that enables direct embedding of pre-serialized openEHR canonical JSON into flat or structured format inputs.
+This feature allows incorporating fully-formed openEHR Reference Model (RM) objects without decomposing them into individual attributes.
+
+[source,json]
+----
+{
+  "ctx/language": "en",
+  "ctx/territory": "US",
+  "ctx/composer_name": "Dr. Smith",
+  "ctx/time": "2024-01-15T10:30:00Z",
+  "vital_signs/blood_pressure:0/any_event:0/systolic|raw": {
+    "_type": "DV_QUANTITY",
+    "magnitude": 120,
+    "unit": "mm[Hg]"
+  }
+}
+----
+
+This feature proves particularly valuable when:
+
+* Working with pre-existing openEHR canonical JSON data
+* Handling complex RM structures that are cumbersome to express in simplified formats
+* Integrating data from systems that natively produce canonical JSON
+
+The raw JSON value must include the `_type` property indicating the openEHR type, and should conform to the openEHR Reference Model.
 
 
 == Context

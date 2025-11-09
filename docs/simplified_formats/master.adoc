@@ -38,14 +38,14 @@ This specification has benefited from formal and informal input from the openEHR
 * Thomas Beale, Ars Semantica (UK); openEHR Foundation Management Board.
 * Christian Chevalley, Architect, EtherCIS, Thailand
 * Borut Fabjan, Program Manager, Better, Slovenia
-* Bostjan Lah, Senior Architect, Better, Slovenia
+* Bostjan Lah, CTO, Better, Slovenia
 * Ian McNicoll MD, FreshEHR, UK
 * Bjørn Næss, DIPS, Norway
-* Matija Polajnar, Architect, Better, Slovenia
+* Matija Polajnar, Tech Lead, Better, Slovenia
 * Birger Haarbrandt, PhD, vitagroup, Germany
 * Alex Vidrean, vitagroup, Germany
-* Severin Kohler, PhD, Berlin Institute of Health (BIH) at Charite, Germany
-* Sebastian Iancu; Architect, Code24, Netherlands
+* Severin Kohler, Berlin Institute of Health (BIH) at Charite, Germany
+* Sebastian Iancu, Architect, Code24, Netherlands
 
 A significant part of the design ideas and content of this specification was adapted from:
 
