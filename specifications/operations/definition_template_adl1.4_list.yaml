@@ -4,6 +4,8 @@ description: |
   List the available ADL 1.4 operational templates (OPT) on the system.
 tags:
   - ADL1.4
+parameters:
+  - $ref: ../parameters/header/Accept_JSON.yaml
 responses:
   '200':
     $ref: ../responses/200_TemplateList_adl1_4.yaml

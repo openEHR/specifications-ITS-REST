@@ -10,6 +10,8 @@ parameters:
   - $ref: ../parameters/path/ehr_id.yaml
   - $ref: ../parameters/header/If-Match.yaml
   - $ref: ../parameters/header/Prefer.yaml
+  - $ref: ../parameters/header/Accept_LOCATABLE.yaml
+  - $ref: ../parameters/header/ContentType_LOCATABLE.yaml
 requestBody:
   description: |
     The new directory.

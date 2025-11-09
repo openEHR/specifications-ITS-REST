@@ -12,6 +12,7 @@ tags:
 parameters:
   - $ref: ../parameters/path/ehr_id.yaml
   - $ref: ../parameters/query/version_at_time.yaml
+  - $ref: ../parameters/header/Accept_LOCATABLE.yaml
 responses:
   '200':
     $ref: ../responses/200_EHR_STATUS_retrieved.yaml

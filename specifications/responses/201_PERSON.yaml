@@ -7,6 +7,8 @@ headers:
     $ref: ../headers/ETag.yaml
   Location:
     $ref: ../headers/Location_PERSON.yaml
+  Content-Type:
+    $ref: ../headers/ContentType_LOCATABLE.yaml
   openehr-item-tag:
     $ref: ../headers/openehr-item-tag.yaml
   openehr-version-item-tag:

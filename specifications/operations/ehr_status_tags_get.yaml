@@ -20,6 +20,7 @@ tags:
 parameters:
   - $ref: ../parameters/path/ehr_id.yaml
   - $ref: ../parameters/path/uid_based_id.yaml
+  - $ref: ../parameters/header/Accept_canonical.yaml
 responses:
   '200':
     $ref: ../responses/200_EHR_STATUS_ItemTagList_retrieved.yaml

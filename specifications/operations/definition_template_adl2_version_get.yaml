@@ -8,6 +8,7 @@ tags:
 parameters:
   - $ref: ../parameters/path/template_id.yaml
   - $ref: ../parameters/path/version.yaml
+  - $ref: ../parameters/header/Accept_Template_adl2.yaml
 responses:
   '200':
     $ref: ../responses/200_Template_adl2_retrieved.yaml

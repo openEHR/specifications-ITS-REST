@@ -31,7 +31,7 @@ info:
     - The [openEHR Architecture Overview](https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html)
     - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
     - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
-    - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
+    - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Formats](simplified_formats.html)
     - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
 
     ### Status
@@ -234,6 +234,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/fetch'
         - $ref: '#/components/parameters/query_parameters'
+        - $ref: '#/components/parameters/Accept_JSON'
       responses:
         '200':
           $ref: '#/components/responses/200_Query'
@@ -250,6 +251,9 @@ paths:
         See also details on usage of [query parameters](query.html#tag/Request/Common-Headers-and-Query-Parameters).
       tags:
         - Query
+      parameters:
+        - $ref: '#/components/parameters/Accept_JSON'
+        - $ref: '#/components/parameters/ContentType_JSON'
       requestBody:
         content:
           application/json:
@@ -281,6 +285,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/fetch'
         - $ref: '#/components/parameters/query_parameters'
+        - $ref: '#/components/parameters/Accept_JSON'
       responses:
         '200':
           $ref: '#/components/responses/200_Query'
@@ -303,6 +308,8 @@ paths:
         - Query
       parameters:
         - $ref: '#/components/parameters/qualified_query_name'
+        - $ref: '#/components/parameters/Accept_JSON'
+        - $ref: '#/components/parameters/ContentType_JSON'
       requestBody:
         description: |
           Specifications for a stored AQL query execution.
@@ -339,6 +346,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/fetch'
         - $ref: '#/components/parameters/query_parameters'
+        - $ref: '#/components/parameters/Accept_JSON'
       responses:
         '200':
           $ref: '#/components/responses/200_Query'
@@ -362,6 +370,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/qualified_query_name'
         - $ref: '#/components/parameters/version'
+        - $ref: '#/components/parameters/Accept_JSON'
+        - $ref: '#/components/parameters/ContentType_JSON'
       requestBody:
         description: |
           Specifications for a stored AQL query execution.
@@ -600,6 +610,22 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/QueryParameters'
+    Accept_JSON:
+      name: Accept
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - application/json
+    ContentType_JSON:
+      name: Content-Type
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - application/json
     qualified_query_name:
       name: qualified_query_name
       in: path
@@ -627,6 +653,11 @@ components:
       schema:
         type: string
         example: W/"cdbb5db1-e466-4429-a9e5-bf80a54e120b"
+    ContentType_JSON:
+      schema:
+        type: string
+        enum:
+          - application/json
   responses:
     200_Query:
       description: |
@@ -634,6 +665,8 @@ components:
       headers:
         ETag:
           $ref: '#/components/headers/ETag_RESULT_SET'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_JSON'
       content:
         application/json:
           schema:

@@ -17,6 +17,13 @@
     </thead>
     <tbody>
     <tr>
+        <td>5.4</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-61" target="_blank" rel="noopener">SPECITS-61</a>:
+            Cleanup and consolidate Simplified Formats specifications; adding Accept and Content-Type headers to support the Simplified Formats by relevant resource endpoints</td>
+        <td>REST WG</td>
+        <td>05 Nov 2025</td>
+    </tr>
+    <tr>
         <td>5.3</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-74" target="_blank" rel="noopener">SPECITS-74</a>:
             Deprecate some of the use of Location response header</td>

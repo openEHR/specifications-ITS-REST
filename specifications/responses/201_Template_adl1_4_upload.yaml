@@ -11,7 +11,12 @@ headers:
     $ref: ../headers/Location_Template_adl1_4.yaml
   ETag:
     $ref: ../headers/ETag_Template_adl1_4.yaml
+  Content-Type:
+    $ref: ../headers/ContentType_Template.yaml
 content:
   application/xml:
     schema:
       $ref: ../schemas/aom/OperationalTemplate.yaml
+  application/openehr.wt+json:
+    schema:
+      $ref: ../schemas/web_template/WebTemplate.yaml

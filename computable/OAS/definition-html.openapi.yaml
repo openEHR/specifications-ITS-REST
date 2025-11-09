@@ -31,7 +31,7 @@ info:
     - The [Archetype Technology Overview](https://specifications.openehr.org/releases/AM/latest/Overview.html)
     - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
     - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
-    - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Data Template (SDT)](simplified_data_template.html)
+    - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Formats](simplified_formats.html)
     - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
 
     ### Status
@@ -108,6 +108,14 @@ paths:
         - ADL1.4
       parameters:
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_Template'
+        - name: Content-Type
+          in: header
+          style: simple
+          schema:
+            type: string
+            enum:
+              - application/xml
       requestBody:
         description: ''
         content:
@@ -183,6 +191,8 @@ paths:
         List the available ADL 1.4 operational templates (OPT) on the system.
       tags:
         - ADL1.4
+      parameters:
+        - $ref: '#/components/parameters/Accept_JSON'
       responses:
         '200':
           $ref: '#/components/responses/200_TemplateList_adl1_4'
@@ -198,7 +208,7 @@ paths:
         - ADL1.4
       parameters:
         - $ref: '#/components/parameters/template_id'
-        - $ref: '#/components/parameters/Accept_template'
+        - $ref: '#/components/parameters/Accept_Template'
       responses:
         '200':
           $ref: '#/components/responses/200_Template_adl1_4_retrieved'
@@ -219,6 +229,14 @@ paths:
       parameters:
         - $ref: '#/components/parameters/at_version'
         - $ref: '#/components/parameters/Prefer'
+        - $ref: '#/components/parameters/Accept_Template_adl2'
+        - name: Content-Type
+          in: header
+          style: simple
+          schema:
+            type: string
+            enum:
+              - text/plain
       requestBody:
         description: ''
         content:
@@ -259,6 +277,8 @@ paths:
         List the available ADL2 operational templates on the system.
       tags:
         - ADL2
+      parameters:
+        - $ref: '#/components/parameters/Accept_JSON'
       responses:
         '200':
           $ref: '#/components/responses/200_TemplateList_adl2'
@@ -272,6 +292,7 @@ paths:
         - ADL2
       parameters:
         - $ref: '#/components/parameters/template_id'
+        - $ref: '#/components/parameters/Accept_Template_adl2'
       responses:
         '200':
           $ref: '#/components/responses/200_Template_adl2_retrieved'
@@ -290,6 +311,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/template_id'
         - $ref: '#/components/parameters/version'
+        - $ref: '#/components/parameters/Accept_Template_adl2'
       responses:
         '200':
           $ref: '#/components/responses/200_Template_adl2_retrieved'
@@ -313,6 +335,7 @@ paths:
         - Query
       parameters:
         - $ref: '#/components/parameters/qualified_query_name'
+        - $ref: '#/components/parameters/Accept_JSON'
       responses:
         '200':
           $ref: '#/components/responses/200_QueryList'
@@ -326,6 +349,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/qualified_query_name'
         - $ref: '#/components/parameters/query_type'
+        - $ref: '#/components/parameters/Accept_JSON'
+        - $ref: '#/components/parameters/ContentType_text'
       requestBody:
         content:
           text/plain:
@@ -356,6 +381,7 @@ paths:
         - $ref: '#/components/parameters/qualified_query_name'
         - $ref: '#/components/parameters/version'
         - $ref: '#/components/parameters/query_type'
+        - $ref: '#/components/parameters/Accept_JSON'
       requestBody:
         content:
           text/plain:
@@ -386,12 +412,170 @@ paths:
       parameters:
         - $ref: '#/components/parameters/qualified_query_name'
         - $ref: '#/components/parameters/version'
+        - $ref: '#/components/parameters/Accept_JSON'
       responses:
         '200':
           $ref: '#/components/responses/200_StoredQuery_get'
         '404':
           $ref: '#/components/responses/404_Query_version'
 components:
+  parameters:
+    Accept_JSON:
+      name: Accept
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - application/json
+    Prefer:
+      name: Prefer
+      in: header
+      description: |
+        Request header to indicate the preference over response details.
+        The response will contain the entire resource when the `Prefer` header has a value of `return=representation`, or only the resource identifier (e.g., the `uid`) when the value is `return=identifier`.
+      required: false
+      style: simple
+      schema:
+        type: string
+        enum:
+          - return=representation
+          - return=minimal
+          - return=identifier
+        default: return=minimal
+    Accept_Template:
+      name: Accept
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - application/json
+          - application/xml
+          - application/openehr.wt+json
+    template_id:
+      name: template_id
+      in: path
+      description: |
+        Template identifier.
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: Vital Signs
+    at_version:
+      name: version
+      in: query
+      description: |
+        A SEMVER version number.
+        Query parameter to indicate the desired version associated with the request.
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: 1.0.1
+    Accept_Template_adl2:
+      name: Accept
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - application/json
+          - application/xml
+          - text/plain
+    version:
+      name: version
+      in: path
+      description: |
+        A SEMVER version number.
+        This can be a an exact version (e.g. `1.7.1`), or a pattern as partial prefix, in a form of `{major}` or `{major}.{minor}` (e.g. `1` or `1.0`), in which case the highest (latest) version matching the prefix will be considered.
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: '1.0'
+    qualified_query_name:
+      name: qualified_query_name
+      in: path
+      description: |
+        The (fully qualified) name of the query to be executed, in a format of `[{namespace}::]{query-name}`.
+      required: true
+      style: simple
+      schema:
+        $ref: '#/components/schemas/QueryName'
+    query_type:
+      name: query_type
+      in: query
+      description: |
+        Parameter indicating the query language/type.
+      style: form
+      explode: true
+      schema:
+        type: string
+        default: AQL
+        example: AQL
+    ContentType_text:
+      name: Content-Type
+      in: header
+      style: simple
+      schema:
+        type: string
+        enum:
+          - text/plain
+  headers:
+    ContentType_JSON:
+      schema:
+        type: string
+        enum:
+          - application/json
+    Location_Template_adl1_4:
+      description: |
+        The `Location` response header indicates the URL of the Template resource.
+      schema:
+        type: string
+        format: url
+        example: https://openEHRSys.example.com/v1/definition/template/adl1.4/Vital%20Signs
+    ETag_Template_adl1_4:
+      description: |
+        The `ETag` (i.e. entity tag) response header is an identifier of Template.
+      schema:
+        type: string
+        example: W/"b4d7f203-b329-4e89-a58a-c605b19e94de"
+    ContentType_Template:
+      schema:
+        type: string
+        enum:
+          - application/xml
+          - application/json
+          - application/openehr.wt+json
+    Location_Template_adl2:
+      description: |
+        The `Location` response header indicates the URL of the Template resource.
+      schema:
+        type: string
+        format: url
+        example: https://openEHRSys.example.com/v1/definition/template/adl2/openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0/1.0.1
+    ETag_Template_adl2:
+      description: |
+        The `ETag` (i.e. entity tag) response header is an identifier of Template.
+      schema:
+        type: string
+        example: W/"d8d643db-1cee-48ce-b609-12053077758f"
+    ContentType_Template_adl2:
+      schema:
+        type: string
+        enum:
+          - application/xml
+          - application/json
+          - text/plain
+    Location_Query:
+      description: |
+        The `Location` response header indicates the URL of the Stored Query resource.
+      schema:
+        type: string
+        format: url
+        example: https://openEHRSys.example.com/v1/definition/query/org.openehr::compositions/1.0.1
   schemas:
     TemplateMetadata:
       title: TemplateMetadata
@@ -431,25 +615,6 @@ components:
       type: object
       xml:
         name: response200
-    Error:
-      title: Error
-      required:
-        - message
-        - validationErrors
-      type: object
-      properties:
-        message:
-          type: string
-        validationErrors:
-          type: array
-          items:
-            type: string
-          description: ''
-      example:
-        message: Error message
-        validationErrors:
-          - error1
-          - error2
     LocalizedNames:
       title: LocalizedNames
       required:
@@ -1164,6 +1329,25 @@ components:
             type: string
         tree:
           $ref: '#/components/schemas/Tree'
+    Error:
+      title: Error
+      required:
+        - message
+        - validationErrors
+      type: object
+      properties:
+        message:
+          type: string
+        validationErrors:
+          type: array
+          items:
+            type: string
+          description: ''
+      example:
+        message: Error message
+        validationErrors:
+          - error1
+          - error2
     OperationalTemplateV2:
       title: OPERATIONAL_TEMPLATE_V2
       type: object
@@ -1261,6 +1445,9 @@ components:
     200_TemplateList_adl1_4:
       description: |
         `200 OK` is returned when the template list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_JSON'
       content:
         application/json:
           schema:
@@ -1284,16 +1471,26 @@ components:
           $ref: '#/components/headers/Location_Template_adl1_4'
         ETag:
           $ref: '#/components/headers/ETag_Template_adl1_4'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_Template'
       content:
         application/xml:
           schema:
             $ref: '#/components/schemas/OperationalTemplate'
+        application/openehr.wt+json:
+          schema:
+            $ref: '#/components/schemas/WebTemplate'
     409_template_already_exists:
       description: |
         `409 Conflict` is returned when a template with same `template_id` (at given version, if supplied) already exists.
     200_Template_adl1_4_retrieved:
       description: |
         `200 OK` is returned when the template is successfully retrieved.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag_Template_adl1_4'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_Template'
       content:
         application/xml:
           schema:
@@ -1361,6 +1558,9 @@ components:
     200_TemplateList_adl2:
       description: |
         `200 OK` is returned when the template list is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_JSON'
       content:
         application/json:
           schema:
@@ -1390,6 +1590,8 @@ components:
           $ref: '#/components/headers/Location_Template_adl2'
         ETag:
           $ref: '#/components/headers/ETag_Template_adl2'
+        Content-Type:
+          $ref: '#/components/headers/ContentType_Template_adl2'
       content:
         text/plain:
           schema:
@@ -1397,6 +1599,9 @@ components:
     200_Template_adl2_retrieved:
       description: |
         `200 OK` is returned when the template is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_Template_adl2'
       content:
         text/plain:
           schema:
@@ -1426,6 +1631,9 @@ components:
     200_QueryList:
       description: |
         `200 OK` is returned when the query resources are successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_JSON'
       content:
         application/json:
           schema:
@@ -1439,6 +1647,9 @@ components:
     200_StoredQuery_get:
       description: |
         `200 OK` is returned when the stored AQL is successfully retrieved.
+      headers:
+        Content-Type:
+          $ref: '#/components/headers/ContentType_JSON'
       content:
         application/json:
           schema:
@@ -1449,123 +1660,6 @@ components:
     409_StoredQuery_version:
       description: |
         `409 Conflict` is returned when a query with the given `qualified_query_name` and `version` already exists on the server.
-  parameters:
-    Prefer:
-      name: Prefer
-      in: header
-      description: |
-        Request header to indicate the preference over response details.
-        The response will contain the entire resource when the `Prefer` header has a value of `return=representation`, or only the resource identifier (e.g., the `uid`) when the value is `return=identifier`.
-      required: false
-      style: simple
-      schema:
-        type: string
-        enum:
-          - return=representation
-          - return=minimal
-          - return=identifier
-        default: return=minimal
-    template_id:
-      name: template_id
-      in: path
-      description: |
-        Template identifier.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: Vital Signs
-    Accept_template:
-      name: Accept
-      in: header
-      description: |
-        Header to indicate the expected response format.
-      required: true
-      style: simple
-      schema:
-        enum:
-          - application/json
-          - application/xml
-          - text/plain
-          - application/openehr.wt+json
-        type: string
-        example: application/xml
-    at_version:
-      name: version
-      in: query
-      description: |
-        A SEMVER version number.
-        Query parameter to indicate the desired version associated with the request.
-      style: form
-      explode: true
-      schema:
-        type: string
-        example: 1.0.1
-    version:
-      name: version
-      in: path
-      description: |
-        A SEMVER version number.
-        This can be a an exact version (e.g. `1.7.1`), or a pattern as partial prefix, in a form of `{major}` or `{major}.{minor}` (e.g. `1` or `1.0`), in which case the highest (latest) version matching the prefix will be considered.
-      required: true
-      style: simple
-      schema:
-        type: string
-        example: '1.0'
-    qualified_query_name:
-      name: qualified_query_name
-      in: path
-      description: |
-        The (fully qualified) name of the query to be executed, in a format of `[{namespace}::]{query-name}`.
-      required: true
-      style: simple
-      schema:
-        $ref: '#/components/schemas/QueryName'
-    query_type:
-      name: query_type
-      in: query
-      description: |
-        Parameter indicating the query language/type.
-      style: form
-      explode: true
-      schema:
-        type: string
-        default: AQL
-        example: AQL
-  headers:
-    Location_Template_adl1_4:
-      description: |
-        The `Location` response header indicates the URL of the Template resource.
-      schema:
-        type: string
-        format: url
-        example: https://openEHRSys.example.com/v1/definition/template/adl1.4/Vital%20Signs
-    ETag_Template_adl1_4:
-      description: |
-        The `ETag` (i.e. entity tag) response header is an identifier of Template.
-      schema:
-        type: string
-        example: W/"b4d7f203-b329-4e89-a58a-c605b19e94de"
-    Location_Template_adl2:
-      description: |
-        The `Location` response header indicates the URL of the Template resource.
-      schema:
-        type: string
-        format: url
-        example: https://openEHRSys.example.com/v1/definition/template/adl2/openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0/1.0.1
-    ETag_Template_adl2:
-      description: |
-        The `ETag` (i.e. entity tag) response header is an identifier of Template.
-      schema:
-        type: string
-        example: W/"d8d643db-1cee-48ce-b609-12053077758f"
-    Location_Query:
-      description: |
-        The `Location` response header indicates the URL of the Stored Query resource.
-      schema:
-        type: string
-        format: url
-        example: https://openEHRSys.example.com/v1/definition/query/org.openehr::compositions/1.0.1
 x-tagGroups:
   - name: Resource endpoints
     tags:
