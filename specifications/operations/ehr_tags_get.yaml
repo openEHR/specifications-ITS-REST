@@ -5,11 +5,11 @@ description: |
   VERSIONED_OBJECT within the EHR identified by `ehr_id`. 
   
   This list can be filtered by the given one or more `tag_key`, `tag_value`, `tag_target_path` query parameters. 
-  In case no such parameter is provided then all ITEM_TAG will be retrieved.
+  In case no such parameter is provided then all ITEM_TAG resources will be retrieved.
   
   This will return an empty list when there is no matching ITEM_TAG associated with any target within given EHR.
     
-  More then one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
+  More than one ITEM_TAG may be associated with a single target, in which case they are uniquely identified 
   by their `key` and `target_path` pair attributes.
 
 tags:
