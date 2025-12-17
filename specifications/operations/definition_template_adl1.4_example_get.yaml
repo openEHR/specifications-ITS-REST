@@ -16,7 +16,7 @@ description: |
   > NOTE: The implementation and completeness of these examples are not specified, and vendors may produce different results.
   These examples are intended as pedagogical tools; their output should not be used in production.
 
-  When the server does not support the requested `type` or `detail_level`, it will fall back to the closest supported level, or it may return an error (typically `404 Bad Request`).
+  When the server does not support the requested `type` or `detail_level`, it will fall back to the closest supported level, or it may return an error (typically `400 Bad Request`).
   
   The format of the returned data instance can be controlled via the `Accept` header. See the [data representation specification](overview.html#tag/Resources/Data-representation) for supported formats.tags:
 
