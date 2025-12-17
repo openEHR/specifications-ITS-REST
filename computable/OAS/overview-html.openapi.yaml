@@ -93,7 +93,6 @@ tags:
       - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
       - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
       - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Formats](simplified_formats.html)
-      - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
 
       ### Status
 
@@ -566,7 +565,7 @@ tags:
       Additionally, the **Simplified Formats** format SHOULD be supported, while other alternative formats MAY be supported as well, depending on the use case.
       These formats and their negotiation protocols are described below.
 
-      > NOTE: Examples of data instances, serialized in the preferred format can be retrieved from the server by using the dedicated endpoints described in the [Get example data by template](definition.html#tag/ADL1.4/operation/definition_template_adl1.4_example_get) section of Definition API. 
+      > NOTE: Examples of data instances, serialized in the preferred format, can be retrieved from the server using the dedicated resource endpoint described in the [Get example data by template](definition.html#tag/ADL1.4/operation/definition_template_adl1.4_example_get) section of the Definition API.
 
       ## XML Format
 
@@ -698,6 +697,13 @@ tags:
               <td>5.5</td>
               <td><a href="https://specifications.openehr.org/tickets/SPECITS-58" target="_blank" rel="noopener">SPECITS-58</a>:
                   Add support for /example sub-resource under template-definition endpoint</td>
+              <td>REST WG</td>
+              <td>17 Dec 2025</td>
+          </tr>
+          <tr>
+              <td></td>
+              <td><a href="https://specifications.openehr.org/tickets/SPECITS-34" target="_blank" rel="noopener">SPECITS-34</a>:
+                  Use SM derived models as REST API resources</td>
               <td>REST WG</td>
               <td>17 Dec 2025</td>
           </tr>

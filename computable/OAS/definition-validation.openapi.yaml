@@ -32,7 +32,6 @@ info:
     - The [openEHR Global Class Index](https://specifications.openehr.org/classes)
     - The [XML-Schemas (XSD)](https://specifications.openehr.org/releases/ITS-XML/latest)
     - The [JSON-Schemas](https://specifications.openehr.org/releases/ITS-JSON/latest) and [Simplified Formats](simplified_formats.html)
-    - The [openEHR Platform Abstract Service Model](https://specifications.openehr.org/releases/SM/development/openehr_platform.html)
 
     ### Status
 
@@ -66,15 +65,16 @@ tags:
   - name: Query
     x-displayName: Stored Query
     description: |
-      Management of [stored (registered) queries](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_registered_queries) in the system.
-      Actions upon resources of this group are also formally described in the [I_DEFINITION_QUERY](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_definition_query_interface) Abstract Service Model interface.
+      Management of stored (registered) queries in the system, including creation of new versions and retrieval by qualified name and version. 
+
+      These endpoints enable registration and lifecycle management of reusable queries available for later execution.    
 
       Stored queries are identified by their [qualified name and version](query.html#tag/Qualified_query_name).
       They can be executed using the [query endpoint](query.html#tag/Query/operation/query_execute_stored_query_body).
   - name: TemplateList_schema
     x-displayName: Template list
     description: |
-      This resource represents the list of `Template` meta-information associated with uploaded templates - see also [Service Model - Definition Package](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_definition_package).
+      This resource represents the list of `Template` meta-information associated with uploaded templates, including identifiers, names, versions and related attributes that help clients discover available templates.
 
       <SchemaDefinition schemaRef="#/components/schemas/TemplateList" />
   - name: Template_schema
@@ -94,7 +94,7 @@ tags:
   - name: StoredQuery_schema
     x-displayName: Stored Query
     description: |
-      This resource represents the definition of a stored Query and is formally specified in the Service Model as [Registered Queries](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_registered_queries).
+      This resource represents the definition of a stored query, including its qualified name, versioning and parameter declarations. Stored queries provide a reusable, immutable way to identify a specific AQL statement that can be executed later.
 
       <SchemaDefinition schemaRef="#/components/schemas/StoredQuery" />
 paths:
@@ -238,7 +238,7 @@ paths:
         > NOTE: The implementation and completeness of these examples are not specified, and vendors may produce different results.
         These examples are intended as pedagogical tools; their output should not be used in production.
 
-        When the server does not support the requested `type` or `detail_level`, it will fall back to the closest supported level, or it may return an error (typically `404 Bad Request`).
+        When the server does not support the requested `type` or `detail_level`, it will fall back to the closest supported level, or it may return an error (typically `400 Bad Request`).
 
         The format of the returned data instance can be controlled via the `Accept` header. See the [data representation specification](overview.html#tag/Resources/Data-representation) for supported formats.tags:
       tags:

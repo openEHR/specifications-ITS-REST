@@ -58,7 +58,8 @@ tags:
     x-displayName: Execute Query
     description: |
       Execution of [AQL queries](https://specifications.openehr.org/releases/QUERY/latest/AQL.html).
-      Actions upon resources of this group are also formally described in the [I_QUERY_SERVICE](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_query_service_interface) Abstract Service Model interface.
+      
+      Endpoints support ad-hoc and stored query execution, parameterisation, and retrieval of results.
   - name: Query_schema
     x-displayName: Query Execute
     description:
@@ -66,7 +67,7 @@ tags:
   - name: RESULT_SET_schema
     x-displayName: RESULT_SET
     description: |
-      This resource is formally specified in the Service Model as [Query Result](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_result_set_class).
+      Structured result of query execution, typically tabular data with column metadata and row values produced by evaluating an AQL statement.
       <SchemaDefinition schemaRef="#/components/schemas/ResultSet" />
 x-tagGroups:
   - name: Docs
