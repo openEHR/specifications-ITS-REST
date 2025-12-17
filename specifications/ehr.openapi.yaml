@@ -116,7 +116,7 @@ tags:
     description: |
       Management of [EHRs](https://specifications.openehr.org/releases/RM/latest/ehr.html#_ehr_class).
       
-      Operations in this group cover creation of new EHRs, retrieval by identifier or subject, and access to associated versioned resources, consistent with the responsibilities of the platform’s EHR service layer.
+      Operations in this group cover creation of new EHRs, retrieval by identifier or subject, and access to associated versioned resources.
       
       The `EHR` resource is the top-level resource in the EHR REST API; it contains all other resources in this group. 
       Identification of the `EHR` resource is usually by the `ehr_id`, and is present in the path segment.
