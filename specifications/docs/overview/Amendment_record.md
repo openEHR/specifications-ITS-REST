@@ -17,16 +17,16 @@
     </thead>
     <tbody>
     <tr>
+        <td>5.5</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-58" target="_blank" rel="noopener">SPECITS-58</a>:
+            Add support for /example sub-resource under template-definition endpoint</td>
+        <td>REST WG</td>
+        <td>17 Dec 2025</td>
+    </tr>
+    <tr>
         <td>5.4</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-61" target="_blank" rel="noopener">SPECITS-61</a>:
             Cleanup and consolidate Simplified Formats specifications; adding Accept and Content-Type headers to support the Simplified Formats by relevant resource endpoints</td>
-        <td>REST WG</td>
-        <td>05 Nov 2025</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><a href="https://specifications.openehr.org/tickets/SPECITS-58" target="_blank" rel="noopener">SPECITS-58</a>:
-            Add support for /example sub-resource under template-definition endpoint</td>
         <td>REST WG</td>
         <td>05 Nov 2025</td>
     </tr>
