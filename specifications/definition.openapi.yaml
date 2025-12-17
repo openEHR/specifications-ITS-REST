@@ -75,8 +75,9 @@ tags:
   - name: Query
     x-displayName: Stored Query
     description: |
-      Management of [stored (registered) queries](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_registered_queries) in the system.
-      Actions upon resources of this group are also formally described in the [I_DEFINITION_QUERY](https://specifications.openehr.org/releases/SM/development/openehr_platform.html#_i_definition_query_interface) Abstract Service Model interface.
+      Management of stored (registered) queries in the system, including creation of new versions and retrieval by qualified name and version. 
+      
+      These endpoints enable registration and lifecycle management of reusable queries available for later execution.    
 
       Stored queries are identified by their [qualified name and version](query.html#tag/Qualified_query_name).
       They can be executed using the [query endpoint](query.html#tag/Query/operation/query_execute_stored_query_body).
