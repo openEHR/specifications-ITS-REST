@@ -7,6 +7,8 @@ Usually a `qualified_query_name` has a format of `[{namespace}::]{query-name}`.
 The `namespace` is optional, and when used it should be in a form of a reverse domain name, which allows for separation of use of stored queries by teams, companies, etc.
 The `query-name` may include any combination of characters, matched by the pattern `[a-zA-Z0-9_.-]`. 
 
+> NOTE: The `query-name` value must not be `aql` (case-insensitive), as that is a reserved name.
+
 Examples of valid `qualified_query_name`:
 - `org.openehr::my_compositions`
 - `my_compositions`
