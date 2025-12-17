@@ -3783,7 +3783,7 @@ components:
       type: string
       description: |
         The (fully qualified) name of the query (when is registered as a stored query), in a format of `[{namespace}::]{query-name}`. 
-        The `namespace` prefix is optional, and when used it should be in a form of a reverse domain name.
+        See [Query Name](#tag/Qualified_query_name) for details on syntax.
       example: org.openehr::compositions
     QueryType:
       title: QueryType
@@ -3975,7 +3975,7 @@ components:
       name: qualified_query_name
       in: path
       description: |
-        The (fully qualified) name of the query to be executed, in a format of `[{namespace}::]{query-name}`.
+        The (fully qualified) name of the query to be executed, in a format of `[{namespace}::]{query-name}`. See [Query Name](#tag/Qualified_query_name) for details on syntax.
       required: true
       style: simple
       schema:

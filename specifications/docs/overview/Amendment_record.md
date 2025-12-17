@@ -31,6 +31,13 @@
         <td>17 Dec 2025</td>
     </tr>
     <tr>
+        <td></td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-46" target="_blank" rel="noopener">SPECITS-46</a>:
+            Fix conflictual query execution endpoint-resolution when query name is 'aql'</td>
+        <td>REST WG</td>
+        <td>17 Dec 2025</td>
+    </tr>
+    <tr>
         <td>5.4</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-61" target="_blank" rel="noopener">SPECITS-61</a>:
             Cleanup and consolidate Simplified Formats specifications; adding Accept and Content-Type headers to support the Simplified Formats by relevant resource endpoints</td>
