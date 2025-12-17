@@ -374,6 +374,7 @@ paths:
     get:
       operationId: definition_template_adl2_version_get
       summary: Get a template at version
+      deprecated: true
       description: |
         Retrieves the ADL2 operational template identified by `template_id` identifier, at specified `version`.
       tags:
@@ -503,6 +504,7 @@ components:
           type: string
         version:
           type: string
+          deprecated: true
         concept:
           type: string
         archetype_id:
@@ -512,7 +514,6 @@ components:
       description: Uploaded TEMPLATE meta information.
       example:
         template_id: openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.0
-        version: 1.0.1
         concept: Vital Signs
         archetype_id: openEHR-EHR-COMPOSITION.encounter.v1
         created_timestamp: '2017-08-14T19:24:56.639Z'
@@ -3286,11 +3287,9 @@ components:
     at_version:
       name: version
       in: query
-      description: |
-        A SEMVER version number.
-        Query parameter to indicate the desired version associated with the request.
       style: form
       explode: true
+      deprecated: true
       schema:
         type: string
         example: 1.0.1
@@ -3456,7 +3455,7 @@ components:
             $ref: '#/components/schemas/WebTemplate'
     409_template_already_exists:
       description: |
-        `409 Conflict` is returned when a template with same `template_id` (at given version, if supplied) already exists.
+        `409 Conflict` is returned when a template with same `template_id` already exists.
     200_Template_adl1_4_retrieved:
       description: |
         `200 OK` is returned when the template is successfully retrieved.
@@ -3559,11 +3558,11 @@ components:
             $ref: '#/components/schemas/TemplateList'
           example:
             - template_id: openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0
-              version: 1.0.1
+              version: 1.0.0
               concept: Clinical detail
               archetype_id: openEHR-EHR-COMPOSITION.discharge.v1
               created_timestamp: '2017-08-14T19:24:56.639Z'
-            - template_id: openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.0
+            - template_id: openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.1
               version: 1.0.1
               concept: Vital Signs
               archetype_id: openEHR-EHR-COMPOSITION.encounter.v1
