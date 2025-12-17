@@ -99,6 +99,8 @@ tags:
       The `namespace` is optional, and when used it should be in a form of a reverse domain name, which allows for separation of use of stored queries by teams, companies, etc.
       The `query-name` may include any combination of characters, matched by the pattern `[a-zA-Z0-9_.-]`. 
 
+      > NOTE: The `query-name` value must not be `aql` (case-insensitive), as that is a reserved name.
+
       Examples of valid `qualified_query_name`:
       - `org.openehr::my_compositions`
       - `my_compositions`
@@ -462,7 +464,7 @@ components:
       type: string
       description: |
         The (fully qualified) name of the query (when is registered as a stored query), in a format of `[{namespace}::]{query-name}`. 
-        The `namespace` prefix is optional, and when used it should be in a form of a reverse domain name.
+        See [Query Name](#tag/Qualified_query_name) for details on syntax.
       example: org.openehr::compositions
     ResultSetColumn:
       title: RESULT_SET_COLUMN
@@ -630,7 +632,7 @@ components:
       name: qualified_query_name
       in: path
       description: |
-        The (fully qualified) name of the query to be executed, in a format of `[{namespace}::]{query-name}`.
+        The (fully qualified) name of the query to be executed, in a format of `[{namespace}::]{query-name}`. See [Query Name](#tag/Qualified_query_name) for details on syntax.
       required: true
       style: simple
       schema:
