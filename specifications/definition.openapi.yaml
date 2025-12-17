@@ -30,6 +30,9 @@ paths:
   '/definition/template/adl1.4/{template_id}':
     get:
       $ref: ./operations/definition_template_adl1.4_get.yaml
+  '/definition/template/adl1.4/{template_id}/example':
+    get:
+      $ref: ./operations/definition_template_adl1.4_example_get.yaml
   '/definition/template/adl2':
     post:
       $ref: ./operations/definition_template_adl2_upload.yaml
@@ -38,6 +41,9 @@ paths:
   '/definition/template/adl2/{template_id}':
     get:
       $ref: ./operations/definition_template_adl2_get.yaml
+  '/definition/template/adl2/{template_id}/example':
+    get:
+      $ref: ./operations/definition_template_adl2_example_get.yaml
   '/definition/template/adl2/{template_id}/{version}':
     get:
       $ref: ./operations/definition_template_adl2_version_get.yaml
@@ -97,3 +103,19 @@ x-tagGroups:
       - TemplateList_schema
       - Template_schema
       - StoredQuery_schema
+components:
+  schemas:
+    UAbstractItem:
+      $ref: ./schemas/data_structures/UAbstractItem.yaml
+    UAbstractItemStructure:
+      $ref: ./schemas/data_structures/UAbstractItemStructure.yaml
+    UAbstractContentItem:
+      $ref: ./schemas/ehr/UAbstractContentItem.yaml
+    SeeContact:
+      $ref: ./schemas/demographic/SeeContact.yaml
+    SeeCapability:
+      $ref: ./schemas/demographic/SeeCapability.yaml
+    SeePartyIdentity:
+      $ref: ./schemas/demographic/SeePartyIdentity.yaml
+    SeePartyRelationship:
+      $ref: ./schemas/demographic/SeePartyRelationship.yaml

@@ -68,6 +68,8 @@ Services MUST support at least one of the openEHR **XML** or **JSON** canonical 
 Additionally, the **Simplified Formats** format SHOULD be supported, while other alternative formats MAY be supported as well, depending on the use case.
 These formats and their negotiation protocols are described below.
 
+> NOTE: Examples of data instances, serialized in the preferred format, can be retrieved from the server using the dedicated resource endpoint described in the [Get example data by template](definition.html#tag/ADL1.4/operation/definition_template_adl1.4_example_get) section of the Definition API.
+
 ## XML Format
 
 When resources are serialized in **canonical XML** format, both request payloads and responses MUST conform to the [published XSDs](https://specifications.openehr.org/releases/ITS-XML/latest).
