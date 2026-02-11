@@ -17,6 +17,13 @@
     </thead>
     <tbody>
     <tr>
+        <td>5.6</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-88" target="_blank" rel="noopener">SPECITS-88</a>:
+            Add support for filters in listTemplates operation</td>
+        <td>REST WG</td>
+        <td>11 Feb 2026</td>
+    </tr>
+    <tr>
         <td>5.5</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-58" target="_blank" rel="noopener">SPECITS-58</a>:
             Add support for /example sub-resource under template-definition endpoint</td>
