@@ -5,7 +5,7 @@ description: |
 tags:
   - ADL2
 parameters:
-  - $ref: ../parameters/path/template_id.yaml
+  - $ref: ../parameters/path/template_id_adl2.yaml
   - $ref: ../parameters/header/Accept_Template_adl2.yaml
 responses:
   '200':

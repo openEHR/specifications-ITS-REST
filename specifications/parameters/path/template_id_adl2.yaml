@@ -7,12 +7,6 @@ style: simple
 schema:
   type: string
 examples:
-  legacy:
-    summary: "Legacy format"
-    value: "Vital Signs"
-  legacy_version:
-    summary: "Legacy format with major version"
-    value: "vital_signs.v1"
   hrid:
     summary: "Human Readable Identifier (HRID) format"
     value: "org.highmed::openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.0"
