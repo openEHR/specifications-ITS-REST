@@ -123,7 +123,6 @@ paths:
             schema:
               oneOf:
                 - $ref: '#/components/schemas/OperationalTemplate'
-                - type: string
             example: |-
               <template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openehr.org/v1">
                   <language>
@@ -193,6 +192,11 @@ paths:
         - ADL1.4
       parameters:
         - $ref: '#/components/parameters/Accept_JSON'
+        - $ref: '#/components/parameters/filter_template_id'
+        - $ref: '#/components/parameters/concept'
+        - $ref: '#/components/parameters/filter_version'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/fetch'
       responses:
         '200':
           $ref: '#/components/responses/200_TemplateList_adl1_4'
@@ -318,6 +322,11 @@ paths:
         - ADL2
       parameters:
         - $ref: '#/components/parameters/Accept_JSON'
+        - $ref: '#/components/parameters/filter_template_id'
+        - $ref: '#/components/parameters/concept'
+        - $ref: '#/components/parameters/filter_version'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/fetch'
       responses:
         '200':
           $ref: '#/components/responses/200_TemplateList_adl2'
@@ -330,7 +339,7 @@ paths:
       tags:
         - ADL2
       parameters:
-        - $ref: '#/components/parameters/template_id'
+        - $ref: '#/components/parameters/template_id_adl2'
         - $ref: '#/components/parameters/Accept_Template_adl2'
       responses:
         '200':
@@ -357,7 +366,7 @@ paths:
       tags:
         - ADL2
       parameters:
-        - $ref: '#/components/parameters/template_id'
+        - $ref: '#/components/parameters/template_id_adl2'
         - $ref: '#/components/parameters/example_type'
         - $ref: '#/components/parameters/example_detail_level'
         - $ref: '#/components/parameters/Accept_LOCATABLE'
@@ -512,11 +521,6 @@ components:
         created_timestamp:
           type: string
       description: Uploaded TEMPLATE meta information.
-      example:
-        template_id: openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.0
-        concept: Vital Signs
-        archetype_id: openEHR-EHR-COMPOSITION.encounter.v1
-        created_timestamp: '2017-08-14T19:24:56.639Z'
     TemplateList:
       title: TemplateList
       type: array
@@ -1243,6 +1247,17 @@ components:
             type: string
         tree:
           $ref: '#/components/schemas/Tree'
+    TemplateIdentifier:
+      title: Identifier
+      required:
+        - template_id
+      type: object
+      properties:
+        template_id:
+          type: string
+          description: The fully qualified template identifier.
+      example:
+        template_id: org.highmed::openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.0
     Error:
       title: Error
       required:
@@ -3867,6 +3882,54 @@ components:
         type: string
         enum:
           - application/json
+    filter_template_id:
+      name: template_id
+      in: query
+      description: |
+        Pattern for matching `template_id` (supports wildcards `*`)
+      style: form
+      schema:
+        type: string
+        example: vital*
+    concept:
+      name: concept
+      in: query
+      description: |
+        PAttern for matching `concept` (supports wildcards `*`)
+      style: form
+      schema:
+        type: string
+        example: '*signs*'
+    filter_version:
+      name: version
+      in: query
+      description: |
+        Filter by version (e.g. `1.2.*` or use `*` for all versions), taken from `template_id`; if missing, then only the latest version will be returned.
+      style: form
+      schema:
+        type: string
+        example: 1.2.*
+    offset:
+      name: offset
+      in: query
+      description: |
+        The row number in result-set to start result-set from (`0`-based), default is `0`.
+      style: form
+      explode: true
+      schema:
+        type: integer
+        default: 0
+        example: 10
+    fetch:
+      name: fetch
+      in: query
+      description: |
+        Number of rows to fetch (the default depends on the implementation).
+      style: form
+      explode: true
+      schema:
+        type: integer
+        example: 10
     Prefer:
       name: Prefer
       in: header
@@ -3896,12 +3959,24 @@ components:
       name: template_id
       in: path
       description: |
-        Template identifier.
+        Template identifier or partial reference. A partial `template_id` will resolve to “latest” major version of that template
       required: true
       style: simple
       schema:
         type: string
-        example: Vital Signs
+      examples:
+        legacy:
+          summary: Legacy format
+          value: Vital Signs
+        legacy_version:
+          summary: Legacy format with major version
+          value: vital_signs.v1
+        hrid:
+          summary: Human Readable Identifier (HRID) format
+          value: org.highmed::openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.0
+        partial:
+          summary: Partial HRID format, resolves to latest major version
+          value: openEHR-EHR-COMPOSITION.t_vital_signs.v1
     example_type:
       name: type
       in: query
@@ -3959,6 +4034,22 @@ components:
           - application/json
           - application/xml
           - text/plain
+    template_id_adl2:
+      name: template_id
+      in: path
+      description: |
+        Template identifier or partial reference. A partial `template_id` will resolve to “latest” major version of that template
+      required: true
+      style: simple
+      schema:
+        type: string
+      examples:
+        hrid:
+          summary: Human Readable Identifier (HRID) format
+          value: org.highmed::openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.0
+        partial:
+          summary: Partial HRID format, resolves to latest major version
+          value: openEHR-EHR-COMPOSITION.t_vital_signs.v1
     version:
       name: version
       in: path
@@ -4038,7 +4129,7 @@ components:
       schema:
         type: string
         format: url
-        example: https://openEHRSys.example.com/v1/definition/template/adl2/openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0/1.0.1
+        example: https://openEHRSys.example.com/v1/definition/template/adl2/openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0
     ETag_Template_adl2:
       description: |
         The `ETag` (i.e. entity tag) response header is an identifier of Template.
@@ -4089,12 +4180,8 @@ components:
     201_Template_adl1_4_upload:
       description: |
         `201 Created` is returned when the template has been successfully uploaded.
-
-        Server assigned `template_id` SHOULD be returned as part of the `Location` response header.
-
-        Depending on the header `Prefer` either an empty body or a full representation body is returned.
-
-        An `ETag` response header MAY be present and contain the unique identifier of the template instance.
+        If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its unique identifier is included. 
+        If the `Prefer` header is missing or set to `return=minimal`, the body is empty.
       headers:
         Location:
           $ref: '#/components/headers/Location_Template_adl1_4'
@@ -4109,6 +4196,9 @@ components:
         application/openehr.wt+json:
           schema:
             $ref: '#/components/schemas/WebTemplate'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TemplateIdentifier'
     409_template_already_exists:
       description: |
         `409 Conflict` is returned when a template with same `template_id` already exists.
@@ -4214,24 +4304,18 @@ components:
             $ref: '#/components/schemas/TemplateList'
           example:
             - template_id: openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0
-              version: 1.0.0
               concept: Clinical detail
               archetype_id: openEHR-EHR-COMPOSITION.discharge.v1
               created_timestamp: '2017-08-14T19:24:56.639Z'
-            - template_id: openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.1
-              version: 1.0.1
+            - template_id: openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.0
               concept: Vital Signs
               archetype_id: openEHR-EHR-COMPOSITION.encounter.v1
               created_timestamp: '2017-08-14T19:24:56.639Z'
     201_Template_adl2_upload:
       description: |
         `201 Created` is returned when the template has been successfully uploaded.
-
-        Server assigned `template_id` SHOULD be returned as part of the `Location` response header.
-
-        Depending on the header `Prefer` either an empty body or a full representation body is returned.
-
-        An `ETag` response header MAY be present and contain the unique identifier of the template instance.
+        If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its unique identifier is included. 
+        If the `Prefer` header is missing or set to `return=minimal`, the body is empty.
       headers:
         Location:
           $ref: '#/components/headers/Location_Template_adl2'
@@ -4243,6 +4327,9 @@ components:
         text/plain:
           schema:
             $ref: '#/components/schemas/OperationalTemplateV2'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TemplateIdentifier'
     200_Template_adl2_retrieved:
       description: |
         `200 OK` is returned when the template is successfully retrieved.
@@ -4272,6 +4359,9 @@ components:
                     ["organisation"] = <"openEHR Foundation">
                     ["email"] = <"ian.mcnicoll@openehr.org">
             ...
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OperationalTemplateV2'
     404_unknown_template_id_or_version:
       description: |
         `404 Not Found` is returned when a template with the specified `template_id` at given `version` does not exist.
