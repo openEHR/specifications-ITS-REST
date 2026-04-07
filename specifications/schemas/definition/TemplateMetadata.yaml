@@ -19,8 +19,3 @@ properties:
     type: string
   created_timestamp:
     type: string
-example:
-  template_id: "openEHR-EHR-COMPOSITION.t_vital_signs.v1.0.0"
-  concept: "Vital Signs"
-  archetype_id: "openEHR-EHR-COMPOSITION.encounter.v1"
-  created_timestamp: '2017-08-14T19:24:56.639Z'

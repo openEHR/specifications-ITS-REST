@@ -21,7 +21,6 @@ requestBody:
       schema:
         oneOf:
           - $ref: ../schemas/aom/OperationalTemplate.yaml
-          - type: string
       example: >-
         <template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://schemas.openehr.org/v1">

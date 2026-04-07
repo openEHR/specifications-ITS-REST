@@ -399,21 +399,6 @@ components:
       description: |
         The given AQL query.
       example: SELECT e/ehr_id/value, c/context/start_time/value as startTime, obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude AS systolic, c/uid/value AS cid, c/name FROM EHR e CONTAINS COMPOSITION c[openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS OBSERVATION obs[openEHR-EHR-OBSERVATION.blood_pressure.v1] WHERE obs/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude >= $systolic_bp
-    Offset:
-      title: Offset
-      type: integer
-      description: |
-        The row number in result-set to start result-set from (`0`-based), default is `0`.
-      format: int32
-      default: 0
-      example: 10
-    Fetch:
-      title: Fetch
-      type: integer
-      description: |
-        Number of rows to fetch (the default depends on the implementation).
-      format: int32
-      example: 10
     QueryParameters:
       title: QueryParameters
       type: object
@@ -535,6 +520,21 @@ components:
             $ref: '#/components/schemas/ResultSetRow'
           description: |
             An ordered set of RESULT_SET rows.
+    Offset:
+      title: Offset
+      type: integer
+      description: |
+        The row number in result-set to start result-set from (`0`-based), default is `0`.
+      format: int32
+      default: 0
+      example: 10
+    Fetch:
+      title: Fetch
+      type: integer
+      description: |
+        Number of rows to fetch (the default depends on the implementation).
+      format: int32
+      example: 10
     AdhocQueryExecute:
       title: AdhocQueryExecute
       required:
@@ -593,7 +593,9 @@ components:
       style: form
       explode: true
       schema:
-        $ref: '#/components/schemas/Offset'
+        type: integer
+        default: 0
+        example: 10
     fetch:
       name: fetch
       in: query
@@ -602,7 +604,8 @@ components:
       style: form
       explode: true
       schema:
-        $ref: '#/components/schemas/Fetch'
+        type: integer
+        example: 10
     query_parameters:
       name: query_parameters
       in: query

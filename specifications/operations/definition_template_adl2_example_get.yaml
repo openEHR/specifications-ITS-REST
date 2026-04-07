@@ -14,7 +14,7 @@ description: |
 tags:
   - ADL2
 parameters:
-  - $ref: ../parameters/path/template_id.yaml
+  - $ref: ../parameters/path/template_id_adl2.yaml
   - $ref: ../parameters/query/example_type.yaml
   - $ref: ../parameters/query/example_detail_level.yaml
   - $ref: ../parameters/header/Accept_LOCATABLE.yaml
