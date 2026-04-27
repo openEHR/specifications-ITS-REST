@@ -5,7 +5,7 @@ allOf:
 required:
   - numerator
   - denominator
-  - semantic_type
+  - type
 properties:
   _type:
     type: string
@@ -14,7 +14,7 @@ properties:
     type: number
   denominator:
     type: number
-  semantic_type:
+  type:
     type: integer
   precision:
     type: integer
