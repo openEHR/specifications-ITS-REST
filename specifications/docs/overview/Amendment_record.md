@@ -17,6 +17,20 @@
     </thead>
     <tbody>
     <tr>
+        <td></td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-92" target="_blank" rel="noopener">SPECITS-92</a>:
+            Fix alignment issues and sync OpenAPI resource and type schemas with openEHR Reference Model type specifications (mostly RM 1.1.0 related)</td>
+        <td>S Iancu</td>
+        <td>27 Apr 2026</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-84" target="_blank" rel="noopener">SPECITS-84</a>:
+            Add support for FLAT/SDT to Contribution REST API calls — accept the Simplified Formats MIME types on CONTRIBUTION endpoints; the Simplified Formats serialization applies to <code>versions[].data</code> only, the CONTRIBUTION envelope remains canonical</td>
+        <td>REST WG</td>
+        <td>27 Apr 2026</td>
+    </tr>
+    <tr>
         <td>5.6</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-88" target="_blank" rel="noopener">SPECITS-88</a>:
             Add support for filters in listTemplates operation</td>
@@ -172,7 +186,7 @@
     <tr>
         <td>3.0</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-49" target="_blank" rel="noopener">SPECITS-49</a>:
-            Describing Resource Identification; add clarification over getting COMPOSITIONs by with `version_uid` vs `versioned_object_uid`</td>
+            Describing Resource Identification; add clarification over getting COMPOSITIONs by `version_uid` vs `versioned_object_uid`</td>
         <td>J Smolka, M Polajnar, S Iancu</td>
         <td>08 Mar 2021</td>
     </tr>
@@ -191,7 +205,7 @@
         <td>06 Mar 2021</td>
     </tr>
     <tr>
-        <th colspan="43"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.1" target="_blank" rel="noopener">Release-1.0.1</a></th>
+        <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.1" target="_blank" rel="noopener">Release-1.0.1</a></th>
     </tr>
     <tr>
         <td>2.5</td>

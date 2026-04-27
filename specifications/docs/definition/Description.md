@@ -2,14 +2,14 @@
 
 ### Purpose
 
-This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with Definition openEHR API in a RESTful manner.
+This specification describes service endpoints, resources and operations as well as details of requests and responses that interact with the openEHR Definition API in a RESTful manner.
 
 ### Related Documents
 
 Prerequisite documents for reading this document include:
 
 - The [Operational Template 2](https://specifications.openehr.org/releases/AM/latest/OPT2.html)
-- The [Archetype Query Language(AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) 
+- The [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) 
 
 Related documents include:
 

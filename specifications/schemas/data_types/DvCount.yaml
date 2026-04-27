@@ -10,5 +10,6 @@ properties:
     enum: [DV_COUNT]
   magnitude:
     type: integer
+    format: int64
 x-discriminator-value: DV_COUNT
 

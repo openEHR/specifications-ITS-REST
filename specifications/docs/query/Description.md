@@ -4,13 +4,13 @@
 
 This specification describes the service endpoints and data-models used when querying an openEHR system. 
 
-The [Archetype Query Language(AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) is the primary query language.
+The [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) is the primary query language.
 
 ### Related Documents
 
 Prerequisite documents for reading this document include:
 
-- The [Archetype Query Language(AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html)
+- The [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html)
 
 Related documents include:
 

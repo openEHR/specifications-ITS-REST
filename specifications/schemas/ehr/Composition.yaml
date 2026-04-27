@@ -7,9 +7,7 @@ required:
   - language
   - territory
   - category
-  - context
   - composer
-  - content
 properties:
   _type:
     type: string
@@ -26,6 +24,7 @@ properties:
     $ref: ../common/UPartyProxy.yaml
   content:
     type: array
+    minItems: 1
     items:
       $ref: ../ehr/UContentItem.yaml
     description: See [CONTENT_ITEM](#tag/CONTENT_ITEM_schema) schema details.

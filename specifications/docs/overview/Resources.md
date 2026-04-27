@@ -39,7 +39,7 @@ GET https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/c
 - the COMPOSITION identifier `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`, taken from COMPOSITION.uid.value, which also implies that the VERSIONED_OBJECT identifier is `8849182c-82ad-4088-a07f-48ead4180515` and the latest version is `1`,
 - the request is made to an openEHR API (of version `v1`), located at `https://openEHRSys.example.com`.
 
-> NOTE: Since [RM Release 1.0.4](https://specifications.openehr.org/releases/RM/Release-1.0.4) it is strongly recommended that the inherited attribute `uid` attribute in COMPOSITION objects be populated using the `uid` copied from the enclosing VERSION object.
+> NOTE: Since [RM Release 1.0.4](https://specifications.openehr.org/releases/RM/Release-1.0.4) it is strongly recommended that the inherited `uid` attribute in COMPOSITION objects be populated using the `uid` copied from the enclosing VERSION object.
   For example, if an ORIGINAL_VERSION.uid is `87284370-2D4B-4e3d-A3F3-F303D2F4F34B::uk.nhs.ehr1::2`, then this value should be copied to the COMPOSITION.uid attribute.
   See [Levels of identification](https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html#\_levels_of_identification) section of Architecture Overview for more details.
 
@@ -138,7 +138,7 @@ To use these formats, content negotiation SHOULD be done in the same manner as f
 - `application/openehr.wt.structured+json` for the Simplified Structured JSON format,
 - `application/openehr.wt+json` for the Operational Template definition as Web Template JSON format.
 
-> NOTE: The `application/openehr.wt.flat.schema+json` and `application/openehr.wt.flat.schema+json` which were historically available in earlier versions of this specification, are now deprecated and will be removed in a future version of the specification. The equivalent formats are `application/openehr.wt.flat+json` and `application/openehr.wt.structured+json` SHOULD be used instead.
+> NOTE: The `application/openehr.wt.flat.schema+json` and `application/openehr.wt.structured.schema+json` which were historically available in earlier versions of this specification, are now deprecated and will be removed in a future version of the specification. The equivalent formats `application/openehr.wt.flat+json` and `application/openehr.wt.structured+json` SHOULD be used instead.
 
 A client MAY use the header `Content-Type` in the requests to specify the simplified payload format.
 If the service cannot process the request payload as the simplified format is not supported, it MUST respond with HTTP status code `415 Unsupported Media Type`.
@@ -157,7 +157,7 @@ Legacy or experimental formats:
 - `application/openehr.nc.flat+json` based on the [ECISFLAT format](https://github.com/ethercis/ethercis/blob/master/doc/flat%20json.md), 
 - `application/openehr.tds2+xml` for TDS simplification of RM as XML (see [this wiki page](https://openehr.atlassian.net/wiki/spaces/spec/pages/30408770/Template+Data+Schema+TDS+Specification+and+associated+Template+Data+Document+TDD) and the [TDD2canonical](https://github.com/openEHR/openEHR-TDD2canonical) project),
 - `application/openehr.wt.flat.schema+json` deprecated in favour of `application/openehr.wt.flat+json`,
-- `application/openehr.wt.flat.structured+json` deprecated in favour of `application/openehr.wt.structured+json`.
+- `application/openehr.wt.structured.schema+json` deprecated in favour of `application/openehr.wt.structured+json`.
 
 Other alternative formats may be added in the future, depending on innovative impact, simplicity, popular demand, or adoption rate.
 Some of these formats might not be supported once they become obsolete or superseded by newer formats.

@@ -10,6 +10,7 @@ properties:
     $ref: ../base_types/HierObjectId.yaml
   versions:
     type: array
+    minItems: 1
     items:
       $ref: ../base_types/ObjectRefOfObjectVersionId.yaml
   audit:

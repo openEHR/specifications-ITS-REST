@@ -61,7 +61,7 @@ Similarly, the `Location` response header was deprecated from responses of `DELE
 For more information see [Location header](#tag/Requests_and_responses/HTTP-headers/Location) section.
 
 The `ETag` response header was used without a weakness indicator `W/`. 
-This is now deprecated, all `ETag` headers that holds a resource identifier MUST include a weakness indicator `W/`.
+This is now deprecated, all `ETag` headers that hold a resource identifier MUST include a weakness indicator `W/`.
 For more information see [ETag and Last-Modified](#tag/Requests_and_responses/HTTP-headers/ETag-and-Last-Modified) section.
 
 To ensure forward compatibility, clients are strongly encouraged to always include the `Prefer` request header explicitly. Although the current default behavior is equivalent to `Prefer=minimal`, this might change in the near future to `Prefer=identifier`. Explicitly stating the preference prevents unexpected behavior changes as the default evolves.
@@ -150,7 +150,7 @@ If the service supports generating resource URIs in the format defined by the [D
 Example:
 
 ```http
-HTTP/1.1 200 Ok
+HTTP/1.1 200 OK
 openehr-uri: ehr:/347a5490-55ee-4da9-b91a-9bba710f730e/compositions/87284370-2D4B-4e3d-A3F3-F303D2F4F34B
 ```
 
@@ -165,7 +165,7 @@ The `ETag` and `Last-Modified` headers provide essential information about the s
 
 The `ETag` (Entity Tag) header acts as a unique identifier for a specific version of a resource. It helps clients determine whether a resource has changed between requests, supporting efficient caching and optimistic concurrency control.
 
-In this specification, the `ETag` value is independent of its resource serialization format (JSON/XML). This differs from standard HTTP behavior, where an `ETag` typically identifies a specific representation of a resource - see [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag). Therefore, the `ETag` are considered to be of weak-type and should have a weakness indicator `W/` prefix.
+In this specification, the `ETag` value is independent of its resource serialization format (JSON/XML). This differs from standard HTTP behavior, where an `ETag` typically identifies a specific representation of a resource - see [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#field.etag). Therefore, the `ETag` is considered to be of weak-type and should have a weakness indicator `W/` prefix.
 
 > DEPRECATION: [Prior to Release 1.1.0](https://specifications.openehr.org/releases/ITS-REST/Release-1.0.3/overview.html#tag/Requests_and_responses/HTTP-headers), the `ETag` header was used without a weakness indicator `W/`. This usage is now deprecated, but implementations MAY still support it alongside the updated header format that includes the weakness indicator `W/` prefix.
 
@@ -196,7 +196,7 @@ Both `ETag` and `Last-Modified` SHOULD be included in responses for VERSION, VER
 ## If-Match and accidental overwrites
 
 The `If-Match` request header SHOULD be used by the clients with state-changing methods (e.g., `PUT`) to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem). This is only required by a small set of versioned resources in this specification, when the `preceding_version_uid` is not part of the endpoint path segment.
-If a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method. Instead, it MUST respond with HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `ETag` response headers. When the service expects `If-Match` for an operation, but the client does not provide it, the service SHOULD respond with `400 Bad Reequest`. 
+If a service receives this header, and the condition evaluates to `false`, it MUST NOT perform the requested method. Instead, it MUST respond with HTTP status code `412 Precondition Failed`, and SHOULD return also latest `version_uid` in the `ETag` response headers. When the service expects `If-Match` for an operation, but the client does not provide it, the service SHOULD respond with `400 Bad Request`. 
 
 Example:
 ```http
@@ -209,17 +209,17 @@ See also details for `If-Match` described by [RFC 9110](https://datatracker.ietf
 # HTTP status codes
 
 HTTP Status codes are described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-status-codes) and by the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
-The following subset of the is used in this specification:
+The following subset is used in this specification:
 
-| Code | Reason-Phrase          | Meaning, usecase and details                                                                                                                                               |
+| Code | Reason-Phrase          | Meaning, use case and details                                                                                                                                              |
 | ---- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 200  | OK                     | The request succeeded, payload sent in a 200 response depends on the request method                                                                                        |
 | 201  | Created                | The request has been fulfilled and has resulted in one or more new resources being created                                                                                 |
-| 204  | No content             | The request has been fulfilled and there is no additional content to send in the response payload body                                                                     |
-| 400  | Bad request            | The service cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, syntactically invalid content) |
+| 204  | No Content             | The request has been fulfilled and there is no additional content to send in the response payload body                                                                     |
+| 400  | Bad Request            | The service cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, syntactically invalid content) |
 | 401  | Unauthorized           | If the service requires authorization, this indicates that the request has not been applied because it lacks valid authentication credentials for the target resource      |
 | 403  | Forbidden              | The service understood the request but refuses to authorize it                                                                                                             |
-| 404  | Not found              | The origin service did not find the target resource or is not willing to disclose that one exists                                                                          |
+| 404  | Not Found              | The origin service did not find the target resource or is not willing to disclose that one exists                                                                          |
 | 405  | Method Not Allowed     | The method received in the request-line is known by the origin service but not supported by the target resource                                                            |
 | 406  | Not Acceptable         | The target resource does not have a current representation that would be acceptable to the user                                                                            |
 | 408  | Request Timeout        | Request maximum execution time is reached, therefore the server aborted the request                                                                                        |
