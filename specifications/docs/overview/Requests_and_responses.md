@@ -211,15 +211,15 @@ See also details for `If-Match` described by [RFC 9110](https://datatracker.ietf
 HTTP Status codes are described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-status-codes) and by the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 The following subset is used in this specification:
 
-| Code | Reason-Phrase          | Meaning, usecase and details                                                                                                                                               |
+| Code | Reason-Phrase          | Meaning, use case and details                                                                                                                                              |
 | ---- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 200  | OK                     | The request succeeded, payload sent in a 200 response depends on the request method                                                                                        |
 | 201  | Created                | The request has been fulfilled and has resulted in one or more new resources being created                                                                                 |
-| 204  | No content             | The request has been fulfilled and there is no additional content to send in the response payload body                                                                     |
-| 400  | Bad request            | The service cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, syntactically invalid content) |
+| 204  | No Content             | The request has been fulfilled and there is no additional content to send in the response payload body                                                                     |
+| 400  | Bad Request            | The service cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, syntactically invalid content) |
 | 401  | Unauthorized           | If the service requires authorization, this indicates that the request has not been applied because it lacks valid authentication credentials for the target resource      |
 | 403  | Forbidden              | The service understood the request but refuses to authorize it                                                                                                             |
-| 404  | Not found              | The origin service did not find the target resource or is not willing to disclose that one exists                                                                          |
+| 404  | Not Found              | The origin service did not find the target resource or is not willing to disclose that one exists                                                                          |
 | 405  | Method Not Allowed     | The method received in the request-line is known by the origin service but not supported by the target resource                                                            |
 | 406  | Not Acceptable         | The target resource does not have a current representation that would be acceptable to the user                                                                            |
 | 408  | Request Timeout        | Request maximum execution time is reached, therefore the server aborted the request                                                                                        |
