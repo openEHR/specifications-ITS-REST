@@ -39,7 +39,7 @@ GET https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/c
 - the COMPOSITION identifier `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`, taken from COMPOSITION.uid.value, which also implies that the VERSIONED_OBJECT identifier is `8849182c-82ad-4088-a07f-48ead4180515` and the latest version is `1`,
 - the request is made to an openEHR API (of version `v1`), located at `https://openEHRSys.example.com`.
 
-> NOTE: Since [RM Release 1.0.4](https://specifications.openehr.org/releases/RM/Release-1.0.4) it is strongly recommended that the inherited attribute `uid` attribute in COMPOSITION objects be populated using the `uid` copied from the enclosing VERSION object.
+> NOTE: Since [RM Release 1.0.4](https://specifications.openehr.org/releases/RM/Release-1.0.4) it is strongly recommended that the inherited `uid` attribute in COMPOSITION objects be populated using the `uid` copied from the enclosing VERSION object.
   For example, if an ORIGINAL_VERSION.uid is `87284370-2D4B-4e3d-A3F3-F303D2F4F34B::uk.nhs.ehr1::2`, then this value should be copied to the COMPOSITION.uid attribute.
   See [Levels of identification](https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html#\_levels_of_identification) section of Architecture Overview for more details.
 
