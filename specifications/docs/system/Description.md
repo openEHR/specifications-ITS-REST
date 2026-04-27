@@ -2,7 +2,7 @@
 
 ### Purpose
 
-This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with System openEHR API in a RESTful manner.
+This specification describes service endpoints, resources and operations as well as details of requests and responses that interact with the openEHR System API in a RESTful manner.
 
 ### Related Documents
 
