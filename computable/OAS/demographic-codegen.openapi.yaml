@@ -16,7 +16,7 @@ info:
 
     ### Purpose
 
-    This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with Demographic openEHR API in a RESTful manner.
+    This specification describes service endpoints, resources and operations as well as details of requests and responses that interact with the openEHR Demographic API in a RESTful manner.
 
     ### Related Documents
 
@@ -950,8 +950,7 @@ paths:
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
         The former is used to delete the tags a particular (target) version of the AGENT version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
-        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container,
-        which semantically are equivalent to tags targeting the latest version.
+        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container.
       tags:
         - ITEM_TAG
       parameters:
@@ -1037,8 +1036,7 @@ paths:
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
         The former is used to delete the tags a particular (target) version of the GROUP version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
-        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container,
-        which semantically are equivalent to tags targeting the latest version.
+        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container.
       tags:
         - ITEM_TAG
       parameters:
@@ -1124,8 +1122,7 @@ paths:
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
         The former is used to delete the tags a particular (target) version of the ORGANISATION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
-        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container,
-        which semantically are equivalent to tags targeting the latest version.
+        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container.
       tags:
         - ITEM_TAG
       parameters:
@@ -1211,8 +1208,7 @@ paths:
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
         The former is used to delete the tags a particular (target) version of the PERSON version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
-        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container,
-        which semantically are equivalent to tags targeting the latest version.
+        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container.
       tags:
         - ITEM_TAG
       parameters:
@@ -1298,8 +1294,7 @@ paths:
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_PARTY.uid.value (i.e. a `versioned_object_uid`).
         The former is used to delete the tags a particular (target) version of the ROLE version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
-        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container,
-        which semantically are equivalent to tags targeting the latest version.
+        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_PARTY container.
       tags:
         - ITEM_TAG
       parameters:
@@ -1562,7 +1557,7 @@ components:
       type: object
       properties:
         match:
-          pattern: /^[><=?]$/
+          pattern: ^[><=?]$
           type: string
         purpose:
           $ref: '#/components/schemas/DvCodedText'
@@ -2013,6 +2008,8 @@ components:
           DV_QUANTITY: '#/components/schemas/DvQuantity'
     DvDuration:
       title: DV_DURATION
+      required:
+        - value
       type: object
       allOf:
         - $ref: '#/components/schemas/DvAmount'
@@ -2020,6 +2017,8 @@ components:
         _type:
           enum:
             - DV_DURATION
+          type: string
+        value:
           type: string
       x-discriminator-value: DV_DURATION
     DvTemporal:
@@ -2185,6 +2184,7 @@ components:
           type: string
         magnitude:
           type: integer
+          format: int64
       x-discriminator-value: DV_COUNT
     DvDate:
       title: DV_DATE
@@ -2228,7 +2228,7 @@ components:
       required:
         - numerator
         - denominator
-        - semantic_type
+        - type
       type: object
       allOf:
         - $ref: '#/components/schemas/DvAmount'
@@ -2241,7 +2241,7 @@ components:
           type: number
         denominator:
           type: number
-        semantic_type:
+        type:
           type: integer
         precision:
           type: integer
@@ -3096,6 +3096,7 @@ components:
         uid:
           $ref: '#/components/schemas/HierObjectId'
         versions:
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
@@ -4069,9 +4070,11 @@ components:
     200_CONTRIBUTION:
       description: |
         `200 OK` is returned when the CONTRIBUTION is successfully retrieved.
+
+        When the request `Accept` header selects a Simplified Formats MIME type (`application/openehr.wt.flat+json` or `application/openehr.wt.structured+json`), the response body is still a canonical CONTRIBUTION envelope; only each `versions[i].data` payload is serialized in the requested FLAT or STRUCTURED form.
       headers:
         Content-Type:
-          $ref: '#/components/headers/ContentType_canonical'
+          $ref: '#/components/headers/ContentType_LOCATABLE'
       content:
         application/json:
           schema:

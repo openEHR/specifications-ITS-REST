@@ -16,14 +16,14 @@ info:
 
     ### Purpose
 
-    This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with Definition openEHR API in a RESTful manner.
+    This specification describes service endpoints, resources and operations as well as details of requests and responses that interact with the openEHR Definition API in a RESTful manner.
 
     ### Related Documents
 
     Prerequisite documents for reading this document include:
 
     - The [Operational Template 2](https://specifications.openehr.org/releases/AM/latest/OPT2.html)
-    - The [Archetype Query Language(AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) 
+    - The [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) 
 
     Related documents include:
 
@@ -1405,7 +1405,7 @@ components:
       type: object
       properties:
         match:
-          pattern: /^[><=?]$/
+          pattern: ^[><=?]$
           type: string
         purpose:
           $ref: '#/components/schemas/DvCodedText'
@@ -1978,6 +1978,8 @@ components:
           $ref: '#/components/schemas/DvInterval'
     DvDuration:
       title: DV_DURATION
+      required:
+        - value
       type: object
       properties:
         _type:
@@ -1999,6 +2001,8 @@ components:
           type: boolean
         accuracy:
           type: number
+        value:
+          type: string
     DvDateTime:
       title: DV_DATE_TIME
       required:
@@ -2069,6 +2073,7 @@ components:
           type: number
         magnitude:
           type: integer
+          format: int64
     UMDvDate:
       title: DV_DATE
       required:
@@ -2132,6 +2137,7 @@ components:
     UMDvDuration:
       title: DV_DURATION
       required:
+        - value
         - _type
       type: object
       properties:
@@ -2154,6 +2160,8 @@ components:
           type: boolean
         accuracy:
           type: number
+        value:
+          type: string
     UMDvIdentifier:
       title: DV_IDENTIFIER
       required:
@@ -2205,7 +2213,7 @@ components:
       required:
         - numerator
         - denominator
-        - semantic_type
+        - type
         - _type
       type: object
       properties:
@@ -2232,7 +2240,7 @@ components:
           type: number
         denominator:
           type: number
-        semantic_type:
+        type:
           type: integer
         precision:
           type: integer
@@ -2704,6 +2712,59 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participation'
+    UContentItem:
+      title: CONTENT_ITEM
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/UMSection'
+        - $ref: '#/components/schemas/UMAdminEntry'
+        - $ref: '#/components/schemas/UMObservation'
+        - $ref: '#/components/schemas/UMEvaluation'
+        - $ref: '#/components/schemas/UMInstruction'
+        - $ref: '#/components/schemas/UMAction'
+      discriminator:
+        propertyName: _type
+        mapping:
+          SECTION: '#/components/schemas/UMSection'
+          ADMIN_ENTRY: '#/components/schemas/UMAdminEntry'
+          OBSERVATION: '#/components/schemas/UMObservation'
+          EVALUATION: '#/components/schemas/UMEvaluation'
+          INSTRUCTION: '#/components/schemas/UMInstruction'
+          ACTION: '#/components/schemas/UMAction'
+    UMSection:
+      title: SECTION
+      required:
+        - name
+        - archetype_node_id
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - SECTION
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/UContentItem'
+          description: See [CONTENT_ITEM](#tag/CONTENT_ITEM_schema) schema details.
     UMAdminEntry:
       title: ADMIN_ENTRY
       required:
@@ -3139,23 +3200,6 @@ components:
           $ref: '#/components/schemas/InstructionDetails'
         description:
           $ref: '#/components/schemas/UItemStructure'
-    UContentItem:
-      title: CONTENT_ITEM
-      type: object
-      oneOf:
-        - $ref: '#/components/schemas/UMAdminEntry'
-        - $ref: '#/components/schemas/UMObservation'
-        - $ref: '#/components/schemas/UMEvaluation'
-        - $ref: '#/components/schemas/UMInstruction'
-        - $ref: '#/components/schemas/UMAction'
-      discriminator:
-        propertyName: _type
-        mapping:
-          ADMIN_ENTRY: '#/components/schemas/UMAdminEntry'
-          OBSERVATION: '#/components/schemas/UMObservation'
-          EVALUATION: '#/components/schemas/UMEvaluation'
-          INSTRUCTION: '#/components/schemas/UMInstruction'
-          ACTION: '#/components/schemas/UMAction'
     Composition:
       title: COMPOSITION
       required:
@@ -3164,9 +3208,7 @@ components:
         - language
         - territory
         - category
-        - context
         - composer
-        - content
       type: object
       properties:
         _type:
@@ -3200,6 +3242,7 @@ components:
         composer:
           $ref: '#/components/schemas/UPartyProxy'
         content:
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/UContentItem'
@@ -4055,7 +4098,7 @@ components:
       in: path
       description: |
         A SEMVER version number.
-        This can be a an exact version (e.g. `1.7.1`), or a pattern as partial prefix, in a form of `{major}` or `{major}.{minor}` (e.g. `1` or `1.0`), in which case the highest (latest) version matching the prefix will be considered.
+        This can be an exact version (e.g. `1.7.1`), or a pattern as partial prefix, in a form of `{major}` or `{major}.{minor}` (e.g. `1` or `1.0`), in which case the highest (latest) version matching the prefix will be considered.
       required: true
       style: simple
       schema:

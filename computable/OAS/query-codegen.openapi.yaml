@@ -18,13 +18,13 @@ info:
 
     This specification describes the service endpoints and data-models used when querying an openEHR system. 
 
-    The [Archetype Query Language(AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) is the primary query language.
+    The [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) is the primary query language.
 
     ### Related Documents
 
     Prerequisite documents for reading this document include:
 
-    - The [Archetype Query Language(AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html)
+    - The [Archetype Query Language (AQL)](https://specifications.openehr.org/releases/QUERY/latest/AQL.html)
 
     Related documents include:
 
@@ -57,7 +57,7 @@ tags:
 
       A common use-case is to execute queries within a specific EHR. 
 
-      This is achieved by supplying a `ehr_id` query parameter or setting a `openehr-ehr-id` request header.
+      This is achieved by supplying an `ehr_id` query parameter or setting an `openehr-ehr-id` request header.
 
 
       ## Population queries
@@ -76,7 +76,7 @@ tags:
       Stored queries are queries which have their definition stored (registered) on the server. 
       These are identified by their [qualified name and version](#tag/Qualified_query_name).
 
-      Using stored queries has several of advantages:
+      Using stored queries has several advantages:
       - separation of responsibilities (some users/developers write queries, others just call/execute them and consume the responses),
       - no need to pass long query string over the network.
 
@@ -85,8 +85,8 @@ tags:
 
       ## Ad-hoc queries
 
-      As opposed to stored queries, ad-hoc type queries does not have their definitions stored on the server, neither any associated identifier.
-      These queries will be executed as-is, as part request body or query parameter, by the [Execute ad-hoc AQL](#tag/Query/operation/query_execute_adhoc_query) operation endpoint. 
+      As opposed to stored queries, ad-hoc type queries do not have their definitions stored on the server, nor any associated identifier.
+      These queries will be executed as-is, as part of the request body or as a query parameter, by the [Execute ad-hoc AQL](#tag/Query/operation/query_execute_adhoc_query) operation endpoint. 
   - name: Qualified_query_name
     x-displayName: Qualified query name
     description: |+
@@ -106,7 +106,7 @@ tags:
       - `my_compositions`
       - `ehr::all_influenza_vacc_candidates`
 
-      The `version` identifier is in the format specified by  [SEMVER](https://semver.org/) style (i.e. `major.minor.patch`).
+      The `version` identifier is in the format specified by [SEMVER](https://semver.org/) style (i.e. `major.minor.patch`).
       When only a partial `version` pattern is supplied, or when `version` is not supplied at all, the system must use the latest `version` with the supplied prefix - i.e. if only `major` or `major.minor` is used, then the latest query version matching supplied prefix will be used.
 
   - name: Request
@@ -645,7 +645,7 @@ components:
       in: path
       description: |
         A SEMVER version number.
-        This can be a an exact version (e.g. `1.7.1`), or a pattern as partial prefix, in a form of `{major}` or `{major}.{minor}` (e.g. `1` or `1.0`), in which case the highest (latest) version matching the prefix will be considered.
+        This can be an exact version (e.g. `1.7.1`), or a pattern as partial prefix, in a form of `{major}` or `{major}.{minor}` (e.g. `1` or `1.0`), in which case the highest (latest) version matching the prefix will be considered.
       required: true
       style: simple
       schema:

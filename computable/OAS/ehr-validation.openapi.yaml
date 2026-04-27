@@ -16,7 +16,7 @@ info:
 
     ### Purpose
 
-    This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with EHR openEHR API in a RESTful manner.
+    This specification describes service endpoints, resources and operations as well as details of requests and responses that interact with the openEHR EHR API in a RESTful manner.
 
     ### Related Documents
 
@@ -701,13 +701,19 @@ paths:
           - `uid`: when provided, it will be accepted in case is not in-use, otherwise error will be returned
           - `audit.time_committed`: server will always set it
           - `audit.system_id`: when provided, it will be validated
+
+        ### Simplified Formats (FLAT / STRUCTURED)
+
+        The `Content-Type` and `Accept` headers MAY be set to one of the Simplified Formats MIME types — `application/openehr.wt.flat+json` or `application/openehr.wt.structured+json` — in addition to the canonical `application/json` / `application/xml`.
+
+        When a Simplified Formats MIME type is used, the **CONTRIBUTION envelope itself remains canonical JSON** (i.e. `uid`, `versions[]` metadata, and `audit` follow the canonical RM serialization). Only the inner versioned payload — each `versions[i].data` (the embedded `COMPOSITION`, `EHR_STATUS`, or `FOLDER`) — is serialized in the chosen FLAT or STRUCTURED form. See [Simplified Formats](../simplified_formats.html) for the rules that apply to that inner payload.
       tags:
         - CONTRIBUTION
       parameters:
         - $ref: '#/components/parameters/ehr_id'
         - $ref: '#/components/parameters/Prefer'
-        - $ref: '#/components/parameters/Accept_canonical'
-        - $ref: '#/components/parameters/ContentType_canonical'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
+        - $ref: '#/components/parameters/ContentType_LOCATABLE'
       requestBody:
         description: |
           The CONTRIBUTION.
@@ -731,12 +737,18 @@ paths:
       summary: Get CONTRIBUTION by id
       description: |
         Retrieves a CONTRIBUTION identified by `contribution_uid` and associated with the EHR identified by `ehr_id`.
+
+        ### Simplified Formats (FLAT / STRUCTURED)
+
+        The `Accept` header MAY be set to one of the Simplified Formats MIME types — `application/openehr.wt.flat+json` or `application/openehr.wt.structured+json` — in addition to the canonical `application/json` / `application/xml`.
+
+        When a Simplified Formats MIME type is requested, the **CONTRIBUTION envelope itself is still returned as canonical JSON** (`uid`, `versions[]` metadata, `audit`). Only the inner `versions[i].data` payload (`COMPOSITION`, `EHR_STATUS`, or `FOLDER`) is serialized in the chosen FLAT or STRUCTURED form. See [Simplified Formats](../simplified_formats.html) for the rules that apply to that inner payload.
       tags:
         - CONTRIBUTION
       parameters:
         - $ref: '#/components/parameters/ehr_id'
         - $ref: '#/components/parameters/contribution_uid'
-        - $ref: '#/components/parameters/Accept_canonical'
+        - $ref: '#/components/parameters/Accept_LOCATABLE'
       responses:
         '200':
           $ref: '#/components/responses/200_CONTRIBUTION'
@@ -852,8 +864,7 @@ paths:
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
         The former is used to delete the tags a particular (target) version of the COMPOSITION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
-        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_COMPOSITION container,
-        which semantically are equivalent to tags targeting the latest version.
+        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_COMPOSITION container.
       tags:
         - ITEM_TAG
       parameters:
@@ -945,8 +956,7 @@ paths:
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
         The former is used to delete the tags a particular (target) version of the EHR_STATUS version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
-        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_EHR_STATUS container,
-        which semantically are equivalent to tags targeting the latest version.
+        whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_EHR_STATUS container.
       tags:
         - ITEM_TAG
       parameters:
@@ -1312,7 +1322,7 @@ components:
       type: object
       properties:
         match:
-          pattern: /^[><=?]$/
+          pattern: ^[><=?]$
           type: string
         purpose:
           $ref: '#/components/schemas/DvCodedText'
@@ -1404,6 +1414,8 @@ components:
           $ref: '#/components/schemas/DvInterval'
     DvDuration:
       title: DV_DURATION
+      required:
+        - value
       type: object
       properties:
         _type:
@@ -1425,6 +1437,8 @@ components:
           type: boolean
         accuracy:
           type: number
+        value:
+          type: string
     DvDateTime:
       title: DV_DATE_TIME
       required:
@@ -1835,6 +1849,7 @@ components:
           type: number
         magnitude:
           type: integer
+          format: int64
     UMDvDate:
       title: DV_DATE
       required:
@@ -1898,6 +1913,7 @@ components:
     UMDvDuration:
       title: DV_DURATION
       required:
+        - value
         - _type
       type: object
       properties:
@@ -1920,6 +1936,8 @@ components:
           type: boolean
         accuracy:
           type: number
+        value:
+          type: string
     UMDvIdentifier:
       title: DV_IDENTIFIER
       required:
@@ -1971,7 +1989,7 @@ components:
       required:
         - numerator
         - denominator
-        - semantic_type
+        - type
         - _type
       type: object
       properties:
@@ -1998,7 +2016,7 @@ components:
           type: number
         denominator:
           type: number
-        semantic_type:
+        type:
           type: integer
         precision:
           type: integer
@@ -2703,6 +2721,59 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participation'
+    UContentItem:
+      title: CONTENT_ITEM
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/UMSection'
+        - $ref: '#/components/schemas/UMAdminEntry'
+        - $ref: '#/components/schemas/UMObservation'
+        - $ref: '#/components/schemas/UMEvaluation'
+        - $ref: '#/components/schemas/UMInstruction'
+        - $ref: '#/components/schemas/UMAction'
+      discriminator:
+        propertyName: _type
+        mapping:
+          SECTION: '#/components/schemas/UMSection'
+          ADMIN_ENTRY: '#/components/schemas/UMAdminEntry'
+          OBSERVATION: '#/components/schemas/UMObservation'
+          EVALUATION: '#/components/schemas/UMEvaluation'
+          INSTRUCTION: '#/components/schemas/UMInstruction'
+          ACTION: '#/components/schemas/UMAction'
+    UMSection:
+      title: SECTION
+      required:
+        - name
+        - archetype_node_id
+        - _type
+      type: object
+      properties:
+        _type:
+          enum:
+            - SECTION
+          type: string
+        name:
+          $ref: '#/components/schemas/UDvText'
+        archetype_node_id:
+          type: string
+          xml:
+            attribute: true
+        uid:
+          $ref: '#/components/schemas/UUidBasedId'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        archetype_details:
+          $ref: '#/components/schemas/Archetyped'
+        feeder_audit:
+          $ref: '#/components/schemas/FeederAudit'
+        items:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/UContentItem'
+          description: See [CONTENT_ITEM](#tag/CONTENT_ITEM_schema) schema details.
     UMAdminEntry:
       title: ADMIN_ENTRY
       required:
@@ -3138,23 +3209,6 @@ components:
           $ref: '#/components/schemas/InstructionDetails'
         description:
           $ref: '#/components/schemas/UItemStructure'
-    UContentItem:
-      title: CONTENT_ITEM
-      type: object
-      oneOf:
-        - $ref: '#/components/schemas/UMAdminEntry'
-        - $ref: '#/components/schemas/UMObservation'
-        - $ref: '#/components/schemas/UMEvaluation'
-        - $ref: '#/components/schemas/UMInstruction'
-        - $ref: '#/components/schemas/UMAction'
-      discriminator:
-        propertyName: _type
-        mapping:
-          ADMIN_ENTRY: '#/components/schemas/UMAdminEntry'
-          OBSERVATION: '#/components/schemas/UMObservation'
-          EVALUATION: '#/components/schemas/UMEvaluation'
-          INSTRUCTION: '#/components/schemas/UMInstruction'
-          ACTION: '#/components/schemas/UMAction'
     Composition:
       title: COMPOSITION
       required:
@@ -3163,9 +3217,7 @@ components:
         - language
         - territory
         - category
-        - context
         - composer
-        - content
       type: object
       properties:
         _type:
@@ -3199,6 +3251,7 @@ components:
         composer:
           $ref: '#/components/schemas/UPartyProxy'
         content:
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/UContentItem'
@@ -3259,9 +3312,7 @@ components:
         - language
         - territory
         - category
-        - context
         - composer
-        - content
         - _type
       type: object
       properties:
@@ -3296,6 +3347,7 @@ components:
         composer:
           $ref: '#/components/schemas/UPartyProxy'
         content:
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/UContentItem'
@@ -3888,6 +3940,7 @@ components:
         uid:
           $ref: '#/components/schemas/HierObjectId'
         versions:
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/ObjectRefOfObjectVersionId'
@@ -4673,7 +4726,7 @@ components:
             $ref: '#/components/schemas/Folder'
     404_directory_unknown_ehr_id_or_no_version_at_time_or_no_path:
       description: |
-        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a directory does not exist at the specified `version_at_time`, or when `path` does not exists within the directory.
+        `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a directory does not exist at the specified `version_at_time`, or when `path` does not exist within the directory.
     200_directory_updated:
       description: |
         `200 OK` is returned when directory was successfully updated, with the full resource in the response body when `Prefer` header is `return=representation`, or only its identifiers when `Prefer` header is `return=identifier`.
@@ -4725,16 +4778,18 @@ components:
         `404 Not Found` is returned when an EHR with `ehr_id` does not exist, or when a directory with `version_uid` does not exist, or when `path` does not exist within the directory.
     201_CONTRIBUTION:
       description: |
-        `201 Created` is returned when the CONTRIBUTION is successfully created. 
-        If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its unique identifier is included. 
+        `201 Created` is returned when the CONTRIBUTION is successfully created.
+        If `Prefer` header is `return=representation`, the full resource is included in the response body; if is `return=identifier`, only its unique identifier is included.
         If the `Prefer` header is missing or set to `return=minimal`, the body is empty.
+
+        When the request `Accept` header selects a Simplified Formats MIME type (`application/openehr.wt.flat+json` or `application/openehr.wt.structured+json`) and `Prefer: return=representation`, the response body is still a canonical CONTRIBUTION envelope; only each `versions[i].data` payload is serialized in the requested FLAT or STRUCTURED form.
       headers:
         ETag:
           $ref: '#/components/headers/ETag_CONTRIBUTION'
         Location:
           $ref: '#/components/headers/Location_CONTRIBUTION'
         Content-Type:
-          $ref: '#/components/headers/ContentType_canonical'
+          $ref: '#/components/headers/ContentType_LOCATABLE'
       content:
         application/json:
           schema:
@@ -4752,9 +4807,11 @@ components:
     200_CONTRIBUTION:
       description: |
         `200 OK` is returned when the CONTRIBUTION is successfully retrieved.
+
+        When the request `Accept` header selects a Simplified Formats MIME type (`application/openehr.wt.flat+json` or `application/openehr.wt.structured+json`), the response body is still a canonical CONTRIBUTION envelope; only each `versions[i].data` payload is serialized in the requested FLAT or STRUCTURED form.
       headers:
         Content-Type:
-          $ref: '#/components/headers/ContentType_canonical'
+          $ref: '#/components/headers/ContentType_LOCATABLE'
       content:
         application/json:
           schema:
