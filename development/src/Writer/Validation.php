@@ -100,6 +100,7 @@ class Validation extends AbstractWriter {
             'PartyRelated',
             'PartySelf',
             'Pathable',
+            'Section',
             'UidBasedId',
             'Version',
             'Versionable',
