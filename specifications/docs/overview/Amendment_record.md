@@ -17,6 +17,13 @@
     </thead>
     <tbody>
     <tr>
+        <td>5.7</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-84" target="_blank" rel="noopener">SPECITS-84</a>:
+            Add support for FLAT/SDT to Contribution REST API calls — accept the Simplified Formats MIME types on CONTRIBUTION endpoints; the Simplified Formats serialization applies to <code>versions[].data</code> only, the CONTRIBUTION envelope remains canonical</td>
+        <td>REST WG</td>
+        <td>27 Apr 2026</td>
+    </tr>
+    <tr>
         <td>5.6</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-88" target="_blank" rel="noopener">SPECITS-88</a>:
             Add support for filters in listTemplates operation</td>

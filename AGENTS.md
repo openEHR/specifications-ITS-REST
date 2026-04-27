@@ -111,6 +111,19 @@ Valid `LANG` values: see `LANGUAGES` in `development/Makefile`
 - **Never bypass discriminator/`$ref` rewriting in `Codegen`.** Several downstream generators
   silently mis-emit polymorphic types if `discriminator.mapping` is incomplete, and the regex
   `$ref` rewrites are what keep generated client class names readable.
+- **Simplified Formats apply only where the data is mappable.** When wiring
+  `application/openehr.wt.flat+json` / `application/openehr.wt.structured+json` into an endpoint
+  (via `Accept_LOCATABLE` / `ContentType_LOCATABLE`), check that every payload type the endpoint
+  carries has a mapping in `docs/simplified_formats/master05-rm_mapping.adoc`. Two CONTRIBUTION-
+  specific rules already established by SPECITS-84:
+  - **EHR `CONTRIBUTION`** accepts the Simplified Formats MIME types, but the format applies
+    **only to `versions[].data`** (the embedded `COMPOSITION` / `EHR_STATUS` / `FOLDER`). The
+    envelope (`uid`, `versions[]` metadata, `audit`) **stays canonical JSON**. Document this
+    scoping in any new related operation/response description.
+  - **Demographic `CONTRIBUTION` does not** support the Simplified Formats MIME types — the
+    demographic IM roots (`PERSON`, `ORGANISATION`, `GROUP`, `AGENT`, `ROLE`) have no FLAT /
+    STRUCTURED mapping defined upstream (Better, EHRbase) or in `simplified_formats`. Don't
+    add the headers there until that prerequisite mapping work lands.
 - **No tests.** This project has none and none are expected; do not scaffold a test framework.
 - **Trace numbers in commits.** Existing history references Jira tickets (`SPECITS-NN`); follow
   that style when committing related changes.
