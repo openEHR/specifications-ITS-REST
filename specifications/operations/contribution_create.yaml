@@ -8,9 +8,9 @@ description: |
 
   ### Simplified Formats (FLAT / STRUCTURED)
 
-  The `Content-Type` and `Accept` headers MAY be set to one of the Simplified Formats MIME types — `application/openehr.wt.flat+json` or `application/openehr.wt.structured+json` — in addition to the canonical `application/json` / `application/xml`.
+  The `Content-Type` and `Accept` headers MAY be set to one of the Simplified Formats MIME types - `application/openehr.wt.flat+json` or `application/openehr.wt.structured+json` - in addition to the canonical `application/json` / `application/xml`.
 
-  When a Simplified Formats MIME type is used, the **CONTRIBUTION envelope itself remains canonical JSON** (i.e. `uid`, `versions[]` metadata, and `audit` follow the canonical RM serialization). Only the inner versioned payload — each `versions[i].data` (the embedded `COMPOSITION`, `EHR_STATUS`, or `FOLDER`) — is serialized in the chosen FLAT or STRUCTURED form. See [Simplified Formats](../simplified_formats.html) for the rules that apply to that inner payload.
+  When a Simplified Formats MIME type is used, the **CONTRIBUTION envelope itself remains canonical JSON** (i.e. `uid`, `versions[]` metadata, and `audit` follow the canonical RM serialization). Only the inner versioned payload - each `versions[i].data` (the embedded `COMPOSITION`, `EHR_STATUS`, or `FOLDER`) - is serialized in the chosen FLAT or STRUCTURED form. See [Simplified Formats](../simplified_formats.html) for the rules that apply to that inner payload.
 tags:
   - CONTRIBUTION
 parameters:

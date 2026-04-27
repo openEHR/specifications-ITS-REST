@@ -17,7 +17,7 @@
     </thead>
     <tbody>
     <tr>
-        <td></td>
+        <td>5.7</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-92" target="_blank" rel="noopener">SPECITS-92</a>:
             Fix alignment issues and sync OpenAPI resource and type schemas with openEHR Reference Model type specifications (mostly RM 1.1.0 related)</td>
         <td>S Iancu</td>
@@ -26,7 +26,7 @@
     <tr>
         <td></td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-84" target="_blank" rel="noopener">SPECITS-84</a>:
-            Add support for FLAT/SDT to Contribution REST API calls — accept the Simplified Formats MIME types on CONTRIBUTION endpoints; the Simplified Formats serialization applies to <code>versions[].data</code> only, the CONTRIBUTION envelope remains canonical</td>
+            Add support for FLAT/SDT to Contribution REST API calls - accept the Simplified Formats MIME types on CONTRIBUTION endpoints; the Simplified Formats serialization applies to <code>versions[].data</code> only, the CONTRIBUTION envelope remains canonical</td>
         <td>REST WG</td>
         <td>27 Apr 2026</td>
     </tr>
