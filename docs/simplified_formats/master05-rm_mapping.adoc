@@ -1863,6 +1863,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|value": "term1",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|code": "at0006",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|terminology": "local",
+  "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|preferred_term": "Term One",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|formatting": "plain",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_language|code": "en",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_language|terminology": "ISO_639-1",
@@ -1913,11 +1914,17 @@ Free-text value when the archetype constraint allows an open value-set (`listOpe
 | (yes)
 | only required for external terminologies
 
+| `\|preferred_term`
+| String
+| defining_code.preferred_term
+| no
+| Optional preferred display rubric for the `defining_code`. See the `\|preferred_term` row of <<CODE_PHRASE,CODE_PHRASE>> for the analogous mapping on a bare `CODE_PHRASE`.
+
 | `\|other`
 | String
 | _value_ (as `<<DV_TEXT,DV_TEXT>>`)
 | no
-| Free-text value used when the constraint allows an open value-set (`listOpen: true` in the web template). When `\|other` is set, `\|code`, `\|value` and `\|terminology` MUST NOT be set; the leaf is serialised in the canonical RM as a `DV_TEXT` rather than a `DV_CODED_TEXT`.
+| Free-text value used when the constraint allows an open value-set (`listOpen: true` in the web template). When `\|other` is set, `\|code`, `\|value`, `\|terminology` and `\|preferred_term` MUST NOT be set; the leaf is serialised in the canonical RM as a `DV_TEXT` rather than a `DV_CODED_TEXT`.
 
 | `\|formatting`
 | String
@@ -1949,7 +1956,7 @@ Free-text value when the archetype constraint allows an open value-set (`listOpe
 Where the archetype constraint allows an open value-set (`listOpen: true` in the web template; non-`limit-to-list` in ADL), a leaf bound to `DV_CODED_TEXT` may be populated with a free-text value via the `\|other` suffix. In that case:
 
 * the canonical RM serialisation of the leaf is a <<DV_TEXT,DV_TEXT>>, not a `DV_CODED_TEXT` with empty `defining_code`;
-* `\|other` is mutually exclusive with `\|code`, `\|value` and `\|terminology` on the same leaf;
+* `\|other` is mutually exclusive with `\|code`, `\|value`, `\|terminology` and `\|preferred_term` on the same leaf;
 * on a closed list (`listOpen: false`), `\|other` MUST be rejected.
 
 See <<open_value_sets>> for the cross-cutting rule and rationale.

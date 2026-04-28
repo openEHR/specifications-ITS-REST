@@ -7,7 +7,7 @@
 4+^h|*ITS_REST Release (unreleased)*
 
 |[[latest_issue]]1.1.1
-|{spec_tickets}/SPECITS-94[SPECITS-94^]. Clarified Level Removal (attribute elision vs wrapper collapse) and `EVENT` rule; documented `\|other` suffix for `DV_CODED_TEXT` open value-sets.
+|{spec_tickets}/SPECITS-94[SPECITS-94^]. Clarified Level Removal (attribute elision vs wrapper collapse) and `EVENT` rule; added `\|other` and `\|preferred_term` suffixes on `DV_CODED_TEXT`.
 |REST WG
 |[[latest_issue_date]]28 Apr 2026
 
