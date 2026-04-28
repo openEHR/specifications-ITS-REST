@@ -76,8 +76,10 @@ The 'native' way of committing is to use a [CONTRIBUTION](https://specifications
 To keep things simpler and consistent, services MUST also allow `PUT`, `POST` and `DELETE` methods directly on these change-controlled resources.
 However, these operations MUST internally be executed using the 'native' way.
 
-In order to allow clients to provide committal metadata, services MUST accept `openehr-version` and `openehr-audit_details` custom request headers.
+In order to allow clients to provide committal metadata, services MUST accept `openehr-version` and `openehr-audit-details` custom request headers.
 For clients, it is RECOMMENDED to provision these headers based on [authentication and authorization](#tag/Requests_and_responses/Authentication-and-authorization) runtime data.
+Through the `openehr-audit-details` header, clients MAY supply values for the AUDIT_DETAILS attributes `change_type`, `description`, `committer` and `system_id`.
+The `time_committed` attribute is always set by the server.
 Below is a complex example of these request headers used in a `PUT` action to update a COMPOSITION:
 
 ```http
@@ -85,9 +87,11 @@ openehr-version: lifecycle_state.code_string="532"
 openehr-audit-details: change_type.code_string="251"
 openehr-audit-details: description.value="An updated composition contribution description"
 openehr-audit-details: committer.name="John Doe",committer.external_ref.id="BC8132EA-8F4A-11E7-BB31-BE2E44B06B34",committer.external_ref.namespace="demographic",committer.external_ref.type="PERSON"
+openehr-audit-details: system_id="example.openehr.systemid"
 ```
 
 None of these headers are mandatory, but whatever is provided it MUST be merged with the default VERSION and VERSION.audit_details attributes on commit runtime.
+In particular, when `system_id` is not provided by the client, the server MUST set it to its own configured system identifier.
 
 The list of `code_string` values and their meaning is specified by the [Audit Change Type](https://specifications.openehr.org/releases/TERM/latest/SupportTerminology.html#_audit_change_type) and [Version Lifecycle State](https://specifications.openehr.org/releases/TERM/latest/SupportTerminology.html#_version_lifecycle_state) openEHR terminology vocabularies.
 

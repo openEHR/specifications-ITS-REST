@@ -17,6 +17,13 @@
     </thead>
     <tbody>
     <tr>
+        <td>5.8</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECPR-472" target="_blank" rel="noopener">SPECPR-472</a>:
+            Document support for the <code>system_id</code> attribute on the <code>openehr-audit-details</code> request header</td>
+        <td>P Pazos, S Iancu</td>
+        <td>28 Apr 2026</td>
+    </tr>
+    <tr>
         <td>5.7</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECITS-92" target="_blank" rel="noopener">SPECITS-92</a>:
             Fix alignment issues and sync OpenAPI resource and type schemas with openEHR Reference Model type specifications (mostly RM 1.1.0 related)</td>
