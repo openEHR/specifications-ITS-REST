@@ -1451,6 +1451,39 @@ The `performer` (`PARTY_IDENTIFIED`) is inlined: its attributes are emitted at t
 
 NOTE: PARTICIPATION's `time` (RM `DV_INTERVAL<DV_DATE_TIME>`) is not currently emitted by FLAT mappings. Entries with a constrained participation `time` interval require the canonical RM JSON form.
 
+[[participation_party_related]]
+=== PARTY_RELATED performer
+
+When the `performer` is a `PARTY_RELATED` (a sub-type of `PARTY_IDENTIFIED` that carries a `relationship: DV_CODED_TEXT`), the `relationship` attribute is emitted as a sub-path under the participation, with the standard <<DV_CODED_TEXT,DV_CODED_TEXT>> suffixes (`\|code`, `\|value`, `\|terminology`):
+
+[source,json]
+----
+{
+  "conformance-ehrbase.de.v0/context/_participation:0|function": "next of kin",
+  "conformance-ehrbase.de.v0/context/_participation:0|name": "Susan Doe",
+  "conformance-ehrbase.de.v0/context/_participation:0/relationship|code": "10",
+  "conformance-ehrbase.de.v0/context/_participation:0/relationship|value": "mother",
+  "conformance-ehrbase.de.v0/context/_participation:0/relationship|terminology": "openehr"
+}
+----
+
+[cols="5*", options="header"]
+|===
+| Flat Path
+| Flat type
+| RM Path
+| Required
+| Note
+
+| `/relationship`
+| <<DV_CODED_TEXT,DV_CODED_TEXT>>
+| relationship (when `performer` is `PARTY_RELATED`)
+| (yes)
+| Required when `performer` is a `PARTY_RELATED`; not present otherwise.
+|===
+
+NOTE: Implementation status — ehrbase reads and writes this path (`PartyRelatedStdConfig.addRelationship`); Better's `ParticipationToFlatMapper` currently treats the performer as `PARTY_IDENTIFIED` only and does not emit `relationship`. Producers that need cross-implementation portability for a `PARTY_RELATED` performer should either fall back to canonical RM JSON or limit usage to ehrbase-side flows until parity is established.
+
 [[OBJECT_REF]]
 == OBJECT_REF
 
