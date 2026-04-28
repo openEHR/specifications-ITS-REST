@@ -843,32 +843,82 @@ Algorithm for converting structured format to flat:
 
 == Level Removal
 
-Certain RM types are omitted from paths to simplify the structure.
-These types do not typically carry significant clinical information and would unnecessarily complicate the path structure.
+Paths in Flat and Structured formats omit two distinct kinds of segments relative to the canonical RM path:
 
-=== Always Removed
+1. *Container attribute names* of `LOCATABLE`-to-`LOCATABLE` relationships are never present as path segments -- the parent connects directly to the child via the child's archetype node-id alias.
+2. In addition, certain *wrapper node types* are themselves collapsed -- their archetype node-id is also dropped -- because they act only as structural slots and carry no clinically meaningful identity at that level.
 
-The following node types are always removed from paths, but their respective data carrying attribute is taken as the value at that specific level:
+=== Container Attributes Elided from Paths
 
-* `ITEM_TREE` replaced by `ITEM_TREE.items`
-* `ITEM_LIST` replaced by `ITEM_LIST.items`
-* `ITEM_SINGLE` replaced by `ITEM_SINGLE.item`
-* `ITEM_TABLE` replaced by `ITEM_TABLE.rows`
-* `HISTORY` replaced by `HISTORY.events`
+The following RM attribute names are universally absent from paths:
 
-=== Conditionally Removed
+* `COMPOSITION.content`
+* `SECTION.items`
+* `OBSERVATION.data`, `OBSERVATION.state`, `OBSERVATION.protocol`
+* `EVALUATION.data`, `EVALUATION.protocol`
+* `INSTRUCTION.activities`, `INSTRUCTION.protocol`
+* `ACTION.description`, `ACTION.protocol`
+* `ADMIN_ENTRY.data`
+* `ACTIVITY.description`
+* `HISTORY.events`
+* `EVENT.data`, `EVENT.state`
+* `ITEM_TREE.items`, `ITEM_LIST.items`, `ITEM_SINGLE.item`, `ITEM_TABLE.rows`
+* `CLUSTER.items`
 
-The following types are removed when they meet specific criteria.
+=== Always Collapsed Wrapper Types
 
-An `EVENT` node is removed when:
+In addition to the attribute elision above, the following wrapper node types are themselves collapsed -- their archetype node-id is also dropped, so the parent connects directly to the wrapper's contents:
 
-1. Its maximum occurrence is 1 (i.e., `max = 1`)
-2. AND it has no sibling `EVENT` nodes in the same parent
+* `ITEM_STRUCTURE` (abstract) and its concrete subtypes:
+** `ITEM_TREE`
+** `ITEM_LIST`
+** `ITEM_SINGLE`
+** `ITEM_TABLE`
+* `HISTORY`
+
+These types act as fixed structural slots in their parent (`ENTRY` for the `ITEM_STRUCTURE` family; `OBSERVATION` for `HISTORY`) and have no archetype node-id distinct from that slot.
+
+=== Conditionally Collapsed Wrapper Types
+
+An `EVENT` node is collapsed when both of the following hold:
+
+1. Its maximum occurrence is 1 (i.e., `max = 1`), AND
+2. No sibling `EVENT` nodes (of any concrete event type) exist in the same parent `HISTORY`.
 
 `EVENT` nodes are retained when:
 
-* Multiple `EVENT` types exist in the same `OBSERVATION` (e.g., `POINT_EVENT` and `INTERVAL_EVENT`)
-* The `EVENT` can occur multiple times
+* Multiple `EVENT` types exist in the same parent `HISTORY` (e.g., a `POINT_EVENT` alongside an `INTERVAL_EVENT`), or
+* The `EVENT` can occur multiple times (`max > 1`).
+
+=== Example
+
+Take a single measurement magnitude inside a laboratory result panel. The canonical RM path is:
+
+[source]
+----
+/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]
+  /data[at0001]
+  /events[at0002]
+  /data[at0003]
+  /items[openEHR-EHR-CLUSTER.laboratory_test_panel.v1]
+  /items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]
+  /items[at0001]
+  /value
+----
+
+The same field in Flat form:
+
+[source]
+----
+laboratory_test_report/laboratory_test/laboratory_test_panel/laboratory_result:0/result_value|magnitude
+----
+
+Differences:
+
+* Container attribute names (`content`, `data`, `events`, `items`, `value`) are elided wherever they appear.
+* The `HISTORY` (`at0001`) and `ITEM_TREE` (`at0003`) wrapper nodes are collapsed; the `EVENT` (`at0002`) is conditionally collapsed (here `max=1`, single event type).
+* The `OBSERVATION` and the two `CLUSTER` nodes are retained under their archetype-id aliases (`laboratory_test`, `laboratory_test_panel`, `laboratory_result`); the inner `CLUSTER` repeats, hence the `:0` instance index.
+* `ELEMENT.value` is replaced by the `|magnitude` attribute suffix.
 
 
 == Validation

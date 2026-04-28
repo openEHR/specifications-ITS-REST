@@ -6,10 +6,15 @@
 
 4+^h|*ITS_REST Release (unreleased)*
 
-|[[latest_issue]]1.1.0
+|[[latest_issue]]1.1.1
+|{spec_tickets}/SPECITS-94[SPECITS-94^]. Clarified Level Removal (attribute elision vs wrapper collapse); tightened `EVENT` rule; added example.
+|REST WG
+|[[latest_issue_date]]28 Apr 2026
+
+|1.1.0
 |{spec_tickets}/SPECITS-61[SPECITS-61^]. Cleanup and consolidate Simplified Formats specification; Deprecating Simplified Data Template (SDT) specification
 |REST WG
-|[[latest_issue_date]]05 Nov 2025
+|05 Nov 2025
 
 4+^h|*ITS_REST Release 1.0.3*
 
