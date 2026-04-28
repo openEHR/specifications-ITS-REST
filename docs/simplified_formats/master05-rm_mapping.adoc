@@ -2366,13 +2366,13 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `\|accuracy`
 | Real
@@ -2564,13 +2564,25 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
+
+| `\|accuracy`
+| Real
+| accuracy
+| no
+| Half-range accuracy of measurement. Interpretation depends on `\|accuracy_is_percent`. A value of `0` means accuracy is 100% (no error).
+
+| `\|accuracy_is_percent`
+| Boolean
+| accuracy_is_percent
+| no
+| When `true`, `\|accuracy` is a percentage (0–100); when `false` or absent, `\|accuracy` is an absolute quantity in the same units as the value.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_COUNT>
@@ -2635,13 +2647,13 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_DATE>
@@ -2659,7 +2671,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_DATE_TIME]]
 == DV_DATE_TIME
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_class[DV_DATE] class.
+See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_time_class[DV_DATE_TIME] class.
 
 [source,json]
 ----
@@ -2695,7 +2707,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | value
 | Yes
-| ISO8601 date
+| ISO8601 date-time
 
 | `/_accuracy`
 | <<DV_DURATION,DV_DURATION>>
@@ -2707,13 +2719,13 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_DATE_TIME>
@@ -2730,12 +2742,12 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == DV_TIME
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_class[DV_DATE] class.
+See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_time_class[DV_TIME] class.
 
 [source,json]
 ----
 {
-  "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_date": "2022-01-12"
+  "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_time": "13:22:34.000868+01:00"
 }
 ----
 
@@ -2766,7 +2778,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | value
 | Yes
-| ISO8601 date
+| ISO8601 time
 
 | `/_accuracy`
 | <<DV_DURATION,DV_DURATION>>
@@ -2778,13 +2790,13 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_TIME>
@@ -2847,7 +2859,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | no
 |
 
-| accuracy_is_percent
+| `\|accuracy_is_percent`
 | Boolean
 | accuracy_is_percent
 | no
@@ -2857,13 +2869,13 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_DURATION>
