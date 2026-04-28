@@ -1626,7 +1626,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 | `\|id_namespace`
 | String
-| external_ref.id.namespace
+| external_ref.namespace
 | (yes)
 | required if id is set
 |===
@@ -1685,7 +1685,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 | `\|id_namespace`
 | String
-| external_ref.id.namespace
+| external_ref.namespace
 | (yes)
 | required if id is set
 
@@ -1756,7 +1756,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 | `\|id_namespace`
 | String
-| external_ref.id.namespace
+| external_ref.namespace
 | (yes)
 | required if id is set
 
