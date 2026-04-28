@@ -2470,6 +2470,12 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | yes
 | ValueSet proportion_kind
 
+| `\|precision`
+| Integer
+| precision
+| no
+| Number of decimal places to which `\|numerator` and `\|denominator` are expressed. Value `0` implies integral; `-1` implies no limit.
+
 |
 | Real
 | magnitude
@@ -2480,13 +2486,25 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
+
+| `\|accuracy`
+| Real
+| accuracy
+| no
+| Half-range accuracy of measurement. Interpretation depends on `\|accuracy_is_percent`. A value of `0` means accuracy is 100% (no error).
+
+| `\|accuracy_is_percent`
+| Boolean
+| accuracy_is_percent
+| no
+| When `true`, `\|accuracy` is a percentage (0–100); when `false` or absent, `\|accuracy` is an absolute quantity in the same units as the value.
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_PROPORTION>
