@@ -922,9 +922,9 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | yes
 |
 
-| `\|type`
+| `\|target`
 | STRING
-| type.value
+| target.value
 | yes
 |
 |===
@@ -2918,7 +2918,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | no
 |
 
-| `\|media_type`
+| `\|mediatype`
 | String
 | media_type.code_string
 | Yes
