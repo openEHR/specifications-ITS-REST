@@ -921,6 +921,21 @@ Differences:
 * `ELEMENT.value` is replaced by the `|magnitude` attribute suffix.
 
 
+[[open_value_sets]]
+== Open Value-Sets and the `|other` Suffix
+
+When an archetype constrains a leaf to `DV_CODED_TEXT` with an _open_ value-set -- the bound terminology lists recommended codes but the constraint also accepts values outside the list (`listOpen: true` in the web template; non-`limit-to-list` in ADL) -- the same leaf may at runtime carry either a `DV_CODED_TEXT` (chosen from the list) or a `DV_TEXT` (free-text value).
+
+Many archetypes deliberately combine a recommended coded list with free-text fallback (e.g. `state_of_dress`, `confounding_factors`, `overall_test_status`). Without a dedicated FLAT-level discriminator the `DV_CODED_TEXT` vs `DV_TEXT` branch would have to be inferred from value patterns, which is fragile and ambiguous. The `|other` suffix makes the branch explicit at the FLAT level and removes the need for receivers to reason about it.
+
+* On *write*: clients supply the free-text value via `<path>|other: "<text>"`. The server persists the leaf as a `DV_TEXT` in the canonical RM (not as a `DV_CODED_TEXT` with empty `defining_code`).
+* On *read*: when the leaf carries a `DV_TEXT` whose archetype constraint is `DV_CODED_TEXT` with `listOpen: true`, the server SHOULD emit it via `<path>|other: "<text>"` so that round-trip equality holds at the FLAT level.
+* `|other` is mutually exclusive with `|code`, `|value` and `|terminology` on the same leaf path; servers MUST reject combinations.
+* `|other` MUST be rejected when the constraint is closed (`listOpen: false`).
+
+The per-suffix table is in the <<DV_CODED_TEXT>> class section.
+
+
 == Validation
 
 Implementations SHOULD validate:

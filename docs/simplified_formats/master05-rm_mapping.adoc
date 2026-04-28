@@ -1878,6 +1878,15 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 }
 ----
 
+Free-text value when the archetype constraint allows an open value-set (`listOpen: true` in the web template):
+
+[source,json]
+----
+{
+  "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|other": "free-text value not in the coded list"
+}
+----
+
 [cols="5*", options="header"]
 |===
 | Flat Path
@@ -1904,6 +1913,12 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | (yes)
 | only required for external terminologies
 
+| `\|other`
+| String
+| _value_ (as `<<DV_TEXT,DV_TEXT>>`)
+| no
+| Free-text value used when the constraint allows an open value-set (`listOpen: true` in the web template). When `\|other` is set, `\|code`, `\|value` and `\|terminology` MUST NOT be set; the leaf is serialised in the canonical RM as a `DV_TEXT` rather than a `DV_CODED_TEXT`.
+
 | `\|formatting`
 | String
 | formatting
@@ -1928,6 +1943,16 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | no
 |
 |===
+
+=== When a `DV_CODED_TEXT` becomes a `DV_TEXT`
+
+Where the archetype constraint allows an open value-set (`listOpen: true` in the web template; non-`limit-to-list` in ADL), a leaf bound to `DV_CODED_TEXT` may be populated with a free-text value via the `\|other` suffix. In that case:
+
+* the canonical RM serialisation of the leaf is a <<DV_TEXT,DV_TEXT>>, not a `DV_CODED_TEXT` with empty `defining_code`;
+* `\|other` is mutually exclusive with `\|code`, `\|value` and `\|terminology` on the same leaf;
+* on a closed list (`listOpen: false`), `\|other` MUST be rejected.
+
+See <<open_value_sets>> for the cross-cutting rule and rationale.
 
 [[DV_ORDINAL]]
 == DV_ORDINAL
