@@ -1,0 +1,8 @@
+name: ITS-REST
+title: REST API specifications
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/nav.adoc
+  - modules/simplified_formats/nav.adoc
+  - modules/smart_app_launch/nav.adoc
+  - modules/simplified_data_template/nav.adoc

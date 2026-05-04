@@ -1,174 +1,174 @@
 {
-    "id": "ITS-REST",
-    "title": "REST API specifications",
-    "description": "openEHR REST API specifications Component (ITS-REST)",
-    "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services",
-    "specifications": [
-        {
-            "id": "overview",
-            "title": "REST API Overview",
-            "title_short": "Overview",
-            "description": "openEHR REST API Overview",
-            "summary": "The overview of various aspects and requirements of openEHR REST APIs.",
-            "micro_summary": "REST API Overview",
-            "copyright_year": "2018",
-            "spec_status": "STABLE",
-            "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, headers, http"
-        },
-        {
-            "id": "system",
-            "title": "System REST API",
-            "title_short": "System",
-            "description": "openEHR System REST API",
-            "summary": "This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with System openEHR API in a RESTful manner.",
-            "micro_summary": "System API",
-            "copyright_year": "2018",
-            "spec_status": "STABLE",
-            "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, System"
-        },
-        {
-            "id": "ehr",
-            "title": "EHR REST API",
-            "title_short": "EHR API",
-            "description": "openEHR EHR REST API",
-            "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR EHR API in a RESTful manner.",
-            "micro_summary": "EHR API",
-            "copyright_year": "2018",
-            "spec_status": "STABLE",
-            "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, EHR"
-        },
-        {
-            "id": "query",
-            "title": "Query REST API",
-            "title_short": "Query API",
-            "description": "openEHR Query REST API",
-            "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR Query API in a RESTful manner.",
-            "micro_summary": "Query API",
-            "copyright_year": "2018",
-            "spec_status": "STABLE",
-            "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, query, aql"
-        },
-        {
-            "id": "definition",
-            "title": "Definition REST API",
-            "title_short": "Definition API",
-            "description": "openEHR Definition REST API",
-            "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with the openEHR Definition API in a RESTful manner. Definitions includes Archetypes, Templates and Operational Templates (OPTs).",
-            "micro_summary": "Definition API",
-            "copyright_year": "2018",
-            "spec_status": "STABLE",
-            "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, definitions, resources, templates"
-        },
-        {
-            "id": "demographic",
-            "title": "DEMOGRAPHIC REST API",
-            "title_short": "DEMOGRAPHIC API",
-            "description": "openEHR DEMOGRAPHIC REST API",
-            "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR DEMOGRAPHIC API in a RESTful manner.",
-            "micro_summary": "DEMOGRAPHIC API",
-            "copyright_year": "2024",
-            "spec_status": "DEVELOPMENT",
-            "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, DEMOGRAPHIC"
-        },
-        {
-            "id": "admin",
-            "title": "Admin REST API",
-            "title_short": "Admin API",
-            "description": "openEHR Admin REST API",
-            "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR Admin API in a RESTful manner.",
-            "micro_summary": "Admin API",
-            "copyright_year": "2025",
-            "spec_status": "DEVELOPMENT",
-            "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, Admin"
-        },
-        {
-            "id": "simplified_formats",
-            "title": "Simplified Formats for openEHR Data",
-            "title_short": "Formats",
-            "description": "Simplified Formats (flat, structured) for openEHR Data",
-            "summary": "Simplified Formats (flat, structured) for serialization of openEHR Data.",
-            "micro_summary": "Simplified Formats",
-            "copyright_year": "2019",
-            "spec_status": "STABLE",
-            "keywords": "JSON, REST, web template, simplified data, flat, structured, simplified formats, SDT, simSDT, structSDT"
-        },
-        {
-            "id": "smart_app_launch",
-            "title": "SMART on openEHR (SMART)",
-            "title_short": "SMART",
-            "description": "openEHR SMART App Launch and Service Discovery Framework (SMART)",
-            "summary": "openEHR SMART App Launch and Service Discovery Framework.",
-            "micro_summary": "SMART on openEHR",
-            "copyright_year": "2023",
-            "spec_status": "DEVELOPMENT",
-            "keywords": "JSON, REST, SMART, OAuth2, OIDC, Authentication, Authorization, Application, App"
-        },
-        {
-            "id": "REST_OAS_files",
-            "title": "REST API OpenAPI files",
-            "title_short": "OAS 3.0",
-            "description": "REST API OpenAPI files",
-            "summary": "The openEHR REST API specifications as OpenAPI Specification v3.0 files in YAML format.",
-            "micro_summary": "REST API OpenAPI files",
-            "link": "https://github.com/openEHR/specifications-ITS-REST/tree/master/computable/OAS",
-            "copyright_year": "2022",
-            "spec_status": "TRIAL",
-            "keywords": "REST, API, OAS, Specification, YAML"
-        }
-    ],
-    "expressions": [
-        {
-            "id": "REST API src",
-            "type": "url",
-            "title": "REST API OpenAPI files",
-            "description": "REST API specifications as OpenAPI Specification v3.0 files.",
-            "link": "https://github.com/openEHR/specifications-ITS-REST/tree/master/computable/OAS"
-        }
-    ],
-    "jira": {
-        "open_issues":"11113",
-        "roadmap": "SPECITS"
+  "id": "ITS-REST",
+  "title": "REST API specifications",
+  "description": "openEHR REST API specifications Component (ITS-REST)",
+  "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services",
+  "specifications": [
+    {
+      "id": "overview",
+      "title": "REST API Overview",
+      "title_short": "Overview",
+      "description": "openEHR REST API Overview",
+      "summary": "The overview of various aspects and requirements of openEHR REST APIs.",
+      "micro_summary": "REST API Overview",
+      "copyright_year": "2018",
+      "spec_status": "STABLE",
+      "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, headers, http"
     },
-    "releases": [
-        {
-            "id": "1.1.0",
-            "date": "",
-            "jira": {
-                "crs": "SPECITS/versions/12529",
-                "prs": "SPECPR/versions/12532"
-            }
-        },
-        {
-            "id": "1.0.3",
-            "date": "2022-12-19",
-            "jira": {
-                "crs": "SPECITS/versions/12565",
-                "prs": "SPECPR/versions/12566"
-            }
-        },
-        {
-            "id": "1.0.2",
-            "date": "2021-04-24",
-            "jira": {
-                "crs": "SPECITS/versions/12556",
-                "prs": "SPECPR/versions/12558"
-            }
-        },
-        {
-            "id": "1.0.1",
-            "date": "2019-11-03",
-            "jira": {
-                "crs": "SPECITS/versions/12528",
-                "prs": "SPECPR/versions/12531"
-            }
-        },
-        {
-            "id": "1.0.0",
-            "date": "2018-12-07",
-            "jira": {
-                "crs": "SPECITS/versions/12521",
-                "prs": "SPECPR/versions/12540"
-            }
-        }
-    ]
+    {
+      "id": "system",
+      "title": "System REST API",
+      "title_short": "System",
+      "description": "openEHR System REST API",
+      "summary": "This specification describes service endpoints, resources and operations as well as details of requests and responses that interacts with System openEHR API in a RESTful manner.",
+      "micro_summary": "System API",
+      "copyright_year": "2018",
+      "spec_status": "STABLE",
+      "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, System"
+    },
+    {
+      "id": "ehr",
+      "title": "EHR REST API",
+      "title_short": "EHR API",
+      "description": "openEHR EHR REST API",
+      "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR EHR API in a RESTful manner.",
+      "micro_summary": "EHR API",
+      "copyright_year": "2018",
+      "spec_status": "STABLE",
+      "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, EHR"
+    },
+    {
+      "id": "query",
+      "title": "Query REST API",
+      "title_short": "Query API",
+      "description": "openEHR Query REST API",
+      "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR Query API in a RESTful manner.",
+      "micro_summary": "Query API",
+      "copyright_year": "2018",
+      "spec_status": "STABLE",
+      "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, query, aql"
+    },
+    {
+      "id": "definition",
+      "title": "Definition REST API",
+      "title_short": "Definition API",
+      "description": "openEHR Definition REST API",
+      "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with the openEHR Definition API in a RESTful manner. Definitions includes Archetypes, Templates and Operational Templates (OPTs).",
+      "micro_summary": "Definition API",
+      "copyright_year": "2018",
+      "spec_status": "STABLE",
+      "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, definitions, resources, templates"
+    },
+    {
+      "id": "demographic",
+      "title": "DEMOGRAPHIC REST API",
+      "title_short": "DEMOGRAPHIC API",
+      "description": "openEHR DEMOGRAPHIC REST API",
+      "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR DEMOGRAPHIC API in a RESTful manner.",
+      "micro_summary": "DEMOGRAPHIC API",
+      "copyright_year": "2024",
+      "spec_status": "DEVELOPMENT",
+      "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, DEMOGRAPHIC"
+    },
+    {
+      "id": "admin",
+      "title": "Admin REST API",
+      "title_short": "Admin API",
+      "description": "openEHR Admin REST API",
+      "summary": "This specification describes service endpoints, resources, functions and operations as well as details of requests and responses that interacts with an openEHR Admin API in a RESTful manner.",
+      "micro_summary": "Admin API",
+      "copyright_year": "2025",
+      "spec_status": "DEVELOPMENT",
+      "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services, Admin"
+    },
+    {
+      "id": "simplified_formats",
+      "title": "Simplified Formats for openEHR Data",
+      "title_short": "Formats",
+      "description": "Simplified Formats (flat, structured) for openEHR Data",
+      "summary": "Simplified JSON and XML formats for use with openEHR REST APIs. Provides a more compact, approachable data representation for common EHR data exchange scenarios and integration use cases. The simplified formats reduce nesting depth and remove meta-model artefacts such as explicit type discriminators that are unnecessary for common integration scenarios. They are defined as a subset of the canonical formats, with a normalisation mapping allowing round-trip conversion without data loss for supported data types.",
+      "micro_summary": "Simplified Formats",
+      "copyright_year": "2019",
+      "spec_status": "STABLE",
+      "keywords": "JSON, REST, web template, simplified data, flat, structured, simplified formats, SDT, simSDT, structSDT"
+    },
+    {
+      "id": "smart_app_launch",
+      "title": "SMART on openEHR (SMART)",
+      "title_short": "SMART",
+      "description": "openEHR SMART App Launch and Service Discovery Framework (SMART)",
+      "summary": "SMART on openEHR profile enabling SMART App Launch protocol integration with openEHR platforms. Defines the authentication and authorisation flow for standards-based application access to EHR data. The profile specifies the OAuth 2.0 scopes, launch context parameters, and token exchange flow adapted to openEHR's EHR and patient identity model. It enables SMART-compatible EHR apps to launch within an openEHR platform context without requiring bespoke authentication integration.",
+      "micro_summary": "SMART on openEHR",
+      "copyright_year": "2023",
+      "spec_status": "DEVELOPMENT",
+      "keywords": "JSON, REST, SMART, OAuth2, OIDC, Authentication, Authorization, Application, App"
+    },
+    {
+      "id": "REST_OAS_files",
+      "title": "REST API OpenAPI files",
+      "title_short": "OAS 3.0",
+      "description": "REST API OpenAPI files",
+      "summary": "The openEHR REST API specifications as OpenAPI Specification v3.0 files in YAML format.",
+      "micro_summary": "REST API OpenAPI files",
+      "link": "https://github.com/openEHR/specifications-ITS-REST/tree/master/computable/OAS",
+      "copyright_year": "2022",
+      "spec_status": "TRIAL",
+      "keywords": "REST, API, OAS, Specification, YAML"
+    }
+  ],
+  "expressions": [
+    {
+      "id": "REST API src",
+      "type": "url",
+      "title": "REST API OpenAPI files",
+      "description": "REST API specifications as OpenAPI Specification v3.0 files.",
+      "link": "https://github.com/openEHR/specifications-ITS-REST/tree/master/computable/OAS"
+    }
+  ],
+  "jira": {
+    "open_issues": "11113",
+    "roadmap": "SPECITS"
+  },
+  "releases": [
+    {
+      "id": "1.1.0",
+      "date": "",
+      "jira": {
+        "crs": "SPECITS/versions/12529",
+        "prs": "SPECPR/versions/12532"
+      }
+    },
+    {
+      "id": "1.0.3",
+      "date": "2022-12-19",
+      "jira": {
+        "crs": "SPECITS/versions/12565",
+        "prs": "SPECPR/versions/12566"
+      }
+    },
+    {
+      "id": "1.0.2",
+      "date": "2021-04-24",
+      "jira": {
+        "crs": "SPECITS/versions/12556",
+        "prs": "SPECPR/versions/12558"
+      }
+    },
+    {
+      "id": "1.0.1",
+      "date": "2019-11-03",
+      "jira": {
+        "crs": "SPECITS/versions/12528",
+        "prs": "SPECPR/versions/12531"
+      }
+    },
+    {
+      "id": "1.0.0",
+      "date": "2018-12-07",
+      "jira": {
+        "crs": "SPECITS/versions/12521",
+        "prs": "SPECPR/versions/12540"
+      }
+    }
+  ]
 }

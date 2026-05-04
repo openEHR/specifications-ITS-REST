@@ -1,0 +1,8 @@
+* xref:index.adoc[Simplified Formats for openEHR Data]
+** xref:overview.adoc[Overview]
+** xref:design_rationale.adoc[Design Rationale]
+** xref:basic_concepts.adoc[Basic Concepts]
+** xref:rm_mapping.adoc[RM Mappings]
+** xref:context_information.adoc[Context Information]
+** xref:appendix.adoc[Appendix]
+

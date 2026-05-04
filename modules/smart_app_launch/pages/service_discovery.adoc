@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Service Discovery
 
 A _Platform_ typically exposes multiple service endpoints.

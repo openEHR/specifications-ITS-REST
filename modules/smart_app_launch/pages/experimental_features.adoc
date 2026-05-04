@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Experimental features
 
 The following concepts and aspects are considered experimental.

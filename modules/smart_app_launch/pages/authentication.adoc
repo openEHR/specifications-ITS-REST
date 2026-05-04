@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Authentication
 
 In line with the SMART framework, authentication is typically an integral part of the OAuth 2.0 authorization process.

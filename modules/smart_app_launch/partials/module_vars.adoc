@@ -1,5 +1,10 @@
+include::ROOT:partial$component_vars.adoc[]
+
 :spec_title: SMART on openEHR (SMART)
 :copyright_year: 2023
 :spec_status: DEVELOPMENT
 :keywords: JSON, REST, SMART, OAuth2, OIDC, Authentication, Authorization, Application, App
 :description: openEHR SMART App Launch and Service Discovery Framework (SMART)
+
+:latest_issue: 1.1.0
+:latest_issue_date: 20 May 2025

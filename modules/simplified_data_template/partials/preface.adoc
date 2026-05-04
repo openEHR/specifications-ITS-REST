@@ -1,9 +1,0 @@
-== Preface
-
-== Purpose
-
-This document describes a 'simplified template' (ST) format, along with various concrete data formats, intended to be easier to use than the canonical formats, for typical developers with minimal exposure to openEHR. These formats are designed to enable easier creation of openEHR content (i.e. Compositions etc).
-
-== Status
-
-This specification has been updated and as of {openehr_its_rest_releases}[Release 1.1.0] is retired in favour of the {openehr_simplified_formats}[Simplified Formats] specification.

@@ -1,8 +1,10 @@
+include::partial$module_vars.adoc[]
+
 = RM Mappings
 
 == COMPOSITION
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class[COMPOSITION] class.
+See RM specification of the xref:{class_composition}[COMPOSITION] class.
 
 [source,json]
 ----
@@ -132,7 +134,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == ADMIN_ENTRY
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_admin_entry_class[ADMIN_ENTRY] class.
+See RM specification of the xref:{class_admin_entry}[ADMIN_ENTRY] class.
 
 [source,json]
 ----
@@ -231,7 +233,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == INSTRUCTION
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_instruction_class[INSTRUCTION] class.
+See RM specification of the xref:{class_instruction}[INSTRUCTION] class.
 
 [source,json]
 ----
@@ -371,7 +373,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == ACTION
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_evaluation_class[EVALUATION] class.
+See RM specification of the xref:{class_evaluation}[EVALUATION] class.
 
 [source,json]
 ----
@@ -511,7 +513,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == EVALUATION
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_evaluation_class[EVALUATION] class.
+See RM specification of the xref:{class_evaluation}[EVALUATION] class.
 
 [source,json]
 ----
@@ -622,7 +624,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == OBSERVATION
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_composition_class[COMPOSITION] class.
+See RM specification of the xref:{class_composition}[COMPOSITION] class.
 
 [source,json]
 ----
@@ -759,7 +761,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == ELEMENT
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_structures.html#_element_class[ELEMENT] class.
+See RM specification of the xref:{class_element}[ELEMENT] class.
 
 [NOTE]
 ====
@@ -839,7 +841,7 @@ Using FLAT format there is no difference between an ELEMENT and its value.
 
 == CLUSTER
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_structures.html#_cluster_class[CLUSTER] class.
+See RM specification of the xref:{class_cluster}[CLUSTER] class.
 
 [source,json]
 ----
@@ -891,7 +893,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[LINK]]
 == LINK
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/common.html#_link_class[LINK] class.
+See RM specification of the xref:{class_link}[LINK] class.
 
 [source,json]
 ----
@@ -932,7 +934,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[FEEDER_AUDIT]]
 == FEEDER_AUDIT
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/common.html#_feeder_audit_class[FEEDER_AUDIT] class.
+See RM specification of the xref:{class_feeder_audit}[FEEDER_AUDIT] class.
 
 [source,json]
 ----
@@ -1042,7 +1044,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == FEEDER_AUDIT_DETAILS
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/common.html#_feeder_audit_details_class[FEEDER_AUDIT_DETAILS] class.
+See RM specification of the xref:{class_feeder_audit_details}[FEEDER_AUDIT_DETAILS] class.
 
 [source,json]
 ----
@@ -1127,7 +1129,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == ACTIVITY
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_activity_class[ACTIVITY] class.
+See RM specification of the xref:{class_activity}[ACTIVITY] class.
 
 [source,json]
 ----
@@ -1172,7 +1174,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[ISM_TRANSITION]]
 == ISM_TRANSITION
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_activity_class[ACTIVITY] class.
+See RM specification of the xref:{class_activity}[ACTIVITY] class.
 
 [source,json]
 ----
@@ -1235,7 +1237,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[INSTRUCTION_DETAILS]]
 == INSTRUCTION_DETAILS
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_instruction_details_class[INSTRUCTION_DETAILS] class.
+See RM specification of the xref:{class_instruction_details}[INSTRUCTION_DETAILS] class.
 
 [source,json]
 ----
@@ -1276,7 +1278,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[EVENT_CONTEXT]]
 == EVENT_CONTEXT
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_event_context_class[EVENT_CONTEXT] class.
+See RM specification of the xref:{class_event_context}[EVENT_CONTEXT] class.
 
 [source,json]
 ----
@@ -1352,7 +1354,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[OBJECT_REF]]
 == OBJECT_REF
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_event_context_class[EVENT_CONTEXT] class.
+See RM specification of the xref:{class_event_context}[EVENT_CONTEXT] class.
 
 [source,json]
 ----
@@ -1399,7 +1401,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == INTERVAL_EVENT
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_structures.html#_interval_event_class[INTERVAL_EVENT] class.
+See RM specification of the xref:{class_interval_event}[INTERVAL_EVENT] class.
 
 [source,json]
 ----
@@ -1455,7 +1457,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == POINT_EVENT
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/ehr.html#_event_context_class[EVENT_CONTEXT] class.
+See RM specification of the xref:{class_event_context}[EVENT_CONTEXT] class.
 
 [source,json]
 ----
@@ -1483,14 +1485,14 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[PARTY_PROXY]]
 == PARTY_PROXY
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/common.html#_party_proxy_class[PARTY_PROXY] class.
+See RM specification of the xref:{class_party_proxy}[PARTY_PROXY] class.
 
 See <<PARTY_SELF,PARTY_SELF>>, <<PARTY_IDENTIFIED,PARTY_IDENTIFIED>> and <<PARTY_RELATED,PARTY_RELATED>>.
 
 [[PARTY_SELF]]
 == PARTY_SELF
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/common.html#_party_self_class[PARTY_SELF] class.
+See RM specification of the xref:{class_party_self}[PARTY_SELF] class.
 
 [source,json]
 ----
@@ -1532,7 +1534,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[PARTY_IDENTIFIED]]
 == PARTY_IDENTIFIED
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/common.html#_party_identified_class[PARTY_IDENTIFIED] class.
+See RM specification of the xref:{class_party_identified}[PARTY_IDENTIFIED] class.
 
 [source,json]
 ----
@@ -1597,7 +1599,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[PARTY_RELATED]]
 == PARTY_RELATED
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/common.html#_party_related_class[PARTY_RELATED] class.
+See RM specification of the xref:{class_party_related}[PARTY_RELATED] class.
 
 [source,json]
 ----
@@ -1674,7 +1676,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_TEXT]]
 == DV_TEXT
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_text_class[DV_TEXT] class.
+See RM specification of the xref:{class_dv_text}[DV_TEXT] class.
 
 [source,json]
 ----
@@ -1744,7 +1746,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[CODE_PHRASE]]
 == CODE_PHRASE
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_code_phrase_class[CODE_PHRASE] class.
+See RM specification of the xref:{class_code_phrase}[CODE_PHRASE] class.
 
 [source,json]
 ----
@@ -1793,7 +1795,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[TERM_MAPPING]]
 == TERM_MAPPING
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_term_mapping_class[TERM_MAPPING] class.
+See RM specification of the xref:{class_term_mapping}[TERM_MAPPING] class.
 
 [source,json]
 ----
@@ -1846,7 +1848,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_CODED_TEXT]]
 == DV_CODED_TEXT
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_coded_text_class[DV_CODED_TEXT] class.
+See RM specification of the xref:{class_dv_coded_text}[DV_CODED_TEXT] class.
 
 [source,json]
 ----
@@ -1932,7 +1934,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_ORDINAL]]
 == DV_ORDINAL
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_ordinal_class[DV_ORDINAL] class.
+See RM specification of the xref:{class_dv_ordinal}[DV_ORDINAL] class.
 
 [source,json]
 ----
@@ -2006,7 +2008,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_BOOLEAN]]
 == DV_BOOLEAN
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_boolean_class[DV_BOOLEAN] class.
+See RM specification of the xref:{class_dv_boolean}[DV_BOOLEAN] class.
 
 [source,json]
 ----
@@ -2032,7 +2034,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == DV_URI
 
-See RM specification of the https://specifications.openehr.org/releases/RM/Release-1.0.4/data_types.html#_dv_uri_class[DV_URI] class.
+See RM specification of the xref:{class_dv_uri}[DV_URI] class.
 
 [source,json]
 ----
@@ -2058,7 +2060,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/Relea
 
 == DV_EHR_URI
 
-See RM specification of the https://specifications.openehr.org/releases/RM/Release-1.0.4/data_types.html#_dv_ehr_uri_class[DV_EHR_URI] class.
+See RM specification of the xref:{class_dv_ehr_uri}[DV_EHR_URI] class.
 
 [source,json]
 ----
@@ -2085,7 +2087,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/Relea
 [[DV_IDENTIFIER]]
 == DV_IDENTIFIER
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_quantity_class[DV_QUANTITY] class.
+See RM specification of the xref:{class_dv_quantity}[DV_QUANTITY] class.
 
 [source,json]
 ----
@@ -2139,7 +2141,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == DV_QUANTITY
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_quantity_class[DV_QUANTITY] class.
+See RM specification of the xref:{class_dv_quantity}[DV_QUANTITY] class.
 
 [source,json]
 ----
@@ -2234,7 +2236,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == DV_PROPORTION
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_proportion_class[DV_PROPORTION] class.
+See RM specification of the xref:{class_dv_proportion}[DV_PROPORTION] class.
 
 [source,json]
 ----
@@ -2336,7 +2338,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == DV_COUNT
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_count_class[DV_COUNT] class.
+See RM specification of the xref:{class_dv_count}[DV_COUNT] class.
 
 [source,json]
 ----
@@ -2402,7 +2404,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == DV_DATE
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_class[DV_DATE] class.
+See RM specification of the xref:{class_dv_date}[DV_DATE] class.
 
 [source,json]
 ----
@@ -2474,7 +2476,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_DATE_TIME]]
 == DV_DATE_TIME
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_class[DV_DATE] class.
+See RM specification of the xref:{class_dv_date}[DV_DATE] class.
 
 [source,json]
 ----
@@ -2545,7 +2547,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == DV_TIME
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_class[DV_DATE] class.
+See RM specification of the xref:{class_dv_date}[DV_DATE] class.
 
 [source,json]
 ----
@@ -2617,7 +2619,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_DURATION]]
 == DV_DURATION
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_duration_class[DV_DURATION] class.
+See RM specification of the xref:{class_dv_duration}[DV_DURATION] class.
 
 [source,json]
 ----
@@ -2696,7 +2698,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[REFERENCE_RANGE]]
 == REFERENCE_RANGE
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_reference_range_class[REFERENCE_RANGE] class.
+See RM specification of the xref:{class_reference_range}[REFERENCE_RANGE] class.
 
 [source,json]
 ----
@@ -2783,7 +2785,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_PARSABLE]]
 == DV_PARSABLE
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_parsable_class[DV_PARSABLE] class.
+See RM specification of the xref:{class_dv_parsable}[DV_PARSABLE] class.
 
 [source,json]
 ----
@@ -2841,7 +2843,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_MULTIMEDIA]]
 == DV_MULTIMEDIA
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_multimedia_class[DV_MULTIMEDIA] class.
+See RM specification of the xref:{class_dv_multimedia}[DV_MULTIMEDIA] class.
 
 [source,json]
 ----
@@ -2950,7 +2952,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_INTERVAL]]
 == DV_INTERVAL
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_interval_class[DV_INTERVAL] class.
+See RM specification of the xref:{class_dv_interval}[DV_INTERVAL] class.
 
 [source,json]
 ----

@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Context Information
 
 To simplify the input, the flat formate offers the option to set context values which set default values in the rm-tree.

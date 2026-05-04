@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -7,7 +9,14 @@
 //
 
 
-= {spec_title}
+= {spec_title} [.spec-status.spec-status-retired]#{spec_status}#
+
+== Purpose
+
+This document describes a 'simplified template' (ST) format, along with various concrete data formats, intended to be easier to use than the canonical formats, for typical developers with minimal exposure to openEHR. These formats are designed to enable easier creation of openEHR content (i.e. Compositions etc).
+
+
+
 
 
 //
@@ -43,3 +52,4 @@
 //== References
 //
 //bibliography::[]
+

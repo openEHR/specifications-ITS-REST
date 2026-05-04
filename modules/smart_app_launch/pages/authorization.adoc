@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Authorization
 
 Both *patient-facing* and *practitioner-facing* applications have specific authorization requirements that extend beyond the capabilities of the core {ietf_html}/rfc6749[OAuth 2.0 Authorization Framework^].

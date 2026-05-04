@@ -1,0 +1,11 @@
+* xref:index.adoc[SMART on openEHR (SMART)]
+** xref:overview.adoc[Overview]
+** xref:registration.adoc[Application Registration]
+** xref:service_discovery.adoc[Service Discovery]
+** xref:application_types.adoc[Application Types]
+** xref:authentication.adoc[Authentication]
+** xref:authorization.adoc[Authorization]
+** xref:scopes.adoc[Scopes]
+** xref:experimental_features.adoc[Experimental features]
+** xref:appendix.adoc[Appendix]
+
