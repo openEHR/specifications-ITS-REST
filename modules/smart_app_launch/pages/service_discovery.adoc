@@ -8,7 +8,7 @@ It allows a _Platform_ to advertise <<_authentication_endpoints,authentications>
 
 [.text-center]
 .SMART Service Discovery
-image::{diagrams_uri}/smart_service_discovery.svg[id=smart_service_discovery, align="center"]
+image::diagrams/smart_service_discovery.svg[id=smart_service_discovery, align="center"]
 
 The configuration endpoint should be always available relative to the _Platform_ base URL.
 For example, given a base URL as `\https://platform.example.com`, the SMART configuration endpoint must be available at `\https://platform.example.com/.well-known/smart-configuration`.

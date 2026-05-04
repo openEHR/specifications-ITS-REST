@@ -1,4 +1,5 @@
-= Amendment Record
+
+== Amendment Record
 
 [cols="1,6,2,2", options="header"]
 |===
