@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="description" content="Simplified Formats (flat, structured) for openEHR Data">
 <meta name="keywords" content="JSON, REST, web template, simplified data, flat, structured, simplified formats, SDT, simSDT, structSDT">
 <title>Simplified Formats for openEHR Data</title>
@@ -89,11 +89,14 @@
 </li>
 <li><a href="#_level_removal">4.6. Level Removal</a>
 <ul class="sectlevel3">
-<li><a href="#_always_removed">4.6.1. Always Removed</a></li>
-<li><a href="#_conditionally_removed">4.6.2. Conditionally Removed</a></li>
+<li><a href="#_container_attributes_elided_from_paths">4.6.1. Container Attributes Elided from Paths</a></li>
+<li><a href="#_always_collapsed_wrapper_types">4.6.2. Always Collapsed Wrapper Types</a></li>
+<li><a href="#_conditionally_collapsed_wrapper_types">4.6.3. Conditionally Collapsed Wrapper Types</a></li>
+<li><a href="#_example">4.6.4. Example</a></li>
 </ul>
 </li>
-<li><a href="#_validation">4.7. Validation</a></li>
+<li><a href="#open_value_sets">4.7. Open Value-Sets and the <code>|other</code> Suffix</a></li>
+<li><a href="#_validation">4.8. Validation</a></li>
 </ul>
 </li>
 <li><a href="#_rm_mappings">5. RM Mappings</a>
@@ -113,33 +116,42 @@
 <li><a href="#ISM_TRANSITION">5.13. ISM_TRANSITION</a></li>
 <li><a href="#INSTRUCTION_DETAILS">5.14. INSTRUCTION_DETAILS</a></li>
 <li><a href="#EVENT_CONTEXT">5.15. EVENT_CONTEXT</a></li>
-<li><a href="#OBJECT_REF">5.16. OBJECT_REF</a></li>
-<li><a href="#_interval_event">5.17. INTERVAL_EVENT</a></li>
-<li><a href="#_point_event">5.18. POINT_EVENT</a></li>
-<li><a href="#PARTY_PROXY">5.19. PARTY_PROXY</a></li>
-<li><a href="#PARTY_SELF">5.20. PARTY_SELF</a></li>
-<li><a href="#PARTY_IDENTIFIED">5.21. PARTY_IDENTIFIED</a></li>
-<li><a href="#PARTY_RELATED">5.22. PARTY_RELATED</a></li>
-<li><a href="#DV_TEXT">5.23. DV_TEXT</a></li>
-<li><a href="#CODE_PHRASE">5.24. CODE_PHRASE</a></li>
-<li><a href="#TERM_MAPPING">5.25. TERM_MAPPING</a></li>
-<li><a href="#DV_CODED_TEXT">5.26. DV_CODED_TEXT</a></li>
-<li><a href="#DV_ORDINAL">5.27. DV_ORDINAL</a></li>
-<li><a href="#DV_BOOLEAN">5.28. DV_BOOLEAN</a></li>
-<li><a href="#_dv_uri">5.29. DV_URI</a></li>
-<li><a href="#_dv_ehr_uri">5.30. DV_EHR_URI</a></li>
-<li><a href="#DV_IDENTIFIER">5.31. DV_IDENTIFIER</a></li>
-<li><a href="#_dv_quantity">5.32. DV_QUANTITY</a></li>
-<li><a href="#_dv_proportion">5.33. DV_PROPORTION</a></li>
-<li><a href="#_dv_count">5.34. DV_COUNT</a></li>
-<li><a href="#_dv_date">5.35. DV_DATE</a></li>
-<li><a href="#DV_DATE_TIME">5.36. DV_DATE_TIME</a></li>
-<li><a href="#_dv_time">5.37. DV_TIME</a></li>
-<li><a href="#DV_DURATION">5.38. DV_DURATION</a></li>
-<li><a href="#REFERENCE_RANGE">5.39. REFERENCE_RANGE</a></li>
-<li><a href="#DV_PARSABLE">5.40. DV_PARSABLE</a></li>
-<li><a href="#DV_MULTIMEDIA">5.41. DV_MULTIMEDIA</a></li>
-<li><a href="#DV_INTERVAL">5.42. DV_INTERVAL</a></li>
+<li><a href="#PARTICIPATION">5.16. PARTICIPATION</a>
+<ul class="sectlevel3">
+<li><a href="#participation_party_related">5.16.1. PARTY_RELATED performer</a></li>
+</ul>
+</li>
+<li><a href="#OBJECT_REF">5.17. OBJECT_REF</a></li>
+<li><a href="#_interval_event">5.18. INTERVAL_EVENT</a></li>
+<li><a href="#_point_event">5.19. POINT_EVENT</a></li>
+<li><a href="#PARTY_PROXY">5.20. PARTY_PROXY</a></li>
+<li><a href="#PARTY_SELF">5.21. PARTY_SELF</a></li>
+<li><a href="#PARTY_IDENTIFIED">5.22. PARTY_IDENTIFIED</a></li>
+<li><a href="#PARTY_RELATED">5.23. PARTY_RELATED</a></li>
+<li><a href="#DV_TEXT">5.24. DV_TEXT</a></li>
+<li><a href="#CODE_PHRASE">5.25. CODE_PHRASE</a></li>
+<li><a href="#TERM_MAPPING">5.26. TERM_MAPPING</a></li>
+<li><a href="#DV_CODED_TEXT">5.27. DV_CODED_TEXT</a>
+<ul class="sectlevel3">
+<li><a href="#_when_a_dv_coded_text_becomes_a_dv_text">5.27.1. When a <code>DV_CODED_TEXT</code> becomes a <code>DV_TEXT</code></a></li>
+</ul>
+</li>
+<li><a href="#DV_ORDINAL">5.28. DV_ORDINAL</a></li>
+<li><a href="#DV_BOOLEAN">5.29. DV_BOOLEAN</a></li>
+<li><a href="#_dv_uri">5.30. DV_URI</a></li>
+<li><a href="#_dv_ehr_uri">5.31. DV_EHR_URI</a></li>
+<li><a href="#DV_IDENTIFIER">5.32. DV_IDENTIFIER</a></li>
+<li><a href="#_dv_quantity">5.33. DV_QUANTITY</a></li>
+<li><a href="#_dv_proportion">5.34. DV_PROPORTION</a></li>
+<li><a href="#_dv_count">5.35. DV_COUNT</a></li>
+<li><a href="#_dv_date">5.36. DV_DATE</a></li>
+<li><a href="#DV_DATE_TIME">5.37. DV_DATE_TIME</a></li>
+<li><a href="#_dv_time">5.38. DV_TIME</a></li>
+<li><a href="#DV_DURATION">5.39. DV_DURATION</a></li>
+<li><a href="#REFERENCE_RANGE">5.40. REFERENCE_RANGE</a></li>
+<li><a href="#DV_PARSABLE">5.41. DV_PARSABLE</a></li>
+<li><a href="#DV_MULTIMEDIA">5.42. DV_MULTIMEDIA</a></li>
+<li><a href="#DV_INTERVAL">5.43. DV_INTERVAL</a></li>
 </ul>
 </li>
 <li><a href="#_context_information">6. Context Information</a>
@@ -219,7 +231,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2019 - 2025 The openEHR Foundation</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2019 - 2026 The openEHR Foundation</th>
 </tr>
 </thead>
 <tbody>
@@ -2328,49 +2340,111 @@ The <code>ctx/time</code> field, if not explicitly set, defaults to the current 
 <div class="sect2">
 <h3 id="_level_removal"><a class="anchor" href="#_level_removal"></a>4.6. Level Removal</h3>
 <div class="paragraph">
-<p>Certain RM types are omitted from paths to simplify the structure.
-These types do not typically carry significant clinical information and would unnecessarily complicate the path structure.</p>
+<p>Paths in Flat and Structured formats omit two distinct kinds of segments relative to the canonical RM path:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Container attribute names</strong> of <code>LOCATABLE</code>-to-<code>LOCATABLE</code> relationships are never present as path segments&#8201;&#8212;&#8201;the parent connects directly to the child via the child&#8217;s archetype node-id alias.</p>
+</li>
+<li>
+<p>In addition, certain <strong>wrapper node types</strong> are themselves collapsed&#8201;&#8212;&#8201;their archetype node-id is also dropped&#8201;&#8212;&#8201;because they act only as structural slots and carry no clinically meaningful identity at that level.</p>
+</li>
+</ol>
 </div>
 <div class="sect3">
-<h4 id="_always_removed"><a class="anchor" href="#_always_removed"></a>4.6.1. Always Removed</h4>
+<h4 id="_container_attributes_elided_from_paths"><a class="anchor" href="#_container_attributes_elided_from_paths"></a>4.6.1. Container Attributes Elided from Paths</h4>
 <div class="paragraph">
-<p>The following node types are always removed from paths, but their respective data carrying attribute is taken as the value at that specific level:</p>
+<p>The following RM attribute names are universally absent from paths:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>ITEM_TREE</code> replaced by <code>ITEM_TREE.items</code></p>
+<p><code>COMPOSITION.content</code></p>
 </li>
 <li>
-<p><code>ITEM_LIST</code> replaced by <code>ITEM_LIST.items</code></p>
+<p><code>SECTION.items</code></p>
 </li>
 <li>
-<p><code>ITEM_SINGLE</code> replaced by <code>ITEM_SINGLE.item</code></p>
+<p><code>OBSERVATION.data</code>, <code>OBSERVATION.state</code>, <code>OBSERVATION.protocol</code></p>
 </li>
 <li>
-<p><code>ITEM_TABLE</code> replaced by <code>ITEM_TABLE.rows</code></p>
+<p><code>EVALUATION.data</code>, <code>EVALUATION.protocol</code></p>
 </li>
 <li>
-<p><code>HISTORY</code> replaced by <code>HISTORY.events</code></p>
+<p><code>INSTRUCTION.activities</code>, <code>INSTRUCTION.protocol</code></p>
+</li>
+<li>
+<p><code>ACTION.description</code>, <code>ACTION.protocol</code></p>
+</li>
+<li>
+<p><code>ADMIN_ENTRY.data</code></p>
+</li>
+<li>
+<p><code>ACTIVITY.description</code></p>
+</li>
+<li>
+<p><code>HISTORY.events</code></p>
+</li>
+<li>
+<p><code>EVENT.data</code>, <code>EVENT.state</code></p>
+</li>
+<li>
+<p><code>ITEM_TREE.items</code>, <code>ITEM_LIST.items</code>, <code>ITEM_SINGLE.item</code>, <code>ITEM_TABLE.rows</code></p>
+</li>
+<li>
+<p><code>CLUSTER.items</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_conditionally_removed"><a class="anchor" href="#_conditionally_removed"></a>4.6.2. Conditionally Removed</h4>
+<h4 id="_always_collapsed_wrapper_types"><a class="anchor" href="#_always_collapsed_wrapper_types"></a>4.6.2. Always Collapsed Wrapper Types</h4>
 <div class="paragraph">
-<p>The following types are removed when they meet specific criteria.</p>
+<p>In addition to the attribute elision above, the following wrapper node types are themselves collapsed&#8201;&#8212;&#8201;their archetype node-id is also dropped, so the parent connects directly to the wrapper&#8217;s contents:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ITEM_STRUCTURE</code> (abstract) and its concrete subtypes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ITEM_TREE</code></p>
+</li>
+<li>
+<p><code>ITEM_LIST</code></p>
+</li>
+<li>
+<p><code>ITEM_SINGLE</code></p>
+</li>
+<li>
+<p><code>ITEM_TABLE</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>HISTORY</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>An <code>EVENT</code> node is removed when:</p>
+<p>These types act as fixed structural slots in their parent (<code>ENTRY</code> for the <code>ITEM_STRUCTURE</code> family; <code>OBSERVATION</code> for <code>HISTORY</code>) and have no archetype node-id distinct from that slot.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_conditionally_collapsed_wrapper_types"><a class="anchor" href="#_conditionally_collapsed_wrapper_types"></a>4.6.3. Conditionally Collapsed Wrapper Types</h4>
+<div class="paragraph">
+<p>An <code>EVENT</code> node is collapsed when both of the following hold:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Its maximum occurrence is 1 (i.e., <code>max = 1</code>)</p>
+<p>Its maximum occurrence is 1 (i.e., <code>max = 1</code>), AND</p>
 </li>
 <li>
-<p>AND it has no sibling <code>EVENT</code> nodes in the same parent</p>
+<p>No sibling <code>EVENT</code> nodes (of any concrete event type) exist in the same parent <code>HISTORY</code>.</p>
 </li>
 </ol>
 </div>
@@ -2380,17 +2454,90 @@ These types do not typically carry significant clinical information and would un
 <div class="ulist">
 <ul>
 <li>
-<p>Multiple <code>EVENT</code> types exist in the same <code>OBSERVATION</code> (e.g., <code>POINT_EVENT</code> and <code>INTERVAL_EVENT</code>)</p>
+<p>Multiple <code>EVENT</code> types exist in the same parent <code>HISTORY</code> (e.g., a <code>POINT_EVENT</code> alongside an <code>INTERVAL_EVENT</code>), or</p>
 </li>
 <li>
-<p>The <code>EVENT</code> can occur multiple times</p>
+<p>The <code>EVENT</code> can occur multiple times (<code>max &gt; 1</code>).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_example"><a class="anchor" href="#_example"></a>4.6.4. Example</h4>
+<div class="paragraph">
+<p>Take a single measurement magnitude inside a laboratory result panel. The canonical RM path is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code><span></span>/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]
+  /data[at0001]
+  /events[at0002]
+  /data[at0003]
+  /items[openEHR-EHR-CLUSTER.laboratory_test_panel.v1]
+  /items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]
+  /items[at0001]
+  /value</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The same field in Flat form:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code><span></span>laboratory_test_report/laboratory_test/laboratory_test_panel/laboratory_result:0/result_value|magnitude</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Differences:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Container attribute names (<code>content</code>, <code>data</code>, <code>events</code>, <code>items</code>, <code>value</code>) are elided wherever they appear.</p>
+</li>
+<li>
+<p>The <code>HISTORY</code> (<code>at0001</code>) and <code>ITEM_TREE</code> (<code>at0003</code>) wrapper nodes are collapsed; the <code>EVENT</code> (<code>at0002</code>) is conditionally collapsed (here <code>max=1</code>, single event type).</p>
+</li>
+<li>
+<p>The <code>OBSERVATION</code> and the two <code>CLUSTER</code> nodes are retained under their archetype-id aliases (<code>laboratory_test</code>, <code>laboratory_test_panel</code>, <code>laboratory_result</code>); the inner <code>CLUSTER</code> repeats, hence the <code>:0</code> instance index.</p>
+</li>
+<li>
+<p><code>ELEMENT.value</code> is replaced by the <code>|magnitude</code> attribute suffix.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_validation"><a class="anchor" href="#_validation"></a>4.7. Validation</h3>
+<h3 id="open_value_sets"><a class="anchor" href="#open_value_sets"></a>4.7. Open Value-Sets and the <code>|other</code> Suffix</h3>
+<div class="paragraph">
+<p>When an archetype constrains a leaf to <code>DV_CODED_TEXT</code> with an <em>open</em> value-set&#8201;&#8212;&#8201;the bound terminology lists recommended codes but the constraint also accepts values outside the list (<code>listOpen: true</code> in the web template; non-<code>limit-to-list</code> in ADL)&#8201;&#8212;&#8201;the same leaf may at runtime carry either a <code>DV_CODED_TEXT</code> (chosen from the list) or a <code>DV_TEXT</code> (free-text value).</p>
+</div>
+<div class="paragraph">
+<p>Many archetypes deliberately combine a recommended coded list with free-text fallback (e.g. <code>state_of_dress</code>, <code>confounding_factors</code>, <code>overall_test_status</code>). Without a dedicated FLAT-level discriminator the <code>DV_CODED_TEXT</code> vs <code>DV_TEXT</code> branch would have to be inferred from value patterns, which is fragile and ambiguous. The <code>|other</code> suffix makes the branch explicit at the FLAT level and removes the need for receivers to reason about it.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On <strong>write</strong>: clients supply the free-text value via <code>&lt;path&gt;|other: "&lt;text&gt;"</code>. The server persists the leaf as a <code>DV_TEXT</code> in the canonical RM (not as a <code>DV_CODED_TEXT</code> with empty <code>defining_code</code>).</p>
+</li>
+<li>
+<p>On <strong>read</strong>: when the leaf carries a <code>DV_TEXT</code> whose archetype constraint is <code>DV_CODED_TEXT</code> with <code>listOpen: true</code>, the server SHOULD emit it via <code>&lt;path&gt;|other: "&lt;text&gt;"</code> so that round-trip equality holds at the FLAT level.</p>
+</li>
+<li>
+<p><code>|other</code> is mutually exclusive with <code>|code</code>, <code>|value</code> and <code>|terminology</code> on the same leaf path; servers MUST reject combinations.</p>
+</li>
+<li>
+<p><code>|other</code> MUST be rejected when the constraint is closed (<code>listOpen: false</code>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The per-suffix table is in the <a href="#DV_CODED_TEXT">Section 5.27</a> class section.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validation"><a class="anchor" href="#_validation"></a>4.8. Validation</h3>
 <div class="paragraph">
 <p>Implementations SHOULD validate:</p>
 </div>
@@ -3538,9 +3685,9 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|target</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">type.value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">target.value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -4004,7 +4151,7 @@ These types do not typically carry significant clinical information and would un
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|id_namespace&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;HOSPITAL-NS&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/start_time&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;2021-12-21T14:19:31.649613+01:00&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_end_time&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;2021-12-21T15:19:31.649613+01:00&quot;</span><span class="tok-p">,</span>
-<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_location&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;2021-12-21T15:19:31.649613+01:00&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_location&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;Ward A3, Room 12&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/setting|code&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;238&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/setting|value&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;other care&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/setting|terminology&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;openehr&quot;</span>
@@ -4030,45 +4177,247 @@ These types do not typically carry significant clinical information and would un
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/start_time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#DV_DATE_TIME">DV_DATE_TIME</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">start_time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/setting</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#DV_CODED_TEXT">DV_CODED_TEXT</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">setting</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (openEHR <code>setting</code> group)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_end_time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#DV_DATE_TIME">DV_DATE_TIME</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">end_time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_location</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">location</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Free-text label (e.g. "Ward A3"); not a date-time.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_health_care_facility</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#PARTY_IDENTIFIED">PARTY_IDENTIFIED</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">health_care_facility</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_participation:i</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#PARTICIPATION">PARTICIPATION</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">participations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The <code>other_context</code> (RM <code>ITEM_STRUCTURE</code>) attribute is not represented as a leaf in this table; archetyped context content is flattened to sit directly under <code>/context/&lt;node-name&gt;/&#8230;&#8203;</code>, where <code>&lt;node-name&gt;</code> is the identifier derived from the contained archetype (e.g. <code>/context/organisation/&#8230;&#8203;</code> for an <code>openEHR-EHR-CLUSTER.organisation.v0</code> slot inside <code>other_context</code>). The underlying AQL path retains <code>/context/other_context[at0001]/items[&#8230;&#8203;]</code>. The leading underscore on <code>_end_time</code>, <code>_location</code>, <code>_health_care_facility</code> and <code>_participation:i</code> marks them as optional RM-level attributes (see <a href="#_rm_attributes_prefix">Section 4.2.5</a>).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="PARTICIPATION"><a class="anchor" href="#PARTICIPATION"></a>5.16. PARTICIPATION</h3>
+<div class="paragraph">
+<p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_participation_class">PARTICIPATION</a> class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>performer</code> (<code>PARTY_IDENTIFIED</code>) is inlined: its attributes are emitted at the same level as <code>function</code> and <code>mode</code>, rather than nested under <code>/performer</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="json"><span></span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|function&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;requester&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|mode&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;face-to-face communication&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|name&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;Dr. Marcus Johnson&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|id&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;199&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|id_scheme&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;HOSPITAL-NS&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|id_namespace&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;HOSPITAL-NS&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|identifiers_id:0&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;122&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|identifiers_issuer:0&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;issuer&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|identifiers_assigner:0&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;assigner&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|identifiers_type:0&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;type&quot;</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flat Path</th>
+<th class="tableblock halign-left valign-top">Flat type</th>
+<th class="tableblock halign-left valign-top">RM Path</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|function</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">function.value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|mode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mode.value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (openEHR <code>participation mode</code> group)</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">performer.name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">external_ref.id.value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">performer.external_ref.id.value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|id_scheme</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">external_ref.id.scheme</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">performer.external_ref.id.scheme</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|id_namespace</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">external_ref.id.namespace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">performer.external_ref.namespace</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(yes)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">required if id is set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">required if <code>|id</code> is set. (RM <code>OBJECT_REF</code> has <code>namespace</code> directly on the reference, not nested under <code>id</code>.)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_identifier:i</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#DV_IDENTIFIER">DV_IDENTIFIER</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">identifiers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|identifiers_id:i</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">performer.identifiers[i].id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|identifiers_issuer:i</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">performer.identifiers[i].issuer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|identifiers_assigner:i</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">performer.identifiers[i].assigner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|identifiers_type:i</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">performer.identifiers[i].type</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+PARTICIPATION&#8217;s <code>time</code> (RM <code>DV_INTERVAL&lt;DV_DATE_TIME&gt;</code>) is not currently emitted by FLAT mappings. Entries with a constrained participation <code>time</code> interval require the canonical RM JSON form.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="participation_party_related"><a class="anchor" href="#participation_party_related"></a>5.16.1. PARTY_RELATED performer</h4>
+<div class="paragraph">
+<p>When the <code>performer</code> is a <code>PARTY_RELATED</code> (a sub-type of <code>PARTY_IDENTIFIED</code> that carries a <code>relationship: DV_CODED_TEXT</code>), the <code>relationship</code> attribute is emitted as a sub-path under the participation, with the standard <a href="#DV_CODED_TEXT">DV_CODED_TEXT</a> suffixes (<code>\|code</code>, <code>\|value</code>, <code>\|terminology</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="json"><span></span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|function&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;next of kin&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0|name&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;Susan Doe&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0/relationship|code&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;10&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0/relationship|value&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;mother&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/context/_participation:0/relationship|terminology&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;openehr&quot;</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flat Path</th>
+<th class="tableblock halign-left valign-top">Flat type</th>
+<th class="tableblock halign-left valign-top">RM Path</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/relationship</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#DV_CODED_TEXT">DV_CODED_TEXT</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">relationship (when <code>performer</code> is <code>PARTY_RELATED</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(yes)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required when <code>performer</code> is a <code>PARTY_RELATED</code>; not present otherwise.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Implementation status — EHRbase reads and writes this path (<code>PartyRelatedStdConfig.addRelationship</code>); Better&#8217;s <code>ParticipationToFlatMapper</code> currently treats the performer as <code>PARTY_IDENTIFIED</code> only and does not emit <code>relationship</code>. Producers that need cross-implementation portability for a <code>PARTY_RELATED</code> performer should either fall back to canonical RM JSON or limit usage to EHRbase-side flows until parity is established.
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="OBJECT_REF"><a class="anchor" href="#OBJECT_REF"></a>5.16. OBJECT_REF</h3>
+<h3 id="OBJECT_REF"><a class="anchor" href="#OBJECT_REF"></a>5.17. OBJECT_REF</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_event_context_class">EVENT_CONTEXT</a> class.</p>
 </div>
@@ -4132,7 +4481,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="_interval_event"><a class="anchor" href="#_interval_event"></a>5.17. INTERVAL_EVENT</h3>
+<h3 id="_interval_event"><a class="anchor" href="#_interval_event"></a>5.18. INTERVAL_EVENT</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_structures.html#_interval_event_class">INTERVAL_EVENT</a> class.</p>
 </div>
@@ -4204,7 +4553,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="_point_event"><a class="anchor" href="#_point_event"></a>5.18. POINT_EVENT</h3>
+<h3 id="_point_event"><a class="anchor" href="#_point_event"></a>5.19. POINT_EVENT</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_event_context_class">EVENT_CONTEXT</a> class.</p>
 </div>
@@ -4245,7 +4594,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="PARTY_PROXY"><a class="anchor" href="#PARTY_PROXY"></a>5.19. PARTY_PROXY</h3>
+<h3 id="PARTY_PROXY"><a class="anchor" href="#PARTY_PROXY"></a>5.20. PARTY_PROXY</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_party_proxy_class">PARTY_PROXY</a> class.</p>
 </div>
@@ -4254,7 +4603,7 @@ These types do not typically carry significant clinical information and would un
 </div>
 </div>
 <div class="sect2">
-<h3 id="PARTY_SELF"><a class="anchor" href="#PARTY_SELF"></a>5.20. PARTY_SELF</h3>
+<h3 id="PARTY_SELF"><a class="anchor" href="#PARTY_SELF"></a>5.21. PARTY_SELF</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_party_self_class">PARTY_SELF</a> class.</p>
 </div>
@@ -4303,7 +4652,7 @@ These types do not typically carry significant clinical information and would un
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|id_namespace</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">external_ref.id.namespace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">external_ref.namespace</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(yes)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">required if id is set</p></td>
 </tr>
@@ -4311,7 +4660,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="PARTY_IDENTIFIED"><a class="anchor" href="#PARTY_IDENTIFIED"></a>5.21. PARTY_IDENTIFIED</h3>
+<h3 id="PARTY_IDENTIFIED"><a class="anchor" href="#PARTY_IDENTIFIED"></a>5.22. PARTY_IDENTIFIED</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_party_identified_class">PARTY_IDENTIFIED</a> class.</p>
 </div>
@@ -4378,7 +4727,7 @@ These types do not typically carry significant clinical information and would un
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|id_namespace</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">external_ref.id.namespace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">external_ref.namespace</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(yes)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">required if id is set</p></td>
 </tr>
@@ -4393,7 +4742,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="PARTY_RELATED"><a class="anchor" href="#PARTY_RELATED"></a>5.22. PARTY_RELATED</h3>
+<h3 id="PARTY_RELATED"><a class="anchor" href="#PARTY_RELATED"></a>5.23. PARTY_RELATED</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_party_related_class">PARTY_RELATED</a> class.</p>
 </div>
@@ -4466,7 +4815,7 @@ These types do not typically carry significant clinical information and would un
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|id_namespace</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">external_ref.id.namespace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">external_ref.namespace</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(yes)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">required if id is set</p></td>
 </tr>
@@ -4488,7 +4837,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="DV_TEXT"><a class="anchor" href="#DV_TEXT"></a>5.23. DV_TEXT</h3>
+<h3 id="DV_TEXT"><a class="anchor" href="#DV_TEXT"></a>5.24. DV_TEXT</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_text_class">DV_TEXT</a> class.</p>
 </div>
@@ -4575,7 +4924,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="CODE_PHRASE"><a class="anchor" href="#CODE_PHRASE"></a>5.24. CODE_PHRASE</h3>
+<h3 id="CODE_PHRASE"><a class="anchor" href="#CODE_PHRASE"></a>5.25. CODE_PHRASE</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_code_phrase_class">CODE_PHRASE</a> class.</p>
 </div>
@@ -4639,7 +4988,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="TERM_MAPPING"><a class="anchor" href="#TERM_MAPPING"></a>5.25. TERM_MAPPING</h3>
+<h3 id="TERM_MAPPING"><a class="anchor" href="#TERM_MAPPING"></a>5.26. TERM_MAPPING</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_term_mapping_class">TERM_MAPPING</a> class.</p>
 </div>
@@ -4707,7 +5056,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="DV_CODED_TEXT"><a class="anchor" href="#DV_CODED_TEXT"></a>5.26. DV_CODED_TEXT</h3>
+<h3 id="DV_CODED_TEXT"><a class="anchor" href="#DV_CODED_TEXT"></a>5.27. DV_CODED_TEXT</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_coded_text_class">DV_CODED_TEXT</a> class.</p>
 </div>
@@ -4726,6 +5075,7 @@ These types do not typically carry significant clinical information and would un
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|value&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;term1&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|code&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;at0006&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|terminology&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;local&quot;</span><span class="tok-p">,</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|preferred_term&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;Term One&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|formatting&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;plain&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_language|code&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;en&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_language|terminology&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;ISO_639-1&quot;</span><span class="tok-p">,</span>
@@ -4738,6 +5088,16 @@ These types do not typically carry significant clinical information and would un
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_mapping:0/purpose|terminology&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;openehr&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_mapping:0/purpose|code&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;671&quot;</span><span class="tok-p">,</span>
 <span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_mapping:0/purpose|value&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;research study&quot;</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Free-text value when the archetype constraint allows an open value-set (<code>listOpen: true</code> in the web template):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="json"><span></span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|other&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;free-text value not in the coded list&quot;</span>
 <span class="tok-p">}</span></code></pre>
 </div>
 </div>
@@ -4781,6 +5141,20 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">only required for external terminologies</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|preferred_term</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defining_code.preferred_term</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional preferred display rubric for the <code>defining_code</code>. See the <code>|preferred_term</code> row of <a href="#CODE_PHRASE">CODE_PHRASE</a> for the analogous mapping on a bare <code>CODE_PHRASE</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|other</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>value</em> (as <code><a href="#DV_TEXT">DV_TEXT</a></code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Free-text value used when the constraint allows an open value-set (<code>listOpen: true</code> in the web template). When <code>|other</code> is set, <code>|code</code>, <code>|value</code>, <code>|terminology</code> and <code>|preferred_term</code> MUST NOT be set; the leaf is serialised in the canonical RM as a <code>DV_TEXT</code> rather than a <code>DV_CODED_TEXT</code>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|formatting</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">formatting</p></td>
@@ -4810,9 +5184,31 @@ These types do not typically carry significant clinical information and would un
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="_when_a_dv_coded_text_becomes_a_dv_text"><a class="anchor" href="#_when_a_dv_coded_text_becomes_a_dv_text"></a>5.27.1. When a <code>DV_CODED_TEXT</code> becomes a <code>DV_TEXT</code></h4>
+<div class="paragraph">
+<p>Where the archetype constraint allows an open value-set (<code>listOpen: true</code> in the web template; non-<code>limit-to-list</code> in ADL), a leaf bound to <code>DV_CODED_TEXT</code> may be populated with a free-text value via the <code>\|other</code> suffix. In that case:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the canonical RM serialisation of the leaf is a <a href="#DV_TEXT">DV_TEXT</a>, not a <code>DV_CODED_TEXT</code> with empty <code>defining_code</code>;</p>
+</li>
+<li>
+<p><code>\|other</code> is mutually exclusive with <code>\|code</code>, <code>\|value</code>, <code>\|terminology</code> and <code>\|preferred_term</code> on the same leaf;</p>
+</li>
+<li>
+<p>on a closed list (<code>listOpen: false</code>), <code>\|other</code> MUST be rejected.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>See <a href="#open_value_sets">Section 4.7</a> for the cross-cutting rule and rationale.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="DV_ORDINAL"><a class="anchor" href="#DV_ORDINAL"></a>5.27. DV_ORDINAL</h3>
+<h3 id="DV_ORDINAL"><a class="anchor" href="#DV_ORDINAL"></a>5.28. DV_ORDINAL</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_ordinal_class">DV_ORDINAL</a> class.</p>
 </div>
@@ -4903,7 +5299,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="DV_BOOLEAN"><a class="anchor" href="#DV_BOOLEAN"></a>5.28. DV_BOOLEAN</h3>
+<h3 id="DV_BOOLEAN"><a class="anchor" href="#DV_BOOLEAN"></a>5.29. DV_BOOLEAN</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_boolean_class">DV_BOOLEAN</a> class.</p>
 </div>
@@ -4943,7 +5339,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="_dv_uri"><a class="anchor" href="#_dv_uri"></a>5.29. DV_URI</h3>
+<h3 id="_dv_uri"><a class="anchor" href="#_dv_uri"></a>5.30. DV_URI</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/Release-1.0.4/data_types.html#_dv_uri_class">DV_URI</a> class.</p>
 </div>
@@ -4983,7 +5379,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="_dv_ehr_uri"><a class="anchor" href="#_dv_ehr_uri"></a>5.30. DV_EHR_URI</h3>
+<h3 id="_dv_ehr_uri"><a class="anchor" href="#_dv_ehr_uri"></a>5.31. DV_EHR_URI</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/Release-1.0.4/data_types.html#_dv_ehr_uri_class">DV_EHR_URI</a> class.</p>
 </div>
@@ -5023,7 +5419,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="DV_IDENTIFIER"><a class="anchor" href="#DV_IDENTIFIER"></a>5.31. DV_IDENTIFIER</h3>
+<h3 id="DV_IDENTIFIER"><a class="anchor" href="#DV_IDENTIFIER"></a>5.32. DV_IDENTIFIER</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_quantity_class">DV_QUANTITY</a> class.</p>
 </div>
@@ -5094,7 +5490,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="_dv_quantity"><a class="anchor" href="#_dv_quantity"></a>5.32. DV_QUANTITY</h3>
+<h3 id="_dv_quantity"><a class="anchor" href="#_dv_quantity"></a>5.33. DV_QUANTITY</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_quantity_class">DV_QUANTITY</a> class.</p>
 </div>
@@ -5169,14 +5565,14 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">magnitude_status</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (",&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (=,&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|normal_status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status.code_string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet <code>normal_statuses</code> (codes <code>HHH</code>, <code>HH</code>, <code>H</code>, <code>N</code>, <code>L</code>, <code>LL</code>, <code>LLL</code>). The FLAT carries only the <code>code_string</code>; the underlying <code>CODE_PHRASE</code> terminology is implicitly <code>openehr</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|accuracy</code></p></td>
@@ -5210,7 +5606,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="_dv_proportion"><a class="anchor" href="#_dv_proportion"></a>5.33. DV_PROPORTION</h3>
+<h3 id="_dv_proportion"><a class="anchor" href="#_dv_proportion"></a>5.34. DV_PROPORTION</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_proportion_class">DV_PROPORTION</a> class.</p>
 </div>
@@ -5295,6 +5691,13 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet proportion_kind</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|precision</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">precision</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of decimal places to which <code>|numerator</code> and <code>|denominator</code> are expressed. Value <code>0</code> implies integral; <code>-1</code> implies no limit.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Real</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">magnitude</p></td>
@@ -5306,14 +5709,28 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">magnitude_status</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (",&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (=,&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|accuracy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Real</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">accuracy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Half-range accuracy of measurement. Interpretation depends on <code>|accuracy_is_percent</code>. A value of <code>0</code> means accuracy is 100% (no error).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|accuracy_is_percent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">accuracy_is_percent</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code>, <code>|accuracy</code> is a percentage (0–100); when <code>false</code> or absent, <code>|accuracy</code> is an absolute quantity in the same units as the value.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|normal_status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status.code_string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet <code>normal_statuses</code> (codes <code>HHH</code>, <code>HH</code>, <code>H</code>, <code>N</code>, <code>L</code>, <code>LL</code>, <code>LLL</code>). The FLAT carries only the <code>code_string</code>; the underlying <code>CODE_PHRASE</code> terminology is implicitly <code>openehr</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_normal_range</code></p></td>
@@ -5333,7 +5750,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="_dv_count"><a class="anchor" href="#_dv_count"></a>5.34. DV_COUNT</h3>
+<h3 id="_dv_count"><a class="anchor" href="#_dv_count"></a>5.35. DV_COUNT</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_count_class">DV_COUNT</a> class.</p>
 </div>
@@ -5390,14 +5807,28 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">magnitude_status</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (",&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (=,&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|normal_status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status.code_string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet <code>normal_statuses</code> (codes <code>HHH</code>, <code>HH</code>, <code>H</code>, <code>N</code>, <code>L</code>, <code>LL</code>, <code>LLL</code>). The FLAT carries only the <code>code_string</code>; the underlying <code>CODE_PHRASE</code> terminology is implicitly <code>openehr</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|accuracy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Real</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">accuracy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Half-range accuracy of measurement. Interpretation depends on <code>|accuracy_is_percent</code>. A value of <code>0</code> means accuracy is 100% (no error).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|accuracy_is_percent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">accuracy_is_percent</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code>, <code>|accuracy</code> is a percentage (0–100); when <code>false</code> or absent, <code>|accuracy</code> is an absolute quantity in the same units as the value.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_normal_range</code></p></td>
@@ -5417,7 +5848,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="_dv_date"><a class="anchor" href="#_dv_date"></a>5.35. DV_DATE</h3>
+<h3 id="_dv_date"><a class="anchor" href="#_dv_date"></a>5.36. DV_DATE</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_class">DV_DATE</a> class.</p>
 </div>
@@ -5480,14 +5911,14 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">magnitude_status</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (",&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (=,&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|normal_status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status.code_string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet <code>normal_statuses</code> (codes <code>HHH</code>, <code>HH</code>, <code>H</code>, <code>N</code>, <code>L</code>, <code>LL</code>, <code>LLL</code>). The FLAT carries only the <code>code_string</code>; the underlying <code>CODE_PHRASE</code> terminology is implicitly <code>openehr</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_normal_range</code></p></td>
@@ -5507,9 +5938,9 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="DV_DATE_TIME"><a class="anchor" href="#DV_DATE_TIME"></a>5.36. DV_DATE_TIME</h3>
+<h3 id="DV_DATE_TIME"><a class="anchor" href="#DV_DATE_TIME"></a>5.37. DV_DATE_TIME</h3>
 <div class="paragraph">
-<p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_class">DV_DATE</a> class.</p>
+<p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_time_class">DV_DATE_TIME</a> class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5556,7 +5987,7 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISO8601 date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ISO8601 date-time</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_accuracy</code></p></td>
@@ -5570,14 +6001,14 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">magnitude_status</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (",&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (=,&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|normal_status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status.code_string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet <code>normal_statuses</code> (codes <code>HHH</code>, <code>HH</code>, <code>H</code>, <code>N</code>, <code>L</code>, <code>LL</code>, <code>LLL</code>). The FLAT carries only the <code>code_string</code>; the underlying <code>CODE_PHRASE</code> terminology is implicitly <code>openehr</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_normal_range</code></p></td>
@@ -5597,14 +6028,14 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="_dv_time"><a class="anchor" href="#_dv_time"></a>5.37. DV_TIME</h3>
+<h3 id="_dv_time"><a class="anchor" href="#_dv_time"></a>5.38. DV_TIME</h3>
 <div class="paragraph">
-<p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_class">DV_DATE</a> class.</p>
+<p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_time_class">DV_TIME</a> class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="json"><span></span><span class="tok-p">{</span>
-<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_date&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;2022-01-12&quot;</span>
+<span class="tok-w">  </span><span class="tok-nt">&quot;conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_time&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;13:22:34.000868+01:00&quot;</span>
 <span class="tok-p">}</span></code></pre>
 </div>
 </div>
@@ -5646,7 +6077,7 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISO8601 date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ISO8601 time</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_accuracy</code></p></td>
@@ -5660,14 +6091,14 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">magnitude_status</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (",&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (=,&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|normal_status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status.code_string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet <code>normal_statuses</code> (codes <code>HHH</code>, <code>HH</code>, <code>H</code>, <code>N</code>, <code>L</code>, <code>LL</code>, <code>LLL</code>). The FLAT carries only the <code>code_string</code>; the underlying <code>CODE_PHRASE</code> terminology is implicitly <code>openehr</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_normal_range</code></p></td>
@@ -5687,7 +6118,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="DV_DURATION"><a class="anchor" href="#DV_DURATION"></a>5.38. DV_DURATION</h3>
+<h3 id="DV_DURATION"><a class="anchor" href="#DV_DURATION"></a>5.39. DV_DURATION</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_duration_class">DV_DURATION</a> class.</p>
 </div>
@@ -5747,7 +6178,7 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">accuracy_is_percent</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|accuracy_is_percent</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">accuracy_is_percent</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
@@ -5758,14 +6189,14 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">magnitude_status</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (",&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet (=,&gt;,&gt;=,&lt;,&lt;=,~)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|normal_status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">normal_status.code_string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet normal_status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValueSet <code>normal_statuses</code> (codes <code>HHH</code>, <code>HH</code>, <code>H</code>, <code>N</code>, <code>L</code>, <code>LL</code>, <code>LLL</code>). The FLAT carries only the <code>code_string</code>; the underlying <code>CODE_PHRASE</code> terminology is implicitly <code>openehr</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/_normal_range</code></p></td>
@@ -5785,7 +6216,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="REFERENCE_RANGE"><a class="anchor" href="#REFERENCE_RANGE"></a>5.39. REFERENCE_RANGE</h3>
+<h3 id="REFERENCE_RANGE"><a class="anchor" href="#REFERENCE_RANGE"></a>5.40. REFERENCE_RANGE</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_reference_range_class">REFERENCE_RANGE</a> class.</p>
 </div>
@@ -5891,7 +6322,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="DV_PARSABLE"><a class="anchor" href="#DV_PARSABLE"></a>5.40. DV_PARSABLE</h3>
+<h3 id="DV_PARSABLE"><a class="anchor" href="#DV_PARSABLE"></a>5.41. DV_PARSABLE</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_parsable_class">DV_PARSABLE</a> class.</p>
 </div>
@@ -5965,7 +6396,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="DV_MULTIMEDIA"><a class="anchor" href="#DV_MULTIMEDIA"></a>5.41. DV_MULTIMEDIA</h3>
+<h3 id="DV_MULTIMEDIA"><a class="anchor" href="#DV_MULTIMEDIA"></a>5.42. DV_MULTIMEDIA</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_multimedia_class">DV_MULTIMEDIA</a> class.</p>
 </div>
@@ -6024,7 +6455,7 @@ These types do not typically carry significant clinical information and would un
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|media_type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|mediatype</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">media_type.code_string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
@@ -6097,7 +6528,7 @@ These types do not typically carry significant clinical information and would un
 </table>
 </div>
 <div class="sect2">
-<h3 id="DV_INTERVAL"><a class="anchor" href="#DV_INTERVAL"></a>5.42. DV_INTERVAL</h3>
+<h3 id="DV_INTERVAL"><a class="anchor" href="#DV_INTERVAL"></a>5.43. DV_INTERVAL</h3>
 <div class="paragraph">
 <p>See RM specification of the <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_interval_class">DV_INTERVAL</a> class.</p>
 </div>
@@ -6634,10 +7065,16 @@ These types do not typically carry significant clinical information and would un
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release (unreleased)</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECITS-94" target="_blank" rel="noopener">SPECITS-94</a>. Clarified Level Removal (attribute elision vs wrapper collapse) and <code>EVENT</code> rule; added <code>|other</code> and <code>|preferred_term</code> suffixes on <code>DV_CODED_TEXT</code>; fixed <code>LINK</code> (<code>|target</code>) and <code>DV_MULTIMEDIA</code> (<code>|mediatype</code>) mappings; corrected <code>EVENT_CONTEXT</code> table and added <code>PARTICIPATION</code> section; corrected PARTY <code>|id_namespace</code> RM path; documented PARTICIPATION <code>/relationship</code> for <code>PARTY_RELATED</code> performer; expanded <code>DV_PROPORTION</code> table (<code>|precision</code>, <code>|accuracy</code>, <code>|accuracy_is_percent</code>; <code>|normal_status</code> RM path); fixed <code>DV_DATE_TIME</code> / <code>DV_TIME</code> headers and bare-path notes; swept recurring <code>|magnitude_status</code> and <code>|normal_status</code> row corrections across <code>DV_COUNT</code> / <code>DV_DATE</code> / <code>DV_DATE_TIME</code> / <code>DV_TIME</code> / <code>DV_DURATION</code> / <code>DV_QUANTITY</code>; added <code>|accuracy</code> / <code>|accuracy_is_percent</code> to <code>DV_COUNT</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REST WG</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>28 Apr 2026</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECITS-61" target="_blank" rel="noopener">SPECITS-61</a>. Cleanup and consolidate Simplified Formats specification; Deprecating Simplified Data Template (SDT) specification</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">REST WG</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>05 Nov 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">05 Nov 2025</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>ITS_REST Release 1.0.3</strong></p></th>
@@ -6708,7 +7145,7 @@ S Iancu</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-11-09 20:23:36 UTC
+Last updated 2026-04-27 14:19:01 UTC
 </div>
 </div>
 <script src="https://specifications.openehr.org/js/asciidoctor-tabs.js"></script>
