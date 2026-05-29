@@ -1482,7 +1482,7 @@ When the `performer` is a `PARTY_RELATED` (a sub-type of `PARTY_IDENTIFIED` that
 | Required when `performer` is a `PARTY_RELATED`; not present otherwise.
 |===
 
-NOTE: Implementation status — ehrbase reads and writes this path (`PartyRelatedStdConfig.addRelationship`); Better's `ParticipationToFlatMapper` currently treats the performer as `PARTY_IDENTIFIED` only and does not emit `relationship`. Producers that need cross-implementation portability for a `PARTY_RELATED` performer should either fall back to canonical RM JSON or limit usage to ehrbase-side flows until parity is established.
+NOTE: Implementation status — EHRbase reads and writes this path (`PartyRelatedStdConfig.addRelationship`); Better's `ParticipationToFlatMapper` currently treats the performer as `PARTY_IDENTIFIED` only and does not emit `relationship`. Producers that need cross-implementation portability for a `PARTY_RELATED` performer should either fall back to canonical RM JSON or limit usage to EHRbase-side flows until parity is established.
 
 [[OBJECT_REF]]
 == OBJECT_REF
