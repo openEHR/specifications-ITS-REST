@@ -1355,7 +1355,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 |
 |===
 
-NOTE: `other_context` (RM `ITEM_STRUCTURE`) is not represented as a leaf in this table; archetyped context content is serialised under its own archetype-id paths within the COMPOSITION body, not under `/context`. The leading underscore on `_end_time`, `_location`, `_health_care_facility` and `_participation:i` marks them as optional RM-level attributes (see <<RM Attributes prefix>>).
+NOTE: The `other_context` (RM `ITEM_STRUCTURE`) attribute is not represented as a leaf in this table; archetyped context content is flattened to sit directly under `/context/<node-name>/...`, where `<node-name>` is the identifier derived from the contained archetype (e.g. `/context/organisation/...` for an `openEHR-EHR-CLUSTER.organisation.v0` slot inside `other_context`). The underlying AQL path retains `/context/other_context[at0001]/items[...]`. The leading underscore on `_end_time`, `_location`, `_health_care_facility` and `_participation:i` marks them as optional RM-level attributes (see <<RM Attributes prefix>>).
 
 [[PARTICIPATION]]
 == PARTICIPATION
