@@ -125,8 +125,26 @@ How the polymorphic openEHR Reference Model is encoded in OpenAPI:
     upstream (Better, EHRbase) or in `simplified_formats`.
 - **No tests.** This project has none and none are expected; do not scaffold a test
   framework.
-- **Trace numbers in commits.** History references Jira tickets (`SPECITS-NN`) —
-  follow that style.
+- **Commit messages: short subject, optional body, Jira ticket on the subject
+  line.** Follow GitHub-style conventions: a concise subject line (target ~70
+  characters, hard limit ~72) written in the imperative mood and capturing the
+  headline change. When a Jira ticket exists, reference it on the subject line
+  in the form `(SPECITS-NN)` (or the equivalent project key — `SPECPR`,
+  `SPECRM`, …) so `git log --oneline` stays scannable. If the change needs
+  more context — rationale, cross-references to upstream issues/Discourse
+  threads, lists of touched files, links to implementations consulted — put
+  it in the commit body, separated from the subject by a blank line. Reserve
+  the body for information that doesn't already live in the diff or the
+  amendment record; the amendment record stays terse (see the rule above)
+  precisely because the commit body carries the full story.
+- **Keep amendment-record entries short and succinct.** `master00-amendment_record.adoc`
+  in each AsciiDoc spec is a one-line-per-issue ledger, not a changelog narrative.
+  Each entry should be a single sentence (or a short semicolon-separated list when
+  one ticket bundles related fixes), naming the headline change and the affected
+  RM/FLAT names in backticks. Keep the full rationale and worked examples in the
+  spec body and in the commit message / PR description — not in the amendment record.
+  When extending an existing unreleased entry rather than adding a new row, fold
+  the new headline into the existing list with a `;` separator and stop there.
 
 ### Recurring schema-alignment pitfalls
 
@@ -176,9 +194,33 @@ before editing:
   - HL7 SMART App Launch IG — <https://hl7.org/fhir/smart-app-launch/>
   - SMART Health IT — <https://docs.smarthealthit.org/>
 - `docs/simplified_formats/` and `docs/simplified_data_template/`
-  - EHRbase SDT docs — <https://docs.ehrbase.org/docs/category/simplified-data-template-sdt>
-  - Better Care WebTemplate — <https://github.com/better-care/web-template>
-  - WebTemplate test suite — <https://github.com/better-care/web-template-tests>
+  - EHRbase SDT user docs — <https://docs.ehrbase.org/docs/category/simplified-data-template-sdt>
+  - EHRbase FLAT data-types reference (canonical examples for every RM type) —
+    <https://github.com/ehrbase/documentation/blob/master/source/09_flat/01_data_types/index.rst>
+  - EHRbase server source — <https://github.com/ehrbase/ehrbase>
+  - EHRbase openEHR SDK (Java; FLAT/STRUCTURED un/marshalling) —
+    <https://github.com/ehrbase/openEHR_SDK>; relevant subtree:
+    `serialisation/src/main/java/org/ehrbase/openehr/sdk/serialisation/`.
+  - Better Care WebTemplate (Kotlin reference implementation) —
+    <https://github.com/better-care/web-template>; the FLAT path-suffix conventions
+    are codified in two parallel trees:
+    - `src/main/kotlin/care/better/platform/web/template/converter/flat/mapper/<RmType>ToFlatMapper.kt`
+      — emits the FLAT keys/suffixes for each RM type.
+    - `src/main/kotlin/care/better/platform/web/template/converter/raw/factory/leaf/<RmType>Factory.kt`
+      — parses inbound FLAT keys back to RM (and lists tolerated input aliases).
+  - Better WebTemplate test suite (golden FLAT/STRUCTURED fixtures) —
+    <https://github.com/better-care/web-template-tests>
+  - openEHR Discourse (ITS / Platform categories) —
+    <https://discourse.openehr.org/c/specifications/its/41> for raised gaps,
+    e.g. <https://discourse.openehr.org/t/rm-mappings-dv-coded-text-preferred-term-missing/11780>.
+
+For any Simplified-Formats edit that affects path suffixes, attribute names, or
+mutex rules, the **two implementations are the tie-breaker** when prose and
+intuition disagree: the FLAT path-suffix vocabulary the spec normatively documents
+must match what Better's `*ToFlatMapper.kt` emits and what EHRbase's
+`09_flat/01_data_types/index.rst` shows. Known intentional divergences from the
+RM attribute names (`|mediatype` vs `media_type`, `|alternatetext` vs
+`alternate_text`) are baked into both implementations and must be preserved.
 
 URLs were live-checked at last edit; verify before quoting and keep the bibliography
 in each `master.adoc` in sync.

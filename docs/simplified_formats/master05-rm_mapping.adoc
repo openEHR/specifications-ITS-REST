@@ -922,9 +922,9 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | yes
 |
 
-| `\|type`
+| `\|target`
 | STRING
-| type.value
+| target.value
 | yes
 |
 |===
@@ -1303,7 +1303,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
   "conformance-ehrbase.de.v0/context/_participation:0|id_namespace": "HOSPITAL-NS",
   "conformance-ehrbase.de.v0/context/start_time": "2021-12-21T14:19:31.649613+01:00",
   "conformance-ehrbase.de.v0/context/_end_time": "2021-12-21T15:19:31.649613+01:00",
-  "conformance-ehrbase.de.v0/context/_location": "2021-12-21T15:19:31.649613+01:00",
+  "conformance-ehrbase.de.v0/context/_location": "Ward A3, Room 12",
   "conformance-ehrbase.de.v0/context/setting|code": "238",
   "conformance-ehrbase.de.v0/context/setting|value": "other care",
   "conformance-ehrbase.de.v0/context/setting|terminology": "openehr"
@@ -1318,36 +1318,171 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | Required
 | Note
 
+| `/start_time`
+| <<DV_DATE_TIME,DV_DATE_TIME>>
+| start_time
+| yes
+|
+
+| `/setting`
+| <<DV_CODED_TEXT,DV_CODED_TEXT>>
+| setting
+| yes
+| ValueSet (openEHR `setting` group)
+
+| `/_end_time`
+| <<DV_DATE_TIME,DV_DATE_TIME>>
+| end_time
+| no
+|
+
+| `/_location`
+| String
+| location
+| no
+| Free-text label (e.g. "Ward A3"); not a date-time.
+
+| `/_health_care_facility`
+| <<PARTY_IDENTIFIED,PARTY_IDENTIFIED>>
+| health_care_facility
+| no
+|
+
+| `/_participation:i`
+| <<PARTICIPATION,PARTICIPATION>>
+| participations
+| no
+|
+|===
+
+NOTE: The `other_context` (RM `ITEM_STRUCTURE`) attribute is not represented as a leaf in this table; archetyped context content is flattened to sit directly under `/context/<node-name>/...`, where `<node-name>` is the identifier derived from the contained archetype (e.g. `/context/organisation/...` for an `openEHR-EHR-CLUSTER.organisation.v0` slot inside `other_context`). The underlying AQL path retains `/context/other_context[at0001]/items[...]`. The leading underscore on `_end_time`, `_location`, `_health_care_facility` and `_participation:i` marks them as optional RM-level attributes (see <<RM Attributes prefix>>).
+
+[[PARTICIPATION]]
+== PARTICIPATION
+
+See RM specification of the https://specifications.openehr.org/releases/RM/latest/common.html#_participation_class[PARTICIPATION] class.
+
+The `performer` (`PARTY_IDENTIFIED`) is inlined: its attributes are emitted at the same level as `function` and `mode`, rather than nested under `/performer`.
+
+[source,json]
+----
+{
+  "conformance-ehrbase.de.v0/context/_participation:0|function": "requester",
+  "conformance-ehrbase.de.v0/context/_participation:0|mode": "face-to-face communication",
+  "conformance-ehrbase.de.v0/context/_participation:0|name": "Dr. Marcus Johnson",
+  "conformance-ehrbase.de.v0/context/_participation:0|id": "199",
+  "conformance-ehrbase.de.v0/context/_participation:0|id_scheme": "HOSPITAL-NS",
+  "conformance-ehrbase.de.v0/context/_participation:0|id_namespace": "HOSPITAL-NS",
+  "conformance-ehrbase.de.v0/context/_participation:0|identifiers_id:0": "122",
+  "conformance-ehrbase.de.v0/context/_participation:0|identifiers_issuer:0": "issuer",
+  "conformance-ehrbase.de.v0/context/_participation:0|identifiers_assigner:0": "assigner",
+  "conformance-ehrbase.de.v0/context/_participation:0|identifiers_type:0": "type"
+}
+----
+
+[cols="5*", options="header"]
+|===
+| Flat Path
+| Flat type
+| RM Path
+| Required
+| Note
+
+| `\|function`
+| String
+| function.value
+| yes
+|
+
+| `\|mode`
+| String
+| mode.value
+| no
+| ValueSet (openEHR `participation mode` group)
+
 | `\|name`
 | String
-| name
+| performer.name
 | no
 |
 
 | `\|id`
 | String
-| external_ref.id.value
+| performer.external_ref.id.value
 | no
 |
 
 | `\|id_scheme`
 | String
-| external_ref.id.scheme
+| performer.external_ref.id.scheme
 | no
 |
 
 | `\|id_namespace`
 | String
-| external_ref.id.namespace
+| performer.external_ref.namespace
 | (yes)
-| required if id is set
+| required if `\|id` is set. (RM `OBJECT_REF` has `namespace` directly on the reference, not nested under `id`.)
 
-| `/_identifier:i`
-| <<DV_IDENTIFIER,DV_IDENTIFIER>>
-| identifiers
+| `\|identifiers_id:i`
+| String
+| performer.identifiers[i].id
+| no
+|
+
+| `\|identifiers_issuer:i`
+| String
+| performer.identifiers[i].issuer
+| no
+|
+
+| `\|identifiers_assigner:i`
+| String
+| performer.identifiers[i].assigner
+| no
+|
+
+| `\|identifiers_type:i`
+| String
+| performer.identifiers[i].type
 | no
 |
 |===
+
+NOTE: PARTICIPATION's `time` (RM `DV_INTERVAL<DV_DATE_TIME>`) is not currently emitted by FLAT mappings. Entries with a constrained participation `time` interval require the canonical RM JSON form.
+
+[[participation_party_related]]
+=== PARTY_RELATED performer
+
+When the `performer` is a `PARTY_RELATED` (a sub-type of `PARTY_IDENTIFIED` that carries a `relationship: DV_CODED_TEXT`), the `relationship` attribute is emitted as a sub-path under the participation, with the standard <<DV_CODED_TEXT,DV_CODED_TEXT>> suffixes (`\|code`, `\|value`, `\|terminology`):
+
+[source,json]
+----
+{
+  "conformance-ehrbase.de.v0/context/_participation:0|function": "next of kin",
+  "conformance-ehrbase.de.v0/context/_participation:0|name": "Susan Doe",
+  "conformance-ehrbase.de.v0/context/_participation:0/relationship|code": "10",
+  "conformance-ehrbase.de.v0/context/_participation:0/relationship|value": "mother",
+  "conformance-ehrbase.de.v0/context/_participation:0/relationship|terminology": "openehr"
+}
+----
+
+[cols="5*", options="header"]
+|===
+| Flat Path
+| Flat type
+| RM Path
+| Required
+| Note
+
+| `/relationship`
+| <<DV_CODED_TEXT,DV_CODED_TEXT>>
+| relationship (when `performer` is `PARTY_RELATED`)
+| (yes)
+| Required when `performer` is a `PARTY_RELATED`; not present otherwise.
+|===
+
+NOTE: Implementation status — EHRbase reads and writes this path (`PartyRelatedStdConfig.addRelationship`); Better's `ParticipationToFlatMapper` currently treats the performer as `PARTY_IDENTIFIED` only and does not emit `relationship`. Producers that need cross-implementation portability for a `PARTY_RELATED` performer should either fall back to canonical RM JSON or limit usage to EHRbase-side flows until parity is established.
 
 [[OBJECT_REF]]
 == OBJECT_REF
@@ -1524,7 +1659,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 | `\|id_namespace`
 | String
-| external_ref.id.namespace
+| external_ref.namespace
 | (yes)
 | required if id is set
 |===
@@ -1583,7 +1718,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 | `\|id_namespace`
 | String
-| external_ref.id.namespace
+| external_ref.namespace
 | (yes)
 | required if id is set
 
@@ -1654,7 +1789,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 | `\|id_namespace`
 | String
-| external_ref.id.namespace
+| external_ref.namespace
 | (yes)
 | required if id is set
 
@@ -1863,6 +1998,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|value": "term1",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|code": "at0006",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|terminology": "local",
+  "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|preferred_term": "Term One",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|formatting": "plain",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_language|code": "en",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_language|terminology": "ISO_639-1",
@@ -1875,6 +2011,15 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_mapping:0/purpose|terminology": "openehr",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_mapping:0/purpose|code": "671",
   "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text/_mapping:0/purpose|value": "research study"
+}
+----
+
+Free-text value when the archetype constraint allows an open value-set (`listOpen: true` in the web template):
+
+[source,json]
+----
+{
+  "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_coded_text|other": "free-text value not in the coded list"
 }
 ----
 
@@ -1904,6 +2049,18 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | (yes)
 | only required for external terminologies
 
+| `\|preferred_term`
+| String
+| defining_code.preferred_term
+| no
+| Optional preferred display rubric for the `defining_code`. See the `\|preferred_term` row of <<CODE_PHRASE,CODE_PHRASE>> for the analogous mapping on a bare `CODE_PHRASE`.
+
+| `\|other`
+| String
+| _value_ (as `<<DV_TEXT,DV_TEXT>>`)
+| no
+| Free-text value used when the constraint allows an open value-set (`listOpen: true` in the web template). When `\|other` is set, `\|code`, `\|value`, `\|terminology` and `\|preferred_term` MUST NOT be set; the leaf is serialised in the canonical RM as a `DV_TEXT` rather than a `DV_CODED_TEXT`.
+
 | `\|formatting`
 | String
 | formatting
@@ -1928,6 +2085,16 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | no
 |
 |===
+
+=== When a `DV_CODED_TEXT` becomes a `DV_TEXT`
+
+Where the archetype constraint allows an open value-set (`listOpen: true` in the web template; non-`limit-to-list` in ADL), a leaf bound to `DV_CODED_TEXT` may be populated with a free-text value via the `\|other` suffix. In that case:
+
+* the canonical RM serialisation of the leaf is a <<DV_TEXT,DV_TEXT>>, not a `DV_CODED_TEXT` with empty `defining_code`;
+* `\|other` is mutually exclusive with `\|code`, `\|value`, `\|terminology` and `\|preferred_term` on the same leaf;
+* on a closed list (`listOpen: false`), `\|other` MUST be rejected.
+
+See <<open_value_sets>> for the cross-cutting rule and rationale.
 
 [[DV_ORDINAL]]
 == DV_ORDINAL
@@ -2199,13 +2366,13 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `\|accuracy`
 | Real
@@ -2303,6 +2470,12 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | yes
 | ValueSet proportion_kind
 
+| `\|precision`
+| Integer
+| precision
+| no
+| Number of decimal places to which `\|numerator` and `\|denominator` are expressed. Value `0` implies integral; `-1` implies no limit.
+
 |
 | Real
 | magnitude
@@ -2313,13 +2486,25 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
+
+| `\|accuracy`
+| Real
+| accuracy
+| no
+| Half-range accuracy of measurement. Interpretation depends on `\|accuracy_is_percent`. A value of `0` means accuracy is 100% (no error).
+
+| `\|accuracy_is_percent`
+| Boolean
+| accuracy_is_percent
+| no
+| When `true`, `\|accuracy` is a percentage (0–100); when `false` or absent, `\|accuracy` is an absolute quantity in the same units as the value.
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_PROPORTION>
@@ -2379,13 +2564,25 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
+
+| `\|accuracy`
+| Real
+| accuracy
+| no
+| Half-range accuracy of measurement. Interpretation depends on `\|accuracy_is_percent`. A value of `0` means accuracy is 100% (no error).
+
+| `\|accuracy_is_percent`
+| Boolean
+| accuracy_is_percent
+| no
+| When `true`, `\|accuracy` is a percentage (0–100); when `false` or absent, `\|accuracy` is an absolute quantity in the same units as the value.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_COUNT>
@@ -2450,13 +2647,13 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_DATE>
@@ -2474,7 +2671,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 [[DV_DATE_TIME]]
 == DV_DATE_TIME
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_class[DV_DATE] class.
+See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_time_class[DV_DATE_TIME] class.
 
 [source,json]
 ----
@@ -2510,7 +2707,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | value
 | Yes
-| ISO8601 date
+| ISO8601 date-time
 
 | `/_accuracy`
 | <<DV_DURATION,DV_DURATION>>
@@ -2522,13 +2719,13 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_DATE_TIME>
@@ -2545,12 +2742,12 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 
 == DV_TIME
 
-See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_date_class[DV_DATE] class.
+See RM specification of the https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_time_class[DV_TIME] class.
 
 [source,json]
 ----
 {
-  "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_date": "2022-01-12"
+  "conformance-ehrbase.de.v0/conformance_section/conformance_observation/any_event:0/dv_time": "13:22:34.000868+01:00"
 }
 ----
 
@@ -2581,7 +2778,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | value
 | Yes
-| ISO8601 date
+| ISO8601 time
 
 | `/_accuracy`
 | <<DV_DURATION,DV_DURATION>>
@@ -2593,13 +2790,13 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_TIME>
@@ -2662,7 +2859,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | no
 |
 
-| accuracy_is_percent
+| `\|accuracy_is_percent`
 | Boolean
 | accuracy_is_percent
 | no
@@ -2672,13 +2869,13 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | String
 | magnitude_status
 | no
-| ValueSet (",>,>=,<,\<=,~)
+| ValueSet (=,>,>=,<,\<=,~)
 
 | `\|normal_status`
 | String
-| normal_status
+| normal_status.code_string
 | no
-| ValueSet normal_status
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_DURATION>
@@ -2886,7 +3083,7 @@ See RM specification of the https://specifications.openehr.org/releases/RM/lates
 | no
 |
 
-| `\|media_type`
+| `\|mediatype`
 | String
 | media_type.code_string
 | Yes
