@@ -17,6 +17,13 @@
     </thead>
     <tbody>
     <tr>
+        <td>5.9</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-95" target="_blank" rel="noopener">SPECITS-95</a>:
+            Fix <code>UPDATE_AUDIT.change_type</code> typing - use <code>DV_CODED_TEXT</code> instead of <code>TERMINOLOGY_CODE</code> (same correction applied to <code>UPDATE_VERSION.lifecycle_state</code> in the ehr and demographic APIs); add optional <code>system_id</code>, make the examples consistent with the schema, clarify that <code>UPDATE_AUDIT</code> is <code>AUDIT_DETAILS</code> minus server-assigned attributes including the <code>_type</code> handling, and remove the now-unused <code>TERMINOLOGY_CODE</code> base schema</td>
+        <td>H Heiser, S Iancu</td>
+        <td>11 Jun 2026</td>
+    </tr>
+    <tr>
         <td>5.8</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECPR-472" target="_blank" rel="noopener">SPECPR-472</a>:
             Document support for the <code>system_id</code> attribute on the <code>openehr-audit-details</code> request header</td>
