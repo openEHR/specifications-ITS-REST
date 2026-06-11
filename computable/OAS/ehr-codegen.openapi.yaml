@@ -702,6 +702,12 @@ paths:
           - `audit.time_committed`: server will always set it
           - `audit.system_id`: when provided, it will be validated
 
+        The `audit` and each `versions[i].commit_audit` are `UPDATE_AUDIT` objects: structurally an
+        `AUDIT_DETAILS` minus the server-assigned attributes (`time_committed`, and the optional `system_id`).
+        Clients SHOULD send `_type: "UPDATE_AUDIT"`; for interoperability servers SHOULD additionally accept
+        `_type: "AUDIT_DETAILS"` or an omitted `_type` for this attribute. The `audit.change_type` and each
+        `versions[i].lifecycle_state` are `DV_CODED_TEXT` values coded against the openEHR terminology.
+
         ### Simplified Formats (FLAT / STRUCTURED)
 
         The `Content-Type` and `Accept` headers MAY be set to one of the Simplified Formats MIME types - `application/openehr.wt.flat+json` or `application/openehr.wt.structured+json` - in addition to the canonical `application/json` / `application/xml`.
@@ -3002,25 +3008,6 @@ components:
         time_created:
           value: '2015-01-20T19:30:22.765+01:00'
       x-discriminator-value: VERSIONED_COMPOSITION
-    TerminologyCode:
-      title: TERMINOLOGY_CODE
-      required:
-        - terminology_id
-        - code_string
-      type: object
-      properties:
-        terminology_id:
-          type: string
-        terminology_version:
-          type: string
-        code_string:
-          type: string
-        uri:
-          type: string
-          format: uri
-      example:
-        terminology_id: snomed_ct
-        code_string: '308335008'
     UpdateAudit:
       title: UPDATE_AUDIT
       required:
@@ -3031,18 +3018,33 @@ components:
         _type:
           type: string
           default: UPDATE_AUDIT
+        system_id:
+          type: string
+          description: |
+            Optional identifier of the system where the change was committed. When provided it will be
+            validated; when omitted the server sets its own value.
         change_type:
-          $ref: '#/components/schemas/TerminologyCode'
+          $ref: '#/components/schemas/DvCodedText'
         description:
           $ref: '#/components/schemas/DvText'
         committer:
           $ref: '#/components/schemas/PartyProxy'
-      description: The set of attributes required to document the committal of an information item to a repository. Used by the server to create an AUDIT_DETAILS object.
+      description: |
+        The set of attributes required to document the committal of an information item to a repository.
+
+        `UPDATE_AUDIT` is a REST commit DTO, not an RM class: structurally an `AUDIT_DETAILS` without the
+        server-assigned attributes (`time_committed` is always set by the server; `system_id` is optional on
+        commit). The server uses it to create the persisted `AUDIT_DETAILS` object.
+
+        Clients SHOULD send `_type: "UPDATE_AUDIT"`. For interoperability with existing implementations,
+        servers SHOULD additionally accept `_type: "AUDIT_DETAILS"` or an omitted `_type` for this attribute.
       example:
+        _type: UPDATE_AUDIT
         change_type:
           value: creation
           defining_code:
-            terminology_id: openehr
+            terminology_id:
+              value: openehr
             code_string: '249'
         description: Description text
         committer:
@@ -3092,7 +3094,7 @@ components:
         signature:
           type: string
         lifecycle_state:
-          $ref: '#/components/schemas/TerminologyCode'
+          $ref: '#/components/schemas/DvCodedText'
         attestations:
           type: array
           items:
