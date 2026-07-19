@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git diff:*)",
+      "Bash(git commit *)",
+      "Bash(git add *)",
+      "WebFetch(domain:specifications.openehr.org)",
+      "WebFetch(domain:hl7.org)",
+      "WebFetch(domain:docs.smarthealthit.org)",
+      "WebFetch(domain:docs.ehrbase.org)",
+      "WebFetch(domain:docs.better.care)",
+      "WebFetch(domain:ehrbase.org)",
+      "mcp__atlassian-openehr__atlassianUserInfo",
+      "mcp__atlassian-openehr__getAccessibleAtlassianResources",
+      "mcp__atlassian-openehr__getVisibleJiraProjects"
+    ]
+  },
+  "enabledPlugins": {
+    "claude-md-management@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "openehr-specs@openehr": true,
+    "superpowers@claude-plugins-official": true
+  }
+}

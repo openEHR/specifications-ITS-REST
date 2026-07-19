@@ -1,7 +1,7 @@
 # AGENTS.md
 
 Guidance for AI coding agents working in this repository. Per-tool config files
-(`.claude/CLAUDE.md`, `.junie/guidelines.md`) point here so there's a single source.
+(`.claude/CLAUDE.md`) point here so there's a single source.
 Humans should read `development/README.md` for a fuller quickstart.
 
 ## What this repo is
