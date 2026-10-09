@@ -17,6 +17,16 @@
     </thead>
     <tbody>
     <tr>
+        <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.2.0</a></th>
+    </tr>
+    <tr>
+        <td>5.10</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECPR-428" target="_blank" rel="noopener">SPECPR-428</a>:
+            Rename the summaries of the <code>VERSION</code>-returning operations from "Get versioned X version at time / by id" to "Get X version at time" and "Get X version by version id" (EHR_STATUS, COMPOSITION, PARTY), since these operations return a <code>VERSION</code>, not a <code>VERSIONED_OBJECT</code>; operation ids unchanged</td>
+        <td>P Pazos, S Kohler</td>
+        <td>09 Oct 2026</td>
+    </tr>
+    <tr>
         <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.1.0" target="_blank" rel="noopener">Release-1.1.0</a></th>
     </tr>
     <tr>
