@@ -20,5 +20,13 @@
     "pr-review-toolkit@claude-plugins-official": true,
     "openehr-specs@openehr": true,
     "superpowers@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "openehr": {
+      "source": {
+        "source": "github",
+        "repo": "openEHR/ai-plugins"
+      }
+    }
   }
 }

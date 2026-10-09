@@ -1,0 +1,61 @@
+{
+  "template_set": "openehr-specs/scaffold",
+  "revision": 2,
+  "variables": {
+    "component": "ITS-REST",
+    "repo_name": "specifications-ITS-REST",
+    "component_title": "REST API specifications",
+    "component_description": "openEHR REST API specifications Component (ITS-REST)",
+    "keywords": "openEHR, ITS, REST APIs, REST, API, RESTful, services",
+    "jira_project": "SPECITS",
+    "jira_open_issues": "11113",
+    "first_release": "0.1.0",
+    "published_url": "https://specifications.openehr.org/releases/ITS-REST/",
+    "default_branch": "master",
+    "license": "apache-2.0",
+    "bmm_schema_id": "",
+    "base_bmm_schema_id": "",
+    "documents": "`overview`, `system`, `ehr`, `query`, `definition`, `demographic`, `admin`, `simplified_formats`, `smart_app_launch`, `REST_OAS_files`"
+  },
+  "defaulted": [
+    "base_bmm_schema_id",
+    "bmm_schema_id",
+    "first_release",
+    "published_url"
+  ],
+  "files": {
+    "claude-settings": {
+      "items": [
+        "enabledPlugins.claude-md-management@claude-plugins-official",
+        "enabledPlugins.openehr-specs@openehr",
+        "enabledPlugins.pr-review-toolkit@claude-plugins-official",
+        "enabledPlugins.superpowers@claude-plugins-official",
+        "extraKnownMarketplaces.openehr.source.repo",
+        "extraKnownMarketplaces.openehr.source.source",
+        "permissions.allow[]=\"Bash(git add *)\"",
+        "permissions.allow[]=\"Bash(git commit *)\"",
+        "permissions.allow[]=\"Bash(git diff:*)\"",
+        "permissions.allow[]=\"WebFetch(domain:specifications.openehr.org)\"",
+        "permissions.allow[]=\"mcp__atlassian-openehr__atlassianUserInfo\"",
+        "permissions.allow[]=\"mcp__atlassian-openehr__getAccessibleAtlassianResources\"",
+        "permissions.allow[]=\"mcp__atlassian-openehr__getVisibleJiraProjects\""
+      ]
+    },
+    "gitignore": {
+      "items": [
+        "*.bak",
+        ".claude/settings.local.json",
+        ".env",
+        ".idea/",
+        ".vscode/",
+        ".worktrees/",
+        "temp/"
+      ]
+    }
+  },
+  "pinned": [
+    "agents",
+    "asciidoctorconfig",
+    "claude-md"
+  ]
+}
