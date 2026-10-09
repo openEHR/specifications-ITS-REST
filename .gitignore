@@ -2,3 +2,22 @@
 /development/vendor/
 /development/composer.lock
 /development/xdebug_remote.log
+
+# Backup files
+*.bak
+
+# temp files
+temp/
+
+# env file
+.env
+
+# Editor/IDE
+.idea/
+.vscode/
+
+# Git worktrees (isolated feature checkouts)
+.worktrees/
+
+# Local AI agent settings (per-machine permissions, etc.)
+.claude/settings.local.json
