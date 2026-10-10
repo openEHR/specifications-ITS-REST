@@ -1,6 +1,6 @@
 {
   "template_set": "openehr-specs/scaffold",
-  "revision": 2,
+  "revision": 4,
   "variables": {
     "component": "ITS-REST",
     "repo_name": "specifications-ITS-REST",
@@ -14,11 +14,10 @@
     "default_branch": "master",
     "license": "apache-2.0",
     "bmm_schema_id": "",
-    "base_bmm_schema_id": "",
+    "bmm_dependencies": "",
     "documents": "`overview`, `system`, `ehr`, `query`, `definition`, `demographic`, `admin`, `simplified_formats`, `smart_app_launch`, `REST_OAS_files`"
   },
   "defaulted": [
-    "base_bmm_schema_id",
     "bmm_schema_id",
     "first_release",
     "published_url"
