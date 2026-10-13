@@ -1,5 +1,5 @@
 operationId: versioned_composition_version_get_by_id
-summary: Get versioned COMPOSITION version by id
+summary: Get COMPOSITION version by version id
 description: |
   Retrieves a VERSION identified by `version_uid` of a VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 tags:

@@ -768,7 +768,7 @@ paths:
   /demographic/versioned_party/{versioned_object_uid}/version:
     get:
       operationId: versioned_party_version_get_at_time
-      summary: Get VERSIONED_PARTY version at time
+      summary: Get PARTY version at time
       description: |
         Retrieves a VERSION from the VERSIONED_PARTY identified by `versioned_object_uid`.
 
@@ -788,7 +788,7 @@ paths:
   /demographic/versioned_party/{versioned_object_uid}/version/{version_uid}:
     get:
       operationId: versioned_party_version_get_by_id
-      summary: Get VERSIONED_PARTY version by id
+      summary: Get PARTY version by version id
       description: |
         Retrieves a VERSION identified by `version_uid` of a VERSIONED_PARTY identified by `versioned_object_uid`.
       tags:

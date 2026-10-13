@@ -1,5 +1,5 @@
 operationId: versioned_party_version_get_at_time
-summary: Get VERSIONED_PARTY version at time
+summary: Get PARTY version at time
 description: |
   Retrieves a VERSION from the VERSIONED_PARTY identified by `versioned_object_uid`.
 
