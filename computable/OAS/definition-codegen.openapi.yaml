@@ -3263,7 +3263,7 @@ components:
       name: concept
       in: query
       description: |
-        PAttern for matching `concept` (supports wildcards `*`)
+        Pattern for matching `concept` (supports wildcards `*`)
       style: form
       schema:
         type: string

@@ -101,7 +101,7 @@ The list of `code_string` values and their meaning is specified by the [Audit Ch
 
 ## openehr-item-tag and openehr-version-item-tag
 
-The `openehr-item-tag` and `openehr-version-item-tag` headers provide a lightweight mechanism for associating tags with change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.).
+The `openehr-item-tag` and `openehr-version-item-tag` headers provide a lightweight mechanism for associating tags with change-controlled resources that have dedicated ITEM_TAG operations: COMPOSITION, EHR_STATUS and the demographic PARTY types (PERSON, ORGANISATION, GROUP, AGENT, ROLE). FOLDER has no ITEM_TAG operations in this API, so these headers do not apply to it.
 
 - `openehr-item-tag` applies to *VERSIONED_OBJECT* targets.
 - `openehr-version-item-tag` applies to a specific target *VERSION* within a VERSIONED_OBJECT.
