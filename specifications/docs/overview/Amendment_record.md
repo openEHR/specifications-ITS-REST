@@ -20,6 +20,13 @@
         <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.2.0</a></th>
     </tr>
     <tr>
+        <td>5.11</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECPR-470" target="_blank" rel="noopener">SPECPR-470</a>:
+            Add property descriptions to the System API <code>Options</code> response schema (<code>solution</code>, <code>solution_version</code>, <code>vendor</code>, <code>restapi_specs_version</code>, <code>conformance_profile</code>, <code>endpoints</code>); the descriptions contributed in PR #112 had only been applied to the generated file and were lost on rebundling</td>
+        <td>J Holslag, S Kohler</td>
+        <td>16 Oct 2026</td>
+    </tr>
+    <tr>
         <td>5.10</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECPR-428" target="_blank" rel="noopener">SPECPR-428</a>:
             Rename the summaries of the <code>VERSION</code>-returning operations from "Get versioned X version at time / by id" to "Get X version at time" and "Get X version by version id" (EHR_STATUS, COMPOSITION, PARTY), since these operations return a <code>VERSION</code>, not a <code>VERSIONED_OBJECT</code>; operation ids unchanged</td>
