@@ -3,16 +3,22 @@ type: object
 properties:
   solution:
     type: string
+    description: The name of the solution, as chosen by the vendor.
   solution_version:
     type: string
+    description: The deployed version of the solution. This is a vendor-specific version number, ideally a semantic version.
   vendor:
     type: string
+    description: The name of the vendor of the solution.
   restapi_specs_version:
     type: string
+    description: The version of the openEHR REST API specifications that the solution conforms to. This should be one of the releases listed in the [openEHR REST API specifications](https://specifications.openehr.org/releases/ITS-REST/latest).
   conformance_profile:
     type: string
+    description: The name of the conformance profile that the solution implements.
   endpoints:
     type: array
+    description: The API endpoints (base paths) that are supported by the solution.
     items:
       type: string
 example:
