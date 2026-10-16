@@ -268,7 +268,7 @@ tags:
 
       ## openehr-item-tag and openehr-version-item-tag
 
-      The `openehr-item-tag` and `openehr-version-item-tag` headers provide a lightweight mechanism for associating tags with change-controlled resources (e.g. COMPOSITION, EHR_STATUS, FOLDER, etc.).
+      The `openehr-item-tag` and `openehr-version-item-tag` headers provide a lightweight mechanism for associating tags with change-controlled resources that have dedicated ITEM_TAG operations: COMPOSITION, EHR_STATUS and the demographic PARTY types (PERSON, ORGANISATION, GROUP, AGENT, ROLE). FOLDER has no ITEM_TAG operations in this API, so these headers do not apply to it.
 
       - `openehr-item-tag` applies to *VERSIONED_OBJECT* targets.
       - `openehr-version-item-tag` applies to a specific target *VERSION* within a VERSIONED_OBJECT.
@@ -709,6 +709,13 @@ tags:
               <td><a href="https://specifications.openehr.org/tickets/SPECPR-305" target="_blank" rel="noopener">SPECPR-305</a>:
                   Specify the default <code>change_type</code> and <code>lifecycle_state</code> applied by the server when a direct <code>POST</code>, <code>PUT</code> or <code>DELETE</code> commit carries no <code>openehr-audit-details</code> / <code>openehr-version</code> header, and which change types are reserved for the CONTRIBUTION endpoint</td>
               <td>P Pazos, S Kohler</td>
+              <td>16 Oct 2026</td>
+          </tr>
+          <tr>
+              <td>5.11</td>
+              <td><a href="https://specifications.openehr.org/tickets/SPECPR-488" target="_blank" rel="noopener">SPECPR-488</a>:
+                  Fix the Simplified Formats links in the CONTRIBUTION create/get descriptions; fix the "PAttern" typo in the <code>concept</code> query parameter; state that the <code>openehr-item-tag</code> headers do not apply to FOLDER</td>
+              <td>A Vidrean, S Kohler</td>
               <td>16 Oct 2026</td>
           </tr>
           <tr>

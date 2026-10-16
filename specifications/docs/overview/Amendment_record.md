@@ -27,6 +27,13 @@
         <td>16 Oct 2026</td>
     </tr>
     <tr>
+        <td>5.11</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECPR-488" target="_blank" rel="noopener">SPECPR-488</a>:
+            Fix the Simplified Formats links in the CONTRIBUTION create/get descriptions; fix the "PAttern" typo in the <code>concept</code> query parameter; state that the <code>openehr-item-tag</code> headers do not apply to FOLDER</td>
+        <td>A Vidrean, S Kohler</td>
+        <td>16 Oct 2026</td>
+    </tr>
+    <tr>
         <td>5.10</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECPR-428" target="_blank" rel="noopener">SPECPR-428</a>:
             Rename the summaries of the <code>VERSION</code>-returning operations from "Get versioned X version at time / by id" to "Get X version at time" and "Get X version by version id" (EHR_STATUS, COMPOSITION, PARTY), since these operations return a <code>VERSION</code>, not a <code>VERSIONED_OBJECT</code>; operation ids unchanged</td>
