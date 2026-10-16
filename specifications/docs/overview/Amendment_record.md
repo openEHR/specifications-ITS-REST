@@ -20,6 +20,13 @@
         <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.2.0</a></th>
     </tr>
     <tr>
+        <td>5.11</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECPR-305" target="_blank" rel="noopener">SPECPR-305</a>:
+            Specify the default <code>change_type</code> and <code>lifecycle_state</code> applied by the server when a direct <code>POST</code>, <code>PUT</code> or <code>DELETE</code> commit carries no <code>openehr-audit-details</code> / <code>openehr-version</code> header, and which change types are reserved for the CONTRIBUTION endpoint</td>
+        <td>P Pazos, S Kohler</td>
+        <td>16 Oct 2026</td>
+    </tr>
+    <tr>
         <td>5.10</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECPR-428" target="_blank" rel="noopener">SPECPR-428</a>:
             Rename the summaries of the <code>VERSION</code>-returning operations from "Get versioned X version at time / by id" to "Get X version at time" and "Get X version by version id" (EHR_STATUS, COMPOSITION, PARTY), since these operations return a <code>VERSION</code>, not a <code>VERSIONED_OBJECT</code>; operation ids unchanged</td>
