@@ -1,5 +1,5 @@
 operationId: versioned_ehr_status_version_get_at_time
-summary: Get versioned EHR_STATUS version at time
+summary: Get EHR_STATUS version at time
 description: |
   Retrieves a VERSION from the VERSIONED_EHR_STATUS associated with the EHR identified by `ehr_id`.
 

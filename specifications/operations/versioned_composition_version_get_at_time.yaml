@@ -1,5 +1,5 @@
 operationId: versioned_composition_version_get_at_time
-summary: Get versioned COMPOSITION version at time
+summary: Get COMPOSITION version at time
 description: |
   Retrieves a VERSION from the VERSIONED_COMPOSITION identified by `versioned_object_uid` and associated with the EHR identified by `ehr_id`.
 

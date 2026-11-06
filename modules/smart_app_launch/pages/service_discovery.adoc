@@ -153,6 +153,6 @@ Example:
 The `capabilities` section advertises supported SMART features as an array value. In addition to those scopes defined in the original {hl7_smart_app_launch}/conformance.html#capabilities[SMART App Launch^] framework, the following capabilities extend the list for openEHR platforms:
 
 * `context-openehr-ehr`: Indicates support for EHR-level launch context, requested via `launch/patient` scope and conveyed via the `ehrId` token claim.
-* `context-openehr-episode`: Indicates support for Episode-level context, requested via `launch/episode`, scope conveyed via `episodeId` (<<_experimental_episode_context,experimental>>).
-* `openehr-permission-v1`: Indicates support for fine-grained <<_resource_scopes,scopes>> and authorization scheme over openEHR resources.
+* `context-openehr-episode`: Indicates support for Episode-level context, requested via `launch/episode`, scope conveyed via `episodeId` (<<experimental_features.adoc#{underscore}experimental_episode_context,experimental>>).
+* `openehr-permission-v1`: Indicates support for fine-grained <<scopes.adoc#{underscore}resource_scopes,scopes>> and authorization scheme over openEHR resources.
 * `launch-base64-json`: Indicates support for encoding launch context as a base64-encoded JSON object in the `launch` parameter.

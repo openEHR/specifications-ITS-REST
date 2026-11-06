@@ -92,6 +92,10 @@ openehr-audit-details: system_id="example.openehr.systemid"
 
 None of these headers are mandatory, but whatever is provided it MUST be merged with the default VERSION and VERSION.audit_details attributes on commit runtime.
 In particular, when `system_id` is not provided by the client, the server MUST set it to its own configured system identifier.
+When `change_type` is not provided by the client, the server MUST set it according to the HTTP method of the operation: `creation` (code `249`) for `POST`, `modification` (code `251`) for `PUT`, and `deleted` (code `523`) for `DELETE`.
+When `lifecycle_state` is not provided by the client, the server MUST set it to `complete` (code `532`).
+A client MAY override the default `change_type` only with a value that is consistent with the operation, for instance `amendment` (code `250`) instead of `modification` on a `PUT`; a server SHOULD reject a `change_type` that contradicts the method (e.g. `creation` on a `PUT`, or `deleted` on a `POST`) with `400 Bad Request`.
+The remaining change types (`synthesis`, `attestation`, `restoration`, `format conversion`) are not applicable to these direct methods; VERSIONs with such a `change_type` are committed through the CONTRIBUTION endpoint, where the audit details are supplied explicitly.
 
 The list of `code_string` values and their meaning is specified by the [Audit Change Type](https://specifications.openehr.org/releases/TERM/latest/SupportTerminology.html#_audit_change_type) and [Version Lifecycle State](https://specifications.openehr.org/releases/TERM/latest/SupportTerminology.html#_version_lifecycle_state) openEHR terminology vocabularies.
 

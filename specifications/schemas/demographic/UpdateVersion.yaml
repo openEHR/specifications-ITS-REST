@@ -12,7 +12,7 @@ properties:
   signature:
     type: string
   lifecycle_state:
-    $ref: ../base_types/TerminologyCode.yaml
+    $ref: ../data_types/DvCodedText.yaml
   attestations:
     type: array
     items:

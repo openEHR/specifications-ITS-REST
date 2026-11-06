@@ -17,6 +17,33 @@
     </thead>
     <tbody>
     <tr>
+        <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.2.0</a></th>
+    </tr>
+    <tr>
+        <td>5.11</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECPR-305" target="_blank" rel="noopener">SPECPR-305</a>:
+            Specify the default <code>change_type</code> and <code>lifecycle_state</code> applied by the server when a direct <code>POST</code>, <code>PUT</code> or <code>DELETE</code> commit carries no <code>openehr-audit-details</code> / <code>openehr-version</code> header, and which change types are reserved for the CONTRIBUTION endpoint</td>
+        <td>P Pazos, S Kohler</td>
+        <td>16 Oct 2026</td>
+    </tr>
+    <tr>
+        <td>5.10</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECPR-428" target="_blank" rel="noopener">SPECPR-428</a>:
+            Rename the summaries of the <code>VERSION</code>-returning operations from "Get versioned X version at time / by id" to "Get X version at time" and "Get X version by version id" (EHR_STATUS, COMPOSITION, PARTY), since these operations return a <code>VERSION</code>, not a <code>VERSIONED_OBJECT</code>; operation ids unchanged</td>
+        <td>P Pazos, S Kohler</td>
+        <td>09 Oct 2026</td>
+    </tr>
+    <tr>
+        <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.1.0" target="_blank" rel="noopener">Release-1.1.0</a></th>
+    </tr>
+    <tr>
+        <td>5.9</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-95" target="_blank" rel="noopener">SPECITS-95</a>:
+            Fix <code>UPDATE_AUDIT.change_type</code> typing - use <code>DV_CODED_TEXT</code> instead of <code>TERMINOLOGY_CODE</code> (same correction applied to <code>UPDATE_VERSION.lifecycle_state</code> in the ehr and demographic APIs); add optional <code>system_id</code>, make the examples consistent with the schema, clarify that <code>UPDATE_AUDIT</code> is <code>AUDIT_DETAILS</code> minus server-assigned attributes including the <code>_type</code> handling, and remove the now-unused <code>TERMINOLOGY_CODE</code> base schema</td>
+        <td>H Heiser, S Iancu</td>
+        <td>11 Jun 2026</td>
+    </tr>
+    <tr>
         <td>5.8</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECPR-472" target="_blank" rel="noopener">SPECPR-472</a>:
             Document support for the <code>system_id</code> attribute on the <code>openehr-audit-details</code> request header</td>
@@ -39,8 +66,8 @@
     </tr>
     <tr>
         <td>5.6</td>
-        <td><a href="https://specifications.openehr.org/tickets/SPECITS-88" target="_blank" rel="noopener">SPECITS-88</a>:
-            Add support for filters in listTemplates operation</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-86" target="_blank" rel="noopener">SPECITS-86</a>:
+            Changes regarding <code>template_id</code>: add <code>template_id</code> and <code>version</code> filter parameters to the listTemplates operation (adl1.4 and adl2)</td>
         <td>REST WG</td>
         <td>11 Feb 2026</td>
     </tr>
@@ -123,20 +150,20 @@
     </tr>
     <tr>
         <td>5.1</td>
-        <td><a href="https://specifications.openehr.org/tickets/SPECITS-73" target="_blank" rel="noopener">SPECITS-73</a>:
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-70" target="_blank" rel="noopener">SPECITS-70</a>:
             Add Demographic API endpoint</td>
         <td>P Pazos, S Iancu</td>
         <td>11 Sep 2024</td>
     </tr>
     <tr>
         <td>5.0</td>
-        <td><a href="https://specifications.openehr.org/tickets/SPECITS-75" target="_blank" rel="noopener">SPECITS-75</a>:
+        <td><a href="https://specifications.openehr.org/tickets/SPECITS-73" target="_blank" rel="noopener">SPECITS-73</a>:
             Change structure and improve yaml specs</td>
         <td>S Iancu</td>
         <td>11 Sep 2024</td>
     </tr>
     <tr>
-        <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.0.3</a></th>
+        <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/Release-1.0.3" target="_blank" rel="noopener">Release-1.0.3</a></th>
     </tr>
     <tr>
         <td>4.1</td>

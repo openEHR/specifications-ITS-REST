@@ -9,7 +9,7 @@ While OIDC is the recommended approach, the exact mechanisms of identity verific
 == Supported Authentication Flows
 
 Client _Applications_ may authenticate with the _Platform_ using one of the following OAuth2-compatible flows.
-The choice of flow depends on the <<_application_types,client application type>> (public vs. confidential) and the desired security posture.
+The choice of flow depends on the xref:application_types.adoc[client application type] (public vs. confidential) and the desired security posture.
 
 * {ietf_html}/rfc6749#section-1.3.1[Authorization Code Grant^] with {ietf_html}/rfc7636[Proof Key for Code Exchange (PKCE)^]:
 Recommended for public clients (e.g., browser or mobile apps) as it does not require a client secret and mitigates interception risks.
