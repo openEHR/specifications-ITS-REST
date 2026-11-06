@@ -147,7 +147,7 @@ Example of a `Location` response header:
 
 ```http
 HTTP/1.1 201 Created
-Location: https://openEHRSys.example.com/v1/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+Location: https://openEHRSys.example.com/v1/ehr/347a5490-55ee-4da9-b91a-9bba710f730e/composition/8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::2
 Preference-Applied: return=minimal
 ```
 
@@ -183,7 +183,7 @@ An example of `ETag` header value format is:
 
 ```http
 HTTP/1.1 200 OK
-ETag: W/"8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
+ETag: W/"8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::2"
 ```
 
 Servers MAY add additional `ETag` response headers, consisting of an opaque quoted string, possibly prefixed by a weakness indicator.
@@ -208,7 +208,7 @@ If a service receives this header, and the condition evaluates to `false`, it MU
 
 Example:
 ```http
-If-Match: "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
+If-Match: "8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::2"
 ```
 
 See also details for `If-Match` described by [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-if-match).
@@ -305,7 +305,7 @@ Clients MAY use the following preferences to control the verbosity of successful
 Clients MAY request a minimal response that includes only the identifier (e.g., the `uid`) of the affected resource by specifying:
 
 ```http
-PUT https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2
+PUT https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::2
 Prefer: return=identifier
 Accept: application/json
 ```
@@ -319,7 +319,7 @@ HTTP/1.1 200 OK
 Preference-Applied: return=identifier
 Content-Type: application/json
 { 
-  "uid": "8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::3"
+  "uid": "8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::3"
 }
 ```
 

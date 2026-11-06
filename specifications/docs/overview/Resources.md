@@ -32,11 +32,11 @@ The `version_uid` uniquely identifies a VERSION, in the lexical form of `object_
 Consider the following request:
 
 ```http
-GET https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+GET https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
 ```
 
 - the EHR identifier is `7d44b88c-4199-4bad-97dc-d78268e01398`, taken from EHR.ehr_id.value,
-- the COMPOSITION identifier `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`, taken from COMPOSITION.uid.value, which also implies that the VERSIONED_OBJECT identifier is `8849182c-82ad-4088-a07f-48ead4180515` and the latest version is `1`,
+- the COMPOSITION identifier `8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1`, taken from COMPOSITION.uid.value, which also implies that the VERSIONED_OBJECT identifier is `8849182c-82ad-4088-a07f-48ead4180515` and the latest version is `1`,
 - the request is made to an openEHR API (of version `v1`), located at `https://openEHRSys.example.com`.
 
 > NOTE: Since [RM Release 1.0.4](https://specifications.openehr.org/releases/RM/Release-1.0.4) it is strongly recommended that the inherited `uid` attribute in COMPOSITION objects be populated using the `uid` copied from the enclosing VERSION object.
@@ -49,7 +49,7 @@ There are circumstances when openEHR resources can be uniquely identified by two
 For example, if a VERSIONED_COMPOSITION container has the _versioned_object_uid_ identifier `8849182c-82ad-4088-a07f-48ead4180515`, and the latest version is `5` (taken from _version_tree_id_), then the COMPOSITION can be accessed using either:
 
 ```http
-GET https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com:5
+GET https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::5
 ```
 
 as **explicit version reference**, using the _version_uid_ identifier,

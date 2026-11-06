@@ -403,7 +403,7 @@ paths:
         Retrieves a version of the COMPOSITION identified by `uid_based_id` and associated with the EHR identified by `ehr_id`.
 
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
-        The former is used to retrieve a specific known version of the COMPOSITION (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`), whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to retrieve a version from the version container whenever the _version_tree_id_ is unknown or irrelevant (such as when most recent version is requested).
+        The former is used to retrieve a specific known version of the COMPOSITION (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1`), whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to retrieve a version from the version container whenever the _version_tree_id_ is unknown or irrelevant (such as when most recent version is requested).
 
         When the `uid_based_id` has the form of a HIER_OBJECT_ID, if the `version_at_time` is supplied, retrieves the version extant _at specified time_, otherwise retrieves the _latest_ COMPOSITION version.
 
@@ -800,7 +800,7 @@ paths:
 
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
-        The former is used to get the tags of a particular (target) version of the COMPOSITION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        The former is used to get the tags of a particular (target) version of the COMPOSITION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1`),
         whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to get the tags of the target VERSIONED_COMPOSITION container.
 
         This will return an empty list when there is no ITEM_TAG associated with the given target.
@@ -827,7 +827,7 @@ paths:
 
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
-        The former is used to update the tags of a particular COMPOSITION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        The former is used to update the tags of a particular COMPOSITION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1`),
         whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to update the tags of the target VERSIONED_COMPOSITION container.
           
         Providing an empty list will effectively remove all ITEM_TAG associated with the given target.
@@ -869,7 +869,7 @@ paths:
 
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
-        The former is used to delete the tags a particular (target) version of the COMPOSITION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        The former is used to delete the tags a particular (target) version of the COMPOSITION version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1`),
         whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_COMPOSITION container.
       tags:
         - ITEM_TAG
@@ -892,7 +892,7 @@ paths:
 
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
-        The former is used to get the tags of a particular (target) version of the EHR_STATUS version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        The former is used to get the tags of a particular (target) version of the EHR_STATUS version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1`),
         whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to get the tags of the target VERSIONED_EHR_STATUS container.
 
         This will return an empty list when there is no ITEM_TAG associated with the given target.
@@ -919,7 +919,7 @@ paths:
 
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`), 
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
-        The former is used to update the tags of a particular EHR_STATUS version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        The former is used to update the tags of a particular EHR_STATUS version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1`),
         whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to update the tags of the target VERSIONED_EHR_STATUS container.
           
         Providing an empty list will effectively remove all ITEM_TAG associated with the given target.
@@ -961,7 +961,7 @@ paths:
 
         The `uid_based_id` can take a form of an OBJECT_VERSION_ID identifier taken from VERSION.uid.value (i.e. a `version_uid`),
         or a form of a HIER_OBJECT_ID identifier taken from VERSIONED_OBJECT.uid.value (i.e. a `versioned_object_uid`).
-        The former is used to delete the tags a particular (target) version of the EHR_STATUS version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1`),
+        The former is used to delete the tags a particular (target) version of the EHR_STATUS version (e.g. one identified by `8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1`),
         whereas the latter (e.g. an identifier like `8849182c-82ad-4088-a07f-48ead4180515`) is be used to delete the tags of the target VERSIONED_EHR_STATUS container.
       tags:
         - ITEM_TAG
@@ -1116,7 +1116,7 @@ components:
         value:
           type: string
       example:
-        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2
     UMObjectVersionId:
       title: OBJECT_VERSION_ID
       required:
@@ -1125,7 +1125,7 @@ components:
       type: object
       example:
         _type: OBJECT_VERSION_ID
-        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2
       properties:
         _type:
           enum:
@@ -1169,7 +1169,7 @@ components:
       example:
         id:
           _type: OBJECT_VERSION_ID
-          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::org.example.ehr1::1
         namespace: local
         type: COMPOSITION
     ObjectRefOfObjectVersionId:
@@ -1185,7 +1185,7 @@ components:
       example:
         id:
           _type: OBJECT_VERSION_ID
-          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::org.example.ehr1::1
         namespace: local
         type: COMPOSITION
       required:
@@ -1497,13 +1497,13 @@ components:
         ehr_status:
           id:
             _type: OBJECT_VERSION_ID
-            value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+            value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
           namespace: local
           type: EHR_STATUS
         ehr_access:
           id:
             _type: OBJECT_VERSION_ID
-            value: 59a8d0ac-140e-4feb-b2d6-af99f8e68af8::openEHRSys.example.com::1
+            value: 59a8d0ac-140e-4feb-b2d6-af99f8e68af8::org.example.ehr1::1
           namespace: local
           type: EHR_ACCESS
         time_created:
@@ -2477,7 +2477,7 @@ components:
           value: EHR status
         uid:
           _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
         subject:
           _type: PARTY_SELF
         is_queryable: true
@@ -2492,7 +2492,7 @@ components:
           type: string
           description: The (version) resource identifier.
       example:
-        uid: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+        uid: 6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2
     Error:
       title: Error
       required:
@@ -2636,7 +2636,7 @@ components:
       description: A REVISION_HISTORY_ITEM resource
       example:
         version_id:
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
         audits:
           - system_id: d60e2348-b083-48ce-93b9-916cef1d3a5a
             time_committed:
@@ -3269,7 +3269,7 @@ components:
           value: Vital Signs
         uid:
           _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
         archetype_details:
           archetype_id:
             value: openEHR-EHR-COMPOSITION.encounter.v1
@@ -3364,7 +3364,7 @@ components:
           value: Vital Signs
         uid:
           _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
         archetype_details:
           archetype_id:
             value: openEHR-EHR-COMPOSITION.encounter.v1
@@ -3452,7 +3452,7 @@ components:
           value: EHR status
         uid:
           _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
         subject:
           _type: PARTY_SELF
         is_queryable: true
@@ -3518,7 +3518,7 @@ components:
           value: Directory
         uid:
           _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
         items: []
         folders: []
       required:
@@ -3568,7 +3568,7 @@ components:
           value: Directory
         uid:
           _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
         items: []
         folders: []
     UVersionable:
@@ -3962,12 +3962,12 @@ components:
         versions:
           - id:
               _type: OBJECT_VERSION_ID
-              value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+              value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::org.example.ehr1::1
             namespace: local
             type: COMPOSITION
           - id:
               _type: OBJECT_VERSION_ID
-              value: abcdefgh-1323-42bc-b7f8-787f3660a0ba::openEHRSys.example.com::1
+              value: abcdefgh-1323-42bc-b7f8-787f3660a0ba::org.example.ehr1::1
             namespace: local
             type: FOLDER
         audit:
@@ -4131,7 +4131,7 @@ components:
       style: simple
       schema:
         type: string
-        example: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+        example: 6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2
     Accept_LOCATABLE:
       name: Accept
       in: header
@@ -4166,7 +4166,7 @@ components:
       style: simple
       schema:
         type: string
-        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::1"'
+        example: '"6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::1"'
     openehr-item-tag:
       name: openehr-item-tag
       in: header
@@ -4211,7 +4211,7 @@ components:
       style: simple
       schema:
         type: string
-        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        example: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
     uid_based_id_as_versioned_object_uid:
       name: uid_based_id
       in: path
@@ -4232,7 +4232,7 @@ components:
       style: simple
       schema:
         type: string
-        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        example: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
     versioned_object_uid_COMPOSITION:
       name: versioned_object_uid
       in: path
@@ -4253,7 +4253,7 @@ components:
       style: simple
       schema:
         type: string
-        example: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        example: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
     path:
       name: path
       in: query
@@ -4334,7 +4334,7 @@ components:
         The `ETag` (i.e. entity tag) response header is an identifier (e.g. a `version_uid` enclosed by double quotes) for a specific version of a resource.
       schema:
         type: string
-        example: W/"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"
+        example: W/"6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2"
     Location_deprecated:
       description: |
         The `Location` is [deprecated](overview.html#tag/Requests_and_responses/HTTP-headers/Location) for this action.
@@ -4365,7 +4365,7 @@ components:
       schema:
         type: string
         format: url
-        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/ehr_status/6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2
     Location_version:
       description: |
         The `Location` response header indicates the URL of the resource version resulted from the operation.
@@ -4377,39 +4377,39 @@ components:
         The `ETag` (i.e. entity tag) response header is the VERSION identifier (i.e. the `version_uid`) enclosed by double quotes.
       schema:
         type: string
-        example: W/"6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2"
+        example: W/"6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2"
     ETag_COMPOSITION:
       description: |
         The `ETag` (i.e. entity tag) response header is an identifier (e.g. a `version_uid` enclosed by double quotes) for a specific version of a resource.
       schema:
         type: string
-        example: W/"8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        example: W/"8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
     Location_COMPOSITION:
       description: |
         The `Location` response header indicates the URL of the COMPOSITION resource.
       schema:
         type: string
         format: url
-        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/composition/8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
     ETag_VERSION_of_COMPOSITION:
       description: |
         The `ETag` (i.e. entity tag) response header is the VERSION identifier (i.e. the `version_uid`) enclosed by double quotes.
       schema:
         type: string
-        example: W/"8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::2"
+        example: W/"8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::2"
     ETag_FOLDER:
       description: |
         The `ETag` (i.e. entity tag) response header is an identifier (e.g. a `version_uid` enclosed by double quotes) for a specific version of a resource.
       schema:
         type: string
-        example: W/"8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1"
+        example: W/"8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1"
     Location_directory:
       description: |
         The `Location` response header indicates the URL of the directory FOLDER resource.
       schema:
         type: string
         format: url
-        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+        example: https://openEHRSys.example.com/v1/ehr/7d44b88c-4199-4bad-97dc-d78268e01398/directory/8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
     ETag_CONTRIBUTION:
       description: |
         The `ETag` (i.e. entity tag) response header is the `contribution_uid` identifier, enclosed by double quotes.
