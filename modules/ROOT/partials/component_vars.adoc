@@ -1,0 +1,22 @@
+// Component specific vars
+// This file will be copied for each repo under /modules/ROOT/partials
+// and will be evaluated every time a component is built
+
+
+// Supporting the legacy non-antora way of referring to the current component
+:component: {page-component-name}
+
+// legacy -> this should not be in use any more, but added here for the reference
+// :diagrams_uri: {doc_name}/diagrams
+// :images_uri: {doc_name}/images
+
+// shortcuts to the current component JIRA urls
+:component_roadmap: {openehr_specs}/components/{component}/roadmap
+:component_history: {openehr_specs}/components/{component}/history
+:component_prs: {openehr_specs}/components/{component}/open_issues
+
+// The following two are partial patterns for URIs of the form
+// /components/<component>/<release>/issues
+// /components/<component>/<release>/changes
+:component_prs_fixed: {openehr_specs}/components/{component}/
+:component_crs_done: {openehr_specs}/components/{component}/

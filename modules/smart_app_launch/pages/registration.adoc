@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Application Registration
 
 Before an _Application_ can integrate with a _Platform_, it must first be registered.

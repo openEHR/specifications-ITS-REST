@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Overview
 
 == Background
@@ -57,13 +59,13 @@ It establishes a clear contract between the _Application Vendor_ and the _Platfo
 The *SMART on openEHR* specification is designed to maintain compatibility with {hl7_smart_app_launch}/[SMART App Launch Framework^], while extending it to work with {openehr_its_rest_releases}[openEHR REST APIs^] and potentially other API types.
 It defines a framework supporting the following capabilities:
 
-* <<_application_registration,Application Registration>>
-* <<_service_discovery,Service Discovery>>
-* <<_authentication,Authentication>>
-* <<_authorization,Authorization>>
-* <<_scopes,Scopes>>
-* <<_context_selection,Context Selection>>
-* <<_embedded_iframe_launch,Embedded iFrame Launch>>
+* xref:registration.adoc[Application Registration]
+* xref:service_discovery.adoc[Service Discovery]
+* xref:authentication.adoc[Authentication]
+* xref:authorization.adoc[Authorization]
+* xref:scopes.adoc[Scopes]
+* <<authorization.adoc#{underscore}context_selection,Context Selection>>
+* <<authorization.adoc#{underscore}embedded_iframe_launch,Embedded iFrame Launch>>
 
 == Foundational Concepts
 

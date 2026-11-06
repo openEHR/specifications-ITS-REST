@@ -1,0 +1,16 @@
+= REST API specifications
+
+[.spec-meta-line]
+Status: [.spec-status.spec-status-stable]#STABLE#  Release: [.release-tag]#{page-component-version}#
+
+
+OpenAPI specifications for the openEHR REST APIs: EHR, Query, Definition, System, Demographic, Admin, and SMART on openEHR. The core APIs (EHR, Query, Definition) are stable and in production use across implementations.
+
+.Specification Component Overview
+image::openehr_block_diagram.svg[openEHR REST API specifications block diagram,role=block-diagram]
+
+== Specifications
+
+* xref:simplified_formats:index.adoc[Simplified Formats for openEHR Data] [.spec-status.spec-status-stable]#STABLE# — Simplified Formats -- Compact JSON and XML formats for common EHR data exchange over REST
+* xref:smart_app_launch:index.adoc[SMART on openEHR (SMART)] [.spec-status.spec-status-development]#DEVELOPMENT# — SMART on openEHR -- SMART App Launch protocol for standards-based application access to EHR data
+* xref:simplified_data_template:index.adoc[Simplified Data Template]

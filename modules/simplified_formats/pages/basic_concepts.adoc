@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 
 = Basic Concepts
 
@@ -605,13 +607,13 @@ Example of such attributes:
 [cols="1,1,2", options="header"]
 |===
 |RM Type |Suffix |Description
-|<<DV_QUANTITY,DV_QUANTITY>>           |`\|magnitude`      |Numeric value
-|<<DV_QUANTITY,DV_QUANTITY>>           |`\|unit`           |Unit of measure
-|<<DV_CODED_TEXT,DV_CODED_TEXT>>       |`\|code`           |Terminology code
-|<<DV_CODED_TEXT,DV_CODED_TEXT>>       |`\|value`          |Display term
-|<<DV_CODED_TEXT,DV_CODED_TEXT>>       |`\|terminology`    |Terminology identifier
-|<<PARTY_IDENTIFIED,PARTY_IDENTIFIED>> |`\|id`             |The ID value
-|<<PARTY_IDENTIFIED,PARTY_IDENTIFIED>> |`\|id_namespace`   |The namespace of the ID value
+|<<rm_mapping.adoc#{underscore}dv_quantity,DV_QUANTITY>>           |`\|magnitude`      |Numeric value
+|<<rm_mapping.adoc#{underscore}dv_quantity,DV_QUANTITY>>           |`\|unit`           |Unit of measure
+|<<rm_mapping.adoc#DV_CODED_TEXT,DV_CODED_TEXT>>       |`\|code`           |Terminology code
+|<<rm_mapping.adoc#DV_CODED_TEXT,DV_CODED_TEXT>>       |`\|value`          |Display term
+|<<rm_mapping.adoc#DV_CODED_TEXT,DV_CODED_TEXT>>       |`\|terminology`    |Terminology identifier
+|<<rm_mapping.adoc#PARTY_IDENTIFIED,PARTY_IDENTIFIED>> |`\|id`             |The ID value
+|<<rm_mapping.adoc#PARTY_IDENTIFIED,PARTY_IDENTIFIED>> |`\|id_namespace`   |The namespace of the ID value
 |===
 
 
@@ -691,7 +693,7 @@ This includes:
 Context data is typically not entered by users but provided by the application.
 The `ctx/time` field, if not explicitly set, defaults to the current server time (`now()`).
 
-See below <<_context_information>> for more details.
+See below xref:context_information.adoc[Context Information] for more details.
 
 
 == Format variants
@@ -933,7 +935,7 @@ Many archetypes deliberately combine a recommended coded list with free-text fal
 * `|other` is mutually exclusive with `|code`, `|value` and `|terminology` on the same leaf path; servers MUST reject combinations.
 * `|other` MUST be rejected when the constraint is closed (`listOpen: false`).
 
-The per-suffix table is in the <<DV_CODED_TEXT>> class section.
+The per-suffix table is in the <<rm_mapping.adoc#DV_CODED_TEXT,DV_CODED_TEXT>> class section.
 
 
 == Validation

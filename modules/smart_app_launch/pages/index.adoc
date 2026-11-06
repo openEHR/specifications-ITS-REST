@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -10,7 +12,33 @@
 //
 
 
-= {spec_title}
+= {spec_title} [.spec-status.spec-status-development]#{spec_status}#
+
+SMART on openEHR profile enabling SMART App Launch protocol integration with openEHR platforms. Defines the authentication and authorisation flow for standards-based application access to EHR data. The profile specifies the OAuth 2.0 scopes, launch context parameters, and token exchange flow adapted to openEHR's EHR and patient identity model. It enables SMART-compatible EHR apps to launch within an openEHR platform context without requiring bespoke authentication integration.
+
+== Purpose
+
+This document describes the SMART framework for an openEHR enabled platform.
+
+The intended audience includes:
+
+* EHR systems, Platform or Application vendors;
+* Standards bodies producing health informatics standards;
+* Solution vendors.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview^]
+* {openehr_its_rest_releases}[openEHR REST APIs]
+* HL7 FHIR {hl7_smart_app_launch}/[SMART App Launch Implementation Guide^]
+* 'About SMART' page on https://smarthealthit.org/about-smart-2/[SMART Health IT^]
+* {ietf_html}/rfc6749[OAuth 2.0 Authorization Framework^]
+* {oidc_authentication}[OpenId Connect (OIDC)^]
+
+
+
 
 
 //
@@ -22,59 +50,12 @@
 // --------------------------------------------- Preface -----------------------------------------------
 //
 
-== Acknowledgements
+== Feedback
 
-=== Primary Author
+Feedback may be provided on the {openehr_technical_list}/its[openEHR ITS forum^].
 
-* Sidharth Ramesh; Medblocks.
-* Sebastian Iancu; Architect, Code24, Netherlands
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
 
-=== Contributors
-
-This specification has benefited from formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following for their contributions.
-
-* Ian McNicoll MD, FreshEHR, UK
-* Bostjan Lah, Senior Architect, Better, Slovenia
-
-A significant part of the design ideas of this specification was derived from:
-
-* SMART App Launch - Release 2.1.0, published by HL7® FHIR® standard
-
-=== Trademarks
-
-* 'openEHR' is a registered trademark of the openEHR Foundation
-* HL7® and FHIR® are the registered trademark of the Health Level Seven International and their use does not constitute endorsement by HL7
-* SMART™ and the SMART logos are trademarks of The Children’s Medical Center Corporation. Used with permission.
-
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::[left]
-
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
-
-//
-// --------------------------------------------- REFERENCES -----------------------------------------------
-//
-
-:sectnums!:
-
-[bibliography]
-== References
-
-* SMART App Launch - Release 2.1.0 (2021), {hl7_smart_app_launch}
-* The 'About SMART' page on SMART Health IT, https://smarthealthit.org/about-smart-2/
-* OAuth 2.0 Authorization Framework, {ietf_html}/rfc6749
-* OAuth 2.0 Dynamic Client Registration Protocol, {ietf_html}/rfc7591
-* OpenId Connect (OIDC), {oidc_authentication}
-* JSON Web Token (JWT) Assertion, {ietf_html}/rfc7523
-* JSON Web Signature (JWS), {ietf_html}/rfc7515
-* Best Practices in Authorization for SMART on FHIR EHRs, https://docs.smarthealthit.org/authorization/best-practices
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
 
 
-[.text-center]
-:figure-caption!:
-.SMART™ and the SMART logos are trademarks of The Children's Medical Center Corporation. Used with permission.
-image::diagrams/smart_logo.svg[SMART,140,80,id=smart_logo,link=https://smarthealthit.org/]

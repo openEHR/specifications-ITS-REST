@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Scopes
 
 Authorization is governed by *scopes*, which define the type and extent of access that a client _Application_ is requesting from the _Platform_.

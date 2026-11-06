@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Design Rationale
 
 == Background
@@ -376,13 +378,13 @@ The starting point for defining a developer-friendly format is to recognise that
 
 Creating canonical data instances is not always straightforward, and various alternatives have been used in the past to simplify the job of content creation and committal for application developers. Template-specificity provides a route to simplification: each openEHR template can be used to define one or more reasonably simple commit formats.
 
-The <<tds,Template Data Schema (TDS)>> format was originally devised by Ocean Health Systems as an XSD-based format. An XSLT script transformed `.oet` template source files and archetypes into a single XML Schema (XSD) for any given template. The transformation flattened various RM structures to make them simpler to understand and also converted archetype node codes (at-codes of Object nodes) to XSD tag names, e.g. 'serum_sodium'. This enabled developers to easily identify the XML Element for each data item they needed to populate to create a TDS instance document, known as a Template Data Document (TDD).
+The <<index.adoc#tds,Template Data Schema (TDS)>> format was originally devised by Ocean Health Systems as an XSD-based format. An XSLT script transformed `.oet` template source files and archetypes into a single XML Schema (XSD) for any given template. The transformation flattened various RM structures to make them simpler to understand and also converted archetype node codes (at-codes of Object nodes) to XSD tag names, e.g. 'serum_sodium'. This enabled developers to easily identify the XML Element for each data item they needed to populate to create a TDS instance document, known as a Template Data Document (TDD).
 
-The <<ecisflat,ECISFLAT>> format was developed for the EtherCIS project as a JSON-based alternative. It uses AQL-style paths based on natural language-independent codes (like `at0001`) and, apart from simplification of `DV_XXX` and `PARTY_PROXY` types, largely retains the openEHR RM structure.
+The <<index.adoc#ecisflat,ECISFLAT>> format was developed for the EtherCIS project as a JSON-based alternative. It uses AQL-style paths based on natural language-independent codes (like `at0001`) and, apart from simplification of `DV_XXX` and `PARTY_PROXY` types, largely retains the openEHR RM structure.
 
-The <<better-web-template,Web Template (WT)>> serialisation format was developed by Better (formerly Marand). It represents a more radical simplification of the openEHR RM and BASE models, using programmer-friendly, natural language-based paths. The serialisation format was originally based on the TDS, with a concrete expression in JSON and using paths, rather than sparse XML.
+The <<index.adoc#better-web-template,Web Template (WT)>> serialisation format was developed by Better (formerly Marand). It represents a more radical simplification of the openEHR RM and BASE models, using programmer-friendly, natural language-based paths. The serialisation format was originally based on the TDS, with a concrete expression in JSON and using paths, rather than sparse XML.
 
-EHRbase adopted and extended WT serialisation as <<ehrbase-sdt,Simplified Data Template (SDT)>> format.
+EHRbase adopted and extended WT serialisation as <<index.adoc#ehrbase-sdt,Simplified Data Template (SDT)>> format.
 
 
 == Simplified JSON Formats

@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Authorization
 
 Both *patient-facing* and *practitioner-facing* applications have specific authorization requirements that extend beyond the capabilities of the core {ietf_html}/rfc6749[OAuth 2.0 Authorization Framework^].
@@ -23,7 +25,7 @@ The SMART framework builds on the {ietf_html}/rfc6749#section-4.1[OAuth 2.0 Auth
 
 == Context Selection
 
-In a *Standalone Launch*, a client _Application_ can request the _Platform_ to assist with _context_ selection, provided that the relevant <<_capabilities,capabilities>> are supported by the _Platform_.
+In a *Standalone Launch*, a client _Application_ can request the _Platform_ to assist with _context_ selection, provided that the relevant <<service_discovery.adoc#{underscore}capabilities,capabilities>> are supported by the _Platform_.
 Most *patient-facing* and *practitioner-facing* applications will require the _Platform_ to supply additional context during the authorization process.
 This contextual data may include identifiers such as the openEHR EHR ID, FHIR Patient ID, Episode ID, etc. The context is typically valid for the duration of the user session.
 
@@ -40,7 +42,7 @@ To explicitly request openEHR-related launch context, the _Application_ must inc
 |=======================================================================
 | Scope | Meaning
 | `launch/patient` | Indicates that the Application requires patient context at launch (both FHIR `Patient` resource and corresponding openEHR `EHR` instance). For Standalone Launch, the user should be prompted to select the openEHR `EHR`.
-| `launch/episode` | Indicates that the Application requires episode context at launch. (<<_experimental_episode_context,Experimental>>)
+| `launch/episode` | Indicates that the Application requires episode context at launch. (<<experimental_features.adoc#{underscore}experimental_episode_context,Experimental>>)
 
 |=======================================================================
 
@@ -50,7 +52,7 @@ The _Platform_ returns the resolved context information in the token response, a
 |=======================================================================
 | Parameter | Meaning
 | `ehrId` | The unique identifier of the openEHR `EHR` instance associated with the selected FHIR `Patient` resource.
-| `episodeId` | The identifier of the selected clinical episode (if applicable). (<<_experimental_episode_context,experimental>>)
+| `episodeId` | The identifier of the selected clinical episode (if applicable). (<<experimental_features.adoc#{underscore}experimental_episode_context,experimental>>)
 
 |=======================================================================
 
@@ -68,7 +70,7 @@ Many *practitioner-facing* applications and, in some cases, *patient-facing* app
 
 In an *Embedded iFrame Launch*, the _Platform_ initiates the application by embedding it in an `iFrame` and passing key parameters directly in the URL:
 
-- `launch`: An opaque identifier or <<_launch_parameter_as_a_token,token>> that encodes relevant launch context (e.g., patient, EHR ID, episode).
+- `launch`: An opaque identifier or <<experimental_features.adoc#{underscore}launch_parameter_as_a_token,token>> that encodes relevant launch context (e.g., patient, EHR ID, episode).
 - `iss`: The issuer URL representing the _Platform's_ base endpoint (which, for compatibility with SMART on FHIR, should also serve as the FHIR base URL).
 
 For example, an application might be launched by: `\https://myapp.example.com?launch=123&iss=https://platform.example.com`.

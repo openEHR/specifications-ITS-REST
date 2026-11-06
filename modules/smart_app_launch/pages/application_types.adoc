@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Application Types
 
 The appropriate authentication flow depends on the type of the client _Application_, particularly its ability to securely manage credentials and the nature of its interaction with users or backend services. The *SMART on openEHR* specification defines two fundamental client types based on credential handling capabilities, and further distinguishes applications by their interaction model.
