@@ -29,7 +29,7 @@ This contextual data may include identifiers such as the openEHR EHR ID, FHIR Pa
 
 [.text-center]
 .Standalone Launch
-image::{diagrams_uri}/smart_standalone_launch.svg[id=smart_standalone_launch, align="center"]
+image::diagrams/smart_standalone_launch.svg[id=smart_standalone_launch, align="center"]
 
 The purpose of this _context_ data is to pre-load or configure the _Application_ to operate within a relevant clinical scope.
 The _Platform_ may determine this context automatically based on the authenticated user, or may prompt the user (e.g., via a selection screen) after the consent page if multiple valid contexts are possible.
@@ -75,7 +75,7 @@ For example, an application might be launched by: `\https://myapp.example.com?la
 
 [.text-center]
 .Embedded iFrame Launch
-image::{diagrams_uri}/smart_embedded_iframe_launch.svg[id=smart_embedded_iframe_launch, align="center"]
+image::diagrams/smart_embedded_iframe_launch.svg[id=smart_embedded_iframe_launch, align="center"]
 
 Once launched, the _Application_ uses the `iss` value to retrieve the SMART configuration document from `{iss}/.well-known/smart-configuration`.
 
