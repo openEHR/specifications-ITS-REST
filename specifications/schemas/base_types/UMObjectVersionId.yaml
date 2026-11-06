@@ -7,4 +7,4 @@ required:
 x-discriminator-value: OBJECT_VERSION_ID
 example:
   _type: OBJECT_VERSION_ID
-  value: '6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2'
+  value: '6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2'

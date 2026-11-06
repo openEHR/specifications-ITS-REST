@@ -54,7 +54,7 @@ SELECT c/name/value FROM COMPOSITION c WHERE c/uid/value = $uid
 ```
 named as `'myQuery'`, the client can supply the `uid` as a query parameter:
 ```
-GET https://openEHRSys.example.com/v1/query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::openEHRSys.example.com::1
+GET https://openEHRSys.example.com/v1/query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::org.example.ehr1::1
 ```
 
 As another example, the request

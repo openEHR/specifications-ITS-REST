@@ -20,13 +20,13 @@ example:
   ehr_status:
     id:
       _type: OBJECT_VERSION_ID
-      value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+      value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
     namespace: local
     type: EHR_STATUS
   ehr_access:
     id:
       _type: OBJECT_VERSION_ID
-      value: 59a8d0ac-140e-4feb-b2d6-af99f8e68af8::openEHRSys.example.com::1
+      value: 59a8d0ac-140e-4feb-b2d6-af99f8e68af8::org.example.ehr1::1
     namespace: local
     type: EHR_ACCESS
   time_created:

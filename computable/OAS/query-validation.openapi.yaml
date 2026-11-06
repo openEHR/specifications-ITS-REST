@@ -168,7 +168,7 @@ tags:
       ```
       named as `'myQuery'`, the client can supply the `uid` as a query parameter:
       ```
-      GET https://openEHRSys.example.com/v1/query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::openEHRSys.example.com::1
+      GET https://openEHRSys.example.com/v1/query/myQuery?uid=90910cf0-66a0-4382-b1f8-c0f27e81b42d::org.example.ehr1::1
       ```
 
       As another example, the request
@@ -482,7 +482,7 @@ components:
         - 81433066-c417-4813-9b29-79783e7bed23
         - '2017-02-16T13:50:11.308+01:00'
         - 140
-        - 90910cf0-66a0-4382-b1f8-c0f27e81b42d::openEHRSys.example.com::1
+        - 90910cf0-66a0-4382-b1f8-c0f27e81b42d::org.example.ehr1::1
         - _type: DV_TEXT
           value: Labs
     ResultSet:

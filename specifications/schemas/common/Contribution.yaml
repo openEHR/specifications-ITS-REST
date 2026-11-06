@@ -21,12 +21,12 @@ example:
   versions:
     - id:
         _type: OBJECT_VERSION_ID
-        value: 'fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1'
+        value: 'fb458d9c-1323-42bc-b7f8-787f3660a0b5::org.example.ehr1::1'
       namespace: local
       type: COMPOSITION
     - id:
         _type: OBJECT_VERSION_ID
-        value: 'abcdefgh-1323-42bc-b7f8-787f3660a0ba::openEHRSys.example.com::1'
+        value: 'abcdefgh-1323-42bc-b7f8-787f3660a0ba::org.example.ehr1::1'
       namespace: local
       type: FOLDER
   audit:

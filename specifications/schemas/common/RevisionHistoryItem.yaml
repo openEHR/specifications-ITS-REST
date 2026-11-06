@@ -13,7 +13,7 @@ properties:
       $ref: ../common/AuditDetails.yaml
 example:
   version_id:
-    value: '8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1'
+    value: '8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1'
   audits:
     - system_id: 'd60e2348-b083-48ce-93b9-916cef1d3a5a'
       time_committed:

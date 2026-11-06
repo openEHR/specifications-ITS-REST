@@ -1564,7 +1564,7 @@ components:
         value:
           type: string
       example:
-        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2
     UMObjectVersionId:
       title: OBJECT_VERSION_ID
       required:
@@ -1573,7 +1573,7 @@ components:
       type: object
       example:
         _type: OBJECT_VERSION_ID
-        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2
+        value: 6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2
       properties:
         _type:
           enum:
@@ -1889,7 +1889,7 @@ components:
       example:
         id:
           _type: OBJECT_VERSION_ID
-          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::openEHRSys.example.com::1
+          value: fb458d9c-1323-42bc-b7f8-787f3660a0b5::org.example.ehr1::1
         namespace: local
         type: COMPOSITION
     PartyRef:
@@ -3347,7 +3347,7 @@ components:
           value: Vital Signs
         uid:
           _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
         archetype_details:
           archetype_id:
             value: openEHR-EHR-COMPOSITION.encounter.v1
@@ -3435,7 +3435,7 @@ components:
           value: EHR status
         uid:
           _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
         subject:
           _type: PARTY_SELF
         is_queryable: true
@@ -3501,7 +3501,7 @@ components:
           value: Directory
         uid:
           _type: OBJECT_VERSION_ID
-          value: 8849182c-82ad-4088-a07f-48ead4180515::openEHRSys.example.com::1
+          value: 8849182c-82ad-4088-a07f-48ead4180515::org.example.ehr1::1
         items: []
         folders: []
       required:

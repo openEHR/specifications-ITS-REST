@@ -3,4 +3,4 @@ description: |
 schema:
   type: string
   format: url
-  example: 'https://openEHRSys.example.com/v1/demographic/role/6cb19121-4307-4648-9da0-d62e4d51f19b::openEHRSys.example.com::2'
+  example: 'https://openEHRSys.example.com/v1/demographic/role/6cb19121-4307-4648-9da0-d62e4d51f19b::org.example.ehr1::2'
