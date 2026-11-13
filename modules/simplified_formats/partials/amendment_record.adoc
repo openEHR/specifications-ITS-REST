@@ -7,10 +7,15 @@
 
 4+^h|*ITS_REST Release 1.1.0*
 
-|[[latest_issue]]1.1.1
+|[[latest_issue]]1.1.2
+|{spec_tickets}/SPECPR-526[SPECPR-526^]. Corrected FLAT types of `DV_QUANTITY` `\|magnitude` / `\|unit` and PARTY `\|id_scheme`; fixed `REFERENCE_RANGE` `/meaning` row, `\|normal_status` terminology notes (`openehr_normal_statuses`) and the `LINK` example in Basic Concepts.
+|S Kohler
+|[[latest_issue_date]]13 Nov 2026
+
+|1.1.1
 |{spec_tickets}/SPECITS-94[SPECITS-94^]. Clarified Level Removal (attribute elision vs wrapper collapse) and `EVENT` rule; added `\|other` and `\|preferred_term` suffixes on `DV_CODED_TEXT`; fixed `LINK` (`\|target`) and `DV_MULTIMEDIA` (`\|mediatype`) mappings; corrected `EVENT_CONTEXT` table and added `PARTICIPATION` section; corrected PARTY `\|id_namespace` RM path; documented PARTICIPATION `/relationship` for `PARTY_RELATED` performer; expanded `DV_PROPORTION` table (`\|precision`, `\|accuracy`, `\|accuracy_is_percent`; `\|normal_status` RM path); fixed `DV_DATE_TIME` / `DV_TIME` headers and bare-path notes; swept recurring `\|magnitude_status` and `\|normal_status` row corrections across `DV_COUNT` / `DV_DATE` / `DV_DATE_TIME` / `DV_TIME` / `DV_DURATION` / `DV_QUANTITY`; added `\|accuracy` / `\|accuracy_is_percent` to `DV_COUNT`.
 |REST WG
-|[[latest_issue_date]]28 Apr 2026
+|28 Apr 2026
 
 |1.1.0
 |{spec_tickets}/SPECITS-61[SPECITS-61^]. Cleanup and consolidate Simplified Formats specification; Deprecating Simplified Data Template (SDT) specification

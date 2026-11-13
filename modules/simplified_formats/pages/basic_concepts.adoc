@@ -636,8 +636,7 @@ Examples:
 {
   "path/observation:0/_link:0|type": "problem",
   "path/observation:0/_link:0|target": "ehr://problem-123",
-  "path/observation:0/_link:0|meaning|code": "related_to",
-  "path/observation:0/_link:0|meaning|value": "Related to"
+  "path/observation:0/_link:0|meaning": "Related to"
 }
 ----
 [source,json]
