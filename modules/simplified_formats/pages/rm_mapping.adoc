@@ -1654,7 +1654,7 @@ See RM specification of the xref:{class_party_self}[PARTY_SELF] class.
 |
 
 | `\|id_scheme`
-| Integer
+| String
 | external_ref.id.scheme
 | no
 |
@@ -1713,7 +1713,7 @@ See RM specification of the xref:{class_party_identified}[PARTY_IDENTIFIED] clas
 |
 
 | `\|id_scheme`
-| Integer
+| String
 | external_ref.id.scheme
 | no
 |
@@ -1784,7 +1784,7 @@ See RM specification of the xref:{class_party_related}[PARTY_RELATED] class.
 |
 
 | `\|id_scheme`
-| Integer
+| String
 | external_ref.id.scheme
 | no
 |
@@ -2353,13 +2353,13 @@ See RM specification of the xref:{class_dv_quantity}[DV_QUANTITY] class.
 | Note
 
 | `\|magnitude`
-| String
+| Real
 | magnitude
 | yes
 |
 
 | `\|unit`
-| Real
+| String
 | unit
 | yes
 |
@@ -2374,7 +2374,7 @@ See RM specification of the xref:{class_dv_quantity}[DV_QUANTITY] class.
 | String
 | normal_status.code_string
 | no
-| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr_normal_statuses`.
 
 | `\|accuracy`
 | Real
@@ -2506,7 +2506,7 @@ See RM specification of the xref:{class_dv_proportion}[DV_PROPORTION] class.
 | String
 | normal_status.code_string
 | no
-| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr_normal_statuses`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_PROPORTION>
@@ -2572,7 +2572,7 @@ See RM specification of the xref:{class_dv_count}[DV_COUNT] class.
 | String
 | normal_status.code_string
 | no
-| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr_normal_statuses`.
 
 | `\|accuracy`
 | Real
@@ -2655,7 +2655,7 @@ See RM specification of the xref:{class_dv_date}[DV_DATE] class.
 | String
 | normal_status.code_string
 | no
-| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr_normal_statuses`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_DATE>
@@ -2727,7 +2727,7 @@ See RM specification of the xref:{class_dv_date_time}[DV_DATE_TIME] class.
 | String
 | normal_status.code_string
 | no
-| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr_normal_statuses`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_DATE_TIME>
@@ -2798,7 +2798,7 @@ See RM specification of the xref:{class_dv_time}[DV_TIME] class.
 | String
 | normal_status.code_string
 | no
-| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr_normal_statuses`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_TIME>
@@ -2877,7 +2877,7 @@ See RM specification of the xref:{class_dv_duration}[DV_DURATION] class.
 | String
 | normal_status.code_string
 | no
-| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr`.
+| ValueSet `normal_statuses` (codes `HHH`, `HH`, `H`, `N`, `L`, `LL`, `LLL`). The FLAT carries only the `code_string`; the underlying `CODE_PHRASE` terminology is implicitly `openehr_normal_statuses`.
 
 | `/_normal_range`
 | <<DV_INTERVAL,DV_INTERVAL>> <DV_DURATION>
@@ -2972,7 +2972,7 @@ See RM specification of the xref:{class_reference_range}[REFERENCE_RANGE] class.
 | no
 | defaults to true
 
-| \meaning
+| `/meaning`
 | <<DV_TEXT,DV_TEXT>>
 | meaning
 | yes
