@@ -20,6 +20,13 @@
         <th colspan="4"><a href="https://specifications.openehr.org/releases/ITS-REST/latest" target="_blank" rel="noopener">Release-1.2.0</a></th>
     </tr>
     <tr>
+        <td>5.12</td>
+        <td><a href="https://specifications.openehr.org/tickets/SPECRM-134" target="_blank" rel="noopener">SPECRM-134</a>:
+            Make <code>ROLE.performer</code> optional in the Demographic API schema, following RM 1.2.0, so that a <code>ROLE</code> without a performer (a generic role) can be created and updated</td>
+        <td>S Iancu</td>
+        <td>26 Nov 2026</td>
+    </tr>
+    <tr>
         <td>5.11</td>
         <td><a href="https://specifications.openehr.org/tickets/SPECPR-305" target="_blank" rel="noopener">SPECPR-305</a>:
             Specify the default <code>change_type</code> and <code>lifecycle_state</code> applied by the server when a direct <code>POST</code>, <code>PUT</code> or <code>DELETE</code> commit carries no <code>openehr-audit-details</code> / <code>openehr-version</code> header, and which change types are reserved for the CONTRIBUTION endpoint</td>
