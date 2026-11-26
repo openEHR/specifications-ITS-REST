@@ -2,8 +2,6 @@ title: ROLE
 type: object
 allOf:
   - $ref: ../demographic/Party.yaml
-required:
-  - performer
 properties:
   _type:
     type: string

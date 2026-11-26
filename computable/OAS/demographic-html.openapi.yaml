@@ -3221,11 +3221,6 @@ components:
         $ref: '#/components/schemas/Capability'
     Role:
       title: ROLE
-      required:
-        - name
-        - archetype_node_id
-        - identities
-        - performer
       type: object
       properties:
         _type:
@@ -3262,6 +3257,10 @@ components:
           $ref: '#/components/schemas/PartyRef'
         capabilities:
           $ref: '#/components/schemas/SeeCapability'
+      required:
+        - name
+        - archetype_node_id
+        - identities
     ObjectRefOfHierObjectId:
       title: OBJECT_REF
       type: object
@@ -3579,7 +3578,6 @@ components:
         - name
         - archetype_node_id
         - identities
-        - performer
         - _type
       type: object
       properties:

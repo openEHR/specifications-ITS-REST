@@ -2709,8 +2709,6 @@ components:
         $ref: '#/components/schemas/Capability'
     Role:
       title: ROLE
-      required:
-        - performer
       type: object
       allOf:
         - $ref: '#/components/schemas/Party'
